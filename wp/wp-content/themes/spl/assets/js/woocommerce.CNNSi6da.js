@@ -1,0 +1,1 @@
+var e=()=>{window.jQuery&&jQuery(()=>{})};"loading"===document.readyState?document.addEventListener("DOMContentLoaded",e,{once:!0}):e();

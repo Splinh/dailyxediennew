@@ -1,0 +1,1 @@
+[data-fx-counter] .counter{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1;text-align:right;min-width:1ch;display:inline-block}[data-fx-counter] .symbol{text-align:center;flex-shrink:0;min-width:.8em;transition:transform .3s;display:inline-block}[data-fx-counter].is-counting .counter{min-width:2ch}
