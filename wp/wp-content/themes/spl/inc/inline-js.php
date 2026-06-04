@@ -13,10 +13,6 @@ add_action( 'wp_footer', 'spl_inline_js', 99 );
  * Output inline JS if Vite assets are not built yet.
  */
 function spl_inline_js(): void {
-	// Skip if Vite manifest exists.
-	if ( is_file( get_template_directory() . '/assets/.vite/manifest.json' ) ) {
-		return;
-	}
 	?>
 	<script>
 	(function(){
