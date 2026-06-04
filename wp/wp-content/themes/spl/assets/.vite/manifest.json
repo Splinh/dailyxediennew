@@ -38,17 +38,8 @@
     "src": "resources/components/page-home.scss",
     "isEntry": true
   },
-  "resources/scripts/admin.js": {
-    "file": "js/admin.C2sgRl1y.js",
-    "name": "admin",
-    "src": "resources/scripts/admin.js",
-    "isEntry": true,
-    "css": [
-      "css/admin.LpvI1bvT.css"
-    ]
-  },
   "resources/scripts/core/fx/accordion/fx-accordion-menu.js": {
-    "file": "js/chunk/fx-accordion-menu.DrCpIx2y.js",
+    "file": "js/chunk/fx-accordion-menu.D3X13DrT.js",
     "name": "fx-accordion-menu",
     "src": "resources/scripts/core/fx/accordion/fx-accordion-menu.js",
     "isDynamicEntry": true,
@@ -59,7 +50,7 @@
     ]
   },
   "resources/scripts/core/fx/accordion/fx-accordion.js": {
-    "file": "js/chunk/fx-accordion.BB3TEkPY.js",
+    "file": "js/chunk/fx-accordion.ArFiuNOl.js",
     "name": "fx-accordion",
     "src": "resources/scripts/core/fx/accordion/fx-accordion.js",
     "isDynamicEntry": true,
@@ -73,7 +64,7 @@
     ]
   },
   "resources/scripts/core/fx/animation/fx-counter.js": {
-    "file": "js/chunk/fx-counter.D3ZNToZ1.js",
+    "file": "js/chunk/fx-counter.Y3sF6D0T.js",
     "name": "fx-counter",
     "src": "resources/scripts/core/fx/animation/fx-counter.js",
     "isDynamicEntry": true,
@@ -87,7 +78,7 @@
     ]
   },
   "resources/scripts/core/fx/animation/fx-lottie.js": {
-    "file": "js/chunk/fx-lottie.DQo3UfQZ.js",
+    "file": "js/chunk/fx-lottie.Bcb_KSmK.js",
     "name": "fx-lottie",
     "src": "resources/scripts/core/fx/animation/fx-lottie.js",
     "isDynamicEntry": true,
@@ -101,7 +92,7 @@
     ]
   },
   "resources/scripts/core/fx/animation/fx-magnetic.js": {
-    "file": "js/chunk/fx-magnetic.cE_kBFVu.js",
+    "file": "js/chunk/fx-magnetic.DY3hlVBu.js",
     "name": "fx-magnetic",
     "src": "resources/scripts/core/fx/animation/fx-magnetic.js",
     "isDynamicEntry": true,
@@ -112,7 +103,7 @@
     ]
   },
   "resources/scripts/core/fx/dropdown/fx-dropdown-menu.js": {
-    "file": "js/chunk/fx-dropdown-menu.Dsa7j52f.js",
+    "file": "js/chunk/fx-dropdown-menu.C01j88jx.js",
     "name": "fx-dropdown-menu",
     "src": "resources/scripts/core/fx/dropdown/fx-dropdown-menu.js",
     "isDynamicEntry": true,
@@ -126,7 +117,7 @@
     ]
   },
   "resources/scripts/core/fx/dropdown/fx-dropdown.js": {
-    "file": "js/chunk/fx-dropdown.B3oKR2oI.js",
+    "file": "js/chunk/fx-dropdown.GWRR-MKo.js",
     "name": "fx-dropdown",
     "src": "resources/scripts/core/fx/dropdown/fx-dropdown.js",
     "isDynamicEntry": true,
@@ -140,7 +131,7 @@
     ]
   },
   "resources/scripts/core/fx/grid/fx-freeform.js": {
-    "file": "js/chunk/fx-freeform.CPcvM5xL.js",
+    "file": "js/chunk/fx-freeform.4kV2mCyq.js",
     "name": "fx-freeform",
     "src": "resources/scripts/core/fx/grid/fx-freeform.js",
     "isDynamicEntry": true,
@@ -155,7 +146,7 @@
     ]
   },
   "resources/scripts/core/fx/grid/fx-hybrid.js": {
-    "file": "js/chunk/fx-hybrid.lAW0nnqo.js",
+    "file": "js/chunk/fx-hybrid.r1Snhelu.js",
     "name": "fx-hybrid",
     "src": "resources/scripts/core/fx/grid/fx-hybrid.js",
     "isDynamicEntry": true,
@@ -170,7 +161,7 @@
     ]
   },
   "resources/scripts/core/fx/grid/fx-masonry.js": {
-    "file": "js/chunk/fx-masonry.CM3fD-Hu.js",
+    "file": "js/chunk/fx-masonry.BS8neTkV.js",
     "name": "fx-masonry",
     "src": "resources/scripts/core/fx/grid/fx-masonry.js",
     "isDynamicEntry": true,
@@ -185,7 +176,7 @@
     ]
   },
   "resources/scripts/core/fx/lightbox/fx-lightbox.js": {
-    "file": "js/chunk/fx-lightbox.Apdj9TSC.js",
+    "file": "js/chunk/fx-lightbox.CYb6IltL.js",
     "name": "fx-lightbox",
     "src": "resources/scripts/core/fx/lightbox/fx-lightbox.js",
     "isDynamicEntry": true,
@@ -212,7 +203,7 @@
     ]
   },
   "resources/scripts/core/fx/offcanvas/fx-offcanvas.js": {
-    "file": "js/chunk/fx-offcanvas.BIQi2k8L.js",
+    "file": "js/chunk/fx-offcanvas.T4WTJ3RQ.js",
     "name": "fx-offcanvas",
     "src": "resources/scripts/core/fx/offcanvas/fx-offcanvas.js",
     "isDynamicEntry": true,
@@ -226,7 +217,7 @@
     ]
   },
   "resources/scripts/core/fx/scroll-top/fx-scroll-top.js": {
-    "file": "js/chunk/fx-scroll-top.C6-_WMIH.js",
+    "file": "js/chunk/fx-scroll-top.IIgZh_Si.js",
     "name": "fx-scroll-top",
     "src": "resources/scripts/core/fx/scroll-top/fx-scroll-top.js",
     "isDynamicEntry": true,
@@ -236,7 +227,7 @@
     ]
   },
   "resources/scripts/core/fx/scrollspy/fx-scrollspy.js": {
-    "file": "js/chunk/fx-scrollspy.Bom78MLr.js",
+    "file": "js/chunk/fx-scrollspy.BDqaGsgJ.js",
     "name": "fx-scrollspy",
     "src": "resources/scripts/core/fx/scrollspy/fx-scrollspy.js",
     "isDynamicEntry": true,
@@ -250,7 +241,7 @@
     ]
   },
   "resources/scripts/core/fx/share/fx-share.js": {
-    "file": "js/chunk/fx-share.asoN2rQH.js",
+    "file": "js/chunk/fx-share.qkIbF0XE.js",
     "name": "fx-share",
     "src": "resources/scripts/core/fx/share/fx-share.js",
     "isDynamicEntry": true,
@@ -264,7 +255,7 @@
     ]
   },
   "resources/scripts/core/fx/slider/fx-slider.js": {
-    "file": "js/chunk/fx-slider.DE_LNSi7.js",
+    "file": "js/chunk/fx-slider.hg-5gbP-.js",
     "name": "fx-slider",
     "src": "resources/scripts/core/fx/slider/fx-slider.js",
     "isDynamicEntry": true,
@@ -279,7 +270,7 @@
     ]
   },
   "resources/scripts/core/fx/smoothscroll/fx-smoothscroll.js": {
-    "file": "js/chunk/fx-smoothscroll.D0Q-EiDZ.js",
+    "file": "js/chunk/fx-smoothscroll.CQsDxEmS.js",
     "name": "fx-smoothscroll",
     "src": "resources/scripts/core/fx/smoothscroll/fx-smoothscroll.js",
     "isDynamicEntry": true,
@@ -290,7 +281,7 @@
     ]
   },
   "resources/scripts/core/fx/sticky/fx-sticky.js": {
-    "file": "js/chunk/fx-sticky.BCdvSZG4.js",
+    "file": "js/chunk/fx-sticky.BslnZTiw.js",
     "name": "fx-sticky",
     "src": "resources/scripts/core/fx/sticky/fx-sticky.js",
     "isDynamicEntry": true,
@@ -301,7 +292,7 @@
     ]
   },
   "resources/scripts/core/fx/tabs/fx-tabs.js": {
-    "file": "js/chunk/fx-tabs.ESwnjzF9.js",
+    "file": "js/chunk/fx-tabs.DuECXRD5.js",
     "name": "fx-tabs",
     "src": "resources/scripts/core/fx/tabs/fx-tabs.js",
     "isDynamicEntry": true,
@@ -315,7 +306,7 @@
     ]
   },
   "resources/scripts/core/fx/video-embed/fx-video-embed.js": {
-    "file": "js/chunk/fx-video-embed.hnRgP7Fs.js",
+    "file": "js/chunk/fx-video-embed.CTPleXqj.js",
     "name": "fx-video-embed",
     "src": "resources/scripts/core/fx/video-embed/fx-video-embed.js",
     "isDynamicEntry": true,
@@ -440,7 +431,7 @@
     ]
   },
   "resources/scripts/index.js": {
-    "file": "js/index.BCOUCash.js",
+    "file": "js/index.CT3Y_1rb.js",
     "name": "index",
     "src": "resources/scripts/index.js",
     "isEntry": true,
@@ -490,15 +481,6 @@
     "src": "resources/scripts/preflight.js",
     "isEntry": true
   },
-  "resources/scripts/starter.js": {
-    "file": "js/starter.BmRJNN_n.js",
-    "name": "starter",
-    "src": "resources/scripts/starter.js",
-    "isEntry": true,
-    "imports": [
-      "_dom.D9i0Io8z.js"
-    ]
-  },
   "resources/scripts/woocommerce.js": {
     "file": "js/woocommerce.CNNSi6da.js",
     "name": "woocommerce",
@@ -530,15 +512,6 @@
       "share.css"
     ],
     "src": "resources/styles/share.scss",
-    "isEntry": true
-  },
-  "resources/styles/starter.scss": {
-    "file": "css/starter.CsgP0zv3.css",
-    "name": "starter",
-    "names": [
-      "starter.css"
-    ],
-    "src": "resources/styles/starter.scss",
     "isEntry": true
   },
   "resources/styles/woocommerce.scss": {
