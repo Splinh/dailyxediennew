@@ -1,0 +1,139 @@
+@use 'variables' as *;
+
+// ─── Credentials / Model Grid ─────────────────────────────────────────
+.provider-grid,
+.model-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	gap: 1rem;
+}
+
+.provider-card,
+.model-card {
+	background: $bg-card;
+	border: 1px solid $border-light;
+	border-radius: 8px;
+	padding: 1rem 1.25rem;
+	box-shadow: $shadow-sm;
+	transition: $transition-default;
+
+	&:hover {
+		border-color: $border-medium;
+		transform: translateY(-1px);
+		box-shadow: $shadow-md;
+	}
+
+	&.enabled {
+		border-color: $color-primary;
+		background: #f4f8fd;
+		box-shadow:
+			0 0 0 1px $color-primary inset,
+			$shadow-sm;
+
+		&:hover {
+			border-color: $color-primary-hover;
+			box-shadow:
+				0 0 0 1px $color-primary-hover inset,
+				$shadow-md;
+		}
+	}
+}
+
+.model-card {
+	position: relative;
+	padding-left: 2.25rem !important;
+	cursor: grab;
+	user-select: none;
+
+	&::before {
+		content: '\22ee\22ee';
+		position: absolute;
+		left: 0.85rem;
+		top: 50%;
+		transform: translateY(-50%);
+		color: $text-subtle;
+		font-size: 0.95rem;
+		font-weight: 700;
+		letter-spacing: 1px;
+		opacity: 0.65;
+		transition: opacity 0.2s ease;
+	}
+
+	&:hover::before {
+		opacity: 1;
+	}
+
+	&.dragging {
+		cursor: grabbing;
+		opacity: 0.5;
+		border-style: dashed;
+		background: #fafafb;
+		box-shadow: none;
+
+		&::before {
+			opacity: 0;
+		}
+	}
+
+	.model-card-head {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 0.5rem;
+		gap: 0.5rem;
+	}
+
+	.model-name {
+		font-weight: 600;
+		font-size: 0.9rem;
+		color: $text-dark;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.model-card-foot {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-top: 0.5rem;
+	}
+}
+
+.ctx {
+	font-size: 0.75rem;
+	color: $text-muted;
+}
+
+// ─── Rate-Limit Bar ───────────────────────────────────────────────────
+.rl-row {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-size: 0.75rem;
+	color: $text-medium;
+}
+
+.rl-track {
+	flex: 1;
+	height: 6px;
+	background: #e2e4e7;
+	border-radius: 3px;
+	overflow: hidden;
+}
+
+.rl-bar {
+	height: 100%;
+	border-radius: 3px;
+	transition: width 0.6s cubic-bezier(0.1, 0.8, 0.3, 1);
+}
+
+.rl-green {
+	background: $color-success;
+}
+.rl-yellow {
+	background: $color-warning;
+}
+.rl-red {
+	background: $color-error;
+}

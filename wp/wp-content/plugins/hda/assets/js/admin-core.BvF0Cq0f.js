@@ -1,0 +1,1 @@
+jQuery(function(i){i(document).on("click",".notice-dismiss",function(){i(this).closest(".notice.is-dismissible").fadeOut(500,function(){i(this).remove()})})});

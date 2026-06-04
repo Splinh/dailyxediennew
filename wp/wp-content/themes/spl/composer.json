@@ -1,0 +1,29 @@
+{
+	"name": "spl/theme",
+	"description": "SPL Thaphaco WordPress Theme",
+	"type": "wordpress-theme",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "SPL",
+			"email": "splworks.info@gmail.com"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"SPL\\": "src/"
+		},
+		"files": [
+			"config/helpers.php",
+			"config/settings.php"
+		]
+	},
+	"require": {
+		"php": ">=8.1"
+	},
+	"config": {
+		"optimize-autoloader": true,
+		"preferred-install": "dist",
+		"sort-packages": true
+	}
+}

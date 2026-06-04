@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Knowledge Base"
+  short_description: "Routes to the right 2026 project skill"
+  default_prompt: "Use $project-knowledge-base to choose the right local project skill before working in the 2026 WordPress workspace."

@@ -1,0 +1,90 @@
+/* starter.scss */
+/* Styles specific to the starter header/footer template. */
+
+@use 'utils/variables' as vars;
+@use 'utils/functions' as func;
+@use 'utils/mixins' as mixin;
+
+// ============================================================================
+// HEADER SEARCH (dropdown search in header-bar)
+// ============================================================================
+
+.header-search {
+	display: inline-block;
+	position: relative;
+
+	.frm-container {
+		display: flex;
+		align-items: center;
+		position: relative;
+		border: 1px solid var(--color-gray-200);
+		border-radius: var(--radius-lg);
+		background-color: var(--color-gray-50);
+		padding: 4px;
+
+		:where(.dark, .dark *) & {
+			border-color: var(--color-gray-700);
+			background-color: var(--color-gray-900);
+		}
+
+		input {
+			flex: 1;
+			border: none;
+			background: transparent;
+			padding: 6px 12px;
+			font-size: 14px;
+			outline: none;
+			color: var(--color-gray-900);
+
+			:where(.dark, .dark *) & {
+				color: var(--color-white);
+			}
+
+			&::placeholder {
+				color: var(--color-gray-400);
+			}
+
+			&:focus {
+				box-shadow: none;
+			}
+		}
+
+		.btn-s {
+			background: transparent;
+			border: none;
+			cursor: pointer;
+			color: var(--color-gray-500);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 6px;
+			border-radius: var(--radius-md);
+			transition:
+				color 0.2s,
+				background-color 0.2s;
+
+			:where(.dark, .dark *) & {
+				color: var(--color-gray-400);
+			}
+
+			&:hover {
+				color: var(--color-gray-900);
+				background-color: var(--color-gray-100);
+
+				:where(.dark, .dark *) & {
+					color: var(--color-white);
+					background-color: var(--color-gray-800);
+				}
+			}
+
+			span {
+				display: none;
+			}
+
+			svg {
+				width: 18px;
+				height: 18px;
+			}
+		}
+	}
+}

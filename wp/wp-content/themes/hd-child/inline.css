@@ -1,0 +1,12 @@
+/**
+ * HD Child Theme - Inline CSS (Hotfix)
+ *
+ * This file is loaded directly WITHOUT build.
+ * Use for quick fixes and emergency patches.
+ *
+ * Load: Enqueued directly via Theme.php
+ * Note: Keep this file minimal for production performance.
+ */
+
+/* Quick fixes go here... */
+/* This file is NOT processed by SCSS/Vite */

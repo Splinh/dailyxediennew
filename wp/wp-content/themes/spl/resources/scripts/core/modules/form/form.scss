@@ -1,0 +1,67 @@
+// core/modules/form/form.scss
+// Minimal styles for form module: loading, messages, validation errors.
+
+// Loading state
+.hd-form--loading {
+	position: relative;
+	pointer-events: none;
+	opacity: 0.6;
+
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 10;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(255, 255, 255, 0.5);
+	}
+}
+
+// Messages
+.hd-form-message {
+	padding: 12px 16px;
+	border-radius: 8px;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.5;
+	margin-bottom: 16px;
+	animation: hdFormFadeIn 0.3s ease-out;
+
+	&--success {
+		background: #ecfdf5;
+		color: #065f46;
+		border: 1px solid #a7f3d0;
+	}
+
+	&--error {
+		background: #fef2f2;
+		color: #991b1b;
+		border: 1px solid #fecaca;
+	}
+}
+
+// Validation errors
+.hd-form-error {
+	display: block;
+	color: #dc2626;
+	font-size: 12px;
+	margin-top: 4px;
+}
+
+.hd-form-field--error {
+	border-color: #dc2626 !important;
+	box-shadow: 0 0 0 1px #dc2626 !important;
+}
+
+@keyframes hdFormFadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(-4px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}

@@ -1,0 +1,57 @@
+@use 'variables' as *;
+
+// ─── Stat Cards Grid ──────────────────────────────────────────────────
+.stats-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1rem;
+	margin-bottom: 2rem;
+
+	@media (max-width: 1024px) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+.stat-card {
+	background: $bg-card;
+	border: 1px solid $border-light;
+	border-radius: 8px;
+	padding: 1.25rem 1.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.375rem;
+	box-shadow: $shadow-sm;
+	transition: $transition-default;
+
+	&:hover {
+		border-color: $color-primary;
+		transform: translateY(-2px);
+		box-shadow: $shadow-md;
+	}
+
+	.stat-value {
+		font-size: 1.875rem;
+		font-weight: 700;
+		color: $text-dark;
+		letter-spacing: -0.03em;
+		line-height: 1.1;
+
+		&.success {
+			color: $color-success;
+		}
+		&.warning {
+			color: $color-warning;
+		}
+		&.error {
+			color: $color-error;
+		}
+	}
+
+	.stat-label {
+		font-size: 0.75rem;
+		color: $text-muted;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+	}
+}

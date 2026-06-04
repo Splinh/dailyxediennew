@@ -1,0 +1,885 @@
+{
+    "key": "group_lachuy_home",
+    "title": "Lạc Huy - Trang chủ",
+    "fields": [
+        {
+            "key": "field_lachuy_home_fc",
+            "label": "Nội dung trang chủ",
+            "name": "home_sections",
+            "aria-label": "",
+            "type": "flexible_content",
+            "instructions": "Thêm các section cho trang chủ",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layouts": {
+                "layout_lachuy_hero": {
+                    "key": "layout_lachuy_hero",
+                    "name": "hero",
+                    "label": "Hero Banner",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_hero_disable",
+                            "label": "Ẩn section này",
+                            "name": "disable",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "Bật để ẩn section này ở frontend.",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "100",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Ẩn section",
+                            "default_value": 0,
+                            "ui": 1,
+                            "ui_on_text": "Ẩn",
+                            "ui_off_text": "Hiện"
+                        },
+                        {
+                            "key": "field_lachuy_hero_badge",
+                            "label": "Badge Text",
+                            "name": "badge_text",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Thực Phẩm Tự Nhiên 100%",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_lachuy_hero_title",
+                            "label": "Tiêu đề",
+                            "name": "title",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "Hỗ trợ HTML (<span> cho highlight)",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "rows": 2,
+                            "new_lines": "",
+                            "maxlength": "",
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_lachuy_hero_desc",
+                            "label": "Mô tả",
+                            "name": "description",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "rows": 3,
+                            "new_lines": "",
+                            "maxlength": "",
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_lachuy_hero_btn1",
+                            "label": "Nút chính (Primary)",
+                            "name": "btn_primary",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array"
+                        },
+                        {
+                            "key": "field_lachuy_hero_btn2",
+                            "label": "Nút phụ (Outline)",
+                            "name": "btn_outline",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array"
+                        },
+                        {
+                            "key": "field_lachuy_hero_bg",
+                            "label": "Ảnh nền",
+                            "name": "bg_image",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "id",
+                            "library": "all",
+                            "preview_size": "medium",
+                            "min_width": 0,
+                            "min_height": 0,
+                            "min_size": 0,
+                            "max_width": 0,
+                            "max_height": 0,
+                            "max_size": 0,
+                            "mime_types": ""
+                        },
+                        {
+                            "key": "field_lachuy_hero_product_img",
+                            "label": "Ảnh sản phẩm",
+                            "name": "product_image",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "Ảnh sản phẩm bên phải hero",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "id",
+                            "library": "all",
+                            "preview_size": "medium",
+                            "min_width": 0,
+                            "min_height": 0,
+                            "min_size": 0,
+                            "max_width": 0,
+                            "max_height": 0,
+                            "max_size": 0,
+                            "mime_types": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_lachuy_features": {
+                    "key": "layout_lachuy_features",
+                    "name": "features",
+                    "label": "Tính năng nổi bật",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_features_disable",
+                            "label": "Ẩn section này",
+                            "name": "disable",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "Bật để ẩn section này ở frontend.",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "100",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Ẩn section",
+                            "default_value": 0,
+                            "ui": 1,
+                            "ui_on_text": "Ẩn",
+                            "ui_off_text": "Hiện"
+                        },
+                        {
+                            "key": "field_lachuy_feat_items",
+                            "label": "Tính năng",
+                            "name": "features",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "block",
+                            "min": 0,
+                            "max": 6,
+                            "button_label": "Thêm tính năng",
+                            "rows_per_page": 20,
+                            "collapsed": "",
+                            "sub_fields": [
+                                {
+                                    "key": "field_lachuy_feat_icon",
+                                    "label": "Icon SVG",
+                                    "name": "icon",
+                                    "aria-label": "",
+                                    "type": "textarea",
+                                    "instructions": "Inline SVG code",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "100",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "rows": 2,
+                                    "parent_repeater": "field_lachuy_feat_items",
+                                    "default_value": "",
+                                    "new_lines": "",
+                                    "maxlength": "",
+                                    "placeholder": ""
+                                },
+                                {
+                                    "key": "field_lachuy_feat_title",
+                                    "label": "Tiêu đề",
+                                    "name": "title",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "parent_repeater": "field_lachuy_feat_items",
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                },
+                                {
+                                    "key": "field_lachuy_feat_desc",
+                                    "label": "Mô tả",
+                                    "name": "desc",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "parent_repeater": "field_lachuy_feat_items",
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_lachuy_flash_sale": {
+                    "key": "layout_lachuy_flash_sale",
+                    "name": "flash_sale",
+                    "label": "Flash Sale",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_flash_sale_disable",
+                            "label": "Ẩn section này",
+                            "name": "disable",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "Bật để ẩn section này ở frontend.",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "100",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Ẩn section",
+                            "default_value": 0,
+                            "ui": 1,
+                            "ui_on_text": "Ẩn",
+                            "ui_off_text": "Hiện"
+                        },
+                        {
+                            "key": "field_lachuy_fs_endtime",
+                            "label": "Thời gian kết thúc",
+                            "name": "end_time",
+                            "aria-label": "",
+                            "type": "date_time_picker",
+                            "instructions": "Để trống = +24h tự động",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "display_format": "d/m/Y H:i:s",
+                            "return_format": "Y-m-d H:i:s",
+                            "first_day": 1,
+                            "default_to_current_date": 0
+                        },
+                        {
+                            "key": "field_lachuy_fs_count",
+                            "label": "Số lượng sản phẩm",
+                            "name": "count",
+                            "aria-label": "",
+                            "type": "number",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": 4,
+                            "min": 1,
+                            "max": 24,
+                            "placeholder": "",
+                            "step": 1,
+                            "prepend": "",
+                            "append": "sản phẩm"
+                        },
+                        {
+                            "key": "field_lachuy_fs_columns",
+                            "label": "Số cột",
+                            "name": "columns",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "Số cột hiển thị trên màn hình lớn (tablet/mobile tự co lại).",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "3": "3 cột",
+                                "4": "4 cột",
+                                "5": "5 cột"
+                            },
+                            "default_value": "4",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_lachuy_categories": {
+                    "key": "layout_lachuy_categories",
+                    "name": "categories",
+                    "label": "Danh mục sản phẩm",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_categories_disable",
+                            "label": "Ẩn section này",
+                            "name": "disable",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "Bật để ẩn section này ở frontend.",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "100",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Ẩn section",
+                            "default_value": 0,
+                            "ui": 1,
+                            "ui_on_text": "Ẩn",
+                            "ui_off_text": "Hiện"
+                        },
+                        {
+                            "key": "field_lachuy_cat_title",
+                            "label": "Tiêu đề",
+                            "name": "title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Danh Mục Sản Phẩm",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_lachuy_cat_subtitle",
+                            "label": "Phụ đề",
+                            "name": "subtitle",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Khám phá thế giới thực phẩm tự nhiên",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_lachuy_cat_columns",
+                            "label": "Số cột",
+                            "name": "columns",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "Số cột hiển thị trên màn hình lớn (tablet/mobile tự co lại).",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "3": "3 cột",
+                                "4": "4 cột",
+                                "5": "5 cột"
+                            },
+                            "default_value": "4",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_lachuy_products": {
+                    "key": "layout_lachuy_products",
+                    "name": "products",
+                    "label": "Sản phẩm nổi bật",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_products_disable",
+                            "label": "Ẩn section này",
+                            "name": "disable",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "Bật để ẩn section này ở frontend.",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "100",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Ẩn section",
+                            "default_value": 0,
+                            "ui": 1,
+                            "ui_on_text": "Ẩn",
+                            "ui_off_text": "Hiện"
+                        },
+                        {
+                            "key": "field_lachuy_prod_title",
+                            "label": "Tiêu đề",
+                            "name": "title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Sản Phẩm Nổi Bật",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_lachuy_prod_subtitle",
+                            "label": "Phụ đề",
+                            "name": "subtitle",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Được khách hàng tin tưởng lựa chọn",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_lachuy_prod_category",
+                            "label": "Danh mục sản phẩm",
+                            "name": "category",
+                            "aria-label": "",
+                            "type": "taxonomy",
+                            "instructions": "Để trống = lấy sản phẩm mới nhất.",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "taxonomy": "product_cat",
+                            "add_term": 0,
+                            "save_terms": 0,
+                            "load_terms": 0,
+                            "return_format": "id",
+                            "field_type": "select",
+                            "allow_null": 1,
+                            "allow_in_bindings": 0,
+                            "bidirectional": 0,
+                            "multiple": 0,
+                            "bidirectional_target": []
+                        },
+                        {
+                            "key": "field_lachuy_prod_count",
+                            "label": "Số lượng sản phẩm",
+                            "name": "count",
+                            "aria-label": "",
+                            "type": "number",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": 4,
+                            "min": 1,
+                            "max": 24,
+                            "placeholder": "",
+                            "step": 1,
+                            "prepend": "",
+                            "append": "sản phẩm"
+                        },
+                        {
+                            "key": "field_lachuy_prod_columns",
+                            "label": "Số cột",
+                            "name": "columns",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "Số cột hiển thị trên màn hình lớn (tablet/mobile tự co lại).",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "3": "3 cột",
+                                "4": "4 cột",
+                                "5": "5 cột"
+                            },
+                            "default_value": "4",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_lachuy_about": {
+                    "key": "layout_lachuy_about",
+                    "name": "about",
+                    "label": "Giới thiệu",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_about_disable",
+                            "label": "Ẩn section này",
+                            "name": "disable",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "Bật để ẩn section này ở frontend.",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "100",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Ẩn section",
+                            "default_value": 0,
+                            "ui": 1,
+                            "ui_on_text": "Ẩn",
+                            "ui_off_text": "Hiện"
+                        },
+                        {
+                            "key": "field_lachuy_about_title",
+                            "label": "Tiêu đề",
+                            "name": "title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Về Trà & Táo Đỏ Lạc Huy",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_lachuy_about_desc",
+                            "label": "Mô tả",
+                            "name": "description",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "rows": 3,
+                            "new_lines": "",
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_lachuy_about_stats",
+                            "label": "Số liệu",
+                            "name": "stats",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "table",
+                            "min": 0,
+                            "max": 4,
+                            "button_label": "Thêm số liệu",
+                            "rows_per_page": 20,
+                            "collapsed": "",
+                            "sub_fields": [
+                                {
+                                    "key": "field_lachuy_about_stat_num",
+                                    "label": "Số",
+                                    "name": "number",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "30",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "parent_repeater": "field_lachuy_about_stats",
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                },
+                                {
+                                    "key": "field_lachuy_about_stat_label",
+                                    "label": "Nhãn",
+                                    "name": "label",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "70",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "parent_repeater": "field_lachuy_about_stats",
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_lachuy_blog": {
+                    "key": "layout_lachuy_blog",
+                    "name": "blog",
+                    "label": "Tin tức",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_blog_disable",
+                            "label": "Ẩn section này",
+                            "name": "disable",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "Bật để ẩn section này ở frontend.",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "100",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Ẩn section",
+                            "default_value": 0,
+                            "ui": 1,
+                            "ui_on_text": "Ẩn",
+                            "ui_off_text": "Hiện"
+                        },
+                        {
+                            "key": "field_lachuy_blog_title",
+                            "label": "Tiêu đề",
+                            "name": "title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Tin Tức & Kiến Thức",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_lachuy_blog_subtitle",
+                            "label": "Phụ đề",
+                            "name": "subtitle",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Cập nhật thông tin sức khỏe & thực phẩm tự nhiên",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                }
+            },
+            "button_label": "Thêm Section",
+            "min": "",
+            "max": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "templates/template-page-home.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content",
+        "discussion",
+        "comments"
+    ],
+    "active": true,
+    "description": "Flexible content cho trang chủ Lạc Huy",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1780494129
+}

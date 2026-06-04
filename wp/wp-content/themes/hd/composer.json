@@ -1,0 +1,35 @@
+{
+	"name": "hd/theme",
+	"description": "HD WordPress Theme with custom architecture",
+	"type": "wordpress-theme",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "HD",
+			"email": "dungnq.dev@gmail.com"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"HD\\": "src/"
+		},
+		"files": [
+			"config/helpers.php",
+			"config/settings.php"
+		]
+	},
+	"require": {
+		"php": ">=8.1",
+		"openspout/openspout": "^5.3"
+	},
+	"require-dev": {
+		"roave/security-advisories": "dev-latest"
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"config": {
+		"optimize-autoloader": true,
+		"preferred-install": "dist",
+		"sort-packages": true
+	}
+}

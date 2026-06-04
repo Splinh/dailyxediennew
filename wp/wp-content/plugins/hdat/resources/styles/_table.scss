@@ -1,0 +1,48 @@
+@use 'variables' as *;
+
+// ─── Data Tables ──────────────────────────────────────────────────────
+.hdat-table {
+	width: 100%;
+	border-collapse: collapse;
+	background: $bg-card;
+	border: 1px solid $border-light;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: $shadow-sm;
+
+	th {
+		text-align: left;
+		font-size: 0.75rem;
+		font-weight: 700;
+		color: $text-muted;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		padding: 0.875rem 1.25rem;
+		border-bottom: 1px solid $border-light;
+		background: #f6f7f7;
+	}
+
+	td {
+		padding: 0.875rem 1.25rem;
+		font-size: 0.875rem;
+		color: $text-dark;
+		border-bottom: 1px solid #f0f0f1;
+		line-height: 1.45;
+	}
+
+	tbody tr:last-child td {
+		border-bottom: none;
+	}
+
+	tbody tr:nth-child(even) td {
+		background: #fafbfc;
+	}
+
+	tbody tr {
+		transition: background-color 0.15s ease;
+
+		&:hover td {
+			background: #f0f6fc;
+		}
+	}
+}

@@ -1,0 +1,78 @@
+{
+	"name": "Local File Inclusion Rules",
+	"version": "1.1.0",
+	"rules": [
+		{
+			"id": "lfi_001",
+			"name": "Directory Traversal",
+			"pattern": "(\\.\\./|\\.\\.\\\\){2,}",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "lfi_002",
+			"name": "etc/passwd Access",
+			"pattern": "/etc/(passwd|shadow|hosts|group)",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "lfi_003",
+			"name": "Windows System Files",
+			"pattern": "(\\\\|/)windows(\\\\|/)(system32|win\\.ini|boot\\.ini)",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "lfi_004",
+			"name": "PHP Wrapper",
+			"pattern": "(php|expect|phar|zip|data|glob|input|filter|ftp|ssh2)://",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "lfi_005",
+			"name": "PHP Filter Base64",
+			"pattern": "php://filter.*convert\\.base64",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "lfi_006",
+			"name": "Proc Self Access",
+			"pattern": "/proc/self/(environ|fd|cmdline|status)",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "lfi_007",
+			"name": "Log File Access",
+			"pattern": "/var/log/(apache|nginx|httpd|syslog|auth)",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "lfi_008",
+			"name": "WP Config Direct Access",
+			"pattern": "wp-config\\.php",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["get", "post", "cookies"]
+		},
+		{
+			"id": "lfi_009",
+			"name": "Null Byte Injection",
+			"pattern": "%00",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		}
+	]
+}

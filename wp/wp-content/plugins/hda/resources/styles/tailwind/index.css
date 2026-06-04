@@ -1,0 +1,24 @@
+/* tailwind/index.css - Tailwind CSS v4 Entry Point */
+
+@import 'tailwindcss' source(none);
+
+/* Config */
+@import './themes.css';
+@import './base.css';
+
+/* Dark mode variant */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Source scanning */
+@source "../../../*.php";
+@source "../../../{config,src}/**/*.php";
+@source "../../../resources/scripts/**/*.js";
+@source "../../../resources/styles/tailwind/**/*.css";
+
+/* Ignore */
+@source not "../../../vendor/**";
+@source not "../../../assets/**";
+@source not "../../../node_modules/**";
+
+/* Plugins */
+@plugin "@tailwindcss/forms";

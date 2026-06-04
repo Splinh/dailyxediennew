@@ -1,0 +1,16 @@
+/* tailwind/utilities/index.css - Single-purpose helpers (u-* prefix) */
+
+@import './animate.css';
+@import './heading.css';
+@import './flexbox.css';
+@import './grid.css';
+
+@layer utilities {
+	.u-scrollbar-none {
+		scrollbar-width: none;
+	}
+
+	.u-scrollbar-thin {
+		scrollbar-width: thin;
+	}
+}

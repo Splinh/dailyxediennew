@@ -1,0 +1,14 @@
+packages:
+    - wp/wp-content/plugins/hda
+    - wp/wp-content/plugins/hdat
+    - wp/wp-content/plugins/hd-ai-classic
+    - wp/wp-content/themes/hd
+
+allowBuilds:
+    "@parcel/watcher": true
+    cwebp-bin: true
+    esbuild: true
+    gifsicle: true
+    mozjpeg: true
+    pngquant-bin: true
+    sharp: true

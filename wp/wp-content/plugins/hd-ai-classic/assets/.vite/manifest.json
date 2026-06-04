@@ -1,0 +1,20 @@
+{
+  "resources/scripts/admin.js": {
+    "file": "js/admin.CQ0X9UmN.js",
+    "name": "admin",
+    "src": "resources/scripts/admin.js",
+    "isEntry": true,
+    "css": [
+      "css/admin.CN8Aie78.css"
+    ]
+  },
+  "resources/scripts/editor-ai.js": {
+    "file": "js/editor-ai.CHwcp9Bq.js",
+    "name": "editor-ai",
+    "src": "resources/scripts/editor-ai.js",
+    "isEntry": true,
+    "css": [
+      "css/editor-ai.Cu-QTqZU.css"
+    ]
+  }
+}

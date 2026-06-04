@@ -1,0 +1,57 @@
+{
+	"name": "hd/wordpress-project",
+	"description": "HD WordPress Project with custom theme and optimized configuration",
+	"type": "project",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "HD",
+			"email": "dungnq.dev@gmail.com"
+		}
+	],
+	"require": {
+		"php": ">=8.1",
+		"vlucas/phpdotenv": "^5.6",
+		"oscarotero/env": "^2.1",
+		"roots/wp-config": "^1.0"
+	},
+	"require-dev": {
+		"brain/monkey": "^2.7",
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.2",
+		"php-stubs/wordpress-stubs": "^6.9",
+		"phpcsstandards/phpcsutils": "^1.2",
+		"pestphp/pest": "^2.36",
+		"roave/security-advisories": "dev-latest",
+		"squizlabs/php_codesniffer": "^3.13",
+		"symfony/var-dumper": "^6.4",
+		"wp-coding-standards/wpcs": "^3.3",
+		"wp-cli/wp-cli-bundle": "^2.12"
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"config": {
+		"optimize-autoloader": true,
+		"preferred-install": "dist",
+		"sort-packages": true,
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"pestphp/pest-plugin": true
+		}
+	},
+	"scripts": {
+		"phpcs": "phpcs -p -s --cache=.phpcs-cache",
+		"phpcbf": "phpcbf",
+		"test": "pest"
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"HD\\Tests\\": "wp/wp-content/themes/hd/tests/",
+			"HDAC\\Tests\\": "wp/wp-content/plugins/hd-ai-classic/tests/",
+			"HDAT\\Tests\\": "wp/wp-content/plugins/hd-ai-toolkit/tests/",
+			"HDAddons\\Tests\\": "wp/wp-content/plugins/hda/tests/"
+		},
+		"exclude-from-classmap": [
+			"wp/wp-content/plugins/hd-ai-toolkit/tests/Stubs.php"
+		]
+	}
+}

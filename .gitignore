@@ -1,0 +1,118 @@
+# =========================================================
+# Dependencies
+# =========================================================
+node_modules/
+tests/
+# Ignore root vendor directory only. Do not ignore vendor directories within themes/plugins.
+/vendor/
+
+# =========================================================
+# Environment & Secrets
+# =========================================================
+.env
+.env.local
+
+# =========================================================
+# Database
+# =========================================================
+database/**
+!database/.gitkeep
+*.sql
+*.sql.gz
+
+# =========================================================
+# WordPress Uploads
+# =========================================================
+**/uploads/**
+!**/uploads/.gitkeep
+
+# =========================================================
+# WordPress Plugins
+# =========================================================
+**/wp-content/plugins/iconic-woothumbs/
+**/wp-content/plugins/woo-quickview/
+**/wp-content/plugins/woo-variation-swatches/
+**/wp-content/plugins/woo-variation-swatches-pro/
+**/wp-content/plugins/woo-vietnam-checkout/
+**/wp-content/plugins/yith-woocommerce-ajax-product-filter-premium/
+**/wp-content/plugins/yith-woocommerce-wishlist/
+**/wp-content/plugins/polylang/
+**/wp-content/plugins/polylang-pro/
+**/wp-content/plugins/polylang-wc/
+**/wp-content/plugins/theme-translation-for-polylang/
+**/wp-content/plugins/ultimate-addons-for-contact-form-7-pro/
+**/wp-content/plugins/filter-everything/
+**/wp-content/plugins/filter-everything-pro/
+**/wp-content/plugins/woocommerce-products-filter/
+**/wp-content/plugins/acf-options-for-polylang/
+**/wp-content/plugins/ai-translate-for-polylang/
+**/wp-content/plugins/ai-translator-for-polylang/
+**/wp-content/plugins/polytranslate-ai/
+**/wp-content/plugins/duplicate-content-addon-for-polylang/
+**/wp-content/plugins/multilingual-contact-form-7-with-polylang/
+!**/wp-content/plugins/.gitkeep
+
+# =========================================================
+# IDEs & Editors
+# =========================================================
+.idea/
+.vscode/
+
+# =========================================================
+# OS Generated
+# =========================================================
+.DS_Store
+Thumbs.db
+
+# =========================================================
+# Lock files (regenerated per environment)
+# =========================================================
+pnpm-lock.yaml
+composer.lock
+
+# =========================================================
+# Logs & Tmp
+# =========================================================
+*.log
+*.tmp
+*.temp
+
+# =========================================================
+# DevOps
+# =========================================================
+.vagrant/
+.docker/
+.agent/*
+!.agent/rules/
+!.agent/skills/
+!.agent/workflows/
+.mcp/
+.claude/
+.antigravitycli/
+.cursor/
+
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+
+# =========================================================
+# Test Reports
+# =========================================================
+TEST*.xml
+.phpunit.cache/
+.phpunit.result.cache
+
+# Testing
+.phpunit.cache
+.pest
+
+# =========================================================
+# Project temp / build artifacts
+# =========================================================
+*.zip
+.phpcs-cache
+tools/
+2026-master/
+hd-thamkhao/
+spl-thamkhao/
+New folder/

@@ -1,0 +1,441 @@
+// Controls, buttons, fieldsets, and module-specific overrides.
+
+input.tiny-text {
+	width: 60px;
+}
+
+input[type='number'].tiny-text {
+	width: 60px;
+	padding-right: 0;
+}
+
+input.input-icon {
+	min-width: 200px !important;
+	width: 35% !important;
+	flex: 0 0 auto !important;
+	max-width: 100% !important;
+}
+
+.controls.control-prefix {
+	display: flex;
+	align-items: center;
+	width: 8px;
+	height: 8px;
+
+	.prefix .input-txt {
+		font-weight: 700;
+		color: #646970;
+		text-decoration: underline;
+	}
+
+	:where(input:not([type='checkbox']):not([type='radio']):not([type='range']), select) {
+		font-weight: 500 !important;
+		font-size: 14px !important;
+		max-height: 43px;
+	}
+}
+
+// Section heading card.
+#_settings_form #_content .section-heading {
+	background: linear-gradient(135deg, #f0f6fc 0%, #f5f7fa 100%);
+	padding: 20px 24px 20px 28px;
+	margin-top: 0;
+	margin-bottom: 32px;
+	border-radius: 8px;
+	border: 1px solid #dcdcde;
+	position: relative;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+
+	&::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 12px;
+		bottom: 12px;
+		width: 4px;
+		background: linear-gradient(180deg, #2271b1 0%, #135e96 100%);
+		border-radius: 0 4px 4px 0;
+	}
+
+	h2 {
+		margin-bottom: 6px;
+		margin-top: 0;
+		font-size: 20px;
+		color: #1e1e1e;
+		letter-spacing: -0.2px;
+	}
+
+	.desc {
+		font-size: 14px;
+		color: #3c434a;
+		line-height: 1.4;
+	}
+}
+
+// Fieldset container.
+.container-fieldset {
+	margin: 0;
+	padding-inline: 28px;
+	border-radius: 8px;
+	border: 1px solid #dcdcde;
+	padding-bottom: 28px;
+	transition:
+		box-shadow 0.25s ease,
+		border-color 0.25s ease;
+	background: #ffffff;
+
+	&:hover {
+		box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+		border-color: #dcdcde;
+	}
+
+	&:not(:last-child) {
+		margin-bottom: 24px;
+	}
+
+	.section-legend {
+		font-size: 14px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		margin-bottom: 24px;
+		padding-inline: 12px;
+		color: #2271b1;
+
+		& + .hda-notice {
+			margin-top: -10px;
+		}
+	}
+
+	.section-subtitle {
+		font-size: 12px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		margin: 24px 0 16px;
+		padding-bottom: 6px;
+		border-bottom: 1px solid #dcdcde;
+		color: #d63638;
+
+		&:first-of-type {
+			margin-top: 0;
+		}
+	}
+}
+
+// ── Bulk Actions toolbar ────────────────────────
+
+.hda-bulk-actions {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 28px;
+
+	.button {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		height: 34px;
+		padding: 0 16px;
+		font-size: 13px;
+		font-weight: 600;
+		border-radius: 4px;
+		transition:
+			box-shadow 0.2s ease,
+			transform 0.2s ease;
+
+		.dashicons {
+			font-size: 18px;
+			width: 18px;
+			height: 18px;
+			line-height: 1;
+		}
+
+		&:hover {
+			transform: translateY(-1px);
+		}
+
+		&:active {
+			transform: translateY(0);
+		}
+	}
+
+	.button-primary:hover {
+		box-shadow: 0 3px 10px rgba(34, 113, 177, 0.4);
+	}
+}
+
+#_settings_form .hda-btn-danger {
+	&,
+	&:focus,
+	&:active {
+		color: #b32d2e;
+		border-color: #b32d2e;
+		background: #ffffff;
+		box-shadow: none;
+	}
+
+	&:hover {
+		background-color: #b32d2e;
+		color: #ffffff;
+		border-color: #b32d2e;
+		box-shadow: 0 3px 10px rgba(179, 45, 46, 0.35);
+	}
+}
+
+// ── WAF Country Selector ────────────────────────
+
+.hda-country-selector {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 16px;
+
+	.select {
+		width: 100%;
+		max-width: 400px;
+	}
+
+	.hda-add-country-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		white-space: nowrap;
+
+		.dashicons {
+			font-size: 16px;
+			width: 16px;
+			height: 16px;
+			line-height: 1;
+		}
+	}
+}
+
+.hda-blocked-list-wrap {
+	border: 1px solid #dcdcde;
+	background: #fff;
+	padding: 10px;
+	border-radius: 4px;
+	min-height: 50px;
+	margin-bottom: 12px;
+}
+
+.hda-blocked-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+
+	.empty-msg {
+		color: #646970;
+		width: 100%;
+		text-align: center;
+		padding: 10px;
+	}
+
+	.blocked-item {
+		background: #fdeaea;
+		border: 1px solid #f5c6c6;
+		color: #d63638;
+		padding: 4px 10px;
+		border-radius: 3px;
+		font-size: 13px;
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+
+		img {
+			border-radius: 2px;
+		}
+
+		.remove-country {
+			background: none;
+			border: none;
+			cursor: pointer;
+			color: #d63638;
+			padding: 0;
+			font-size: 16px;
+			line-height: 1;
+			margin-left: 4px;
+
+			&:hover {
+				color: #a00;
+			}
+		}
+	}
+}
+
+// ══════════════════════════════════════════════════
+// Cron Manager — Table & button overrides only
+// ══════════════════════════════════════════════════
+
+.hda-cron-table {
+	margin-top: 8px;
+	border-radius: 6px;
+	overflow: hidden;
+
+	th,
+	td {
+		font-size: 13px;
+		padding: 10px 12px;
+	}
+
+	th {
+		font-weight: 600;
+	}
+
+	&__row-num {
+		text-align: center;
+		color: #646970;
+		font-size: 12px;
+		width: 36px;
+	}
+
+	.hda-cron-run,
+	.hda-cron-delete {
+		transition:
+			transform 0.15s ease,
+			box-shadow 0.15s ease;
+
+		&:hover:not([disabled]) {
+			transform: translateY(-1px);
+			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+		}
+
+		&:active:not([disabled]) {
+			transform: translateY(0);
+			box-shadow: none;
+		}
+	}
+
+	.dashicons {
+		font-size: 14px;
+		width: 14px;
+		height: 14px;
+		vertical-align: middle;
+	}
+}
+
+// ─── Spinner ──────────────────────────────────────
+.hda-spin {
+	animation: hda-spin 1s linear infinite;
+}
+
+@keyframes hda-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+// ──────────────────────────────────────────────────
+// Tooltip (hda-tip) — icon ⓘ powered by Tippy.js
+// .hda-tip wraps the trigger icon + hidden body source.
+// Tippy clones .hda-tip__body as HTML content.
+// ──────────────────────────────────────────────────
+
+.hda-tip {
+	display: inline-flex;
+	align-items: center;
+	vertical-align: middle;
+	margin-left: 5px;
+	flex-shrink: 0;
+
+	// Trigger icon button
+	&__icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 16px;
+		height: 16px;
+		border-radius: 50%;
+		background: #c5d9ed;
+		color: #2271b1;
+		font-size: 10px;
+		font-weight: 700;
+		line-height: 1;
+		cursor: pointer;
+		border: none;
+		padding: 0;
+		font-style: normal;
+		flex-shrink: 0;
+		transition: background 0.15s ease;
+		user-select: none;
+		font-family: Georgia, serif;
+
+		&:hover,
+		&:focus-visible {
+			background: #2271b1;
+			color: #fff;
+			outline: none;
+		}
+	}
+
+	// Source element — hidden inside .hda-tip, visible once Tippy clones it out
+	> .hda-tip__body {
+		display: none;
+
+		ul {
+			margin: 5px 0 0 14px;
+			padding: 0;
+			list-style: disc;
+
+			li + li {
+				margin-top: 3px;
+			}
+		}
+
+		code {
+			background: rgba(255, 255, 255, 0.15);
+			border-radius: 3px;
+			padding: 1px 4px;
+			font-size: 11px;
+		}
+	}
+}
+
+// ──────────────────────────────────────────────────
+// Tippy.js theme: 'hda'  (dark, compact, no-padding)
+// ──────────────────────────────────────────────────
+
+.tippy-box[data-theme~='hda'] {
+	background: #1e1e1e;
+	color: #f0f0f1;
+	font-size: 12px;
+	line-height: 1.55;
+	border-radius: 6px;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+	text-align: left;
+	word-break: break-word;
+
+	.tippy-content {
+		padding: 9px 13px;
+	}
+
+	// Arrow color
+	.tippy-arrow {
+		color: #1e1e1e;
+	}
+
+	// Lists inside
+	ul {
+		margin: 5px 0 0 14px;
+		padding: 0;
+		list-style: disc;
+
+		li + li {
+			margin-top: 3px;
+		}
+	}
+
+	code {
+		background: rgba(255, 255, 255, 0.15);
+		border-radius: 3px;
+		padding: 1px 4px;
+		font-size: 11px;
+	}
+}

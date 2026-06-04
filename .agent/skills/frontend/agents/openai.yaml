@@ -1,0 +1,4 @@
+interface:
+  display_name: "Frontend"
+  short_description: "Vite, SCSS, JS, FX, and WC frontend"
+  default_prompt: "Use $frontend to review or implement frontend behavior in the HD theme."

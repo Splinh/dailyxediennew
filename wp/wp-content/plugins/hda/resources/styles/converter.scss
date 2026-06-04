@@ -1,0 +1,558 @@
+/**
+ * Image Converter — Admin Styles
+ *
+ * Styles specific to the Image Converter tab.
+ * Layout is handled by the shared settings CSS (container-fieldset, section-*, etc.).
+ * This file only adds Image Converter-specific components.
+ *
+ * @package HDAddons\ImageConverter
+ */
+
+// ─── Quality Row ──────────────────────────────────────
+
+.hda-imgconv-quality-row {
+	display: flex !important;
+	align-items: center;
+	gap: 8px;
+
+	input[type='range'] {
+		flex: 1;
+		min-width: 100px;
+		max-width: 220px;
+		vertical-align: middle;
+		cursor: pointer;
+		-webkit-appearance: none;
+		appearance: none;
+		height: 4px;
+		background: #c3c4c7;
+		border: none;
+		border-radius: 2px;
+		outline: none;
+		box-shadow: none;
+		padding: 0;
+
+		&::-webkit-slider-runnable-track {
+			height: 4px;
+			background: #c3c4c7;
+			border-radius: 2px;
+		}
+
+		&::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			width: 14px;
+			height: 14px;
+			border-radius: 50%;
+			background: #2271b1;
+			border: none;
+			box-shadow: none;
+			margin-top: -5px;
+			cursor: pointer;
+		}
+
+		&:active::-webkit-slider-thumb {
+			background: #135e96;
+		}
+
+		&::-moz-range-track {
+			height: 4px;
+			background: #c3c4c7;
+			border-radius: 2px;
+			border: none;
+		}
+
+		&::-moz-range-thumb {
+			width: 14px;
+			height: 14px;
+			border-radius: 50%;
+			background: #2271b1;
+			border: none;
+			box-shadow: none;
+			cursor: pointer;
+		}
+
+		&::-moz-range-progress {
+			height: 4px;
+			background: #2271b1;
+			border-radius: 2px;
+		}
+	}
+}
+
+.hda-imgconv-quality-input {
+	width: 56px !important;
+	min-width: 56px !important;
+	padding: 3px 6px !important;
+	text-align: center;
+	font-weight: 600;
+	font-size: 13px;
+	min-height: 34px !important;
+	border: 1px solid #8c8f94;
+	border-radius: 4px;
+	background: #f0f0f1;
+	appearance: textfield;
+	-moz-appearance: textfield;
+
+	&::-webkit-inner-spin-button,
+	&::-webkit-outer-spin-button {
+		opacity: 1;
+	}
+
+	&:focus {
+		border-color: #2271b1;
+		box-shadow: 0 0 0 2px rgba(34, 113, 177, 0.15);
+		background: #fff;
+		outline: none;
+	}
+}
+
+.hda-imgconv-quality-unit {
+	font-weight: 600;
+	color: #646970;
+	font-size: 13px;
+	flex-shrink: 0;
+}
+
+// ─── CF Status ────────────────────────────────────────
+
+.hda-imgconv-cf-status {
+	padding: 8px 12px;
+	border-radius: 4px;
+	font-size: 13px;
+	margin-bottom: 16px;
+
+	&--ok {
+		background: #edf7ee;
+		color: #00a32a;
+	}
+
+	&--error {
+		background: #fdeaea;
+		color: #d63638;
+	}
+}
+
+// ─── Badge ────────────────────────────────────────────
+
+.hda-badge {
+	display: inline-block;
+	// padding: 1px 7px;
+	border-radius: 10px;
+	font-size: 12px;
+	font-weight: 600;
+
+	&--success {
+		background: #edf7ee;
+		color: #00a32a;
+	}
+
+	&--muted {
+		background: #f0f0f1;
+		color: #8c8f94;
+	}
+
+	&--legend {
+		margin-left: 6px;
+		font-size: 11px;
+		text-transform: none;
+	}
+}
+
+// ─── Engine Detection Table ───────────────────────────
+
+.hda-imgconv-engine-table {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0;
+	margin: 0 0 12px;
+	font-size: 13px;
+	border: 1px solid #e0e0e0;
+	border-radius: 6px;
+	overflow: hidden;
+
+	th,
+	td {
+		padding: 9px 12px;
+		text-align: left;
+	}
+
+	thead th {
+		background: #f8f9fa;
+		font-weight: 600;
+		font-size: 11px;
+		text-transform: uppercase;
+		letter-spacing: 0.4px;
+		color: #50575e;
+		border-bottom: 1px solid #e0e0e0;
+
+		// &:not(:first-child) {
+		// 	text-align: center;
+		// }
+	}
+
+	tbody {
+		td:nth-child(2),
+		td:nth-child(4),
+		td:nth-child(5) {
+			// text-align: center;
+			font-weight: 500;
+		}
+
+		// td:nth-child(3) {
+		// 	text-align: center;
+		// }
+
+		tr {
+			transition: background-color 0.1s ease;
+
+			&:not(:last-child) td {
+				border-bottom: 1px solid #f0f0f1;
+			}
+
+			&:hover {
+				background: #f8f9fa;
+			}
+		}
+	}
+
+	code {
+		background: #f0f0f1;
+		padding: 2px 7px;
+		border-radius: 3px;
+		font-size: 12px;
+		font-weight: 500;
+	}
+
+	.engine-unavailable {
+		opacity: 0.4;
+
+		&:hover {
+			opacity: 0.6;
+		}
+	}
+}
+
+.engine-note {
+	font-size: 12px;
+	color: #646970;
+	font-style: italic;
+}
+
+.hda-imgconv-active-engines {
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+	margin-top: 4px;
+	padding: 10px 14px;
+	background: #f8f9fa;
+	border: 1px solid #e0e0e0;
+	border-radius: 6px;
+	font-size: 13px;
+
+	p {
+		margin: 0;
+		display: flex;
+		align-items: center;
+		gap: 6px;
+	}
+
+	code {
+		background: #e8f0fe;
+		color: #1a56db;
+		padding: 2px 8px;
+		border-radius: 3px;
+		font-size: 12px;
+		font-weight: 600;
+	}
+}
+
+// ─── Source Directories ──────────────────────────────
+
+.hda-imgconv-sources {
+	margin-bottom: 12px;
+
+	h4 {
+		margin-top: 0;
+	}
+}
+
+.hda-imgconv-source-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 8px 12px;
+	margin-bottom: 4px;
+	background: #f6f7f7;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	transition: border-color 0.15s ease;
+
+	&:hover {
+		border-color: #2271b1;
+	}
+
+	label {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		cursor: pointer;
+		font-weight: 500;
+		font-size: 13px;
+	}
+
+	&__name {
+		font-weight: 600;
+		color: #1e1e1e;
+	}
+
+	&__stats {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+	}
+
+	&__total {
+		font-size: 11px;
+		color: #646970;
+	}
+}
+
+.hda-imgconv-force-option {
+	margin-top: 8px;
+	padding: 6px 12px;
+	background: #fff8e1;
+	border: 1px solid #ffe082;
+	border-radius: 4px;
+	font-size: 13px;
+
+	label {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		cursor: pointer;
+	}
+}
+
+// ─── Batch Actions ───────────────────────────────────
+
+.hda-imgconv-batch-actions {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	margin: 12px 0 4px;
+}
+
+// ─── Start Button (Amber) ────────────────────────────
+
+.hda-imgconv-btn--start {
+	background: var(--color-wp-warning, #dba617) !important;
+	border-color: var(--color-wp-warning-dark, #c09a12) !important;
+	color: #fff !important;
+	font-weight: 600;
+	padding: 6px 20px !important;
+	font-size: 13px !important;
+	border-radius: 4px !important;
+	transition: all 0.15s ease !important;
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+
+	&:hover {
+		background: var(--color-wp-warning-dark, #c09a12) !important;
+	}
+
+	&:disabled {
+		opacity: 0.5 !important;
+		cursor: not-allowed !important;
+	}
+}
+
+// ─── Danger Button (Red) ─────────────────────────────
+
+.hda-imgconv-btn--danger {
+	background: #dc3232 !important;
+	border-color: #b02b2b !important;
+	color: #fff !important;
+	font-weight: 600;
+	padding: 6px 20px !important;
+	font-size: 13px !important;
+	border-radius: 4px !important;
+	transition: all 0.15s ease !important;
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+
+	&:hover {
+		background: #b02b2b !important;
+	}
+
+	&:disabled {
+		opacity: 0.5 !important;
+		cursor: not-allowed !important;
+	}
+}
+
+.hda-imgconv-cleanup-result {
+	font-size: 13px;
+	font-weight: 500;
+	margin-left: 8px;
+
+	&--success {
+		color: #00a32a;
+	}
+}
+
+// ─── Progress Bar ────────────────────────────────────
+
+.hda-imgconv-progress {
+	margin-top: 16px;
+	animation: hda-imgconv-fadeIn 0.3s ease;
+}
+
+.hda-imgconv-progress-bar-wrapper {
+	width: 100%;
+	height: 22px;
+	background: #8c939a;
+	border-radius: 11px;
+	overflow: hidden;
+	position: relative;
+
+	#progress-percent {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 700;
+		font-size: 11px;
+		color: #fff;
+		z-index: 2;
+		letter-spacing: 0.3px;
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+	}
+}
+
+.hda-imgconv-progress-bar {
+	height: 100%;
+	background: linear-gradient(90deg, #2271b1, #135e96);
+	border-radius: 11px;
+	transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+	min-width: 0;
+}
+
+.hda-imgconv-progress-info {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin: 8px 0;
+	color: #646970;
+	font-size: 13px;
+
+	#progress-text {
+		font-weight: 500;
+	}
+}
+
+// ─── Stats Grid ──────────────────────────────────────
+
+.hda-imgconv-stats {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 8px;
+	margin: 12px 0;
+
+	@media (max-width: 783px) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+.hda-imgconv-stat {
+	background: #f6f7f7;
+	padding: 10px 12px;
+	border-radius: 6px;
+	text-align: center;
+	border: 1px solid #e8e8ea;
+
+	.stat-icon {
+		display: block;
+		font-size: 16px;
+		margin-bottom: 2px;
+	}
+
+	.stat-label {
+		display: block;
+		font-size: 10px;
+		color: #646970;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+	}
+
+	.stat-value {
+		display: block;
+		font-size: 18px;
+		font-weight: 700;
+		color: #1e1e1e;
+		margin-top: 1px;
+	}
+}
+
+.hda-imgconv-timing {
+	display: flex;
+	gap: 16px;
+	color: #646970;
+	font-size: 12px;
+}
+
+// ─── Completion ──────────────────────────────────────
+
+.hda-imgconv-complete {
+	text-align: center;
+	padding: 24px 16px;
+	margin-top: 16px;
+	background: #edf7ee;
+	border-radius: 6px;
+	animation: hda-imgconv-fadeIn 0.5s ease;
+
+	&-icon {
+		font-size: 40px;
+		margin-bottom: 8px;
+	}
+
+	h3 {
+		margin: 0 0 6px;
+		color: #00a32a;
+	}
+}
+
+// ─── Animations ──────────────────────────────────────
+
+@keyframes hda-imgconv-fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+// ─── Code Snippet (Nginx config) ─────────────────
+
+.hda-imgconv-code-snippet {
+	background: #1d2327;
+	color: #e4e6e8;
+	padding: 12px 16px;
+	border-radius: 4px;
+	overflow-x: auto;
+	font-size: 12px;
+	line-height: 1.5;
+	margin: 8px 0 0;
+
+	code {
+		background: none;
+		padding: 0;
+		color: inherit;
+		font-family: 'Fira Code', 'SF Mono', 'Menlo', 'Consolas', monospace;
+	}
+}

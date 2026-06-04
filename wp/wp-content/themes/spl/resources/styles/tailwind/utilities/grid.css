@@ -1,0 +1,41 @@
+/* tailwind/utilities/grid.css */
+
+@utility u-grid-center {
+	@apply grid place-items-center;
+}
+
+/* ============================================================================
+ * MASONRY GRID - CSS Columns based
+ * Usage: .u-masonry-grid for container, .u-masonry-item for children
+ * Gap: 12px (mobile 2col), 24px (md+)
+ * ============================================================================ */
+
+@utility u-masonry-grid {
+	columns: 1;
+	column-gap: 0.75rem;
+}
+
+@utility u-masonry-grid-2 {
+	columns: 2;
+	column-gap: 0.75rem;
+}
+
+@utility u-masonry-grid-3 {
+	columns: 3;
+	column-gap: 1.5rem;
+}
+
+@utility u-masonry-grid-4 {
+	columns: 4;
+	column-gap: 1.5rem;
+}
+
+@utility u-masonry-item {
+	break-inside: avoid;
+	margin-bottom: 0.75rem;
+}
+
+@utility u-masonry-item-lg {
+	break-inside: avoid;
+	margin-bottom: 1.5rem;
+}

@@ -1,0 +1,1 @@
+var r=(r,t)=>{let e;return(...n)=>(clearTimeout(e),e=setTimeout(()=>r(...n),t))},t=(r,t)=>{try{return JSON.parse(r)??t}catch{return t}},e=(r,t=12)=>{if("number"==typeof r)return r;const e=window.innerWidth;return e>=1024&&void 0!==r.lg?r.lg:e>=768&&void 0!==r.md?r.md:r.default??t};export{t as n,e as r,r as t};

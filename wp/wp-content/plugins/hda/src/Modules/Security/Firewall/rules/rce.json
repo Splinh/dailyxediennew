@@ -1,0 +1,126 @@
+{
+	"name": "Remote Code Execution Rules",
+	"version": "1.1.0",
+	"rules": [
+		{
+			"id": "rce_001",
+			"name": "System Command",
+			"pattern": "\\b(system|exec|passthru|shell_exec|popen|proc_open)\\s*\\(",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "rce_002",
+			"name": "Backtick Execution",
+			"pattern": "`[^`]*\\$[^`]*`",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "rce_003",
+			"name": "PHP eval/assert",
+			"pattern": "\\b(eval|assert)\\s*\\(",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "rce_004",
+			"name": "PHP create_function",
+			"pattern": "\\bcreate_function\\s*\\(",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "rce_005",
+			"name": "PHP include/require",
+			"pattern": "\\b(include|require|include_once|require_once)\\s*\\(",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["get", "post", "cookies"]
+		},
+		{
+			"id": "rce_006",
+			"name": "PHP File Write",
+			"pattern": "\\b(file_put_contents|fwrite|fputs)\\s*\\(",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["get", "post", "cookies"]
+		},
+		{
+			"id": "rce_007",
+			"name": "PHP File Read",
+			"pattern": "\\bfile_get_contents\\s*\\(",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["get", "post", "cookies"]
+		},
+		{
+			"id": "rce_008",
+			"name": "PHP fopen",
+			"pattern": "\\bfopen\\s*\\(",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["get", "post", "cookies"]
+		},
+		{
+			"id": "rce_009",
+			"name": "Base64 Decode Payload",
+			"pattern": "\\bbase64_decode\\s*\\(",
+			"severity": "medium",
+			"enabled": true,
+			"contexts": ["get", "post", "cookies"]
+		},
+		{
+			"id": "rce_010",
+			"name": "PHP unserialize",
+			"pattern": "\\bunserialize\\s*\\(",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["get", "post", "cookies"]
+		},
+		{
+			"id": "rce_011",
+			"name": "Linux/Windows Commands",
+			"pattern": "\\b(chmod|chown|useradd|net\\s+user|cmd\\.exe|powershell)\\b",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["get", "post", "cookies"]
+		},
+		{
+			"id": "rce_012",
+			"name": "PHP Socket Functions",
+			"pattern": "\\b(fsockopen|socket_create|stream_socket_client)\\s*\\(",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["get", "post", "cookies"]
+		},
+		{
+			"id": "rce_013",
+			"name": "PHP Disable Functions Bypass",
+			"pattern": "\\b(dl|ini_set|ini_restore|putenv)\\s*\\(",
+			"severity": "medium",
+			"enabled": true,
+			"contexts": ["get", "post", "cookies"]
+		},
+		{
+			"id": "rce_014",
+			"name": "preg_replace /e modifier",
+			"pattern": "\\bpreg_replace\\s*\\(\\s*['\"]/.*/e",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "rce_015",
+			"name": "PHP pcntl_exec",
+			"pattern": "\\bpcntl_(exec|fork|signal)\\s*\\(",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		}
+	]
+}

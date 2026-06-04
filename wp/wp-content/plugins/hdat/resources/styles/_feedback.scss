@@ -1,0 +1,115 @@
+@use 'variables' as *;
+
+// ─── Toast Notifications ──────────────────────────────────────────────
+.hdat-toast-container {
+	position: fixed;
+	top: 48px;
+	right: 1.5rem;
+	z-index: 100001;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.hdat-toast {
+	padding: 0.75rem 1.25rem;
+	border-radius: 6px;
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: $text-dark;
+	box-shadow: $shadow-md;
+	background: $bg-card;
+	border: 1px solid $border-light;
+	animation: hdat-toast-in 0.25s cubic-bezier(0.1, 0.8, 0.3, 1);
+	max-width: 380px;
+
+	&.hdat-toast-success {
+		background: $color-success-bg;
+		color: $color-success;
+		border-color: $color-success-border;
+		border-left: 4px solid $color-success;
+	}
+
+	&.hdat-toast-error {
+		background: $color-error-bg;
+		color: $color-error;
+		border-color: $color-error-border;
+		border-left: 4px solid $color-error;
+	}
+}
+
+@keyframes hdat-toast-in {
+	from {
+		opacity: 0;
+		transform: translateY(-8px) scale(0.96);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+// ─── Loading State ────────────────────────────────────────────────────
+.hdat-loading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 4rem;
+	color: $text-muted;
+	font-size: 0.875rem;
+	font-weight: 500;
+
+	&::before {
+		content: '';
+		width: 1.5rem;
+		height: 1.5rem;
+		border: 2px solid $border-light;
+		border-top-color: $color-primary;
+		border-radius: 50%;
+		margin-right: 0.75rem;
+		animation: hdat-spin 0.6s linear infinite;
+	}
+}
+
+@keyframes hdat-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+// ─── Pagination Controls ──────────────────────────────────────────────
+.hdat-pagination {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-top: 1.25rem;
+
+	button {
+		background: #ffffff;
+		color: $text-dark;
+		border: 1px solid $border-medium;
+		padding: 0.4rem 0.875rem;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		border-radius: 4px;
+		cursor: pointer;
+		transition: $transition-default;
+
+		&:hover:not(:disabled) {
+			background: #f4f8fd;
+			border-color: $color-primary;
+			color: $color-primary;
+		}
+
+		&:disabled {
+			opacity: 0.5;
+			cursor: not-allowed;
+		}
+	}
+
+	span {
+		font-size: 0.8125rem;
+		color: $text-muted;
+		font-weight: 500;
+	}
+}

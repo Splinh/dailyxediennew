@@ -1,0 +1,41 @@
+# Translation of Plugins - AI Provider for Google - Stable (latest release) in Vietnamese
+# This file is distributed under the same license as the Plugins - AI Provider for Google - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2026-05-24 02:25:24+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/4.0.3\n"
+"Language: vi_VN\n"
+"Project-Id-Version: Plugins - AI Provider for Google - Stable (latest release)\n"
+
+#: src/Provider/GoogleProvider.php:92
+msgid "Text and image generation with Gemini and Imagen."
+msgstr "Tạo nội dung và hình ảnh với Gemini và Imagen."
+
+#. Author URI of the plugin
+#: plugin.php
+msgid "https://make.wordpress.org/ai/"
+msgstr "https://make.wordpress.org/ai/"
+
+#. Author of the plugin
+#: plugin.php
+msgid "WordPress AI Team"
+msgstr "Nhóm AI của WordPress"
+
+#. Description of the plugin
+#: plugin.php
+msgid "AI Provider for Google for the WordPress AI Client."
+msgstr "Plugin kết nối AI của Google vào WordPress"
+
+#. Plugin URI of the plugin
+#: plugin.php
+msgid "https://github.com/WordPress/ai-provider-for-google"
+msgstr "https://github.com/WordPress/ai-provider-for-google"
+
+#. Plugin Name of the plugin
+#: plugin.php
+msgid "AI Provider for Google"
+msgstr "AI Provider for Google"

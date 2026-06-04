@@ -1,0 +1,59 @@
+/**
+ * HDA Admin Core Styles
+ *
+ * All admin pages — imports admin/ partials + small standalone modules.
+ */
+
+@use 'admin/components';
+@use 'admin/file-integrity';
+
+// ──────────────────────────────────────────────────
+// OTP Profile Verification (merged — 0.7KB, same admin context)
+// ──────────────────────────────────────────────────
+
+.hda-otp-status {
+	font-weight: 500;
+	padding: 4px 8px;
+	border-radius: 4px;
+	font-size: 13px;
+	display: inline-block;
+	white-space: nowrap;
+
+	&.verified {
+		color: #0a6b0a;
+		background: #d4edda;
+	}
+
+	&.not-verified {
+		color: #856404;
+		background: #fff3cd;
+	}
+}
+
+.hda-otp-message-wrap {
+	min-height: 20px;
+}
+
+.hda-otp-message {
+	font-size: 13px;
+	display: inline-block;
+
+	&.error {
+		color: #dc3545;
+	}
+
+	&.success {
+		color: #28a745;
+	}
+}
+
+.hda-otp-verify-row {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-wrap: wrap;
+}
+
+.hda-otp-code-input {
+	width: 120px !important;
+}

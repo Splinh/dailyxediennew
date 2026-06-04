@@ -1,0 +1,11 @@
+{
+  "resources/scripts/admin.ts": {
+    "file": "js/admin.BHuZri5f.js",
+    "name": "admin",
+    "src": "resources/scripts/admin.ts",
+    "isEntry": true,
+    "css": [
+      "css/admin.D-PmPdJc.css"
+    ]
+  }
+}

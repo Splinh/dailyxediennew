@@ -1,0 +1,85 @@
+@use 'variables' as *;
+
+// ─── Modal Dialogs ────────────────────────────────────────────────────
+.hdat-modal-overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(15, 23, 42, 0.45);
+	backdrop-filter: blur(4px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 100000;
+}
+
+.hdat-modal {
+	background: $bg-card;
+	border: 1px solid $border-light;
+	border-radius: 8px;
+	padding: 1.25rem 1.5rem;
+	width: 90%;
+	max-width: 560px;
+	max-height: 85vh;
+	overflow-y: auto;
+	box-shadow: $shadow-lg;
+
+	h3 {
+		margin: 0 0 0.75rem;
+		color: $text-dark;
+		border-bottom: none;
+		padding-bottom: 0;
+		font-size: 1.15rem;
+		font-weight: 700;
+	}
+
+	.hdat-form {
+		width: 100%;
+
+		label:not(.toggle) {
+			width: 100%;
+			box-sizing: border-box;
+			margin-bottom: 0.75rem;
+		}
+
+		#preferred-model-row {
+			margin-bottom: 0.75rem;
+		}
+
+		input[type='text'],
+		input[type='number'],
+		input[type='password'],
+		select,
+		textarea {
+			width: 100%;
+			box-sizing: border-box;
+			max-width: 100%;
+		}
+	}
+
+	.hdat-modal-actions {
+		display: flex;
+		justify-content: flex-end;
+		gap: 0.5rem;
+		margin-top: 1rem;
+	}
+}
+
+// ─── Token Display & Warnings ─────────────────────────────────────────
+.token-display {
+	width: 100%;
+	background: #f6f7f7;
+	border: 1px solid $border-light;
+	color: $text-dark;
+	padding: 0.75rem;
+	border-radius: 4px;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	font-size: 0.8125rem;
+	box-sizing: border-box;
+}
+
+.token-warning {
+	color: $color-warning;
+	font-size: 0.875rem;
+	margin: 0.75rem 0 1rem;
+	font-weight: 600;
+}

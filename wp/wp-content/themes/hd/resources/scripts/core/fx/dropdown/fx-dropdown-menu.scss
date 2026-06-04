@@ -1,0 +1,207 @@
+/* dropdown/fx-dropdown-menu.scss - Lazy-loaded with fx-dropdown-menu.js */
+
+@use '../../../../styles/utils/variables' as vars;
+@use '../../../../styles/utils/functions' as func;
+@use '../../../../styles/utils/mixins' as mixin;
+
+// ============================================================================
+// DROPDOWN MENU - Enhanced styles (loaded with JS)
+// ============================================================================
+
+.menu.mobile-menu > li > a {
+	font-weight: 500;
+}
+
+.submenu.menu[aria-hidden='false'] {
+	display: block;
+}
+
+.is-dropdown-submenu {
+	position: absolute;
+	top: 0;
+	left: 100%;
+	z-index: 1;
+	min-width: 280px;
+	padding-block: calc(var(--spacing) * 4);
+	padding-inline: calc(var(--spacing) * 3);
+
+	&.js-dropdown-active {
+		display: block;
+	}
+
+	& > li {
+		width: 100%;
+
+		a {
+			position: relative;
+			display: flex;
+			padding-inline: calc(var(--spacing) * 3);
+			padding-block: calc(var(--spacing) * 2);
+			border-radius: var(--radius-xl);
+			border: 1px solid transparent;
+		}
+	}
+}
+
+.is-dropdown-submenu-parent {
+	position: relative;
+
+	&.is-active:not(.menu-mega) > .menu.submenu {
+		display: block;
+	}
+
+	&.is-active.menu-mega > .menu.submenu {
+		display: flex;
+		flex-flow: row wrap;
+		align-items: flex-start;
+	}
+
+	&.opens-right > .is-dropdown-submenu {
+		right: auto;
+		left: 100%;
+	}
+
+	&.opens-left > .is-dropdown-submenu {
+		right: 100%;
+		left: auto;
+	}
+
+	&.is-dropdown-submenu-item > a {
+		&::after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			translate: 0 -50%;
+			rotate: -90deg;
+			right: calc(var(--spacing) * 3);
+			background-color: currentColor;
+			mask-repeat: no-repeat;
+			mask-position: center;
+			mask-size: contain;
+			mask-image: func.inline-svg(
+				'<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>'
+			);
+			@include mixin.box(16);
+		}
+	}
+
+	&.is-dropdown-submenu-item.opens-left > a::after {
+		transform-origin: center;
+		rotate: 90deg;
+	}
+
+	&:hover > a {
+		color: var(--color-primary, #015055);
+
+		@include mixin.dark-mode {
+			color: var(--color-white);
+		}
+	}
+}
+
+.dropdown.menu > li {
+	&.opens-right > .is-dropdown-submenu {
+		top: 100%;
+		right: auto;
+		left: 0;
+	}
+
+	&.opens-left > .is-dropdown-submenu {
+		top: 100%;
+		right: 0;
+		left: auto;
+	}
+
+	&.is-dropdown-submenu-parent > a {
+		position: relative;
+		padding-right: calc(var(--spacing) * 5);
+
+		&::after {
+			left: auto;
+			right: 0;
+			margin-top: 0;
+			rotate: 0deg;
+			transition: rotate vars.$transition-fast vars.$ease-default;
+		}
+
+		&:hover::after {
+			transform-origin: center;
+			rotate: 180deg;
+		}
+	}
+
+	// Mega menu
+	&.menu-mega {
+		& > ul.submenu {
+			padding-inline: 0;
+
+			& > li {
+				padding-inline: calc(var(--spacing) * 3);
+
+				& > a::after {
+					display: none;
+				}
+			}
+
+			ul {
+				display: block;
+				position: static;
+				border: none;
+				padding-inline: 0;
+				box-shadow: none;
+				padding-block: 0;
+				min-width: unset;
+			}
+
+			&.js-dropdown-active {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: flex-start;
+			}
+		}
+
+		// Column variants
+		@each $cols in (2, 3) {
+			&.col-#{$cols} > ul.submenu {
+				$width: $cols * 280px;
+
+				min-width: $width;
+				left: func.divide(-$width, 2);
+
+				& > li {
+					width: calc(100% / #{$cols});
+				}
+
+				@if $cols == 2 {
+					&::before {
+						content: '';
+						position: absolute;
+						height: 100%;
+						top: 0;
+						width: 1px;
+						left: 50%;
+					}
+				}
+
+				@if $cols == 3 {
+					&::before,
+					&::after {
+						content: '';
+						position: absolute;
+						height: 100%;
+						top: 0;
+						width: 1px;
+					}
+
+					&::before {
+						left: calc(100% / 3);
+					}
+
+					&::after {
+						right: calc(100% / 3);
+					}
+				}
+			}
+		}
+	}
+}

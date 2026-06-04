@@ -1,0 +1,150 @@
+{
+	"name": "XSS Rules",
+	"version": "1.1.0",
+	"rules": [
+		{
+			"id": "xss_001",
+			"name": "Script Tag",
+			"pattern": "<\\s*script[^>]*>",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "xss_002",
+			"name": "Event Handler",
+			"pattern": "\\bon(error|load|click|mouseover|mouseout|mouseenter|mouseleave|focus|focusin|focusout|blur|submit|change|input|keyup|keydown|keypress|dblclick|contextmenu|resize|scroll|unload|beforeunload|abort|animationend|transitionend|pointerdown|pointerup|touchstart|touchend|wheel|dragstart|drop|paste|copy)\\s*=",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "xss_003",
+			"name": "Javascript Protocol",
+			"pattern": "javascript\\s*:",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "xss_004",
+			"name": "VBScript Protocol",
+			"pattern": "vbscript\\s*:",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "xss_005",
+			"name": "Data URI",
+			"pattern": "data\\s*:[^,]*;\\s*base64",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "xss_006",
+			"name": "Iframe Injection",
+			"pattern": "<\\s*iframe[^>]*>",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "xss_007",
+			"name": "Object/Embed Tag",
+			"pattern": "<\\s*(object|embed|applet)[^>]*>",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "xss_008",
+			"name": "SVG onload",
+			"pattern": "<\\s*svg[^>]*\\bon\\w+\\s*=",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "xss_009",
+			"name": "IMG onerror",
+			"pattern": "<\\s*img[^>]*\\bon(error|load)\\s*=",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "xss_010",
+			"name": "Expression CSS",
+			"pattern": "(expression|behavior)\\s*\\(",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "xss_011",
+			"name": "Document.cookie",
+			"pattern": "document\\s*\\.\\s*(cookie|domain|write|location)",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "xss_012",
+			"name": "Window.location",
+			"pattern": "(window|self|top|parent)\\s*\\.\\s*location",
+			"severity": "medium",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "xss_013",
+			"name": "eval/setTimeout/setInterval",
+			"pattern": "\\b(eval|settimeout|setinterval)\\s*\\(",
+			"severity": "medium",
+			"enabled": true,
+			"contexts": ["get", "post", "cookies"]
+		},
+		{
+			"id": "xss_014",
+			"name": "Alert/Confirm/Prompt",
+			"pattern": "\\b(alert|confirm|prompt)\\s*\\(",
+			"severity": "medium",
+			"enabled": true,
+			"contexts": ["get", "post", "cookies"]
+		},
+		{
+			"id": "xss_015",
+			"name": "innerHTML/outerHTML",
+			"pattern": "\\.(innerHTML|outerHTML)\\s*=",
+			"severity": "medium",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "xss_016",
+			"name": "Form Action Override",
+			"pattern": "<\\s*form[^>]*action\\s*=\\s*['\"]?javascript",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "xss_017",
+			"name": "Base Tag Injection",
+			"pattern": "<\\s*base[^>]*href\\s*=",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "xss_018",
+			"name": "Meta Refresh Redirect",
+			"pattern": "<\\s*meta[^>]*http-equiv\\s*=\\s*['\"]?refresh",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["any"]
+		}
+	]
+}

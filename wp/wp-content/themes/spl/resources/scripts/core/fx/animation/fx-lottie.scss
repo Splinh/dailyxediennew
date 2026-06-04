@@ -1,0 +1,12 @@
+// animation/fx-lottie.scss
+[data-fx-lottie] {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	dotlottie-wc {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+}

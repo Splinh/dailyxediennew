@@ -1,0 +1,640 @@
+/* utils/_mixins.scss */
+
+@use 'sass:meta';
+@use 'sass:string';
+@use 'sass:math';
+@use 'sass:list';
+@use 'sass:map';
+
+@use '../utils/variables' as vars;
+@use '../utils/functions' as func;
+
+// ============================================================================
+// MEDIA QUERIES
+// ============================================================================
+
+/// Media query for max-width (mobile-first breakpoint)
+/// @param {Length} $width [767px] - Maximum width breakpoint
+/// @content Styles to apply at or below the breakpoint
+/// @example scss
+///   @include mq-max-width(768px) { display: none; }
+@mixin mq-max-width($width: 767px) {
+	$width_value: func.fs($width);
+	@media screen and (max-width: #{$width_value}) {
+		@content;
+	}
+}
+
+/// Media query for min-width (desktop-first breakpoint)
+/// @param {Length} $width [768px] - Minimum width breakpoint
+/// @content Styles to apply at or above the breakpoint
+/// @example scss
+///   @include mq-min-width(768px) { display: block; }
+@mixin mq-min-width($width: 768px) {
+	$width_value: func.fs($width);
+	@media screen and (min-width: #{$width_value}) {
+		@content;
+	}
+}
+
+/// Media query using named breakpoints from $mq-breakpoints map
+/// @param {String} $breakpoint - Breakpoint name (xs, sm, md, lg, xl, xxl)
+/// @param {String} $type [min] - Query type: 'min' or 'max'
+/// @content Styles to apply at the breakpoint
+/// @example scss
+///   @include mq(md, min) { font-size: 18px; }
+@mixin mq($breakpoint, $type: min) {
+	$breakpoint-value: func.fs(func.get-breakpoint($breakpoint, vars.$mq-breakpoints, 640px));
+	@if $breakpoint-value {
+		@if $type == max {
+			$breakpoint-value: #{$breakpoint-value - func.fs(0.02)};
+		}
+		@media only screen and (#{$type}-width: $breakpoint-value) {
+			@content;
+		}
+	} @else {
+		@warn 'Invalid breakpoint: `#{$breakpoint}`. Using fallback.';
+	}
+}
+
+/// Shorthand for min-width media query using named breakpoints
+/// @param {String} $breakpoint [sm] - Breakpoint name
+/// @content Styles to apply at or above the breakpoint
+@mixin mq-min($breakpoint: sm) {
+	@include mq($breakpoint, min) {
+		@content;
+	}
+}
+
+/// Shorthand for max-width media query using named breakpoints
+/// @param {String} $breakpoint [sm] - Breakpoint name
+/// @content Styles to apply at or below the breakpoint
+@mixin mq-max($breakpoint: sm) {
+	@include mq($breakpoint, max) {
+		@content;
+	}
+}
+
+// ============================================================================
+// TEXT UTILITIES
+// ============================================================================
+
+/// Truncate text to a specified number of lines with ellipsis
+/// @param {Number} $n [2] - Number of lines to show before truncating
+/// @example scss
+///   @include line-clamp(3);
+@mixin line-clamp($n: 2) {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: initial;
+	overflow-wrap: break-word;
+
+	@supports (-webkit-line-clamp: $n) {
+		-webkit-line-clamp: $n;
+		-webkit-box-orient: vertical;
+		display: -webkit-box;
+	}
+}
+
+/// Visually hide text while keeping it accessible to screen readers
+/// @example scss
+///  @include hidden-text;
+@mixin hidden-text {
+	pointer-events: none;
+	border: 0;
+	clip: rect(0, 0, 0, 0);
+	clip-path: inset(50%);
+	height: 1px;
+	width: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	overflow-wrap: normal !important;
+	white-space: nowrap;
+	display: inline;
+}
+
+/// Remove tap highlight and touch feedback on mobile devices
+/// @example scss
+///   @include not-highlight;
+@mixin not-highlight {
+	-webkit-tap-highlight-color: transparent;
+	-moz-tap-highlight-color: transparent;
+	touch-action: manipulation;
+	outline: none;
+
+	&:focus-visible {
+		outline: 2px solid var(--text-color-2, vars.$color-secondary);
+		outline-offset: 2px;
+	}
+}
+
+// ============================================================================
+// LAYOUT UTILITIES
+// ============================================================================
+
+/// Center content using flexbox
+/// @example scss
+///  @include flex-center;
+@mixin flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/// Center an element absolutely within its parent using translate
+/// @example scss
+///   @include absolute-center;
+@mixin absolute-center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	translate: -50% -50%;
+}
+
+/// Center an element absolutely with specific dimensions
+/// @param {Number} $width [300] - Element width in pixels
+/// @param {Number} $height [$width] - Element height in pixels
+/// @example scss
+///   @include absolute-center-self(400, 300);
+@mixin absolute-center-self($width: 300, $height: $width) {
+	position: absolute;
+	top: func.subtract(50%, func.fs(func.divide($height, 2)));
+	left: func.subtract(50%, func.fs(func.divide($width, 2)));
+	width: func.fs($width);
+	height: func.fs($height);
+}
+
+/// Position element absolutely covering its parent
+/// @example scss
+///   @include absolute-full;
+@mixin absolute-full {
+	position: absolute;
+	inset: 0;
+}
+
+/// Position element fixed covering the viewport
+/// @example scss
+///   @include fixed-full;
+@mixin fixed-full {
+	position: fixed;
+	inset: 0;
+}
+
+// ============================================================================
+// RESPONSIVE UTILITIES
+// ============================================================================
+
+/// Apply a CSS property with different values at each breakpoint
+/// @param {String} $css_property [font-size] - CSS property to set
+/// @param {*} $default [false] - Default value (mobile)
+/// @param {*} $sm [false] - Value at sm breakpoint
+/// @param {*} $md [false] - Value at md breakpoint
+/// @param {*} $lg [false] - Value at lg breakpoint
+/// @param {*} $xl [false] - Value at xl breakpoint
+/// @param {*} $xxl [false] - Value at xxl breakpoint
+/// @example scss
+///   @include media-css(font-size, 16, false, 18, 20);
+@mixin media-css($css_property: font-size, $default: false, $sm: false, $md: false, $lg: false, $xl: false, $xxl: false) {
+	@if $default != false {
+		#{$css_property}: func.fs($default);
+	}
+
+	@if $sm != false {
+		@include mq-min(sm) {
+			#{$css_property}: func.fs($sm);
+		}
+	}
+
+	@if $md != false {
+		@include mq-min(md) {
+			#{$css_property}: func.fs($md);
+		}
+	}
+
+	@if $lg != false {
+		@include mq-min(lg) {
+			#{$css_property}: func.fs($lg);
+		}
+	}
+
+	@if $xl != false {
+		@include mq-min(xl) {
+			#{$css_property}: func.fs($xl);
+		}
+	}
+
+	@if $xxl != false {
+		@include mq-min(xxl) {
+			#{$css_property}: func.fs($xxl);
+		}
+	}
+}
+
+// ============================================================================
+// BOX & SIZING
+// ============================================================================
+
+/// Set width and height with optional border-radius
+/// @param {Number} $width [250] - Width in pixels
+/// @param {Number} $height [$width] - Height in pixels (defaults to width for square)
+/// @param {Number|Boolean} $border_radius [false] - Border radius in pixels
+/// @example scss
+///   @include box(48, 48, 50%);
+@mixin box($width: 250, $height: $width, $border_radius: false) {
+	width: func.fs($width);
+	height: func.fs($height);
+
+	@if $border_radius != false {
+		border-radius: func.fs($border_radius);
+	}
+}
+
+/// Calculate flex item width based on grid columns
+/// @param {Number} $total [12] - Total number of columns
+/// @param {Number} $n [1] - Number of items per row
+/// @param {Number} $gap [0] - Gap between items in pixels
+/// @param {Boolean} $important [false] - Add !important flag
+/// @example scss
+///   @include flex-self(3, 1, 24); // 3 cards per row with 24px gap
+@mixin flex-self($total: 12, $n: 1, $gap: 0, $important: false) {
+	$width: func.calculate-flex-width($total, $n, $gap);
+
+	@if $width != 0 {
+		@if $important {
+			width: #{$width} !important;
+		} @else {
+			width: #{$width};
+		}
+	}
+}
+
+/// Shorthand for flex-self using 12-column grid
+/// @param {Number} $n [1] - Number of items per row
+/// @param {Number} $gap [0] - Gap between items in pixels
+/// @param {Boolean} $important [false] - Add !important flag
+@mixin flex-basis($n: 1, $gap: 0, $important: false) {
+	$grid-columns: 12;
+	@include flex-self($grid-columns, $n, $gap, $important);
+}
+
+/// Responsive flexbox grid with different columns at each breakpoint
+/// @param {Number} $default [1] - Items per row at default (mobile)
+/// @param {Number|Boolean} $sm [false] - Items per row at sm breakpoint
+/// @param {Number|Boolean} $md [false] - Items per row at md breakpoint
+/// @param {Number|Boolean} $lg [false] - Items per row at lg breakpoint
+/// @param {Number|Boolean} $xl [false] - Items per row at xl breakpoint
+/// @param {Number|Boolean} $xxl [false] - Items per row at xxl breakpoint
+/// @example scss
+///   @include media-flexbox(1, 2, 3, 4);
+@mixin media-flexbox($default: 1, $sm: false, $md: false, $lg: false, $xl: false, $xxl: false) {
+	@if $default != false {
+		@include flex-self($default, 1, map.get(vars.$gutters, xs));
+	}
+
+	@if $sm != false {
+		@include mq-min(sm) {
+			@include flex-self($sm, 1, map.get(vars.$gutters, sm));
+		}
+	}
+
+	@if $md != false {
+		@include mq-min(md) {
+			@include flex-self($md, 1, map.get(vars.$gutters, md));
+		}
+	}
+
+	@if $lg != false {
+		@include mq-min(lg) {
+			@include flex-self($lg, 1, map.get(vars.$gutters, lg));
+		}
+	}
+
+	@if $xl != false {
+		@include mq-min(xl) {
+			@include flex-self($xl, 1, map.get(vars.$gutters, xl));
+		}
+	}
+
+	@if $xxl != false {
+		@include mq-min(xxl) {
+			@include flex-self($xxl, 1, map.get(vars.$gutters, xxl));
+		}
+	}
+}
+
+/// Set aspect ratio with fallback for older browsers
+/// @param {Number} $ratio-width [3] - Width ratio
+/// @param {Number} $ratio-height [2] - Height ratio
+/// @param {Percentage} $width_percent [100%] - Container width percentage
+/// @example scss
+///   @include aspect-ratio(16, 9);
+@mixin aspect-ratio($ratio-width: 3, $ratio-height: 2, $width_percent: 100%) {
+	$pb: func.divide($width_percent * $ratio-height, $ratio-width);
+
+	@supports (aspect-ratio: 1) {
+		aspect-ratio: list.slash($ratio-width, $ratio-height);
+	}
+
+	@supports not (aspect-ratio: 1) {
+		height: 0;
+		padding-bottom: func.fs($pb);
+	}
+}
+
+// ============================================================================
+// HOVER & INTERACTION
+// ============================================================================
+
+/// Add scale effect on hover with smooth transition
+/// @param {Number} $scale [1.06] - Scale factor on hover
+/// @param {Number} $opacity [1] - Opacity on hover
+/// @example scss
+///   @include scale-hover(1.1);
+@mixin scale-hover($scale: 1.06, $opacity: 1) {
+	transform: scale(1.0001);
+	will-change: transform;
+	transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s;
+
+	&:hover {
+		transform: scale($scale);
+		opacity: $opacity;
+	}
+}
+
+/// Create a cover container for images with object-fit
+/// @param {Length|Boolean} $width [100%] - Container width
+/// @example scss
+///   @include cover-container(200px);
+@mixin cover-container($width: 100%) {
+	position: relative;
+	display: block;
+	overflow: hidden;
+	transition: all 0.3s ease-in-out;
+
+	@if $width != false {
+		width: func.fs($width);
+	}
+
+	& > img:first-child {
+		display: block;
+		@include absolute-center;
+	}
+
+	&.auto > img:first-child {
+		object-fit: contain;
+		object-position: center;
+	}
+
+	&:not(.auto) > img:first-child {
+		object-fit: cover;
+		object-position: center;
+	}
+}
+
+// ============================================================================
+// HEIGHT UTILITIES
+// ============================================================================
+
+/// Set height based on viewport with support for dynamic viewport units
+/// @param {Number} $multiplier [100] - Viewport height multiplier (100 = 100vh)
+/// @param {Boolean} $admin_bar [false] - Adjust for WordPress admin bar
+/// @example scss
+///   @include screen-height(100, true);
+@mixin screen-height($multiplier: 100, $admin_bar: false) {
+	height: calc(var(--vh, 1vh) * #{$multiplier});
+
+	@supports (height: 100dvh) {
+		height: #{$multiplier}dvh;
+	}
+
+	@include mq-min-width(601px) {
+		@if $admin_bar {
+			height: calc(var(--vh, 1vh) * #{$multiplier} - 46px);
+
+			@supports (height: 100dvh) {
+				height: calc(#{$multiplier}dvh - 46px);
+			}
+		}
+	}
+
+	@include mq-min-width(783px) {
+		@if $admin_bar {
+			height: calc(var(--vh, 1vh) * #{$multiplier} - 32px);
+
+			@supports (height: 100dvh) {
+				height: calc(#{$multiplier}dvh - 32px);
+			}
+		}
+	}
+}
+
+// ============================================================================
+// TYPOGRAPHY
+// ============================================================================
+
+/// Generate @font-face rule with multiple formats
+/// @param {String} $font-family - Font family name
+/// @param {String} $font-style [normal] - Font style (normal, italic)
+/// @param {Number} $font-weight [400] - Font weight
+/// @param {String} $file_name - Font file name without extension
+/// @param {String} $base ['../fonts'] - Base path to fonts directory
+/// @example scss
+///   @include font-face('Poppins', normal, 500, 'Poppins-Medium');
+@mixin font-face($font-family, $font-style: normal, $font-weight: 400, $file_name, $base: '../fonts') {
+	$base: string.unquote($base);
+	$version: string.unique_id();
+
+	@font-face {
+		font-family: string.quote($font-family);
+		font-style: $font-style;
+		font-weight: $font-weight;
+		font-display: swap;
+		src: url('#{$base}/WOFF2/#{$file_name}.woff2?v=#{$version}') format('woff2'), url('#{$base}/TTF/#{$file_name}.ttf?v=#{$version}') format('truetype'),
+		url('#{$base}/OTF/#{$file_name}.otf?v=#{$version}') format('opentype');
+	}
+}
+
+/// Fluid typography using CSS clamp() with optional line-height
+/// @param {Length} $min [10px] - Minimum font size
+/// @param {Length} $max [100px] - Maximum font size
+/// @param {Number} $base [0] - Line-height multiplier (0 = no line-height)
+/// @param {Length} $min-width [380px] - Viewport width for min font size
+/// @param {Length} $max-width [1900px] - Viewport width for max font size
+/// @example scss
+///   @include clamp-font-size(24px, 48px, 1.2);
+@mixin clamp-font-size($min: 10px, $max: 100px, $base: 0, $min-width: 380px, $max-width: 1900px) {
+	$min-rem: func.fs($min);
+	$max-rem: func.fs($max);
+	$min-width-rem: func.fs($min-width);
+	$max-width-rem: func.fs($max-width);
+
+	$min-val: func.strip-unit($min-rem);
+	$max-val: func.strip-unit($max-rem);
+	$min-width-val: func.strip-unit($min-width-rem);
+	$max-width-val: func.strip-unit($max-width-rem);
+
+	@if $min-val > $max-val {
+		$tmp: $min;
+		$min: $max;
+		$max: $tmp;
+
+		$min-rem: func.fs($min);
+		$max-rem: func.fs($max);
+		$min-val: func.strip-unit($min-rem);
+		$max-val: func.strip-unit($max-rem);
+	}
+
+	// min = max
+	@if $min-val == $max-val {
+		font-size: $min-rem;
+
+		@if $base > 0 {
+			line-height: $min-rem * $base;
+		}
+	}
+
+	// min < max
+	@if $min-val < $max-val {
+		$slope: func.divide(($max-val - $min-val), ($max-width-val - $min-width-val));
+		$intercept: $min-val - $slope * $min-width-val;
+		$font-clamp: clamp(#{$min-rem}, #{$intercept}rem + #{$slope * 100}vw, #{$max-rem});
+
+		font-size: $font-clamp;
+
+		@if $base > 0 {
+			$lh-intercept: $min-val * $base - $slope * $base * $min-width-val;
+			$line-height-clamp: clamp(#{$min-rem * $base}, #{$lh-intercept}rem + #{$slope * $base * 100}vw, #{$max-rem * $base});
+
+			line-height: $line-height-clamp;
+		}
+	}
+}
+
+/// Shorthand for fluid typography using predefined heading sizes
+/// @param {String} $heading [h1] - Heading level (h1-h6)
+/// @param {Number} $base [0] - Line-height multiplier
+/// @example scss
+///   @include clamp-fs(h2);
+@mixin clamp-fs($heading: h1, $base: 0) {
+	$fs-heading: map.get(vars.$font-sizes, $heading);
+	$min: func.fs(list.nth($fs-heading, 1));
+	$max: func.fs(list.nth($fs-heading, 2));
+
+	@include clamp-font-size($min, $max, $base, vars.$sm, vars.$xxl);
+}
+
+// ============================================================================
+// ANIMATION
+// ============================================================================
+
+/// Generate @keyframes rule
+/// @param {String} $name - Animation name
+/// @content Keyframe rules
+/// @example scss
+///   @include keyframes(fade-in) { from { opacity: 0; } to { opacity: 1; } }
+@mixin keyframes($name) {
+	@keyframes #{$name} {
+		@content;
+	}
+}
+
+// ============================================================================
+// COMPONENT MIXINS
+// ============================================================================
+
+/// Dark mode selector - wraps content in dark theme context
+/// @content Styles to apply in dark mode
+/// @example scss
+///   @include dark-mode { ... }
+@mixin dark-mode {
+	:where(.dark, .dark *) & {
+		@content;
+	}
+}
+
+/// Icon mask - base styles for CSS mask icons with optional mask-image
+/// @param {Number} $size [24] - Icon size in pixels
+/// @param {String|Null} $image [null] - SVG string or URL for mask-image
+/// @example scss
+///   @include icon-mask(20);
+///   @include icon-mask(24, url('check.svg'));
+@mixin icon-mask($size: 24, $image: null) {
+	display: block;
+	background-color: currentColor;
+	mask-repeat: no-repeat;
+	mask-position: center;
+	mask-size: contain;
+	width: func.fs($size);
+	height: func.fs($size);
+
+	@if $image != null {
+		mask-image: $image;
+	}
+}
+
+/// Gradient text effect
+/// @param {Color} $from [$color-primary] - Start color
+/// @param {Color} $to [$color-secondary] - End color
+/// @param {Angle} $direction [90deg] - Gradient direction
+/// @example scss
+///   @include gradient-text(#ff6b6b, #4ecdc4);
+@mixin gradient-text($from: vars.$color-primary, $to: vars.$color-secondary, $direction: 90deg) {
+	background: linear-gradient($direction, $from, $to);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+/// Truncate text with ellipsis
+/// @param {Length} $max-width [100%] - Maximum width before truncation
+/// @example scss
+///   @include truncate(200px);
+@mixin truncate($max-width: 100%) {
+	max-width: $max-width;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/// Glass morphism effect with backdrop blur (includes dark mode)
+/// @param {Length} $blur [8px] - Blur amount
+/// @param {Number} $opacity [0.9] - Background opacity
+/// @example scss
+///   @include glass-effect(12px, 0.85);
+@mixin glass-effect($blur: 8px, $opacity: 0.9) {
+	backdrop-filter: blur($blur);
+	-webkit-backdrop-filter: blur($blur);
+	background-color: rgba(254, 254, 254, $opacity);
+
+	@include dark-mode {
+		background-color: rgba(22, 22, 22, $opacity);
+	}
+}
+
+/// Skeleton loading animation placeholder (includes dark mode)
+/// @example scss
+///   @include skeleton-loading;
+@mixin skeleton-loading {
+	background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+	background-size: 200% 100%;
+	animation: skeleton-pulse 1.5s ease-in-out infinite;
+
+	@include dark-mode {
+		background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+	}
+}
+
+/// Z-index helper using predefined scale from $z-index map
+/// @param {String} $layer - Layer name from $z-index map
+/// @example scss
+///   @include z-index(modal);
+///   @include z-index(header);
+@mixin z-index($layer) {
+	@if map.has-key(vars.$z-index, $layer) {
+		z-index: map.get(vars.$z-index, $layer);
+	} @else {
+		@warn "Unknown z-index layer: #{$layer}";
+	}
+}

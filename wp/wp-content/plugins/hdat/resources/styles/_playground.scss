@@ -1,0 +1,189 @@
+@use 'variables' as *;
+
+// ─── Premium Conversational UI (Playground Redesign) ──────────────────
+.playground-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1.5rem;
+	flex-wrap: wrap;
+	gap: 1rem;
+
+	h2 {
+		margin: 0;
+	}
+}
+
+.playground-model-picker {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	background: $bg-card;
+	padding: 0.4rem 0.875rem;
+	border: 1px solid $border-light;
+	border-radius: 6px;
+	box-shadow: $shadow-sm;
+
+	.picker-label {
+		font-size: 0.8125rem;
+		font-weight: 700;
+		color: $text-muted;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+	}
+
+	input {
+		border: 1px solid $border-medium;
+		color: $text-dark;
+		padding: 0.35rem 0.625rem;
+		border-radius: 4px;
+		font-size: 0.8125rem;
+		width: 180px;
+		transition: $transition-default;
+
+		&:focus {
+			outline: none;
+			border-color: $border-focus;
+			box-shadow: 0 0 0 3px $color-focus-ring;
+		}
+	}
+}
+
+.playground-console {
+	background: $bg-card;
+	border: 1px solid $border-light;
+	border-radius: 12px;
+	box-shadow: $shadow-md;
+	overflow: hidden;
+	margin-bottom: 2rem;
+
+	.pg-log {
+		min-height: 300px;
+		max-height: 500px;
+		overflow-y: auto;
+		background: #f8fafc; // Clean slate backdrop
+		padding: 1.5rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+		scroll-behavior: smooth;
+		border-bottom: 1px solid $border-light;
+
+		// Custom Scrollbar
+		&::-webkit-scrollbar {
+			width: 6px;
+		}
+		&::-webkit-scrollbar-track {
+			background: transparent;
+		}
+		&::-webkit-scrollbar-thumb {
+			background: #cbd5e1;
+			border-radius: 9999px;
+			&:hover {
+				background: #94a3b8;
+			}
+		}
+	}
+
+	.pg-msg {
+		display: flex;
+		flex-direction: column;
+		max-width: 75%;
+		animation: pg-bubble-in 0.2s cubic-bezier(0.1, 0.8, 0.3, 1);
+
+		strong {
+			display: block;
+			font-size: 0.6875rem;
+			text-transform: uppercase;
+			letter-spacing: 0.08em;
+			color: $text-muted;
+			margin-bottom: 0.25rem;
+			font-weight: 700;
+		}
+
+		div {
+			white-space: pre-wrap;
+			line-height: 1.5;
+			font-size: 0.875rem;
+			padding: 0.75rem 1rem;
+			border-radius: 12px;
+			box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+		}
+
+		&.pg-user {
+			align-self: flex-end;
+			align-items: flex-end;
+
+			strong {
+				color: $color-primary;
+			}
+
+			div {
+				background: $color-primary;
+				color: #ffffff;
+				border-bottom-right-radius: 2px;
+			}
+		}
+
+		&.pg-assistant {
+			align-self: flex-start;
+			align-items: flex-start;
+
+			strong {
+				color: #475569;
+			}
+
+			div {
+				background: #ffffff;
+				color: $text-dark;
+				border: 1px solid $border-light;
+				border-bottom-left-radius: 2px;
+				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+			}
+		}
+	}
+
+	.pg-chat-input-bar {
+		background: #ffffff;
+		padding: 1rem 1.25rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+
+		textarea {
+			width: 100%;
+			box-sizing: border-box;
+			border: 1px solid $border-medium;
+			border-radius: 6px;
+			padding: 0.75rem 1rem;
+			font-size: 0.875rem;
+			line-height: 1.5;
+			resize: none;
+			font-family: inherit;
+			transition: $transition-default;
+
+			&:focus {
+				outline: none;
+				border-color: $border-focus;
+				box-shadow: 0 0 0 3px $color-focus-ring;
+			}
+		}
+
+		.pg-chat-actions {
+			display: flex;
+			justify-content: flex-end;
+			gap: 0.5rem;
+		}
+	}
+}
+
+@keyframes pg-bubble-in {
+	from {
+		opacity: 0;
+		transform: translateY(6px) scale(0.98);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}

@@ -1,0 +1,589 @@
+# Translation of Plugins - kk Star Ratings &#8211; Rate Post &amp; Collect User Feedbacks - Stable (latest release) in Vietnamese
+# This file is distributed under the same license as the Plugins - kk Star Ratings &#8211; Rate Post &amp; Collect User Feedbacks - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2024-08-28 07:29:21+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/4.0.1\n"
+"Language: vi_VN\n"
+"Project-Id-Version: Plugins - kk Star Ratings &#8211; Rate Post &amp; Collect User Feedbacks - Stable (latest release)\n"
+
+#: src/core/wp/actions/admin_menu.php:32 src/core/wp/actions/admin_menu.php:33
+msgid "Settings"
+msgstr "Cài đặt"
+
+#: lib/ProfilePress.php:613
+msgid "Go to ProfilePress settings"
+msgstr "Đi đến cài đặt ProfilePress"
+
+#: lib/ProfilePress.php:589
+msgid "Activate ProfilePress"
+msgstr "Kích hoạt ProfilePress"
+
+#: lib/ProfilePress.php:581
+msgid "Install ProfilePress"
+msgstr "Cài đặt ProfilePress"
+
+#: lib/ProfilePress.php:559
+msgid "Set Up ProfilePress"
+msgstr "Cài đặt ProfilePress"
+
+#: lib/ProfilePress.php:525
+msgid "Install ProfilePress from the WordPress.org plugin repository."
+msgstr "Cài đặt ProfilePress từ kho plugin WordPress.org."
+
+#: lib/ProfilePress.php:524
+msgid "Install and Activate ProfilePress"
+msgstr "Cài đặt và Kích hoạt ProfilePress"
+
+#: lib/ProfilePress.php:495
+msgid "Create searchable and filterable member directories with avatars and user info allowing users to find each other."
+msgstr "Tạo danh bạ thành viên có thể tìm kiếm và lọc với ảnh đại diện và thông tin người dùng, cho phép người dùng tìm kiếm lẫn nhau."
+
+#: lib/ProfilePress.php:494
+msgid "Add beautiful user profiles to your site that can be customised to your specific requirements."
+msgstr "Thêm hồ sơ người dùng đẹp mắt vào trang web của bạn, có thể tùy chỉnh theo yêu cầu cụ thể của bạn."
+
+#: lib/ProfilePress.php:493
+msgid "Restrict access to pages, posts, custom post types, categories, tags and custom taxonomies."
+msgstr "Hạn chế quyền truy cập vào các trang, bài đăng, loại bài đăng tùy chỉnh, danh mục, thẻ và phân loại học tùy chỉnh."
+
+#: lib/ProfilePress.php:492
+msgid "Fine-grained control over what content your users can see based on your protection rules."
+msgstr "Kiểm soát chi tiết nội dung người dùng của bạn có thể nhìn thấy dựa trên các quy tắc bảo vệ của bạn."
+
+#: lib/ProfilePress.php:491
+msgid "Beautiful templates for login, registration, password reset & edit profile edit forms."
+msgstr "Mẫu đẹp mắt cho các biểu mẫu đăng nhập, đăng ký, đặt lại mật khẩu & chỉnh sửa hồ sơ."
+
+#: lib/ProfilePress.php:490
+msgid "ProfilePress screenshot"
+msgstr "Ảnh chụp màn hình ProfilePress"
+
+#: lib/ProfilePress.php:467
+msgid "ProfilePress is a powerful paid membership plugin for accepting one-time and recurring payments, selling subscriptions and digital products or digital downloads via Bank Transfer, Stripe, PayPal, RazorPay, Mollie, paywall & restrict content and control user access. It also lets you create beautiful frontend custom login forms, registration forms and user profiles."
+msgstr "ProfilePress là một plugin thành viên trả phí mạnh mẽ để chấp nhận thanh toán một lần và định kỳ, bán đăng ký và sản phẩm kỹ thuật số hoặc tải xuống kỹ thuật số thông qua Chuyển khoản Ngân hàng, Stripe, PayPal, RazorPay, Mollie, paywall & hạn chế nội dung và kiểm soát quyền truy cập của người dùng. Nó cũng cho phép bạn tạo các biểu mẫu đăng nhập tùy chỉnh, biểu mẫu đăng ký và hồ sơ người dùng đẹp mắt ở đầu trang."
+
+#: lib/ProfilePress.php:466
+msgid "Modern Membership, Registration & Login Form Plugin"
+msgstr "Plugin biểu mẫu đăng nhập, đăng ký và thành viên hiện đại"
+
+#: lib/ProfilePress.php:234
+msgid "Go to ProfilePress Settings"
+msgstr "Đi đến Cài đặt ProfilePress"
+
+#: lib/ProfilePress.php:225 lib/ProfilePress.php:589
+msgid "ProfilePress Installed & Activated"
+msgstr "ProfilePress đã được cài đặt và kích hoạt"
+
+#: lib/ProfilePress.php:164 lib/ProfilePress.php:165
+msgid "Paid Membership"
+msgstr "Thành viên trả phí"
+
+#: lib/FuseWP.php:640 lib/ProfilePress.php:644
+msgid "Plugin unavailable."
+msgstr "Plugin không khả dụng."
+
+#: lib/FuseWP.php:630 lib/ProfilePress.php:634
+msgid "You do not have permission."
+msgstr "Bạn không có quyền."
+
+#: lib/FuseWP.php:609
+msgid "Go to FuseWP settings"
+msgstr "Đi đến cài đặt FuseWP"
+
+#: lib/FuseWP.php:603 lib/ProfilePress.php:607
+msgid "Start Setup"
+msgstr "Bắt đầu thiết lập"
+
+#: lib/FuseWP.php:585
+msgid "Activate FuseWP"
+msgstr "Kích hoạt FuseWP"
+
+#: lib/FuseWP.php:577
+msgid "Install FuseWP"
+msgstr "Cài đặt FuseWP"
+
+#: lib/FuseWP.php:556 lib/ProfilePress.php:560
+msgid "Configure and create your first login form."
+msgstr "Cấu hình và tạo biểu mẫu đăng nhập đầu tiên của bạn."
+
+#: lib/FuseWP.php:555
+msgid "Set Up FuseWP"
+msgstr "Thiết lập FuseWP"
+
+#: lib/FuseWP.php:554 lib/ProfilePress.php:558
+msgid "Step 2"
+msgstr "Bước 2"
+
+#: lib/FuseWP.php:521
+msgid "Install FuseWP from the WordPress.org plugin repository."
+msgstr "Cài đặt FuseWP từ kho lưu trữ plugin WordPress.org."
+
+#: lib/FuseWP.php:520
+msgid "Install and Activate FuseWP"
+msgstr "Cài đặt và kích hoạt FuseWP"
+
+#: lib/FuseWP.php:519 lib/ProfilePress.php:523
+msgid "Step 1"
+msgstr "Bước 1"
+
+#: lib/FuseWP.php:491
+msgid "FuseWP screenshot"
+msgstr "Ảnh chụp màn hình FuseWP"
+
+#: lib/FuseWP.php:475
+msgid "FuseWP connect WordPress to your email marketing platform and CRM so you can automatically sync users & profile updates to your email list."
+msgstr "FuseWP kết nối WordPress với nền tảng tiếp thị email và CRM của bạn để bạn có thể tự động đồng bộ hóa người dùng & cập nhật hồ sơ vào danh sách email của mình."
+
+#: lib/FuseWP.php:474
+msgid "WordPress User Sync & Automation Plugin"
+msgstr "Plugin đồng bộ hóa và tự động hóa người dùng WordPress"
+
+#: lib/FuseWP.php:237
+msgid "Go to FuseWP Settings"
+msgstr "Đi đến Cài đặt FuseWP"
+
+#: lib/FuseWP.php:232 lib/ProfilePress.php:229
+msgid "Go to Plugins page"
+msgstr "Đi đến trang Plugin"
+
+#: lib/FuseWP.php:231 lib/ProfilePress.php:228
+msgid "Download Now"
+msgstr "Tải xuống ngay"
+
+#: lib/FuseWP.php:230 lib/ProfilePress.php:227
+msgid "Activate Now"
+msgstr "Kích hoạt ngay"
+
+#: lib/FuseWP.php:229 lib/ProfilePress.php:226
+msgid "Install Now"
+msgstr "Cài đặt ngay"
+
+#: lib/FuseWP.php:228 lib/FuseWP.php:585
+msgid "FuseWP Installed & Activated"
+msgstr "FuseWP đã được cài đặt và kích hoạt"
+
+#: lib/FuseWP.php:227 lib/ProfilePress.php:224
+msgid "Activating..."
+msgstr "Đang kích hoạt..."
+
+#: lib/FuseWP.php:226 lib/ProfilePress.php:223
+msgid "Installing..."
+msgstr "Đang cài đặt..."
+
+#. translators: %s - Lite plugin download URL.
+#: lib/FuseWP.php:215 lib/ProfilePress.php:212
+msgid "Could not activate plugin. Please activate from the <a href=\"%s\">Plugins page</a>."
+msgstr "Không thể kích hoạt plugin. Vui lòng kích hoạt từ <a href=\"%s\">Trang plugin</a>."
+
+#. translators: %s - Lite plugin download URL.
+#: lib/FuseWP.php:203 lib/ProfilePress.php:200
+msgid "Could not install plugin. Please <a href=\"%s\">download</a> and install manually."
+msgstr "Không thể cài plugin. Vui lòng <a href=\"%s\">tải về</a> và cài đặt thủ công."
+
+#: lib/FuseWP.php:167
+msgid "NEW"
+msgstr "MỚI"
+
+#: lib/FuseWP.php:164 lib/FuseWP.php:165
+msgid "User Sync"
+msgstr "Đồng bộ hóa người dùng"
+
+#: lib/FuseWP.php:157 lib/ProfilePress.php:157
+msgid "Could not activate plugin. Please activate from the Plugins page."
+msgstr "Không thể kích hoạt plugin. Vui lòng kích hoạt từ trang Plugin."
+
+#: lib/FuseWP.php:153 lib/ProfilePress.php:153
+msgid "Plugin activated."
+msgstr "Plugin đã được kích hoạt."
+
+#: lib/FuseWP.php:144 lib/ProfilePress.php:144
+msgid "Plugin activation is disabled for you on this site."
+msgstr "Kích hoạt plugin bị vô hiệu hóa đối với bạn trên trang web này."
+
+#: lib/FuseWP.php:128 lib/ProfilePress.php:128
+msgid "Addon installed & activated."
+msgstr "Addon đã được cài đặt và kích hoạt."
+
+#: lib/FuseWP.php:128 lib/ProfilePress.php:128
+msgid "Plugin installed & activated."
+msgstr "Plugin đã được cài đặt và kích hoạt."
+
+#: lib/FuseWP.php:118 lib/ProfilePress.php:118
+msgid "Addon installed."
+msgstr "Addon đã được cài đặt."
+
+#: lib/FuseWP.php:118 lib/ProfilePress.php:118
+msgid "Plugin installed."
+msgstr "Plugin đã được cài đặt."
+
+#: lib/FuseWP.php:52 lib/ProfilePress.php:52
+msgid "Could not install addon. Please download from wpforms.com and install manually."
+msgstr "Không thể cài đặt addon. Vui lòng tải xuống từ wpforms.com và cài đặt thủ công."
+
+#: lib/FuseWP.php:52 lib/ProfilePress.php:52
+msgid "Could not install plugin. Please download and install manually."
+msgstr "Không thể cài đặt plugin. Vui lòng tải xuống và cài đặt thủ công."
+
+#: lib/FuseWP.php:40 lib/ProfilePress.php:40
+msgid "There was an error while performing your request."
+msgstr "Có lỗi xảy ra trong khi thực hiện yêu cầu của bạn."
+
+#: index.php:56
+msgid "%1$sFeedbackWP Premium%2$s, a better upgrade to KK Star Ratings has been detected. Migrate now by %3$sclicking on \"Tools\" menu in FeedbackWP Settings to Migrate%4$s."
+msgstr "%1$sFeedbackWP Premium%2$s, đã phát hiện một bản nâng cấp tốt hơn cho KK Star Ratings. Di chuyển ngay bằng cách %3$sbấm vào menu \"Công cụ\" trong Cài đặt FeedbackWP để Di chuyển%4$s."
+
+#: index.php:42
+msgid "Go Premium"
+msgstr "Nâng cấp lên Premium"
+
+#: index.php:29
+msgid "Upgrade to Pro"
+msgstr "Nâng cấp lên Pro"
+
+#. Author of the plugin
+#: index.php
+msgid "FeedbackWP"
+msgstr "FeedbackWP"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+#: index.php
+msgid "https://feedbackwp.com"
+msgstr "https://feedbackwp.com"
+
+#: src/core/wp/actions/wp_ajax_kk-star-ratings.php:32
+msgid "Please try again later."
+msgstr "Vui lòng thử lại sau."
+
+#: src/core/views/admin/tabs/general.php:49
+msgid "This could result into manipulation of the ratings, bypassing IP protection"
+msgstr "Điều này có thể dẫn đến việc thao túng xếp hạng, bỏ qua bảo vệ IP"
+
+#: src/core/views/admin/tabs/general.php:45
+msgctxt "Label"
+msgid "Lookup IP addresses in alternative headers"
+msgstr "Tra cứu địa chỉ IP trong các tiêu đề thay thế"
+
+#: src/core/filters/validate.php:39
+msgid "Not allowed at the moment."
+msgstr "Không được phép vào lúc này."
+
+#: src/core/wp/actions/wp_ajax_kk-star-ratings.php:70
+msgid "The rating value must be between %1$d and %2$d."
+msgstr "Giá trị xếp hạng phải từ %1$d đến %2$d."
+
+#: src/core/wp/actions/wp_ajax_kk-star-ratings.php:66
+msgid "A rating is required to cast a vote."
+msgstr "Bạn cần đánh giá điểm để tham gia bình chọn."
+
+#: src/core/wp/actions/wp_ajax_kk-star-ratings.php:61
+msgid "A rating can not be accepted at the moment."
+msgstr "Không thể chấp nhận xếp hạng vào lúc này."
+
+#: src/core/views/metabox/content.php:36
+msgctxt "label"
+msgid "Disable"
+msgstr "Tắt"
+
+#: src/core/views/metabox/content.php:32
+msgctxt "label"
+msgid "Enable"
+msgstr "Kích hoạt"
+
+#: src/core/views/metabox/content.php:28
+msgctxt "label"
+msgid "Global"
+msgstr "Chung"
+
+#: src/core/views/metabox/content.php:22
+msgctxt "label"
+msgid "Auto Embed"
+msgstr "Tự động nhúng"
+
+#: src/core/views/metabox/content.php:15
+msgctxt "label"
+msgid "Reset Ratings"
+msgstr "Đặt lại xếp hạng"
+
+#: src/core/views/admin/tabs/rich-snippets.php:51
+msgctxt "Label"
+msgid "%s Total amount of stars"
+msgstr "%s Tổng số sao"
+
+#: src/core/views/admin/tabs/rich-snippets.php:49
+msgctxt "Label"
+msgid "%s Number of votes casted"
+msgstr "%s Tổng số đánh giá"
+
+#: src/core/views/admin/tabs/rich-snippets.php:47
+msgctxt "Label"
+msgid "%s Average ratings"
+msgstr "%s Đánh giá trung bình"
+
+#: src/core/views/admin/tabs/rich-snippets.php:45
+msgctxt "Label"
+msgid "%s Post title"
+msgstr "%s Tiêu đề bài viết."
+
+#: src/core/views/admin/tabs/rich-snippets.php:41
+msgid "Provide the ld+json structure."
+msgstr "Sử dụng cấu trúc ld+json."
+
+#: src/core/views/admin/tabs/rich-snippets.php:33
+msgctxt "Label"
+msgid "Content"
+msgstr "Nội dung"
+
+#: src/core/views/admin/tabs/rich-snippets.php:22
+msgctxt "Label"
+msgid "Enable"
+msgstr "Kích hoạt"
+
+#: src/core/views/admin/tabs/general.php:171
+msgid "The posts belonging to the selected categories will not auto-embed the star ratings. You may still manually show the star ratings. E.g. Using %s in your theme/template file(s)."
+msgstr "Các bài viết thuộc các danh mục đã chọn sẽ không tự động nhúng xếp hạng theo sao. Bạn vẫn có thể hiển thị xếp hạng sao theo cách thủ công. Ví dụ. Sử dụng %s trong (các) file theme/template của bạn."
+
+#: src/core/views/admin/tabs/general.php:159
+msgctxt "Label"
+msgid "Exclude Categories"
+msgstr "Danh mục không đánh giá"
+
+#: src/core/views/admin/tabs/general.php:151
+msgid "Star ratings will be auto-embedded for the selected locations. You may still manually allow star ratings for unselected/other locations. E.g. Using %s in your theme/template file(s)."
+msgstr "Xếp hạng theo sao sẽ được tự động nhúng cho các vị trí đã chọn. Bạn vẫn có thể cho phép xếp hạng sao theo cách thủ công cho các vị trí chưa được chọn / các vị trí khác. Ví dụ. Sử dụng %s trong (các) file theme/template của bạn."
+
+#: src/core/views/admin/tabs/general.php:139
+msgctxt "Label"
+msgid "Locations"
+msgstr "Vị trí"
+
+#: src/core/views/admin/tabs/general.php:77
+msgctxt "Label"
+msgid "Strategies"
+msgstr "Tuỳ chọn đánh giá"
+
+#: src/core/views/admin/tabs/general.php:66
+msgctxt "Label"
+msgid "Active"
+msgstr "Kích hoạt"
+
+#: src/core/views/admin/tabs/general.php:61
+#: src/core/views/admin/tabs/rich-snippets.php:17
+msgctxt "Label"
+msgid "Status"
+msgstr "Trạng thái"
+
+#: src/core/views/admin/tabs/general.php:42
+msgctxt "Label"
+msgid "Allow guests to vote"
+msgstr "Cho phép khách bỏ phiếu"
+
+#: src/core/views/admin/tabs/general.php:41
+msgctxt "Label"
+msgid "Allow voting in archives"
+msgstr "Cho phép bỏ phiếu trong trang Danh sách"
+
+#: src/core/views/admin/tabs/general.php:37
+msgctxt "Label"
+msgid "Archives"
+msgstr "Lưu trữ"
+
+#: src/core/views/admin/tabs/general.php:36
+msgctxt "Label"
+msgid "Home"
+msgstr "Trang chủ"
+
+#: src/core/views/admin/tabs/appearance.php:140
+msgid "Choose the default position for the auto-embedded star ratings."
+msgstr "Chọn vị trí mặc định cho nhúng tự động đánh giá."
+
+#: src/core/views/admin/tabs/appearance.php:128
+msgctxt "Label"
+msgid "Default Position"
+msgstr "Vị trí mặc định"
+
+#: src/core/views/admin/tabs/appearance.php:112
+msgctxt "Label"
+msgid "Size"
+msgstr "Kích thước"
+
+#: src/core/views/admin/tabs/appearance.php:95
+msgctxt "Label"
+msgid "Gap"
+msgstr "Khoảng cách"
+
+#: src/core/views/admin/tabs/appearance.php:78
+msgctxt "Label"
+msgid "Stars"
+msgstr "Số sao"
+
+#: src/core/views/admin/tabs/appearance.php:69
+msgid "%s Votes"
+msgstr "%s Lượt đánh giá"
+
+#: src/core/views/admin/tabs/appearance.php:63
+msgid "%s Average ratings"
+msgstr "%s Đánh giá trung bình"
+
+#: src/core/views/admin/tabs/appearance.php:59
+msgid "Text that will be displayed when votes have been casted."
+msgstr "Đoạn này sẽ được hiển thị khi đã được thực hiện đánh giá."
+
+#: src/core/views/admin/tabs/appearance.php:51
+msgctxt "Label"
+msgid "Legend"
+msgstr "Đầu đề"
+
+#: src/core/views/admin/tabs/appearance.php:30
+msgctxt "Label"
+msgid "Greeting"
+msgstr "Lời chào"
+
+#: src/core/views/admin/tabs/appearance.php:20
+msgctxt "Label"
+msgid "Bottom Right"
+msgstr "Dưới cùng bên phải"
+
+#: src/core/views/admin/tabs/appearance.php:19
+msgctxt "Label"
+msgid "Bottom Center"
+msgstr "Ở giữa phía trên"
+
+#: src/core/views/admin/tabs/appearance.php:18
+msgctxt "Label"
+msgid "Bottom Left"
+msgstr "Dưới cùng bên trái"
+
+#: src/core/views/admin/tabs/appearance.php:17
+msgctxt "Label"
+msgid "Top Right"
+msgstr "Trên cùng bên phải"
+
+#: src/core/views/admin/tabs/appearance.php:16
+msgctxt "Label"
+msgid "Top Center"
+msgstr "Trên cùng ở giữa"
+
+#: src/core/views/admin/tabs/appearance.php:15
+msgctxt "Label"
+msgid "Top Left"
+msgstr "Trên cùng bên trái"
+
+#: src/core/views/admin/index.php:21
+msgid "Options saved."
+msgstr "Các thay đổi đã được lưu."
+
+#: src/core/filters/validate.php:61
+msgid "You have already casted your vote."
+msgstr "Bạn đã đánh giá rồi."
+
+#: src/core/filters/validate.php:53
+msgid "You need to be authenticated to cast a vote."
+msgstr "Bạn cần đăng nhập vào tài khoản để đánh giá."
+
+#: src/core/filters/validate.php:47
+msgid "You can not cast a vote in archives."
+msgstr "Bạn không thể đánh giá trong trang Danh sách."
+
+#: src/core/filters/validate.php:31
+msgid "The ratings are readonly."
+msgstr "Bạn chỉ có thể xem kết quả đánh giá."
+
+#: src/core/filters/admin/tabs.php:24
+msgctxt "Label"
+msgid "Rich Snippets"
+msgstr "Cấu trúc dữ liệu schema"
+
+#: src/core/filters/admin/tabs.php:23
+msgctxt "Label"
+msgid "Appearance"
+msgstr "Giao diện"
+
+#: src/core/filters/admin/tabs.php:22
+msgctxt "Label"
+msgid "General"
+msgstr "Tổng quan"
+
+#: src/core/actions/admin/index.php:88
+msgid "There were some errors while saving the options."
+msgstr "Đã xảy ra một số lỗi khi lưu các tùy chọn."
+
+#: src/core/actions/admin/index.php:57
+msgid "You can only save the options via the admin."
+msgstr "Bạn chỉ có thể lưu các tùy chọn trong trang quản trị."
+
+#: src/core/views/admin/tabs/appearance.php:103
+msgid "Gap between the stars."
+msgstr "Khoảng cách giữa các sao."
+
+#: src/core/functions/response.php:47
+msgid "vote"
+msgid_plural "votes"
+msgstr[0] "bình chọn"
+
+#: src/core/views/admin/tabs/appearance.php:42
+msgid "%s Post Type"
+msgstr "%s Post Type"
+
+#: src/core/views/admin/tabs/appearance.php:38
+msgid "Text that will be displayed when no votes have been casted."
+msgstr "Đoạn này sẽ được hiển thị khi không có bình chọn nào."
+
+#: src/core/views/admin/tabs/appearance.php:67
+msgid "%s Total amount of stars"
+msgstr "%s Tổng số sao"
+
+#: src/core/views/admin/tabs/appearance.php:65
+msgid "%s Number of votes casted"
+msgstr "%s Tổng số lượt bình chọn"
+
+#: src/core/views/admin/tabs/appearance.php:40
+#: src/core/views/admin/tabs/appearance.php:61
+#: src/core/views/admin/tabs/rich-snippets.php:43
+msgid "The following variables are available:"
+msgstr "Các biến sau đây có sẳn"
+
+#: src/core/views/admin/tabs/rich-snippets.php:25
+msgid "Enable/disable rich snippets."
+msgstr "Bật/tắt rich snippets"
+
+#: src/core/wp/actions/wp_ajax_kk-star-ratings.php:50
+#: src/core/wp/actions/wp_ajax_kksr-migrations.php:28
+msgid "This action is forbidden."
+msgstr "Hành động này bị cấm"
+
+#: src/core/views/admin/tabs/appearance.php:120
+msgid "Size of a single star."
+msgstr "Kích thước của ngôi sao."
+
+#: src/core/views/admin/tabs/appearance.php:86
+msgid "Total number of stars."
+msgstr "Tổng số sao."
+
+#: src/core/views/admin/tabs/general.php:43
+msgctxt "Label"
+msgid "Unique votes (based on IP Address)"
+msgstr "Đánh giá không trùng lặp (dựa vào địa chỉ IP)"
+
+#: src/core/views/admin/tabs/general.php:131
+msgid "Select the voting strategies."
+msgstr "Chọn chiến lược bỏ phiếu"
+
+#: src/core/views/admin/tabs/general.php:69
+msgid "Globally activate/deactivate the star ratings."
+msgstr "Kích hoạt/hủy kích hoạt toàn bộ đánh giá."
+
+#. Description of the plugin
+#: index.php
+msgid "Allow blog visitors to involve and interact more effectively with your website by rating posts."
+msgstr "Cho phép khách truy cập blog tham gia và tương tác hiệu quả hơn với trang web của bạn bằng cách xếp hạng bài đăng."
+
+#. Plugin Name of the plugin
+#: index.php
+msgid "kk Star Ratings"
+msgstr "kk Star Ratings"

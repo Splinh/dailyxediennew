@@ -1,0 +1,633 @@
+// modules/woocommerce/filter/filter.scss
+
+@use '../../../../../styles/utils/variables' as vars;
+@use '../../../../../styles/utils/functions' as func;
+@use '../../../../../styles/utils/mixins' as mixin;
+
+// ============================================================================
+// AJAX FILTER
+// ============================================================================
+
+// ── Container ─────────────────────────────
+.hd-filter {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding: 1rem;
+	margin-bottom: 1.5rem;
+	background: var(--color-surface, #fff);
+	border: 1px solid var(--color-border, #e5e7eb);
+	border-radius: 0.5rem;
+}
+
+// ── Filter Group ──────────────────────────
+.hd-filter__group {
+	border-bottom: 1px solid var(--color-border-light, #f3f4f6);
+	padding-bottom: 1rem;
+
+	&:last-of-type {
+		border-bottom: none;
+		padding-bottom: 0;
+	}
+}
+
+.hd-filter__title {
+	font-size: 0.875rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+	color: var(--color-heading, #111827);
+	margin-bottom: 0.75rem;
+	cursor: pointer;
+	user-select: none;
+}
+
+.hd-filter__body {
+	overflow: hidden; // Collapsible animation container
+}
+
+// ── Checkbox List ─────────────────────────
+.hd-filter__list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.375rem;
+
+	// Hierarchy indent
+	&--hierarchy {
+		.hd-filter__list {
+			padding-left: 1.25rem;
+			margin-top: 0.25rem;
+		}
+	}
+}
+
+.hd-filter__item {
+	&.is-disabled {
+		opacity: 0.4;
+		pointer-events: none;
+	}
+}
+
+.hd-filter__label {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	cursor: pointer;
+	font-size: 0.875rem;
+	line-height: 1.4;
+	color: var(--color-text, #374151);
+	transition: color 0.15s;
+
+	&:hover {
+		color: var(--color-primary, #2563eb);
+	}
+}
+
+.hd-filter__input {
+	flex-shrink: 0;
+	width: 1rem;
+	height: 1rem;
+	accent-color: var(--color-primary, #2563eb);
+}
+
+.hd-filter__text {
+	flex: 1;
+}
+
+.hd-filter__count {
+	font-size: 0.75rem;
+	color: var(--color-muted, #9ca3af);
+	margin-left: auto;
+}
+
+// ── Swatch Buttons ────────────────────────
+.hd-filter__swatches {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+.hd-filter__swatch {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 2rem;
+	height: 2rem;
+	padding: 0.25rem 0.625rem;
+	font-size: 0.8125rem;
+	border: 1px solid var(--color-border, #d1d5db);
+	border-radius: 0.25rem;
+	background: var(--swatch-color, transparent);
+	cursor: pointer;
+	transition:
+		border-color 0.15s,
+		box-shadow 0.15s,
+		opacity 0.15s;
+
+	&:hover:not(:disabled) {
+		border-color: var(--color-primary, #2563eb);
+	}
+
+	&.is-active {
+		border-color: var(--color-primary, #2563eb);
+		box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary, #2563eb) 25%, transparent);
+	}
+
+	&.is-disabled {
+		opacity: 0.4;
+		pointer-events: none;
+	}
+
+	// Color swatch: hide label text when color is set
+	&[style*='--swatch-color'] {
+		.hd-filter__swatch-label {
+			font-size: 0;
+			line-height: 0;
+		}
+
+		width: 2rem;
+		border-radius: 50%;
+	}
+}
+
+// ── Search Input ──────────────────────────
+.hd-filter__search {
+	display: flex;
+}
+
+.hd-filter__search-input {
+	width: 100%;
+	padding: 0.5rem 0.75rem;
+	font-size: 0.875rem;
+	border: 1px solid var(--color-border, #d1d5db);
+	border-radius: 0.375rem;
+	background: var(--color-surface, #fff);
+	transition: border-color 0.15s;
+
+	&:focus {
+		outline: none;
+		border-color: var(--color-primary, #2563eb);
+		box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary, #2563eb) 15%, transparent);
+	}
+}
+
+// ── Price Slider ──────────────────────────
+.hd-filter__slider {
+	padding: 0.5rem 0;
+}
+
+.hd-filter__range {
+	width: 100%;
+	accent-color: var(--color-primary, #2563eb);
+}
+
+.hd-filter__slider-display {
+	display: flex;
+	justify-content: space-between;
+	font-size: 0.8125rem;
+	color: var(--color-muted, #6b7280);
+	margin-top: 0.375rem;
+}
+
+// ── Active Filter Tags ────────────────────
+.hd-filter__active {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.375rem;
+
+	&:empty {
+		display: none;
+	}
+}
+
+.hd-filter__tag {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.375rem;
+	padding: 0.25rem 0.5rem;
+	font-size: 0.75rem;
+	color: var(--color-primary, #2563eb);
+	background: color-mix(in srgb, var(--color-primary, #2563eb) 8%, transparent);
+	border-radius: 1rem;
+	line-height: 1.4;
+}
+
+.hd-filter__tag-remove {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 1rem;
+	height: 1rem;
+	padding: 0;
+	border: none;
+	background: none;
+	font-size: 0.875rem;
+	color: inherit;
+	cursor: pointer;
+	border-radius: 50%;
+	line-height: 1;
+	transition: background-color 0.15s;
+
+	&:hover {
+		background: color-mix(in srgb, var(--color-primary, #2563eb) 20%, transparent);
+	}
+}
+
+// ── Reset Button ──────────────────────────
+.hd-filter__actions {
+	padding-top: 0.5rem;
+}
+
+.hd-filter__reset {
+	width: 100%;
+	padding: 0.5rem 1rem;
+	font-size: 0.8125rem;
+	font-weight: 500;
+	color: var(--color-muted, #6b7280);
+	background: transparent;
+	border: 1px solid var(--color-border, #d1d5db);
+	border-radius: 0.375rem;
+	cursor: pointer;
+	transition:
+		color 0.15s,
+		border-color 0.15s;
+
+	&:hover {
+		color: var(--color-danger, #ef4444);
+		border-color: var(--color-danger, #ef4444);
+	}
+}
+
+// ── Product Grid Loading State ────────────
+.products {
+	&.is-loading {
+		opacity: 0.5;
+		pointer-events: none;
+		transition: opacity 0.2s;
+		position: relative;
+
+		&::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: color-mix(in srgb, var(--color-surface, #fff) 60%, transparent);
+			z-index: 5;
+		}
+	}
+}
+
+// ============================================================================
+// MOBILE FILTER
+// ============================================================================
+
+// Hide desktop sidebar on mobile
+.hd-filter--mobile-hidden {
+	display: none !important;
+}
+
+// Floating trigger button
+.hd-filter-mobile-trigger {
+	position: fixed;
+	bottom: 1rem;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 100;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.375rem;
+	padding: 0.625rem 1.25rem;
+	background: var(--color-primary, #2563eb);
+	color: #fff;
+	border: none;
+	border-radius: 2rem;
+	font-size: 0.875rem;
+	font-weight: 600;
+	cursor: pointer;
+	box-shadow:
+		0 4px 12px rgba(0, 0, 0, 0.15),
+		0 1px 3px rgba(0, 0, 0, 0.1);
+	transition:
+		transform 0.15s,
+		box-shadow 0.15s;
+
+	&:active {
+		transform: translateX(-50%) scale(0.96);
+	}
+
+	svg {
+		flex-shrink: 0;
+	}
+}
+
+// FxModal fullscreen takeover
+.hd-filter-mobile-modal {
+	width: 100vw;
+	max-width: 100vw;
+	height: 100vh;
+	max-height: 100vh;
+	padding: 0;
+	border-radius: 0;
+	margin: 0;
+
+	.hd-modal__content {
+		padding: 0;
+		height: 100%;
+	}
+}
+
+// Popup content inside FxModal
+.hd-filter--mobile-popup {
+	display: flex !important;
+	flex-direction: column;
+	height: 100%;
+	overflow: hidden;
+	padding: 1rem;
+	padding-bottom: 4.5rem; // Space for fixed footer
+
+	// Scrollable filter groups
+	> .hd-filter__group {
+		overflow-y: auto;
+		flex: 1;
+	}
+}
+
+// Sticky footer with apply + reset
+.hd-filter-mobile__footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	gap: 0.75rem;
+	padding: 0.75rem 1rem;
+	background: var(--color-surface, #fff);
+	border-top: 1px solid var(--color-border, #e5e7eb);
+	z-index: 10;
+}
+
+.hd-filter-mobile__reset {
+	flex: 1;
+	padding: 0.625rem 1rem;
+	font-size: 0.875rem;
+	font-weight: 500;
+	color: var(--color-muted, #6b7280);
+	background: transparent;
+	border: 1px solid var(--color-border, #d1d5db);
+	border-radius: 0.375rem;
+	cursor: pointer;
+
+	&:active {
+		background: rgba(0, 0, 0, 0.04);
+	}
+}
+
+.hd-filter-mobile__apply {
+	flex: 2;
+	padding: 0.625rem 1rem;
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: #fff;
+	background: var(--color-primary, #2563eb);
+	border: none;
+	border-radius: 0.375rem;
+	cursor: pointer;
+
+	&:active {
+		opacity: 0.9;
+	}
+}
+
+// ============================================================================
+// HORIZONTAL LAYOUT (Popover)
+// ============================================================================
+
+.hd-filter--horizontal {
+	flex-direction: row;
+	align-items: flex-start;
+	gap: 0;
+	padding: 0;
+	border: none;
+	background: transparent;
+
+	.hd-filter__bar {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.75rem 0;
+	}
+
+	.hd-filter__reset {
+		width: auto;
+		padding: 0.375rem 0.75rem;
+		font-size: 0.75rem;
+	}
+}
+
+// ── Popover ──────────────────────────────
+.hd-filter__popover-wrap {
+	position: relative;
+}
+
+.hd-filter__popover-trigger {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.375rem;
+	padding: 0.5rem 0.875rem;
+	font-size: 0.8125rem;
+	font-weight: 500;
+	background: var(--color-surface, #fff);
+	border: 1px solid var(--color-border, #d1d5db);
+	border-radius: 0.375rem;
+	cursor: pointer;
+	transition: border-color 0.15s, box-shadow 0.15s;
+
+	&:hover, &.is-active {
+		border-color: var(--color-primary, #2563eb);
+	}
+
+	&.is-active {
+		box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary, #2563eb) 15%, transparent);
+	}
+}
+
+.hd-filter__popover-arrow {
+	font-size: 0.75rem;
+	transition: transform 0.2s;
+
+	.is-active & {
+		transform: rotate(180deg);
+	}
+}
+
+.hd-filter__popover-panel {
+	display: none;
+	position: absolute;
+	top: calc(100% + 4px);
+	left: 0;
+	z-index: 50;
+	min-width: 220px;
+	max-height: 320px;
+	overflow-y: auto;
+	padding: 0.75rem;
+	background: var(--color-surface, #fff);
+	border: 1px solid var(--color-border, #e5e7eb);
+	border-radius: 0.5rem;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+	&.is-open {
+		display: block;
+	}
+}
+
+// ============================================================================
+// CHIPS BAR (Active Filters)
+// ============================================================================
+
+.hd-filter__chips {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.375rem;
+	padding: 0.5rem 0;
+
+	&:empty {
+		display: none;
+	}
+}
+
+.hd-filter__chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.25rem;
+	padding: 0.25rem 0.625rem;
+	font-size: 0.75rem;
+	line-height: 1.4;
+	color: var(--color-primary, #2563eb);
+	background: color-mix(in srgb, var(--color-primary, #2563eb) 8%, transparent);
+	border-radius: 1rem;
+	text-decoration: none;
+	transition: background-color 0.15s;
+
+	&:hover {
+		background: color-mix(in srgb, var(--color-primary, #2563eb) 15%, transparent);
+	}
+
+	&--reset {
+		color: var(--color-danger, #ef4444);
+		background: color-mix(in srgb, var(--color-danger, #ef4444) 8%, transparent);
+		border: none;
+		cursor: pointer;
+		font-size: 0.75rem;
+
+		&:hover {
+			background: color-mix(in srgb, var(--color-danger, #ef4444) 15%, transparent);
+		}
+	}
+}
+
+.hd-filter__chip-remove {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 1rem;
+	height: 1rem;
+	padding: 0;
+	border: none;
+	background: none;
+	font-size: 0.875rem;
+	color: inherit;
+	cursor: pointer;
+	border-radius: 50%;
+	line-height: 1;
+	text-decoration: none;
+	transition: background-color 0.15s;
+
+	&:hover {
+		background: color-mix(in srgb, var(--color-primary, #2563eb) 20%, transparent);
+	}
+}
+
+// ============================================================================
+// MORE/LESS TOGGLE
+// ============================================================================
+
+.hd-filter__more-less-hidden {
+	display: none;
+
+	&.is-expanded {
+		display: block;
+	}
+}
+
+.hd-filter__more-less-toggle {
+	display: inline-block;
+	margin-top: 0.375rem;
+	padding: 0;
+	border: none;
+	background: none;
+	font-size: 0.75rem;
+	font-weight: 500;
+	color: var(--color-primary, #2563eb);
+	cursor: pointer;
+	transition: opacity 0.15s;
+
+	&:hover {
+		opacity: 0.8;
+	}
+}
+
+// ============================================================================
+// INLINE TERM SEARCH
+// ============================================================================
+
+.hd-filter__term-search {
+	width: 100%;
+	padding: 0.375rem 0.625rem;
+	margin-bottom: 0.5rem;
+	font-size: 0.8125rem;
+	border: 1px solid var(--color-border, #d1d5db);
+	border-radius: 0.25rem;
+	background: var(--color-surface, #fff);
+	transition: border-color 0.15s;
+
+	&:focus {
+		outline: none;
+		border-color: var(--color-primary, #2563eb);
+		box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary, #2563eb) 15%, transparent);
+	}
+}
+
+// ── Details/Summary Accordion Tweaks ─────
+.hd-filter--vertical {
+	details.hd-filter__group {
+		summary {
+			list-style: none;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+
+			&::after {
+				content: '+';
+				font-size: 1.125rem;
+				font-weight: 300;
+				color: var(--color-muted, #9ca3af);
+				transition: transform 0.2s;
+			}
+
+			&::-webkit-details-marker {
+				display: none;
+			}
+		}
+
+		&[open] summary::after {
+			content: '−';
+		}
+	}
+}

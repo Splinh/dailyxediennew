@@ -1,0 +1,182 @@
+{
+	"name": "SQL Injection Rules",
+	"version": "1.1.0",
+	"rules": [
+		{
+			"id": "sqli_001",
+			"name": "Union Select",
+			"pattern": "\\bunion\\b[\\s\\S]*?\\bselect\\b",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "sqli_002",
+			"name": "OR/AND Boolean Injection",
+			"pattern": "(['\"]?)\\s*\\b(or|and)\\b\\s*['\"]?\\d+['\"]?\\s*[=<>]+\\s*['\"]?\\d+",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "sqli_004",
+			"name": "Stacked Queries DROP",
+			"pattern": ";\\s*drop\\s+(table|database|index)\\b",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "sqli_005",
+			"name": "Stacked Queries DELETE",
+			"pattern": ";\\s*delete\\s+from\\b",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "sqli_006",
+			"name": "Stacked Queries TRUNCATE",
+			"pattern": ";\\s*truncate\\s+table\\b",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "sqli_007",
+			"name": "Stacked Queries UPDATE",
+			"pattern": ";\\s*update\\s+\\w+\\s+set\\b",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "sqli_008",
+			"name": "Stacked Queries INSERT",
+			"pattern": ";\\s*insert\\s+into\\b",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "sqli_009",
+			"name": "SLEEP Time-based",
+			"pattern": "\\bsleep\\s*\\(\\s*\\d+\\s*\\)",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "sqli_010",
+			"name": "BENCHMARK Time-based",
+			"pattern": "\\bbenchmark\\s*\\(",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "sqli_011",
+			"name": "WAITFOR DELAY",
+			"pattern": "\\bwaitfor\\s+delay\\b",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "sqli_012",
+			"name": "Information Schema",
+			"pattern": "information_schema\\.(tables|columns|schemata)",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "sqli_013",
+			"name": "MySQL System Tables",
+			"pattern": "\\bmysql\\.(user|db|host)\\b",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "sqli_014",
+			"name": "LOAD_FILE",
+			"pattern": "\\bload_file\\s*\\(",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "sqli_015",
+			"name": "INTO OUTFILE/DUMPFILE",
+			"pattern": "\\binto\\s+(outfile|dumpfile)\\b",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "sqli_016",
+			"name": "HEX Encoded",
+			"pattern": "0x[0-9a-f]{16,}",
+			"severity": "medium",
+			"enabled": true,
+			"contexts": ["get", "post"]
+		},
+		{
+			"id": "sqli_017",
+			"name": "CHAR Obfuscation",
+			"pattern": "\\bchar\\s*\\(\\s*\\d+",
+			"severity": "medium",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "sqli_018",
+			"name": "CONCAT with SELECT",
+			"pattern": "\\bconcat\\s*\\([^)]*select\\b",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "sqli_019",
+			"name": "GROUP_CONCAT",
+			"pattern": "\\bgroup_concat\\s*\\(",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "sqli_020",
+			"name": "EXTRACTVALUE/UPDATEXML",
+			"pattern": "\\b(extractvalue|updatexml)\\s*\\(",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "sqli_021",
+			"name": "ORDER BY Enumeration",
+			"pattern": "\\border\\s+by\\s+\\d{2,}\\b",
+			"severity": "medium",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "sqli_022",
+			"name": "HAVING Injection",
+			"pattern": "\\bhaving\\s+\\d+\\s*=\\s*\\d+",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["any"]
+		},
+		{
+			"id": "sqli_023",
+			"name": "PROCEDURE ANALYSE",
+			"pattern": "\\bprocedure\\s+analyse\\s*\\(",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["any"]
+		}
+	]
+}

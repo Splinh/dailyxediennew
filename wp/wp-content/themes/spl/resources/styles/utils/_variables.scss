@@ -1,0 +1,148 @@
+/* utils/_variables.scss */
+/* Single source of truth: Tailwind themes.css defines --vars, SCSS references them */
+
+// ============================================================================
+// LAYOUT BREAKPOINTS
+// ============================================================================
+
+$xs: 0 !default;
+$sm: 640px !default;
+$md: 768px !default;
+$lg: 1024px !default;
+$xl: 1280px !default;
+$xxl: 1536px !default;
+
+$mq-breakpoints: (
+	xs: $xs,
+	sm: $sm,
+	md: $md,
+	lg: $lg,
+	xl: $xl,
+	xxl: $xxl,
+) !default;
+
+// ============================================================================
+// TYPOGRAPHY
+// ============================================================================
+
+$base-line-height-header: 1.3 !default;
+$base-line-height-global: 1.618 !default;
+
+// Font sizes (min, max for clamp)
+$font-sizes: (
+	h1: (
+		31px,
+		49px,
+	),
+	h2: (
+		26px,
+		41px,
+	),
+	h3: (
+		22px,
+		34px,
+	),
+	h4: (
+		19px,
+		28px,
+	),
+	h5: (
+		17px,
+		23px,
+	),
+	h6: (
+		16px,
+		19px,
+	),
+) !default;
+
+// Font families - sync with tailwind/themes.css @theme
+$font-header: var(--font-header, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Arial, sans-serif) !default;
+$font-body: var(--font-body, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Arial, sans-serif) !default;
+$font-mono: var(--font-mono, Consolas, 'Liberation Mono', 'Courier New', monospace) !default;
+
+// ============================================================================
+// SPACING
+// ============================================================================
+
+$gap-base: 4px !default;
+
+$gutters: (
+	xs: $gap-base * 3,
+	sm: $gap-base * 3,
+	md: $gap-base * 6,
+	lg: $gap-base * 6,
+	xl: $gap-base * 6,
+	xxl: $gap-base * 6,
+) !default;
+
+// ============================================================================
+// COLORS
+// Note: Primary colors use CSS vars for runtime dark mode switching
+// Hardcoded values for SCSS functions (rgba, darken, lighten, etc.)
+// ============================================================================
+
+// Hardcoded colors for SCSS functions (rgba, darken, lighten, mix, etc.)
+// Note: CSS vars cannot be used with SCSS color functions
+$color-primary: #fe5242 !default;
+$color-secondary: #0c8e39 !default;
+
+// ============================================================================
+// BORDERS
+// ============================================================================
+
+// Radius - sync with tailwind/themes.css
+$radius-sm: var(--radius-sm, 4px) !default;
+$radius-md: var(--radius-md, 6px) !default;
+$radius-lg: var(--radius-lg, 8px) !default;
+$radius-xl: var(--radius-xl, 12px) !default;
+$radius-full: 9999px !default;
+
+// ============================================================================
+// Z-INDEX
+// ============================================================================
+
+$z-index: (
+	dropdown: 100,
+	sticky: 500,
+	fixed: 900,
+	header: 999,
+	overlay: 1000000,
+	offcanvas: 1000001,
+	modal: 1000002,
+	tooltip: 1000003,
+) !default;
+
+// ============================================================================
+// TRANSITIONS
+// ============================================================================
+
+$transition-fast: 0.15s !default;
+$transition-base: 0.2s !default;
+$transition-slow: 0.3s !default;
+$transition-slower: 0.5s !default;
+
+$ease-default: ease-in-out !default;
+$ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94) !default;
+$ease-out-expo: cubic-bezier(0.22, 0.61, 0.36, 1) !default;
+$ease-spring: cubic-bezier(0.25, 1, 0.5, 1) !default;
+
+$scale-hover: 1.06 !default;
+$scale-transition: scale 0.8s $ease-out, opacity $transition-slow !default;
+
+// ============================================================================
+// COMPONENTS
+// ============================================================================
+
+// Off-canvas
+$offcanvas-width-mobile: 320px !default;
+$offcanvas-width-desktop: 400px !default;
+
+// Buttons
+$btn-padding-y: 8px !default;
+$btn-padding-x: 24px !default;
+
+// Forms
+$input-height: 44px !default;
+$input-height-lg: 48px !default;
+$input-padding-x: 16px !default;

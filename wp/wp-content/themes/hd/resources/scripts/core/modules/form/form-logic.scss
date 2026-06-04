@@ -1,0 +1,11 @@
+// core/modules/form/form-logic.scss
+// Transition styles for conditional show/hide blocks.
+// NOTE: Initial hide rule (`display: none`) is in critical CSS (_form.scss).
+
+[data-show-if],
+[data-hide-if] {
+	transition:
+		opacity 0.2s ease,
+		max-height 0.3s ease;
+	overflow: hidden;
+}

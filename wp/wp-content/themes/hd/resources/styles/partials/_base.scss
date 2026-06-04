@@ -1,0 +1,216 @@
+/* partials/_base.scss */
+
+@use '../utils/variables' as vars;
+@use '../utils/functions' as func;
+@use '../utils/mixins' as mixin;
+
+// ============================================================================
+// SKELETON LOADING
+// ============================================================================
+
+img:not([src]),
+img[src=''] {
+	@include mixin.skeleton-loading;
+}
+
+@keyframes skeleton-pulse {
+	0% {
+		background-position: 200% 0;
+	}
+	100% {
+		background-position: -200% 0;
+	}
+}
+
+.sr-only {
+	@include mixin.hidden-text;
+}
+
+// ============================================================================
+// BASE STYLES
+// ============================================================================
+
+// Aspect ratio utilities
+.as-1-1 {
+	aspect-ratio: 1 / 1;
+}
+
+.as-3-2 {
+	aspect-ratio: 3 / 2;
+}
+
+.as-4-3 {
+	aspect-ratio: 4 / 3;
+}
+
+.as-16-9 {
+	aspect-ratio: 16 / 9;
+}
+
+// ============================================================================
+// OFF-CANVAS CRITICAL STYLES
+// Prevent FOUC - must load before JS. Enhanced styles in fx-offcanvas.scss
+// ============================================================================
+
+.position-left,
+.position-right {
+	top: 0;
+	height: 100dvh;
+	width: vars.$offcanvas-width-mobile;
+
+	@include mixin.mq-min(lg) {
+		width: vars.$offcanvas-width-desktop;
+	}
+}
+
+.position-left {
+	left: 0;
+	transform: translate3d(-(vars.$offcanvas-width-mobile), 0, 0);
+
+	@include mixin.mq-min(lg) {
+		transform: translate3d(-(vars.$offcanvas-width-desktop), 0, 0);
+	}
+}
+
+.position-right {
+	right: 0;
+	transform: translate3d(vars.$offcanvas-width-mobile, 0, 0);
+
+	@include mixin.mq-min(lg) {
+		transform: translate3d(vars.$offcanvas-width-desktop, 0, 0);
+	}
+}
+
+.js-off-canvas-overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.6);
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	@include mixin.z-index(overlay);
+}
+
+.off-canvas-content .menu-lines {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+// ============================================================================
+// DROPDOWN CRITICAL STYLES
+// Prevent FOUC - must load before JS. Enhanced styles in fx-dropdown*.scss
+// ============================================================================
+
+.dropdown-trigger {
+	&:not(.hover) .svg-close {
+		display: none;
+	}
+
+	&.hover .svg-search {
+		display: none;
+	}
+}
+
+.dropdown-search {
+	position: relative;
+}
+
+.dropdown-pane {
+	position: absolute;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	z-index: -9999;
+}
+
+.submenu.menu,
+.is-dropdown-submenu {
+	display: none;
+}
+
+// Autohide menu - CSS containment to minimize layout recalculation
+[data-fx-dropdown-menu][data-autohide='true'] {
+	contain: layout style;
+	overflow: hidden; // Prevent FOUC before JS runs
+
+	&.is-adjusted {
+		contain: none;
+		overflow: visible;
+	}
+
+	& > li {
+		flex-shrink: 0;
+	}
+}
+
+// ============================================================================
+// ACCORDION CRITICAL STYLES
+// Prevent FOUC - must load before JS. Enhanced styles in fx-accordion.scss
+// ============================================================================
+
+.accordion-content {
+	max-height: 0;
+	overflow: hidden;
+	opacity: 0;
+}
+
+// ============================================================================
+// TABS CRITICAL STYLES
+// Prevent FOUC - must load before JS. Enhanced styles in fx-tabs.scss
+// ============================================================================
+
+.tabs-content .tabs-panel {
+	opacity: 0;
+
+	&:not(.is-active) {
+		position: absolute;
+		visibility: hidden;
+		overflow: hidden;
+	}
+}
+
+// ============================================================================
+// SWIPER CRITICAL STYLES
+// Enhanced styles in components/swiper.scss
+// ============================================================================
+
+.swiper {
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	overflow: hidden;
+}
+
+.swiper-wrapper {
+	position: relative;
+	height: fit-content;
+	display: flex;
+	box-sizing: content-box;
+}
+
+.swiper-slide {
+	flex-shrink: 0;
+}
+// ============================================================================
+// FORM CRITICAL STYLES
+// Prevent FOUC - must load before JS. Enhanced styles in form chunk CSS.
+// ============================================================================
+
+// Conditional logic — hide elements before JS loads.
+[data-form] [data-show-if] {
+	display: none;
+}
+
+// Multi-step — only show first step before JS initializes.
+[data-multistep] [data-step] {
+	display: none;
+
+	&:first-of-type {
+		display: block;
+	}
+}
+
+// ============================================================================
+// DARK MODE - Elements without light mode counterpart
+// ============================================================================

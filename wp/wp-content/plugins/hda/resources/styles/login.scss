@@ -1,0 +1,99 @@
+body.login {
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	min-height: 100%;
+	height: auto;
+
+	&::after,
+	&::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.language-switcher {
+		position: relative;
+		z-index: 99;
+	}
+
+	form {
+		&.shake + #nav {
+			animation: shake 0.2s cubic-bezier(0.19, 0.49, 0.38, 0.79) both;
+			animation-iteration-count: 3;
+			transform: translateX(0);
+		}
+	}
+}
+
+#login {
+	position: relative;
+	z-index: 99;
+
+	h1 a {
+		width: auto;
+		max-width: 100%;
+		background-position: center center;
+		background-size: contain;
+
+		&:focus {
+			box-shadow: none;
+		}
+	}
+
+	.otp-loginform input[type='submit'] {
+		width: 100%;
+		height: 34px;
+	}
+
+	.otp-prompt {
+		margin-bottom: 1rem;
+		font-weight: 600;
+	}
+
+	.otp-help {
+		margin-bottom: 1rem;
+	}
+
+	p.extra {
+		label {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 5px;
+		}
+
+		#countdown {
+			font-weight: 400;
+			font-size: 14px;
+		}
+	}
+
+	.input.authcode {
+		letter-spacing: 0.3em;
+		margin-right: 0;
+		font-size: 20px;
+		appearance: none;
+		padding-inline: 12px;
+		padding-top: 0;
+
+		&::-webkit-inner-spin-button,
+		&::-webkit-outer-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+
+		&::placeholder {
+			opacity: 0.5;
+		}
+	}
+
+	form {
+		p.forgetmenot {
+			margin-bottom: 12px;
+		}
+	}
+}

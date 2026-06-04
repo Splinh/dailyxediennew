@@ -1,0 +1,16 @@
+{
+	"name": "plugins/hd-ai-classic",
+	"description": "AI-powered content generation for WordPress Classic Editor.",
+	"license": "MIT",
+	"autoload": {
+		"psr-4": {
+			"HDAC\\": "src/"
+		}
+	},
+	"require": {
+		"php": ">=8.1"
+	},
+	"config": {
+		"optimize-autoloader": true
+	}
+}

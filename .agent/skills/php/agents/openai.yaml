@@ -1,0 +1,4 @@
+interface:
+  display_name: "PHP"
+  short_description: "PHP 8.1 and WordPress hook style"
+  default_prompt: "Use $php to review PHP style, imports, typing, and hook callbacks."

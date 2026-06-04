@@ -1,0 +1,531 @@
+{
+    "key": "group_lachuy_contact",
+    "title": "Lạc Huy - Trang Liên Hệ",
+    "fields": [
+        {
+            "key": "field_lachuy_contact_fc",
+            "label": "Nội dung trang liên hệ",
+            "name": "contact_sections",
+            "aria-label": "",
+            "type": "flexible_content",
+            "instructions": "Thêm các section cho trang liên hệ",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layouts": {
+                "layout_lachuy_contact_info": {
+                    "key": "layout_lachuy_contact_info",
+                    "name": "contact_info",
+                    "label": "Thẻ thông tin liên hệ",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_contact_info_disable",
+                            "label": "Ẩn section này",
+                            "name": "disable",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "Bật để ẩn section này ở frontend.",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "100",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Ẩn section",
+                            "default_value": 0,
+                            "ui": 1,
+                            "ui_on_text": "Ẩn",
+                            "ui_off_text": "Hiện"
+                        },
+                        {
+                            "key": "field_lachuy_ci_cards",
+                            "label": "Thẻ liên hệ",
+                            "name": "cards",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "block",
+                            "min": 0,
+                            "max": 4,
+                            "button_label": "Thêm thẻ",
+                            "rows_per_page": 20,
+                            "collapsed": "",
+                            "sub_fields": [
+                                {
+                                    "key": "field_lachuy_ci_card_svg",
+                                    "label": "Icon SVG",
+                                    "name": "icon",
+                                    "aria-label": "",
+                                    "type": "textarea",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "100",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "rows": 2,
+                                    "parent_repeater": "field_lachuy_ci_cards",
+                                    "default_value": "",
+                                    "new_lines": "",
+                                    "maxlength": "",
+                                    "placeholder": ""
+                                },
+                                {
+                                    "key": "field_lachuy_ci_card_title",
+                                    "label": "Tiêu đề",
+                                    "name": "title",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "30",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "parent_repeater": "field_lachuy_ci_cards",
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                },
+                                {
+                                    "key": "field_lachuy_ci_card_value",
+                                    "label": "Giá trị",
+                                    "name": "value",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "Có thể dùng HTML (VD: <a href='tel:...'>098...</a>)",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "40",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "parent_repeater": "field_lachuy_ci_cards",
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                },
+                                {
+                                    "key": "field_lachuy_ci_card_note",
+                                    "label": "Ghi chú",
+                                    "name": "note",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "30",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "parent_repeater": "field_lachuy_ci_cards",
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": "1"
+                },
+                "layout_lachuy_contact_form": {
+                    "key": "layout_lachuy_contact_form",
+                    "name": "contact_form",
+                    "label": "Form liên hệ + Bản đồ",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_contact_form_disable",
+                            "label": "Ẩn section này",
+                            "name": "disable",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "Bật để ẩn section này ở frontend.",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "100",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Ẩn section",
+                            "default_value": 0,
+                            "ui": 1,
+                            "ui_on_text": "Ẩn",
+                            "ui_off_text": "Hiện"
+                        },
+                        {
+                            "key": "field_lachuy_cf_title",
+                            "label": "Tiêu đề form",
+                            "name": "form_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Gửi Tin Nhắn Cho Chúng Tôi",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_lachuy_cf_desc",
+                            "label": "Mô tả form",
+                            "name": "form_desc",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Để lại thông tin, chúng tôi sẽ liên hệ tư vấn miễn phí trong thời gian sớm nhất.",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_lachuy_cf_shortcode",
+                            "label": "CF7 Shortcode",
+                            "name": "cf7_shortcode",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "Shortcode Contact Form 7. Để trống = dùng form HTML mặc định",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "placeholder": "[contact-form-7 id=\"123\" title=\"Liên hệ\"]",
+                            "default_value": "",
+                            "maxlength": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_lachuy_cf_map_title",
+                            "label": "Tiêu đề bản đồ",
+                            "name": "map_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Vị Trí Của Chúng Tôi",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_lachuy_cf_map_embed",
+                            "label": "Google Maps Embed URL",
+                            "name": "map_embed_url",
+                            "aria-label": "",
+                            "type": "url",
+                            "instructions": "URL embed từ Google Maps (lấy từ Chia sẻ > Nhúng bản đồ)",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.394!2d106.6602!3d10.7769",
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_lachuy_cf_social_title",
+                            "label": "Tiêu đề mạng xã hội",
+                            "name": "social_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Kết Nối Với Chúng Tôi",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_lachuy_cf_social_desc",
+                            "label": "Mô tả mạng xã hội",
+                            "name": "social_desc",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Theo dõi Lạc Huy trên mạng xã hội để cập nhật sản phẩm mới và khuyến mãi.",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_lachuy_cf_hotline_title",
+                            "label": "Tiêu đề hotline box",
+                            "name": "hotline_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Gọi Ngay Hotline",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_lachuy_cf_hotline_desc",
+                            "label": "Mô tả hotline",
+                            "name": "hotline_desc",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Tư vấn miễn phí, hỗ trợ 7 ngày/tuần",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": "1"
+                },
+                "layout_lachuy_contact_faq": {
+                    "key": "layout_lachuy_contact_faq",
+                    "name": "contact_faq",
+                    "label": "Câu hỏi thường gặp (FAQ)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_contact_faq_disable",
+                            "label": "Ẩn section này",
+                            "name": "disable",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "Bật để ẩn section này ở frontend.",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "100",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Ẩn section",
+                            "default_value": 0,
+                            "ui": 1,
+                            "ui_on_text": "Ẩn",
+                            "ui_off_text": "Hiện"
+                        },
+                        {
+                            "key": "field_lachuy_faq_badge",
+                            "label": "Badge text",
+                            "name": "badge",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Câu Hỏi Thường Gặp",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_lachuy_faq_title",
+                            "label": "Tiêu đề",
+                            "name": "title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Bạn Cần Hỗ Trợ Gì?",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_lachuy_faq_items",
+                            "label": "Câu hỏi",
+                            "name": "faqs",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "block",
+                            "min": 0,
+                            "max": 10,
+                            "collapsed": "field_lachuy_faq_q",
+                            "button_label": "Thêm câu hỏi",
+                            "rows_per_page": 20,
+                            "sub_fields": [
+                                {
+                                    "key": "field_lachuy_faq_q",
+                                    "label": "Câu hỏi",
+                                    "name": "question",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "parent_repeater": "field_lachuy_faq_items",
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                },
+                                {
+                                    "key": "field_lachuy_faq_a",
+                                    "label": "Trả lời",
+                                    "name": "answer",
+                                    "aria-label": "",
+                                    "type": "textarea",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "rows": 3,
+                                    "parent_repeater": "field_lachuy_faq_items",
+                                    "default_value": "",
+                                    "new_lines": "",
+                                    "maxlength": "",
+                                    "placeholder": ""
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": "1"
+                }
+            },
+            "button_label": "Thêm Section",
+            "min": "",
+            "max": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "templates/template-page-contact.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content",
+        "discussion",
+        "comments"
+    ],
+    "active": true,
+    "description": "Flexible content cho trang liên hệ Lạc Huy",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1780494129
+}

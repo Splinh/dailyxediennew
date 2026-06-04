@@ -1,0 +1,78 @@
+{
+	"name": "Bad Bot Rules",
+	"version": "1.1.0",
+	"rules": [
+		{
+			"id": "bot_001",
+			"name": "SQL Injection Tools",
+			"pattern": "\\b(sqlmap|havij|pangolin|sqlninja|jsql)\\b",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["user_agent"]
+		},
+		{
+			"id": "bot_002",
+			"name": "Vulnerability Scanners",
+			"pattern": "\\b(nikto|nessus|openvas|acunetix|netsparker|qualys|w3af|arachni|nuclei|httpx|amass|subfinder|masscan)\\b",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["user_agent"]
+		},
+		{
+			"id": "bot_003",
+			"name": "Exploit Tools",
+			"pattern": "\\b(metasploit|meterpreter|cobalt.?strike|burp.?suite|owasp.?zap)\\b",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["user_agent"]
+		},
+		{
+			"id": "bot_004",
+			"name": "Aggressive Crawlers",
+			"pattern": "\\b(scrapy|mechanize|phantom|puppeteer|playwright|selenium|casperjs)\\b",
+			"severity": "medium",
+			"enabled": true,
+			"contexts": ["user_agent"]
+		},
+		{
+			"id": "bot_005",
+			"name": "Known Bad Bots",
+			"pattern": "\\b(ahrefsbot|semrushbot|dotbot|mj12bot|blexbot|sogou|yandexbot|baidu)\\b",
+			"severity": "low",
+			"enabled": false,
+			"contexts": ["user_agent"]
+		},
+		{
+			"id": "bot_006",
+			"name": "WP Enumeration Bots",
+			"pattern": "\\b(wpscan|wpvulndb|wordfence.?scan|wp-vcd)\\b",
+			"severity": "high",
+			"enabled": true,
+			"contexts": ["user_agent"]
+		},
+		{
+			"id": "bot_007",
+			"name": "Generic Attack Tools",
+			"pattern": "\\b(python-requests|python-urllib|java/\\d|perl|libwww|lwp-|wget|curl/)\\b",
+			"severity": "low",
+			"enabled": false,
+			"contexts": ["user_agent"]
+		},
+		{
+			"id": "bot_008",
+			"name": "Empty User-Agent",
+			"pattern": "^$",
+			"severity": "low",
+			"enabled": false,
+			"contexts": ["user_agent"]
+		},
+		{
+			"id": "bot_009",
+			"name": "DDoS Tools",
+			"pattern": "\\b(loic|hoic|slowloris|goldeneye|hulk|rudy|xerxes)\\b",
+			"severity": "critical",
+			"enabled": true,
+			"contexts": ["user_agent"]
+		}
+	]
+}

@@ -1,0 +1,40 @@
+/* tailwind/themes.css - Design tokens & theme variables */
+
+@theme {
+	/* Breakpoints - Must declare all to ensure proper cascade order */
+	--breakpoint-sm: 640px;
+	--breakpoint-md: 768px;
+	--breakpoint-lg: 1024px;
+	--breakpoint-xl: 1280px;
+	--breakpoint-2xl: 1536px;
+
+	/* WP Admin — Core semantic colors (no Tailwind built-in equivalent) */
+	--color-wp-primary: #2271b1;
+	--color-wp-primary-dark: #135e96;
+	--color-wp-error: #d63638;
+	--color-wp-error-bg: #ffebee;
+	--color-wp-error-text: #c62828;
+	--color-wp-success: #00a32a;
+	--color-wp-success-bg: #e8f5e9;
+	--color-wp-success-text: #2e7d32;
+	--color-wp-warning: #dba617;
+	--color-wp-warning-dark: #c09a12;
+
+	/* WP Admin — Text hierarchy */
+	--color-wp-text: #1d2327;
+	--color-wp-text-muted: #787c82;
+
+	/* WP Admin — Surface & border */
+	--color-wp-border: #c3c4c7;
+	--color-wp-bg: #f6f7f7;
+
+	/* Accent — secondary semantic color (purple for recurring/scheduled) */
+	--color-wp-accent: #826eb4;
+	--color-wp-accent-bg: #f0ecf7;
+
+	/* Cookie consent */
+	--color-cc-accept: #4caf50;
+	--color-cc-link: #90caf9;
+
+	--shadow-cc: 0 2px 12px rgba(0, 0, 0, 0.2);
+}

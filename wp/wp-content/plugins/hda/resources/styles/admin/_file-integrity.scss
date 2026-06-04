@@ -1,0 +1,277 @@
+// ──────────────────────────────────────────────────
+// File Integrity Admin Page (hda-file-integrity)
+// ──────────────────────────────────────────────────
+
+.hda-fi-section {
+	margin-top: 20px;
+
+	&:first-of-type {
+		margin-top: 16px;
+	}
+}
+
+.hda-fi-card {
+	max-width: 100%;
+	padding: 24px !important;
+	margin: 0 !important;
+	border-radius: 8px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+	border: 1px solid #dcdcde;
+
+	&__header {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 16px;
+		flex-wrap: wrap;
+		padding-bottom: 16px;
+		border-bottom: 1px solid #f0f0f1;
+		margin-bottom: 12px;
+	}
+
+	&__title {
+		margin: 0 0 4px;
+		font-size: 17px;
+		font-weight: 600;
+		line-height: 1.4;
+	}
+
+	.description {
+		margin-top: 2px;
+		color: #646970;
+		font-size: 13px;
+	}
+}
+
+// Scan action: button + inline progress bar.
+.hda-fi-scan-action {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	flex-shrink: 0;
+}
+
+// Compact inline progress bar.
+.hda-fi-progress {
+	width: 80px;
+	height: 4px;
+	background: #dcdcde;
+	border-radius: 2px;
+	overflow: hidden;
+	display: none;
+
+	&.is-active {
+		display: block;
+	}
+
+	&__bar {
+		width: 30%;
+		height: 100%;
+		background: linear-gradient(90deg, #2271b1, #72aee6);
+		border-radius: 2px;
+		animation: hda-fi-slide 1.5s ease-in-out infinite;
+	}
+}
+
+@keyframes hda-fi-slide {
+	0% {
+		transform: translateX(-100%);
+	}
+
+	50% {
+		transform: translateX(230%);
+	}
+
+	100% {
+		transform: translateX(-100%);
+	}
+}
+
+.hda-fi-summary {
+	margin: 12px 0;
+	border-radius: 4px;
+
+	p {
+		font-size: 13px;
+	}
+}
+
+.hda-fi-empty {
+	margin: 4px 0 0;
+	padding: 12px 0;
+	color: #8c8f94;
+	font-size: 13px;
+}
+
+.hda-fi-heading {
+	margin: 20px 0 8px;
+	font-size: 13px;
+	font-weight: 600;
+
+	&--danger {
+		color: #d63638;
+	}
+
+	&--warning {
+		color: #b26200;
+	}
+
+	&--info {
+		color: #2271b1;
+	}
+}
+
+.hda-fi-table {
+	margin-bottom: 16px;
+	border-radius: 4px;
+	overflow: hidden;
+
+	thead th {
+		background: #f6f7f7;
+		font-weight: 600;
+		font-size: 13px;
+		padding: 10px 12px;
+		border-bottom: 1px solid #dcdcde;
+	}
+
+	tbody td {
+		padding: 8px 12px;
+		font-size: 13px;
+		vertical-align: middle;
+	}
+
+	tbody tr:hover {
+		background-color: #f0f6fc;
+	}
+
+	code {
+		font-size: 12px;
+		background: #f0f0f1;
+		padding: 2px 6px;
+		border-radius: 3px;
+		word-break: break-all;
+		color: #1d2327;
+	}
+}
+
+// Allowlisted rows: muted appearance.
+.hda-fi-row--safe {
+	opacity: 0.55;
+
+	&:hover {
+		opacity: 0.85;
+	}
+}
+
+.hda-fi-badge--safe {
+	display: inline-block;
+	font-size: 11px;
+	font-weight: 600;
+	color: #00a32a;
+	margin-left: 6px;
+	vertical-align: middle;
+}
+
+.hda-fi-severity {
+	display: inline-block;
+	font-size: 11px;
+	font-weight: 600;
+	line-height: 1;
+	padding: 4px 8px;
+	border-radius: 3px;
+	text-transform: uppercase;
+	letter-spacing: 0.3px;
+
+	&--critical {
+		background: #d63638;
+		color: #fff;
+	}
+
+	&--high {
+		background: #dba617;
+		color: #fff;
+	}
+
+	&--medium {
+		background: #72aee6;
+		color: #fff;
+	}
+
+	&--low {
+		background: #dcdcde;
+		color: #50575e;
+	}
+}
+
+// Confidence score badges (malware results).
+.hda-fi-confidence {
+	display: inline-block;
+	font-size: 11px;
+	font-weight: 600;
+	line-height: 1;
+	padding: 4px 8px;
+	border-radius: 3px;
+
+	&--high {
+		background: #d63638;
+		color: #fff;
+	}
+
+	&--medium {
+		background: #dba617;
+		color: #fff;
+	}
+
+	&--low {
+		background: #dcdcde;
+		color: #50575e;
+	}
+}
+
+// Summary badges (vulnerability results).
+.hda-fi-badge {
+	display: inline-block;
+	font-size: 11px;
+	font-weight: 600;
+	line-height: 1;
+	padding: 3px 7px;
+	border-radius: 3px;
+	margin-right: 2px;
+
+	&--critical {
+		background: #d63638;
+		color: #fff;
+	}
+
+	&--high {
+		background: #dba617;
+		color: #fff;
+	}
+
+	&--medium {
+		background: #72aee6;
+		color: #fff;
+	}
+
+	&--low {
+		background: #dcdcde;
+		color: #50575e;
+	}
+
+	&--ok {
+		background: #2e7d32;
+		color: #fff;
+	}
+}
+
+// Vulnerability detail cell.
+.hda-fi-vulns {
+	font-size: 12px;
+	line-height: 1.5;
+
+	div + div {
+		margin-top: 4px;
+		padding-top: 4px;
+		border-top: 1px dashed #dcdcde;
+	}
+}

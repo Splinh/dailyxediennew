@@ -1,0 +1,71 @@
+@use 'variables' as *;
+
+// ─── Responsive Media Queries ─────────────────────────────────────────
+@media (max-width: 782px) {
+	#hdat-app {
+		margin: 0;
+	}
+
+	#hdat-nav {
+		padding: 0 1rem;
+		overflow-x: auto;
+		flex-wrap: nowrap;
+		top: 46px;
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+
+		.nav-brand {
+			display: none;
+		}
+
+		a {
+			padding: 0.75rem 0.875rem;
+			white-space: nowrap;
+			font-size: 0.8125rem;
+		}
+	}
+
+	#hdat-content {
+		padding: 1rem 0 3rem 0;
+	}
+
+	.stats-grid {
+		grid-template-columns: repeat(2, 1fr);
+
+		@media (max-width: 480px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.provider-grid,
+	.model-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.playground-header {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.75rem;
+	}
+
+	.playground-model-picker {
+		width: 100%;
+		box-sizing: border-box;
+
+		input {
+			width: 100%;
+			max-width: none;
+		}
+	}
+
+	.playground-console {
+		.pg-log {
+			padding: 1rem;
+			max-height: 350px;
+		}
+
+		.pg-msg {
+			max-width: 90%;
+		}
+	}
+}

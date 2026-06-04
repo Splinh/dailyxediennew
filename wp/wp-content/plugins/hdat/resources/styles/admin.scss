@@ -1,0 +1,29 @@
+/* ─── HDAT Admin — Refined WP-Native Premium Design System ───────────────
+ *
+ * Designed with a high-contrast WordPress-native theme, polished borders,
+ * modern drop shadows, smooth transitions, and premium micro-animations.
+ *
+ * Partials (load order matters):
+ *   _variables   — Design tokens (colors, shadows, transitions)
+ *   _base        — App shell, nav bar, typography, toolbar
+ *   _stats       — Stat cards grid
+ *   _cards       — Provider/model cards, rate-limit bars
+ *   _components  — Badge, toggle, buttons, forms, inputs
+ *   _table       — Data tables
+ *   _modal       — Modal dialogs, token display
+ *   _feedback    — Toast, loading spinner, pagination
+ *   _settings    — Settings page, empty states, helpers
+ *   _playground  — Playground chat UI, animations
+ *   _responsive  — Mobile breakpoints
+ */
+
+@use 'base';
+@use 'stats';
+@use 'cards';
+@use 'components';
+@use 'table';
+@use 'modal';
+@use 'feedback';
+@use 'settings';
+@use 'playground';
+@use 'responsive';

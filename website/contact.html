@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liên Hệ - Thảo Dược Thaphaco | Tư Vấn & Hỗ Trợ</title>
+  <meta name="description" content="Liên hệ Thảo Dược Thaphaco để được tư vấn miễn phí về sản phẩm thảo dược. Hotline: 0901 806 930. Giao hàng toàn quốc." />
+  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="pages.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>" />
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar__brand"><em>CÔNG TY TNHH THẢO DƯỢC THAPHACO</em></div>
+      <div class="top-bar__links">
+        <a href="#"><svg class="icon" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span>Giỏ hàng</span></a>
+        <a href="tel:0901806930"><svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>0901 806 930</span></a>
+      </div>
+      <div class="top-bar__social">
+        <a href="#" aria-label="Facebook"><svg class="icon" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="#" aria-label="Youtube"><svg class="icon" viewBox="0 0 24 24"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="container">
+      <a href="index.html" class="logo" aria-label="Trang chủ">
+        <div class="logo__icon"><svg class="icon" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 17 3.5s1 2.5-1 6c-2 3.5-5 5.5-5 5.5"/><path d="M11.7 11.2a5.18 5.18 0 0 1 3.3-2.2c2.5-.4 4-1 4-1s-.3 2.3-2 4c-1.7 1.7-3.3 2.5-3.3 2.5"/><path d="M14 21c0-3.5-2-7-2-7"/></svg></div>
+        <div class="logo__text"><span class="logo__name">Thảo Dược Thaphaco</span><span class="logo__tagline">Sức Khỏe Vàng</span></div>
+      </a>
+      <div class="search-bar" role="search">
+        <div class="search-bar__wrapper">
+          <label for="search-input" class="sr-only">Tìm kiếm sản phẩm</label>
+          <input id="search-input" type="search" class="search-bar__input" placeholder="Tìm sản phẩm thảo dược..." autocomplete="off" />
+          <button type="submit" class="search-bar__btn" aria-label="Tìm kiếm"><svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="btn-icon" id="cart-btn" aria-label="Giỏ hàng"><svg class="icon" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="btn-icon__badge" id="cart-badge">0</span></button>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Mở menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAV BAR -->
+  <nav class="nav-bar" aria-label="Main navigation">
+    <div class="container" style="position:relative;">
+      <button class="nav-category-btn" id="category-toggle" aria-expanded="false" aria-controls="category-dropdown">
+        <svg class="icon" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        Danh mục sản phẩm
+      </button>
+      <div class="category-dropdown" id="category-dropdown" role="menu">
+        <a href="archive.html" role="menuitem"><svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg> Thảo Dược Khô</a>
+        <a href="archive.html" role="menuitem"><svg class="icon" viewBox="0 0 24 24"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/></svg> Trà Túi Lọc</a>
+        <a href="archive.html" role="menuitem"><svg class="icon" viewBox="0 0 24 24"><path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z"/></svg> Bột Nguyên Chất</a>
+        <a href="archive.html" role="menuitem"><svg class="icon" viewBox="0 0 24 24"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/></svg> Tinh Dầu</a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html"><svg class="icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Trang Chủ</a>
+        <a href="about.html"><svg class="icon" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Giới Thiệu</a>
+        <a href="archive.html"><svg class="icon" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 17 3.5s1 2.5-1 6c-2 3.5-5 5.5-5 5.5"/><path d="M14 21c0-3.5-2-7-2-7"/></svg> Sản Phẩm</a>
+        <a href="news.html"><svg class="icon" viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> Tin Tức</a>
+        <a href="contact.html" class="active"><svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Liên Hệ</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html"><svg class="icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Trang chủ</a>
+        <svg class="icon breadcrumb__sep" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        <span class="breadcrumb__current">Liên Hệ</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <main id="main">
+
+    <!-- CONTACT INFO CARDS -->
+    <section class="contact-info">
+      <div class="container">
+        <div class="contact-info__grid">
+          <div class="contact-card reveal">
+            <div class="contact-card__icon">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <h3>Hotline</h3>
+            <p><a href="tel:0901806930">0901 806 930</a></p>
+            <span>Thứ 2 - Chủ Nhật: 7:00 - 21:00</span>
+          </div>
+          <div class="contact-card reveal">
+            <div class="contact-card__icon">
+              <svg class="icon" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </div>
+            <h3>Email</h3>
+            <p><a href="mailto:splworks.info@gmail.com">splworks.info@gmail.com</a></p>
+            <span>Phản hồi trong 24 giờ</span>
+          </div>
+          <div class="contact-card reveal">
+            <div class="contact-card__icon">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <h3>Địa Chỉ</h3>
+            <p>TP. Hồ Chí Minh, Việt Nam</p>
+            <span>Nhận hàng trực tiếp tại kho</span>
+          </div>
+          <div class="contact-card reveal">
+            <div class="contact-card__icon">
+              <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3>Giờ Làm Việc</h3>
+            <p>7:00 - 21:00 hàng ngày</p>
+            <span>Kể cả ngày lễ, Tết</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORM + MAP -->
+    <section class="contact-main">
+      <div class="container">
+        <div class="contact-layout">
+
+          <!-- Form -->
+          <div class="contact-form-wrapper reveal">
+            <h2>
+              <svg class="icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Gửi Tin Nhắn Cho Chúng Tôi
+            </h2>
+            <p>Để lại thông tin, chúng tôi sẽ liên hệ tư vấn miễn phí trong thời gian sớm nhất.</p>
+
+            <form class="contact-form" id="contact-form">
+              <div class="contact-form__row">
+                <div class="form-group">
+                  <label for="cf-name">Họ và tên <span>*</span></label>
+                  <div class="form-input-wrapper">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <input type="text" id="cf-name" placeholder="Nguyễn Văn A" required />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="cf-phone">Số điện thoại <span>*</span></label>
+                  <div class="form-input-wrapper">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <input type="tel" id="cf-phone" placeholder="0901 806 930" required />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="cf-email">Email</label>
+                <div class="form-input-wrapper">
+                  <svg class="icon" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                  <input type="email" id="cf-email" placeholder="email@example.com" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="cf-subject">Chủ đề</label>
+                <div class="form-input-wrapper">
+                  <svg class="icon" viewBox="0 0 24 24"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"/><path d="M7 7h.01"/></svg>
+                  <select id="cf-subject">
+                    <option value="">-- Chọn chủ đề --</option>
+                    <option>Tư vấn sản phẩm</option>
+                    <option>Hợp tác kinh doanh / Mua sỉ</option>
+                    <option>Khiếu nại / Đổi trả</option>
+                    <option>Hỗ trợ đơn hàng</option>
+                    <option>Khác</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="cf-message">Nội dung tin nhắn <span>*</span></label>
+                <textarea id="cf-message" rows="5" placeholder="Nhập nội dung cần tư vấn hoặc hỗ trợ..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn--primary btn--lg contact-form__submit" id="cf-submit">
+                <svg class="icon" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                Gửi Tin Nhắn
+              </button>
+            </form>
+          </div>
+
+          <!-- Map + Socials -->
+          <div class="contact-sidebar reveal">
+            <div class="contact-map">
+              <h3>
+                <svg class="icon" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                Vị Trí Của Chúng Tôi
+              </h3>
+              <div class="contact-map__frame">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.394!2d106.6602!3d10.7769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDQ2JzM2LjgiTiAxMDbCsDM5JzM2LjciRQ!5e0!3m2!1svi!2svn!4v1" width="100%" height="280" style="border:0;border-radius:var(--r-md);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Bản đồ Thaphaco"></iframe>
+              </div>
+            </div>
+
+            <div class="contact-social-box">
+              <h3>Kết Nối Với Chúng Tôi</h3>
+              <p>Theo dõi Thaphaco trên mạng xã hội để cập nhật sản phẩm mới và khuyến mãi hấp dẫn.</p>
+              <div class="contact-social-links">
+                <a href="#" class="contact-social-link contact-social-link--fb">
+                  <svg class="icon" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                  <div><strong>Facebook</strong><span>Thảo Dược Thaphaco</span></div>
+                </a>
+                <a href="#" class="contact-social-link contact-social-link--yt">
+                  <svg class="icon" viewBox="0 0 24 24"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
+                  <div><strong>Youtube</strong><span>Kênh sức khỏe</span></div>
+                </a>
+                <a href="https://zalo.me/0901806930" class="contact-social-link contact-social-link--zalo" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 48 48" width="24" height="24"><circle cx="24" cy="24" r="24" fill="#0068FF"/><text x="24" y="30" text-anchor="middle" fill="white" font-size="16" font-weight="bold">Z</text></svg>
+                  <div><strong>Zalo</strong><span>Chat trực tiếp</span></div>
+                </a>
+              </div>
+            </div>
+
+            <div class="contact-hotline-box">
+              <svg class="icon icon-xl" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <h4>Gọi Ngay Hotline</h4>
+              <p>Tư vấn miễn phí, hỗ trợ 7 ngày/tuần</p>
+              <a href="tel:0901806930" class="btn btn--primary btn--lg">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                0901 806 930
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="contact-faq">
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="section-title__badge"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Câu Hỏi Thường Gặp</span>
+          <h2>Bạn Cần Hỗ Trợ Gì?</h2>
+          <div class="section-title__line"></div>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item reveal">
+            <summary>
+              <span>Thaphaco có giao hàng toàn quốc không?</span>
+              <svg class="icon faq-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <p>Có, chúng tôi giao hàng trên toàn quốc qua các đối tác vận chuyển uy tín. Đơn hàng tại TP.HCM sẽ được giao trong 1-2 ngày, tỉnh thành khác từ 2-5 ngày làm việc.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>
+              <span>Có chính sách đổi trả không?</span>
+              <svg class="icon faq-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <p>Chúng tôi hỗ trợ đổi trả trong vòng 7 ngày kể từ khi nhận hàng nếu sản phẩm bị lỗi do nhà sản xuất hoặc không đúng với mô tả. Vui lòng liên hệ hotline để được hỗ trợ.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>
+              <span>Tôi muốn mua sỉ/đại lý thì liên hệ ai?</span>
+              <svg class="icon faq-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <p>Vui lòng gọi trực tiếp hotline 0901 806 930 hoặc gửi email đến splworks.info@gmail.com với tiêu đề "Hợp tác kinh doanh". Đội ngũ kinh doanh sẽ liên hệ bạn trong 24 giờ.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>
+              <span>Sản phẩm có giấy chứng nhận ATTP không?</span>
+              <svg class="icon faq-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <p>Tất cả sản phẩm của Thaphaco đều có đầy đủ giấy chứng nhận An Toàn Thực Phẩm (ATTP) theo quy định của Bộ Y tế. Khách hàng có thể yêu cầu xem giấy chứng nhận khi mua hàng.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>
+              <span>Phương thức thanh toán nào được chấp nhận?</span>
+              <svg class="icon faq-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <p>Chúng tôi chấp nhận thanh toán COD (nhận hàng trả tiền), chuyển khoản ngân hàng, và ví điện tử (Momo, ZaloPay). Đối với đơn hàng sỉ, vui lòng thanh toán trước 50%.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer__brand">
+          <div class="footer__brand-logo"><svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 17 3.5s1 2.5-1 6c-2 3.5-5 5.5-5 5.5"/><path d="M14 21c0-3.5-2-7-2-7"/></svg><span class="footer__brand-name">Thảo Dược Thaphaco</span></div>
+          <p class="footer__brand-desc">Công Ty TNHH Thảo Dược Thaphaco — Chuyên cung cấp các sản phẩm thảo dược thiên nhiên chất lượng cao.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Facebook"><svg class="icon" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="#" aria-label="Youtube"><svg class="icon" viewBox="0 0 24 24"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__heading">Danh Mục</h4>
+          <ul class="footer__links">
+            <li><a href="archive.html"><svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg> Thảo Dược Khô</a></li>
+            <li><a href="archive.html"><svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg> Trà Túi Lọc</a></li>
+            <li><a href="archive.html"><svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg> Bột Nguyên Chất</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__heading">Liên Kết</h4>
+          <ul class="footer__links">
+            <li><a href="about.html"><svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg> Giới thiệu</a></li>
+            <li><a href="news.html"><svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg> Tin tức sức khỏe</a></li>
+            <li><a href="contact.html"><svg class="icon icon-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg> Liên hệ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__heading">Liên Hệ</h4>
+          <div class="footer__contact-item"><svg class="icon" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span>TP. Hồ Chí Minh, Việt Nam</span></div>
+          <div class="footer__contact-item"><svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span><a href="tel:0901806930" style="color:inherit;">0901 806 930</a></span></div>
+          <div class="footer__contact-item"><svg class="icon" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><span><a href="mailto:splworks.info@gmail.com" style="color:inherit;">splworks.info@gmail.com</a></span></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Thảo Dược Thaphaco. All rights reserved.</span>
+        <span>Designed with ❤ for Health</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="fixed-buttons fixed-buttons--right">
+    <a href="tel:0901806930" class="fixed-btn fixed-btn--phone" aria-label="Gọi điện"><svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
+    <button class="fixed-btn fixed-btn--scroll-top" id="scroll-top-btn" aria-label="Lên đầu trang"><svg class="icon" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg></button>
+  </div>
+
+  <script src="index.js"></script>
+  <script src="pages.js"></script>
+</body>
+</html>

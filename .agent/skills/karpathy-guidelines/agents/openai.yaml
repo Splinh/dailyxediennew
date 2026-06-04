@@ -1,0 +1,4 @@
+interface:
+  display_name: "Karpathy Guidelines"
+  short_description: "Coding discipline: assumptions, simplicity, surgical edits, verification"
+  default_prompt: "Use $karpathy-guidelines for non-trivial coding, review, refactor, debugging, or verification planning."

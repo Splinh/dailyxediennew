@@ -1,0 +1,45 @@
+// ─── Design Tokens ────────────────────────────────────────────────────
+$bg-app: #f0f0f1;
+$bg-card: #ffffff;
+$bg-input: #ffffff;
+$bg-header: rgba(255, 255, 255, 0.96);
+
+// Color Contrast Grays
+$text-dark: #1d2327; // High contrast dark text
+$text-medium: #4f5b66; // Main body/medium text
+$text-muted: #646970; // Subtler metadata/labels
+$text-subtle: #8c8f94; // Placeholders/inactive
+
+// System Accent Colors (WordPress native blue palette)
+$color-primary: #2271b1; // Primary WP Blue
+$color-primary-hover: #135e96;
+$color-focus-ring: rgba(34, 113, 177, 0.16);
+
+// Semantic Status Colors
+$color-success: #007017;
+$color-success-bg: #edfaef;
+$color-success-border: #b4dec0;
+
+$color-warning: #735100;
+$color-warning-bg: #fcf0d4;
+$color-warning-border: #e8c878;
+
+$color-error: #d63638;
+$color-error-bg: #fcf0f1;
+$color-error-border: #f4b3b5;
+
+// Borders & Shadows
+$border-light: #dcdcde;
+$border-medium: #c3c4c7;
+$border-focus: #2271b1;
+
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+$shadow-md:
+	0 2px 8px rgba(0, 0, 0, 0.05),
+	0 1px 2px rgba(0, 0, 0, 0.03);
+$shadow-lg:
+	0 8px 30px rgba(0, 0, 0, 0.12),
+	0 2px 8px rgba(0, 0, 0, 0.04);
+
+// Transitions
+$transition-default: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);

@@ -1,0 +1,11 @@
+/**
+ * HDA Settings Page Styles
+ *
+ * Entry point — imports partials from settings/
+ */
+
+$body-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Ubuntu', Arial, sans-serif;
+
+@use 'settings/nav';
+@use 'settings/content';
+@use 'settings/controls';

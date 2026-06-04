@@ -1,0 +1,137 @@
+@use 'variables' as *;
+
+// ─── Base Styles ──────────────────────────────────────────────────────
+#hdat-app {
+	margin: 0 15px;
+	min-height: calc(100vh - 32px);
+	background: $bg-app;
+	color: $text-dark;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+	font-size: 14px;
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+#hdat-content {
+	padding: 0 0 3rem 0;
+	max-width: 1320px;
+	margin: 0 auto;
+}
+
+// ─── Top Navigation Bar (Glassmorphism Effect) ────────────────────────
+#hdat-nav {
+	position: sticky;
+	top: 32px;
+	z-index: 50;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.25rem;
+	padding: 0 1.5rem;
+	background: $bg-header;
+	border-bottom: 1px solid rgba(195, 196, 199, 0.7);
+	box-shadow:
+		0 4px 12px rgba(0, 0, 0, 0.01),
+		0 1px 2px rgba(0, 0, 0, 0.02);
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+	margin-top: 1.25rem;
+	margin-bottom: 1.5rem;
+
+	.nav-brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.95rem 1.25rem 0.95rem 0;
+		margin-right: 0.75rem;
+		font-size: 0.95rem;
+		font-weight: 700;
+		color: $text-dark;
+		letter-spacing: -0.01em;
+		border-right: 1px solid $border-light;
+
+		span {
+			color: $color-primary;
+			font-weight: 800;
+		}
+	}
+
+	a {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.85rem 1rem;
+		margin: 0;
+		color: $text-medium;
+		text-decoration: none;
+		font-size: 0.875rem;
+		font-weight: 500;
+		border: none;
+		border-bottom: 3px solid transparent;
+		border-radius: 0;
+		transition: $transition-default;
+
+		&:hover {
+			color: $color-primary;
+			background: rgba(246, 247, 247, 0.6);
+		}
+
+		&:focus {
+			outline: none;
+			box-shadow: inset 0 -3px 0 $color-primary;
+		}
+
+		&.active {
+			color: $color-primary;
+			border-bottom-color: $color-primary;
+			font-weight: 600;
+			background: transparent;
+		}
+
+		.nav-icon {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 1.125rem;
+			height: 1.125rem;
+			font-size: 1rem;
+			line-height: 1;
+			transition: transform 0.2s ease;
+		}
+
+		&:hover .nav-icon {
+			transform: scale(1.15);
+		}
+	}
+}
+
+// ─── Typography & Page Headers ────────────────────────────────────────
+.hdat-page {
+	h2 {
+		font-size: 1.625rem;
+		font-weight: 700;
+		color: $text-dark;
+		margin: 0 0 1.5rem;
+		letter-spacing: -0.02em;
+	}
+
+	h3 {
+		font-size: 1.125rem;
+		font-weight: 600;
+		color: $text-dark;
+		margin: 2rem 0 1rem;
+	}
+}
+
+.hdat-toolbar {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	margin-bottom: 1.5rem;
+	flex-wrap: wrap;
+
+	h2 {
+		margin: 0;
+	}
+}

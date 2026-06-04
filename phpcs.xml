@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<ruleset name="WPCS">
+	<description>WordPress Coding Standards</description>
+
+	<!-- ========================================
+		Scan Scope
+		======================================== -->
+	<file>./config</file>
+	<file>./wp/wp-content/themes/hd</file>
+	<file>./wp/wp-content/plugins/hda</file>
+	<file>./wp/wp-content/plugins/hd-ai-toolkit</file>
+	<file>./wp/wp-content/plugins/hd-ai-classic</file>
+
+
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<exclude-pattern>*/dist/*</exclude-pattern>
+	<exclude-pattern>*/build/*</exclude-pattern>
+	<exclude-pattern>*/languages/*</exclude-pattern>
+
+	<!-- Extensions -->
+	<arg name="extensions" value="php" />
+
+	<!-- ========================================
+		WordPress Standards
+		======================================== -->
+	<rule ref="WordPress-Core">
+		<!-- Allow camelCase method names (PSR-4 style) -->
+		<exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid" />
+		<!-- Allow camelCase variable names -->
+		<exclude name="WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase" />
+		<exclude name="WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase" />
+		<exclude name="WordPress.NamingConventions.ValidVariableName.PropertyNotSnakeCase" />
+		<exclude
+			name="WordPress.NamingConventions.ValidVariableName.InterpolatedVariableNotSnakeCase" />
+		<!-- Allow PSR-4 class file naming (ClassName.php instead of class-classname.php) -->
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
+		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
+		<!-- Allow short array syntax [] instead of array() -->
+		<exclude name="Universal.Arrays.DisallowShortArraySyntax.Found" />
+		<!-- Disable Yoda Conditions requirement -->
+		<exclude name="WordPress.PHP.YodaConditions.NotYoda" />
+		<!-- Allow TEXT_DOMAIN constant in i18n functions (for theme framework flexibility) -->
+		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralDomain" />
+		<!-- Disable translators comment requirement for placeholders -->
+		<exclude name="WordPress.WP.I18n.MissingTranslatorsComment" />
+		<!-- Allow short ternary operator ?: (Elvis operator) -->
+		<exclude name="Universal.Operators.DisallowShortTernary.Found" />
+		<!-- Disable escape output warning (methods handle escaping internally) -->
+		<exclude name="WordPress.Security.EscapeOutput.OutputNotEscaped" />
+		<!-- Allow assignment in conditions (common pattern: if ( ! $var = func() )) -->
+		<exclude name="WordPress.CodeAnalysis.AssignmentInCondition.Found" />
+		<exclude name="WordPress.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition" />
+		<!-- Allow overriding WordPress global variables like $term, $cid, etc. -->
+		<exclude name="WordPress.WP.GlobalVariablesOverride.Prohibited" />
+	</rule>
+	<!-- <rule ref="WordPress-Docs"/> -->
+	<rule ref="WordPress-Extra">
+		<!-- Allow $_GET, $_POST without nonce verification (for read-only operations) -->
+		<exclude name="WordPress.Security.NonceVerification.Recommended" />
+	</rule>
+
+	<!-- ========================================
+		Additional Rules
+		======================================== -->
+
+	<!-- 4 spaces indentation -->
+	<config name="tab_width" value="4" />
+
+	<!-- Enforce short array syntax [] - auto-convert array() to [] with phpcbf -->
+	<rule ref="Generic.Arrays.DisallowLongArraySyntax" />
+</ruleset>

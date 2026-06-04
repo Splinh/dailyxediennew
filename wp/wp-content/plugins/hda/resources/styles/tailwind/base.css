@@ -1,0 +1,17 @@
+/* tailwind/base.css - Low-specificity defaults for plugin pages */
+
+@layer base {
+	/* Interactive elements */
+	:where([type='submit'], [type='reset'], [type='button'], [role='button']):not(:disabled) {
+		@apply cursor-pointer;
+	}
+
+	*:disabled {
+		@apply cursor-not-allowed opacity-80;
+	}
+
+	:where(a, area, button, [role='button'], input, label, select, summary, textarea) {
+		-webkit-tap-highlight-color: transparent;
+		outline: none;
+	}
+}

@@ -1,0 +1,70 @@
+@use 'sass:list';
+@use 'sass:math';
+@use 'sass:string';
+@use 'sass:meta';
+
+// Removes the unit (e.g. px, em, rem) from a value, returning the number only.
+@function strip-unit($num) {
+    @return math.div($num, $num * 0 + 1);
+}
+
+// Return valid calc
+@function add($value1, $value2, $return-calc: true) {
+    @if $value1 == null { @return $value2; }
+    @if $value2 == null { @return $value1; }
+    @if meta.type-of($value1) == number and meta.type-of($value2) == number and math.compatible($value1, $value2) {
+        @return $value1 + $value2;
+    }
+    @if $return-calc { @return calc(#{$value1} + #{$value2}); }
+    @return $value1 + string.unquote(' + ') + $value2;
+}
+
+// Avoid errors when a "unitless" 0 value is passed into a calc expression.
+@function subtract($value1, $value2, $return-calc: true) {
+    @if $value1 == null and $value2 == null { @return null; }
+    @if $value1 == null { @return -$value2; }
+    @if $value2 == null { @return $value1; }
+    @if meta.type-of($value1) == number and meta.type-of($value2) == number and math.compatible($value1, $value2) {
+        @return $value1 - $value2;
+    }
+    @if meta.type-of($value2) != number {
+        $value2: string.unquote('(') + $value2 + string.unquote(')');
+    }
+    @if $return-calc { @return calc(#{$value1} - #{$value2}); }
+    @return $value1 + string.unquote(' - ') + $value2;
+}
+
+// Converts a pixel value to matching rem value.
+// @access private
+@function -zf-to-rem($value, $base: null) {
+    @if meta.type-of($value) != 'number' { @return $value; }
+    @if math.unit($value) == 'em' { $value: strip-unit($value) * 1rem; }
+    @if math.unit($value) != 'rem' {
+        @if $base == null { $base: 16px; }
+        @if math.unit($base) == '%' { $base: math.div($base, 100%) * 16px; }
+        @if math.unit($base) == 'rem' { $base: strip-unit($base) * 16px; }
+        $value: math.div(strip-unit($value), strip-unit($base)) * 1rem;
+    }
+    @if $value == 0rem { $value: 0; }
+    @return $value;
+}
+
+// Converts one or more pixel values into matching rem values.
+@function rem-calc($values, $base: null) {
+    $count: list.length($values);
+    @if $count == 1 { @return -zf-to-rem($values, $base); }
+    $rem-values: ();
+    @for $i from 1 through $count {
+        $rem-values: list.append($rem-values, -zf-to-rem(list.nth($values, $i), $base));
+    }
+    @return $rem-values;
+}
+
+// font size — main utility function (px/unitless → rem)
+@function fs($size: 16) {
+    @if false == $size { @return null; }
+    @if auto == $size or inherit == $size or initial == $size or unset == $size or math.unit($size) == '%' {
+        @return $size;
+    }
+    @return rem-calc($size);
+}

@@ -1,0 +1,1818 @@
+# Translation of Plugins - AI - Stable (latest release) in Vietnamese
+# This file is distributed under the same license as the Plugins - AI - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2026-05-24 02:28:08+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/4.0.3\n"
+"Language: vi_VN\n"
+"Project-Id-Version: Plugins - AI - Stable (latest release)\n"
+
+#: includes/Logging/REST/AI_Request_Log_Controller.php:319
+msgid "Cursor timestamp for cursor-based pagination (use with cursor_id)."
+msgstr "Dấu thời gian con trỏ cho phân trang dựa trên con trỏ (sử dụng với cursor_id)."
+
+#: includes/Logging/REST/AI_Request_Log_Controller.php:314
+msgid "Cursor ID for cursor-based pagination (use with cursor_timestamp)."
+msgstr "ID con trỏ cho phân trang dựa trên con trỏ (sử dụng với cursor_timestamp)."
+
+#: includes/Logging/REST/AI_Request_Log_Controller.php:308
+msgid "Order sort attribute ascending or descending."
+msgstr "Thứ tự thuộc tính sắp xếp tăng dần hoặc giảm dần."
+
+#: includes/Logging/REST/AI_Request_Log_Controller.php:302
+msgid "Sort collection by attribute."
+msgstr "Sắp xếp bộ sưu tập theo thuộc tính."
+
+#: includes/Logging/REST/AI_Request_Log_Controller.php:295
+msgid "Maximum number of items per page."
+msgstr "Số lượng mục tối đa mỗi trang."
+
+#: includes/Logging/REST/AI_Request_Log_Controller.php:289
+msgid "Current page of the collection."
+msgstr "Trang hiện tại của bộ sưu tập."
+
+#: includes/Logging/REST/AI_Request_Log_Controller.php:284
+msgid "Filter by tokens: \"gt:N\", \"lt:N\", or \"none\"."
+msgstr "Lọc theo token: \"gt:N\", \"lt:N\", hoặc \"none\"."
+
+#: includes/Logging/REST/AI_Request_Log_Controller.php:279
+msgid "Search in operations, request previews, response previews, and error messages."
+msgstr "Tìm kiếm trong các thao tác, xem trước yêu cầu, xem trước phản hồi và thông báo lỗi."
+
+#: includes/Logging/REST/AI_Request_Log_Controller.php:274
+msgid "Filter logs until this date (YYYY-MM-DD HH:MM:SS)."
+msgstr "Lọc nhật ký cho đến ngày này (YYYY-MM-DD HH:MM:SS)."
+
+#: includes/Logging/REST/AI_Request_Log_Controller.php:269
+msgid "Filter logs from this date (YYYY-MM-DD HH:MM:SS)."
+msgstr "Lọc nhật ký từ ngày này (YYYY-MM-DD HH:MM:SS)."
+
+#: includes/Logging/REST/AI_Request_Log_Controller.php:264
+msgid "Filter by user ID."
+msgstr "Lọc theo ID người dùng."
+
+#: includes/Logging/REST/AI_Request_Log_Controller.php:259
+msgid "Filter by AI provider."
+msgstr "Lọc theo nhà cung cấp AI."
+
+#: includes/Logging/REST/AI_Request_Log_Controller.php:253
+msgid "Filter by status."
+msgstr "Lọc theo trạng thái."
+
+#: includes/Logging/REST/AI_Request_Log_Controller.php:247
+msgid "Filter by log type."
+msgstr "Lọc theo loại nhật ký."
+
+#. translators: %d: Number of deleted logs.
+#: includes/Logging/REST/AI_Request_Log_Controller.php:232
+msgid "Successfully purged %d log entries."
+msgstr "Đã xóa thành công %d mục nhật ký."
+
+#: includes/Logging/REST/AI_Request_Log_Controller.php:184
+msgid "Log entry not found."
+msgstr "Không tìm thấy mục nhật ký."
+
+#: includes/Logging/Logging_Http_Transporter.php:408
+msgid "WordPress Core"
+msgstr "Lõi WordPress"
+
+#: includes/Logging/AI_Request_Log_Page.php:48
+#: includes/Logging/AI_Request_Log_Page.php:49
+#: build-scripts/admin/ai-request-logs.js:155
+msgid "AI Request Logs"
+msgstr "Nhật ký yêu cầu AI"
+
+#: includes/Experiments/Editorial_Updates/Editorial_Updates.php:47
+msgid "Applies pending editorial Notes to your content automatically. Requires an AI connector that includes support for text generation models."
+msgstr "Tự động áp dụng Ghi chú biên tập đang chờ xử lý vào nội dung của bạn. Yêu cầu trình kết nối AI hỗ trợ các mô hình tạo văn bản."
+
+#: includes/Experiments/Editorial_Updates/Editorial_Updates.php:46
+msgid "Editorial Updates"
+msgstr "Cập nhật biên tập"
+
+#: includes/Experiments/Editorial_Notes/Editorial_Notes.php:45
+msgid "Adds editorial suggestions to posts block-by-block, covering Accessibility, Readability, Grammar, and SEO. Requires an AI connector that includes support for text generation models."
+msgstr "Thêm các đề xuất biên tập vào bài đăng theo từng khối, bao gồm Khả năng truy cập, Khả năng đọc, Ngữ pháp và SEO. Yêu cầu trình kết nối AI hỗ trợ các mô hình tạo văn bản."
+
+#: includes/Experiments/Editorial_Notes/Editorial_Notes.php:44
+msgid "Editorial Notes"
+msgstr "Ghi chú biên tập"
+
+#: includes/Experiments/Connector_Approval/Connector_Approval.php:66
+msgid "Require explicit administrator approval before plugins or themes can use AI connectors configured on this site. Note this is an experimental, proof-of-concept feature and as such, issues may be encountered. Feedback welcome and desired to help shape the feature."
+msgstr "Yêu cầu sự chấp thuận rõ ràng của quản trị viên trước khi các plugin hoặc chủ đề có thể sử dụng các trình kết nối AI được cấu hình trên trang này. Lưu ý đây là một tính năng thử nghiệm, mang tính chứng minh khái niệm và do đó, có thể gặp phải các vấn đề. Phản hồi được hoan nghênh và mong muốn để giúp định hình tính năng."
+
+#: includes/Experiments/Connector_Approval/Connector_Approval.php:65
+msgid "Connector Approval"
+msgstr "Phê duyệt trình kết nối"
+
+#: includes/Experiments/Connector_Approval/Admin_Page.php:125
+msgid "Control which plugins and themes are allowed to use each AI connector on this site. Prompts from unapproved callers are prevented and listed below for review."
+msgstr "Kiểm soát plugin và giao diện nào được phép sử dụng từng trình kết nối AI trên trang web này. Các lời nhắc từ người gọi không được phê duyệt sẽ bị ngăn chặn và liệt kê bên dưới để xem xét."
+
+#: includes/Experiments/Connector_Approval/Admin_Page.php:79
+#: includes/Experiments/Connector_Approval/Admin_Page.php:80
+#: includes/Experiments/Connector_Approval/Admin_Page.php:124
+msgid "Connector Approvals"
+msgstr "Phê duyệt trình kết nối"
+
+#. translators: %s: Link to connectors settings page.
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:897
+msgid "This feature requires a valid AI Connector to function properly. Please set up a provider to use this feature in %s."
+msgstr "Tính năng này yêu cầu Trình kết nối AI hợp lệ để hoạt động đúng cách. Vui lòng thiết lập nhà cung cấp để sử dụng tính năng này trong %s."
+
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:757
+#: build-scripts/experiments/comment-moderation.js:1
+msgid "Failed"
+msgstr "Thất bại"
+
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:477
+msgid "All Toxicities"
+msgstr "Tất cả mức độ độc hại"
+
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:475
+msgid "Filter by Toxicity"
+msgstr "Lọc theo mức độ độc hại"
+
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:463
+msgid "All Sentiments"
+msgstr "Tất cả cảm xúc"
+
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:461
+msgid "Filter by Sentiment"
+msgstr "Lọc theo cảm xúc"
+
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:180
+msgid "Medium Toxicity (40%-69%)"
+msgstr "Độc hại trung bình (40%-69%)"
+
+#: includes/Experiments/AI_Request_Logging/AI_Request_Logging.php:46
+msgid "Logs AI requests for observability and debugging. View detailed logs under Tools."
+msgstr "Ghi nhật ký yêu cầu AI để theo dõi và gỡ lỗi. Xem nhật ký chi tiết trong Công cụ."
+
+#: includes/Experiments/AI_Request_Logging/AI_Request_Logging.php:45
+msgid "AI Request Logging"
+msgstr "Ghi nhật ký yêu cầu AI"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:183
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:274
+msgid "&larr; Back to List"
+msgstr "← Trở về danh sách"
+
+#: includes/Connector_Approval/REST_Controller.php:203
+msgid "No pending approval request matches the provided key."
+msgstr "Không có yêu cầu phê duyệt đang chờ xử lý nào khớp với khóa được cung cấp."
+
+#: includes/Connector_Approval/REST_Controller.php:173
+msgid "Plugin basename and connector ID are required."
+msgstr "Tên cơ sở của plugin và ID trình kết nối là bắt buộc."
+
+#. translators: 1: Connector ID. 2: Calling plugin/theme basename.
+#: includes/Connector_Approval/Http_Guard.php:170
+msgid "The \"%1$s\" AI connector has not been approved for use by \"%2$s\"."
+msgstr "Trình kết nối AI \"%1$s\" chưa được \"%2$s\" phê duyệt để sử dụng."
+
+#: includes/Connector_Approval/Admin_Notice.php:165
+msgid "Review requests"
+msgstr "Xem xét yêu cầu"
+
+#. translators: %d: number of pending approval requests.
+#: includes/Connector_Approval/Admin_Notice.php:155
+msgid "%d plugin or theme is requesting access to an AI connector."
+msgid_plural "%d plugins or themes are requesting access to AI connectors."
+msgstr[0] "%d plugin hoặc giao diện đang yêu cầu quyền truy cập vào trình kết nối AI."
+
+#. translators: %d: user ID.
+#: includes/Logging/AI_Request_Log_Manager.php:244
+msgid "User #%d"
+msgstr "Người dùng #%d"
+
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:898
+msgid "Settings → Connectors"
+msgstr "Cài đặt → Cổng kết nối"
+
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:188
+msgid "High Toxicity (>=70%)"
+msgstr "Độ độc hại cao (>=70%)"
+
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:172
+msgid "Low Toxicity (<40%)"
+msgstr "Độ độc hại thấp (<40%)"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:518
+msgid "<strong>Theme</strong>: Registered by the active theme."
+msgstr "<strong>Theme</strong>: Được đăng ký bởi giao diện đang hoạt động."
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:517
+msgid "<strong>Plugin</strong>: Registered by an active plugin."
+msgstr "<strong>Plugin</strong>: Được đăng ký bởi một plugin đang hoạt động."
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:516
+msgid "<strong>Core</strong>: Built into WordPress itself."
+msgstr "<strong>Core</strong>: Được tích hợp sẵn vào chính WordPress."
+
+#. translators: %s: Capability slug.
+#: includes/REST/Models_Controller.php:185
+msgid "Unsupported capability: %s"
+msgstr "Khả năng không được hỗ trợ: %s"
+
+#: includes/REST/Models_Controller.php:117
+msgid "AI client is not available."
+msgstr "Máy khách AI không khả dụng."
+
+#: includes/Experiments/Content_Resizing/Content_Resizing.php:42
+msgid "Shorten, expand, or rephrase selected block content. Requires an AI connector that includes support for text generation models."
+msgstr "Rút gọn, mở rộng hoặc diễn đạt lại nội dung khối đã chọn. Yêu cầu một trình kết nối AI có hỗ trợ các mô hình tạo văn bản."
+
+#: includes/Experiments/Content_Resizing/Content_Resizing.php:41
+msgid "Content Resizing"
+msgstr "Thay đổi kích thước nội dung"
+
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:881
+msgid "Analyze this comment"
+msgstr "Phân tích bình luận này"
+
+#. translators: %d: Number of comments queued for analysis.
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:840
+msgid "%d comment queued for analysis."
+msgid_plural "%d comments queued for analysis."
+msgstr[0] "%d bình luận được xếp hàng để phân tích."
+
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:774
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:882
+msgid "Analyze Sentiment and Toxicity"
+msgstr "Phân tích cảm xúc và mức độ độc hại"
+
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:745
+#: build-scripts/experiments/comment-moderation.js:1
+msgid "Analyzing…"
+msgstr "Đang phân tích…"
+
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:730
+msgid "Queued"
+msgstr "Đã xếp hàng"
+
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:171
+msgid "Low"
+msgstr "Thấp"
+
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:179
+msgid "Medium"
+msgstr "Trung bình"
+
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:187
+msgid "High"
+msgstr "Cao"
+
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:147
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:148
+msgid "Neutral"
+msgstr "Trung lập"
+
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:153
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:154
+msgid "Negative"
+msgstr "Tiêu cực"
+
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:141
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:142
+msgid "Positive"
+msgstr "Tích cực"
+
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:376
+msgid "Toxicity"
+msgstr "Mức độ độc hại"
+
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:375
+msgid "Sentiment"
+msgstr "Cảm xúc"
+
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:281
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:348
+msgid "Analyzes a comment for toxicity and sentiment."
+msgstr "Phân tích bình luận về mức độ độc hại và cảm xúc."
+
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:280
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:347
+msgid "Comment Analysis"
+msgstr "Phân tích bình luận"
+
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:223
+msgid "Automatically moderate comments based on toxicity detection and sentiment analysis. Requires an AI connector that includes support for text generation models."
+msgstr "Tự động kiểm duyệt bình luận dựa trên phát hiện mức độ độc hại và phân tích cảm xúc. Yêu cầu một trình kết nối AI hỗ trợ các mô hình tạo văn bản."
+
+#: includes/Experiments/Comment_Moderation/Comment_Moderation.php:222
+msgid "Comment Moderation"
+msgstr "Kiểm duyệt bình luận"
+
+#: includes/Abilities/Content_Resizing/Content_Resizing.php:231
+msgid "Content resizing failed. Please ensure you have a connected provider that supports text generation."
+msgstr "Thay đổi kích thước nội dung thất bại. Vui lòng đảm bảo bạn có một nhà cung cấp được kết nối hỗ trợ tạo văn bản."
+
+#: includes/Abilities/Content_Resizing/Content_Resizing.php:175
+msgid "You do not have permission to resize content."
+msgstr "Bạn không có quyền thay đổi kích thước nội dung."
+
+#: includes/Abilities/Content_Resizing/Content_Resizing.php:137
+msgid "No resized content was generated."
+msgstr "Không có nội dung được thay đổi kích thước nào được tạo."
+
+#. translators: %d: Minimum word count.
+#: includes/Abilities/Content_Resizing/Content_Resizing.php:117
+msgid "A minimum of %d words is required to shorten the content."
+msgstr "Cần tối thiểu %d từ để rút ngắn nội dung."
+
+#: includes/Abilities/Content_Resizing/Content_Resizing.php:104
+msgid "Content is required to resize."
+msgstr "Cần có nội dung để thay đổi kích thước."
+
+#: includes/Abilities/Content_Resizing/Content_Resizing.php:78
+msgid "The resized content."
+msgstr "Nội dung đã được thay đổi kích thước."
+
+#: includes/Abilities/Content_Resizing/Content_Resizing.php:64
+msgid "The resizing action to perform."
+msgstr "Hành động thay đổi kích thước cần thực hiện."
+
+#: includes/Abilities/Content_Resizing/Content_Resizing.php:58
+msgid "The block content to resize."
+msgstr "Nội dung khối để thay đổi kích thước."
+
+#: includes/Abilities/Content_Resizing/Content_Resizing.php:54
+msgid "The ID of the post to resize content for."
+msgstr "ID của bài viết để thay đổi kích thước nội dung."
+
+#: includes/Abilities/Comment_Moderation/Comment_Analysis.php:283
+msgid "Comment analysis failed. Please ensure you have a connected provider that supports text generation."
+msgstr "Phân tích bình luận thất bại. Vui lòng đảm bảo bạn có một nhà cung cấp được kết nối hỗ trợ tạo văn bản."
+
+#: includes/Abilities/Comment_Moderation/Comment_Analysis.php:260
+msgid "Failed to parse AI response."
+msgstr "Không thể phân tích phản hồi của AI."
+
+#: includes/Abilities/Comment_Moderation/Comment_Analysis.php:162
+msgid "You do not have permission to analyze comments."
+msgstr "Bạn không có quyền phân tích bình luận."
+
+#: includes/Abilities/Comment_Moderation/Comment_Analysis.php:124
+msgid "This comment is already being analyzed."
+msgstr "Bình luận này đã đang được phân tích."
+
+#. translators: %d: Comment ID.
+#: includes/Abilities/Comment_Moderation/Comment_Analysis.php:112
+msgid "Comment with ID %d not found."
+msgstr "Không tìm thấy bình luận có ID %d."
+
+#: includes/Abilities/Comment_Moderation/Comment_Analysis.php:101
+msgid "Comment ID is required."
+msgstr "Cần có ID bình luận."
+
+#: includes/Abilities/Comment_Moderation/Comment_Analysis.php:67
+msgid "The sentiment of the comment."
+msgstr "Cảm xúc của bình luận."
+
+#: includes/Abilities/Comment_Moderation/Comment_Analysis.php:62
+msgid "Toxicity score from 0 (not toxic) to 1 (highly toxic)."
+msgstr "Điểm độc hại từ 0 (không độc hại) đến 1 (rất độc hại)."
+
+#: includes/Abilities/Comment_Moderation/Comment_Analysis.php:56
+msgid "The analyzed comment ID."
+msgstr "ID bình luận đã được phân tích."
+
+#: includes/Abilities/Comment_Moderation/Comment_Analysis.php:38
+msgid "The ID of the comment to analyze."
+msgstr "ID của bình luận cần phân tích."
+
+#: includes/Requirements.php:210
+msgid "AI plugin cannot run due to the following issues:"
+msgstr "Plugin AI không thể chạy do các vấn đề sau:"
+
+#: includes/Requirements.php:122
+msgid "Your WordPress environment has AI functionality disabled. The AI plugin will not work until AI support is enabled."
+msgstr "Môi trường WordPress của bạn đã tắt chức năng AI. Plugin AI sẽ không hoạt động cho đến khi hỗ trợ AI được bật."
+
+#: includes/Requirements.php:118
+msgid "The plugin assets are not built. This is most likely because you downloaded the plugin from the GitHub repository without building the assets. Please run `nvm use && npm ci && npm run build` to build the assets."
+msgstr "Tài sản của plugin chưa được xây dựng. Điều này có thể do bạn đã tải xuống plugin từ kho GitHub mà không xây dựng tài sản. Vui lòng chạy `nvm use && npm ci && npm run build` để xây dựng tài sản."
+
+#. translators: %s: Minimum WordPress version.
+#: includes/Requirements.php:99
+msgid "WordPress version %s or higher is required."
+msgstr "Yêu cầu WordPress phiên bản %s trở lên."
+
+#. translators: %s: Minimum PHP version, %s: Current PHP version.
+#: includes/Requirements.php:90
+msgid "PHP version %1$s or higher is required. You are running PHP version %2$s."
+msgstr "Yêu cầu PHP phiên bản %1$s trở lên. Bạn đang chạy PHP phiên bản %2$s."
+
+#. translators: %s: Class name.
+#: includes/Main.php:229
+msgid "De-serializing instances of %s is not allowed."
+msgstr "Không được phép giải tuần tự hóa các phiên bản của %s."
+
+#. translators: %s: Class name.
+#: includes/Main.php:212
+msgid "The %s class should not be cloned."
+msgstr "Lớp %s không được phép sao chép."
+
+#: includes/Features/Image_Generation/Image_Generation.php:43
+msgid "Generate and edit images using AI. Requires an AI connector that includes support for image generation models."
+msgstr "Tạo và chỉnh sửa hình ảnh bằng AI. Yêu cầu một trình kết nối AI hỗ trợ các mô hình tạo hình ảnh."
+
+#: includes/Experiments/Title_Generation/Title_Generation.php:41
+msgid "Generates title suggestions from content. Requires an AI connector that includes support for text generation models."
+msgstr "Tạo gợi ý tiêu đề từ nội dung. Yêu cầu một trình kết nối AI hỗ trợ các mô hình tạo văn bản."
+
+#: includes/Experiments/Summarization/Summarization.php:42
+msgid "Summarizes long-form content into digestible overviews. Requires an AI connector that includes support for text generation models."
+msgstr "Tóm tắt nội dung dài thành các tổng quan dễ hiểu. Yêu cầu một trình kết nối AI hỗ trợ các mô hình tạo văn bản."
+
+#: includes/Experiments/Meta_Description/Meta_Description.php:45
+msgid "Generates meta description suggestions and integrates those with various SEO plugins. Requires an AI connector that includes support for text generation models."
+msgstr "Tạo gợi ý mô tả meta và tích hợp chúng với nhiều plugin SEO khác nhau. Yêu cầu một trình kết nối AI hỗ trợ các mô hình tạo văn bản."
+
+#: includes/Experiments/Excerpt_Generation/Excerpt_Generation.php:41
+msgid "Generates excerpt suggestions from content. Requires an AI connector that includes support for text generation models."
+msgstr "Tạo gợi ý trích đoạn từ nội dung. Yêu cầu một trình kết nối AI hỗ trợ các mô hình tạo văn bản."
+
+#: includes/Experiments/Content_Classification/Content_Classification.php:90
+msgid "AI-powered suggestions for post tags and categories based on content analysis. Requires an AI connector that includes support for text generation models."
+msgstr "Gợi ý thẻ bài đăng và danh mục được hỗ trợ bởi AI dựa trên phân tích nội dung. Yêu cầu một trình kết nối AI hỗ trợ các mô hình tạo văn bản."
+
+#: includes/Experiments/Alt_Text_Generation/Alt_Text_Generation.php:52
+msgid "Generates accessible alternative (alt) text for images using AI vision models, following common web accessibility guidance. Requires an AI connector that includes support for vision-based image analysis models."
+msgstr "Tạo văn bản thay thế (alt) dễ tiếp cận cho hình ảnh bằng cách sử dụng mô hình AI thị giác, tuân theo hướng dẫn khả năng tiếp cận web phổ biến. Yêu cầu một trình kết nối AI hỗ trợ các mô hình phân tích hình ảnh dựa trên thị giác."
+
+#. translators: %1$s: The asset filename.
+#: includes/Asset_Loader.php:224
+msgid "Asset file for \"%1$s\" is invalid and cannot be registered."
+msgstr "Tệp tài sản cho \"%1$s\" không hợp lệ và không thể đăng ký."
+
+#. translators: %1$s: The asset filename.
+#: includes/Asset_Loader.php:210
+msgid "Asset file for \"%1$s\" is missing and cannot be registered."
+msgstr "Tệp tài sản cho \"%1$s\" bị thiếu và không thể đăng ký."
+
+#. translators: %1$s: The RTL style filename.
+#: includes/Asset_Loader.php:156
+msgid "RTL stylesheet \"%1$s\" is missing and will not be available."
+msgstr "Biểu định kiểu RTL \"%1$s\" bị thiếu và sẽ không khả dụng."
+
+#: includes/Admin/Dashboard/Dashboard_Widgets.php:84
+msgid "AI Capabilities"
+msgstr "Khả năng AI"
+
+#: includes/Admin/Dashboard/Dashboard_Widgets.php:76
+msgid "AI Status"
+msgstr "Trạng thái AI"
+
+#: includes/Admin/Dashboard/AI_Status_Widget.php:190
+msgid "Manage Experiments"
+msgstr "Quản lý Thử nghiệm"
+
+#: includes/Admin/Dashboard/AI_Status_Widget.php:171
+msgid "Manage Features"
+msgstr "Quản lý Tính năng"
+
+#: includes/Admin/Dashboard/AI_Status_Widget.php:157
+msgid "Features"
+msgstr "Tính năng"
+
+#: includes/Admin/Dashboard/AI_Status_Widget.php:106
+msgid "Complete these steps to get started with the AI plugin:"
+msgstr "Hoàn thành các bước này để bắt đầu với plugin AI:"
+
+#: includes/Admin/Dashboard/AI_Status_Widget.php:98
+msgid "Enable a feature or experiment"
+msgstr "Bật một tính năng hoặc thử nghiệm"
+
+#: includes/Admin/Dashboard/AI_Status_Widget.php:93
+msgid "Globally enable AI Features"
+msgstr "Bật toàn cầu các tính năng AI"
+
+#: includes/Admin/Dashboard/AI_Status_Widget.php:88
+msgid "Configure an AI provider"
+msgstr "Cấu hình nhà cung cấp AI"
+
+#: includes/Admin/Dashboard/AI_Capabilities_Widget.php:206
+msgid "Chat History"
+msgstr "Lịch sử trò chuyện"
+
+#: includes/Admin/Dashboard/AI_Capabilities_Widget.php:205
+msgid "Embedding Generation"
+msgstr "Tạo Embedding"
+
+#: includes/Admin/Dashboard/AI_Capabilities_Widget.php:204
+msgid "Video Generation"
+msgstr "Tạo video"
+
+#: includes/Admin/Dashboard/AI_Capabilities_Widget.php:203
+msgid "Music Generation"
+msgstr "Tạo nhạc"
+
+#: includes/Admin/Dashboard/AI_Capabilities_Widget.php:202
+msgid "Speech Generation"
+msgstr "Tạo giọng nói"
+
+#: includes/Admin/Dashboard/AI_Capabilities_Widget.php:201
+msgid "Text to Speech"
+msgstr "Chuyển văn bản thành giọng nói"
+
+#: includes/Admin/Dashboard/AI_Capabilities_Widget.php:199
+msgid "Text Generation"
+msgstr "Tạo văn bản"
+
+#: includes/Admin/Dashboard/AI_Capabilities_Widget.php:142
+msgid "Provider Capabilities"
+msgstr "Khả năng của nhà cung cấp"
+
+#: includes/Abilities/Editorial_Updates/Editorial_Updates.php:254
+msgid "Refinement generation failed. Please ensure you have a connected provider that supports text generation."
+msgstr "Tạo tinh chỉnh thất bại. Vui lòng đảm bảo bạn có nhà cung cấp được kết nối hỗ trợ tạo văn bản."
+
+#: includes/Abilities/Editorial_Updates/Editorial_Updates.php:183
+msgid "You do not have permission to run AI refinements."
+msgstr "Bạn không có quyền chạy các tinh chỉnh AI."
+
+#: includes/Abilities/Content_Resizing/Content_Resizing.php:169
+#: includes/Abilities/Editorial_Updates/Editorial_Updates.php:163
+msgid "You do not have permission to run AI refinements on this post."
+msgstr "Bạn không có quyền chạy các tinh chỉnh AI trên bài viết này."
+
+#: includes/Abilities/Editorial_Updates/Editorial_Updates.php:123
+msgid "At least one note is required to perform refinement."
+msgstr "Cần ít nhất một ghi chú để thực hiện tinh chỉnh."
+
+#: includes/Abilities/Editorial_Updates/Editorial_Updates.php:108
+msgid "Block content is required to perform refinement."
+msgstr "Nội dung khối là bắt buộc để thực hiện tinh chỉnh."
+
+#: includes/Abilities/Editorial_Updates/Editorial_Updates.php:81
+msgid "The updated block content after applying feedback."
+msgstr "Nội dung khối đã cập nhật sau khi áp dụng phản hồi."
+
+#: includes/Abilities/Editorial_Updates/Editorial_Updates.php:64
+msgid "ID of the post being modified."
+msgstr "ID của bài viết đang được sửa đổi."
+
+#: includes/Abilities/Editorial_Updates/Editorial_Updates.php:60
+msgid "Optional surrounding content for context."
+msgstr "Nội dung xung quanh tùy chọn để tạo ngữ cảnh."
+
+#: includes/Abilities/Editorial_Updates/Editorial_Updates.php:56
+msgid "The feedback Notes to apply to the block."
+msgstr "Các ghi chú phản hồi để áp dụng cho khối."
+
+#: includes/Abilities/Editorial_Updates/Editorial_Updates.php:49
+msgid "The content of the block to refine."
+msgstr "Nội dung của khối cần tinh chỉnh."
+
+#: includes/Abilities/Content_Classification/Content_Classification.php:208
+msgid "No taxonomy suggestions were generated."
+msgstr "Không có gợi ý phân loại nào được tạo."
+
+#: includes/Admin/Dashboard/AI_Status_Widget.php:152
+#: build-scripts/admin/ai-request-logs.js:154
+#: build-scripts/experiments/alt-text-generation.js:1
+#: build-scripts/experiments/content-classification.js:1
+#: build-scripts/experiments/content-resizing.js:1
+#: build-scripts/experiments/editorial-notes.js:1
+#: build-scripts/experiments/editorial-updates.js:1
+#: build-scripts/experiments/excerpt-generation.js:1
+#: build-scripts/experiments/meta-description.js:1
+#: build-scripts/experiments/summarization.js:1
+#: build-scripts/experiments/title-generation.js:1
+#: build-scripts/features/image-generation.js:2
+#: build/routes/ai-home/content.js:24455
+msgid "Manage Connectors"
+msgstr "Quản lý kết nối"
+
+#: includes/Settings/Settings_Page.php:101
+msgid "AI settings page render function not found. Run npm run build:routes to generate build assets."
+msgstr "Không tìm thấy hàm hiển thị trang cài đặt AI. Chạy npm run build:routes để tạo tài sản xây dựng."
+
+#: includes/Experiments/Meta_Description/Meta_Description.php:44
+msgid "Meta Description Generation"
+msgstr "Tạo Mô tả Meta"
+
+#: includes/Experiments/Content_Classification/Content_Classification.php:224
+msgid "Maximum suggestions"
+msgstr "Số lượng đề xuất tối đa"
+
+#: includes/Experiments/Content_Classification/Content_Classification.php:218
+msgid "Suggest new terms based on context"
+msgstr "Đề xuất các thuật ngữ mới dựa trên ngữ cảnh"
+
+#: includes/Experiments/Content_Classification/Content_Classification.php:214
+msgid "Only suggest existing terms"
+msgstr "Chỉ đề xuất các thuật ngữ hiện có"
+
+#: includes/Experiments/Content_Classification/Content_Classification.php:208
+msgid "Taxonomy strategy"
+msgstr "Chiến lược phân loại"
+
+#: includes/Experiments/Content_Classification/Content_Classification.php:89
+msgid "Content Classification"
+msgstr "Phân loại nội dung"
+
+#: includes/Experiments/Abilities_Explorer/Ability_Table.php:303
+msgid "All Categories"
+msgstr "Tất cả danh mục"
+
+#: includes/Experiments/Abilities_Explorer/Ability_Handler.php:124
+msgid "Other"
+msgstr "Khác"
+
+#: includes/Settings/Settings_Page.php:162
+#: build/routes/ai-home/content.js:23745
+msgid "Additional AI-powered features."
+msgstr "Các tính năng bổ sung được hỗ trợ bởi AI."
+
+#: includes/Settings/Settings_Page.php:161
+#: build/routes/ai-home/content.js:23744
+msgid "Other Features"
+msgstr "Các tính năng khác"
+
+#: includes/Abilities/Title_Generation/Title_Generation.php:270
+msgid "Title generation failed. Please ensure you have a connected provider that supports text generation."
+msgstr "Tạo tiêu đề thất bại. Vui lòng đảm bảo bạn có nhà cung cấp được kết nối hỗ trợ tạo văn bản."
+
+#: includes/Abilities/Summarization/Summarization.php:281
+msgid "Summarization failed. Please ensure you have a connected provider that supports text generation."
+msgstr "Tóm tắt thất bại. Vui lòng đảm bảo bạn có nhà cung cấp được kết nối hỗ trợ tạo văn bản."
+
+#: includes/Abilities/Editorial_Notes/Editorial_Notes.php:381
+msgid "Editorial notes generation failed. Please ensure you have a connected provider that supports text generation."
+msgstr "Tạo ghi chú biên tập thất bại. Vui lòng đảm bảo bạn có nhà cung cấp được kết nối hỗ trợ tạo văn bản."
+
+#: includes/Abilities/Meta_Description/Meta_Description.php:317
+msgid "Meta description generation failed. Please ensure you have a connected provider that supports text generation."
+msgstr "Tạo mô tả meta thất bại. Vui lòng đảm bảo bạn có nhà cung cấp được kết nối hỗ trợ tạo văn bản."
+
+#: includes/Abilities/Meta_Description/Meta_Description.php:195
+msgid "You do not have permission to generate meta descriptions."
+msgstr "Bạn không có quyền tạo mô tả meta."
+
+#: includes/Abilities/Meta_Description/Meta_Description.php:184
+msgid "You do not have permission to generate meta descriptions for this post."
+msgstr "Bạn không có quyền tạo mô tả meta cho bài đăng này."
+
+#: includes/Abilities/Meta_Description/Meta_Description.php:155
+#: includes/Abilities/Meta_Description/Meta_Description.php:279
+#: build-scripts/experiments/meta-description.js:1
+msgid "No meta description suggestion was generated."
+msgstr "Không có đề xuất mô tả meta nào được tạo."
+
+#: includes/Abilities/Meta_Description/Meta_Description.php:143
+msgid "Content is required to generate a meta description."
+msgstr "Cần có nội dung để tạo mô tả meta."
+
+#: includes/Abilities/Meta_Description/Meta_Description.php:82
+msgid "The character count of the description."
+msgstr "Số lượng ký tự của mô tả."
+
+#: includes/Abilities/Meta_Description/Meta_Description.php:78
+msgid "The meta description text."
+msgstr "Văn bản mô tả meta."
+
+#: includes/Abilities/Meta_Description/Meta_Description.php:74
+msgid "The meta description suggestion."
+msgstr "Đề xuất mô tả meta."
+
+#: includes/Abilities/Meta_Description/Meta_Description.php:70
+msgid "Generated meta description suggestion."
+msgstr "Đề xuất mô tả meta đã tạo."
+
+#: includes/Abilities/Meta_Description/Meta_Description.php:56
+msgid "The post ID to generate a meta description for. If provided without content, the post content will be used."
+msgstr "ID bài viết để tạo mô tả meta. Nếu được cung cấp mà không có nội dung, nội dung bài viết sẽ được sử dụng."
+
+#: includes/Abilities/Meta_Description/Meta_Description.php:52
+msgid "The post title, used to avoid duplication in the generated description."
+msgstr "Tiêu đề bài viết, được sử dụng để tránh trùng lặp trong mô tả đã tạo."
+
+#: includes/Abilities/Meta_Description/Meta_Description.php:48
+msgid "Post content to generate a meta description for."
+msgstr "Nội dung bài viết để tạo mô tả meta."
+
+#: includes/Abilities/Image/Generate_Image_Prompt.php:279
+msgid "Image prompt generation failed. Please ensure you have a connected provider that supports text generation."
+msgstr "Tạo lời nhắc hình ảnh thất bại. Vui lòng đảm bảo bạn đã kết nối với nhà cung cấp hỗ trợ tạo văn bản."
+
+#: includes/Abilities/Image/Generate_Image.php:281
+msgid "Image refinement failed. Please ensure you have a connected provider that supports image refinement, not just image generation."
+msgstr "Tinh chỉnh hình ảnh thất bại. Vui lòng đảm bảo bạn đã kết nối với nhà cung cấp hỗ trợ tinh chỉnh hình ảnh, không chỉ tạo hình ảnh."
+
+#: includes/Abilities/Image/Generate_Image.php:278
+msgid "Image generation failed. Please ensure you have a connected provider that supports image generation."
+msgstr "Tạo hình ảnh thất bại. Vui lòng đảm bảo bạn đã kết nối với nhà cung cấp hỗ trợ tạo hình ảnh."
+
+#. translators: %s: locale code, e.g. pl_PL
+#: includes/Abilities/Image/Alt_Text_Generation.php:439
+msgid "Ensure the alt text you return matches the language of this locale: %s."
+msgstr "Đảm bảo văn bản thay thế bạn trả về khớp với ngôn ngữ của ngôn ngữ này: %s."
+
+#: includes/Abilities/Image/Alt_Text_Generation.php:415
+msgid "Alt text generation failed. Please ensure you have a connected provider that supports both text generation and vision capabilities."
+msgstr "Tạo văn bản thay thế thất bại. Vui lòng đảm bảo bạn đã kết nối với nhà cung cấp hỗ trợ cả khả năng tạo văn bản và thị giác."
+
+#: includes/Abilities/Image/Alt_Text_Generation.php:102
+msgid "Whether the image was determined to be decorative."
+msgstr "Liệu hình ảnh có được xác định là trang trí hay không."
+
+#: includes/Abilities/Image/Alt_Text_Generation.php:98
+msgid "Generated alternative text for the image; may be empty when alt=\"\" is correct."
+msgstr "Văn bản thay thế được tạo cho hình ảnh; có thể trống khi alt=\"\" là đúng."
+
+#: includes/Abilities/Image/Alt_Text_Generation.php:81
+msgid "Structured metadata about how the image block is used, such as whether it is linked."
+msgstr "Siêu dữ liệu có cấu trúc về cách khối hình ảnh được sử dụng, chẳng hạn như liệu nó có được liên kết hay không."
+
+#: includes/Abilities/Excerpt_Generation/Excerpt_Generation.php:263
+msgid "Excerpt generation failed. Please ensure you have a connected provider that supports text generation."
+msgstr "Tạo đoạn trích thất bại. Vui lòng đảm bảo bạn đã kết nối với nhà cung cấp hỗ trợ tạo văn bản."
+
+#: includes/Abilities/Content_Classification/Content_Classification.php:466
+msgid "Could not parse AI response as valid suggestions."
+msgstr "Không thể phân tích phản hồi AI thành các gợi ý hợp lệ."
+
+#: includes/Abilities/Content_Classification/Content_Classification.php:411
+msgid "Term generation failed. Please ensure you have a connected provider that supports text generation."
+msgstr "Tạo thuật ngữ thất bại. Vui lòng đảm bảo bạn đã kết nối với nhà cung cấp hỗ trợ tạo văn bản."
+
+#: includes/Abilities/Content_Classification/Content_Classification.php:256
+msgid "You do not have permission to generate taxonomy suggestions."
+msgstr "Bạn không có quyền tạo gợi ý phân loại."
+
+#: includes/Abilities/Content_Classification/Content_Classification.php:244
+msgid "You do not have permission to generate taxonomy suggestions for this post."
+msgstr "Bạn không có quyền tạo gợi ý phân loại cho bài viết này."
+
+#: includes/Abilities/Content_Classification/Content_Classification.php:186
+msgid "Content is required to generate taxonomy suggestions."
+msgstr "Cần có nội dung để tạo gợi ý phân loại."
+
+#. translators: %s: Taxonomy name.
+#: includes/Abilities/Content_Classification/Content_Classification.php:145
+msgid "Taxonomy \"%s\" does not exist."
+msgstr "Phân loại \"%s\" không tồn tại."
+
+#: includes/Abilities/Content_Classification/Content_Classification.php:110
+msgid "Parent term name for hierarchical taxonomies."
+msgstr "Tên thuật ngữ cha cho các phân loại có phân cấp."
+
+#: includes/Abilities/Content_Classification/Content_Classification.php:106
+msgid "Whether this is a new term or an existing one."
+msgstr "Đây là một thuật ngữ mới hay một thuật ngữ đã tồn tại."
+
+#: includes/Abilities/Content_Classification/Content_Classification.php:102
+msgid "Confidence score between 0 and 1."
+msgstr "Điểm tin cậy giữa 0 và 1."
+
+#: includes/Abilities/Content_Classification/Content_Classification.php:98
+msgid "The suggested term name."
+msgstr "Tên thuật ngữ được đề xuất."
+
+#: includes/Abilities/Content_Classification/Content_Classification.php:92
+msgid "Generated taxonomy term suggestions."
+msgstr "Các gợi ý thuật ngữ phân loại đã tạo."
+
+#: includes/Abilities/Content_Classification/Content_Classification.php:73
+msgid "Maximum number of suggestions to generate."
+msgstr "Số lượng gợi ý tối đa để tạo."
+
+#: includes/Abilities/Content_Classification/Content_Classification.php:66
+msgid "The suggestion strategy: existing_only or allow_new."
+msgstr "Chiến lược gợi ý: existing_only (chỉ tồn tại) hoặc allow_new (cho phép mới)."
+
+#: includes/Abilities/Content_Classification/Content_Classification.php:61
+msgid "The taxonomy to generate suggestions for (e.g., post_tag, category)."
+msgstr "Phân loại để tạo gợi ý (ví dụ: post_tag, category)."
+
+#: includes/Abilities/Content_Classification/Content_Classification.php:52
+msgid "Content to generate taxonomy suggestions for."
+msgstr "Nội dung để tạo gợi ý phân loại."
+
+#: includes/Abilities/Image/Alt_Text_Generation.php:433
+msgid "Ensure the alt text you return matches the language of the content in the <additional-context> tag."
+msgstr "Đảm bảo văn bản thay thế (alt text) bạn trả về trùng khớp với ngôn ngữ của nội dung trong thẻ <additional-context>."
+
+#: includes/Features/Loader.php:136
+msgid "Attempted to register invalid feature. All features must implement the Feature interface."
+msgstr "Đã cố gắng đăng ký tính năng không hợp lệ. Tất cả các tính năng phải triển khai giao diện Feature."
+
+#: includes/Features/Loader.php:127
+msgid "Attempted to register invalid feature. Default features must be class-strings."
+msgstr "Đã cố gắng đăng ký tính năng không hợp lệ. Các tính năng mặc định phải là chuỗi lớp."
+
+#: includes/Features/Image_Generation/Image_Generation.php:42
+msgid "Image Generation and Editing"
+msgstr "Tạo và Chỉnh sửa hình ảnh"
+
+#: includes/Experiments/Alt_Text_Generation/Alt_Text_Generation.php:217
+#: includes/Experiments/Alt_Text_Generation/Alt_Text_Generation.php:342
+msgid "Alt Text"
+msgstr "Văn bản thay thế"
+
+#: includes/Deprecated.php:174 includes/Deprecated.php:192
+msgid "This action will be removed in v1.0"
+msgstr "Hành động này sẽ bị xóa trong v1.0"
+
+#: includes/Deprecated.php:42 includes/Deprecated.php:61
+#: includes/Deprecated.php:80 includes/Deprecated.php:99
+#: includes/Deprecated.php:118 includes/Deprecated.php:137
+#: includes/Deprecated.php:156
+msgid "This filter will be removed in v1.0"
+msgstr "Bộ lọc này sẽ bị xóa trong v1.0"
+
+#: includes/Main.php:197
+msgid "Various AI features and experiments."
+msgstr "Các tính năng và thử nghiệm AI khác nhau."
+
+#. translators: 1. The version the upgrade failed on, 2. The error message.
+#: includes/Admin/Upgrades.php:131
+msgid "WordPress AI failed to upgrade to %1$s. Migration version %2$s failed with the following error: %3$s. Please deactivate and reactivate the plugin to try again."
+msgstr "AI WordPress không nâng cấp lên %1$s. Phiên bản di chuyển %2$s đã thất bại với lỗi sau: %3$s. Vui lòng tắt và bật lại plugin để thử lại."
+
+#: includes/Abstracts/Abstract_Feature.php:196
+msgid "This will be removed in v1.0"
+msgstr "Điều này sẽ bị xóa trong v1.0"
+
+#: includes/Abstracts/Abstract_Feature.php:113
+msgid "Feature description is required in load_metadata()."
+msgstr "Mô tả tính năng là bắt buộc trong load_metadata()."
+
+#: includes/Abstracts/Abstract_Feature.php:107
+msgid "Feature label is required in load_metadata()."
+msgstr "Nhãn tính năng là bắt buộc trong load_metadata()."
+
+#: includes/Abstracts/Abstract_Feature.php:100
+msgid "Invalid Feature id returned by ::get_id()."
+msgstr "ID tính năng không hợp lệ được trả về bởi ::get_id()."
+
+#: includes/Abilities/Title_Generation/Title_Generation.php:52
+msgid "Additional context to use when generating title suggestions. This can either be a string of additional context or can be a post ID that will then be used to get context from that post (if it exists). If no content is provided but a valid post ID is used here, the content from that post will be used."
+msgstr "Ngữ cảnh bổ sung để sử dụng khi tạo gợi ý tiêu đề. Đây có thể là một chuỗi ngữ cảnh bổ sung hoặc có thể là ID bài đăng sau đó sẽ được sử dụng để lấy ngữ cảnh từ bài đăng đó (nếu tồn tại). Nếu không có nội dung nào được cung cấp nhưng một ID bài đăng hợp lệ được sử dụng ở đây, nội dung từ bài đăng đó sẽ được sử dụng."
+
+#: includes/Abilities/Image/Generate_Image.php:273
+msgid "The reference image is not valid base64-encoded data."
+msgstr "Hình ảnh tham chiếu không phải là dữ liệu được mã hóa base64 hợp lệ."
+
+#: includes/Abilities/Image/Generate_Image.php:57
+msgid "Optional base64-encoded image to use as a reference image for edits."
+msgstr "Hình ảnh mã hóa base64 tùy chọn để sử dụng làm hình ảnh tham chiếu cho các chỉnh sửa."
+
+#. Plugin Name of the plugin
+#: ai.php includes/Logging/Logging_Http_Transporter.php:311
+#: includes/Main.php:196 includes/Settings/Settings_Page.php:67
+#: includes/Settings/Settings_Page.php:68 build/routes/ai-home/content.js:24374
+msgid "AI"
+msgstr "AI"
+
+#: includes/Admin/Dashboard/AI_Status_Widget.php:138 includes/Main.php:166
+msgid "Connectors"
+msgstr "Trình kết nối"
+
+#: includes/Settings/Settings_Page.php:156
+msgid "Admin Experiments"
+msgstr "Thử nghiệm Quản trị"
+
+#: includes/Settings/Settings_Page.php:151
+msgid "Editor Experiments"
+msgstr "Thử nghiệm Trình soạn thảo"
+
+#: includes/Experiments/Editorial_Notes/Editorial_Notes.php:112
+msgid "WordPress AI"
+msgstr "AI của WordPress"
+
+#: includes/Features/Image_Generation/Image_Generation.php:69
+#: includes/Features/Image_Generation/Image_Generation.php:70
+#: includes/Features/Image_Generation/Image_Generation.php:84
+#: includes/Features/Image_Generation/Image_Generation.php:106
+#: build-scripts/features/image-generation.js:9
+msgid "Generate Image"
+msgstr "Tạo hình ảnh"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:539
+msgid "For more information:"
+msgstr "Để biết thêm thông tin:"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:533
+msgid "Click \"Invoke Ability\" to execute it and see the result."
+msgstr "Nhấp vào \"Gọi Khả năng\" để thực thi và xem kết quả."
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:532
+msgid "Use \"Validate Input\" to check your JSON against the schema."
+msgstr "Sử dụng \"Xác thực Đầu vào\" để kiểm tra JSON của bạn so với lược đồ."
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:531
+msgid "Edit the pre-filled Input Data if the ability accepts JSON parameters."
+msgstr "Chỉnh sửa Dữ liệu Đầu vào được điền sẵn nếu khả năng chấp nhận các tham số JSON."
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:530
+msgid "Click \"Test\" next to an ability in the list."
+msgstr "Nhấp vào \"Kiểm tra\" bên cạnh một khả năng trong danh sách."
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:528
+msgid "You can test any ability directly from this screen:"
+msgstr "Bạn có thể kiểm tra bất kỳ khả năng nào trực tiếp từ màn hình này:"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:526
+msgid "Testing"
+msgstr "Kiểm tra"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:514
+msgid "Every ability is associated with a provider that indicates where it comes from:"
+msgstr "Mỗi khả năng được liên kết với một nhà cung cấp cho biết nó đến từ đâu:"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:512
+msgid "Providers"
+msgstr "Nhà cung cấp"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:503
+msgid "The Abilities Explorer lets you browse every registered ability, inspect its schemas, and test it with custom input right from the admin."
+msgstr "Trình khám phá Khả năng cho phép bạn duyệt qua mọi khả năng đã đăng ký, kiểm tra lược đồ của chúng và kiểm tra chúng với đầu vào tùy chỉnh ngay từ khu vực quản trị."
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:502
+msgid "Abilities are a standardized way for WordPress core, plugins, and themes to expose discrete units of functionality. Each ability has a name, optional input/output schemas, and can be invoked programmatically."
+msgstr "Khả năng là một cách tiêu chuẩn hóa để lõi WordPress, plugin và giao diện hiển thị các đơn vị chức năng riêng biệt. Mỗi khả năng có một tên, sơ đồ đầu vào/đầu ra tùy chọn và có thể được gọi theo chương trình."
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:500
+msgid "Overview"
+msgstr "Tổng quan"
+
+#: includes/Experiments/Abilities_Explorer/Ability_Handler.php:164
+#: build-scripts/experiments/connector-approval.js:1
+msgid "Plugin"
+msgstr "Plugin"
+
+#: includes/Experiments/Abilities_Explorer/Abilities_Explorer.php:91
+#: build-scripts/experiments/meta-description.js:3
+msgid "Copied!"
+msgstr "Đã sao chép!"
+
+#: includes/Abilities/Editorial_Notes/Editorial_Notes.php:235
+msgid "You do not have permission to run AI reviews."
+msgstr "Bạn không có quyền chạy đánh giá AI."
+
+#: includes/Abilities/Editorial_Notes/Editorial_Notes.php:215
+msgid "You do not have permission to run AI reviews on this post."
+msgstr "Bạn không có quyền chạy đánh giá AI trên bài viết này."
+
+#: includes/Abilities/Editorial_Notes/Editorial_Notes.php:159
+msgid "Block content is required to perform a review."
+msgstr "Nội dung khối là bắt buộc để thực hiện đánh giá."
+
+#: includes/Abilities/Editorial_Notes/Editorial_Notes.php:126
+msgid "The suggestion text."
+msgstr "Văn bản gợi ý."
+
+#: includes/Abilities/Editorial_Notes/Editorial_Notes.php:122
+msgid "The review type."
+msgstr "Loại đánh giá."
+
+#: includes/Abilities/Editorial_Notes/Editorial_Notes.php:116
+msgid "Review suggestions for the block."
+msgstr "Đánh giá các gợi ý cho khối."
+
+#: includes/Abilities/Editorial_Notes/Editorial_Notes.php:96
+msgid "Review types to perform."
+msgstr "Các loại đánh giá để thực hiện."
+
+#: includes/Abilities/Editorial_Notes/Editorial_Notes.php:88
+msgid "Existing Note texts for this block from prior review runs, used to avoid repeating suggestions."
+msgstr "Văn bản ghi chú hiện có cho khối này từ các lần chạy đánh giá trước, được sử dụng để tránh lặp lại các gợi ý."
+
+#: includes/Abilities/Editorial_Notes/Editorial_Notes.php:81
+msgid "ID of the post being reviewed."
+msgstr "ID của bài viết đang được đánh giá."
+
+#: includes/Abilities/Editorial_Notes/Editorial_Notes.php:76
+msgid "Surrounding content to improve review relevance."
+msgstr "Nội dung xung quanh để cải thiện sự liên quan của đánh giá."
+
+#: includes/Abilities/Editorial_Notes/Editorial_Notes.php:71
+msgid "The plain-text content of the block to review."
+msgstr "Nội dung văn bản thuần túy của khối để đánh giá."
+
+#: includes/Abilities/Editorial_Notes/Editorial_Notes.php:66
+#: includes/Abilities/Editorial_Updates/Editorial_Updates.php:45
+msgid "The block type, e.g. core/paragraph, core/heading."
+msgstr "Loại khối, ví dụ: core/paragraph, core/heading."
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:540
+msgid "Abilities API Documentation"
+msgstr "Tài liệu API về khả năng"
+
+#: includes/Settings/Settings_Page.php:157
+msgid "AI-powered experiments for the WordPress admin area, including exploration and testing tools."
+msgstr "Các thử nghiệm ứng dụng AI dành cho khu vực quản trị WordPress, bao gồm các công cụ khám phá và kiểm thử."
+
+#: includes/Settings/Settings_Page.php:152
+msgid "AI-powered experiments for the block editor, including content generation and enhancement tools."
+msgstr "Các thử nghiệm ứng dụng AI dành cho trình soạn thảo khối (block editor), bao gồm các công cụ tạo và tối ưu hóa nội dung."
+
+#: includes/Connector_Approval/Admin_Notice.php:167
+#: build-scripts/experiments/alt-text-generation.js:1
+#: build-scripts/experiments/connector-approval.js:1
+#: build/routes/ai-home/content.js:13006
+msgid "Dismiss"
+msgstr "Bỏ qua"
+
+#: includes/Experiments/Alt_Text_Generation/Alt_Text_Generation.php:257
+#: build-scripts/experiments/alt-text-generation-media-editor.js:1
+#: build-scripts/experiments/alt-text-generation.js:1
+msgid "Generate Alt Text"
+msgstr "Tạo mô tả cho SEO"
+
+#: includes/Features/Image_Generation/Image_Generation.php:172
+msgid "Generates a prompt from post content that can be used to generate an image"
+msgstr "Tạo một câu lệnh từ nội dung bài viết có thể được sử dụng để tạo ảnh"
+
+#: includes/Features/Image_Generation/Image_Generation.php:171
+msgid "Image Prompt Generation"
+msgstr "Tạo câu lệnh hình ảnh"
+
+#: includes/Experiments/Alt_Text_Generation/Alt_Text_Generation.php:231
+#: includes/Experiments/Alt_Text_Generation/Alt_Text_Generation.php:339
+#: build-scripts/experiments/alt-text-generation-media.js:1
+#: build-scripts/experiments/content-resizing.js:5
+#: build-scripts/experiments/meta-description.js:3
+#: build-scripts/experiments/title-generation.js:1
+msgid "Regenerate"
+msgstr "Tạo lại"
+
+#: includes/Experiments/Alt_Text_Generation/Alt_Text_Generation.php:51
+msgid "Alt Text Generation"
+msgstr "Tính năng tạo văn bản thay thế"
+
+#: includes/Admin/Dashboard/AI_Status_Widget.php:176
+msgid "Experiments"
+msgstr "Thử nghiệm"
+
+#: includes/Abilities/Image/Import_Base64_Image.php:77
+msgid "The value of the meta data."
+msgstr "Giá trị của dữ liệu meta."
+
+#: includes/Abilities/Image/Import_Base64_Image.php:72
+msgid "The key of the meta data."
+msgstr "Khóa của dữ liệu meta."
+
+#: includes/Abilities/Image/Import_Base64_Image.php:65
+msgid "Optional meta data to save with the image."
+msgstr "Dữ liệu meta tùy chọn để lưu cùng với hình ảnh."
+
+#: includes/Abilities/Image/Generate_Image_Prompt.php:190
+msgid "You do not have permission to generate image prompts."
+msgstr "Bạn không có quyền tạo câu lệnh hình ảnh."
+
+#: includes/Abilities/Image/Generate_Image_Prompt.php:138
+msgid "No prompt was generated."
+msgstr "Không có câu lệnh nào được tạo."
+
+#: includes/Abilities/Image/Generate_Image_Prompt.php:122
+msgid "Content is required to generate a prompt."
+msgstr "Cần có nội dung để tạo câu lệnh."
+
+#: includes/Abilities/Image/Generate_Image_Prompt.php:72
+msgid "The image generation prompt."
+msgstr "Câu lệnh tạo hình ảnh."
+
+#: includes/Abilities/Image/Generate_Image_Prompt.php:57
+msgid "Any additional style instructions to apply to the generated image."
+msgstr "Mọi hướng dẫn kiểu dáng bổ sung để áp dụng cho hình ảnh được tạo."
+
+#: includes/Abilities/Image/Generate_Image_Prompt.php:52
+msgid "Any additional context to help generate the prompt. This can either be a string of additional context or can be a post ID that will then be used to get context from that post (if it exists)."
+msgstr "Bất kỳ ngữ cảnh bổ sung nào để giúp tạo câu lệnh. Đây có thể là một chuỗi ngữ cảnh bổ sung hoặc có thể là ID bài đăng sau đó sẽ được sử dụng để lấy ngữ cảnh từ bài đăng đó (nếu tồn tại)."
+
+#: includes/Abilities/Image/Generate_Image_Prompt.php:47
+msgid "The content to use as inspiration for the generated image."
+msgstr "Nội dung dùng làm cảm hứng cho hình ảnh được tạo."
+
+#: includes/Abilities/Image/Generate_Image.php:109
+msgid "The model name."
+msgstr "Tên mô hình."
+
+#: includes/Abilities/Image/Generate_Image.php:105
+msgid "The model ID."
+msgstr "ID mô hình."
+
+#: includes/Abilities/Image/Generate_Image.php:101
+msgid "Information about the model that generated the image."
+msgstr "Thông tin về mô hình đã tạo hình ảnh."
+
+#: includes/Abilities/Image/Generate_Image.php:95
+msgid "The provider type."
+msgstr "Loại nhà cung cấp."
+
+#: includes/Abilities/Image/Generate_Image.php:91
+msgid "The provider name."
+msgstr "Tên nhà cung cấp."
+
+#: includes/Abilities/Image/Generate_Image.php:87
+msgid "The provider ID."
+msgstr "ID nhà cung cấp."
+
+#: includes/Abilities/Image/Generate_Image.php:83
+msgid "Information about the provider that generated the image."
+msgstr "Thông tin về nhà cung cấp đã tạo hình ảnh."
+
+#: includes/Abilities/Image/Generate_Image.php:75
+msgid "Generated image data."
+msgstr "Dữ liệu hình ảnh được tạo."
+
+#: includes/Abilities/Image/Alt_Text_Generation.php:582
+msgid "You do not have permission to generate alt text."
+msgstr "Bạn không có quyền tạo văn bản thay thế."
+
+#: includes/Abilities/Image/Alt_Text_Generation.php:575
+msgid "You do not have permission to edit this attachment."
+msgstr "Bạn không có quyền chỉnh sửa tệp đính kèm này."
+
+#: includes/Abilities/Image/Alt_Text_Generation.php:429
+msgid "Generate alt text for this image."
+msgstr "Tạo mô tả SEO cho hình ảnh này."
+
+#: includes/Abilities/Image/Alt_Text_Generation.php:291
+msgid "Could not retrieve image URL from attachment."
+msgstr "Không thể truy xuất URL hình ảnh từ tệp đính kèm."
+
+#: includes/Abilities/Image/Alt_Text_Generation.php:268
+msgid "The specified attachment is not an image."
+msgstr "Tệp đính kèm được chỉ định không phải là hình ảnh."
+
+#. translators: %d: Attachment ID.
+#: includes/Abilities/Image/Alt_Text_Generation.php:260
+#: includes/Abilities/Image/Alt_Text_Generation.php:567
+msgid "Attachment with ID %d not found."
+msgstr "Không tìm thấy tệp đính kèm có ID %d."
+
+#: includes/Abilities/Image/Alt_Text_Generation.php:210
+msgid "Either attachment_id or image_url must be provided."
+msgstr "Phải cung cấp attachment_id hoặc image_url."
+
+#: includes/Abilities/Image/Alt_Text_Generation.php:201
+#: includes/Abilities/Image/Alt_Text_Generation.php:308
+msgid "Could not read the downloaded image file."
+msgstr "Không thể đọc tệp hình ảnh đã tải xuống."
+
+#: includes/Abilities/Image/Alt_Text_Generation.php:77
+msgid "Optional context about the image or surrounding content to improve alt text relevance."
+msgstr "Ngữ cảnh tùy chọn về hình ảnh hoặc nội dung xung quanh để cải thiện mức độ liên quan của văn bản thay thế."
+
+#: includes/Abilities/Image/Alt_Text_Generation.php:72
+msgid "URL or data URI of the image to generate alt text for. Used if attachment_id is not provided."
+msgstr "URL hoặc URI dữ liệu của hình ảnh để tạo văn bản thay thế. Được sử dụng nếu attachment_id không được cung cấp."
+
+#: includes/Abilities/Image/Alt_Text_Generation.php:67
+msgid "The attachment ID of the image to generate alt text for."
+msgstr "ID tệp đính kèm của hình ảnh để tạo văn bản thay thế."
+
+#: includes/Experiments/Summarization/Summarization.php:41
+msgid "Content Summarization"
+msgstr "Tóm tắt nội dung"
+
+#: includes/Features/Image_Generation/Image_Generation.php:163
+msgid "Imports a base64 encoded image into the media library"
+msgstr "Nhập hình ảnh được mã hóa base64 vào thư viện phương tiện"
+
+#: includes/Features/Image_Generation/Image_Generation.php:162
+msgid "Base64 Image Import"
+msgstr "Nhập hình ảnh Base64"
+
+#: includes/Admin/Dashboard/AI_Capabilities_Widget.php:200
+msgid "Image Generation"
+msgstr "Tạo hình ảnh"
+
+#: includes/Experiments/Excerpt_Generation/Excerpt_Generation.php:40
+msgid "Excerpt Generation"
+msgstr "Tạo đoạn trích"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:478
+msgid "Unknown error occurred."
+msgstr "Đã xảy ra lỗi không xác định."
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:471
+msgid "Ability invoked successfully."
+msgstr "Khả năng đã được gọi thành công."
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:458
+msgid "Input validation failed."
+msgstr "Xác thực đầu vào không thành công."
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:435
+msgid "Ability slug is required."
+msgstr "Yêu cầu slug của khả năng."
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:423
+msgid "Insufficient permissions."
+msgstr "Không đủ quyền."
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:337
+msgid "Input Schema Reference"
+msgstr "Tham chiếu lược đồ đầu vào"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:331
+msgid "Result"
+msgstr "Kết quả"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:323
+msgid "Clear Result"
+msgstr "Xóa kết quả"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:320
+msgid "Validate Input"
+msgstr "Xác thực đầu vào"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:317
+msgid "Invoke Ability"
+msgstr "Gọi khả năng"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:307
+msgid "View the results below"
+msgstr "Xem kết quả bên dưới"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:306
+msgid "Click \"Invoke Ability\" to execute the ability with your input"
+msgstr "Nhấp vào \"Gọi khả năng\" để thực thi khả năng với đầu vào của bạn"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:305
+msgid "Click \"Validate Input\" to check your JSON is correct"
+msgstr "Nhấp vào \"Xác thực đầu vào\" để kiểm tra JSON của bạn có đúng không"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:304
+msgid "Edit the JSON input below with your test data"
+msgstr "Chỉnh sửa đầu vào JSON bên dưới với dữ liệu thử nghiệm của bạn"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:302
+msgid "How to test:"
+msgstr "Cách kiểm tra:"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:297
+msgid "Edit the JSON input below to test the ability. The input will be validated against the input schema if available."
+msgstr "Chỉnh sửa đầu vào JSON bên dưới để kiểm tra khả năng. Đầu vào sẽ được xác thực dựa trên lược đồ đầu vào nếu có."
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:291
+msgid "This ability does not accept any input parameters. Simply click \"Invoke Ability\" to execute it."
+msgstr "Khả năng này không chấp nhận bất kỳ tham số đầu vào nào. Chỉ cần nhấp vào \"Gọi Khả năng\" để thực thi."
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:290
+msgid "No Input Required"
+msgstr "Không yêu cầu đầu vào"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:286
+msgid "Input Data"
+msgstr "Dữ liệu đầu vào"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:278
+msgid "Test Ability:"
+msgstr "Kiểm tra Khả năng:"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:275
+msgid "View Details"
+msgstr "Xem chi tiết"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:228
+msgid "Raw Data"
+msgstr "Dữ liệu thô"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:219
+msgid "Output Schema"
+msgstr "Schema đầu ra"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:211
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:221
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:230
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:339
+msgid "Copy"
+msgstr "Sao chép"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:209
+msgid "Input Schema"
+msgstr "Lược đồ đầu vào"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:198
+msgid "Details"
+msgstr "Chi tiết"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:192
+msgid "Description"
+msgstr "Mô tả"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:184
+msgid "Test Ability"
+msgstr "Kiểm tra Khả năng"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:166
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:254
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:446
+msgid "Ability not found."
+msgstr "Không tìm thấy khả năng."
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:159
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:247
+msgid "No ability specified."
+msgstr "Không có khả năng nào được chỉ định."
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:143
+msgid "Search Abilities"
+msgstr "Tìm kiếm khả năng"
+
+#: includes/Admin/Dashboard/AI_Capabilities_Widget.php:91
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:109
+msgid "Total Abilities"
+msgstr "Tổng số khả năng"
+
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:68
+#: includes/Experiments/Connector_Approval/Admin_Page.php:120
+msgid "You do not have sufficient permissions to access this page."
+msgstr "Bạn không có đủ quyền để truy cập trang này."
+
+#: includes/Experiments/Abilities_Explorer/Ability_Table.php:309
+msgid "Filter"
+msgstr "Bộ lọc"
+
+#: includes/Admin/Dashboard/AI_Capabilities_Widget.php:103
+#: includes/Experiments/Abilities_Explorer/Ability_Handler.php:165
+#: includes/Experiments/Abilities_Explorer/Ability_Table.php:299
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:124
+#: build-scripts/experiments/connector-approval.js:1
+msgid "Theme"
+msgstr "Chủ đề"
+
+#: includes/Admin/Dashboard/AI_Capabilities_Widget.php:99
+#: includes/Experiments/Abilities_Explorer/Ability_Table.php:298
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:119
+msgid "Plugins"
+msgstr "Plugin"
+
+#: includes/Admin/Dashboard/AI_Capabilities_Widget.php:95
+#: includes/Experiments/Abilities_Explorer/Ability_Handler.php:163
+#: includes/Experiments/Abilities_Explorer/Ability_Table.php:297
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:114
+msgid "Core"
+msgstr "Lõi"
+
+#: includes/Experiments/Abilities_Explorer/Ability_Table.php:296
+msgid "All Providers"
+msgstr "Tất cả nhà cung cấp"
+
+#: includes/Experiments/Abilities_Explorer/Ability_Table.php:278
+msgid "Test"
+msgstr "Kiểm tra"
+
+#: includes/Experiments/Abilities_Explorer/Ability_Table.php:276
+msgid "View"
+msgstr "Xem"
+
+#: includes/Experiments/Abilities_Explorer/Ability_Table.php:66
+#: build-scripts/admin/ai-request-logs.js:4
+#: build-scripts/admin/ai-request-logs.js:16
+#: build-scripts/admin/ai-request-logs.js:22
+#: build-scripts/experiments/connector-approval.js:1
+msgid "Actions"
+msgstr "Hành động"
+
+#: includes/Experiments/Abilities_Explorer/Ability_Table.php:65
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:201
+#: build-scripts/admin/ai-request-logs.js:2
+#: build/routes/ai-home/content.js:23501 build/routes/ai-home/content.js:23546
+msgid "Provider"
+msgstr "Nhà cung cấp"
+
+#: includes/Experiments/Abilities_Explorer/Ability_Table.php:64
+msgid "Slug"
+msgstr "Slug"
+
+#: includes/Experiments/Abilities_Explorer/Ability_Table.php:63
+msgid "Name"
+msgstr "Tên"
+
+#: includes/Experiments/Abilities_Explorer/Abilities_Explorer.php:92
+msgid "Failed to copy"
+msgstr "Sao chép thất bại"
+
+#: includes/Experiments/Abilities_Explorer/Abilities_Explorer.php:90
+msgid "Are you sure you want to invoke this ability?"
+msgstr "Bạn có chắc chắn muốn gọi khả năng này không?"
+
+#: includes/Experiments/Abilities_Explorer/Abilities_Explorer.php:89
+msgid "Invalid JSON input"
+msgstr "Đầu vào JSON không hợp lệ"
+
+#: includes/Experiments/Abilities_Explorer/Abilities_Explorer.php:88
+#: build-scripts/admin/ai-request-logs.js:2
+msgid "Error"
+msgstr "Lỗi"
+
+#: includes/Experiments/Abilities_Explorer/Abilities_Explorer.php:87
+msgid "Success!"
+msgstr "Thành công!"
+
+#: includes/Experiments/Abilities_Explorer/Abilities_Explorer.php:86
+msgid "Invoking ability..."
+msgstr "Đang gọi khả năng..."
+
+#: includes/Experiments/Abilities_Explorer/Abilities_Explorer.php:46
+msgid "Discover, inspect, test, and document all abilities registered via the WordPress Abilities API."
+msgstr "Khám phá, kiểm tra, thử nghiệm và lập tài liệu tất cả các khả năng được đăng ký qua API Khả năng của WordPress."
+
+#: includes/Abilities/Summarization/Summarization.php:199
+msgid "You do not have permission to summarize content."
+msgstr "Bạn không có quyền tóm tắt nội dung."
+
+#: includes/Abilities/Summarization/Summarization.php:179
+msgid "You do not have permission to summarize this post."
+msgstr "Bạn không có quyền tóm tắt bài đăng này."
+
+#: includes/Abilities/Summarization/Summarization.php:147
+msgid "No summary was generated."
+msgstr "Không có tóm tắt nào được tạo."
+
+#: includes/Abilities/Summarization/Summarization.php:131
+msgid "Content is required to generate a summary."
+msgstr "Nội dung là bắt buộc để tạo tóm tắt."
+
+#: includes/Abilities/Summarization/Summarization.php:81
+msgid "The summary of the content."
+msgstr "Bản tóm tắt của nội dung."
+
+#: includes/Abilities/Summarization/Summarization.php:67
+msgid "The length of the summary."
+msgstr "Độ dài của bản tóm tắt."
+
+#: includes/Abilities/Summarization/Summarization.php:61
+msgid "Additional context to use when summarizing the content. This can either be a string of additional context or can be a post ID that will then be used to get context from that post (if it exists). If no content is provided but a valid post ID is used here, the content from that post will be used."
+msgstr "Ngữ cảnh bổ sung để sử dụng khi tóm tắt nội dung. Đây có thể là một chuỗi ngữ cảnh bổ sung hoặc có thể là ID bài đăng sẽ được sử dụng để lấy ngữ cảnh từ bài đăng đó (nếu tồn tại). Nếu không có nội dung nào được cung cấp nhưng một ID bài đăng hợp lệ được sử dụng ở đây, nội dung từ bài đăng đó sẽ được sử dụng."
+
+#: includes/Abilities/Summarization/Summarization.php:56
+msgid "Content to summarize."
+msgstr "Nội dung cần tóm tắt."
+
+#: includes/Abilities/Image/Import_Base64_Image.php:337
+msgid "Failed to retrieve attachment data."
+msgstr "Không thể truy xuất dữ liệu đính kèm."
+
+#: includes/Abilities/Image/Import_Base64_Image.php:275
+msgid "Failed to write image data to temporary file."
+msgstr "Không thể ghi dữ liệu hình ảnh vào tệp tạm thời."
+
+#: includes/Abilities/Image/Import_Base64_Image.php:261
+msgid "Failed to decode base64 image data."
+msgstr "Không thể giải mã dữ liệu hình ảnh base64."
+
+#: includes/Abilities/Image/Import_Base64_Image.php:217
+msgid "You do not have permission to import images."
+msgstr "Bạn không có quyền nhập hình ảnh."
+
+#: includes/Abilities/Image/Import_Base64_Image.php:175
+msgid "No base64 data found in the provided input."
+msgstr "Không tìm thấy dữ liệu base64 trong đầu vào được cung cấp."
+
+#: includes/Abilities/Image/Import_Base64_Image.php:165
+msgid "The data is not a valid image."
+msgstr "Dữ liệu không phải là hình ảnh hợp lệ."
+
+#: includes/Abilities/Image/Import_Base64_Image.php:157
+msgid "The data is not a valid base64 encoded string."
+msgstr "Dữ liệu không phải là một chuỗi được mã hóa base64 hợp lệ."
+
+#: includes/Abilities/Image/Import_Base64_Image.php:124
+msgid "Attachment alt text."
+msgstr "Văn bản thay thế tệp đính kèm."
+
+#: includes/Abilities/Image/Import_Base64_Image.php:120
+msgid "Attachment description."
+msgstr "Mô tả tệp đính kèm."
+
+#: includes/Abilities/Image/Import_Base64_Image.php:116
+msgid "Attachment title."
+msgstr "Tiêu đề tệp đính kèm."
+
+#: includes/Abilities/Image/Import_Base64_Image.php:112
+msgid "Attachment filename."
+msgstr "Tên tệp đính kèm."
+
+#: includes/Abilities/Image/Import_Base64_Image.php:108
+msgid "Attachment URL."
+msgstr "URL tệp đính kèm."
+
+#: includes/Abilities/Image/Import_Base64_Image.php:104
+msgid "Attachment ID."
+msgstr "ID tệp đính kèm."
+
+#: includes/Abilities/Image/Import_Base64_Image.php:100
+msgid "Imported image data."
+msgstr "Dữ liệu hình ảnh đã nhập."
+
+#: includes/Abilities/Image/Import_Base64_Image.php:61
+msgid "The MIME type of the image."
+msgstr "Loại MIME của hình ảnh."
+
+#: includes/Abilities/Image/Import_Base64_Image.php:56
+msgid "The alt text of the image."
+msgstr "Văn bản thay thế của hình ảnh."
+
+#: includes/Abilities/Image/Import_Base64_Image.php:51
+msgid "The description of the image."
+msgstr "Mô tả của hình ảnh."
+
+#: includes/Abilities/Image/Import_Base64_Image.php:46
+msgid "The title of the image."
+msgstr "Tiêu đề của hình ảnh."
+
+#: includes/Abilities/Image/Import_Base64_Image.php:41
+msgid "The filename of the image."
+msgstr "Tên tệp của hình ảnh."
+
+#: includes/Abilities/Image/Import_Base64_Image.php:36
+msgid "The base64 encoded image data to import into the media library."
+msgstr "Dữ liệu hình ảnh được mã hóa base64 để nhập vào thư viện phương tiện."
+
+#: includes/Abilities/Image/Generate_Image.php:216
+#: includes/Abilities/Image/Generate_Image.php:231
+msgid "No image data was generated."
+msgstr "Không có dữ liệu hình ảnh nào được tạo."
+
+#: includes/Abilities/Image/Generate_Image.php:159
+msgid "You do not have permission to generate images."
+msgstr "Bạn không có quyền tạo hình ảnh."
+
+#: includes/Abilities/Image/Generate_Image.php:139
+msgid "No image was generated."
+msgstr "Không có hình ảnh nào được tạo."
+
+#: includes/Abilities/Image/Generate_Image.php:79
+msgid "The base64 encoded image data."
+msgstr "Dữ liệu hình ảnh được mã hóa base64."
+
+#: includes/Abilities/Image/Generate_Image.php:52
+msgid "Prompt used to generate an image."
+msgstr "Câu lệnh dùng để tạo hình ảnh."
+
+#: includes/Abilities/Excerpt_Generation/Excerpt_Generation.php:183
+msgid "You do not have permission to generate excerpts."
+msgstr "Bạn không có quyền tạo đoạn trích."
+
+#: includes/Abilities/Excerpt_Generation/Excerpt_Generation.php:163
+#: includes/Abilities/Image/Generate_Image_Prompt.php:170
+msgid "You do not have permission to generate excerpts for this post."
+msgstr "Bạn không có quyền tạo đoạn trích cho bài viết này."
+
+#: includes/Abilities/Excerpt_Generation/Excerpt_Generation.php:131
+msgid "No excerpt suggestion was generated."
+msgstr "Không có gợi ý đoạn trích nào được tạo."
+
+#: includes/Abilities/Excerpt_Generation/Excerpt_Generation.php:115
+msgid "Content is required to generate an excerpt suggestion."
+msgstr "Cần có nội dung để tạo gợi ý đoạn trích."
+
+#: includes/Abilities/Excerpt_Generation/Excerpt_Generation.php:66
+msgid "Generated excerpt."
+msgstr "Mô tả ngắn đã tạo."
+
+#: includes/Abilities/Excerpt_Generation/Excerpt_Generation.php:52
+msgid "Additional context to use when generating an excerpt suggestion for the content. This can either be a string of additional context or can be a post ID that will then be used to get context from that post (if it exists). If no content is provided but a valid post ID is used here, the content from that post will be used."
+msgstr "Ngữ cảnh bổ sung để sử dụng khi tạo gợi ý đoạn trích cho nội dung. Đây có thể là một chuỗi ngữ cảnh bổ sung hoặc có thể là ID bài viết sẽ được sử dụng để lấy ngữ cảnh từ bài viết đó (nếu tồn tại). Nếu không có nội dung nào được cung cấp nhưng một ID bài viết hợp lệ được sử dụng ở đây, nội dung từ bài viết đó sẽ được sử dụng."
+
+#: includes/Abilities/Excerpt_Generation/Excerpt_Generation.php:47
+msgid "Content to generate an excerpt suggestion for."
+msgstr "Nội dung để tạo gợi ý đoạn trích."
+
+#: includes/Admin/Dashboard/AI_Capabilities_Widget.php:113
+#: includes/Experiments/Abilities_Explorer/Abilities_Explorer.php:45
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:46
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:47
+#: includes/Experiments/Abilities_Explorer/Admin_Page.php:75
+msgid "Abilities Explorer"
+msgstr "Khám phá tính năng AI"
+
+#: includes/Experiments/Alt_Text_Generation/Alt_Text_Generation.php:231
+#: includes/Experiments/Alt_Text_Generation/Alt_Text_Generation.php:339
+#: build-scripts/experiments/alt-text-generation-media.js:1
+#: build-scripts/experiments/meta-description.js:3
+#: build-scripts/experiments/title-generation.js:1
+#: build-scripts/features/image-generation.js:5
+#: build-scripts/features/image-generation.js:8
+msgid "Generate"
+msgstr "Tạo"
+
+#: includes/Experiments/Title_Generation/Title_Generation.php:40
+msgid "Title Generation"
+msgstr "Tạo tiêu đề"
+
+#: includes/Experiments/Example_Experiment/Example_Experiment.php:110
+msgid "Example experiment is active!"
+msgstr "Thử nghiệm ví dụ đang hoạt động!"
+
+#: includes/Experiments/Example_Experiment/Example_Experiment.php:38
+msgid "Demonstrates the AI experiment system with example hooks and functionality."
+msgstr "Trình diễn hệ thống thử nghiệm AI với các hook và chức năng ví dụ."
+
+#: includes/Experiments/Example_Experiment/Example_Experiment.php:37
+msgid "Example Experiment"
+msgstr "Thử nghiệm ví dụ"
+
+#. translators: %s: Error message.
+#: includes/Main.php:137
+msgid "AI Plugin initialization failed: %s"
+msgstr "Khởi tạo Plugin AI thất bại: %s"
+
+#: includes/Abilities/Utilities/Posts.php:371
+msgid "Post not found."
+msgstr "Không tìm thấy bài viết."
+
+#. translators: %1$s: Error message.
+#: includes/Abilities/Utilities/Posts.php:307
+msgid "Error getting terms: %1$s"
+msgstr "Lỗi khi lấy các thuật ngữ: %1$s"
+
+#: includes/Abilities/Utilities/Posts.php:277
+msgid "Taxonomy not found."
+msgstr "Không tìm thấy phân loại."
+
+#: includes/Abilities/Utilities/Posts.php:254
+msgid "How the term should be filtered."
+msgstr "Cách thuật ngữ nên được lọc."
+
+#: includes/Abilities/Utilities/Posts.php:250
+msgid "How many times the term is used."
+msgstr "Số lần thuật ngữ được sử dụng."
+
+#: includes/Abilities/Utilities/Posts.php:246
+msgid "The parent ID of the term."
+msgstr "ID cha của thuật ngữ."
+
+#: includes/Abilities/Utilities/Posts.php:242
+msgid "The description of the term."
+msgstr "Mô tả của thuật ngữ."
+
+#: includes/Abilities/Utilities/Posts.php:238
+msgid "The taxonomy name of the term."
+msgstr "Tên phân loại của thuật ngữ."
+
+#: includes/Abilities/Utilities/Posts.php:234
+msgid "The taxonomy ID of the term."
+msgstr "ID phân loại của thuật ngữ."
+
+#: includes/Abilities/Utilities/Posts.php:230
+msgid "The group ID of the term."
+msgstr "ID nhóm của thuật ngữ."
+
+#: includes/Abilities/Utilities/Posts.php:226
+msgid "The slug of the term."
+msgstr "Slug của thuật ngữ."
+
+#: includes/Abilities/Utilities/Posts.php:222
+msgid "The name of the term."
+msgstr "Tên của thuật ngữ."
+
+#: includes/Abilities/Utilities/Posts.php:218
+msgid "The ID of the term."
+msgstr "ID của thuật ngữ."
+
+#: includes/Abilities/Utilities/Posts.php:210
+msgid "An array of WP_Term objects assigned to the post."
+msgstr "Một mảng các đối tượng WP_Term được gán cho bài viết."
+
+#: includes/Abilities/Utilities/Posts.php:203
+msgid "The taxonomy to filter the terms by."
+msgstr "Phân loại để lọc các thuật ngữ theo đó."
+
+#: includes/Abilities/Utilities/Posts.php:199
+msgid "The ID of the post to get the terms of."
+msgstr "ID của bài viết để lấy các thuật ngữ."
+
+#: includes/Abilities/Utilities/Posts.php:192
+msgid "Get the terms of a post based on the post ID and optionally filter by taxonomy."
+msgstr "Lấy các thuật ngữ của một bài viết dựa trên ID bài viết và tùy chọn lọc theo phân loại."
+
+#: includes/Abilities/Utilities/Posts.php:191
+msgid "Get the post terms"
+msgstr "Lấy các thuật ngữ bài viết"
+
+#: includes/Abilities/Utilities/Posts.php:108
+msgid "The excerpt of the post."
+msgstr "Đoạn trích của bài viết."
+
+#: includes/Abilities/Utilities/Posts.php:104
+msgid "The type of the post."
+msgstr "Loại bài viết."
+
+#: includes/Abilities/Utilities/Posts.php:100
+msgid "The author of the post."
+msgstr "Tác giả của bài viết."
+
+#: includes/Abilities/Utilities/Posts.php:96
+msgid "The slug of the post."
+msgstr "Slug của bài viết."
+
+#: includes/Abilities/Utilities/Posts.php:92
+msgid "The title of the post."
+msgstr "Tiêu đề của bài viết."
+
+#: includes/Abilities/Utilities/Posts.php:88
+msgid "The content of the post."
+msgstr "Nội dung của bài viết."
+
+#: includes/Abilities/Utilities/Posts.php:84
+msgid "The details of the post."
+msgstr "Chi tiết của bài viết."
+
+#: includes/Abilities/Utilities/Posts.php:73
+msgid "The fields to get the details of. Will default to all fields if not provided."
+msgstr "Các trường để lấy chi tiết. Sẽ mặc định là tất cả các trường nếu không được cung cấp."
+
+#: includes/Abilities/Utilities/Posts.php:69
+msgid "The ID of the post to get the details of."
+msgstr "ID của bài viết để lấy chi tiết."
+
+#: includes/Abilities/Utilities/Posts.php:62
+msgid "Get the details of a post based on the post ID. Optionally, limit the details to specific fields."
+msgstr "Lấy chi tiết của một bài viết dựa trên ID bài viết. Tùy chọn, giới hạn chi tiết theo các trường cụ thể."
+
+#: includes/Abilities/Utilities/Posts.php:61
+msgid "Get post details"
+msgstr "Lấy chi tiết bài viết"
+
+#: includes/Abilities/Title_Generation/Title_Generation.php:190
+msgid "You do not have permission to generate titles."
+msgstr "Bạn không có quyền tạo tiêu đề."
+
+#: includes/Abilities/Title_Generation/Title_Generation.php:170
+msgid "You do not have permission to generate titles for this post."
+msgstr "Bạn không có quyền tạo tiêu đề cho bài viết này."
+
+#: includes/Abilities/Title_Generation/Title_Generation.php:120
+msgid "Content is required to generate title suggestions."
+msgstr "Nội dung là bắt buộc để tạo gợi ý tiêu đề."
+
+#: includes/Abilities/Title_Generation/Title_Generation.php:47
+msgid "Content to generate title suggestions for."
+msgstr "Nội dung để tạo gợi ý tiêu đề."
+
+#. translators: %d: Post ID.
+#: includes/Abilities/Content_Classification/Content_Classification.php:159
+#: includes/Abilities/Content_Classification/Content_Classification.php:236
+#: includes/Abilities/Content_Resizing/Content_Resizing.php:161
+#: includes/Abilities/Editorial_Notes/Editorial_Notes.php:207
+#: includes/Abilities/Editorial_Updates/Editorial_Updates.php:155
+#: includes/Abilities/Excerpt_Generation/Excerpt_Generation.php:93
+#: includes/Abilities/Excerpt_Generation/Excerpt_Generation.php:155
+#: includes/Abilities/Image/Generate_Image_Prompt.php:100
+#: includes/Abilities/Image/Generate_Image_Prompt.php:162
+#: includes/Abilities/Meta_Description/Meta_Description.php:117
+#: includes/Abilities/Meta_Description/Meta_Description.php:177
+#: includes/Abilities/Summarization/Summarization.php:109
+#: includes/Abilities/Summarization/Summarization.php:171
+#: includes/Abilities/Title_Generation/Title_Generation.php:98
+#: includes/Abilities/Title_Generation/Title_Generation.php:162
+msgid "Post with ID %d not found."
+msgstr "Không tìm thấy bài viết có ID %d."
+
+#. Author URI of the plugin
+#: ai.php
+msgid "https://make.wordpress.org/ai/"
+msgstr "https://make.wordpress.org/ai/"
+
+#. Author of the plugin
+#: ai.php
+msgid "WordPress.org Contributors"
+msgstr "Những người đóng góp WordPress.org"
+
+#. Plugin URI of the plugin
+#: ai.php
+msgid "https://github.com/WordPress/ai"
+msgstr "https://github.com/WordPress/ai"
+
+#: includes/Main.php:160
+msgid "Settings"
+msgstr "Cài đặt"
+
+#. translators: 1: Feature class name, 2: Error message.
+#: includes/Features/Loader.php:152
+msgid "Failed to instantiate feature \"%1$s\": %2$s"
+msgstr "Không thể khởi tạo tính năng \"%1$s\": %2$s"
+
+#: includes/Abilities/Title_Generation/Title_Generation.php:136
+#: build-scripts/experiments/title-generation.js:1
+msgid "No title suggestion was generated."
+msgstr "Không có gợi ý tiêu đề nào được tạo."
+
+#: includes/Abilities/Title_Generation/Title_Generation.php:69
+msgid "Generated title suggestion."
+msgstr "Đã tạo gợi ý tiêu đề."
+
+#: includes/Abilities/Content_Classification/Content_Classification.php:56
+msgid "Content from this post will be used to generate taxonomy suggestions. This overrides the content parameter if both are provided."
+msgstr "Nội dung từ bài viết này sẽ được sử dụng để đưa ra các gợi ý phân loại (taxonomy). Thao tác này sẽ ghi đè tham số nội dung nếu cả hai cùng được cung cấp."
+
+#. Description of the plugin
+#: ai.php
+msgid "AI features, experiments and capabilities for WordPress."
+msgstr "Các tính năng, thử nghiệm và khả năng ứng dụng AI dành cho WordPress."

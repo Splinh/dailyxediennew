@@ -1,0 +1,112 @@
+# =================================================
+# WP-CLI Configuration
+# https://make.wordpress.org/cli/handbook/references/config/
+# =================================================
+
+# Path to the WordPress files
+path: wp
+
+# =================================================
+# Aliases - Multiple environments
+# =================================================
+"@local":
+    path: wp
+    url: "${WP_HOME}"
+
+# "@staging":
+#     ssh: user@staging.example.com
+#     path: /var/www/staging/htdocs
+
+# "@production":
+#     ssh: user@example.com
+#     path: /var/www/production/htdocs
+
+# =================================================
+# Server configuration (wp server command)
+# Note: Not needed when using Laragon's Apache/Nginx
+# =================================================
+# server:
+#     docroot: .
+#     host: localhost
+#     port: 8080
+
+# =================================================
+# Database commands
+# =================================================
+db export:
+    add-drop-table: true
+    default-character-set: utf8mb4
+
+db import:
+    default-character-set: utf8mb4
+
+# =================================================
+# Search & Replace
+# =================================================
+search replace:
+    export: true
+    skip-columns: guid
+
+# =================================================
+# Core update
+# =================================================
+core update:
+    locale: vi
+
+core download:
+    locale: vi
+    skip-content: true
+
+# =================================================
+# i18n - Translation extraction
+# Note: i18n make-pot doesn't support wp-cli.yml config
+# Use command directly with flags instead:
+# =================================================
+# Example:
+# vendor/bin/wp i18n make-pot wp/wp-content/themes/hd wp/wp-content/themes/hd/languages/hd.pot --domain=hd --slug=hd --exclude=vendor,node_modules
+
+# =================================================
+# Media regenerate
+# =================================================
+media regenerate:
+    skip-delete: true
+    only-missing: true
+
+# =================================================
+# Plugin & Theme management
+# =================================================
+plugin install:
+    activate: true
+
+theme install:
+    activate: true
+
+# =================================================
+# Cache
+# =================================================
+cache flush:
+    hard: true
+
+# =================================================
+# Rewrite rules
+# =================================================
+rewrite flush:
+    hard: true
+# =================================================
+# Disabled commands (security)
+# =================================================
+# disabled_commands:
+#     - db drop
+#     - site empty
+
+# =================================================
+# Example commands:
+# =================================================
+# vendor/bin/wp plugin list
+# vendor/bin/wp @local plugin list
+# vendor/bin/wp i18n make-pot wp/wp-content/themes/hd wp/wp-content/themes/hd/languages/hd.pot
+# vendor/bin/wp db export backup.sql
+# vendor/bin/wp search-replace 'old-domain.com' 'new-domain.com' --dry-run
+# vendor/bin/wp media regenerate --only-missing
+# vendor/bin/wp cache flush
+# vendor/bin/wp rewrite flush

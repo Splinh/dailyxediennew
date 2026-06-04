@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+	bootstrap="tests/bootstrap.php"
+	cacheDirectory=".phpunit.cache"
+	executionOrder="depends,defects"
+	requireCoverageMetadata="false"
+	beStrictAboutCoverageMetadata="false"
+	beStrictAboutOutputDuringTests="true"
+	failOnRisky="true"
+	failOnWarning="true"
+	colors="true">
+
+	<php>
+		<const name="ABSPATH" value="wp/"/>
+	</php>
+
+	<testsuites>
+		<testsuite name="Theme HD">
+			<directory>wp/wp-content/themes/hd/tests</directory>
+		</testsuite>
+		<testsuite name="Plugin HD AI Classic">
+			<directory>wp/wp-content/plugins/hd-ai-classic/tests</directory>
+		</testsuite>
+		<testsuite name="Plugin HD AI Toolkit">
+			<directory>wp/wp-content/plugins/hd-ai-toolkit/tests</directory>
+		</testsuite>
+		<testsuite name="Plugin HDA">
+			<directory>wp/wp-content/plugins/hda/tests</directory>
+		</testsuite>
+	</testsuites>
+
+	<source restrictDeprecations="true" restrictNotices="true" restrictWarnings="true">
+		<include>
+			<directory>wp/wp-content/themes/hd/src</directory>
+			<directory>wp/wp-content/plugins/hd-ai-classic/src</directory>
+			<directory>wp/wp-content/plugins/hd-ai-toolkit/src</directory>
+			<directory>wp/wp-content/plugins/hda/src</directory>
+		</include>
+	</source>
+</phpunit>

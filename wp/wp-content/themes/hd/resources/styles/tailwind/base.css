@@ -1,0 +1,223 @@
+/* tailwind/base.css - Low-specificity defaults for HTML elements */
+
+@layer base {
+	/* HTML - Critical for LCP/CLS */
+	html {
+		font-size: 100%;
+		font-variant-ligatures: no-common-ligatures;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-rendering: optimizeLegibility;
+	}
+
+	/* Body */
+	body {
+		@apply font-light font-body text-(length:--global-fs) bg-background text-body leading-(--global-line-height) m-0 p-0;
+	}
+
+	/* Interactive elements */
+	:where([type='submit'], [type='reset'], [type='button'], [role='button']):not(:disabled) {
+		@apply cursor-pointer;
+	}
+
+	*:disabled {
+		@apply cursor-not-allowed opacity-[0.8];
+	}
+
+	:where(a, area, button, [role='button'], input, label, select, summary, textarea) {
+		-webkit-tap-highlight-color: transparent;
+		outline: none;
+	}
+
+	:where(a, button, [role='button']) {
+		@apply transition ease-in-out;
+	}
+
+	/* Typography - Bold */
+	:is(b, strong) {
+		font-weight: 700;
+	}
+
+	/* Headings - shared styles */
+	:is(h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6) {
+		@apply tracking-tight antialiased font-header leading-(--header-line-height);
+		font-weight: inherit;
+
+		a {
+			@apply no-underline inline-block text-current;
+		}
+
+		p {
+			@apply text-current leading-[inherit];
+		}
+	}
+
+	/* Heading sizes - fluid typography (elements) */
+	h1 {
+		@apply p-clamp-h1;
+	}
+
+	h2 {
+		@apply p-clamp-h2;
+	}
+
+	h3 {
+		@apply p-clamp-h3;
+	}
+
+	h4 {
+		@apply p-clamp-h4;
+	}
+
+	h5 {
+		@apply p-clamp-h5;
+	}
+
+	h6 {
+		@apply p-clamp-h6;
+	}
+
+	/* Heading sizes - class overrides (higher priority) */
+	.h1 {
+		@apply p-clamp-h1;
+	}
+
+	.h2 {
+		@apply p-clamp-h2;
+	}
+
+	.h3 {
+		@apply p-clamp-h3;
+	}
+
+	.h4 {
+		@apply p-clamp-h4;
+	}
+
+	.h5 {
+		@apply p-clamp-h5;
+	}
+
+	.h6 {
+		@apply p-clamp-h6;
+	}
+
+	/* Paragraphs */
+	* > p {
+		@apply wrap-break-word mt-0 leading-[inherit];
+
+		&:not(:last-child) {
+			@apply mb-4;
+		}
+
+		&:last-child {
+			@apply mb-0;
+		}
+	}
+
+	/* Links */
+	a:hover {
+		@apply no-underline;
+	}
+
+	a :is(h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6) {
+		@apply text-current;
+	}
+
+	/* Images */
+	img {
+		@apply max-w-full h-auto align-middle pointer-events-none select-none;
+
+		&:not([src]) {
+			@apply invisible;
+		}
+
+		&:where(.aligncenter, .align-center) {
+			@apply mx-auto;
+		}
+	}
+
+	picture {
+		@apply block pointer-events-none select-none;
+
+		img {
+			@apply block w-full;
+		}
+
+		&.h-full {
+			img {
+				@apply h-full;
+			}
+		}
+
+		&.object-cover {
+			img {
+				@apply object-cover;
+			}
+		}
+
+		&.object-center {
+			img {
+				@apply object-center;
+			}
+		}
+	}
+
+	figure {
+		@apply max-w-full!;
+
+		&:where(.wp-caption, .caption) {
+			@apply block;
+		}
+
+		&:where(.aligncenter, .align-center) {
+			@apply mx-auto text-center mb-6;
+		}
+	}
+
+	/* Autofill fix */
+	input:-webkit-autofill {
+		-webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+		box-shadow: 0 0 0 1000px transparent inset !important;
+		-webkit-text-fill-color: rgba(255, 255, 255, 0.5) !important;
+		transition: background-color 5000s ease-in-out 0s !important;
+	}
+
+	/* FOUC Prevention (Flash of Unstyled Content) */
+	.no-js .lazy-load,
+	.no-js [data-lazy] {
+		@apply hidden;
+	}
+
+	[data-loading='true'] {
+		@apply opacity-60 pointer-events-none;
+	}
+
+	/* Print styles */
+	@media print {
+		*,
+		*::before,
+		*::after {
+			background: transparent !important;
+			color: #000 !important;
+			box-shadow: none !important;
+			text-shadow: none !important;
+		}
+
+		a,
+		a:visited {
+			text-decoration: underline;
+		}
+
+		img {
+			max-width: 100% !important;
+		}
+
+		.site-header,
+		.site-footer,
+		.off-canvas,
+		.js-off-canvas-overlay {
+			display: none !important;
+		}
+	}
+}
