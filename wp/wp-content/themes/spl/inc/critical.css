@@ -121,6 +121,15 @@ body {
   background: var(--color-bg-soft);
   overflow-x: hidden;
 }
+body.archive.search,
+body.search-results,
+body.search-no-results {
+  position: static !important;
+  inset: auto !important;
+  width: auto !important;
+  height: auto !important;
+  min-height: 100vh;
+}
 a { color: var(--color-primary); text-decoration: none; transition: color var(--dur-fast) var(--ease); }
 a:hover { color: var(--color-primary-dark); }
 a:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; border-radius: var(--r-xs); }
