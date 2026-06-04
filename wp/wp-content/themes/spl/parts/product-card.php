@@ -42,19 +42,34 @@ if ( $terms && ! is_wp_error( $terms ) ) {
 	$cat_name = $terms[0]->name;
 }
 
-// Sale badge (percentage when computable).
-$badge = '';
-if ( $card_product->is_on_sale() ) {
+// Sale badge + prices — single price, no extra queries.
+$badge          = '';
+$price_old_html = '';
+
+if ( $card_product->is_type( 'variable' ) ) {
+	// Variation prices are cached in a WC transient — no extra DB queries.
+	$prices = $card_product->get_variation_prices( true );
+	$min_id = current( array_keys( $prices['price'] ) );
+	$min_price   = (float) current( $prices['price'] );
+	$min_regular = (float) ( $prices['regular_price'][ $min_id ] ?? $min_price );
+
+	$price_current_html = wc_price( $min_price );
+
+	if ( $min_regular > $min_price ) {
+		$price_old_html = wc_price( $min_regular );
+		$badge = '-' . round( ( ( $min_regular - $min_price ) / $min_regular ) * 100 ) . '%';
+	}
+} elseif ( $card_product->is_on_sale() ) {
 	$reg  = (float) $card_product->get_regular_price();
 	$sale = (float) $card_product->get_sale_price();
+	$price_current_html = wc_price( wc_get_price_to_display( $card_product ) );
+	$price_old_html     = wc_price( wc_get_price_to_display( $card_product, [ 'price' => $reg ] ) );
 	$badge = ( $reg > 0 && $sale > 0 )
 		? '-' . round( ( ( $reg - $sale ) / $reg ) * 100 ) . '%'
 		: __( 'Giảm giá', 'spl' );
+} else {
+	$price_current_html = $card_product->get_price_html();
 }
-
-// Prices — use WC built-in price_html (cached, no extra queries).
-$price_old_html     = '';
-$price_current_html = $card_product->get_price_html();
 
 $purchasable = $card_product->is_purchasable() && $card_product->is_in_stock() && ! $card_product->is_type( 'variable' );
 ?>
