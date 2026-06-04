@@ -1071,7 +1071,7 @@ ul, ol { list-style: none; }
 
 .product-card__add-to-cart {
   width: max-content;
-  max-width: calc(100% - var(--sp-8));
+  max-width: calc(100% - var(--sp-4));
   margin: 0 auto var(--sp-4);
   padding: 8px 14px;
   background: var(--color-bg-soft);
@@ -1087,14 +1087,30 @@ ul, ol { list-style: none; }
   border-radius: var(--r-sm);
   text-decoration: none;
   text-align: center;
+  white-space: nowrap;
 }
-.product-card__add-to-cart .icon { width: 16px; height: 16px; }
+.product-card__add-to-cart .icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
 .product-card__add-to-cart:hover {
   background: var(--color-primary);
   border-color: var(--color-primary);
   color: white;
 }
 .product-card__add-to-cart:hover .icon { stroke: white; }
+@media (max-width: 480px) {
+  .product-card__add-to-cart {
+    gap: 6px;
+    padding: 7px 10px;
+    font-size: var(--fs-xs);
+  }
+  .product-card__add-to-cart .icon {
+    width: 14px;
+    height: 14px;
+  }
+}
 
 /* ============================================
    CATEGORIES

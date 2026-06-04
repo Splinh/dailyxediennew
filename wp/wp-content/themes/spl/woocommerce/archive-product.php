@@ -63,7 +63,7 @@ if ( $is_search ) {
 </div>
 
 <!-- ===== ARCHIVE HEADER ===== -->
-<section class="archive-header">
+<section class="archive-header<?php echo $is_search ? ' archive-header--search' : ''; ?>">
 	<div class="container">
 		<div class="archive-header__content reveal">
 			<div class="archive-header__icon">
