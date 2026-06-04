@@ -1,5 +1,0 @@
-/* tailwind/utilities/heading.css */
-
-@utility u-heading {
-	@apply antialiased font-header leading-(--header-line-height);
-}
