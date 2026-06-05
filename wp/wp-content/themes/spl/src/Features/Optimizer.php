@@ -17,6 +17,7 @@ namespace SPL\Features;
 use SPL\Contracts\Feature;
 use SPL\Features\Optimizer\CssClass;
 use SPL\Features\Optimizer\ImageSize;
+use SPL\Features\Optimizer\PageCache;
 use SPL\Features\Optimizer\ScriptLoader;
 use SPL\Features\Optimizer\WcAssets;
 use SPL\Core\DB;
@@ -34,6 +35,7 @@ final class Optimizer extends Feature {
 		ScriptLoader::register();
 		CssClass::register();
 		WcAssets::register();
+		PageCache::register();
 
 		// Permalink — only on theme activation (flush_rules is expensive).
 		add_action( 'after_switch_theme', self::configurePermalink( ... ) );
