@@ -176,6 +176,22 @@
 
 > Ghi lại các công việc phát sinh ngoài plan gốc. Mỗi task ghi rõ ngày, lý do, ảnh hưởng đến plan.
 
+### Thiết kế htmlmau — HTML Tailwind tham khảo (trước T1)
+
+> Lên giao diện mẫu bằng HTML + Tailwind CSS CDN trước khi code theme thật.
+> Dùng làm tham khảo cho T3 Frontend (#32-35).
+
+| # | Công việc | Ngày | Trạng thái | Ghi chú |
+|---|----------|------|-----------|---------|
+| H1 | Thiết kế `index.html` — Homepage | — | ✅ | Hero, badges, product grid, flash sale, blog |
+| H2 | Thiết kế `san-pham.html` — Archive sản phẩm | — | ✅ | Filter sidebar, product grid, pagination |
+| H3 | Thiết kế `chi-tiet-san-pham.html` — Single product | — | ✅ | Gallery, TSKT tab, reviews, related products |
+| H4 | Thiết kế `daily.html` — Archive đại lý | — | ✅ | Danh sách đại lý, bản đồ, filter theo vùng |
+| H5 | Thiết kế `chi-tiet-daily.html` — Single đại lý | — | ✅ | Thông tin đại lý, sản phẩm, liên hệ |
+| H6 | Thiết kế `hop-tac.html` — Cơ hội hợp tác | — | ✅ | Form đăng ký, quyền lợi, quy trình |
+| H7 | Thiết kế `about.html` — Giới thiệu | — | ✅ | Câu chuyện, đội ngũ, giá trị cốt lõi |
+| H8 | Viết spec markdown cho các trang | — | ✅ | 6 files trong `htmlmau/md page/` |
+
 ### Pre-project Setup (trước T1)
 
 | # | Công việc | Ngày | Trạng thái | Ghi chú |
@@ -192,12 +208,13 @@
 
 | Phase | Tổng tasks | ✅ Done | 🔄 Doing | ⬜ Todo | % |
 |-------|-----------|--------|---------|-------|---|
-| Pre-project | 5 | 5 | 0 | 0 | 100% |
+| Htmlmau design | 8 | 8 | 0 | 0 | 100% |
+| Pre-project setup | 5 | 5 | 0 | 0 | 100% |
 | T1 — Setup & Child Theme | 17 | 0 | 0 | 17 | 0% |
 | T2 — Custom Modules | 14 | 0 | 0 | 14 | 0% |
 | T3 — Frontend & Perf | 10 | 0 | 0 | 10 | 0% |
 | T4 — QA & Deploy | 15 | 0 | 0 | 15 | 0% |
-| **TỔNG** | **61** | **5** | **0** | **56** | **8%** |
+| **TỔNG** | **69** | **13** | **0** | **56** | **19%** |
 
 ---
 
@@ -207,6 +224,7 @@
 
 ### 2026-06-06
 - Khởi tạo PLAN-LOG.md
+- Bổ sung tasks phát sinh: Htmlmau design H1-H8 (đã hoàn thành trước đó)
 - Hoàn thành Pre-project tasks P1-P5
 - Clone taodolachuy → dailynew, push lên dailyxediennew
 - Dọn website/, thay docs/
