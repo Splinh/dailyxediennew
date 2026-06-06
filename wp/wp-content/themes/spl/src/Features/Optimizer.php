@@ -98,6 +98,16 @@ final class Optimizer extends Feature {
 		remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
 		remove_action( 'admin_print_styles', 'print_emoji_styles' );
 		add_filter( 'emoji_svg_url', '__return_false' );
+
+		// Remove wp_head junk — unnecessary DNS lookups & meta tags.
+		remove_action( 'wp_head', 'rsd_link' );
+		remove_action( 'wp_head', 'wlwmanifest_link' );
+		remove_action( 'wp_head', 'wp_shortlink_wp_head' );
+		remove_action( 'wp_head', 'wp_generator' );
+		remove_action( 'wp_head', 'rest_output_link_wp_head' );
+		remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
+		remove_action( 'wp_head', 'wp_resource_hints', 2 );
+		remove_action( 'wp_head', 'feed_links_extra', 3 );
 	}
 
 	/** ---------------------------------------- */

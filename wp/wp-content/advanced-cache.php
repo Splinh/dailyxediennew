@@ -51,9 +51,20 @@ if ( is_file( $spl_cache_file ) ) {
 	$spl_cache_age = time() - filemtime( $spl_cache_file );
 
 	if ( $spl_cache_age < $spl_cache_ttl ) {
+		header( 'Content-Type: text/html; charset=UTF-8' );
 		header( 'X-SPL-Cache: HIT' );
 		header( 'X-SPL-Cache-Age: ' . $spl_cache_age );
-		readfile( $spl_cache_file );
+		header( 'Cache-Control: public, max-age=300' ); // Browser cache 5min.
+
+		// Serve gzip if client supports it.
+		$accept = $_SERVER['HTTP_ACCEPT_ENCODING'] ?? '';
+		if ( str_contains( $accept, 'gzip' ) && function_exists( 'ob_gzhandler' ) ) {
+			ob_start( 'ob_gzhandler' );
+			readfile( $spl_cache_file );
+			ob_end_flush();
+		} else {
+			readfile( $spl_cache_file );
+		}
 		exit;
 	}
 
