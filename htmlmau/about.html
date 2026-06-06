@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Về chúng tôi - dailyxedien.vn | Hệ thống xe điện chính hãng</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Tìm hiểu về dailyxedien.vn - Hệ thống phân phối xe điện, xe máy điện, xe 50cc chính hãng. Cam kết tư vấn rõ ràng, giá minh bạch, bảo hành chính hãng.">
+    <meta name="keywords" content="về chúng tôi, dailyxedien, xe điện chính hãng, đại lý xe điện, hệ thống xe điện">
+    <meta name="author" content="dailyxedien.vn">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0052cc">
+    <link rel="canonical" href="https://www.dailyxedien.vn/ve-chung-toi/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Về chúng tôi - dailyxedien.vn">
+    <meta property="og:description" content="Hệ thống phân phối xe điện chính hãng. Tư vấn chọn xe, trả góp 0%, bảo hành chính hãng.">
+    <meta property="og:url" content="https://www.dailyxedien.vn/ve-chung-toi/">
+    <meta property="og:image" content="https://www.dailyxedien.vn/og-image.jpg">
+    <meta property="og:locale" content="vi_VN">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f5ff',
+                            100: '#e0ebff',
+                            500: '#0052cc',
+                            600: '#0040a1',
+                            700: '#003380',
+                        },
+                        accent: {
+                            500: '#10b981',
+                            600: '#059669',
+                        }
+                    },
+                    boxShadow: {
+                        'premium': '0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 8px -1px rgba(0, 0, 0, 0.02)',
+                        'hover-card': '0 20px 40px -4px rgba(0, 0, 0, 0.08), 0 8px 20px -2px rgba(0, 0, 0, 0.03)',
+                        'glow': '0 0 20px rgba(0, 82, 202, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="text-slate-800 antialiased overflow-x-hidden">
+
+    <!-- Skip link -->
+    <a href="#about-content" class="skip-link">Bỏ qua tới nội dung chính</a>
+
+    <!-- TOP UTILITY BAR (Hidden on Mobile to save space) -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2.5 px-4 border-b border-slate-800 relative z-50 hidden md:block">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+            <div class="flex flex-wrap items-center gap-5 justify-center md:justify-start">
+                <a href="index.html#store-section" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-primary-500 animate-pulse"></i> Hệ thống cửa hàng</a>
+                <a href="#" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-solid fa-magnifying-glass text-slate-400"></i> Tra cứu đơn hàng</a>
+                <a href="index.html#news-section" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-regular fa-newspaper"></i> Tin tức</a>
+                <a href="index.html#consult-form" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-regular fa-envelope"></i> Liên hệ</a>
+            </div>
+            <div class="flex items-center gap-5">
+                <a href="#" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-regular fa-user"></i> Đăng nhập / Đăng ký</a>
+                <span class="text-slate-700">|</span>
+                <a href="#" class="hover:text-white transition-colors flex items-center gap-1.5 font-medium relative" onclick="openCart()">
+                    <i class="fa-solid fa-cart-shopping text-emerald-400"></i> Giỏ hàng 
+                    <span class="bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full absolute -top-2.5 -right-4 shadow-sm" id="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER (Responsive & Mobile Sticky) -->
+    <header class="bg-white py-3 md:py-4 px-4 sticky top-0 z-50 border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            
+            <!-- Mobile Hamburger Menu Button (Visible on Mobile Only) -->
+            <button onclick="openMobileMenu()" class="md:hidden text-slate-700 hover:text-primary-500 p-2 text-xl focus:outline-none" aria-label="Menu">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-2 md:gap-3">
+                <div class="bg-gradient-to-r from-primary-500 to-primary-600 text-white font-black p-2 md:p-2.5 rounded-xl text-lg md:text-xl shadow-lg shadow-primary-500/20 tracking-wider">
+                    D<span class="text-emerald-400">XD</span>
+                </div>
+                <div>
+                    <span class="text-lg md:text-2xl font-extrabold tracking-tight text-slate-900">dailyxedien<span class="text-primary-500">.vn</span></span>
+                    <p class="text-[8px] md:text-[10px] tracking-widest text-slate-400 uppercase font-bold hidden sm:block">Hệ thống xe điện lớn nhất Việt Nam</p>
+                </div>
+            </a>
+
+            <!-- Search Bar (Hidden on Mobile, Toggled inside Drawer or below) -->
+            <div class="w-full md:max-w-xl relative hidden md:block">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <i class="fa-solid fa-magnifying-glass text-slate-400"></i>
+                </div>
+                <input type="text" placeholder="Bạn cần tìm xe điện, xe 50cc hay phụ kiện gì hôm nay?" class="w-full pl-11 pr-24 py-3 bg-slate-50 border border-slate-200 focus:border-primary-500 focus:bg-white focus:ring-2 focus:ring-primary-100 rounded-xl outline-none transition-all text-sm">
+                <button class="absolute right-1.5 top-1.5 bottom-1.5 bg-primary-500 hover:bg-primary-600 text-white px-5 rounded-lg text-xs font-semibold transition-colors">Tìm kiếm</button>
+            </div>
+
+            <!-- Header Action Controls for Mobile (Quick access) -->
+            <div class="flex items-center gap-1 md:gap-3.5">
+                <!-- Mobile Search Icon (Triggers focus on mobile search) -->
+                <button onclick="openMobileMenu(); setTimeout(() => document.getElementById('mobile-search').focus(), 300)" aria-label="Tìm kiếm" class="md:hidden text-slate-700 hover:text-primary-500 p-2 text-lg">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                </button>
+
+                <!-- Mobile Cart Link -->
+                <button onclick="openCart()" aria-label="Giỏ hàng" class="md:hidden text-slate-700 hover:text-primary-500 p-2 text-lg relative">
+                    <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+                    <span class="bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full absolute top-0 right-0 shadow-sm" id="cart-count-mobile">0</span>
+                </button>
+
+                <!-- Hotline Support (Hidden on extra small mobile) -->
+                <div class="hidden sm:flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-full bg-primary-50 flex items-center justify-center text-primary-500 shadow-sm">
+                        <i class="fa-solid fa-phone-volume text-lg animate-bounce"></i>
+                    </div>
+                    <div class="text-right md:text-left">
+                        <span class="text-xs text-slate-400 font-medium">Hotline tư vấn 24/7</span>
+                        <p class="text-base font-bold text-slate-900 tracking-tight hover:text-primary-500 transition-colors">0933 505 222</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE NAVIGATION SIDEBAR DRAWER -->
+    <div id="mobile-drawer-overlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] hidden transition-opacity duration-300 opacity-0" onclick="closeMobileMenu()"></div>
+    <div id="mobile-drawer" class="fixed inset-y-0 left-0 w-80 max-w-[85vw] bg-white z-[110] shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between">
+        <div class="overflow-y-auto flex-grow p-5 space-y-6">
+            <!-- Drawer Header -->
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                <div class="flex items-center gap-2">
+                    <div class="bg-primary-500 text-white font-black p-1.5 rounded-lg text-sm">D<span class="text-emerald-400">XD</span></div>
+                    <span class="font-bold text-slate-800 text-base">dailyxedien.vn</span>
+                </div>
+                <button onclick="closeMobileMenu()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Search Bar Inside Drawer -->
+            <form onsubmit="event.preventDefault()" class="relative">
+                <input type="text" id="mobile-search" placeholder="Tìm kiếm xe, phụ kiện..." class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none text-sm focus:bg-white focus:border-primary-500 transition-all">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            </form>
+
+            <!-- Navigation Links -->
+            <div class="space-y-1 text-sm font-semibold text-slate-700">
+                <a href="index.html" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-solid fa-house text-slate-400"></i> Trang chủ</a>
+                <a href="about.html" class="flex items-center gap-3 p-3 rounded-xl bg-primary-50 text-primary-600 transition-colors"><i class="fa-solid fa-building text-primary-500"></i> Về chúng tôi</a>
+                <a href="index.html#best-sellers" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-solid fa-bicycle text-slate-400"></i> Xe Điện</a>
+                <a href="index.html#best-sellers" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-solid fa-motorcycle text-slate-400"></i> Xe 50CC</a>
+                <a href="index.html#best-sellers" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-solid fa-bolt text-slate-400"></i> Xe Máy Điện</a>
+                <a href="index.html#ai-tech-spotlight" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors text-primary-600"><i class="fa-solid fa-microchip"></i> Công nghệ xe</a>
+                <a href="index.html#store-section" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-solid fa-location-dot text-slate-400"></i> Hệ Thống Cửa Hàng</a>
+                <a href="index.html#consult-form" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors text-yellow-600"><i class="fa-solid fa-gift text-slate-400"></i> Đăng Ký Khuyến Mãi</a>
+            </div>
+
+            <!-- Interactive Accordion Mobile Categories -->
+            <div class="border-t border-slate-100 pt-5">
+                <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 px-3">Danh Mục Sản Phẩm</h4>
+                <div class="space-y-2">
+                    <div class="border border-slate-100 rounded-xl overflow-hidden">
+                        <button onclick="toggleMobileAccordion('acc-xe-dien')" class="w-full flex items-center justify-between p-3 bg-slate-50/50 hover:bg-slate-50 font-bold text-xs text-slate-700 transition-colors">
+                            <span class="flex items-center gap-2"><i class="fa-solid fa-motorcycle text-primary-500"></i> XE MÁY ĐIỆN</span>
+                            <i id="icon-acc-xe-dien" class="fa-solid fa-chevron-down text-[10px] transition-transform duration-300"></i>
+                        </button>
+                        <div id="acc-xe-dien" class="hidden bg-white px-4 py-2 space-y-2 text-xs font-semibold text-slate-500">
+                            <a href="index.html#best-sellers" onclick="closeMobileMenu()" class="block py-2 border-b border-slate-50 hover:text-primary-500">Bluera Việt Nhật</a>
+                            <a href="index.html#best-sellers" onclick="closeMobileMenu()" class="block py-2 border-b border-slate-50 hover:text-primary-500">Yadea Cao Cấp</a>
+                            <a href="index.html#best-sellers" onclick="closeMobileMenu()" class="block py-2 hover:text-primary-500">VinFast Thông Minh</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Drawer Footer Contact -->
+        <div class="p-5 border-t border-slate-100 bg-slate-50 space-y-3">
+            <p class="text-xs text-slate-500 flex items-center gap-2"><i class="fa-solid fa-phone text-primary-500"></i> <strong>0933 505 222</strong></p>
+            <p class="text-[11px] text-slate-400 leading-snug">466 Nguyễn Duy Trinh, P. Bình Trưng Đông, TP. Thủ Đức, TP.HCM</p>
+        </div>
+    </div>
+
+    <!-- NAVIGATION MENU BAR (Hidden on Mobile) -->
+    <nav class="bg-primary-600 text-white shadow-md relative z-40 hidden md:block">
+        <div class="max-w-7xl mx-auto flex items-center">
+            
+            <!-- Category Trigger with Hover/Click dropdown functionality -->
+            <div class="relative group" id="category-menu-container">
+                <button class="bg-primary-700 hover:bg-primary-800 px-6 py-4 flex items-center gap-3 cursor-pointer transition-colors font-semibold text-sm select-none" id="category-trigger">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                    <span>DANH MỤC SẢN PHẨM</span>
+                    <i class="fa-solid fa-chevron-down text-xs ml-1 transition-transform group-hover:rotate-180"></i>
+                </button>
+                
+                <!-- Dropping Menu on hover/click -->
+                <div class="absolute top-full left-0 w-64 bg-white border border-slate-100 rounded-b-2xl shadow-premium overflow-hidden p-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-50">
+                    <div class="space-y-1">
+                        <a href="index.html#best-sellers" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group">
+                            <span class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-500 flex items-center justify-center group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors"><i class="fa-solid fa-bicycle"></i></span>
+                                Xe điện
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-xs opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                        <a href="index.html#best-sellers" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group">
+                            <span class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-lg bg-blue-50 text-blue-500 flex items-center justify-center group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors"><i class="fa-solid fa-motorcycle"></i></span>
+                                Xe 50cc
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-xs opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                        <a href="index.html#best-sellers" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group">
+                            <span class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-500 flex items-center justify-center group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors"><i class="fa-solid fa-bolt"></i></span>
+                                Xe máy điện
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-xs opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                        <a href="index.html#best-sellers" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group">
+                            <span class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-lg bg-amber-50 text-amber-500 flex items-center justify-center group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors"><i class="fa-solid fa-truck-pickup"></i></span>
+                                Xe 3 bánh
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-xs opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                        <a href="#" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group">
+                            <span class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-lg bg-pink-50 text-pink-500 flex items-center justify-center group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors"><i class="fa-solid fa-gauge"></i></span>
+                                Xe đạp điện
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-xs opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                        <a href="#" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group">
+                            <span class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-lg bg-violet-50 text-violet-500 flex items-center justify-center group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors"><i class="fa-solid fa-gears"></i></span>
+                                Phụ kiện
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-xs opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                        <a href="#" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group">
+                            <span class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-lg bg-rose-50 text-rose-500 flex items-center justify-center group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors"><i class="fa-solid fa-car-battery"></i></span>
+                                Ắc quy xe điện
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-xs opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                        <a href="#" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-semibold text-yellow-600 transition-all group">
+                            <span class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-lg bg-yellow-50 text-yellow-500 flex items-center justify-center group-hover:bg-yellow-100 transition-colors"><i class="fa-solid fa-gift"></i></span>
+                                Khuyến mãi hot
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-xs opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Navigation Links -->
+            <div class="flex items-center gap-1 px-4 text-sm font-medium overflow-x-auto no-scrollbar">
+                <a href="index.html#best-sellers" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">XE ĐIỆN</a>
+                <a href="index.html#best-sellers" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">XE 50CC</a>
+                <a href="index.html#best-sellers" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">XE MÁY ĐIỆN</a>
+                <a href="index.html#best-sellers" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">XE 3 BÁNH</a>
+                <a href="#" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">PHỤ KIỆN</a>
+                <a href="#" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">ẮC QUY</a>
+                <a href="index.html#ai-tech-spotlight" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap font-semibold flex items-center gap-1"><i class="fa-solid fa-microchip"></i> CÔNG NGHỆ XE</a>
+                <a href="index.html#store-section" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">HỆ THỐNG CỬA HÀNG</a>
+                <a href="index.html#consult-form" class="px-4 py-4 hover:bg-primary-700/50 transition-colors text-yellow-300 font-bold whitespace-nowrap flex items-center gap-1"><i class="fa-solid fa-fire text-xs"></i> ĐĂNG KÝ KHUYẾN MÃI</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO BANNER: ABOUT PAGE -->
+    <section class="relative w-full bg-primary-600 overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,rgba(16,185,129,0.12),transparent_50%)]"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 py-10 md:py-14">
+            <!-- Breadcrumb -->
+            <nav class="flex items-center gap-2 text-xs text-white/60 mb-5" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-white transition-colors">Trang chủ</a>
+                <i class="fa-solid fa-chevron-right text-[8px]"></i>
+                <span class="text-white font-semibold">Về chúng tôi</span>
+            </nav>
+
+            <h1 class="text-2xl md:text-3xl lg:text-4xl font-black text-white leading-tight tracking-tight">
+                Về <span class="text-emerald-400">dailyxedien.vn</span>
+            </h1>
+            <p class="text-sm text-slate-200 mt-3 max-w-2xl leading-relaxed">
+                Hệ thống phân phối xe điện, xe máy điện, xe 50cc chính hãng — tư vấn rõ ràng, giá minh bạch, hậu mãi dễ theo dõi.
+            </p>
+
+            <!-- Inline stats strip -->
+            <div class="flex flex-wrap items-center gap-6 md:gap-10 mt-6 pt-6 border-t border-white/15">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center">
+                        <i class="fa-solid fa-store text-emerald-400 text-sm"></i>
+                    </div>
+                    <div>
+                        <span class="text-lg font-black text-white block leading-none">20+</span>
+                        <span class="text-[10px] text-slate-300">Cửa hàng</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center">
+                        <i class="fa-solid fa-users text-blue-400 text-sm"></i>
+                    </div>
+                    <div>
+                        <span class="text-lg font-black text-white block leading-none">10K+</span>
+                        <span class="text-[10px] text-slate-300">Khách hàng</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center">
+                        <i class="fa-solid fa-award text-amber-400 text-sm"></i>
+                    </div>
+                    <div>
+                        <span class="text-lg font-black text-white block leading-none">50+</span>
+                        <span class="text-[10px] text-slate-300">Thương hiệu</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center">
+                        <i class="fa-solid fa-heart text-rose-400 text-sm"></i>
+                    </div>
+                    <div>
+                        <span class="text-lg font-black text-white block leading-none">98%</span>
+                        <span class="text-[10px] text-slate-300">Hài lòng</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main id="about-content" class="max-w-7xl mx-auto px-4 py-12 md:py-16">
+
+        <!-- GIỚI THIỆU CHUNG -->
+        <section class="mb-16 md:mb-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+                <!-- Image -->
+                <div class="relative group">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-primary-500/20 to-emerald-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="relative rounded-2xl overflow-hidden shadow-hover-card">
+                        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80" alt="Đội ngũ dailyxedien.vn" class="w-full h-72 md:h-96 object-cover" onerror="this.src='https://placehold.co/800x500/0052cc/ffffff?text=dailyxedien.vn'">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900/80 to-transparent p-6">
+                            <p class="text-white text-sm font-bold">Đội ngũ dailyxedien.vn</p>
+                            <p class="text-slate-300 text-xs mt-1">Tận tâm phục vụ khách hàng mỗi ngày</p>
+                        </div>
+                    </div>
+                    <!-- Floating badge -->
+                    <div class="absolute -bottom-4 -right-4 md:-right-6 bg-white rounded-2xl shadow-premium p-4 border border-slate-100">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center">
+                                <i class="fa-solid fa-shield-halved text-emerald-500 text-lg"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-slate-800">Uy tín hàng đầu</p>
+                                <p class="text-[10px] text-slate-400">Đại lý ủy quyền chính hãng</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text -->
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="w-1.5 h-6 bg-primary-500 rounded-full"></span>
+                            <h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Chúng tôi là ai?</h2>
+                        </div>
+                        <p class="text-sm md:text-base text-slate-600 leading-relaxed">
+                            <strong class="text-slate-800">Dailyxedien.vn</strong> là hệ thống phân phối xe điện, xe máy điện và xe 50cc chính hãng, hoạt động với mục tiêu mang đến trải nghiệm mua xe rõ ràng, minh bạch cho mọi khách hàng.
+                        </p>
+                    </div>
+                    <p class="text-sm text-slate-500 leading-relaxed">
+                        Chúng tôi không chỉ bán xe — chúng tôi hướng dẫn khách hàng chọn đúng sản phẩm phù hợp với nhu cầu thực tế. Từ xe đi làm hằng ngày, xe đi học cho con, đến xe vận chuyển nhỏ cho kinh doanh — mỗi dòng xe đều được tư vấn kỹ lưỡng.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100">
+                            <div class="w-8 h-8 rounded-lg bg-primary-50 text-primary-500 flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-check text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-slate-800">100% chính hãng</p>
+                                <p class="text-xs text-slate-500 mt-0.5">Nhập trực tiếp từ nhà sản xuất</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100">
+                            <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-500 flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-check text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-slate-800">Trả góp 0%</p>
+                                <p class="text-xs text-slate-500 mt-0.5">Hỗ trợ hồ sơ nhanh chóng</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100">
+                            <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-500 flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-check text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-slate-800">Bảo hành chính hãng</p>
+                                <p class="text-xs text-slate-500 mt-0.5">Hệ thống bảo hành toàn quốc</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-xl border border-slate-100">
+                            <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-500 flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-check text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-slate-800">Giao xe tận nơi</p>
+                                <p class="text-xs text-slate-500 mt-0.5">Miễn phí bán kính 10km</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TẦM NHÌN - SỨ MỆNH -->
+        <section class="mb-16 md:mb-20">
+            <div class="text-center mb-10">
+                <div class="flex items-center gap-3 justify-center mb-4">
+                    <span class="w-1.5 h-6 bg-primary-500 rounded-full"></span>
+                    <h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Tầm nhìn & Sứ mệnh</h2>
+                </div>
+                <p class="text-sm text-slate-500 max-w-xl mx-auto">Định hướng phát triển bền vững, đặt khách hàng làm trung tâm</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                <!-- Sứ mệnh -->
+                <div class="bg-gradient-to-br from-primary-500 to-primary-700 rounded-2xl p-6 md:p-8 text-white relative overflow-hidden group hover:shadow-hover-card transition-all">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 rounded-2xl bg-white/15 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-bullseye text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">Sứ mệnh</h3>
+                        <p class="text-sm text-white/80 leading-relaxed">
+                            Mang đến giải pháp di chuyển xanh, tiện lợi và tiết kiệm cho mọi gia đình Việt. Đảm bảo mỗi khách hàng đều được tư vấn đúng nhu cầu, không bị ép mua sản phẩm không phù hợp.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Tầm nhìn -->
+                <div class="bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-2xl p-6 md:p-8 text-white relative overflow-hidden group hover:shadow-hover-card transition-all">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 rounded-2xl bg-white/15 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-eye text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">Tầm nhìn</h3>
+                        <p class="text-sm text-white/80 leading-relaxed">
+                            Trở thành hệ thống phân phối xe điện đáng tin cậy nhất Việt Nam, với mạng lưới cửa hàng phủ rộng 63 tỉnh thành, phục vụ hàng triệu khách hàng hằng năm.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GIÁ TRỊ CỐT LÕI -->
+            <div class="text-center mb-8">
+                <div class="flex items-center gap-3 justify-center mb-3">
+                    <span class="w-1.5 h-5 bg-amber-500 rounded-full"></span>
+                    <h3 class="text-xl md:text-2xl font-black text-slate-900 tracking-tight">Giá trị cốt lõi</h3>
+                </div>
+                <p class="text-sm text-slate-500 max-w-lg mx-auto">Những nguyên tắc chúng tôi cam kết giữ vững trong mọi hoạt động</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <!-- Minh bạch -->
+                <div class="bg-white border border-slate-100 rounded-2xl p-5 md:p-6 shadow-premium hover:shadow-hover-card hover:-translate-y-1 transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-500 flex items-center justify-center mb-4 group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors">
+                        <i class="fa-solid fa-scale-balanced text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-sm mb-2">Minh bạch</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Giá niêm yết rõ ràng, không phát sinh chi phí ẩn. Khách hàng luôn biết trước tổng chi phí trước khi quyết định.</p>
+                </div>
+
+                <!-- Tận tâm -->
+                <div class="bg-white border border-slate-100 rounded-2xl p-5 md:p-6 shadow-premium hover:shadow-hover-card hover:-translate-y-1 transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-500 flex items-center justify-center mb-4 group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors">
+                        <i class="fa-solid fa-hand-holding-heart text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-sm mb-2">Tận tâm</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Lắng nghe nhu cầu thực tế để tư vấn đúng xe, đúng mục đích sử dụng. Không ép bán, không phóng đại tính năng.</p>
+                </div>
+
+                <!-- Trách nhiệm -->
+                <div class="bg-white border border-slate-100 rounded-2xl p-5 md:p-6 shadow-premium hover:shadow-hover-card hover:-translate-y-1 transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center mb-4 group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors">
+                        <i class="fa-solid fa-shield-halved text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-sm mb-2">Trách nhiệm</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Bảo hành đúng cam kết, xử lý khiếu nại nhanh gọn. Mỗi sản phẩm bán ra đều có lịch sử theo dõi hậu mãi rõ ràng.</p>
+                </div>
+
+                <!-- Đổi mới -->
+                <div class="bg-white border border-slate-100 rounded-2xl p-5 md:p-6 shadow-premium hover:shadow-hover-card hover:-translate-y-1 transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-violet-50 text-violet-500 flex items-center justify-center mb-4 group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors">
+                        <i class="fa-solid fa-lightbulb text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-sm mb-2">Đổi mới</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Liên tục cập nhật dòng xe mới, công nghệ mới. Ứng dụng nền tảng số để khách hàng dễ dàng tra cứu và theo dõi đơn hàng.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TẠI SAO CHỌN CHÚNG TÔI -->
+        <section class="mb-16 md:mb-20">
+            <div class="text-center mb-10">
+                <div class="flex items-center gap-3 justify-center mb-4">
+                    <span class="w-1.5 h-6 bg-emerald-500 rounded-full"></span>
+                    <h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Tại sao chọn dailyxedien.vn?</h2>
+                </div>
+                <p class="text-sm text-slate-500 max-w-xl mx-auto">Những lý do khách hàng tin tưởng và gắn bó với chúng tôi</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-premium hover:shadow-hover-card hover:-translate-y-1 transition-all text-center group">
+                    <div class="w-16 h-16 rounded-2xl bg-blue-50 text-blue-500 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors">
+                        <i class="fa-solid fa-certificate text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 mb-2">Sản phẩm chính hãng</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Nhập khẩu và phân phối trực tiếp từ nhà máy, đầy đủ giấy tờ và CO/CQ.</p>
+                </div>
+
+                <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-premium hover:shadow-hover-card hover:-translate-y-1 transition-all text-center group">
+                    <div class="w-16 h-16 rounded-2xl bg-emerald-50 text-emerald-500 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors">
+                        <i class="fa-solid fa-hand-holding-dollar text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 mb-2">Giá tốt - Trả góp 0%</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Cam kết giá cạnh tranh nhất thị trường. Hỗ trợ trả góp lãi suất 0% nhanh chóng.</p>
+                </div>
+
+                <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-premium hover:shadow-hover-card hover:-translate-y-1 transition-all text-center group">
+                    <div class="w-16 h-16 rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors">
+                        <i class="fa-solid fa-headset text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 mb-2">Tư vấn tận tâm</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Đội ngũ nhân viên được đào tạo bài bản, tư vấn đúng nhu cầu, không ép bán hàng.</p>
+                </div>
+
+                <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-premium hover:shadow-hover-card hover:-translate-y-1 transition-all text-center group">
+                    <div class="w-16 h-16 rounded-2xl bg-rose-50 text-rose-500 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors">
+                        <i class="fa-solid fa-wrench text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 mb-2">Hậu mãi minh bạch</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Bảo hành chính hãng, sửa chữa tại đại lý, theo dõi lịch sử bảo trì dễ dàng.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CỘT MỐC PHÁT TRIỂN (TIMELINE) -->
+        <section class="mb-16 md:mb-20">
+            <div class="text-center mb-10">
+                <div class="flex items-center gap-3 justify-center mb-4">
+                    <span class="w-1.5 h-6 bg-primary-500 rounded-full"></span>
+                    <h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Hành trình phát triển</h2>
+                </div>
+                <p class="text-sm text-slate-500 max-w-xl mx-auto">Từng bước xây dựng hệ thống phân phối xe điện uy tín</p>
+            </div>
+
+            <div class="relative">
+                <!-- Vertical line -->
+                <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-slate-200 md:-translate-x-1/2"></div>
+
+                <div class="space-y-8 md:space-y-12">
+                    <!-- Milestone 1 -->
+                    <div class="relative flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
+                        <div class="md:w-1/2 md:text-right md:pr-12 pl-12 md:pl-0">
+                            <span class="text-xs font-bold text-primary-500 uppercase tracking-wider">2020</span>
+                            <h3 class="font-bold text-slate-800 text-base mt-1">Khởi nghiệp từ đam mê</h3>
+                            <p class="text-xs text-slate-500 mt-1 leading-relaxed">Bắt đầu với cửa hàng đầu tiên tại TP. Thủ Đức, chuyên xe điện và xe đạp điện cho học sinh, sinh viên.</p>
+                        </div>
+                        <div class="absolute left-4 md:left-1/2 w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center -translate-x-1/2 shadow-lg shadow-primary-500/30 z-10">
+                            <i class="fa-solid fa-flag text-white text-xs"></i>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 pl-12"></div>
+                    </div>
+
+                    <!-- Milestone 2 -->
+                    <div class="relative flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
+                        <div class="md:w-1/2 md:pr-12 pl-12 md:pl-0 md:text-right md:order-1 order-2"></div>
+                        <div class="absolute left-4 md:left-1/2 w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center -translate-x-1/2 shadow-lg shadow-emerald-500/30 z-10">
+                            <i class="fa-solid fa-store text-white text-xs"></i>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 pl-12 md:order-2 order-1">
+                            <span class="text-xs font-bold text-emerald-500 uppercase tracking-wider">2022</span>
+                            <h3 class="font-bold text-slate-800 text-base mt-1">Mở rộng hệ thống</h3>
+                            <p class="text-xs text-slate-500 mt-1 leading-relaxed">Phát triển thêm 5 cửa hàng tại các quận trung tâm TP.HCM, hợp tác phân phối với Bluera, Yadea và VinFast.</p>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 3 -->
+                    <div class="relative flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
+                        <div class="md:w-1/2 md:text-right md:pr-12 pl-12 md:pl-0">
+                            <span class="text-xs font-bold text-amber-500 uppercase tracking-wider">2024</span>
+                            <h3 class="font-bold text-slate-800 text-base mt-1">Vươn tầm toàn quốc</h3>
+                            <p class="text-xs text-slate-500 mt-1 leading-relaxed">Hệ thống đại lý mở rộng ra các tỉnh miền Trung và Tây Nguyên. Ra mắt nền tảng bán hàng trực tuyến dailyxedien.vn.</p>
+                        </div>
+                        <div class="absolute left-4 md:left-1/2 w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center -translate-x-1/2 shadow-lg shadow-amber-500/30 z-10">
+                            <i class="fa-solid fa-rocket text-white text-xs"></i>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 pl-12"></div>
+                    </div>
+
+                    <!-- Milestone 4 -->
+                    <div class="relative flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
+                        <div class="md:w-1/2 md:pr-12 pl-12 md:pl-0 md:text-right md:order-1 order-2"></div>
+                        <div class="absolute left-4 md:left-1/2 w-8 h-8 bg-rose-500 rounded-full flex items-center justify-center -translate-x-1/2 shadow-lg shadow-rose-500/30 z-10">
+                            <i class="fa-solid fa-star text-white text-xs"></i>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 pl-12 md:order-2 order-1">
+                            <span class="text-xs font-bold text-rose-500 uppercase tracking-wider">2026</span>
+                            <h3 class="font-bold text-slate-800 text-base mt-1">Hệ thống 20+ cửa hàng</h3>
+                            <p class="text-xs text-slate-500 mt-1 leading-relaxed">Đạt mốc 20+ cửa hàng và đại lý ủy quyền trên toàn quốc. Khai trương đại lý mới tại Lâm Đồng, Đắk Lắk.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ĐỘI NGŨ -->
+        <section class="mb-16 md:mb-20">
+            <div class="text-center mb-10">
+                <div class="flex items-center gap-3 justify-center mb-4">
+                    <span class="w-1.5 h-6 bg-primary-500 rounded-full"></span>
+                    <h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Đội ngũ của chúng tôi</h2>
+                </div>
+                <p class="text-sm text-slate-500 max-w-xl mx-auto">Những con người tận tâm đứng sau mỗi chiếc xe giao đến tay bạn</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <!-- Member 1 -->
+                <div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all group text-center">
+                    <div class="h-40 md:h-52 bg-gradient-to-br from-primary-100 to-primary-50 flex items-center justify-center overflow-hidden">
+                        <div class="w-20 h-20 md:w-24 md:h-24 rounded-full bg-primary-500 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-user text-3xl md:text-4xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-slate-800 text-sm">Nguyễn Văn A</h3>
+                        <p class="text-xs text-primary-500 font-semibold mt-0.5">Giám đốc điều hành</p>
+                        <p class="text-[11px] text-slate-400 mt-2 line-clamp-2">Hơn 10 năm kinh nghiệm trong lĩnh vực phân phối xe điện.</p>
+                    </div>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all group text-center">
+                    <div class="h-40 md:h-52 bg-gradient-to-br from-emerald-100 to-emerald-50 flex items-center justify-center overflow-hidden">
+                        <div class="w-20 h-20 md:w-24 md:h-24 rounded-full bg-emerald-500 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-user text-3xl md:text-4xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-slate-800 text-sm">Trần Thị B</h3>
+                        <p class="text-xs text-emerald-500 font-semibold mt-0.5">Trưởng phòng kinh doanh</p>
+                        <p class="text-[11px] text-slate-400 mt-2 line-clamp-2">Chuyên gia tư vấn xe điện cho gia đình và cá nhân.</p>
+                    </div>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all group text-center">
+                    <div class="h-40 md:h-52 bg-gradient-to-br from-amber-100 to-amber-50 flex items-center justify-center overflow-hidden">
+                        <div class="w-20 h-20 md:w-24 md:h-24 rounded-full bg-amber-500 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-user text-3xl md:text-4xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-slate-800 text-sm">Lê Văn C</h3>
+                        <p class="text-xs text-amber-500 font-semibold mt-0.5">Trưởng phòng kỹ thuật</p>
+                        <p class="text-[11px] text-slate-400 mt-2 line-clamp-2">Phụ trách bảo hành, sửa chữa và kiểm tra chất lượng xe.</p>
+                    </div>
+                </div>
+
+                <!-- Member 4 -->
+                <div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all group text-center">
+                    <div class="h-40 md:h-52 bg-gradient-to-br from-rose-100 to-rose-50 flex items-center justify-center overflow-hidden">
+                        <div class="w-20 h-20 md:w-24 md:h-24 rounded-full bg-rose-500 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-user text-3xl md:text-4xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-slate-800 text-sm">Phạm Thị D</h3>
+                        <p class="text-xs text-rose-500 font-semibold mt-0.5">Trưởng phòng CSKH</p>
+                        <p class="text-[11px] text-slate-400 mt-2 line-clamp-2">Luôn lắng nghe và giải quyết mọi vấn đề sau mua hàng.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ĐỐI TÁC THƯƠNG HIỆU -->
+        <section class="mb-16 md:mb-20">
+            <div class="text-center mb-10">
+                <div class="flex items-center gap-3 justify-center mb-4">
+                    <span class="w-1.5 h-6 bg-primary-500 rounded-full"></span>
+                    <h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Đối tác & Thương hiệu</h2>
+                </div>
+                <p class="text-sm text-slate-500 max-w-xl mx-auto">Đại lý ủy quyền chính thức của các hãng xe điện hàng đầu</p>
+            </div>
+
+            <div class="grid grid-cols-3 md:grid-cols-6 gap-4 md:gap-6">
+                <div class="bg-white border border-slate-100 rounded-2xl p-4 md:p-6 flex items-center justify-center h-20 md:h-28 shadow-premium hover:shadow-hover-card hover:-translate-y-1 transition-all group">
+                    <span class="text-lg md:text-xl font-black text-slate-300 group-hover:text-primary-500 transition-colors tracking-wide">BLUERA</span>
+                </div>
+                <div class="bg-white border border-slate-100 rounded-2xl p-4 md:p-6 flex items-center justify-center h-20 md:h-28 shadow-premium hover:shadow-hover-card hover:-translate-y-1 transition-all group">
+                    <span class="text-lg md:text-xl font-black text-slate-300 group-hover:text-primary-500 transition-colors tracking-wide">YADEA</span>
+                </div>
+                <div class="bg-white border border-slate-100 rounded-2xl p-4 md:p-6 flex items-center justify-center h-20 md:h-28 shadow-premium hover:shadow-hover-card hover:-translate-y-1 transition-all group">
+                    <span class="text-lg md:text-xl font-black text-slate-300 group-hover:text-primary-500 transition-colors tracking-wide">VINFAST</span>
+                </div>
+                <div class="bg-white border border-slate-100 rounded-2xl p-4 md:p-6 flex items-center justify-center h-20 md:h-28 shadow-premium hover:shadow-hover-card hover:-translate-y-1 transition-all group">
+                    <span class="text-lg md:text-xl font-black text-slate-300 group-hover:text-primary-500 transition-colors tracking-wide">XMEN</span>
+                </div>
+                <div class="bg-white border border-slate-100 rounded-2xl p-4 md:p-6 flex items-center justify-center h-20 md:h-28 shadow-premium hover:shadow-hover-card hover:-translate-y-1 transition-all group">
+                    <span class="text-base md:text-lg font-black text-slate-300 group-hover:text-primary-500 transition-colors tracking-wide">BLUESUDA</span>
+                </div>
+                <div class="bg-white border border-slate-100 rounded-2xl p-4 md:p-6 flex items-center justify-center h-20 md:h-28 shadow-premium hover:shadow-hover-card hover:-translate-y-1 transition-all group">
+                    <span class="text-lg md:text-xl font-black text-slate-300 group-hover:text-primary-500 transition-colors tracking-wide">VESPA</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA SECTION -->
+        <section class="mb-16 md:mb-20">
+            <div class="bg-gradient-to-r from-primary-500 to-primary-700 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden">
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.1),transparent_50%)]"></div>
+                <div class="relative z-10 max-w-2xl mx-auto text-center">
+                    <div class="w-16 h-16 bg-white/15 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fa-solid fa-handshake text-3xl"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-black mb-4 tracking-tight">Sẵn sàng đồng hành cùng bạn</h2>
+                    <p class="text-sm text-white/80 leading-relaxed mb-8">
+                        Bạn đang tìm xe điện cho bản thân hoặc gia đình? Hãy liên hệ ngay để được tư vấn miễn phí, chọn đúng xe phù hợp với ngân sách và nhu cầu sử dụng.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="index.html#consult-form" class="inline-flex items-center justify-center gap-2 bg-white text-primary-600 px-8 py-4 rounded-xl font-bold text-sm hover:bg-slate-50 transition-all shadow-lg transform hover:scale-105">
+                            <i class="fa-solid fa-paper-plane"></i> Đăng ký tư vấn miễn phí
+                        </a>
+                        <a href="tel:0933505222" class="inline-flex items-center justify-center gap-2 bg-white/15 border border-white/30 text-white px-8 py-4 rounded-xl font-bold text-sm hover:bg-white/25 transition-all">
+                            <i class="fa-solid fa-phone"></i> Gọi 0933 505 222
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 text-sm pt-16 pb-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <!-- Company Info -->
+            <div class="space-y-4">
+                <a href="index.html" class="flex items-center gap-3">
+                    <div class="bg-primary-500 text-white font-black p-2 rounded-xl text-lg">D<span class="text-emerald-400">XD</span></div>
+                    <span class="text-xl font-extrabold text-white">dailyxedien.vn</span>
+                </a>
+                <p class="text-xs leading-relaxed text-slate-400">
+                    Dailyxedien.vn - Hệ thống phân phối xe điện, xe 50cc, xe máy điện chính hãng. Cam kết sản phẩm rõ nguồn gốc, chính sách giá minh bạch và hậu mãi dễ theo dõi.
+                </p>
+                <div class="flex items-center gap-3 pt-2">
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-primary-500 hover:text-white flex items-center justify-center transition-colors text-xs text-slate-300"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-primary-500 hover:text-white flex items-center justify-center transition-colors text-xs text-slate-300"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-primary-500 hover:text-white flex items-center justify-center transition-colors text-xs text-slate-300"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-primary-500 hover:text-white flex items-center justify-center transition-colors text-xs text-slate-300"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <!-- Policy -->
+            <div class="space-y-4">
+                <h4 class="text-white font-bold text-sm tracking-wide">CHÍNH SÁCH CHUNG</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#" class="hover:text-white transition-colors">Chính sách bảo hành vàng</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Chính sách đổi trả trong 7 ngày</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Chính sách vận chuyển & giao nhận</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Chính sách thanh toán linh hoạt</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Chính sách bảo mật thông tin</a></li>
+                </ul>
+            </div>
+
+            <!-- Support -->
+            <div class="space-y-4">
+                <h4 class="text-white font-bold text-sm tracking-wide">HỖ TRỢ KHÁCH HÀNG</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#" class="hover:text-white transition-colors">Hướng dẫn mua hàng trực tuyến</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Hướng dẫn trả góp 0% nhanh chóng</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Tra cứu tiến độ đơn hàng</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Câu hỏi thường gặp (FAQs)</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Bản đồ hệ thống đại lý</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="space-y-4">
+                <h4 class="text-white font-bold text-sm tracking-wide">LIÊN HỆ VỚI CHÚNG TÔI</h4>
+                <div class="space-y-3 text-xs">
+                    <p class="flex items-start gap-2.5 leading-relaxed">
+                        <i class="fa-solid fa-location-dot mt-0.5 text-primary-500"></i>
+                        <span>466 Nguyễn Duy Trinh, P. Bình Trưng Đông, TP. Thủ Đức, TP.HCM</span>
+                    </p>
+                    <p class="flex items-center gap-2.5">
+                        <i class="fa-solid fa-phone text-primary-500"></i>
+                        <span>0933 505 222 (Hỗ trợ 24/7)</span>
+                    </p>
+                    <p class="flex items-center gap-2.5">
+                        <i class="fa-regular fa-envelope text-primary-500"></i>
+                        <span>info@dailyxedien.vn</span>
+                    </p>
+                    <p class="flex items-center gap-2.5">
+                        <i class="fa-solid fa-globe text-primary-500"></i>
+                        <span>www.dailyxedien.vn</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="border-t border-slate-800 pt-8 text-center text-xs text-slate-500 max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>© 2026 dailyxedien.vn. Tất cả bản quyền được bảo lưu.</p>
+            <div class="flex items-center gap-4">
+                <span class="hover:text-slate-400 cursor-pointer">Bảo mật</span>
+                <span>•</span>
+                <span class="hover:text-slate-400 cursor-pointer">Điều khoản sử dụng</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING ACTIONS -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+        <a href="https://zalo.me/0933505222" target="_blank" class="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white rounded-full w-12 h-12 shadow-xl transition-transform hover:scale-105 active:scale-95 group relative" title="Chat Zalo">
+            <span class="absolute right-full mr-3 bg-white text-slate-800 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Chat Zalo</span>
+            <i class="fa-solid fa-comment-sms text-lg"></i>
+        </a>
+        <a href="tel:0933505222" class="flex items-center justify-center bg-primary-500 hover:bg-primary-600 text-white rounded-full w-12 h-12 shadow-xl transition-transform hover:scale-105 active:scale-95 group relative" title="Gọi Hotline">
+            <span class="absolute right-full mr-3 bg-white text-slate-800 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Hotline: 0933 505 222</span>
+            <i class="fa-solid fa-phone-volume text-lg"></i>
+        </a>
+    </div>
+
+    <!-- BACK TO TOP -->
+    <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Lên đầu trang" class="fixed bottom-24 right-6 z-40 w-11 h-11 rounded-full bg-slate-900 hover:bg-primary-600 text-white shadow-xl flex items-center justify-center transition-colors opacity-0 pointer-events-none" style="transition: opacity 0.3s">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- SCRIPT: Mobile Menu + Back to Top -->
+    <script>
+        // Mobile menu
+        function openMobileMenu() {
+            const overlay = document.getElementById('mobile-drawer-overlay');
+            const drawer = document.getElementById('mobile-drawer');
+            overlay.classList.remove('hidden');
+            setTimeout(() => {
+                overlay.classList.remove('opacity-0');
+                drawer.classList.remove('-translate-x-full');
+            }, 10);
+        }
+        function closeMobileMenu() {
+            const overlay = document.getElementById('mobile-drawer-overlay');
+            const drawer = document.getElementById('mobile-drawer');
+            overlay.classList.add('opacity-0');
+            drawer.classList.add('-translate-x-full');
+            setTimeout(() => overlay.classList.add('hidden'), 300);
+        }
+
+        // Back to top
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTop.style.opacity = '1';
+                backToTop.style.pointerEvents = 'auto';
+            } else {
+                backToTop.style.opacity = '0';
+                backToTop.style.pointerEvents = 'none';
+            }
+        });
+
+        // Scroll animation
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section > div, section > .grid').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

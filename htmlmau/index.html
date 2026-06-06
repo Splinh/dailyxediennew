@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dailyxedien.vn - Xe Điện, Xe Máy Điện, Xe 50cc Chính Hãng</title>
+
+    <!-- SEO -->
+    <meta name="description" content="dailyxedien.vn - Hệ thống phân phối xe điện, xe máy điện, xe 50cc chính hãng. Tư vấn rõ ràng, trả góp 0%, bảo hành chính hãng, giao hàng tận nơi.">
+    <meta name="keywords" content="xe điện, xe máy điện, xe 50cc, xe đạp điện, Bluera, Yadea, VinFast, trả góp 0%">
+    <meta name="author" content="dailyxedien.vn">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0052cc">
+    <link rel="canonical" href="https://www.dailyxedien.vn/">
+
+    <!-- Open Graph / Mạng xã hội -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="dailyxedien.vn - Xe Điện, Xe Máy Điện, Xe 50cc Chính Hãng">
+    <meta property="og:description" content="Hệ thống phân phối xe điện chính hãng. Tư vấn chọn xe, trả góp 0%, bảo hành chính hãng.">
+    <meta property="og:url" content="https://www.dailyxedien.vn/">
+    <meta property="og:image" content="https://www.dailyxedien.vn/og-image.jpg">
+    <meta property="og:locale" content="vi_VN">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Favicon (emoji SVG, thay bằng file thật khi triển khai) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E">
+
+    <!-- Tailwind CSS (CDN cho demo — khi lên production nên build Tailwind tĩnh) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f5ff',
+                            100: '#e0ebff',
+                            500: '#0052cc', // Xanh thương hiệu cao cấp
+                            600: '#0040a1',
+                            700: '#003380',
+                        },
+                        accent: {
+                            500: '#10b981', // Màu xanh lục cuộc sống xanh
+                            600: '#059669',
+                        }
+                    },
+                    boxShadow: {
+                        'premium': '0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 8px -1px rgba(0, 0, 0, 0.02)',
+                        'hover-card': '0 20px 40px -4px rgba(0, 0, 0, 0.08), 0 8px 20px -2px rgba(0, 0, 0, 0.03)',
+                        'glow': '0 0 20px rgba(0, 82, 202, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="text-slate-800 antialiased overflow-x-hidden">
+
+    <!-- Skip link cho người dùng bàn phím / screen reader -->
+    <a href="#best-sellers" class="skip-link">Bỏ qua tới nội dung chính</a>
+
+    <!-- TOP UTILITY BAR (Hidden on Mobile to save space) -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2.5 px-4 border-b border-slate-800 relative z-50 hidden md:block">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+            <div class="flex flex-wrap items-center gap-5 justify-center md:justify-start">
+                <a href="#store-section" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-primary-500 animate-pulse"></i> Hệ thống cửa hàng</a>
+                <a href="#" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-solid fa-magnifying-glass text-slate-400"></i> Tra cứu đơn hàng</a>
+                <a href="#news-section" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-regular fa-newspaper"></i> Tin tức</a>
+                <a href="#consult-form" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-regular fa-envelope"></i> Liên hệ</a>
+            </div>
+            <div class="flex items-center gap-5">
+                <a href="#" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-regular fa-user"></i> Đăng nhập / Đăng ký</a>
+                <span class="text-slate-700">|</span>
+                <a href="#" class="hover:text-white transition-colors flex items-center gap-1.5 font-medium relative" onclick="openCart()">
+                    <i class="fa-solid fa-cart-shopping text-emerald-400"></i> Giỏ hàng 
+                    <span class="bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full absolute -top-2.5 -right-4 shadow-sm" id="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER (Responsive & Mobile Sticky) -->
+    <header class="bg-white py-3 md:py-4 px-4 sticky top-0 z-50 border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            
+            <!-- Mobile Hamburger Menu Button (Visible on Mobile Only) -->
+            <button onclick="openMobileMenu()" class="md:hidden text-slate-700 hover:text-primary-500 p-2 text-xl focus:outline-none" aria-label="Menu">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 md:gap-3">
+                <div class="bg-gradient-to-r from-primary-500 to-primary-600 text-white font-black p-2 md:p-2.5 rounded-xl text-lg md:text-xl shadow-lg shadow-primary-500/20 tracking-wider">
+                    D<span class="text-emerald-400">XD</span>
+                </div>
+                <div>
+                    <span class="text-lg md:text-2xl font-extrabold tracking-tight text-slate-900">dailyxedien<span class="text-primary-500">.vn</span></span>
+                    <p class="text-[8px] md:text-[10px] tracking-widest text-slate-400 uppercase font-bold hidden sm:block">Hệ thống xe điện lớn nhất Việt Nam</p>
+                </div>
+            </a>
+
+            <!-- Search Bar (Hidden on Mobile, Toggled inside Drawer or below) -->
+            <div class="w-full md:max-w-xl relative hidden md:block">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <i class="fa-solid fa-magnifying-glass text-slate-400"></i>
+                </div>
+                <input type="text" placeholder="Bạn cần tìm xe điện, xe 50cc hay phụ kiện gì hôm nay?" class="w-full pl-11 pr-24 py-3 bg-slate-50 border border-slate-200 focus:border-primary-500 focus:bg-white focus:ring-2 focus:ring-primary-100 rounded-xl outline-none transition-all text-sm">
+                <button class="absolute right-1.5 top-1.5 bottom-1.5 bg-primary-500 hover:bg-primary-600 text-white px-5 rounded-lg text-xs font-semibold transition-colors">Tìm kiếm</button>
+            </div>
+
+            <!-- Header Action Controls for Mobile (Quick access) -->
+            <div class="flex items-center gap-1 md:gap-3.5">
+                <!-- Mobile Search Icon (Triggers focus on mobile search) -->
+                <button onclick="openMobileMenu(); setTimeout(() => document.getElementById('mobile-search').focus(), 300)" aria-label="Tìm kiếm" class="md:hidden text-slate-700 hover:text-primary-500 p-2 text-lg">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                </button>
+
+                <!-- Mobile Cart Link -->
+                <button onclick="openCart()" aria-label="Giỏ hàng" class="md:hidden text-slate-700 hover:text-primary-500 p-2 text-lg relative">
+                    <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+                    <span class="bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full absolute top-0 right-0 shadow-sm" id="cart-count-mobile">0</span>
+                </button>
+
+                <!-- Hotline Support (Hidden on extra small mobile) -->
+                <div class="hidden sm:flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-full bg-primary-50 flex items-center justify-center text-primary-500 shadow-sm">
+                        <i class="fa-solid fa-phone-volume text-lg animate-bounce"></i>
+                    </div>
+                    <div class="text-right md:text-left">
+                        <span class="text-xs text-slate-400 font-medium">Hotline tư vấn 24/7</span>
+                        <p class="text-base font-bold text-slate-900 tracking-tight hover:text-primary-500 transition-colors">0933 505 222</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE NAVIGATION SIDEBAR DRAWER (Ngăn kéo vuốt dọc hiện đại cho di động) -->
+    <div id="mobile-drawer-overlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] hidden transition-opacity duration-300 opacity-0" onclick="closeMobileMenu()"></div>
+    <div id="mobile-drawer" class="fixed inset-y-0 left-0 w-80 max-w-[85vw] bg-white z-[110] shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between">
+        <div class="overflow-y-auto flex-grow p-5 space-y-6">
+            <!-- Drawer Header -->
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                <div class="flex items-center gap-2">
+                    <div class="bg-primary-500 text-white font-black p-1.5 rounded-lg text-sm">D<span class="text-emerald-400">XD</span></div>
+                    <span class="font-bold text-slate-800 text-base">dailyxedien.vn</span>
+                </div>
+                <button onclick="closeMobileMenu()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Search Bar Inside Drawer -->
+            <form onsubmit="event.preventDefault(); showToast('Đang tìm kiếm sản phẩm...')" class="relative">
+                <input type="text" id="mobile-search" placeholder="Tìm kiếm xe, phụ kiện..." class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none text-sm focus:bg-white focus:border-primary-500 transition-all">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            </form>
+
+            <!-- Navigation Links -->
+            <div class="space-y-1 text-sm font-semibold text-slate-700">
+                <a href="#" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-solid fa-house text-slate-400"></i> Trang chủ</a>
+                <a href="#best-sellers" onclick="closeMobileMenu(); filterCategory('tab-xe-dien')" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-solid fa-bicycle text-slate-400"></i> Xe Điện</a>
+                <a href="#best-sellers" onclick="closeMobileMenu(); filterCategory('tab-xe-50cc')" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-solid fa-motorcycle text-slate-400"></i> Xe 50CC</a>
+                <a href="#best-sellers" onclick="closeMobileMenu(); filterCategory('tab-xe-may-dien')" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-solid fa-bolt text-slate-400"></i> Xe Máy Điện</a>
+                <a href="#ai-tech-spotlight" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors text-primary-600"><i class="fa-solid fa-microchip"></i> Công nghệ xe</a>
+                <a href="#store-section" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-solid fa-location-dot text-slate-400"></i> Hệ Thống Cửa Hàng</a>
+                <a href="#consult-form" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors text-yellow-600"><i class="fa-solid fa-gift text-slate-400"></i> Đăng Ký Khuyến Mãi</a>
+            </div>
+
+            <!-- Interactive Accordion Mobile Categories -->
+            <div class="border-t border-slate-100 pt-5">
+                <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 px-3">Danh Mục Sản Phẩm</h4>
+                <div class="space-y-2">
+                    <!-- Level 1 Category -->
+                    <div class="border border-slate-100 rounded-xl overflow-hidden">
+                        <button onclick="toggleMobileAccordion('acc-xe-dien')" class="w-full flex items-center justify-between p-3 bg-slate-50/50 hover:bg-slate-50 font-bold text-xs text-slate-700 transition-colors">
+                            <span class="flex items-center gap-2"><i class="fa-solid fa-motorcycle text-primary-500"></i> XE MÁY ĐIỆN</span>
+                            <i id="icon-acc-xe-dien" class="fa-solid fa-chevron-down text-[10px] transition-transform duration-300"></i>
+                        </button>
+                        <div id="acc-xe-dien" class="hidden bg-white px-4 py-2 space-y-2 text-xs font-semibold text-slate-500">
+                            <a href="#best-sellers" onclick="closeMobileMenu(); filterCategory('tab-xe-may-dien')" class="block py-2 border-b border-slate-50 hover:text-primary-500">Bluera Việt Nhật</a>
+                            <a href="#best-sellers" onclick="closeMobileMenu(); filterCategory('tab-xe-may-dien')" class="block py-2 border-b border-slate-50 hover:text-primary-500">Yadea Cao Cấp</a>
+                            <a href="#best-sellers" onclick="closeMobileMenu(); filterCategory('tab-xe-may-dien')" class="block py-2 hover:text-primary-500">VinFast Thông Minh</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Drawer Footer Contact -->
+        <div class="p-5 border-t border-slate-100 bg-slate-50 space-y-3">
+            <p class="text-xs text-slate-500 flex items-center gap-2"><i class="fa-solid fa-phone text-primary-500"></i> <strong>0933 505 222</strong></p>
+            <p class="text-[11px] text-slate-400 leading-snug">466 Nguyễn Duy Trinh, P. Bình Trưng Đông, TP. Thủ Đức, TP.HCM</p>
+        </div>
+    </div>
+
+    <!-- NAVIGATION MENU BAR (Hidden on Mobile) -->
+    <nav class="bg-primary-600 text-white shadow-md relative z-40 hidden md:block">
+        <div class="max-w-7xl mx-auto flex items-center">
+            
+            <!-- Category Trigger with Hover/Click dropdown functionality -->
+            <div class="relative group" id="category-menu-container">
+                <button class="bg-primary-700 hover:bg-primary-800 px-6 py-4 flex items-center gap-3 cursor-pointer transition-colors font-semibold text-sm select-none" id="category-trigger">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                    <span>DANH MỤC SẢN PHẨM</span>
+                    <i class="fa-solid fa-chevron-down text-xs ml-1 transition-transform group-hover:rotate-180"></i>
+                </button>
+                
+                <!-- Dropping Menu on hover/click -->
+                <div class="absolute top-full left-0 w-64 bg-white border border-slate-100 rounded-b-2xl shadow-premium overflow-hidden p-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-50">
+                    <div class="space-y-1">
+                        <a href="#best-sellers" onclick="filterCategory('tab-xe-dien')" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group">
+                            <span class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-500 flex items-center justify-center group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors"><i class="fa-solid fa-bicycle"></i></span>
+                                Xe điện
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-xs opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                        <a href="#best-sellers" onclick="filterCategory('tab-xe-50cc')" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group">
+                            <span class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-lg bg-blue-50 text-blue-500 flex items-center justify-center group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors"><i class="fa-solid fa-motorcycle"></i></span>
+                                Xe 50cc
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-xs opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                        <a href="#best-sellers" onclick="filterCategory('tab-xe-may-dien')" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group">
+                            <span class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-500 flex items-center justify-center group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors"><i class="fa-solid fa-bolt"></i></span>
+                                Xe máy điện
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-xs opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                        <a href="#best-sellers" onclick="filterCategory('tab-xe-3-banh')" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group">
+                            <span class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-lg bg-amber-50 text-amber-500 flex items-center justify-center group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors"><i class="fa-solid fa-truck-pickup"></i></span>
+                                Xe 3 bánh
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-xs opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                        <a href="#" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group">
+                            <span class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-lg bg-pink-50 text-pink-500 flex items-center justify-center group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors"><i class="fa-solid fa-gauge"></i></span>
+                                Xe đạp điện
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-xs opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                        <a href="#" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group">
+                            <span class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-lg bg-violet-50 text-violet-500 flex items-center justify-center group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors"><i class="fa-solid fa-gears"></i></span>
+                                Phụ kiện
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-xs opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                        <a href="#" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group">
+                            <span class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-lg bg-rose-50 text-rose-500 flex items-center justify-center group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors"><i class="fa-solid fa-car-battery"></i></span>
+                                Ắc quy xe điện
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-xs opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                        <a href="#" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-semibold text-yellow-600 transition-all group">
+                            <span class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-lg bg-yellow-50 text-yellow-500 flex items-center justify-center group-hover:bg-yellow-100 transition-colors"><i class="fa-solid fa-gift"></i></span>
+                                Khuyến mãi hot
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-xs opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Navigation Links -->
+            <div class="flex items-center gap-1 px-4 text-sm font-medium overflow-x-auto no-scrollbar">
+                <a href="#best-sellers" onclick="filterCategory('tab-xe-dien')" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">XE ĐIỆN</a>
+                <a href="#best-sellers" onclick="filterCategory('tab-xe-50cc')" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">XE 50CC</a>
+                <a href="#best-sellers" onclick="filterCategory('tab-xe-may-dien')" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">XE MÁY ĐIỆN</a>
+                <a href="#best-sellers" onclick="filterCategory('tab-xe-3-banh')" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">XE 3 BÁNH</a>
+                <a href="#" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">PHỤ KIỆN</a>
+                <a href="#" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">ẮC QUY</a>
+                <a href="#ai-tech-spotlight" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap font-semibold flex items-center gap-1"><i class="fa-solid fa-microchip"></i> CÔNG NGHỆ XE</a>
+                <a href="#store-section" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">HỆ THỐNG CỬA HÀNG</a>
+                <a href="#consult-form" class="px-4 py-4 hover:bg-primary-700/50 transition-colors text-yellow-300 font-bold whitespace-nowrap flex items-center gap-1"><i class="fa-solid fa-fire text-xs"></i> ĐĂNG KÝ KHUYẾN MÃI</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- FULL WIDTH HERO BANNER SECTION (Standard Dimensions, No Overlapping Text, Fits DailyXeDien Design) -->
+    <section class="relative w-full overflow-hidden bg-[#0077c8] aspect-[1920/750] sm:aspect-[1920/650] md:aspect-[1200/480] lg:aspect-[1920/760] xl:aspect-[1920/700]">
+        <!-- Slide Track -->
+        <div id="hero-slider" class="w-full h-full relative">
+            <!-- Slide 1: Bluesuda Hè Sang Chảnh -->
+            <div class="hero-slide absolute inset-0 w-full h-full opacity-100 bg-cover bg-center" role="img" aria-label="Banner Bluesuda Lăn Bánh Hè Sang Chảnh - Giảm ngay 2 triệu" style="background-image: url('assets/images/banner-he-sang-chanh.jpg');">
+            </div>
+        </div>
+
+        <!-- Slider controls -->
+        <button onclick="moveHeroSlide(-1)" aria-label="Banner trước" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all z-20">
+            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+        </button>
+        <button onclick="moveHeroSlide(1)" aria-label="Banner kế tiếp" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all z-20">
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+        </button>
+
+        <!-- Slider Dots Indicators -->
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2.5 z-20" role="tablist" aria-label="Chọn banner">
+            <button onclick="setHeroSlide(0)" aria-label="Banner 1" class="hero-dot w-6 h-2 rounded-full bg-white cursor-pointer transition-all"></button>
+        </div>
+    </section>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+
+        <!-- CORE SERVICES / USP COMMITMENTS BAR (Optimized swipeable layout for mobile) -->
+        <section class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 no-scrollbar lg:grid lg:grid-cols-4 lg:pb-0 mb-16">
+            <div class="snap-center bg-white border border-slate-100 hover:border-blue-100 p-5 rounded-2xl flex items-center gap-4 shadow-premium transition-all hover:shadow-hover-card shrink-0 w-[80%] md:w-auto">
+                <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-500 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-truck-ramp-box"></i></div>
+                <div>
+                    <h3 class="font-bold text-slate-800 text-sm">MIỄN PHÍ GIAO HÀNG</h3>
+                    <p class="text-xs text-slate-500 mt-0.5">Áp dụng bán kính lên đến 10km</p>
+                </div>
+            </div>
+            <div class="snap-center bg-white border border-slate-100 hover:border-blue-100 p-5 rounded-2xl flex items-center gap-4 shadow-premium transition-all hover:shadow-hover-card shrink-0 w-[80%] md:w-auto">
+                <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-500 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-arrows-rotate"></i></div>
+                <div>
+                    <h3 class="font-bold text-slate-800 text-sm">1 ĐỔI 1 TRONG 7 NGÀY</h3>
+                    <p class="text-xs text-slate-500 mt-0.5">Nếu có lỗi sản xuất từ nhà máy</p>
+                </div>
+            </div>
+            <div class="snap-center bg-white border border-slate-100 hover:border-emerald-100 p-5 rounded-2xl flex items-center gap-4 shadow-premium transition-all hover:shadow-hover-card shrink-0 w-[80%] md:w-auto">
+                <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-500 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-shield-halved"></i></div>
+                <div>
+                    <h4 class="font-bold text-slate-800 text-sm">BẢO HÀNH CHÍNH HÃNG</h4>
+                    <p class="text-xs text-slate-500 mt-0.5">Hệ thống đại lý ủy quyền uy tín</p>
+                </div>
+            </div>
+            <div class="snap-center bg-white border border-slate-100 hover:border-amber-100 p-5 rounded-2xl flex items-center gap-4 shadow-premium transition-all hover:shadow-hover-card shrink-0 w-[80%] md:w-auto">
+                <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-credit-card"></i></div>
+                <div>
+                    <h3 class="font-bold text-slate-800 text-sm">THANH TOÁN LINH HOẠT</h3>
+                    <p class="text-xs text-slate-500 mt-0.5">Trả góp lãi suất 0% mượt mà</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED CATEGORIES -->
+        <section class="mb-16">
+            <div class="section-heading flex items-center justify-between mb-8">
+                <div class="flex items-center gap-3">
+                    <span class="w-1.5 h-6 bg-primary-500 rounded-full"></span>
+                    <h2 class="text-2xl font-black text-slate-900 tracking-tight">Danh mục nổi bật</h2>
+                </div>
+                <span class="text-sm font-semibold text-slate-400">Chọn nhanh theo nhu cầu</span>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
+                <!-- Category 1 -->
+                <a href="#best-sellers" onclick="filterCategory('tab-xe-dien')" class="bg-white hover:border-primary-200 border border-slate-100 p-4 md:p-6 rounded-2xl text-center shadow-premium transition-all hover:-translate-y-1 hover:shadow-hover-card flex flex-col items-center group">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-slate-50 rounded-full flex items-center justify-center p-2 mb-3 md:mb-4 group-hover:bg-primary-50 transition-colors">
+                        <i class="fa-solid fa-bicycle text-xl md:text-2xl text-slate-400 group-hover:text-primary-500 transition-colors"></i>
+                    </div>
+                    <span class="font-bold text-slate-800 text-xs md:text-sm group-hover:text-primary-500 transition-colors">Xe điện</span>
+                </a>
+                <!-- Category 2 -->
+                <a href="#best-sellers" onclick="filterCategory('tab-xe-50cc')" class="bg-white hover:border-primary-200 border border-slate-100 p-4 md:p-6 rounded-2xl text-center shadow-premium transition-all hover:-translate-y-1 hover:shadow-hover-card flex flex-col items-center group">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-slate-50 rounded-full flex items-center justify-center p-2 mb-3 md:mb-4 group-hover:bg-primary-50 transition-colors">
+                        <i class="fa-solid fa-motorcycle text-xl md:text-2xl text-slate-400 group-hover:text-primary-500 transition-colors"></i>
+                    </div>
+                    <span class="font-bold text-slate-800 text-xs md:text-sm group-hover:text-primary-500 transition-colors">Xe 50cc</span>
+                </a>
+                <!-- Category 3 -->
+                <a href="#best-sellers" onclick="filterCategory('tab-xe-may-dien')" class="bg-white hover:border-primary-200 border border-slate-100 p-4 md:p-6 rounded-2xl text-center shadow-premium transition-all hover:-translate-y-1 hover:shadow-hover-card flex flex-col items-center group">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-slate-50 rounded-full flex items-center justify-center p-2 mb-3 md:mb-4 group-hover:bg-primary-50 transition-colors">
+                        <i class="fa-solid fa-bolt text-xl md:text-2xl text-slate-400 group-hover:text-primary-500 transition-colors"></i>
+                    </div>
+                    <span class="font-bold text-slate-800 text-xs md:text-sm group-hover:text-primary-500 transition-colors">Xe máy điện</span>
+                </a>
+                <!-- Category 4 -->
+                <a href="#best-sellers" onclick="filterCategory('tab-xe-3-banh')" class="bg-white hover:border-primary-200 border border-slate-100 p-4 md:p-6 rounded-2xl text-center shadow-premium transition-all hover:-translate-y-1 hover:shadow-hover-card flex flex-col items-center group">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-slate-50 rounded-full flex items-center justify-center p-2 mb-3 md:mb-4 group-hover:bg-primary-50 transition-colors">
+                        <div class="w-full h-full flex items-center justify-center bg-slate-100 rounded-full text-slate-400 group-hover:bg-primary-100 group-hover:text-primary-500 transition-colors">
+                            <i class="fa-solid fa-truck-pickup text-xl md:text-2xl"></i>
+                        </div>
+                    </div>
+                    <span class="font-bold text-slate-800 text-xs md:text-sm group-hover:text-primary-500 transition-colors">Xe 3 bánh</span>
+                </a>
+                <!-- Category 5 -->
+                <a href="#" class="bg-white hover:border-primary-200 border border-slate-100 p-4 md:p-6 rounded-2xl text-center shadow-premium transition-all hover:-translate-y-1 hover:shadow-hover-card flex flex-col items-center group">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-slate-50 rounded-full flex items-center justify-center p-2 mb-3 md:mb-4 group-hover:bg-primary-50 transition-colors">
+                        <div class="w-full h-full flex items-center justify-center bg-slate-100 rounded-full text-slate-400 group-hover:bg-primary-100 group-hover:text-primary-500 transition-colors">
+                            <i class="fa-solid fa-bicycle text-xl md:text-2xl"></i>
+                        </div>
+                    </div>
+                    <span class="font-bold text-slate-800 text-xs md:text-sm group-hover:text-primary-500 transition-colors">Xe đạp điện</span>
+                </a>
+                <!-- Category 6 -->
+                <a href="#" class="bg-white hover:border-primary-200 border border-slate-100 p-4 md:p-6 rounded-2xl text-center shadow-premium transition-all hover:-translate-y-1 hover:shadow-hover-card flex flex-col items-center group">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-slate-50 rounded-full flex items-center justify-center p-2 mb-3 md:mb-4 group-hover:bg-primary-50 transition-colors">
+                        <div class="w-full h-full flex items-center justify-center bg-slate-100 rounded-full text-slate-400 group-hover:bg-primary-100 group-hover:text-primary-500 transition-colors">
+                            <i class="fa-solid fa-gears text-xl md:text-2xl"></i>
+                        </div>
+                    </div>
+                    <span class="font-bold text-slate-800 text-xs md:text-sm group-hover:text-primary-500 transition-colors">Phụ kiện</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- BEST SELLERS SECTION (Highly-Visible Premium 2-column e-commerce grid on mobile) -->
+        <section class="mb-16 scroll-mt-24" id="best-sellers">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-8">
+                <div class="flex items-center gap-3">
+                    <span class="w-1.5 h-6 bg-primary-500 rounded-full"></span>
+                    <h2 class="text-2xl font-black text-slate-900 tracking-tight">Sản phẩm bán chạy</h2>
+                </div>
+
+                <!-- Customized active tab styling (Rich, swipeable horizontally on mobile) -->
+                <div class="flex items-center gap-2 bg-slate-100/80 p-1.5 rounded-2xl overflow-x-auto no-scrollbar md:w-auto w-full" role="tablist" aria-label="Lọc sản phẩm theo loại">
+                    <button onclick="switchTab('tab-xe-dien', this)" data-tab="tab-xe-dien" role="tab" aria-selected="true" class="tab-btn active px-4 md:px-6 py-2.5 md:py-3 text-xs font-black rounded-xl transition-all whitespace-nowrap bg-gradient-to-r from-primary-500 to-primary-600 text-white shadow-md shadow-primary-500/30">
+                        <i class="fa-solid fa-bicycle mr-1.5" aria-hidden="true"></i> XE ĐIỆN
+                    </button>
+                    <button onclick="switchTab('tab-xe-50cc', this)" data-tab="tab-xe-50cc" role="tab" aria-selected="false" class="tab-btn px-4 md:px-6 py-2.5 md:py-3 text-xs font-bold rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-200/50 transition-all whitespace-nowrap">
+                        <i class="fa-solid fa-motorcycle mr-1.5" aria-hidden="true"></i> XE 50CC
+                    </button>
+                    <button onclick="switchTab('tab-xe-may-dien', this)" data-tab="tab-xe-may-dien" role="tab" aria-selected="false" class="tab-btn px-4 md:px-6 py-2.5 md:py-3 text-xs font-bold rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-200/50 transition-all whitespace-nowrap">
+                        <i class="fa-solid fa-bolt mr-1.5" aria-hidden="true"></i> XE MÁY ĐIỆN
+                    </button>
+                    <button onclick="switchTab('tab-xe-3-banh', this)" data-tab="tab-xe-3-banh" role="tab" aria-selected="false" class="tab-btn px-4 md:px-6 py-2.5 md:py-3 text-xs font-bold rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-200/50 transition-all whitespace-nowrap">
+                        <i class="fa-solid fa-truck-pickup mr-1.5" aria-hidden="true"></i> XE 3 BÁNH
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab Content Dynamic Area (Optimised grid with cols-2 for mobile) -->
+            <div id="tab-container" class="relative min-h-[400px]">
+                
+                <!-- Tab Panel: Xe Điện (Active by default) -->
+                <div id="tab-xe-dien" class="tab-panel grid grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6">
+                    <!-- Product 1 -->
+                    <div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 flex flex-col justify-between group relative">
+                        <span class="absolute top-2.5 left-2.5 bg-red-500 text-white font-black text-[9px] md:text-[10px] px-2 py-0.5 md:px-2.5 md:py-1 rounded-lg z-10 shadow-sm uppercase">Hot</span>
+                        <div class="p-3 bg-slate-50/50 flex items-center justify-center h-36 md:h-48 relative overflow-hidden">
+                            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1595054179361-b0e66d9bb7a3?auto=format&fit=crop&w=300&q=80" alt="Xe điện Vespa Roma S" class="max-h-full max-w-full object-contain transform group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x200/f1f5f9/475569?text=Roma+S'">
+                        </div>
+                        <div class="p-3 md:p-5 flex-grow flex flex-col justify-between">
+                            <div>
+                                <span class="text-[9px] md:text-[10px] text-slate-400 font-bold uppercase tracking-wider">Vespa</span>
+                                <h3 class="font-bold text-slate-800 text-xs md:text-sm line-clamp-2 mt-0.5 group-hover:text-primary-500 transition-colors leading-snug">Xe điện Vespa Roma S chất lượng cao</h3>
+                                <div class="flex items-center gap-0.5 mt-1.5 text-amber-400 text-[10px]" aria-label="Đánh giá 5 sao">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    <span class="text-slate-400 ml-1 font-semibold">Đã bán 1.2k</span>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="flex flex-wrap items-baseline gap-1 md:gap-2">
+                                    <span class="text-sm md:text-base font-extrabold text-slate-900">19.900.000đ</span>
+                                    <span class="text-[10px] md:text-xs text-slate-400 line-through">22.0M</span>
+                                </div>
+                                <div class="grid grid-cols-5 gap-1.5 mt-3">
+                                    <button onclick="addToCart('Xe điện Vespa Roma S', 19900000)" class="col-span-4 bg-primary-500 hover:bg-primary-600 active:scale-95 text-white text-[10px] md:text-xs font-bold py-2 md:py-2.5 rounded-lg transition-all">Mua ngay</button>
+                                    <button onclick="addToCart('Xe điện Vespa Roma S', 19900000)" class="bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-600 flex items-center justify-center rounded-lg transition-all" title="Thêm vào giỏ hàng"><i class="fa-solid fa-cart-plus text-[10px] md:text-xs"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 flex flex-col justify-between group relative">
+                        <span class="absolute top-2.5 left-2.5 bg-blue-500 text-white font-black text-[9px] md:text-[10px] px-2 py-0.5 md:px-2.5 md:py-1 rounded-lg z-10 shadow-sm uppercase">-10%</span>
+                        <div class="p-3 bg-slate-50/50 flex items-center justify-center h-36 md:h-48 relative overflow-hidden">
+                            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=300&q=80" alt="Xe điện Xmen One" class="max-h-full max-w-full object-contain transform group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x200/f1f5f9/475569?text=Xmen+One'">
+                        </div>
+                        <div class="p-3 md:p-5 flex-grow flex flex-col justify-between">
+                            <div>
+                                <span class="text-[9px] md:text-[10px] text-slate-400 font-bold uppercase tracking-wider">Xmen</span>
+                                <h3 class="font-bold text-slate-800 text-xs md:text-sm line-clamp-2 mt-0.5 group-hover:text-primary-500 transition-colors leading-snug">Xe điện thể thao Xmen One cá tính</h3>
+                                <div class="flex items-center gap-0.5 mt-1.5 text-amber-400 text-[10px]" aria-label="Đánh giá 4.5 sao">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                                    <span class="text-slate-400 ml-1 font-semibold">Đã bán 980</span>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="flex flex-wrap items-baseline gap-1 md:gap-2">
+                                    <span class="text-sm md:text-base font-extrabold text-slate-900">18.500.000đ</span>
+                                    <span class="text-[10px] md:text-xs text-slate-400 line-through">20.5M</span>
+                                </div>
+                                <div class="grid grid-cols-5 gap-1.5 mt-3">
+                                    <button onclick="addToCart('Xe điện Xmen One', 18500000)" class="col-span-4 bg-primary-500 hover:bg-primary-600 active:scale-95 text-white text-[10px] md:text-xs font-bold py-2 md:py-2.5 rounded-lg transition-all">Mua ngay</button>
+                                    <button onclick="addToCart('Xe điện Xmen One', 18500000)" class="bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-600 flex items-center justify-center rounded-lg transition-all" title="Thêm vào giỏ hàng"><i class="fa-solid fa-cart-plus text-[10px] md:text-xs"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 flex flex-col justify-between group relative">
+                        <span class="absolute top-2.5 left-2.5 bg-emerald-500 text-white font-black text-[9px] md:text-[10px] px-2 py-0.5 md:px-2.5 md:py-1 rounded-lg z-10 shadow-sm uppercase">Mới</span>
+                        <div class="p-3 bg-slate-50/50 flex items-center justify-center h-36 md:h-48 relative overflow-hidden">
+                            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=300&q=80" alt="Xe điện Vinfast Feliz S" class="max-h-full max-w-full object-contain transform group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x200/f1f5f9/475569?text=Feliz+S'">
+                        </div>
+                        <div class="p-3 md:p-5 flex-grow flex flex-col justify-between">
+                            <div>
+                                <span class="text-[9px] md:text-[10px] text-slate-400 font-bold uppercase tracking-wider">Vinfast</span>
+                                <h3 class="font-bold text-slate-800 text-xs md:text-sm line-clamp-2 mt-0.5 group-hover:text-primary-500 transition-colors leading-snug">Xe điện thông minh Vinfast Feliz S</h3>
+                                <div class="flex items-center gap-0.5 mt-1.5 text-amber-400 text-[10px]" aria-label="Đánh giá 5 sao">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    <span class="text-slate-400 ml-1 font-semibold">Đã bán 1.5k</span>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="flex flex-wrap items-baseline gap-1 md:gap-2">
+                                    <span class="text-sm md:text-base font-extrabold text-slate-900">24.900.000đ</span>
+                                    <span class="text-[10px] md:text-xs text-slate-400 line-through">27.0M</span>
+                                </div>
+                                <div class="grid grid-cols-5 gap-1.5 mt-3">
+                                    <button onclick="addToCart('Xe điện Vinfast Feliz S', 24900000)" class="col-span-4 bg-primary-500 hover:bg-primary-600 active:scale-95 text-white text-[10px] md:text-xs font-bold py-2 md:py-2.5 rounded-lg transition-all">Mua ngay</button>
+                                    <button onclick="addToCart('Xe điện Vinfast Feliz S', 24900000)" class="bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-600 flex items-center justify-center rounded-lg transition-all" title="Thêm vào giỏ hàng"><i class="fa-solid fa-cart-plus text-[10px] md:text-xs"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 flex flex-col justify-between group relative">
+                        <div class="p-3 bg-slate-50/50 flex items-center justify-center h-36 md:h-48 relative overflow-hidden">
+                            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1595054179361-b0e66d9bb7a3?auto=format&fit=crop&w=300&q=80" alt="Xe điện Dibao Pansy" class="max-h-full max-w-full object-contain transform group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x200/f1f5f9/475569?text=Dibao+Pansy'">
+                        </div>
+                        <div class="p-3 md:p-5 flex-grow flex flex-col justify-between">
+                            <div>
+                                <span class="text-[9px] md:text-[10px] text-slate-400 font-bold uppercase tracking-wider">Dibao</span>
+                                <h3 class="font-bold text-slate-800 text-xs md:text-sm line-clamp-2 mt-0.5 group-hover:text-primary-500 transition-colors leading-snug">Xe điện Dibao Pansy S cao cấp tinh tế</h3>
+                                <div class="flex items-center gap-0.5 mt-1.5 text-amber-400 text-[10px]" aria-label="Đánh giá 4.5 sao">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                                    <span class="text-slate-400 ml-1 font-semibold">Đã bán 640</span>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="flex flex-wrap items-baseline gap-1 md:gap-2">
+                                    <span class="text-sm md:text-base font-extrabold text-slate-900">18.900.000đ</span>
+                                    <span class="text-[10px] md:text-xs text-slate-400 line-through">21.0M</span>
+                                </div>
+                                <div class="grid grid-cols-5 gap-1.5 mt-3">
+                                    <button onclick="addToCart('Xe điện Dibao Pansy S', 18900000)" class="col-span-4 bg-primary-500 hover:bg-primary-600 active:scale-95 text-white text-[10px] md:text-xs font-bold py-2 md:py-2.5 rounded-lg transition-all">Mua ngay</button>
+                                    <button onclick="addToCart('Xe điện Dibao Pansy S', 18900000)" class="bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-600 flex items-center justify-center rounded-lg transition-all" title="Thêm vào giỏ hàng"><i class="fa-solid fa-cart-plus text-[10px] md:text-xs"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 5 -->
+                    <div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 flex flex-col justify-between group relative">
+                        <div class="p-3 bg-slate-50/50 flex items-center justify-center h-36 md:h-48 relative overflow-hidden">
+                            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=300&q=80" alt="Xe điện Giant M133" class="max-h-full max-w-full object-contain transform group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x200/f1f5f9/475569?text=Giant+M133'">
+                        </div>
+                        <div class="p-3 md:p-5 flex-grow flex flex-col justify-between">
+                            <div>
+                                <span class="text-[9px] md:text-[10px] text-slate-400 font-bold uppercase tracking-wider">Giant</span>
+                                <h3 class="font-bold text-slate-800 text-xs md:text-sm line-clamp-2 mt-0.5 group-hover:text-primary-500 transition-colors leading-snug">Xe đạp điện Giant M133S chính hãng</h3>
+                                <div class="flex items-center gap-0.5 mt-1.5 text-amber-400 text-[10px]" aria-label="Đánh giá 5 sao">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    <span class="text-slate-400 ml-1 font-semibold">Đã bán 1.1k</span>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="flex flex-wrap items-baseline gap-1 md:gap-2">
+                                    <span class="text-sm md:text-base font-extrabold text-slate-900">12.500.000đ</span>
+                                    <span class="text-[10px] md:text-xs text-slate-400 line-through">14.0M</span>
+                                </div>
+                                <div class="grid grid-cols-5 gap-1.5 mt-3">
+                                    <button onclick="addToCart('Xe đạp điện Giant M133S', 12500000)" class="col-span-4 bg-primary-500 hover:bg-primary-600 active:scale-95 text-white text-[10px] md:text-xs font-bold py-2 md:py-2.5 rounded-lg transition-all">Mua ngay</button>
+                                    <button onclick="addToCart('Xe đạp điện Giant M133S', 12500000)" class="bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-600 flex items-center justify-center rounded-lg transition-all" title="Thêm vào giỏ hàng"><i class="fa-solid fa-cart-plus text-[10px] md:text-xs"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Panel: Xe 50cc -->
+                <div id="tab-xe-50cc" class="tab-panel hidden grid grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6">
+                    <!-- Product 50cc 1 -->
+                    <div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 flex flex-col justify-between group relative">
+                        <div class="p-3 bg-slate-50/50 flex items-center justify-center h-36 md:h-48 relative overflow-hidden">
+                            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=300&q=80" alt="Xe 50cc Wave Alpha" class="max-h-full max-w-full object-contain transform group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="p-3 md:p-5 flex-grow flex flex-col justify-between">
+                            <div>
+                                <span class="text-[9px] md:text-[10px] text-slate-400 font-bold uppercase tracking-wider">Honda</span>
+                                <h3 class="font-bold text-slate-800 text-xs md:text-sm line-clamp-2 mt-0.5 group-hover:text-primary-500 transition-colors leading-snug">Xe máy 50cc Wave Alpha bản nâng cấp</h3>
+                                <div class="flex items-center gap-0.5 mt-1.5 text-amber-400 text-[10px]" aria-label="Đánh giá 4.5 sao">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                                    <span class="text-slate-400 ml-1 font-semibold">Đã bán 820</span>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="flex flex-wrap items-baseline gap-1 md:gap-2">
+                                    <span class="text-sm md:text-base font-extrabold text-slate-900">17.800.000đ</span>
+                                    <span class="text-[10px] md:text-xs text-slate-400 line-through">19.0M</span>
+                                </div>
+                                <div class="grid grid-cols-5 gap-1.5 mt-3">
+                                    <button onclick="addToCart('Xe máy 50cc Wave Alpha', 17800000)" class="col-span-4 bg-primary-500 hover:bg-primary-600 active:scale-95 text-white text-[10px] md:text-xs font-bold py-2 md:py-2.5 rounded-lg transition-all">Mua ngay</button>
+                                    <button onclick="addToCart('Xe máy 50cc Wave Alpha', 17800000)" class="bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-600 flex items-center justify-center rounded-lg transition-all"><i class="fa-solid fa-cart-plus text-[10px] md:text-xs"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Panel: Xe máy điện -->
+                <div id="tab-xe-may-dien" class="tab-panel hidden grid grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6">
+                    <!-- Product Xe máy điện 1 -->
+                    <div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 flex flex-col justify-between group relative">
+                        <span class="absolute top-2.5 left-2.5 bg-red-500 text-white font-black text-[9px] md:text-[10px] px-2 py-0.5 md:px-2.5 md:py-1 rounded-lg z-10 shadow-sm uppercase">Best</span>
+                        <div class="p-3 bg-slate-50/50 flex items-center justify-center h-36 md:h-48 relative overflow-hidden">
+                            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=300&q=80" alt="Xe máy điện Yadea" class="max-h-full max-w-full object-contain transform group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="p-3 md:p-5 flex-grow flex flex-col justify-between">
+                            <div>
+                                <span class="text-[9px] md:text-[10px] text-slate-400 font-bold uppercase tracking-wider">Yadea</span>
+                                <h3 class="font-bold text-slate-800 text-xs md:text-sm line-clamp-2 mt-0.5 group-hover:text-primary-500 transition-colors leading-snug">Xe máy điện thông minh Yadea Orla</h3>
+                                <div class="flex items-center gap-0.5 mt-1.5 text-amber-400 text-[10px]" aria-label="Đánh giá 5 sao">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    <span class="text-slate-400 ml-1 font-semibold">Đã bán 2.1k</span>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="flex flex-wrap items-baseline gap-1 md:gap-2">
+                                    <span class="text-sm md:text-base font-extrabold text-slate-900">20.500.000đ</span>
+                                    <span class="text-[10px] md:text-xs text-slate-400 line-through">22.0M</span>
+                                </div>
+                                <div class="grid grid-cols-5 gap-1.5 mt-3">
+                                    <button onclick="addToCart('Xe máy điện Yadea Orla', 20500000)" class="col-span-4 bg-primary-500 hover:bg-primary-600 active:scale-95 text-white text-[10px] md:text-xs font-bold py-2 md:py-2.5 rounded-lg transition-all">Mua ngay</button>
+                                    <button onclick="addToCart('Xe máy điện Yadea Orla', 20500000)" class="bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-600 flex items-center justify-center rounded-lg transition-all"><i class="fa-solid fa-cart-plus text-[10px] md:text-xs"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Panel: Xe 3 bánh -->
+                <div id="tab-xe-3-banh" class="tab-panel hidden grid grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6">
+                    <div class="col-span-full py-16 text-center text-slate-400 bg-white border border-slate-100 rounded-2xl">
+                        <i class="fa-solid fa-truck-pickup text-4xl mb-3 text-slate-300"></i>
+                        <p class="font-semibold text-slate-600 text-sm">Đang cập nhật thêm dòng Xe 3 Bánh đa năng mới nhất!</p>
+                        <p class="text-xs text-slate-400 mt-1">Vui lòng liên hệ Hotline hoặc đăng ký tư vấn để nhận thông tin sớm nhất.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CORE TECHNOLOGY SECTION: VEHICLE FEATURE HIGHLIGHT -->
+        <section id="ai-tech-spotlight" class="mb-16 bg-gradient-to-br from-slate-900 to-indigo-950 rounded-3xl p-6 md:p-12 text-white relative overflow-hidden shadow-2xl">
+            <!-- Background tint -->
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(16,185,129,0.15),transparent_60%)]"></div>
+            
+            <div class="relative z-10">
+                <div class="text-center max-w-2xl mx-auto mb-10 md:mb-12">
+                    <span class="bg-accent-500/10 text-accent-500 border border-accent-500/30 font-extrabold text-xs tracking-widest uppercase px-4 py-1.5 rounded-full inline-flex items-center gap-1.5">
+                        <i class="fa-solid fa-microchip"></i> Công nghệ vận hành
+                    </span>
+                    <h2 class="text-2xl md:text-4xl font-black mt-4 tracking-tight">Tính năng đáng chú ý trên xe điện mới</h2>
+                    <p class="text-xs md:text-sm text-slate-300 mt-2">Tập trung vào pin, bảo mật và cảnh báo lỗi để việc sử dụng hằng ngày an toàn, dễ kiểm soát hơn.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-center">
+                    <!-- Hệ thống Tabs Bên Trái -->
+                    <div class="lg:col-span-5 flex flex-col gap-4">
+                        <!-- Tab 1 -->
+                        <div class="ai-tab-btn active bg-white/10 hover:bg-white/15 border-l-4 border-accent-500 p-4 md:p-6 rounded-r-xl cursor-pointer transition-all duration-300" data-tab="bms">
+                            <h4 class="font-bold text-sm md:text-lg text-white flex items-center gap-3">
+                                <i class="fa-solid fa-car-battery text-accent-500"></i>
+                                <span>Hệ thống quản lý pin BMS</span>
+                            </h4>
+                            <p class="text-[11px] md:text-xs text-slate-300 mt-2 leading-relaxed">Theo dõi điện áp, nhiệt độ và chu kỳ sạc để pin vận hành ổn định hơn.</p>
+                        </div>
+                        <!-- Tab 2 -->
+                        <div class="ai-tab-btn bg-white/5 hover:bg-white/10 border-l-4 border-transparent p-4 md:p-6 rounded-r-xl cursor-pointer transition-all duration-300" data-tab="fingerprint">
+                            <h4 class="font-bold text-sm md:text-lg text-white flex items-center gap-3">
+                                <i class="fa-solid fa-fingerprint text-accent-500"></i>
+                                <span>Bảo Mật Vân Tay 1 Chạm</span>
+                            </h4>
+                            <p class="text-[11px] md:text-xs text-slate-300 mt-2 leading-relaxed">Mở khóa nhanh, hạn chế rủi ro quên chìa và tăng tính riêng tư khi sử dụng xe.</p>
+                        </div>
+                        <!-- Tab 3 -->
+                        <div class="ai-tab-btn bg-white/5 hover:bg-white/10 border-l-4 border-transparent p-4 md:p-6 rounded-r-xl cursor-pointer transition-all duration-300" data-tab="diagnosis">
+                            <h4 class="font-bold text-sm md:text-lg text-white flex items-center gap-3">
+                                <i class="fa-solid fa-heart-pulse text-accent-500"></i>
+                                <span>Cảnh báo lỗi xe</span>
+                            </h4>
+                            <p class="text-[11px] md:text-xs text-slate-300 mt-2 leading-relaxed">Hệ thống chẩn đoán vi mạch, báo hỏng hóc và đề xuất trung tâm sửa chữa qua App điện thoại.</p>
+                        </div>
+                    </div>
+
+                    <!-- Khung Hiển Thị Nội Dung Bên Phải (Linh hoạt thay đổi) -->
+                    <div class="lg:col-span-7 bg-white/5 border border-white/10 rounded-2xl p-5 md:p-8 backdrop-blur-md min-h-[350px] md:min-h-[380px] flex flex-col justify-between" id="ai-tab-content">
+                        <!-- Mặc định: BMS -->
+                        <div class="ai-tab-panel flex flex-col md:flex-row gap-6 items-center" id="panel-bms">
+                            <div class="w-full md:w-1/2">
+                                <h3 class="text-xl md:text-2xl font-bold text-accent-500 mb-3">Tự Động Quản Lý Năng Lượng</h3>
+                                <p class="text-xs md:text-sm text-slate-300 leading-relaxed mb-4">BMS giúp giám sát điện áp sạc xả, tự động ngắt khi sạc đầy và cân bằng các cell pin để xe vận hành ổn định hơn trong quá trình sử dụng.</p>
+                                <ul class="text-[11px] md:text-xs text-slate-200 flex flex-col gap-2">
+                                    <li><i class="fa-solid fa-circle-check text-accent-500 mr-2"></i> Giảm nhiệt lượng khi sạc đến 35%</li>
+                                    <li><i class="fa-solid fa-circle-check text-accent-500 mr-2"></i> Hỗ trợ bảo vệ quá dòng và quá nhiệt</li>
+                                </ul>
+                            </div>
+                            <div class="w-full md:w-1/2 flex justify-center mt-4 md:mt-0">
+                                <div class="w-full max-w-[280px] md:max-w-none aspect-[4/3] bg-gradient-to-tr from-primary-500 to-indigo-600 rounded-xl flex items-center justify-center border border-white/20 overflow-hidden shadow-inner relative">
+                                    <span class="absolute top-2 right-2 bg-accent-500 text-white text-[9px] px-2 py-0.5 rounded-full font-bold">BMS</span>
+                                    <i class="fa-solid fa-car-battery text-6xl md:text-7xl text-white/50"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel Fingerprint -->
+                        <div class="ai-tab-panel hidden flex flex-col md:flex-row gap-6 items-center" id="panel-fingerprint">
+                            <div class="w-full md:w-1/2">
+                                <h3 class="text-xl md:text-2xl font-bold text-accent-500 mb-3">Mở Khóa Khởi Động Không Chìa</h3>
+                                <p class="text-xs md:text-sm text-slate-300 leading-relaxed mb-4">Mô đun vân tay chống nước đạt tiêu chuẩn IP67 tích hợp trực tiếp trên cụm điều khiển trung tâm của xe, cho phép ghi nhớ lên tới 10 dấu vân tay khác nhau trong gia đình.</p>
+                                <ul class="text-[11px] md:text-xs text-slate-200 flex flex-col gap-2">
+                                    <li><i class="fa-solid fa-circle-check text-accent-500 mr-2"></i> Nhận diện nhanh trong thao tác hằng ngày</li>
+                                    <li><i class="fa-solid fa-circle-check text-accent-500 mr-2"></i> Hoạt động tốt dưới trời mưa gió</li>
+                                </ul>
+                            </div>
+                            <div class="w-full md:w-1/2 flex justify-center mt-4 md:mt-0">
+                                <div class="w-full max-w-[280px] md:max-w-none aspect-[4/3] bg-gradient-to-tr from-emerald-800 to-green-600 rounded-xl flex items-center justify-center border border-white/20 overflow-hidden shadow-inner relative">
+                                    <span class="absolute top-2 right-2 bg-primary-500 text-white text-[9px] px-2 py-0.5 rounded-full font-bold">IP67</span>
+                                    <i class="fa-solid fa-fingerprint text-6xl md:text-7xl text-white/50"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel Diagnosis -->
+                        <div class="ai-tab-panel hidden flex flex-col md:flex-row gap-6 items-center" id="panel-diagnosis">
+                            <div class="w-full md:w-1/2">
+                                <h3 class="text-xl md:text-2xl font-bold text-accent-500 mb-3">Quản Lý Sức Khỏe Xe 24/7</h3>
+                                <p class="text-xs md:text-sm text-slate-300 leading-relaxed mb-4">Hệ thống ECU thông minh liên tục quét lỗi hệ thống phanh, động cơ, tay ga và thông báo lỗi chính xác lên màn hình điện tử thông qua mã QR hoặc đẩy thông báo về app.</p>
+                                <ul class="text-[11px] md:text-xs text-slate-200 flex flex-col gap-2">
+                                    <li><i class="fa-solid fa-circle-check text-accent-500 mr-2"></i> Định vị xe chống mất trộm</li>
+                                    <li><i class="fa-solid fa-circle-check text-accent-500 mr-2"></i> Cảnh báo hỏng hóc từ xa</li>
+                                </ul>
+                            </div>
+                            <div class="w-full md:w-1/2 flex justify-center mt-4 md:mt-0">
+                                <div class="w-full max-w-[280px] md:max-w-none aspect-[4/3] bg-gradient-to-tr from-slate-800 to-slate-600 rounded-xl flex items-center justify-center border border-white/20 overflow-hidden shadow-inner relative">
+                                    <span class="absolute top-2 right-2 bg-accent-500 text-white text-[9px] px-2 py-0.5 rounded-full font-bold">ECU</span>
+                                    <i class="fa-solid fa-circle-nodes text-6xl md:text-7xl text-white/50"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRIPLE PROMOTIONAL BANNERS -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            <!-- Banner 1 -->
+            <div class="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl p-6 text-white relative overflow-hidden shadow-lg group hover:-translate-y-1 transition-all duration-300">
+                <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
+                <div class="relative z-10 space-y-3">
+                    <span class="bg-white/20 text-white font-bold text-[10px] px-2.5 py-1 rounded-full uppercase tracking-widest inline-block">Ưu đãi kép</span>
+                    <h3 class="text-xl font-extrabold leading-tight">TRẢ GÓP 0%</h3>
+                    <p class="text-xs text-blue-100 leading-relaxed max-w-[200px]">Thủ tục nhanh chóng 15 phút, xét duyệt tức thì.</p>
+                    <a href="#consult-form" class="bg-white text-primary-600 font-bold text-xs px-5 py-2.5 rounded-lg shadow-md hover:bg-slate-100 transition-colors inline-block">XEM NGAY</a>
+                </div>
+            </div>
+            <!-- Banner 2 -->
+            <div class="bg-gradient-to-r from-slate-800 to-slate-900 rounded-2xl p-6 text-white relative overflow-hidden shadow-lg group hover:-translate-y-1 transition-all duration-300">
+                <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/5 rounded-full blur-xl"></div>
+                <div class="relative z-10 space-y-3">
+                    <span class="bg-emerald-500/20 text-emerald-400 font-bold text-[10px] px-2.5 py-1 rounded-full uppercase tracking-widest inline-block">Chất lượng vàng</span>
+                    <h3 class="text-xl font-extrabold leading-tight">ẮC QUY CHÍNH HÃNG</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed max-w-[200px]">Bền bỉ vượt thời gian, an toàn tối đa cho xe của bạn.</p>
+                    <a href="#consult-form" class="bg-emerald-500 text-white font-bold text-xs px-5 py-2.5 rounded-lg shadow-md hover:bg-emerald-600 transition-colors inline-block">MUA NGAY</a>
+                </div>
+            </div>
+            <!-- Banner 3 -->
+            <div class="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl p-6 text-white relative overflow-hidden shadow-lg group hover:-translate-y-1 transition-all duration-300">
+                <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
+                <div class="relative z-10 space-y-3">
+                    <span class="bg-white/20 text-white font-bold text-[10px] px-2.5 py-1 rounded-full uppercase tracking-widest inline-block">Độc quyền</span>
+                    <h3 class="text-xl font-extrabold leading-tight">PHỤ KIỆN CHÍNH HÃNG</h3>
+                    <p class="text-xs text-emerald-100 leading-relaxed max-w-[200px]">Phụ tùng, trang trí đa dạng, nâng tầm xế yêu.</p>
+                    <a href="#consult-form" class="bg-white text-emerald-600 font-bold text-xs px-5 py-2.5 rounded-lg shadow-md hover:bg-slate-100 transition-colors inline-block">XEM NGAY</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- WIDGETS SECTION (Video with Popup & Testimonials - Optimised Spacing) -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+            
+            <!-- Video Widget with Popup Play - Expanded to 2 Columns -->
+            <div class="lg:col-span-2 bg-white border border-slate-100 rounded-2xl p-5 md:p-6 shadow-premium flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-extrabold text-base md:text-lg text-slate-900 flex items-center gap-2">
+                            <i class="fa-regular fa-circle-play text-primary-500"></i> Video nổi bật
+                        </h3>
+                        <span class="text-xs text-slate-400">Trải nghiệm thực tế</span>
+                    </div>
+                    <!-- Play trigger (Expanded Aspect Ratio) -->
+                    <div onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')" class="relative rounded-xl overflow-hidden group aspect-video bg-slate-900 cursor-pointer shadow-md">
+                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1595054179361-b0e66d9bb7a3?auto=format&fit=crop&w=1200&q=80" alt="Video Review Xe Điện" class="w-full h-full object-cover opacity-80 group-hover:scale-102 transition-transform duration-300" onerror="this.src='https://placehold.co/800x450/f1f5f9/475569?text=Review+Xe+Dien'">
+                        <div class="absolute inset-0 bg-slate-900/40 flex items-center justify-center">
+                            <div class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white text-primary-500 flex items-center justify-center text-xl md:text-2xl shadow-lg transform group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-play ml-1.5"></i>
+                            </div>
+                        </div>
+                        <span class="absolute bottom-3 right-3 bg-slate-900/70 text-white text-[10px] font-bold px-2 py-0.5 rounded">04:35</span>
+                    </div>
+                </div>
+                <!-- Mini carousel thumbnails (clickable too) -->
+                <div class="grid grid-cols-4 gap-2.5 md:gap-3 mt-4">
+                    <div onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')" class="rounded-lg overflow-hidden border border-slate-200 aspect-video cursor-pointer opacity-80 hover:opacity-100 transition-opacity">
+                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150x100/f1f5f9/475569?text=Vespa+Roma+S'">
+                    </div>
+                    <div onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')" class="rounded-lg overflow-hidden border border-slate-200 aspect-video cursor-pointer opacity-80 hover:opacity-100 transition-opacity">
+                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150x100/f1f5f9/475569?text=Xmen+One'">
+                    </div>
+                    <div onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')" class="rounded-lg overflow-hidden border border-slate-200 aspect-video cursor-pointer opacity-80 hover:opacity-100 transition-opacity">
+                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150x100/f1f5f9/475569?text=Vinfast+Feliz+S'">
+                    </div>
+                    <div onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')" class="rounded-lg overflow-hidden border border-slate-200 aspect-video cursor-pointer opacity-80 hover:opacity-100 transition-opacity">
+                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1595054179361-b0e66d9bb7a3?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/150x100/f1f5f9/475569?text=Dibao+Pansy+S'">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customer Testimonials (Beautiful Vertical Smooth Scrolling Loop Widget) -->
+            <div class="bg-white border border-slate-100 rounded-2xl p-5 md:p-6 shadow-premium flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-extrabold text-base md:text-lg text-slate-900 flex items-center gap-2">
+                            <i class="fa-regular fa-comment-dots text-amber-500"></i> Cảm nhận khách hàng
+                        </h3>
+                        <span class="text-xs text-slate-400">Đánh giá thực tế</span>
+                    </div>
+                    
+                    <!-- Vertical Scroller Container -->
+                    <div class="h-[280px] overflow-hidden relative" id="testimonial-container" onmouseenter="pauseTestimonial()" onmouseleave="resumeTestimonial()">
+                        <div class="space-y-4 absolute w-full transition-transform duration-500 ease-out" id="testimonial-scroller" style="transform: translateY(0px);">
+                            <!-- Comment Block 1 -->
+                            <div class="border border-slate-50 bg-slate-50/30 p-3.5 rounded-xl">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 font-bold border border-slate-200">MA</div>
+                                    <div>
+                                        <span class="font-bold text-slate-800 text-xs block">Nguyễn Minh Anh</span>
+                                        <span class="text-[10px] text-slate-400 block">TP. Thủ Đức, TP.HCM</span>
+                                    </div>
+                                    <div class="ml-auto text-amber-400 text-xs flex gap-0.5">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-2 italic">"Xe chạy êm, nhân viên hướng dẫn kỹ cách sạc và dùng định vị. Sạc đầy đi được khá xa."</p>
+                            </div>
+
+                            <!-- Comment Block 2 -->
+                            <div class="border border-slate-50 bg-slate-50/30 p-3.5 rounded-xl">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 font-bold border border-slate-200">QB</div>
+                                    <div>
+                                        <span class="font-bold text-slate-800 text-xs block">Trần Quốc Bảo</span>
+                                        <span class="text-[10px] text-slate-400 block">Biên Hòa, Đồng Nai</span>
+                                    </div>
+                                    <div class="ml-auto text-amber-400 text-xs flex gap-0.5">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-2 italic">"Giao xe nhanh, nhân viên tận tình hướng dẫn. Mình yên tâm hơn nhờ có quản lý pin và bảo hành rõ ràng."</p>
+                            </div>
+
+                            <!-- Comment Block 3 -->
+                            <div class="border border-slate-50 bg-slate-50/30 p-3.5 rounded-xl">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 font-bold border border-slate-200">HN</div>
+                                    <div>
+                                        <span class="font-bold text-slate-800 text-xs block">Hoàng Nam</span>
+                                        <span class="text-[10px] text-slate-400 block">Quận 7, TP.HCM</span>
+                                    </div>
+                                    <div class="ml-auto text-amber-400 text-xs flex gap-0.5">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-2 italic">"Dịch vụ bảo dưỡng vàng 3 năm cực chu đáo. Hệ thống đại lý chuyên nghiệp, đáng tin cậy lắm!"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between mt-4 border-t border-slate-100 pt-3">
+                    <span class="text-xs text-slate-400">Tự động trượt lên</span>
+                    <div class="flex gap-1">
+                        <button onclick="scrollTestimonials(-1)" class="w-7 h-7 rounded-full border border-slate-200 hover:bg-slate-50 text-slate-500 flex items-center justify-center text-xs transition-all"><i class="fa-solid fa-chevron-up"></i></button>
+                        <button onclick="scrollTestimonials(1)" class="w-7 h-7 rounded-full border border-slate-200 hover:bg-slate-50 text-slate-500 flex items-center justify-center text-xs transition-all"><i class="fa-solid fa-chevron-down"></i></button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- STANDALONE EVENT IMAGES SECTION (Tách thành một section riêng biệt) -->
+        <section class="mb-16">
+            <div class="section-heading flex items-center justify-between mb-8">
+                <div class="flex items-center gap-3">
+                    <span class="w-1.5 h-6 bg-primary-500 rounded-full"></span>
+                    <h2 class="text-2xl font-black text-slate-900 tracking-tight">Hình ảnh sự kiện</h2>
+                </div>
+                <span class="text-sm font-semibold text-slate-400">Hoạt động tại cửa hàng</span>
+            </div>
+            <!-- Grid 6 cột hiển thị full-width thoáng đạt -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
+                <div onclick="openLightbox(0)" class="bg-white border border-slate-100 p-2 rounded-2xl shadow-premium hover:shadow-hover-card transition-all duration-300 group cursor-pointer">
+                    <div class="rounded-xl overflow-hidden aspect-[4/3] relative">
+                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=400&q=80" alt="Sự kiện 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x225/f1f5f9/475569?text=Event+1'">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white"><i class="fa-solid fa-maximize text-lg"></i></div>
+                    </div>
+                    <p class="text-[11px] md:text-xs font-bold text-slate-700 mt-2 text-center truncate px-1">Khai trương đại lý</p>
+                </div>
+                <div onclick="openLightbox(1)" class="bg-white border border-slate-100 p-2 rounded-2xl shadow-premium hover:shadow-hover-card transition-all duration-300 group cursor-pointer">
+                    <div class="rounded-xl overflow-hidden aspect-[4/3] relative">
+                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=400&q=80" alt="Sự kiện 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x225/f1f5f9/475569?text=Event+2'">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white"><i class="fa-solid fa-maximize text-lg"></i></div>
+                    </div>
+                    <p class="text-[11px] md:text-xs font-bold text-slate-700 mt-2 text-center truncate px-1">Tri ân khách hàng</p>
+                </div>
+                <div onclick="openLightbox(2)" class="bg-white border border-slate-100 p-2 rounded-2xl shadow-premium hover:shadow-hover-card transition-all duration-300 group cursor-pointer">
+                    <div class="rounded-xl overflow-hidden aspect-[4/3] relative">
+                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=400&q=80" alt="Sự kiện 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x225/f1f5f9/475569?text=Event+3'">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white"><i class="fa-solid fa-maximize text-lg"></i></div>
+                    </div>
+                    <p class="text-[11px] md:text-xs font-bold text-slate-700 mt-2 text-center truncate px-1">Lái thử xe điện</p>
+                </div>
+                <div onclick="openLightbox(3)" class="bg-white border border-slate-100 p-2 rounded-2xl shadow-premium hover:shadow-hover-card transition-all duration-300 group cursor-pointer">
+                    <div class="rounded-xl overflow-hidden aspect-[4/3] relative">
+                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=400&q=80" alt="Sự kiện 4" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x225/f1f5f9/475569?text=Event+4'">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white"><i class="fa-solid fa-maximize text-lg"></i></div>
+                    </div>
+                    <p class="text-[11px] md:text-xs font-bold text-slate-700 mt-2 text-center truncate px-1">Bảo dưỡng miễn phí</p>
+                </div>
+                <div onclick="openLightbox(4)" class="bg-white border border-slate-100 p-2 rounded-2xl shadow-premium hover:shadow-hover-card transition-all duration-300 group cursor-pointer">
+                    <div class="rounded-xl overflow-hidden aspect-[4/3] relative">
+                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=400&q=80" alt="Sự kiện 5" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x225/f1f5f9/475569?text=Event+5'">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white"><i class="fa-solid fa-maximize text-lg"></i></div>
+                    </div>
+                    <p class="text-[11px] md:text-xs font-bold text-slate-700 mt-2 text-center truncate px-1">Ngày hội công nghệ</p>
+                </div>
+                <div onclick="openLightbox(5)" class="bg-white border border-slate-100 p-2 rounded-2xl shadow-premium hover:shadow-hover-card transition-all duration-300 group cursor-pointer">
+                    <div class="rounded-xl overflow-hidden aspect-[4/3] relative">
+                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=400&q=80" alt="Sự kiện 6" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x225/f1f5f9/475569?text=Event+6'">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white"><i class="fa-solid fa-maximize text-lg"></i></div>
+                    </div>
+                    <p class="text-[11px] md:text-xs font-bold text-slate-700 mt-2 text-center truncate px-1">Chuyển giao công nghệ</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PREMIUM STORE LOCATOR (Simulated from image_f4a43e.jpg) -->
+        <section class="mb-16 scroll-mt-24" id="store-section">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-1.5 h-6 bg-emerald-500 rounded-full"></span>
+                    <h2 class="text-2xl font-black text-slate-900 tracking-tight">Hệ thống cửa hàng & đại lý ủy quyền</h2>
+                </div>
+                <span class="text-sm font-semibold text-slate-400">Tìm địa chỉ đại lý gần bạn nhất</span>
+            </div>
+
+            <!-- Horizontal province carousel bar -->
+            <div class="relative mb-6">
+                <button onclick="scrollProvinces('left')" aria-label="Xem tỉnh trước" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white shadow-md border border-slate-100 flex items-center justify-center text-slate-500 hover:bg-slate-50">
+                    <i class="fa-solid fa-chevron-left text-xs" aria-hidden="true"></i>
+                </button>
+                <div id="province-scroll" class="flex gap-2 overflow-x-auto no-scrollbar px-10 py-1.5 scroll-smooth">
+                    <button onclick="filterProvince('AN GIANG', this)" class="prov-btn active px-4 py-2 bg-emerald-500 text-white shadow-md hover:bg-emerald-600 text-xs font-bold rounded-full transition-all whitespace-nowrap">AN GIANG</button>
+                    <button onclick="filterProvince('BÀ RỊA - VŨNG TÀU', this)" class="prov-btn px-4 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold rounded-full transition-all whitespace-nowrap">BÀ RỊA – VŨNG TÀU</button>
+                    <button onclick="filterProvince('BÌNH DƯƠNG', this)" class="prov-btn px-4 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold rounded-full transition-all whitespace-nowrap">BÌNH DƯƠNG</button>
+                    <button onclick="filterProvince('BÌNH PHƯỚC', this)" class="prov-btn px-4 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold rounded-full transition-all whitespace-nowrap">BÌNH PHƯỚC</button>
+                    <button onclick="filterProvince('BÌNH THUẬN', this)" class="prov-btn px-4 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold rounded-full transition-all whitespace-nowrap">BÌNH THUẬN</button>
+                    <button onclick="filterProvince('CẦN THƠ', this)" class="prov-btn px-4 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold rounded-full transition-all whitespace-nowrap">CẦN THƠ</button>
+                    <button onclick="filterProvince('HẬU GIANG', this)" class="prov-btn px-4 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold rounded-full transition-all whitespace-nowrap">HẬU GIANG</button>
+                    <button onclick="filterProvince('KIÊN GIANG', this)" class="prov-btn px-4 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold rounded-full transition-all whitespace-nowrap">KIÊN GIANG</button>
+                    <button onclick="filterProvince('LONG AN', this)" class="prov-btn px-4 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold rounded-full transition-all whitespace-nowrap">LONG AN</button>
+                    <button onclick="filterProvince('LÂM ĐỒNG', this)" class="prov-btn px-4 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold rounded-full transition-all whitespace-nowrap">LÂM ĐỒNG</button>
+                    <button onclick="filterProvince('TP. HỒ CHÍ MINH', this)" class="prov-btn px-4 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs font-bold rounded-full transition-all whitespace-nowrap">TP. HỒ CHÍ MINH</button>
+                </div>
+                <button onclick="scrollProvinces('right')" aria-label="Xem tỉnh kế tiếp" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white shadow-md border border-slate-100 flex items-center justify-center text-slate-500 hover:bg-slate-50">
+                    <i class="fa-solid fa-chevron-right text-xs" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <!-- Sub-tabs switching style -->
+            <div class="flex items-center gap-6 border-b border-slate-200 pb-3 mb-6">
+                <button onclick="switchStoreTab('authorized')" id="tab-auth-btn" class="flex items-center gap-2 text-sm font-bold text-emerald-600 border-b-2 border-emerald-600 pb-2 transition-all">
+                    <i class="fa-solid fa-user-check"></i> ĐẠI LÝ ỦY QUYỀN
+                </button>
+                <button onclick="switchStoreTab('regular')" id="tab-reg-btn" class="flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-slate-600 transition-all pb-2">
+                    <i class="fa-solid fa-shop"></i> CỬA HÀNG ỦY QUYỀN
+                </button>
+            </div>
+
+            <!-- Dynamic Store List Area matching layout perfectly -->
+            <div id="store-list-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Javascript will load actual cards according to selected filters -->
+            </div>
+        </section>
+
+        <!-- STRATEGIC BRANDS / PARTNERS SECTION -->
+        <section class="mb-16">
+            <div class="flex items-center justify-between mb-8">
+                <div class="flex items-center gap-3">
+                    <span class="w-1.5 h-6 bg-primary-500 rounded-full"></span>
+                    <h2 class="text-xl font-extrabold text-slate-900 tracking-tight">ĐỐI TÁC ĐỒNG HÀNH</h2>
+                </div>
+                <span class="text-xs text-slate-400">Các nhãn hiệu liên kết phân phối trực tiếp</span>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
+                <div class="bg-white border border-slate-100 rounded-2xl p-4 flex flex-col items-center justify-center h-20 hover:border-primary-300 hover:shadow-sm transition-all cursor-pointer">
+                    <span class="font-black text-slate-800 tracking-wider text-sm">VINFAST</span>
+                    <span class="text-[9px] text-emerald-500 font-bold uppercase mt-1">Smart E-Scooter</span>
+                </div>
+                <div class="bg-white border border-slate-100 rounded-2xl p-4 flex flex-col items-center justify-center h-20 hover:border-primary-300 hover:shadow-sm transition-all cursor-pointer">
+                    <span class="font-black text-slate-800 tracking-wider text-sm">YADEA</span>
+                    <span class="text-[9px] text-primary-500 font-bold uppercase mt-1">Global Brand</span>
+                </div>
+                <div class="bg-white border border-slate-100 rounded-2xl p-4 flex flex-col items-center justify-center h-20 hover:border-primary-300 hover:shadow-sm transition-all cursor-pointer">
+                    <span class="font-black text-slate-800 tracking-wider text-sm">DIBAO</span>
+                    <span class="text-[9px] text-indigo-500 font-bold uppercase mt-1">Taiwan Quality</span>
+                </div>
+                <div class="bg-white border border-slate-100 rounded-2xl p-4 flex flex-col items-center justify-center h-20 hover:border-primary-300 hover:shadow-sm transition-all cursor-pointer">
+                    <span class="font-black text-slate-800 tracking-wider text-sm">OSAKAR</span>
+                    <span class="text-[9px] text-yellow-500 font-bold uppercase mt-1">Japan Standard</span>
+                </div>
+                <div class="bg-white border border-slate-100 rounded-2xl p-4 flex flex-col items-center justify-center h-20 hover:border-primary-300 hover:shadow-sm transition-all cursor-pointer">
+                    <span class="font-black text-slate-800 tracking-wider text-sm">KAZUKI</span>
+                    <span class="text-[9px] text-pink-500 font-bold uppercase mt-1">Modern Look</span>
+                </div>
+                <div class="bg-white border border-slate-100 rounded-2xl p-4 flex flex-col items-center justify-center h-20 hover:border-primary-300 hover:shadow-sm transition-all cursor-pointer">
+                    <span class="font-black text-slate-800 tracking-wider text-sm">TAILG</span>
+                    <span class="text-[9px] text-sky-500 font-bold uppercase mt-1">Premium Quality</span>
+                </div>
+                <div class="bg-white border border-slate-100 rounded-2xl p-4 flex flex-col items-center justify-center h-20 hover:border-primary-300 hover:shadow-sm transition-all cursor-pointer">
+                    <span class="font-black text-slate-800 tracking-wider text-sm">NIJIA</span>
+                    <span class="text-[9px] text-purple-500 font-bold uppercase mt-1">Youthful Style</span>
+                </div>
+                <div class="bg-white border border-slate-100 rounded-2xl p-4 flex flex-col items-center justify-center h-20 hover:border-primary-300 hover:shadow-sm transition-all cursor-pointer">
+                    <span class="font-black text-slate-800 tracking-wider text-sm">DK BIKE</span>
+                    <span class="text-[9px] text-emerald-500 font-bold uppercase mt-1">Eco-Friendly</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- LATEST NEWS SECTION (Swipeable horizontally on mobile to reduce scroll fatigue) -->
+        <section class="mb-16 scroll-mt-24" id="news-section">
+            <div class="flex items-center justify-between mb-8">
+                <div class="flex items-center gap-3">
+                    <span class="w-1.5 h-6 bg-primary-500 rounded-full"></span>
+                    <h2 class="text-xl font-extrabold text-slate-900 tracking-tight">Tin tức mới nhất</h2>
+                </div>
+                <span class="text-xs text-slate-400">Mẹo chọn xe và sử dụng</span>
+            </div>
+
+            <!-- Swipeable container on mobile, grid layout on desktop -->
+            <div class="flex overflow-x-auto snap-x snap-mandatory gap-5 pb-4 no-scrollbar md:grid md:grid-cols-4 md:pb-0">
+                <!-- News Card 1 -->
+                <article class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium group hover:-translate-y-1 transition-all duration-300 shrink-0 w-[80%] md:w-auto snap-center">
+                    <div class="aspect-video bg-slate-50 relative overflow-hidden">
+                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1595054179361-b0e66d9bb7a3?auto=format&fit=crop&w=400&q=80" alt="Lợi ích xe điện" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-5 space-y-2">
+                        <span class="text-[10px] font-bold text-slate-400">20/05/2026</span>
+                        <h3 class="font-bold text-slate-800 text-sm line-clamp-2 leading-snug group-hover:text-primary-500 transition-colors">5 lợi ích thực tế khi chuyển sang sử dụng xe điện ở đô thị</h3>
+                        <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed">Khám phá lý do tại sao phương tiện giao thông xanh đang dần chiếm lĩnh thị trường...</p>
+                    </div>
+                </article>
+
+                <!-- News Card 2 -->
+                <article class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium group hover:-translate-y-1 transition-all duration-300 shrink-0 w-[80%] md:w-auto snap-center">
+                    <div class="aspect-video bg-slate-50 relative overflow-hidden">
+                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=400&q=80" alt="Hướng dẫn sạc" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-5 space-y-2">
+                        <span class="text-[10px] font-bold text-slate-400">15/05/2026</span>
+                        <h3 class="font-bold text-slate-800 text-sm line-clamp-2 leading-snug group-hover:text-primary-500 transition-colors">Hướng dẫn sạc xe điện đúng cách để giữ ắc quy bền hơn</h3>
+                        <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed">Tránh ngay các lỗi sạc pin sai cách thông dụng gây chai và hỏng hóc đáng tiếc...</p>
+                    </div>
+                </article>
+
+                <!-- News Card 3 -->
+                <article class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium group hover:-translate-y-1 transition-all duration-300 shrink-0 w-[80%] md:w-auto snap-center">
+                    <div class="aspect-video bg-slate-50 relative overflow-hidden">
+                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=400&q=80" alt="Nên mua xe gì" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-5 space-y-2">
+                        <span class="text-[10px] font-bold text-slate-400">10/05/2026</span>
+                        <h3 class="font-bold text-slate-800 text-sm line-clamp-2 leading-snug group-hover:text-primary-500 transition-colors">Nên mua xe 50cc hay xe điện? Phân tích so sánh chi tiết</h3>
+                        <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed">Cân nhắc chi phí vận hành, tính tiện dụng và độ bền lâu của hai dòng xe học sinh phổ biến...</p>
+                    </div>
+                </article>
+
+                <!-- News Card 4 -->
+                <article class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium group hover:-translate-y-1 transition-all duration-300 shrink-0 w-[80%] md:w-auto snap-center">
+                    <div class="aspect-video bg-slate-50 relative overflow-hidden">
+                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1595054179361-b0e66d9bb7a3?auto=format&fit=crop&w=400&q=80" alt="Bảo dưỡng" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-5 space-y-2">
+                        <span class="text-[10px] font-bold text-slate-400">05/05/2026</span>
+                        <h3 class="font-bold text-slate-800 text-sm line-clamp-2 leading-snug group-hover:text-primary-500 transition-colors">Bảo dưỡng định kỳ: Những danh mục cần kiểm tra để xe luôn êm ái</h3>
+                        <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed">Học cách chăm sóc phanh xe, giảm xóc và lốp xe hiệu quả tại nhà...</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- PREMIUM CONSULTING REGISTRATION FORM (With 34 Provinces + Textarea Notes) -->
+        <section class="mb-16 scroll-mt-24" id="consult-form">
+            <div class="bg-gradient-to-r from-primary-600 to-indigo-700 rounded-3xl p-6 md:p-12 text-white relative overflow-hidden shadow-premium">
+                <!-- Aesthetic background elements -->
+                <div class="absolute -right-10 -bottom-10 w-80 h-80 bg-white/5 rounded-full blur-2xl"></div>
+                <div class="absolute top-0 left-1/3 w-60 h-60 bg-emerald-500/10 rounded-full blur-3xl"></div>
+
+                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- Content side -->
+                    <div class="lg:col-span-5 space-y-4 text-center lg:text-left">
+                        <span class="bg-emerald-500/20 text-emerald-300 font-bold text-xs px-3.5 py-1.5 rounded-full uppercase tracking-wider inline-block">Ưu đãi độc quyền hôm nay</span>
+                        <h2 class="text-2xl md:text-4xl font-black tracking-tight leading-tight">ĐĂNG KÝ NHẬN BÁO GIÁ & TƯ VẤN MIỄN PHÍ</h2>
+                        <p class="text-xs md:text-sm text-indigo-100 leading-relaxed">
+                            Để lại thông tin liên hệ ngay để nhận ngay **Voucher 1.000.000đ** mua sắm xe điện, mũ bảo hiểm chính hãng cùng combo quà tặng bảo dưỡng vàng 3 năm trị giá 2.500.000đ!
+                        </p>
+                        <div class="flex items-center gap-4 justify-center lg:justify-start pt-2 text-xs">
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-bolt text-yellow-400"></i> Hỗ trợ trả góp 0%</span>
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield text-emerald-400"></i> Cam kết bảo mật</span>
+                        </div>
+                    </div>
+
+                    <!-- Form side -->
+                    <div class="lg:col-span-7 bg-white text-slate-800 p-5 md:p-8 rounded-2xl shadow-xl">
+                        <form onsubmit="submitConsultForm(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="space-y-1">
+                                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wider block">Họ và tên của bạn</label>
+                                    <input type="text" id="consult-name" required placeholder="Nhập tên..." class="w-full px-4 py-3 border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none rounded-xl text-sm transition-all bg-slate-50">
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wider block">Số điện thoại liên hệ</label>
+                                    <input type="tel" id="consult-phone" required placeholder="Nhập SĐT..." class="w-full px-4 py-3 border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none rounded-xl text-sm transition-all bg-slate-50">
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="space-y-1">
+                                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wider block">Dòng xe bạn quan tâm</label>
+                                    <select id="consult-interest" class="w-full px-4 py-3 border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none rounded-xl text-sm transition-all bg-slate-50">
+                                        <option value="Xe máy điện">Xe máy điện</option>
+                                        <option value="Xe điện Vespa">Xe điện Vespa phong cách</option>
+                                        <option value="Xe đạp điện">Xe đạp điện thời trang</option>
+                                        <option value="Xe 50cc">Xe 50cc phong cách học sinh</option>
+                                        <option value="Xe 3 bánh">Xe 3 bánh tiện ích</option>
+                                    </select>
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wider block">Khu vực sinh sống (34 Tỉnh Thành mới)</label>
+                                    <select id="consult-region" class="w-full px-4 py-3 border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none rounded-xl text-sm transition-all bg-slate-50">
+                                        <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+                                        <option value="Hà Nội">Hà Nội</option>
+                                        <option value="Đà Nẵng">Đà Nẵng</option>
+                                        <option value="Bình Dương">Bình Dương</option>
+                                        <option value="Đồng Nai">Đồng Nai</option>
+                                        <option value="Bà Rịa - Vũng Tàu">Bà Rịa - Vũng Tàu</option>
+                                        <option value="Lâm Đồng">Lâm Đồng</option>
+                                        <option value="An Giang">An Giang</option>
+                                        <option value="Bình Phước">Bình Phước</option>
+                                        <option value="Bình Thuận">Bình Thuận</option>
+                                        <option value="Cần Thơ">Cần Thơ</option>
+                                        <option value="Hậu Giang">Hậu Giang</option>
+                                        <option value="Kiên Giang">Kiên Giang</option>
+                                        <option value="Long An">Long An</option>
+                                        <option value="Tây Ninh">Tây Ninh</option>
+                                        <option value="Tiền Giang">Tiền Giang</option>
+                                        <option value="Bến Tre">Bến Tre</option>
+                                        <option value="Trà Vinh">Trà Vinh</option>
+                                        <option value="Vĩnh Long">Vĩnh Long</option>
+                                        <option value="Đồng Tháp">Đồng Tháp</option>
+                                        <option value="Sóc Trăng">Sóc Trăng</option>
+                                        <option value="Bạc Liêu">Bạc Liêu</option>
+                                        <option value="Cà Mau">Cà Mau</option>
+                                        <option value="Khánh Hòa">Khánh Hòa</option>
+                                        <option value="Ninh Thuận">Ninh Thuận</option>
+                                        <option value="Gia Lai">Gia Lai</option>
+                                        <option value="Đắk Lắk">Đắk Lắk</option>
+                                        <option value="Đắk Nông">Đắk Nông</option>
+                                        <option value="Kon Tum">Kon Tum</option>
+                                        <option value="Bình Định">Bình Định</option>
+                                        <option value="Phú Yên">Phú Yên</option>
+                                        <option value="Quảng Ngãi">Quảng Ngãi</option>
+                                        <option value="Quảng Nam">Quảng Nam</option>
+                                        <option value="Hải Phòng">Hải Phòng</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Textarea notes -->
+                            <div class="space-y-1">
+                                <label class="text-xs font-bold text-slate-500 uppercase tracking-wider block">Yêu cầu tư vấn chi tiết</label>
+                                <textarea id="consult-message" rows="3" placeholder="Ghi chú thêm nhu cầu của bạn (Ví dụ: Cần tư vấn trả góp 0%, xe cho học sinh cấp 3, báo giá đại lý tỉnh...)" class="w-full px-4 py-3 border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none rounded-xl text-sm transition-all bg-slate-50 resize-none"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-4 bg-emerald-500 hover:bg-emerald-600 active:scale-[0.98] text-white font-bold text-sm rounded-xl transition-all shadow-md flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i> GỬI YÊU CẦU ĐĂNG KÝ NGAY
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer class="bg-slate-900 text-slate-400 text-sm pt-16 pb-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            
+            <!-- Company Info Column -->
+            <div class="space-y-4">
+                <a href="#" class="flex items-center gap-3">
+                    <div class="bg-primary-500 text-white font-black p-2 rounded-xl text-lg">D<span class="text-emerald-400">XD</span></div>
+                    <span class="text-xl font-extrabold text-white">dailyxedien.vn</span>
+                </a>
+                <p class="text-xs leading-relaxed text-slate-400">
+                    Dailyxedien.vn - Hệ thống phân phối xe điện, xe 50cc, xe máy điện chính hãng. Cam kết sản phẩm rõ nguồn gốc, chính sách giá minh bạch và hậu mãi dễ theo dõi.
+                </p>
+                <div class="flex items-center gap-3 pt-2">
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-primary-500 hover:text-white flex items-center justify-center transition-colors text-xs text-slate-300"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-primary-500 hover:text-white flex items-center justify-center transition-colors text-xs text-slate-300"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-primary-500 hover:text-white flex items-center justify-center transition-colors text-xs text-slate-300"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-primary-500 hover:text-white flex items-center justify-center transition-colors text-xs text-slate-300"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <!-- Policy Column -->
+            <div class="space-y-4">
+                <h4 class="text-white font-bold text-sm tracking-wide">CHÍNH SÁCH CHUNG</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#" class="hover:text-white transition-colors">Chính sách bảo hành vàng</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Chính sách đổi trả trong 7 ngày</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Chính sách vận chuyển & giao nhận</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Chính sách thanh toán linh hoạt</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Chính sách bảo mật thông tin</a></li>
+                </ul>
+            </div>
+
+            <!-- Customer Support Column -->
+            <div class="space-y-4">
+                <h4 class="text-white font-bold text-sm tracking-wide">HỖ TRỢ KHÁCH HÀNG</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#" class="hover:text-white transition-colors">Hướng dẫn mua hàng trực tuyến</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Hướng dẫn trả góp 0% nhanh chóng</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Tra cứu tiến độ đơn hàng</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Câu hỏi thường gặp (FAQs)</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Bản đồ hệ thống đại lý</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Column -->
+            <div class="space-y-4">
+                <h4 class="text-white font-bold text-sm tracking-wide">LIÊN HỆ VỚI CHÚNG TÔI</h4>
+                <div class="space-y-3 text-xs">
+                    <p class="flex items-start gap-2.5 leading-relaxed">
+                        <i class="fa-solid fa-location-dot mt-0.5 text-primary-500"></i>
+                        <span>466 Nguyễn Duy Trinh, P. Bình Trưng Đông, TP. Thủ Đức, TP.HCM</span>
+                    </p>
+                    <p class="flex items-center gap-2.5">
+                        <i class="fa-solid fa-phone text-primary-500"></i>
+                        <span>0933 505 222 (Hỗ trợ 24/7)</span>
+                    </p>
+                    <p class="flex items-center gap-2.5">
+                        <i class="fa-regular fa-envelope text-primary-500"></i>
+                        <span>info@dailyxedien.vn</span>
+                    </p>
+                    <p class="flex items-center gap-2.5">
+                        <i class="fa-solid fa-globe text-primary-500"></i>
+                        <span>www.dailyxedien.vn</span>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- COPYRIGHT -->
+        <div class="border-t border-slate-800 pt-8 text-center text-xs text-slate-500 max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>© 2026 dailyxedien.vn. Tất cả bản quyền được bảo lưu.</p>
+            <div class="flex items-center gap-4">
+                <span class="hover:text-slate-400 cursor-pointer">Bảo mật</span>
+                <span>•</span>
+                <span class="hover:text-slate-400 cursor-pointer">Điều khoản sử dụng</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING ACTIONS (With quick Zalo chat & Call bubble support) -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+        <!-- Zalo Chat Button -->
+        <a href="https://zalo.me/0933505222" target="_blank" class="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white rounded-full w-12 h-12 shadow-xl transition-transform hover:scale-105 active:scale-95 group relative" title="Chat Zalo">
+            <span class="absolute right-full mr-3 bg-white text-slate-800 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Chat Zalo</span>
+            <i class="fa-solid fa-comment-sms text-lg"></i>
+        </a>
+        <!-- Floating Hotline Call Button -->
+        <a href="tel:0933505222" class="flex items-center justify-center bg-primary-500 hover:bg-primary-600 text-white rounded-full w-12 h-12 shadow-xl transition-transform hover:scale-105 active:scale-95 group relative" title="Gọi Hotline">
+            <span class="absolute right-full mr-3 bg-white text-slate-800 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Hotline: 0933 505 222</span>
+            <i class="fa-solid fa-phone-volume animate-pulse text-lg"></i>
+        </a>
+    </div>
+
+    <!-- CART PANEL MODAL -->
+    <div id="cart-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-6 max-w-md w-full shadow-2xl space-y-4">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+                <h3 class="font-bold text-slate-800 text-base flex items-center gap-2"><i class="fa-solid fa-cart-shopping text-emerald-500"></i> Giỏ hàng của bạn</h3>
+                <button onclick="closeCart()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div id="cart-items" class="space-y-3 max-h-60 overflow-y-auto py-2">
+                <p class="text-xs text-slate-400 text-center py-6">Chưa có sản phẩm nào trong giỏ hàng</p>
+            </div>
+            <div class="border-t border-slate-100 pt-3 flex justify-between items-center text-sm">
+                <span class="font-medium text-slate-500">Tổng thanh toán:</span>
+                <span class="font-black text-slate-900" id="cart-total">0 đ</span>
+            </div>
+            <button onclick="checkout()" class="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs rounded-xl transition-all shadow-md">TIẾN HÀNH THANH TOÁN</button>
+        </div>
+    </div>
+
+    <!-- INTERACTIVE VIDEO POPUP LIGHTBOX -->
+    <div id="video-modal" role="dialog" aria-modal="true" aria-label="Trình phát video" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4" onclick="closeVideoModal()">
+        <div class="bg-black rounded-2xl overflow-hidden max-w-3xl w-full aspect-video shadow-2xl relative" onclick="event.stopPropagation()">
+            <button onclick="closeVideoModal()" aria-label="Đóng video" class="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white w-8 h-8 rounded-full flex items-center justify-center z-50 transition-colors">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+            <iframe id="video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- EVENT IMAGE SLIDESHOW LIGHTBOX -->
+    <div id="lightbox-modal" role="dialog" aria-modal="true" aria-label="Xem ảnh sự kiện" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-[100] hidden items-center justify-center p-4" onclick="closeLightbox()">
+        <div class="relative max-w-4xl w-full flex flex-col items-center justify-center" onclick="event.stopPropagation()">
+            <button onclick="closeLightbox()" aria-label="Đóng" class="absolute -top-12 right-0 bg-white/10 hover:bg-white/20 text-white w-10 h-10 rounded-full flex items-center justify-center z-50 transition-colors">
+                <i class="fa-solid fa-xmark text-lg" aria-hidden="true"></i>
+            </button>
+
+            <div class="relative w-full max-h-[80vh] flex items-center justify-center">
+                <button onclick="navigateLightbox('prev')" aria-label="Ảnh trước" class="absolute left-4 z-10 w-12 h-12 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-chevron-left text-lg" aria-hidden="true"></i>
+                </button>
+
+                <img id="lightbox-img" src="" alt="Chi tiết ảnh sự kiện" class="max-w-full max-h-[75vh] object-contain rounded-xl shadow-2xl">
+
+                <button onclick="navigateLightbox('next')" aria-label="Ảnh kế tiếp" class="absolute right-4 z-10 w-12 h-12 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-chevron-right text-lg" aria-hidden="true"></i>
+                </button>
+            </div>
+            <p id="lightbox-caption" class="text-white text-sm font-bold mt-4 tracking-wide"></p>
+        </div>
+    </div>
+
+    <!-- BACK TO TOP -->
+    <button id="back-to-top" aria-label="Lên đầu trang" class="fixed bottom-24 right-6 z-40 w-11 h-11 rounded-full bg-slate-900 hover:bg-primary-600 text-white shadow-xl flex items-center justify-center">
+        <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <!-- NOTIFICATION TOAST -->
+    <div id="toast-notify" role="status" aria-live="polite" class="fixed bottom-6 left-6 z-[120] bg-slate-900 text-white py-3.5 px-6 rounded-xl shadow-2xl flex items-center gap-3 border border-slate-800 opacity-0 translate-y-5 pointer-events-none transition-all duration-300">
+        <div id="toast-icon" class="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-check"></i></div>
+        <span class="text-xs font-semibold" id="toast-msg">Chào mừng bạn đã đăng ký thành công!</span>
+    </div>
+
+    <!-- SCRIPT -->
+    <script src="assets/js/main.js" defer></script>
+</body>
+</html>

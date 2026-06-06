@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản phẩm - dailyxedien.vn | Xe Điện, Xe Máy Điện, Xe 50cc Chính Hãng</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Khám phá bộ sưu tập xe điện, xe máy điện, xe 50cc chính hãng tại dailyxedien.vn. Giá tốt nhất, trả góp 0%, bảo hành chính hãng.">
+    <meta name="keywords" content="xe điện, xe máy điện, xe 50cc, xe đạp điện, mua xe điện, dailyxedien">
+    <meta name="author" content="dailyxedien.vn">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0052cc">
+    <link rel="canonical" href="https://www.dailyxedien.vn/san-pham/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Sản phẩm - dailyxedien.vn">
+    <meta property="og:description" content="Xe điện, xe máy điện, xe 50cc chính hãng. Trả góp 0%, bảo hành chính hãng.">
+    <meta property="og:url" content="https://www.dailyxedien.vn/san-pham/">
+    <meta property="og:locale" content="vi_VN">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        primary: { 50:'#f0f5ff', 100:'#e0ebff', 500:'#0052cc', 600:'#0040a1', 700:'#003380' },
+                        accent: { 500:'#10b981', 600:'#059669' }
+                    },
+                    boxShadow: {
+                        'premium': '0 4px 20px -2px rgba(0,0,0,0.05), 0 2px 8px -1px rgba(0,0,0,0.02)',
+                        'hover-card': '0 20px 40px -4px rgba(0,0,0,0.08), 0 8px 20px -2px rgba(0,0,0,0.03)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="text-slate-800 antialiased overflow-x-hidden bg-slate-50/50">
+
+    <a href="#product-grid" class="skip-link">Bỏ qua tới sản phẩm</a>
+
+    <!-- TOP UTILITY BAR -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2.5 px-4 border-b border-slate-800 relative z-50 hidden md:block">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+            <div class="flex flex-wrap items-center gap-5 justify-center md:justify-start">
+                <a href="index.html#store-section" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-primary-500 animate-pulse"></i> Hệ thống cửa hàng</a>
+                <a href="#" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-solid fa-magnifying-glass text-slate-400"></i> Tra cứu đơn hàng</a>
+                <a href="index.html#news-section" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-regular fa-newspaper"></i> Tin tức</a>
+                <a href="index.html#consult-form" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-regular fa-envelope"></i> Liên hệ</a>
+            </div>
+            <div class="flex items-center gap-5">
+                <a href="#" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-regular fa-user"></i> Đăng nhập / Đăng ký</a>
+                <span class="text-slate-700">|</span>
+                <a href="#" class="hover:text-white transition-colors flex items-center gap-1.5 font-medium relative" onclick="openCart()">
+                    <i class="fa-solid fa-cart-shopping text-emerald-400"></i> Giỏ hàng
+                    <span class="bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full absolute -top-2.5 -right-4 shadow-sm" id="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <header class="bg-white py-3 md:py-4 px-4 sticky top-0 z-50 border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <button onclick="openMobileMenu()" class="md:hidden text-slate-700 hover:text-primary-500 p-2 text-xl focus:outline-none" aria-label="Menu"><i class="fa-solid fa-bars-staggered"></i></button>
+            <a href="index.html" class="flex items-center gap-2 md:gap-3">
+                <div class="bg-gradient-to-r from-primary-500 to-primary-600 text-white font-black p-2 md:p-2.5 rounded-xl text-lg md:text-xl shadow-lg shadow-primary-500/20 tracking-wider">D<span class="text-emerald-400">XD</span></div>
+                <div>
+                    <span class="text-lg md:text-2xl font-extrabold tracking-tight text-slate-900">dailyxedien<span class="text-primary-500">.vn</span></span>
+                    <p class="text-[8px] md:text-[10px] tracking-widest text-slate-400 uppercase font-bold hidden sm:block">Hệ thống xe điện lớn nhất Việt Nam</p>
+                </div>
+            </a>
+            <div class="w-full md:max-w-xl relative hidden md:block">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><i class="fa-solid fa-magnifying-glass text-slate-400"></i></div>
+                <input type="text" placeholder="Bạn cần tìm xe điện, xe 50cc hay phụ kiện gì hôm nay?" class="w-full pl-11 pr-24 py-3 bg-slate-50 border border-slate-200 focus:border-primary-500 focus:bg-white focus:ring-2 focus:ring-primary-100 rounded-xl outline-none transition-all text-sm">
+                <button class="absolute right-1.5 top-1.5 bottom-1.5 bg-primary-500 hover:bg-primary-600 text-white px-5 rounded-lg text-xs font-semibold transition-colors">Tìm kiếm</button>
+            </div>
+            <div class="flex items-center gap-1 md:gap-3.5">
+                <button onclick="openMobileMenu(); setTimeout(()=>document.getElementById('mobile-search').focus(),300)" aria-label="Tìm kiếm" class="md:hidden text-slate-700 hover:text-primary-500 p-2 text-lg"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button onclick="openCart()" aria-label="Giỏ hàng" class="md:hidden text-slate-700 hover:text-primary-500 p-2 text-lg relative"><i class="fa-solid fa-cart-shopping"></i><span class="bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full absolute top-0 right-0 shadow-sm" id="cart-count-mobile">0</span></button>
+                <div class="hidden sm:flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-full bg-primary-50 flex items-center justify-center text-primary-500 shadow-sm"><i class="fa-solid fa-phone-volume text-lg animate-bounce"></i></div>
+                    <div class="text-right md:text-left">
+                        <span class="text-xs text-slate-400 font-medium">Hotline tư vấn 24/7</span>
+                        <p class="text-base font-bold text-slate-900 tracking-tight hover:text-primary-500 transition-colors">0933 505 222</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE DRAWER -->
+    <div id="mobile-drawer-overlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] hidden transition-opacity duration-300 opacity-0" onclick="closeMobileMenu()"></div>
+    <div id="mobile-drawer" class="fixed inset-y-0 left-0 w-80 max-w-[85vw] bg-white z-[110] shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between">
+        <div class="overflow-y-auto flex-grow p-5 space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                <div class="flex items-center gap-2"><div class="bg-primary-500 text-white font-black p-1.5 rounded-lg text-sm">D<span class="text-emerald-400">XD</span></div><span class="font-bold text-slate-800 text-base">dailyxedien.vn</span></div>
+                <button onclick="closeMobileMenu()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition-colors"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form onsubmit="event.preventDefault()" class="relative">
+                <input type="text" id="mobile-search" placeholder="Tìm kiếm xe, phụ kiện..." class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none text-sm focus:bg-white focus:border-primary-500 transition-all">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            </form>
+            <div class="space-y-1 text-sm font-semibold text-slate-700">
+                <a href="index.html" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-solid fa-house text-slate-400"></i> Trang chủ</a>
+                <a href="about.html" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-solid fa-building text-slate-400"></i> Về chúng tôi</a>
+                <a href="san-pham.html" class="flex items-center gap-3 p-3 rounded-xl bg-primary-50 text-primary-600 transition-colors"><i class="fa-solid fa-bicycle text-primary-500"></i> Sản phẩm</a>
+                <a href="index.html#store-section" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-solid fa-location-dot text-slate-400"></i> Hệ Thống Cửa Hàng</a>
+                <a href="index.html#consult-form" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors text-yellow-600"><i class="fa-solid fa-gift text-slate-400"></i> Đăng Ký Khuyến Mãi</a>
+            </div>
+        </div>
+        <div class="p-5 border-t border-slate-100 bg-slate-50 space-y-3">
+            <p class="text-xs text-slate-500 flex items-center gap-2"><i class="fa-solid fa-phone text-primary-500"></i> <strong>0933 505 222</strong></p>
+            <p class="text-[11px] text-slate-400 leading-snug">466 Nguyễn Duy Trinh, P. Bình Trưng Đông, TP. Thủ Đức, TP.HCM</p>
+        </div>
+    </div>
+
+    <!-- NAVIGATION MENU BAR -->
+    <nav class="bg-primary-600 text-white shadow-md relative z-40 hidden md:block">
+        <div class="max-w-7xl mx-auto flex items-center">
+            <div class="relative group" id="category-menu-container">
+                <button class="bg-primary-700 hover:bg-primary-800 px-6 py-4 flex items-center gap-3 cursor-pointer transition-colors font-semibold text-sm select-none">
+                    <i class="fa-solid fa-bars text-lg"></i><span>DANH MỤC SẢN PHẨM</span><i class="fa-solid fa-chevron-down text-xs ml-1 transition-transform group-hover:rotate-180"></i>
+                </button>
+                <div class="absolute top-full left-0 w-64 bg-white border border-slate-100 rounded-b-2xl shadow-premium overflow-hidden p-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-50">
+                    <div class="space-y-1">
+                        <a href="san-pham.html?cat=xe-dien" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group"><span class="flex items-center gap-3"><span class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-500 flex items-center justify-center"><i class="fa-solid fa-bicycle"></i></span>Xe điện</span><i class="fa-solid fa-chevron-right text-xs opacity-50"></i></a>
+                        <a href="san-pham.html?cat=xe-50cc" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group"><span class="flex items-center gap-3"><span class="w-8 h-8 rounded-lg bg-blue-50 text-blue-500 flex items-center justify-center"><i class="fa-solid fa-motorcycle"></i></span>Xe 50cc</span><i class="fa-solid fa-chevron-right text-xs opacity-50"></i></a>
+                        <a href="san-pham.html?cat=xe-may-dien" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group"><span class="flex items-center gap-3"><span class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-500 flex items-center justify-center"><i class="fa-solid fa-bolt"></i></span>Xe máy điện</span><i class="fa-solid fa-chevron-right text-xs opacity-50"></i></a>
+                        <a href="san-pham.html?cat=xe-3-banh" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group"><span class="flex items-center gap-3"><span class="w-8 h-8 rounded-lg bg-amber-50 text-amber-500 flex items-center justify-center"><i class="fa-solid fa-truck-pickup"></i></span>Xe 3 bánh</span><i class="fa-solid fa-chevron-right text-xs opacity-50"></i></a>
+                        <a href="#" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group"><span class="flex items-center gap-3"><span class="w-8 h-8 rounded-lg bg-violet-50 text-violet-500 flex items-center justify-center"><i class="fa-solid fa-gears"></i></span>Phụ kiện</span><i class="fa-solid fa-chevron-right text-xs opacity-50"></i></a>
+                        <a href="#" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group"><span class="flex items-center gap-3"><span class="w-8 h-8 rounded-lg bg-rose-50 text-rose-500 flex items-center justify-center"><i class="fa-solid fa-car-battery"></i></span>Ắc quy xe điện</span><i class="fa-solid fa-chevron-right text-xs opacity-50"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-1 px-4 text-sm font-medium overflow-x-auto no-scrollbar">
+                <a href="san-pham.html?cat=xe-dien" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">XE ĐIỆN</a>
+                <a href="san-pham.html?cat=xe-50cc" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">XE 50CC</a>
+                <a href="san-pham.html?cat=xe-may-dien" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">XE MÁY ĐIỆN</a>
+                <a href="san-pham.html?cat=xe-3-banh" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">XE 3 BÁNH</a>
+                <a href="#" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">PHỤ KIỆN</a>
+                <a href="#" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">ẮC QUY</a>
+                <a href="index.html#ai-tech-spotlight" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap font-semibold flex items-center gap-1"><i class="fa-solid fa-microchip"></i> CÔNG NGHỆ XE</a>
+                <a href="index.html#store-section" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">HỆ THỐNG CỬA HÀNG</a>
+                <a href="index.html#consult-form" class="px-4 py-4 hover:bg-primary-700/50 transition-colors text-yellow-300 font-bold whitespace-nowrap flex items-center gap-1"><i class="fa-solid fa-fire text-xs"></i> ĐĂNG KÝ KHUYẾN MÃI</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PAGE BANNER -->
+    <section class="relative w-full bg-primary-600 overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,rgba(16,185,129,0.12),transparent_50%)]"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 py-8 md:py-10">
+            <nav class="flex items-center gap-2 text-xs text-white/60 mb-4" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-white transition-colors">Trang chủ</a>
+                <i class="fa-solid fa-chevron-right text-[8px]"></i>
+                <span class="text-white font-semibold">Sản phẩm</span>
+            </nav>
+            <h1 class="text-2xl md:text-3xl font-black text-white tracking-tight">Tất cả sản phẩm</h1>
+            <p class="text-sm text-slate-200 mt-2">Khám phá bộ sưu tập xe điện, xe máy điện, xe 50cc chính hãng với giá tốt nhất.</p>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT: SIDEBAR + PRODUCT GRID -->
+    <main class="max-w-7xl mx-auto px-4 py-8 md:py-10">
+        <div class="flex flex-col lg:flex-row gap-6 md:gap-8">
+
+            <!-- SIDEBAR FILTERS -->
+            <aside class="lg:w-64 shrink-0">
+                <!-- Mobile filter toggle -->
+                <button onclick="toggleFilter()" class="lg:hidden w-full flex items-center justify-between bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold text-slate-700 mb-4 shadow-sm">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-filter text-primary-500"></i> Bộ lọc sản phẩm</span>
+                    <i id="filter-toggle-icon" class="fa-solid fa-chevron-down text-xs transition-transform"></i>
+                </button>
+
+                <div id="filter-panel" class="hidden lg:block space-y-5">
+                    <!-- Category Filter -->
+                    <div class="bg-white rounded-2xl border border-slate-100 p-5 shadow-premium">
+                        <h3 class="font-bold text-slate-800 text-sm mb-4 flex items-center gap-2"><i class="fa-solid fa-list text-primary-500 text-xs"></i> Danh mục</h3>
+                        <div class="space-y-2.5">
+                            <label class="flex items-center gap-2.5 cursor-pointer group">
+                                <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-primary-500 focus:ring-primary-500 accent-primary-500" checked>
+                                <span class="text-xs font-medium text-slate-600 group-hover:text-primary-500 transition-colors">Xe điện</span>
+                                <span class="text-[10px] text-slate-400 ml-auto">(48)</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 cursor-pointer group">
+                                <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-primary-500 focus:ring-primary-500 accent-primary-500" checked>
+                                <span class="text-xs font-medium text-slate-600 group-hover:text-primary-500 transition-colors">Xe 50cc</span>
+                                <span class="text-[10px] text-slate-400 ml-auto">(32)</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 cursor-pointer group">
+                                <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-primary-500 focus:ring-primary-500 accent-primary-500" checked>
+                                <span class="text-xs font-medium text-slate-600 group-hover:text-primary-500 transition-colors">Xe máy điện</span>
+                                <span class="text-[10px] text-slate-400 ml-auto">(25)</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 cursor-pointer group">
+                                <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-primary-500 focus:ring-primary-500 accent-primary-500">
+                                <span class="text-xs font-medium text-slate-600 group-hover:text-primary-500 transition-colors">Xe 3 bánh</span>
+                                <span class="text-[10px] text-slate-400 ml-auto">(12)</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 cursor-pointer group">
+                                <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-primary-500 focus:ring-primary-500 accent-primary-500">
+                                <span class="text-xs font-medium text-slate-600 group-hover:text-primary-500 transition-colors">Xe đạp điện</span>
+                                <span class="text-[10px] text-slate-400 ml-auto">(18)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Brand Filter -->
+                    <div class="bg-white rounded-2xl border border-slate-100 p-5 shadow-premium">
+                        <h3 class="font-bold text-slate-800 text-sm mb-4 flex items-center gap-2"><i class="fa-solid fa-tag text-primary-500 text-xs"></i> Thương hiệu</h3>
+                        <div class="space-y-2.5">
+                            <label class="flex items-center gap-2.5 cursor-pointer group"><input type="checkbox" class="w-4 h-4 rounded border-slate-300 accent-primary-500"><span class="text-xs font-medium text-slate-600 group-hover:text-primary-500 transition-colors">Bluera</span></label>
+                            <label class="flex items-center gap-2.5 cursor-pointer group"><input type="checkbox" class="w-4 h-4 rounded border-slate-300 accent-primary-500"><span class="text-xs font-medium text-slate-600 group-hover:text-primary-500 transition-colors">Yadea</span></label>
+                            <label class="flex items-center gap-2.5 cursor-pointer group"><input type="checkbox" class="w-4 h-4 rounded border-slate-300 accent-primary-500"><span class="text-xs font-medium text-slate-600 group-hover:text-primary-500 transition-colors">VinFast</span></label>
+                            <label class="flex items-center gap-2.5 cursor-pointer group"><input type="checkbox" class="w-4 h-4 rounded border-slate-300 accent-primary-500"><span class="text-xs font-medium text-slate-600 group-hover:text-primary-500 transition-colors">Vespa</span></label>
+                            <label class="flex items-center gap-2.5 cursor-pointer group"><input type="checkbox" class="w-4 h-4 rounded border-slate-300 accent-primary-500"><span class="text-xs font-medium text-slate-600 group-hover:text-primary-500 transition-colors">Xmen</span></label>
+                            <label class="flex items-center gap-2.5 cursor-pointer group"><input type="checkbox" class="w-4 h-4 rounded border-slate-300 accent-primary-500"><span class="text-xs font-medium text-slate-600 group-hover:text-primary-500 transition-colors">Honda</span></label>
+                        </div>
+                    </div>
+
+                    <!-- Price Range -->
+                    <div class="bg-white rounded-2xl border border-slate-100 p-5 shadow-premium">
+                        <h3 class="font-bold text-slate-800 text-sm mb-4 flex items-center gap-2"><i class="fa-solid fa-dollar-sign text-primary-500 text-xs"></i> Khoảng giá</h3>
+                        <div class="space-y-2.5">
+                            <label class="flex items-center gap-2.5 cursor-pointer group"><input type="radio" name="price" class="w-4 h-4 border-slate-300 accent-primary-500"><span class="text-xs font-medium text-slate-600">Dưới 10 triệu</span></label>
+                            <label class="flex items-center gap-2.5 cursor-pointer group"><input type="radio" name="price" class="w-4 h-4 border-slate-300 accent-primary-500" checked><span class="text-xs font-medium text-slate-600">10 - 20 triệu</span></label>
+                            <label class="flex items-center gap-2.5 cursor-pointer group"><input type="radio" name="price" class="w-4 h-4 border-slate-300 accent-primary-500"><span class="text-xs font-medium text-slate-600">20 - 30 triệu</span></label>
+                            <label class="flex items-center gap-2.5 cursor-pointer group"><input type="radio" name="price" class="w-4 h-4 border-slate-300 accent-primary-500"><span class="text-xs font-medium text-slate-600">Trên 30 triệu</span></label>
+                        </div>
+                    </div>
+
+                    <!-- Promotions -->
+                    <div class="bg-gradient-to-br from-primary-500 to-primary-700 rounded-2xl p-5 text-white">
+                        <div class="w-10 h-10 bg-white/15 rounded-xl flex items-center justify-center mb-3"><i class="fa-solid fa-gift text-lg"></i></div>
+                        <h3 class="font-bold text-sm mb-1">Ưu đãi đặc biệt</h3>
+                        <p class="text-xs text-white/70 leading-relaxed mb-3">Trả góp 0% lãi suất cho tất cả sản phẩm. Liên hệ ngay!</p>
+                        <a href="index.html#consult-form" class="inline-flex items-center gap-1.5 bg-white text-primary-600 px-4 py-2 rounded-lg font-bold text-xs hover:bg-slate-50 transition-colors"><i class="fa-solid fa-phone text-[10px]"></i> Tư vấn ngay</a>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- PRODUCT AREA -->
+            <div class="flex-1 min-w-0" id="product-grid">
+                <!-- Toolbar: Results count + Sort -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-6 bg-white border border-slate-100 rounded-xl px-4 py-3 shadow-sm">
+                    <p class="text-xs text-slate-500">Hiển thị <strong class="text-slate-800">1 – 12</strong> trên <strong class="text-slate-800">135</strong> sản phẩm</p>
+                    <div class="flex items-center gap-3">
+                        <select class="text-xs border border-slate-200 rounded-lg px-3 py-2 bg-white text-slate-600 font-medium focus:border-primary-500 outline-none cursor-pointer">
+                            <option>Mới nhất</option>
+                            <option>Giá: Thấp → Cao</option>
+                            <option>Giá: Cao → Thấp</option>
+                            <option>Bán chạy nhất</option>
+                            <option>Đánh giá cao</option>
+                        </select>
+                        <div class="hidden sm:flex items-center gap-1 border border-slate-200 rounded-lg p-0.5">
+                            <button class="w-8 h-8 rounded-md bg-primary-500 text-white flex items-center justify-center text-xs"><i class="fa-solid fa-grid-2"></i></button>
+                            <button class="w-8 h-8 rounded-md hover:bg-slate-100 text-slate-400 flex items-center justify-center text-xs"><i class="fa-solid fa-list"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCT GRID -->
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
+
+                    <!-- Product 1 -->
+                    <div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 flex flex-col justify-between group relative">
+                        <span class="absolute top-2.5 left-2.5 bg-red-500 text-white font-black text-[9px] px-2 py-0.5 rounded-lg z-10 shadow-sm uppercase">Hot</span>
+                        <div class="p-3 bg-slate-50/50 flex items-center justify-center h-36 md:h-44 overflow-hidden">
+                            <img loading="lazy" src="https://images.unsplash.com/photo-1595054179361-b0e66d9bb7a3?auto=format&fit=crop&w=300&q=80" alt="Xe điện Vespa Roma S" class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x200/f1f5f9/475569?text=Roma+S'">
+                        </div>
+                        <div class="p-3 md:p-4 flex-grow flex flex-col justify-between">
+                            <div>
+                                <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Vespa</span>
+                                <h3 class="font-bold text-slate-800 text-xs md:text-sm line-clamp-2 mt-0.5 group-hover:text-primary-500 transition-colors leading-snug">Xe điện Vespa Roma S chất lượng cao</h3>
+                                <div class="flex items-center gap-0.5 mt-1.5 text-amber-400 text-[10px]"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><span class="text-slate-400 ml-1 font-semibold">1.2k đã bán</span></div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="flex flex-wrap items-baseline gap-1"><span class="text-sm md:text-base font-extrabold text-slate-900">19.900.000đ</span><span class="text-[10px] text-slate-400 line-through">22.0M</span></div>
+                                <button class="w-full mt-2.5 bg-primary-500 hover:bg-primary-600 active:scale-95 text-white text-[10px] md:text-xs font-bold py-2 md:py-2.5 rounded-lg transition-all">Mua ngay</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 flex flex-col justify-between group relative">
+                        <span class="absolute top-2.5 left-2.5 bg-blue-500 text-white font-black text-[9px] px-2 py-0.5 rounded-lg z-10 shadow-sm uppercase">-10%</span>
+                        <div class="p-3 bg-slate-50/50 flex items-center justify-center h-36 md:h-44 overflow-hidden">
+                            <img loading="lazy" src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=300&q=80" alt="Xe điện Xmen One" class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x200/f1f5f9/475569?text=Xmen+One'">
+                        </div>
+                        <div class="p-3 md:p-4 flex-grow flex flex-col justify-between">
+                            <div>
+                                <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Xmen</span>
+                                <h3 class="font-bold text-slate-800 text-xs md:text-sm line-clamp-2 mt-0.5 group-hover:text-primary-500 transition-colors leading-snug">Xe điện thể thao Xmen One cá tính</h3>
+                                <div class="flex items-center gap-0.5 mt-1.5 text-amber-400 text-[10px]"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i><span class="text-slate-400 ml-1 font-semibold">980 đã bán</span></div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="flex flex-wrap items-baseline gap-1"><span class="text-sm md:text-base font-extrabold text-slate-900">18.500.000đ</span><span class="text-[10px] text-slate-400 line-through">20.5M</span></div>
+                                <button class="w-full mt-2.5 bg-primary-500 hover:bg-primary-600 active:scale-95 text-white text-[10px] md:text-xs font-bold py-2 md:py-2.5 rounded-lg transition-all">Mua ngay</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 flex flex-col justify-between group relative">
+                        <span class="absolute top-2.5 left-2.5 bg-emerald-500 text-white font-black text-[9px] px-2 py-0.5 rounded-lg z-10 shadow-sm uppercase">Mới</span>
+                        <div class="p-3 bg-slate-50/50 flex items-center justify-center h-36 md:h-44 overflow-hidden">
+                            <img loading="lazy" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=300&q=80" alt="Xe điện VinFast Feliz S" class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x200/f1f5f9/475569?text=Feliz+S'">
+                        </div>
+                        <div class="p-3 md:p-4 flex-grow flex flex-col justify-between">
+                            <div>
+                                <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">VinFast</span>
+                                <h3 class="font-bold text-slate-800 text-xs md:text-sm line-clamp-2 mt-0.5 group-hover:text-primary-500 transition-colors leading-snug">Xe điện thông minh VinFast Feliz S</h3>
+                                <div class="flex items-center gap-0.5 mt-1.5 text-amber-400 text-[10px]"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><span class="text-slate-400 ml-1 font-semibold">1.5k đã bán</span></div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="flex flex-wrap items-baseline gap-1"><span class="text-sm md:text-base font-extrabold text-slate-900">24.900.000đ</span><span class="text-[10px] text-slate-400 line-through">27.0M</span></div>
+                                <button class="w-full mt-2.5 bg-primary-500 hover:bg-primary-600 active:scale-95 text-white text-[10px] md:text-xs font-bold py-2 md:py-2.5 rounded-lg transition-all">Mua ngay</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 flex flex-col justify-between group relative">
+                        <div class="p-3 bg-slate-50/50 flex items-center justify-center h-36 md:h-44 overflow-hidden">
+                            <img loading="lazy" src="https://images.unsplash.com/photo-1595054179361-b0e66d9bb7a3?auto=format&fit=crop&w=300&q=80" alt="Xe điện Dibao Pansy" class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x200/f1f5f9/475569?text=Dibao'">
+                        </div>
+                        <div class="p-3 md:p-4 flex-grow flex flex-col justify-between">
+                            <div>
+                                <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Dibao</span>
+                                <h3 class="font-bold text-slate-800 text-xs md:text-sm line-clamp-2 mt-0.5 group-hover:text-primary-500 transition-colors leading-snug">Xe điện Dibao Pansy S cao cấp tinh tế</h3>
+                                <div class="flex items-center gap-0.5 mt-1.5 text-amber-400 text-[10px]"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i><span class="text-slate-400 ml-1 font-semibold">640 đã bán</span></div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="flex flex-wrap items-baseline gap-1"><span class="text-sm md:text-base font-extrabold text-slate-900">18.900.000đ</span><span class="text-[10px] text-slate-400 line-through">21.0M</span></div>
+                                <button class="w-full mt-2.5 bg-primary-500 hover:bg-primary-600 active:scale-95 text-white text-[10px] md:text-xs font-bold py-2 md:py-2.5 rounded-lg transition-all">Mua ngay</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 5 -->
+                    <div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 flex flex-col justify-between group relative">
+                        <span class="absolute top-2.5 left-2.5 bg-amber-500 text-white font-black text-[9px] px-2 py-0.5 rounded-lg z-10 shadow-sm uppercase">Trả góp 0%</span>
+                        <div class="p-3 bg-slate-50/50 flex items-center justify-center h-36 md:h-44 overflow-hidden">
+                            <img loading="lazy" src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=300&q=80" alt="Xe 50cc Wave Alpha" class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x200/f1f5f9/475569?text=Wave+Alpha'">
+                        </div>
+                        <div class="p-3 md:p-4 flex-grow flex flex-col justify-between">
+                            <div>
+                                <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Honda</span>
+                                <h3 class="font-bold text-slate-800 text-xs md:text-sm line-clamp-2 mt-0.5 group-hover:text-primary-500 transition-colors leading-snug">Xe máy 50cc Wave Alpha bản nâng cấp</h3>
+                                <div class="flex items-center gap-0.5 mt-1.5 text-amber-400 text-[10px]"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i><span class="text-slate-400 ml-1 font-semibold">820 đã bán</span></div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="flex flex-wrap items-baseline gap-1"><span class="text-sm md:text-base font-extrabold text-slate-900">17.900.000đ</span><span class="text-[10px] text-slate-400 line-through">19.5M</span></div>
+                                <button class="w-full mt-2.5 bg-primary-500 hover:bg-primary-600 active:scale-95 text-white text-[10px] md:text-xs font-bold py-2 md:py-2.5 rounded-lg transition-all">Mua ngay</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 6 -->
+                    <div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 flex flex-col justify-between group relative">
+                        <div class="p-3 bg-slate-50/50 flex items-center justify-center h-36 md:h-44 overflow-hidden">
+                            <img loading="lazy" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=300&q=80" alt="Xe máy điện Yadea S3" class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x200/f1f5f9/475569?text=Yadea+S3'">
+                        </div>
+                        <div class="p-3 md:p-4 flex-grow flex flex-col justify-between">
+                            <div>
+                                <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Yadea</span>
+                                <h3 class="font-bold text-slate-800 text-xs md:text-sm line-clamp-2 mt-0.5 group-hover:text-primary-500 transition-colors leading-snug">Xe máy điện Yadea S3 thời trang trẻ</h3>
+                                <div class="flex items-center gap-0.5 mt-1.5 text-amber-400 text-[10px]"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><span class="text-slate-400 ml-1 font-semibold">1.3k đã bán</span></div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="flex flex-wrap items-baseline gap-1"><span class="text-sm md:text-base font-extrabold text-slate-900">22.500.000đ</span><span class="text-[10px] text-slate-400 line-through">25.0M</span></div>
+                                <button class="w-full mt-2.5 bg-primary-500 hover:bg-primary-600 active:scale-95 text-white text-[10px] md:text-xs font-bold py-2 md:py-2.5 rounded-lg transition-all">Mua ngay</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 7 -->
+                    <div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 flex flex-col justify-between group relative">
+                        <span class="absolute top-2.5 left-2.5 bg-red-500 text-white font-black text-[9px] px-2 py-0.5 rounded-lg z-10 shadow-sm uppercase">-15%</span>
+                        <div class="p-3 bg-slate-50/50 flex items-center justify-center h-36 md:h-44 overflow-hidden">
+                            <img loading="lazy" src="https://images.unsplash.com/photo-1595054179361-b0e66d9bb7a3?auto=format&fit=crop&w=300&q=80" alt="Xe điện Bluera V5" class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x200/f1f5f9/475569?text=Bluera+V5'">
+                        </div>
+                        <div class="p-3 md:p-4 flex-grow flex flex-col justify-between">
+                            <div>
+                                <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Bluera</span>
+                                <h3 class="font-bold text-slate-800 text-xs md:text-sm line-clamp-2 mt-0.5 group-hover:text-primary-500 transition-colors leading-snug">Xe điện Bluera V5 cao cấp Việt Nhật</h3>
+                                <div class="flex items-center gap-0.5 mt-1.5 text-amber-400 text-[10px]"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><span class="text-slate-400 ml-1 font-semibold">2.1k đã bán</span></div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="flex flex-wrap items-baseline gap-1"><span class="text-sm md:text-base font-extrabold text-slate-900">15.900.000đ</span><span class="text-[10px] text-slate-400 line-through">18.7M</span></div>
+                                <button class="w-full mt-2.5 bg-primary-500 hover:bg-primary-600 active:scale-95 text-white text-[10px] md:text-xs font-bold py-2 md:py-2.5 rounded-lg transition-all">Mua ngay</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 8 -->
+                    <div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 flex flex-col justify-between group relative">
+                        <span class="absolute top-2.5 left-2.5 bg-emerald-500 text-white font-black text-[9px] px-2 py-0.5 rounded-lg z-10 shadow-sm uppercase">Mới</span>
+                        <div class="p-3 bg-slate-50/50 flex items-center justify-center h-36 md:h-44 overflow-hidden">
+                            <img loading="lazy" src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=300&q=80" alt="Xe đạp điện Giant M133" class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x200/f1f5f9/475569?text=Giant+M133'">
+                        </div>
+                        <div class="p-3 md:p-4 flex-grow flex flex-col justify-between">
+                            <div>
+                                <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Giant</span>
+                                <h3 class="font-bold text-slate-800 text-xs md:text-sm line-clamp-2 mt-0.5 group-hover:text-primary-500 transition-colors leading-snug">Xe đạp điện Giant M133S chính hãng</h3>
+                                <div class="flex items-center gap-0.5 mt-1.5 text-amber-400 text-[10px]"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><span class="text-slate-400 ml-1 font-semibold">1.1k đã bán</span></div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="flex flex-wrap items-baseline gap-1"><span class="text-sm md:text-base font-extrabold text-slate-900">12.500.000đ</span><span class="text-[10px] text-slate-400 line-through">14.0M</span></div>
+                                <button class="w-full mt-2.5 bg-primary-500 hover:bg-primary-600 active:scale-95 text-white text-[10px] md:text-xs font-bold py-2 md:py-2.5 rounded-lg transition-all">Mua ngay</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- PAGINATION -->
+                <div class="flex items-center justify-center gap-2 mt-10">
+                    <button class="w-9 h-9 rounded-lg border border-slate-200 text-slate-400 flex items-center justify-center hover:border-primary-500 hover:text-primary-500 transition-colors text-xs" disabled><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="w-9 h-9 rounded-lg bg-primary-500 text-white font-bold flex items-center justify-center text-xs shadow-sm">1</button>
+                    <button class="w-9 h-9 rounded-lg border border-slate-200 text-slate-600 font-medium flex items-center justify-center hover:border-primary-500 hover:text-primary-500 transition-colors text-xs">2</button>
+                    <button class="w-9 h-9 rounded-lg border border-slate-200 text-slate-600 font-medium flex items-center justify-center hover:border-primary-500 hover:text-primary-500 transition-colors text-xs">3</button>
+                    <span class="text-slate-400 text-xs px-1">...</span>
+                    <button class="w-9 h-9 rounded-lg border border-slate-200 text-slate-600 font-medium flex items-center justify-center hover:border-primary-500 hover:text-primary-500 transition-colors text-xs">12</button>
+                    <button class="w-9 h-9 rounded-lg border border-slate-200 text-slate-600 flex items-center justify-center hover:border-primary-500 hover:text-primary-500 transition-colors text-xs"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 text-sm pt-16 pb-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <div class="space-y-4">
+                <a href="index.html" class="flex items-center gap-3"><div class="bg-primary-500 text-white font-black p-2 rounded-xl text-lg">D<span class="text-emerald-400">XD</span></div><span class="text-xl font-extrabold text-white">dailyxedien.vn</span></a>
+                <p class="text-xs leading-relaxed text-slate-400">Dailyxedien.vn - Hệ thống phân phối xe điện, xe 50cc, xe máy điện chính hãng. Cam kết sản phẩm rõ nguồn gốc, chính sách giá minh bạch.</p>
+                <div class="flex items-center gap-3 pt-2">
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-primary-500 hover:text-white flex items-center justify-center transition-colors text-xs text-slate-300"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-primary-500 hover:text-white flex items-center justify-center transition-colors text-xs text-slate-300"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-primary-500 hover:text-white flex items-center justify-center transition-colors text-xs text-slate-300"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-primary-500 hover:text-white flex items-center justify-center transition-colors text-xs text-slate-300"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="space-y-4">
+                <h4 class="text-white font-bold text-sm tracking-wide">CHÍNH SÁCH CHUNG</h4>
+                <ul class="space-y-2 text-xs"><li><a href="#" class="hover:text-white transition-colors">Chính sách bảo hành vàng</a></li><li><a href="#" class="hover:text-white transition-colors">Chính sách đổi trả trong 7 ngày</a></li><li><a href="#" class="hover:text-white transition-colors">Chính sách vận chuyển & giao nhận</a></li><li><a href="#" class="hover:text-white transition-colors">Chính sách thanh toán linh hoạt</a></li><li><a href="#" class="hover:text-white transition-colors">Chính sách bảo mật thông tin</a></li></ul>
+            </div>
+            <div class="space-y-4">
+                <h4 class="text-white font-bold text-sm tracking-wide">HỖ TRỢ KHÁCH HÀNG</h4>
+                <ul class="space-y-2 text-xs"><li><a href="#" class="hover:text-white transition-colors">Hướng dẫn mua hàng trực tuyến</a></li><li><a href="#" class="hover:text-white transition-colors">Hướng dẫn trả góp 0% nhanh chóng</a></li><li><a href="#" class="hover:text-white transition-colors">Tra cứu tiến độ đơn hàng</a></li><li><a href="#" class="hover:text-white transition-colors">Câu hỏi thường gặp (FAQs)</a></li><li><a href="#" class="hover:text-white transition-colors">Bản đồ hệ thống đại lý</a></li></ul>
+            </div>
+            <div class="space-y-4">
+                <h4 class="text-white font-bold text-sm tracking-wide">LIÊN HỆ VỚI CHÚNG TÔI</h4>
+                <div class="space-y-3 text-xs">
+                    <p class="flex items-start gap-2.5 leading-relaxed"><i class="fa-solid fa-location-dot mt-0.5 text-primary-500"></i><span>466 Nguyễn Duy Trinh, P. Bình Trưng Đông, TP. Thủ Đức, TP.HCM</span></p>
+                    <p class="flex items-center gap-2.5"><i class="fa-solid fa-phone text-primary-500"></i><span>0933 505 222 (Hỗ trợ 24/7)</span></p>
+                    <p class="flex items-center gap-2.5"><i class="fa-regular fa-envelope text-primary-500"></i><span>info@dailyxedien.vn</span></p>
+                    <p class="flex items-center gap-2.5"><i class="fa-solid fa-globe text-primary-500"></i><span>www.dailyxedien.vn</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-slate-800 pt-8 text-center text-xs text-slate-500 max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>© 2026 dailyxedien.vn. Tất cả bản quyền được bảo lưu.</p>
+            <div class="flex items-center gap-4"><span class="hover:text-slate-400 cursor-pointer">Bảo mật</span><span>•</span><span class="hover:text-slate-400 cursor-pointer">Điều khoản sử dụng</span></div>
+        </div>
+    </footer>
+
+    <!-- FLOATING ACTIONS -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+        <a href="https://zalo.me/0933505222" target="_blank" class="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white rounded-full w-12 h-12 shadow-xl transition-transform hover:scale-105 group relative" title="Chat Zalo"><span class="absolute right-full mr-3 bg-white text-slate-800 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Chat Zalo</span><i class="fa-solid fa-comment-sms text-lg"></i></a>
+        <a href="tel:0933505222" class="flex items-center justify-center bg-primary-500 hover:bg-primary-600 text-white rounded-full w-12 h-12 shadow-xl transition-transform hover:scale-105 group relative" title="Gọi Hotline"><span class="absolute right-full mr-3 bg-white text-slate-800 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Hotline: 0933 505 222</span><i class="fa-solid fa-phone-volume text-lg"></i></a>
+    </div>
+
+    <!-- BACK TO TOP -->
+    <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Lên đầu trang" class="fixed bottom-24 right-6 z-40 w-11 h-11 rounded-full bg-slate-900 hover:bg-primary-600 text-white shadow-xl flex items-center justify-center transition-all opacity-0 pointer-events-none"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <script>
+        // Mobile menu
+        function openMobileMenu(){const o=document.getElementById('mobile-drawer-overlay'),d=document.getElementById('mobile-drawer');o.classList.remove('hidden');setTimeout(()=>{o.classList.remove('opacity-0');d.classList.remove('-translate-x-full')},10)}
+        function closeMobileMenu(){const o=document.getElementById('mobile-drawer-overlay'),d=document.getElementById('mobile-drawer');o.classList.add('opacity-0');d.classList.add('-translate-x-full');setTimeout(()=>o.classList.add('hidden'),300)}
+
+        // Filter toggle (mobile)
+        function toggleFilter(){const p=document.getElementById('filter-panel'),i=document.getElementById('filter-toggle-icon');p.classList.toggle('hidden');i.classList.toggle('rotate-180')}
+
+        // Mobile accordion
+        function toggleMobileAccordion(id){const el=document.getElementById(id);el.classList.toggle('hidden')}
+
+        // Cart stub
+        function openCart(){alert('Giỏ hàng đang phát triển!')}
+
+        // Back to top
+        const btt=document.getElementById('back-to-top');
+        window.addEventListener('scroll',()=>{if(window.scrollY>400){btt.style.opacity='1';btt.style.pointerEvents='auto'}else{btt.style.opacity='0';btt.style.pointerEvents='none'}});
+    </script>
+</body>
+</html>

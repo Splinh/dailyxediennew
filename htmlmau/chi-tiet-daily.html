@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đại Lý Bluera Việt Nhật Út Tân - dailyxedien.vn | Hệ Thống Cửa Hàng</title>
+    <meta name="description" content="Đại lý Bluera Việt Nhật Út Tân tại Tây Ninh - Đại lý ủy quyền chính hãng xe điện, xe máy điện. Bảo hành, bảo trì tận nơi.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0052cc">
+    <link rel="canonical" href="https://www.dailyxedien.vn/cua-hang/dai-ly-ut-tan/">
+    <meta property="og:type" content="place">
+    <meta property="og:title" content="Đại Lý Bluera Việt Nhật Út Tân - dailyxedien.vn">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        primary: { 50:'#f0f5ff', 100:'#e0ebff', 500:'#0052cc', 600:'#0040a1', 700:'#003380' },
+                        accent: { 500:'#10b981', 600:'#059669' }
+                    },
+                    boxShadow: {
+                        'premium': '0 4px 20px -2px rgba(0,0,0,0.05), 0 2px 8px -1px rgba(0,0,0,0.02)',
+                        'hover-card': '0 20px 40px -4px rgba(0,0,0,0.08), 0 8px 20px -2px rgba(0,0,0,0.03)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="text-slate-800 antialiased overflow-x-hidden bg-slate-50/50">
+
+    <a href="#store-detail" class="skip-link">Bỏ qua tới nội dung chính</a>
+
+    <!-- TOP UTILITY BAR -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2.5 px-4 border-b border-slate-800 relative z-50 hidden md:block">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+            <div class="flex flex-wrap items-center gap-5 justify-center md:justify-start">
+                <a href="index.html#store-section" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-primary-500 animate-pulse"></i> Hệ thống cửa hàng</a>
+                <a href="#" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-solid fa-magnifying-glass text-slate-400"></i> Tra cứu đơn hàng</a>
+                <a href="index.html#news-section" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-regular fa-newspaper"></i> Tin tức</a>
+                <a href="index.html#consult-form" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-regular fa-envelope"></i> Liên hệ</a>
+            </div>
+            <div class="flex items-center gap-5">
+                <a href="#" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-regular fa-user"></i> Đăng nhập / Đăng ký</a>
+                <span class="text-slate-700">|</span>
+                <a href="#" class="hover:text-white transition-colors flex items-center gap-1.5 font-medium relative" onclick="openCart()"><i class="fa-solid fa-cart-shopping text-emerald-400"></i> Giỏ hàng <span class="bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full absolute -top-2.5 -right-4 shadow-sm" id="cart-count">0</span></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <header class="bg-white py-3 md:py-4 px-4 sticky top-0 z-50 border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <button onclick="openMobileMenu()" class="md:hidden text-slate-700 hover:text-primary-500 p-2 text-xl focus:outline-none" aria-label="Menu"><i class="fa-solid fa-bars-staggered"></i></button>
+            <a href="index.html" class="flex items-center gap-2 md:gap-3">
+                <div class="bg-gradient-to-r from-primary-500 to-primary-600 text-white font-black p-2 md:p-2.5 rounded-xl text-lg md:text-xl shadow-lg shadow-primary-500/20 tracking-wider">D<span class="text-emerald-400">XD</span></div>
+                <div><span class="text-lg md:text-2xl font-extrabold tracking-tight text-slate-900">dailyxedien<span class="text-primary-500">.vn</span></span><p class="text-[8px] md:text-[10px] tracking-widest text-slate-400 uppercase font-bold hidden sm:block">Hệ thống xe điện lớn nhất Việt Nam</p></div>
+            </a>
+            <div class="w-full md:max-w-xl relative hidden md:block">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><i class="fa-solid fa-magnifying-glass text-slate-400"></i></div>
+                <input type="text" placeholder="Bạn cần tìm xe điện, xe 50cc hay phụ kiện gì hôm nay?" class="w-full pl-11 pr-24 py-3 bg-slate-50 border border-slate-200 focus:border-primary-500 focus:bg-white focus:ring-2 focus:ring-primary-100 rounded-xl outline-none transition-all text-sm">
+                <button class="absolute right-1.5 top-1.5 bottom-1.5 bg-primary-500 hover:bg-primary-600 text-white px-5 rounded-lg text-xs font-semibold transition-colors">Tìm kiếm</button>
+            </div>
+            <div class="flex items-center gap-1 md:gap-3.5">
+                <button onclick="openMobileMenu(); setTimeout(()=>document.getElementById('mobile-search').focus(),300)" aria-label="Tìm kiếm" class="md:hidden text-slate-700 hover:text-primary-500 p-2 text-lg"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button onclick="openCart()" aria-label="Giỏ hàng" class="md:hidden text-slate-700 hover:text-primary-500 p-2 text-lg relative"><i class="fa-solid fa-cart-shopping"></i><span class="bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full absolute top-0 right-0 shadow-sm" id="cart-count-mobile">0</span></button>
+                <div class="hidden sm:flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-full bg-primary-50 flex items-center justify-center text-primary-500 shadow-sm"><i class="fa-solid fa-phone-volume text-lg animate-bounce"></i></div>
+                    <div class="text-right md:text-left"><span class="text-xs text-slate-400 font-medium">Hotline tư vấn 24/7</span><p class="text-base font-bold text-slate-900 tracking-tight hover:text-primary-500 transition-colors">0933 505 222</p></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE DRAWER -->
+    <div id="mobile-drawer-overlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] hidden transition-opacity duration-300 opacity-0" onclick="closeMobileMenu()"></div>
+    <div id="mobile-drawer" class="fixed inset-y-0 left-0 w-80 max-w-[85vw] bg-white z-[110] shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between">
+        <div class="overflow-y-auto flex-grow p-5 space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                <div class="flex items-center gap-2"><div class="bg-primary-500 text-white font-black p-1.5 rounded-lg text-sm">D<span class="text-emerald-400">XD</span></div><span class="font-bold text-slate-800 text-base">dailyxedien.vn</span></div>
+                <button onclick="closeMobileMenu()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition-colors"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form onsubmit="event.preventDefault()" class="relative">
+                <input type="text" id="mobile-search" placeholder="Tìm kiếm xe, phụ kiện..." class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none text-sm focus:bg-white focus:border-primary-500 transition-all">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            </form>
+            <div class="space-y-1 text-sm font-semibold text-slate-700">
+                <a href="index.html" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-solid fa-house text-slate-400"></i> Trang chủ</a>
+                <a href="about.html" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-solid fa-building text-slate-400"></i> Về chúng tôi</a>
+                <a href="san-pham.html" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-solid fa-bicycle text-slate-400"></i> Sản phẩm</a>
+                <a href="index.html#store-section" class="flex items-center gap-3 p-3 rounded-xl bg-primary-50 text-primary-600 transition-colors"><i class="fa-solid fa-location-dot text-primary-500"></i> Hệ Thống Cửa Hàng</a>
+                <a href="index.html#consult-form" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors text-yellow-600"><i class="fa-solid fa-gift text-slate-400"></i> Đăng Ký Khuyến Mãi</a>
+            </div>
+        </div>
+        <div class="p-5 border-t border-slate-100 bg-slate-50 space-y-3">
+            <p class="text-xs text-slate-500 flex items-center gap-2"><i class="fa-solid fa-phone text-primary-500"></i> <strong>0933 505 222</strong></p>
+            <p class="text-[11px] text-slate-400 leading-snug">466 Nguyễn Duy Trinh, P. Bình Trưng Đông, TP. Thủ Đức, TP.HCM</p>
+        </div>
+    </div>
+
+    <!-- NAVIGATION MENU BAR -->
+    <nav class="bg-primary-600 text-white shadow-md relative z-40 hidden md:block">
+        <div class="max-w-7xl mx-auto flex items-center">
+            <div class="relative group">
+                <button class="bg-primary-700 hover:bg-primary-800 px-6 py-4 flex items-center gap-3 cursor-pointer transition-colors font-semibold text-sm select-none"><i class="fa-solid fa-bars text-lg"></i><span>DANH MỤC SẢN PHẨM</span><i class="fa-solid fa-chevron-down text-xs ml-1 transition-transform group-hover:rotate-180"></i></button>
+                <div class="absolute top-full left-0 w-64 bg-white border border-slate-100 rounded-b-2xl shadow-premium overflow-hidden p-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-50">
+                    <div class="space-y-1">
+                        <a href="san-pham.html?cat=xe-dien" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all"><span class="flex items-center gap-3"><span class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-500 flex items-center justify-center"><i class="fa-solid fa-bicycle"></i></span>Xe điện</span><i class="fa-solid fa-chevron-right text-xs opacity-50"></i></a>
+                        <a href="san-pham.html?cat=xe-50cc" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all"><span class="flex items-center gap-3"><span class="w-8 h-8 rounded-lg bg-blue-50 text-blue-500 flex items-center justify-center"><i class="fa-solid fa-motorcycle"></i></span>Xe 50cc</span><i class="fa-solid fa-chevron-right text-xs opacity-50"></i></a>
+                        <a href="san-pham.html?cat=xe-may-dien" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all"><span class="flex items-center gap-3"><span class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-500 flex items-center justify-center"><i class="fa-solid fa-bolt"></i></span>Xe máy điện</span><i class="fa-solid fa-chevron-right text-xs opacity-50"></i></a>
+                        <a href="san-pham.html?cat=xe-3-banh" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all"><span class="flex items-center gap-3"><span class="w-8 h-8 rounded-lg bg-amber-50 text-amber-500 flex items-center justify-center"><i class="fa-solid fa-truck-pickup"></i></span>Xe 3 bánh</span><i class="fa-solid fa-chevron-right text-xs opacity-50"></i></a>
+                        <a href="#" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all"><span class="flex items-center gap-3"><span class="w-8 h-8 rounded-lg bg-violet-50 text-violet-500 flex items-center justify-center"><i class="fa-solid fa-gears"></i></span>Phụ kiện</span><i class="fa-solid fa-chevron-right text-xs opacity-50"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-1 px-4 text-sm font-medium overflow-x-auto no-scrollbar">
+                <a href="san-pham.html?cat=xe-dien" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">XE ĐIỆN</a>
+                <a href="san-pham.html?cat=xe-50cc" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">XE 50CC</a>
+                <a href="san-pham.html?cat=xe-may-dien" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">XE MÁY ĐIỆN</a>
+                <a href="san-pham.html?cat=xe-3-banh" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">XE 3 BÁNH</a>
+                <a href="#" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">PHỤ KIỆN</a>
+                <a href="index.html#ai-tech-spotlight" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap font-semibold flex items-center gap-1"><i class="fa-solid fa-microchip"></i> CÔNG NGHỆ XE</a>
+                <a href="index.html#store-section" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap bg-primary-700/40">HỆ THỐNG CỬA HÀNG</a>
+                <a href="index.html#consult-form" class="px-4 py-4 hover:bg-primary-700/50 transition-colors text-yellow-300 font-bold whitespace-nowrap flex items-center gap-1"><i class="fa-solid fa-fire text-xs"></i> ĐĂNG KÝ KHUYẾN MÃI</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- BREADCRUMB -->
+    <div class="bg-white border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <nav class="flex items-center gap-2 text-xs text-slate-400" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-primary-500 transition-colors">Trang chủ</a>
+                <i class="fa-solid fa-chevron-right text-[8px]"></i>
+                <a href="index.html#store-section" class="hover:text-primary-500 transition-colors">Hệ thống cửa hàng</a>
+                <i class="fa-solid fa-chevron-right text-[8px]"></i>
+                <span class="text-slate-700 font-semibold">Đại Lý Bluera Việt Nhật Út Tân</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- STORE DETAIL -->
+    <main class="max-w-7xl mx-auto px-4 py-6 md:py-10" id="store-detail">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+
+            <!-- LEFT: Gallery + Description (2 cols) -->
+            <div class="lg:col-span-2 space-y-6">
+
+                <!-- Store Header -->
+                <div class="flex flex-col sm:flex-row sm:items-center gap-4 bg-white border border-slate-100 rounded-2xl p-5 md:p-6 shadow-premium">
+                    <div class="w-16 h-16 bg-primary-50 rounded-2xl flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-store text-2xl text-primary-500"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex flex-wrap items-center gap-2 mb-1">
+                            <h1 class="text-lg md:text-xl font-black text-slate-900 tracking-tight">Đại Lý Bluera Việt Nhật Út Tân</h1>
+                            <span class="text-[9px] font-bold uppercase tracking-wider text-white bg-emerald-500 px-2 py-0.5 rounded-md">Đại lý ủy quyền</span>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-3 text-xs text-slate-500">
+                            <span class="flex items-center gap-1"><i class="fa-solid fa-location-dot text-primary-500"></i> Tây Ninh</span>
+                            <span class="flex items-center gap-0.5 text-amber-400"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i><span class="text-slate-400 ml-1">4.8 (52 đánh giá)</span></span>
+                        </div>
+                    </div>
+                    <div class="flex gap-2 shrink-0">
+                        <a href="tel:0901234567" class="w-10 h-10 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-600 flex items-center justify-center transition-colors" title="Gọi ngay"><i class="fa-solid fa-phone"></i></a>
+                        <a href="https://www.google.com/maps/dir//10.896922,106.30791/" target="_blank" class="w-10 h-10 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-600 flex items-center justify-center transition-colors" title="Chỉ đường"><i class="fa-solid fa-diamond-turn-right"></i></a>
+                        <button class="w-10 h-10 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-500 flex items-center justify-center transition-colors" title="Chia sẻ"><i class="fa-solid fa-share-nodes"></i></button>
+                    </div>
+                </div>
+
+                <!-- Image Gallery -->
+                <div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium">
+                    <div class="relative aspect-[16/9] bg-slate-100 overflow-hidden">
+                        <img id="gallery-main" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80" alt="Đại lý Bluera Việt Nhật Út Tân - Ảnh cửa hàng" class="w-full h-full object-cover transition-opacity duration-500" onerror="this.src='https://placehold.co/900x500/f1f5f9/475569?text=Cửa+hàng+Út+Tân'">
+                        <button onclick="prevImage()" class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-slate-700 shadow-lg flex items-center justify-center transition-all"><i class="fa-solid fa-chevron-left text-xs"></i></button>
+                        <button onclick="nextImage()" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-slate-700 shadow-lg flex items-center justify-center transition-all"><i class="fa-solid fa-chevron-right text-xs"></i></button>
+                        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-sm text-white text-[10px] font-bold px-3 py-1 rounded-full"><span id="img-counter">1</span> / 4</div>
+                    </div>
+                    <div class="flex gap-2 p-3 overflow-x-auto no-scrollbar">
+                        <button onclick="goToImage(0)" class="gallery-thumb w-20 h-14 rounded-lg overflow-hidden border-2 border-primary-500 shrink-0 opacity-100 transition-all"><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=200&q=80" alt="Ảnh 1" class="w-full h-full object-cover"></button>
+                        <button onclick="goToImage(1)" class="gallery-thumb w-20 h-14 rounded-lg overflow-hidden border-2 border-slate-200 shrink-0 opacity-60 transition-all hover:opacity-100"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=200&q=80" alt="Ảnh 2" class="w-full h-full object-cover"></button>
+                        <button onclick="goToImage(2)" class="gallery-thumb w-20 h-14 rounded-lg overflow-hidden border-2 border-slate-200 shrink-0 opacity-60 transition-all hover:opacity-100"><img src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=200&q=80" alt="Ảnh 3" class="w-full h-full object-cover"></button>
+                        <button onclick="goToImage(3)" class="gallery-thumb w-20 h-14 rounded-lg overflow-hidden border-2 border-slate-200 shrink-0 opacity-60 transition-all hover:opacity-100"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=200&q=80" alt="Ảnh 4" class="w-full h-full object-cover"></button>
+                    </div>
+                </div>
+
+                <!-- Store Description -->
+                <div class="bg-white border border-slate-100 rounded-2xl p-5 md:p-7 shadow-premium">
+                    <h2 class="text-base md:text-lg font-black text-slate-900 mb-4 flex items-center gap-2"><i class="fa-solid fa-store text-primary-500 text-sm"></i> Giới thiệu cửa hàng</h2>
+                    <div class="text-sm text-slate-600 leading-relaxed space-y-3">
+                        <p><strong class="text-slate-800">Đại lý Bluera Việt Nhật Út Tân</strong> là đại lý ủy quyền chính hãng tại tỉnh Tây Ninh, chuyên cung cấp các dòng xe điện, xe máy điện, xe đạp điện và xe ba gác điện thương hiệu Bluera Việt Nhật. Với nhiều năm kinh nghiệm trong ngành, đại lý cam kết mang đến cho khách hàng những sản phẩm chính hãng 100% với giá cả cạnh tranh nhất.</p>
+                        <p>Đại lý tự hào là địa chỉ tin cậy của hàng ngàn khách hàng tại Tây Ninh và các tỉnh lân cận với phong cách phục vụ tận tâm, tư vấn chuyên nghiệp.</p>
+                    </div>
+
+                    <h3 class="text-sm font-bold text-slate-800 mt-6 mb-3">Tại sao chọn Đại lý Út Tân?</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <div class="flex items-start gap-2.5 p-3 bg-emerald-50/50 rounded-xl">
+                            <i class="fa-solid fa-check-circle text-emerald-500 mt-0.5 text-sm"></i>
+                            <span class="text-xs text-slate-700"><strong>100% chính hãng</strong> — Sản phẩm rõ nguồn gốc, tem nhãn đầy đủ</span>
+                        </div>
+                        <div class="flex items-start gap-2.5 p-3 bg-emerald-50/50 rounded-xl">
+                            <i class="fa-solid fa-check-circle text-emerald-500 mt-0.5 text-sm"></i>
+                            <span class="text-xs text-slate-700"><strong>Bảo hành 3 năm</strong> — Bảo hành động cơ chính hãng tại đại lý</span>
+                        </div>
+                        <div class="flex items-start gap-2.5 p-3 bg-emerald-50/50 rounded-xl">
+                            <i class="fa-solid fa-check-circle text-emerald-500 mt-0.5 text-sm"></i>
+                            <span class="text-xs text-slate-700"><strong>Trả góp 0%</strong> — Thủ tục nhanh gọn, duyệt trong 15 phút</span>
+                        </div>
+                        <div class="flex items-start gap-2.5 p-3 bg-emerald-50/50 rounded-xl">
+                            <i class="fa-solid fa-check-circle text-emerald-500 mt-0.5 text-sm"></i>
+                            <span class="text-xs text-slate-700"><strong>Giao hàng miễn phí</strong> — Giao và lắp đặt tận nơi tại Tây Ninh</span>
+                        </div>
+                        <div class="flex items-start gap-2.5 p-3 bg-emerald-50/50 rounded-xl">
+                            <i class="fa-solid fa-check-circle text-emerald-500 mt-0.5 text-sm"></i>
+                            <span class="text-xs text-slate-700"><strong>Sửa chữa, bảo trì</strong> — Đội ngũ kỹ thuật viên chuyên nghiệp</span>
+                        </div>
+                        <div class="flex items-start gap-2.5 p-3 bg-emerald-50/50 rounded-xl">
+                            <i class="fa-solid fa-check-circle text-emerald-500 mt-0.5 text-sm"></i>
+                            <span class="text-xs text-slate-700"><strong>Lái thử miễn phí</strong> — Trải nghiệm trước khi quyết định mua</span>
+                        </div>
+                    </div>
+
+                    <h3 class="text-sm font-bold text-slate-800 mt-6 mb-3">Sản phẩm kinh doanh</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="inline-flex items-center gap-1.5 bg-primary-50 text-primary-600 text-[10px] font-bold px-3 py-1.5 rounded-lg"><i class="fa-solid fa-bicycle"></i> Xe điện</span>
+                        <span class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-600 text-[10px] font-bold px-3 py-1.5 rounded-lg"><i class="fa-solid fa-motorcycle"></i> Xe máy điện</span>
+                        <span class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-600 text-[10px] font-bold px-3 py-1.5 rounded-lg"><i class="fa-solid fa-bolt"></i> Xe đạp điện</span>
+                        <span class="inline-flex items-center gap-1.5 bg-amber-50 text-amber-600 text-[10px] font-bold px-3 py-1.5 rounded-lg"><i class="fa-solid fa-truck-pickup"></i> Xe 3 bánh điện</span>
+                        <span class="inline-flex items-center gap-1.5 bg-violet-50 text-violet-600 text-[10px] font-bold px-3 py-1.5 rounded-lg"><i class="fa-solid fa-gears"></i> Phụ kiện & Ắc quy</span>
+                    </div>
+                </div>
+
+                <!-- Map Embed -->
+                <div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium">
+                    <h2 class="text-base font-black text-slate-900 p-5 pb-0 flex items-center gap-2"><i class="fa-solid fa-map-location-dot text-primary-500 text-sm"></i> Bản đồ</h2>
+                    <div class="p-4">
+                        <div class="rounded-xl overflow-hidden border border-slate-200">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3917.5!2d106.30791!3d10.896922!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDUzJzQ5LjAiTiAxMDbCsDE4JzI4LjUiRQ!5e0!3m2!1svi!2s!4v1700000000000" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="rounded-xl"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: Contact Info Sidebar -->
+            <div class="space-y-5">
+                <!-- Contact Card -->
+                <div class="bg-white border border-slate-100 rounded-2xl p-5 shadow-premium sticky top-[85px]">
+                    <h3 class="font-bold text-slate-800 text-sm mb-4 flex items-center gap-2"><i class="fa-solid fa-address-card text-primary-500 text-xs"></i> Thông tin liên hệ</h3>
+                    <div class="space-y-3.5">
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-primary-50 text-primary-500 flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-location-dot text-sm"></i></div>
+                            <div>
+                                <p class="text-[10px] font-bold text-slate-400 uppercase">Địa chỉ</p>
+                                <p class="text-xs text-slate-700 leading-relaxed">75 Khu Phố 3, Ấp Thành Bắc, Xã Đông Thành, Thị Xã Dương Minh Châu, Tây Ninh</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-500 flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-phone text-sm"></i></div>
+                            <div>
+                                <p class="text-[10px] font-bold text-slate-400 uppercase">Điện thoại</p>
+                                <a href="tel:0901234567" class="text-xs font-bold text-slate-800 hover:text-primary-500 transition-colors">0901 234 567</a>
+                                <span class="text-[10px] text-slate-400 ml-1">(Mr. Tân)</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-500 flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-clock text-sm"></i></div>
+                            <div>
+                                <p class="text-[10px] font-bold text-slate-400 uppercase">Giờ mở cửa</p>
+                                <p class="text-xs text-slate-700">7:30 – 18:00 (Thứ 2 – Chủ nhật)</p>
+                                <span class="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-600 mt-0.5"><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span> Đang mở cửa</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2.5 mt-5">
+                        <a href="tel:0901234567" class="flex items-center justify-center gap-1.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs py-3 rounded-xl transition-colors shadow-sm">
+                            <i class="fa-solid fa-phone"></i> Gọi ngay
+                        </a>
+                        <a href="https://www.google.com/maps/dir//10.896922,106.30791/" target="_blank" class="flex items-center justify-center gap-1.5 bg-primary-500 hover:bg-primary-600 text-white font-bold text-xs py-3 rounded-xl transition-colors shadow-sm">
+                            <i class="fa-solid fa-diamond-turn-right"></i> Chỉ đường
+                        </a>
+                    </div>
+                    <a href="https://zalo.me/0901234567" target="_blank" class="flex items-center justify-center gap-2 mt-2.5 bg-blue-500 hover:bg-blue-600 text-white font-bold text-xs py-3 rounded-xl transition-colors shadow-sm">
+                        <i class="fa-solid fa-comment-sms"></i> Nhắn tin Zalo
+                    </a>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="bg-white border border-slate-100 rounded-2xl p-5 shadow-premium">
+                    <h3 class="font-bold text-slate-800 text-sm mb-4 flex items-center gap-2"><i class="fa-solid fa-chart-simple text-primary-500 text-xs"></i> Thông tin đại lý</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-slate-500">Loại cửa hàng</span>
+                            <span class="font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">Đại lý ủy quyền</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs border-t border-slate-50 pt-3">
+                            <span class="text-slate-500">Khu vực</span>
+                            <span class="font-bold text-slate-700">Tây Ninh</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs border-t border-slate-50 pt-3">
+                            <span class="text-slate-500">Hoạt động từ</span>
+                            <span class="font-bold text-slate-700">2020</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs border-t border-slate-50 pt-3">
+                            <span class="text-slate-500">Xe đang trưng bày</span>
+                            <span class="font-bold text-slate-700">50+ mẫu</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs border-t border-slate-50 pt-3">
+                            <span class="text-slate-500">Thương hiệu chính</span>
+                            <span class="font-bold text-primary-600">Bluera Việt Nhật</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Back to all stores -->
+                <a href="index.html#store-section" class="flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs py-3 rounded-xl transition-colors">
+                    <i class="fa-solid fa-arrow-left text-[10px]"></i> Xem tất cả cửa hàng
+                </a>
+            </div>
+        </div>
+
+        <!-- OTHER STORES -->
+        <section class="mt-12 md:mt-16 border-t border-slate-100 pt-10">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="w-1.5 h-6 bg-primary-500 rounded-full"></span>
+                <h2 class="text-xl font-black text-slate-900 tracking-tight">Cửa hàng khác</h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- Store Card 1 -->
+                <a href="#" class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card hover:-translate-y-1 transition-all group block">
+                    <div class="relative h-40 bg-slate-100 overflow-hidden">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=400&q=80" alt="Đại lý TP. Hồ Chí Minh" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <span class="absolute top-2.5 left-2.5 bg-emerald-500 text-white font-bold text-[9px] px-2 py-0.5 rounded-md uppercase">Đại lý ủy quyền</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-slate-800 text-sm mb-1 group-hover:text-primary-500 transition-colors">Đại lý Bluera Quận 2</h3>
+                        <p class="text-[11px] text-slate-500 flex items-start gap-1.5 leading-relaxed"><i class="fa-solid fa-location-dot text-primary-500 mt-0.5"></i> 466 Nguyễn Duy Trinh, P. Bình Trưng Đông, TP. Thủ Đức, TP.HCM</p>
+                        <div class="flex items-center gap-2 mt-2.5">
+                            <span class="text-[10px] text-slate-400 flex items-center gap-1"><i class="fa-solid fa-phone text-emerald-500"></i> 0933 505 222</span>
+                            <span class="text-[10px] text-primary-500 font-bold ml-auto">Xem chi tiết →</span>
+                        </div>
+                    </div>
+                </a>
+                <!-- Store Card 2 -->
+                <a href="#" class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card hover:-translate-y-1 transition-all group block">
+                    <div class="relative h-40 bg-slate-100 overflow-hidden">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=400&q=80" alt="Đại lý Bình Dương" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <span class="absolute top-2.5 left-2.5 bg-primary-500 text-white font-bold text-[9px] px-2 py-0.5 rounded-md uppercase">Cửa hàng ủy quyền</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-slate-800 text-sm mb-1 group-hover:text-primary-500 transition-colors">Cửa hàng Bluera Bình Dương</h3>
+                        <p class="text-[11px] text-slate-500 flex items-start gap-1.5 leading-relaxed"><i class="fa-solid fa-location-dot text-primary-500 mt-0.5"></i> 123 Đại lộ Bình Dương, TP. Thủ Dầu Một, Bình Dương</p>
+                        <div class="flex items-center gap-2 mt-2.5">
+                            <span class="text-[10px] text-slate-400 flex items-center gap-1"><i class="fa-solid fa-phone text-emerald-500"></i> 0912 345 678</span>
+                            <span class="text-[10px] text-primary-500 font-bold ml-auto">Xem chi tiết →</span>
+                        </div>
+                    </div>
+                </a>
+                <!-- Store Card 3 -->
+                <a href="#" class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card hover:-translate-y-1 transition-all group block">
+                    <div class="relative h-40 bg-slate-100 overflow-hidden">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=400&q=80" alt="Đại lý Long An" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <span class="absolute top-2.5 left-2.5 bg-emerald-500 text-white font-bold text-[9px] px-2 py-0.5 rounded-md uppercase">Đại lý ủy quyền</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-slate-800 text-sm mb-1 group-hover:text-primary-500 transition-colors">Đại lý Bluera Long An</h3>
+                        <p class="text-[11px] text-slate-500 flex items-start gap-1.5 leading-relaxed"><i class="fa-solid fa-location-dot text-primary-500 mt-0.5"></i> 456 QL1A, TP. Tân An, Long An</p>
+                        <div class="flex items-center gap-2 mt-2.5">
+                            <span class="text-[10px] text-slate-400 flex items-center gap-1"><i class="fa-solid fa-phone text-emerald-500"></i> 0987 654 321</span>
+                            <span class="text-[10px] text-primary-500 font-bold ml-auto">Xem chi tiết →</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 text-sm pt-16 pb-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <div class="space-y-4">
+                <a href="index.html" class="flex items-center gap-3"><div class="bg-primary-500 text-white font-black p-2 rounded-xl text-lg">D<span class="text-emerald-400">XD</span></div><span class="text-xl font-extrabold text-white">dailyxedien.vn</span></a>
+                <p class="text-xs leading-relaxed text-slate-400">Dailyxedien.vn - Hệ thống phân phối xe điện, xe 50cc, xe máy điện chính hãng. Cam kết sản phẩm rõ nguồn gốc, chính sách giá minh bạch.</p>
+                <div class="flex items-center gap-3 pt-2">
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-primary-500 hover:text-white flex items-center justify-center transition-colors text-xs text-slate-300"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-primary-500 hover:text-white flex items-center justify-center transition-colors text-xs text-slate-300"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-primary-500 hover:text-white flex items-center justify-center transition-colors text-xs text-slate-300"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-primary-500 hover:text-white flex items-center justify-center transition-colors text-xs text-slate-300"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="space-y-4"><h4 class="text-white font-bold text-sm tracking-wide">CHÍNH SÁCH CHUNG</h4><ul class="space-y-2 text-xs"><li><a href="#" class="hover:text-white transition-colors">Chính sách bảo hành vàng</a></li><li><a href="#" class="hover:text-white transition-colors">Chính sách đổi trả trong 7 ngày</a></li><li><a href="#" class="hover:text-white transition-colors">Chính sách vận chuyển & giao nhận</a></li><li><a href="#" class="hover:text-white transition-colors">Chính sách thanh toán linh hoạt</a></li><li><a href="#" class="hover:text-white transition-colors">Chính sách bảo mật thông tin</a></li></ul></div>
+            <div class="space-y-4"><h4 class="text-white font-bold text-sm tracking-wide">HỖ TRỢ KHÁCH HÀNG</h4><ul class="space-y-2 text-xs"><li><a href="#" class="hover:text-white transition-colors">Hướng dẫn mua hàng trực tuyến</a></li><li><a href="#" class="hover:text-white transition-colors">Hướng dẫn trả góp 0% nhanh chóng</a></li><li><a href="#" class="hover:text-white transition-colors">Tra cứu tiến độ đơn hàng</a></li><li><a href="#" class="hover:text-white transition-colors">Câu hỏi thường gặp (FAQs)</a></li><li><a href="#" class="hover:text-white transition-colors">Bản đồ hệ thống đại lý</a></li></ul></div>
+            <div class="space-y-4"><h4 class="text-white font-bold text-sm tracking-wide">LIÊN HỆ VỚI CHÚNG TÔI</h4><div class="space-y-3 text-xs"><p class="flex items-start gap-2.5 leading-relaxed"><i class="fa-solid fa-location-dot mt-0.5 text-primary-500"></i><span>466 Nguyễn Duy Trinh, P. Bình Trưng Đông, TP. Thủ Đức, TP.HCM</span></p><p class="flex items-center gap-2.5"><i class="fa-solid fa-phone text-primary-500"></i><span>0933 505 222 (Hỗ trợ 24/7)</span></p><p class="flex items-center gap-2.5"><i class="fa-regular fa-envelope text-primary-500"></i><span>info@dailyxedien.vn</span></p><p class="flex items-center gap-2.5"><i class="fa-solid fa-globe text-primary-500"></i><span>www.dailyxedien.vn</span></p></div></div>
+        </div>
+        <div class="border-t border-slate-800 pt-8 text-center text-xs text-slate-500 max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>© 2026 dailyxedien.vn. Tất cả bản quyền được bảo lưu.</p>
+            <div class="flex items-center gap-4"><span class="hover:text-slate-400 cursor-pointer">Bảo mật</span><span>•</span><span class="hover:text-slate-400 cursor-pointer">Điều khoản sử dụng</span></div>
+        </div>
+    </footer>
+
+    <!-- FLOATING ACTIONS -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+        <a href="https://zalo.me/0901234567" target="_blank" class="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white rounded-full w-12 h-12 shadow-xl transition-transform hover:scale-105 group relative" title="Chat Zalo"><span class="absolute right-full mr-3 bg-white text-slate-800 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Chat Zalo</span><i class="fa-solid fa-comment-sms text-lg"></i></a>
+        <a href="tel:0901234567" class="flex items-center justify-center bg-primary-500 hover:bg-primary-600 text-white rounded-full w-12 h-12 shadow-xl transition-transform hover:scale-105 group relative" title="Gọi Đại lý"><span class="absolute right-full mr-3 bg-white text-slate-800 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Gọi: 0901 234 567</span><i class="fa-solid fa-phone-volume text-lg"></i></a>
+    </div>
+    <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Lên đầu trang" class="fixed bottom-24 right-6 z-40 w-11 h-11 rounded-full bg-slate-900 hover:bg-primary-600 text-white shadow-xl flex items-center justify-center transition-all opacity-0 pointer-events-none"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <script>
+        // Mobile menu
+        function openMobileMenu(){const o=document.getElementById('mobile-drawer-overlay'),d=document.getElementById('mobile-drawer');o.classList.remove('hidden');setTimeout(()=>{o.classList.remove('opacity-0');d.classList.remove('-translate-x-full')},10)}
+        function closeMobileMenu(){const o=document.getElementById('mobile-drawer-overlay'),d=document.getElementById('mobile-drawer');o.classList.add('opacity-0');d.classList.add('-translate-x-full');setTimeout(()=>o.classList.add('hidden'),300)}
+        function openCart(){alert('Giỏ hàng đang phát triển!')}
+
+        // Gallery
+        const galleryImages = [
+            'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80',
+            'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=80',
+            'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=900&q=80',
+            'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=900&q=80'
+        ];
+        let currentImg = 0;
+
+        function goToImage(idx) {
+            currentImg = idx;
+            document.getElementById('gallery-main').src = galleryImages[idx];
+            document.getElementById('img-counter').textContent = idx + 1;
+            document.querySelectorAll('.gallery-thumb').forEach((t, i) => {
+                if (i === idx) { t.style.borderColor = '#0052cc'; t.style.opacity = '1'; }
+                else { t.style.borderColor = '#e2e8f0'; t.style.opacity = '0.6'; }
+            });
+        }
+        function nextImage() { goToImage((currentImg + 1) % galleryImages.length); }
+        function prevImage() { goToImage((currentImg - 1 + galleryImages.length) % galleryImages.length); }
+
+        // Back to top
+        const btt = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) { btt.style.opacity = '1'; btt.style.pointerEvents = 'auto'; }
+            else { btt.style.opacity = '0'; btt.style.pointerEvents = 'none'; }
+        });
+    </script>
+</body>
+</html>

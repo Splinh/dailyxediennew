@@ -1,0 +1,457 @@
+/* ==========================================================================
+   dailyxedien.vn — Custom styles
+   Tailwind lo phần utility; file này chỉ chứa base, animation và component
+   không tiện viết bằng class.
+   ========================================================================== */
+
+:root {
+    --color-primary: #0052cc;
+    --color-primary-dark: #0040a1;
+    --color-accent: #10b981;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #fafbfd;
+}
+
+/* Khoá scroll khi mở drawer / modal (thêm/bỏ bằng JS) */
+body.no-scroll {
+    overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   Scrollbar
+   -------------------------------------------------------------------------- */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* --------------------------------------------------------------------------
+   Animations
+   -------------------------------------------------------------------------- */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+.animate-float {
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+    animation: fade-in 0.5s ease-out both;
+}
+
+/* Hiệu ứng "thở" cho nút hotline nổi */
+@keyframes ring-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 82, 202, 0.45); }
+    70% { box-shadow: 0 0 0 14px rgba(0, 82, 202, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 82, 202, 0); }
+}
+.ring-pulse {
+    animation: ring-pulse 1.8s infinite;
+}
+
+/* Tôn trọng người dùng tắt hiệu ứng chuyển động */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Components
+   -------------------------------------------------------------------------- */
+
+/* Testimonial dọc — trượt mượt */
+#testimonial-scroller {
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hero slide fade */
+.hero-slide {
+    transition: opacity 0.7s ease-in-out;
+}
+
+/* Focus ring rõ ràng cho thao tác bàn phím (accessibility) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Skip link cho người dùng bàn phím / screen reader */
+.skip-link {
+    position: absolute;
+    left: -999px;
+    top: 0;
+    z-index: 200;
+    background: var(--color-primary);
+    color: #fff;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0 0 0.5rem 0;
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+.skip-link:focus {
+    left: 0;
+}
+
+/* Nút "lên đầu trang" */
+#back-to-top {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(16px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+#back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Skeleton shimmer cho ảnh đang tải */
+.img-skeleton {
+    background: linear-gradient(110deg, #eef1f6 8%, #f6f8fb 18%, #eef1f6 33%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s linear infinite;
+}
+@keyframes shimmer {
+    to { background-position-x: -200%; }
+}
+
+/* Giới hạn số dòng (fallback nếu plugin line-clamp không có) */
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   UX/UI polish pass
+   -------------------------------------------------------------------------- */
+:root {
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --surface: #ffffff;
+    --surface-muted: #f5f7fa;
+    --line: #e3e8ef;
+    --ink: #172033;
+    --muted: #637083;
+    --brand: #0758b7;
+    --brand-dark: #08468f;
+    --success: #10845f;
+    --warning: #b7791f;
+    --shadow-soft: 0 8px 24px rgba(15, 23, 42, 0.06);
+    --shadow-hover: 0 12px 28px rgba(15, 23, 42, 0.09);
+}
+
+* {
+    letter-spacing: 0 !important;
+}
+
+body {
+    color: var(--ink);
+    background: #f7f9fb;
+}
+
+.rounded-xl,
+.rounded-2xl,
+.rounded-3xl {
+    border-radius: var(--radius-md) !important;
+}
+
+.shadow-sm,
+.shadow-md,
+.shadow-lg,
+.shadow-xl,
+.shadow-2xl,
+.shadow-premium,
+.shadow-hover-card {
+    box-shadow: var(--shadow-soft) !important;
+}
+
+.hover\:shadow-hover-card:hover,
+.hover\:shadow-lg:hover,
+.hover\:shadow-md:hover {
+    box-shadow: var(--shadow-hover) !important;
+}
+
+header {
+    box-shadow: none !important;
+    border-bottom-color: var(--line) !important;
+}
+
+header .rounded-xl,
+header .rounded-lg,
+#mobile-drawer .rounded-xl,
+#mobile-drawer .rounded-lg {
+    border-radius: var(--radius-sm) !important;
+}
+
+nav.bg-primary-600 {
+    background: var(--brand-dark) !important;
+    box-shadow: none !important;
+}
+
+nav a,
+nav button {
+    min-height: 48px;
+}
+
+.bg-gradient-to-r,
+.bg-gradient-to-br,
+.bg-gradient-to-tr {
+    background-image: none !important;
+}
+
+.from-primary-500,
+.from-primary-600,
+.to-primary-600,
+.to-indigo-700 {
+    background-color: var(--brand) !important;
+}
+
+.from-blue-500,
+.from-indigo-600,
+.to-indigo-600 {
+    background-color: #155e75 !important;
+}
+
+.from-emerald-500,
+.to-teal-600,
+.from-emerald-800,
+.to-green-600 {
+    background-color: var(--success) !important;
+}
+
+.from-slate-800,
+.from-slate-900,
+.to-slate-900,
+.to-indigo-950 {
+    background-color: #223044 !important;
+}
+
+main {
+    padding-top: 1.75rem !important;
+}
+
+main > section {
+    margin-bottom: 3.25rem !important;
+}
+
+.section-heading h2,
+main h2 {
+    text-transform: none;
+    font-weight: 800 !important;
+    line-height: 1.18;
+}
+
+.section-heading > span,
+main h2 + span {
+    color: var(--muted) !important;
+}
+
+main section > .flex.items-center.justify-between {
+    gap: 1rem;
+}
+
+.snap-center.bg-white,
+article.bg-white,
+#tab-container .bg-white,
+#store-list-container .bg-white,
+section .bg-white.border {
+    border-color: var(--line) !important;
+    box-shadow: none !important;
+}
+
+.snap-center.bg-white:hover,
+article.bg-white:hover,
+#tab-container .bg-white:hover,
+#store-list-container .bg-white:hover,
+section .bg-white.border:hover {
+    border-color: #b8c7d9 !important;
+    box-shadow: var(--shadow-soft) !important;
+}
+
+.tab-btn {
+    border-radius: var(--radius-sm) !important;
+    font-weight: 700 !important;
+}
+
+.tab-btn.active {
+    background: var(--brand) !important;
+    color: #fff !important;
+    box-shadow: none !important;
+}
+
+[role="tablist"].bg-slate-100\/80 {
+    background: #eef2f6 !important;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md) !important;
+}
+
+button.bg-primary-500,
+a.bg-primary-500,
+.bg-primary-500 {
+    background-color: var(--brand) !important;
+}
+
+button.hover\:bg-primary-600:hover,
+a.hover\:bg-primary-600:hover {
+    background-color: var(--brand-dark) !important;
+}
+
+.bg-emerald-500,
+button.bg-emerald-500 {
+    background-color: var(--success) !important;
+}
+
+.text-primary-500,
+.hover\:text-primary-500:hover {
+    color: var(--brand) !important;
+}
+
+.text-emerald-500,
+.text-accent-500 {
+    color: var(--success) !important;
+}
+
+#ai-tech-spotlight {
+    background: #163549 !important;
+    border-radius: var(--radius-md) !important;
+    box-shadow: none !important;
+}
+
+#ai-tech-spotlight > .absolute {
+    display: none !important;
+}
+
+.ai-tab-btn {
+    border-radius: var(--radius-md) !important;
+    border-left-width: 3px !important;
+}
+
+.ai-tab-btn.active {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border-left-color: #5cc39a !important;
+}
+
+#ai-tab-content {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.16) !important;
+    backdrop-filter: none !important;
+}
+
+#ai-tab-content .aspect-\[4\/3\] {
+    background-color: #24536b !important;
+    border-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+#consult-form > div {
+    background: #0f4f94 !important;
+    box-shadow: none !important;
+}
+
+#consult-form > div > .absolute {
+    display: none !important;
+}
+
+#consult-form form input,
+#consult-form form select,
+#consult-form form textarea,
+input,
+select,
+textarea {
+    border-radius: var(--radius-sm) !important;
+}
+
+#consult-form .bg-white {
+    box-shadow: var(--shadow-soft) !important;
+}
+
+#hero-slider + button,
+#hero-slider + button + button,
+.hero-dot {
+    box-shadow: none !important;
+}
+
+.hero-dot {
+    border-radius: 999px !important;
+}
+
+#toast-notify,
+#cart-modal > div,
+#video-modal > div {
+    border-radius: var(--radius-md) !important;
+}
+
+@media (max-width: 767px) {
+    main {
+        padding-top: 1.25rem !important;
+    }
+
+    main > section {
+        margin-bottom: 2.5rem !important;
+    }
+
+    .section-heading,
+    main section > .flex.items-center.justify-between {
+        align-items: flex-start !important;
+        flex-direction: column;
+        margin-bottom: 1rem !important;
+    }
+
+    .section-heading h2,
+    main h2 {
+        font-size: 1.25rem !important;
+    }
+
+    #best-sellers .tab-panel {
+        gap: 0.75rem !important;
+    }
+
+    #tab-container .p-3.md\:p-5 {
+        padding: 0.75rem !important;
+    }
+
+    #tab-container h3 {
+        min-height: 2.2rem;
+    }
+}
