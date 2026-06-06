@@ -3,6 +3,7 @@
 # =========================================================
 node_modules/
 tests/
+website/
 # Ignore root vendor directory only. Do not ignore vendor directories within themes/plugins.
 /vendor/
 
