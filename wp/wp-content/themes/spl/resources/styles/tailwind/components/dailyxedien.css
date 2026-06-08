@@ -1,0 +1,251 @@
+/* tailwind/components/dailyxedien.css
+ * Component & helper classes cho giao diện dailyxedien.vn (port từ htmlmau/assets/css/style.css).
+ * Màu/shadow/animation đã khai báo ở themes.css (@theme). File này chứa class không tiện viết inline.
+ */
+
+@layer components {
+	/* Ẩn scrollbar cho carousel ngang (USP bar, tabs, news swipe) */
+	.no-scrollbar {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+	.no-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* Hero slider — smooth crossfade */
+	.hero-slide {
+		transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1),
+					visibility 0s linear 0s;
+	}
+	.hero-slide.opacity-0 {
+		visibility: hidden;
+		transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1),
+					visibility 0s linear 1s;
+	}
+
+	/* Dot indicator — state-driven via data-active attr (set by JS) */
+	.hero-dot {
+		border-radius: 999px;
+		width: 10px;
+		height: 10px;
+		background-color: rgba(255, 255, 255, 0.4);
+		box-shadow: none;
+		transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+					background-color 0.35s ease,
+					box-shadow 0.35s ease;
+	}
+	.hero-dot[data-active='true'] {
+		width: 32px;
+		height: 10px;
+		background-color: #fff;
+		box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+	}
+	.hero-dot:hover:not([data-active='true']) {
+		background-color: rgba(255, 255, 255, 0.7);
+	}
+
+	/* Testimonial dọc — trượt mượt */
+	#testimonial-scroller {
+		transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	/* Tab lọc sản phẩm (best-sellers) */
+	.tab-btn {
+		@apply font-bold;
+	}
+	.tab-btn.active {
+		@apply bg-primary text-white shadow-none;
+	}
+
+	/* Tab công nghệ xe (tech spotlight) */
+	.ai-tab-btn {
+		border-left-width: 3px;
+	}
+	.ai-tab-btn.active {
+		background: rgba(255, 255, 255, 0.12);
+		border-left-color: var(--color-accent);
+	}
+
+	/* Skip link a11y */
+	.skip-link {
+		position: absolute;
+		left: -999px;
+		top: 0;
+		z-index: 200;
+		background: var(--color-primary);
+		color: #fff;
+		padding: 0.75rem 1.25rem;
+		border-radius: 0 0 0.5rem 0;
+		font-weight: 600;
+		font-size: 0.875rem;
+	}
+	.skip-link:focus {
+		left: 0;
+	}
+
+	/* Nút "lên đầu trang" */
+	#back-to-top {
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(16px);
+		transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+	}
+	#back-to-top.show {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
+
+	/* Hiệu ứng "thở" cho nút hotline nổi */
+	.ring-pulse {
+		animation: ring-pulse 1.8s infinite;
+	}
+
+	/* Skeleton shimmer cho ảnh đang tải */
+	.img-skeleton {
+		background: linear-gradient(110deg, #eef1f6 8%, #f6f8fb 18%, #eef1f6 33%);
+		background-size: 200% 100%;
+		animation: shimmer 1.4s linear infinite;
+	}
+
+	/* Khoá scroll khi mở drawer / modal (toggle bằng JS) */
+	body.no-scroll {
+		overflow: hidden;
+	}
+
+	/* Menu chính (nav bar xanh) — wp_nav_menu xuất <li><a> thô, style ở đây */
+	.dxd-mainmenu li {
+		@apply list-none;
+	}
+	.dxd-mainmenu li a {
+		@apply block px-4 py-4 uppercase whitespace-nowrap text-white/90 hover:bg-primary-800 hover:text-white transition-colors;
+	}
+	.dxd-mainmenu li.current-menu-item a,
+	.dxd-mainmenu li.current_page_item a {
+		@apply bg-primary-800 text-white;
+	}
+
+	/* Menu mobile (drawer) */
+	.dxd-mobilemenu li {
+		@apply list-none;
+	}
+	.dxd-mobilemenu li a {
+		@apply flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors;
+	}
+	.dxd-mobilemenu li.current-menu-item a {
+		@apply text-primary bg-primary-50;
+	}
+
+	/* Menu footer (cột chính sách / hỗ trợ) */
+	.dxd-footermenu li {
+		@apply list-none;
+	}
+	.dxd-footermenu li a {
+		@apply hover:text-white transition-colors;
+	}
+
+	/* Line-clamp fallback */
+	.line-clamp-2 {
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	/* ======================================================================
+	 * HOMEPAGE SCOPED RESETS
+	 * base.css có font-light body, heading clamp, img pointer-events-none,
+	 * paragraph margin — tất cả đè lên Tailwind utilities trong parts/home/*.
+	 * Scope theo body class để không ảnh hưởng các trang khác.
+	 * ====================================================================== */
+	body.page-template-template-page-home {
+		font-weight: 400;
+		background-color: #f7f9fb;
+		scroll-behavior: smooth;
+	}
+
+	/* Undo heading fluid clamps — let Tailwind text-* utilities work on homepage */
+	body.page-template-template-page-home :is(h1, h2, h3, h4, h5, h6) {
+		font-size: revert-layer;
+		line-height: 1.3;
+	}
+
+	/* Undo img pointer-events-none — event gallery ảnh phải click được */
+	body.page-template-template-page-home img {
+		pointer-events: auto;
+	}
+
+	/* Undo paragraph bottom margin inside homepage cards/sections */
+	body.page-template-template-page-home * > p {
+		margin-bottom: 0;
+	}
+
+	/* Homepage section heading h2 */
+	body.page-template-template-page-home .section-heading h2 {
+		text-transform: none;
+		font-weight: 800;
+	}
+
+	/* Focus ring accessibility */
+	body.page-template-template-page-home :is(a, button, input, select, textarea):focus-visible {
+		outline: 2px solid var(--color-primary);
+		outline-offset: 2px;
+		border-radius: 4px;
+	}
+
+	/* Scrollbar styling */
+	body.page-template-template-page-home ::-webkit-scrollbar {
+		width: 6px;
+		height: 6px;
+	}
+	body.page-template-template-page-home ::-webkit-scrollbar-track {
+		background: #f1f5f9;
+	}
+	body.page-template-template-page-home ::-webkit-scrollbar-thumb {
+		background: #cbd5e1;
+		border-radius: 4px;
+	}
+	body.page-template-template-page-home ::-webkit-scrollbar-thumb:hover {
+		background: #94a3b8;
+	}
+
+	/* Mobile homepage polish */
+	@media (max-width: 767px) {
+		body.page-template-template-page-home main {
+			padding-top: 1.25rem;
+		}
+
+		body.page-template-template-page-home main > section {
+			margin-bottom: 2.5rem;
+		}
+
+		body.page-template-template-page-home .section-heading {
+			align-items: flex-start;
+			flex-direction: column;
+			margin-bottom: 1rem;
+		}
+
+		body.page-template-template-page-home .section-heading h2 {
+			font-size: 1.25rem;
+		}
+
+		body.page-template-template-page-home #best-sellers .tab-panel {
+			gap: 0.75rem;
+		}
+
+		body.page-template-template-page-home #tab-container h3 {
+			min-height: 2.2rem;
+		}
+	}
+}
+
+@keyframes ring-pulse {
+	0% { box-shadow: 0 0 0 0 rgba(30, 115, 190, 0.45); }
+	70% { box-shadow: 0 0 0 14px rgba(30, 115, 190, 0); }
+	100% { box-shadow: 0 0 0 0 rgba(30, 115, 190, 0); }
+}
+
+@keyframes shimmer {
+	to { background-position-x: -200%; }
+}

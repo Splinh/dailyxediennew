@@ -1,0 +1,1 @@
+jQuery(function(e){e(document).on(`click`,`.notice-dismiss`,function(){e(this).closest(`.notice.is-dismissible`).fadeOut(500,function(){e(this).remove()})}),e(`.wp-list-table.fixed`).removeClass(`fixed`)});

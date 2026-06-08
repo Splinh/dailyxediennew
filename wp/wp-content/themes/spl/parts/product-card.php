@@ -1,11 +1,6 @@
 <?php
 /**
- * Shared product card.
- *
- * Usage:
- *   get_template_part( 'parts/product-card', null, [ 'product' => $product ] );
- *   get_template_part( 'parts/product-card', null, [ 'id' => $product_id ] );
- *   // or inside a WC loop with no args (uses get_the_ID()).
+ * Shared product card — dailyxedien.vn.
  *
  * @package SPL
  */
@@ -20,7 +15,7 @@ $extra_classes = array_filter(
 		preg_split( '/\s+/', (string) ( $data['class'] ?? '' ) ) ?: []
 	)
 );
-$card_classes  = implode( ' ', array_merge( [ 'product-card', 'reveal' ], $extra_classes ) );
+$card_classes  = implode( ' ', array_merge( [ 'bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 flex flex-col justify-between group relative' ], $extra_classes ) );
 
 /** @var \WC_Product|null $card_product */
 $card_product = $data['product'] ?? null;
@@ -45,6 +40,8 @@ if ( isset( $spl_product_card_cache[ $pid ] ) ) {
 		'price_current_html' => $price_current_html,
 		'price_old_html'     => $price_old_html,
 		'purchasable'        => $purchasable,
+		'average_rating'     => $average_rating,
+		'total_sales'        => $total_sales,
 	] = $spl_product_card_cache[ $pid ];
 } else {
 	$permalink = get_permalink( $pid );
@@ -89,7 +86,20 @@ if ( isset( $spl_product_card_cache[ $pid ] ) ) {
 		$price_current_html = $card_product->get_price_html();
 	}
 
+	// Dynamic badges (Hot, Mới)
+	$is_new = ( time() - get_post_time( 'U', false, $pid ) ) < ( 30 * DAY_IN_SECONDS );
+	$is_featured = $card_product->is_featured();
+	if ( ! $badge ) {
+		if ( $is_featured ) {
+			$badge = __( 'Hot', 'spl' );
+		} elseif ( $is_new ) {
+			$badge = __( 'Mới', 'spl' );
+		}
+	}
+
 	$purchasable = $card_product->is_purchasable() && $card_product->is_in_stock() && ! $card_product->is_type( 'variable' );
+	$average_rating = $card_product->get_average_rating();
+	$total_sales = $card_product->get_total_sales();
 
 	$spl_product_card_cache[ $pid ] = compact(
 		'permalink',
@@ -99,50 +109,66 @@ if ( isset( $spl_product_card_cache[ $pid ] ) ) {
 		'badge',
 		'price_current_html',
 		'price_old_html',
-		'purchasable'
+		'purchasable',
+		'average_rating',
+		'total_sales'
 	);
 }
+
+$sales_formatted = $total_sales >= 1000 ? round( $total_sales / 1000, 1 ) . 'k' : $total_sales;
+$stars_count     = $average_rating > 0 ? round( $average_rating ) : 5;
 ?>
 <div class="<?php echo esc_attr( $card_classes ); ?>">
-	<a href="<?php echo esc_url( $permalink ); ?>" class="product-card__link">
-		<div class="product-card__image">
-			<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $name ); ?>" loading="lazy" />
-			<?php if ( $badge ) : ?>
-				<span class="product-card__badge"><?php echo esc_html( $badge ); ?></span>
-			<?php endif; ?>
-			<?php /* TODO: tạm ẩn Yêu thích (wishlist) + Xem nhanh (quick view) - bỏ comment để bật lại. ?>
-			<div class="product-card__actions">
-				<button type="button" class="product-card__action-btn wishlist-btn" aria-label="<?php esc_attr_e( 'Yêu thích', 'spl' ); ?>" onclick="event.preventDefault();event.stopPropagation();">
-					<svg class="icon" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-				</button>
-				<button type="button" class="product-card__action-btn" data-wc-quickview data-product-id="<?php echo esc_attr( $pid ); ?>" aria-label="<?php esc_attr_e( 'Xem nhanh', 'spl' ); ?>">
-					<svg class="icon" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-				</button>
-			</div>
-			<?php */ ?>
-		</div>
-		<div class="product-card__body">
-			<?php if ( $cat_name ) : ?>
-				<span class="product-card__category"><?php echo esc_html( $cat_name ); ?></span>
-			<?php endif; ?>
-			<h3 class="product-card__name"><?php echo esc_html( $name ); ?></h3>
-			<div class="product-card__price">
-				<span class="product-card__price-current"><?php echo wp_kses_post( $price_current_html ); ?></span>
-				<?php if ( $price_old_html ) : ?>
-					<span class="product-card__price-old"><?php echo wp_kses_post( $price_old_html ); ?></span>
-				<?php endif; ?>
-			</div>
+	<?php if ( $badge ) :
+		$badge_color = ( stripos( $badge, 'hot' ) !== false || stripos( $badge, '-' ) !== false ) ? 'bg-red-500' : 'bg-emerald-500';
+		?>
+		<span class="absolute top-2.5 left-2.5 <?php echo esc_attr( $badge_color ); ?> text-white font-black text-[9px] md:text-[10px] px-2 py-0.5 md:px-2.5 md:py-1 rounded-lg z-10 shadow-sm uppercase"><?php echo esc_html( $badge ); ?></span>
+	<?php endif; ?>
+
+	<a href="<?php echo esc_url( $permalink ); ?>" class="block">
+		<div class="p-3 bg-slate-50/50 flex items-center justify-center h-36 md:h-48 relative overflow-hidden">
+			<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $name ); ?>" loading="lazy" class="max-h-full max-w-full object-contain transform group-hover:scale-105 transition-transform duration-300" />
 		</div>
 	</a>
-	<?php if ( $purchasable ) : ?>
-		<button type="button" class="product-card__add-to-cart add-cart-btn" data-product-id="<?php echo esc_attr( $pid ); ?>" aria-label="<?php echo esc_attr( sprintf( /* translators: %s product name */ __( 'Thêm %s vào giỏ hàng', 'spl' ), $name ) ); ?>">
-			<svg class="icon" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-			<?php esc_html_e( 'Thêm vào giỏ', 'spl' ); ?>
-		</button>
-	<?php else : ?>
-		<a href="<?php echo esc_url( $permalink ); ?>" class="product-card__add-to-cart">
-			<svg class="icon" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-			<?php esc_html_e( 'Xem chi tiết', 'spl' ); ?>
-		</a>
-	<?php endif; ?>
+
+	<div class="p-3 md:p-5 flex-grow flex flex-col justify-between">
+		<div>
+			<?php if ( $cat_name ) : ?>
+				<span class="text-[9px] md:text-[10px] text-slate-400 font-bold uppercase tracking-wider"><?php echo esc_html( $cat_name ); ?></span>
+			<?php endif; ?>
+			<h3 class="font-bold text-slate-800 text-xs md:text-sm line-clamp-2 mt-0.5 group-hover:text-primary transition-colors leading-snug">
+				<a href="<?php echo esc_url( $permalink ); ?>"><?php echo esc_html( $name ); ?></a>
+			</h3>
+			<div class="flex items-center gap-0.5 mt-1.5 text-amber-400 text-[10px]" aria-label="<?php echo esc_attr( sprintf( __( 'Đánh giá %s sao', 'spl' ), $stars_count ) ); ?>">
+				<?php for ( $i = 0; $i < 5; $i++ ) :
+					$fill_class = $i < $stars_count ? 'fill-current' : 'text-slate-200';
+					?>
+					<svg class="w-3 h-3 <?php echo esc_attr( $fill_class ); ?>" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+				<?php endfor; ?>
+				<span class="text-slate-400 ml-1 font-semibold"><?php echo esc_html( sprintf( __( 'Đã bán %s', 'spl' ), $sales_formatted ) ); ?></span>
+			</div>
+		</div>
+
+		<div class="mt-3">
+			<div class="flex flex-wrap items-baseline gap-1 md:gap-2">
+				<span class="text-sm md:text-base font-extrabold text-slate-900"><?php echo wp_kses_post( $price_current_html ); ?></span>
+				<?php if ( $price_old_html ) : ?>
+					<span class="text-[10px] md:text-xs text-slate-400 line-through"><?php echo wp_kses_post( $price_old_html ); ?></span>
+				<?php endif; ?>
+			</div>
+
+			<?php if ( $purchasable ) : ?>
+				<div class="grid grid-cols-5 gap-1.5 mt-3">
+					<a href="<?php echo esc_url( function_exists( 'wc_get_checkout_url' ) ? wc_get_checkout_url() . '?add-to-cart=' . $pid : '#' ); ?>" class="col-span-4 bg-primary hover:bg-primary-hover active:scale-95 text-white text-[10px] md:text-xs font-bold py-2 md:py-2.5 rounded-lg transition-all text-center flex items-center justify-center"><?php esc_html_e( 'Mua ngay', 'spl' ); ?></a>
+					<button type="button" class="bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-600 flex items-center justify-center rounded-lg transition-all add-cart-btn" data-product-id="<?php echo esc_attr( $pid ); ?>" title="<?php esc_attr_e( 'Thêm vào giỏ', 'spl' ); ?>">
+						<?php echo spl_icon( 'cart', 'w-3.5 h-3.5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</button>
+				</div>
+			<?php else : ?>
+				<div class="mt-3">
+					<a href="<?php echo esc_url( $permalink ); ?>" class="w-full bg-primary hover:bg-primary-hover active:scale-95 text-white text-[10px] md:text-xs font-bold py-2 md:py-2.5 rounded-lg transition-all text-center flex items-center justify-center"><?php esc_html_e( 'Xem chi tiết', 'spl' ); ?></a>
+				</div>
+			<?php endif; ?>
+		</div>
+	</div>
 </div>

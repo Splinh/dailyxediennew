@@ -30,7 +30,7 @@ $home_url  = home_url( '/' );
 				<div class="search-bar__wrapper" data-search>
 					<form action="<?php echo esc_url( $home_url ); ?>" method="get">
 						<label for="search-input-404" class="sr-only"><?php esc_html_e( 'Tìm kiếm sản phẩm', 'spl' ); ?></label>
-						<input id="search-input-404" type="search" class="search-bar__input" name="s" placeholder="<?php esc_attr_e( 'Tìm sản phẩm thảo dược...', 'spl' ); ?>" autocomplete="off" data-search-input />
+						<input id="search-input-404" type="search" class="search-bar__input" name="s" placeholder="<?php esc_attr_e( 'Tìm xe điện, xe máy điện, phụ kiện...', 'spl' ); ?>" autocomplete="off" data-search-input />
 						<?php if ( $is_woo ) : ?>
 							<input type="hidden" name="post_type" value="product" />
 						<?php endif; ?>

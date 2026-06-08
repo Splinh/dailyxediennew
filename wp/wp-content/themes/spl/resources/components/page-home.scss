@@ -1,12 +1,48 @@
 // components/page-home.scss
-// Homepage-specific styles (STARTER — delete when replacing with production code)
+// Homepage-specific styles — scoped resets and polish from htmlmau/assets/css/style.css.
 // Auto-enqueued by Theme::dynamicTemplateInclude() when template-page-home.php is active.
 
-@use '../styles/utils/mixins' as mixin;
+// ============================================================================
+// A. SCOPED RESETS — undo base.css conflicts for homepage templates
+//    base.css applies font-light, fluid heading clamps, img pointer-events-none,
+//    and paragraph margins that break the Tailwind utility classes in parts/home/*.
+// ============================================================================
+
+// The homepage template wraps everything in <body class="page-template-template-page-home">
+// Use body-level selector for specificity.
+body.page-template-template-page-home {
+	// 1. Undo font-light (300) — mockup uses regular weight (400) as default
+	font-weight: 400;
+
+	// 2. Background matching mockup
+	background-color: #f7f9fb;
+
+	// 3. Smooth scroll
+	scroll-behavior: smooth;
+
+	// 4. Undo heading fluid clamps — let Tailwind text-* utilities work
+	:is(h1, h2, h3, h4, h5, h6) {
+		font-size: revert-layer;
+		line-height: 1.3;
+	}
+
+	// 5. Undo img pointer-events-none — event gallery images must be clickable
+	img {
+		pointer-events: auto;
+	}
+
+	// 6. Undo paragraph bottom margin inside homepage cards/sections
+	* > p {
+		margin-bottom: 0;
+
+		&:not(:last-child) {
+			margin-bottom: 0;
+		}
+	}
+}
 
 // ============================================================================
-// HERO SLIDER — Fix: override fx-slider default height: fit-content on wrapper
-// so absolute-positioned <picture> children fill correctly.
+// B. HERO SLIDER — override fx-slider defaults, Ken Burns animation
 // ============================================================================
 
 .hero-slider {
@@ -20,17 +56,10 @@
 	.swiper-slide {
 		height: 100%;
 	}
-
-	// Ensure controls are visible over dark overlays
 	.swiper-controls {
 		z-index: 20;
 	}
 }
-
-// ============================================================================
-// HERO SLIDER — Swiper state triggers + Ken Burns
-// Tailwind can't target .swiper-slide-active children, so we handle it here.
-// ============================================================================
 
 @keyframes hero-fade-up {
 	from {
@@ -48,62 +77,54 @@ $_hero-anim: hero-fade-up 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 .hero-slider .swiper-slide-active .animate-hero {
 	animation: $_hero-anim;
 }
-
 .hero-slider .swiper-slide-active .animate-hero-d1 {
 	animation: $_hero-anim;
 	animation-delay: 0.15s;
 }
-
 .hero-slider .swiper-slide-active .animate-hero-d2 {
 	animation: $_hero-anim;
 	animation-delay: 0.28s;
 }
-
 .hero-slider .swiper-slide-active .animate-hero-d3 {
 	animation: $_hero-anim;
 	animation-delay: 0.4s;
 }
 
-// Ken Burns: subtle zoom-out on active slide
+// Ken Burns zoom
 .hero-slider .swiper-slide img {
 	transform: scale(1.06);
 	transition: transform 8s ease-out;
 }
-
 .hero-slider .swiper-slide-active img {
 	transform: scale(1);
 }
 
 // ============================================================================
-// NEWS SLIDER — Responsive slide widths (slidesPerView: auto)
-// Mobile 1.3 cols | Tablet 2 cols | Desktop 3 cols
+// C. NEWS SLIDER — Responsive slide widths (slidesPerView: auto)
 // ============================================================================
+
+@use '../styles/utils/mixins' as mixin;
 
 .news-slider {
 	$gap: 16px;
 
 	.news-slide {
-		// Chiều cao tự động để Swiper kéo dãn cho đều
 		height: auto;
-		// Mobile: 1.3 cols visible — peek effect
 		@include mixin.flex-self(1.3, 1, $gap);
 	}
 
 	@include mixin.mq-min(md) {
 		.news-slide {
-			// Tablet: 2 cols
 			@include mixin.flex-self(2, 1, $gap);
 		}
 	}
 
 	@include mixin.mq-min(lg) {
 		.news-slide {
-			// Desktop: 3 cols
 			@include mixin.flex-self(3, 1, $gap);
 		}
 	}
 
-	// Navigation buttons position outside the cards
 	.swiper-controls {
 		display: flex;
 		align-items: center;
@@ -116,4 +137,102 @@ $_hero-anim: hero-fade-up 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 		bottom: 0;
 		margin: 0 8px;
 	}
+}
+
+// ============================================================================
+// D. HOMEPAGE UX POLISH (ported from htmlmau/assets/css/style.css)
+// ============================================================================
+
+body.page-template-template-page-home {
+
+	// Scrollbar styling
+	::-webkit-scrollbar {
+		width: 6px;
+		height: 6px;
+	}
+	::-webkit-scrollbar-track {
+		background: #f1f5f9;
+	}
+	::-webkit-scrollbar-thumb {
+		background: #cbd5e1;
+		border-radius: 4px;
+	}
+	::-webkit-scrollbar-thumb:hover {
+		background: #94a3b8;
+	}
+
+	// Focus ring accessibility
+	a:focus-visible,
+	button:focus-visible,
+	input:focus-visible,
+	select:focus-visible,
+	textarea:focus-visible {
+		outline: 2px solid var(--color-primary);
+		outline-offset: 2px;
+		border-radius: 4px;
+	}
+
+	// Section heading accent bar
+	.section-heading {
+		h2 {
+			text-transform: none;
+			font-weight: 800 !important;
+		}
+	}
+
+	// Respect reduced motion preferences
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			animation-duration: 0.001ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.001ms !important;
+			scroll-behavior: auto !important;
+		}
+	}
+
+	// Product cards — tighten mobile padding
+	@media (max-width: 767px) {
+		main {
+			padding-top: 1.25rem;
+		}
+
+		main > section {
+			margin-bottom: 2.5rem;
+		}
+
+		.section-heading,
+		main section > .flex.items-center.justify-between {
+			align-items: flex-start;
+			flex-direction: column;
+			margin-bottom: 1rem;
+		}
+
+		.section-heading h2 {
+			font-size: 1.25rem !important;
+		}
+
+		#best-sellers .tab-panel {
+			gap: 0.75rem;
+		}
+
+		#tab-container .p-3 {
+			padding: 0.75rem;
+		}
+
+		#tab-container h3 {
+			min-height: 2.2rem;
+		}
+	}
+}
+
+// ============================================================================
+// E. LINE-CLAMP fallback (if TW plugin not loaded)
+// ============================================================================
+.line-clamp-2 {
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
 }

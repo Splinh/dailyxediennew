@@ -1,1 +1,0 @@
-var e=()=>{const e=new WeakMap,t=e=>null!==e&&"object"==typeof e;return{has:r=>t(r)&&e.has(r),get:r=>t(r)?e.get(r):void 0,set(r,a){t(r)&&e.set(r,a)},delete(r){t(r)&&e.delete(r)},getOrCreate(r,a){if(!t(r))return;if(e.has(r))return e.get(r);const s=a();return e.set(r,s),s},cleanup(r,a){t(r)&&e.has(r)&&(a(e.get(r)),e.delete(r))}}};export{e as t};

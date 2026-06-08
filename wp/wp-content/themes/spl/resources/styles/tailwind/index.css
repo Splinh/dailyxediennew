@@ -14,8 +14,9 @@
 
 /* Source scanning - theme `hd` */
 @source "../../../*.php";
-@source "../../../{src,config,template-parts,templates,woocommerce}/**/*.php";
+@source "../../../{src,config,inc,parts,template-parts,templates,woocommerce}/**/*.php";
 @source "../../../resources/{scripts,components}/**/*.js";
+@source "../../../inc/**/*.js";
 @source "../../../resources/styles/tailwind/**/*.css";
 
 /* HTML */

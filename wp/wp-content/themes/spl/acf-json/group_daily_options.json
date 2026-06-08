@@ -1,0 +1,593 @@
+{
+    "key": "group_daily_options",
+    "title": "DailyXeDien - Tùy chọn Theme",
+    "fields": [
+        {
+            "key": "field_opt_tab_header",
+            "label": "Header",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_opt_topbar_links",
+            "label": "Thanh tiện ích tiện ích (Topbar Links)",
+            "name": "topbar_links",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "button_label": "Thêm liên kết",
+            "sub_fields": [
+                {
+                    "key": "field_opt_topbar_link",
+                    "label": "Liên kết",
+                    "name": "link",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
+                }
+            ]
+        },
+        {
+            "key": "field_opt_logo",
+            "label": "Ảnh logo",
+            "name": "logo",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_opt_logo_tagline",
+            "label": "Slogan dưới logo",
+            "name": "logo_tagline",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Hệ thống xe điện lớn nhất Việt Nam"
+        },
+        {
+            "key": "field_opt_hotline_label",
+            "label": "Nhãn Hotline",
+            "name": "hotline_label",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Hotline tư vấn 24\/7"
+        },
+        {
+            "key": "field_daily_opt_tab_contact",
+            "label": "Thông tin liên hệ",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_daily_opt_hotline",
+            "label": "Hotline",
+            "name": "hotline",
+            "type": "text",
+            "instructions": "Số điện thoại hotline",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "0933 505 222"
+        },
+        {
+            "key": "field_daily_opt_email",
+            "label": "Email",
+            "name": "email",
+            "type": "email",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "info@dailyxedien.vn"
+        },
+        {
+            "key": "field_daily_opt_address",
+            "label": "Địa chỉ",
+            "name": "address",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "466 Nguyễn Duy Trinh, P. Bình Trưng Đông, TP. Thủ Đức, TP.HCM"
+        },
+        {
+            "key": "field_daily_opt_working_hours",
+            "label": "Giờ làm việc",
+            "name": "working_hours",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Thứ 2 – Thứ 7: 08:00 – 17:30"
+        },
+        {
+            "key": "field_daily_opt_tab_footer",
+            "label": "Footer",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_daily_opt_footer_desc",
+            "label": "Mô tả footer",
+            "name": "footer_desc",
+            "type": "textarea",
+            "instructions": "Đoạn mô tả ngắn dưới logo ở footer",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Dailyxedien.vn - Hệ thống phân phối xe điện, xe 50cc, xe máy điện chính hãng. Cam kết sản phẩm rõ nguồn gốc, chính sách giá minh bạch và hậu mãi dễ theo dõi.",
+            "rows": 3
+        },
+        {
+            "key": "field_daily_opt_company_name",
+            "label": "Tên công ty (đầy đủ)",
+            "name": "company_name",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "placeholder": "VD: CÔNG TY TNHH XE ĐIỆN..."
+        },
+        {
+            "key": "field_daily_opt_company_intl",
+            "label": "Tên quốc tế",
+            "name": "company_intl_name",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_daily_opt_company_tax",
+            "label": "Mã số thuế (MST)",
+            "name": "company_tax",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_daily_opt_complaint_phone",
+            "label": "Đường dây khiếu nại",
+            "name": "complaint_phone",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_daily_opt_addr_showroom",
+            "label": "Địa chỉ showroom \/ bán lẻ",
+            "name": "addr_showroom",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "100",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_daily_opt_addr_farm",
+            "label": "Vùng trồng nguyên liệu (DailyXeDien)",
+            "name": "addr_farm",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_daily_opt_addr_factory",
+            "label": "Nhà máy \/ xưởng sản xuất",
+            "name": "addr_factory",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_daily_opt_bank_account",
+            "label": "Số tài khoản ngân hàng",
+            "name": "bank_account",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_daily_opt_website_url",
+            "label": "Website",
+            "name": "website_url",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "https:\/\/www.dailyxedien.vn"
+        },
+        {
+            "key": "field_daily_opt_payment_image",
+            "label": "Ảnh phương thức thanh toán",
+            "name": "payment_image",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_daily_opt_gov_badge_url",
+            "label": "Link Bộ Công Thương",
+            "name": "gov_badge_url",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_daily_opt_tab_activity",
+            "label": "Hoạt động công ty",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_daily_opt_activity_title",
+            "label": "Tiêu đề khối",
+            "name": "activity_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Hình Ảnh Hoạt Động Công Ty"
+        },
+        {
+            "key": "field_daily_opt_activity_subtitle",
+            "label": "Phụ đề",
+            "name": "activity_subtitle",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "key": "field_daily_opt_activity_gallery",
+            "label": "Thư viện ảnh hoạt động",
+            "name": "activity_gallery",
+            "type": "gallery",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "insert": "append",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_daily_opt_tab_social",
+            "label": "Mạng xã hội",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_daily_opt_facebook",
+            "label": "Facebook URL",
+            "name": "facebook_url",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "https:\/\/www.facebook.com\/DaiLyXeDien\/"
+        },
+        {
+            "key": "field_daily_opt_youtube",
+            "label": "Youtube URL",
+            "name": "youtube_url",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "https:\/\/www.youtube.com\/@XeDien"
+        },
+        {
+            "key": "field_daily_opt_zalo",
+            "label": "Zalo URL",
+            "name": "zalo_url",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "https:\/\/zalo.me\/0933505222"
+        },
+        {
+            "key": "field_daily_opt_tiktok",
+            "label": "TikTok URL",
+            "name": "tiktok_url",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "https:\/\/www.tiktok.com\/@dailyxedienhcm"
+        },
+        {
+            "key": "field_daily_opt_tab_product",
+            "label": "Sản phẩm",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_daily_opt_product_trust",
+            "label": "Badge tin cậy (trang sản phẩm)",
+            "name": "product_trust",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "max": 3,
+            "button_label": "Thêm badge",
+            "sub_fields": [
+                {
+                    "key": "field_daily_opt_trust_icon",
+                    "label": "Icon",
+                    "name": "icon",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "truck": "Xe giao hàng",
+                        "clock": "Đồng hồ",
+                        "return": "Đổi trả"
+                    },
+                    "default_value": "truck"
+                },
+                {
+                    "key": "field_daily_opt_trust_text",
+                    "label": "Nội dung",
+                    "name": "text",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "70",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placeholder": "VD: Miễn phí giao hàng bán kính 10km",
+                    "default_value": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "Tùy chọn theme chung cho dailyxedien.vn"
+}

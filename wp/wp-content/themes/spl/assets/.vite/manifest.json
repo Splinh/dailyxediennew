@@ -1,437 +1,418 @@
 {
-  "_dom.D9i0Io8z.js": {
-    "file": "js/chunk/dom.D9i0Io8z.js",
+  "_dom.js": {
+    "file": "js/chunks/dom.js",
     "name": "dom"
   },
-  "_free-mode.CKFWmEJe.js": {
-    "file": "js/chunk/free-mode.CKFWmEJe.js",
+  "_free-mode.js": {
+    "file": "js/chunks/free-mode.js",
     "name": "free-mode"
   },
-  "_helpers.DubRJUtt.js": {
-    "file": "js/chunk/helpers.DubRJUtt.js",
+  "_helpers.js": {
+    "file": "js/chunks/helpers.js",
     "name": "helpers"
   },
-  "_photoswipe.esm.BUPEGPf-.js": {
-    "file": "js/chunk/photoswipe.esm.BUPEGPf-.js",
+  "_photoswipe.esm.js": {
+    "file": "js/chunks/photoswipe.esm.js",
     "name": "photoswipe.esm"
   },
-  "_tw.dJdUR2cV.css": {
-    "file": "css/chunk/tw.dJdUR2cV.css",
-    "src": "_tw.dJdUR2cV.css"
-  },
-  "_weak.ConRZkkO.js": {
-    "file": "js/chunk/weak.ConRZkkO.js",
+  "_weak.js": {
+    "file": "js/chunks/weak.js",
     "name": "weak"
   },
-  "resources/components/page-home.js": {
-    "file": "js/chunk/page-home.BvRk9kiK.js",
-    "name": "page-home",
-    "src": "resources/components/page-home.js",
-    "isEntry": true
-  },
-  "resources/components/page-home.scss": {
-    "file": "css/chunk/page-home.CEXJLs4N.css",
-    "name": "page-home",
-    "names": [
-      "page-home.css"
-    ],
-    "src": "resources/components/page-home.scss",
-    "isEntry": true
-  },
   "resources/scripts/core/fx/accordion/fx-accordion-menu.js": {
-    "file": "js/chunk/fx-accordion-menu.D3X13DrT.js",
+    "file": "js/chunks/fx-accordion-menu.js",
     "name": "fx-accordion-menu",
     "src": "resources/scripts/core/fx/accordion/fx-accordion-menu.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/scripts/index.js",
-      "_dom.D9i0Io8z.js",
-      "_weak.ConRZkkO.js"
+      "_dom.js",
+      "_weak.js"
     ]
   },
   "resources/scripts/core/fx/accordion/fx-accordion.js": {
-    "file": "js/chunk/fx-accordion.ArFiuNOl.js",
+    "file": "js/chunks/fx-accordion.js",
     "name": "fx-accordion",
     "src": "resources/scripts/core/fx/accordion/fx-accordion.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/scripts/index.js",
-      "_dom.D9i0Io8z.js",
-      "_weak.ConRZkkO.js"
+      "_dom.js",
+      "_weak.js"
     ],
     "css": [
-      "css/chunk/fx-accordion.pPpsQn53.css"
+      "css/fx-accordion.css"
     ]
   },
   "resources/scripts/core/fx/animation/fx-counter.js": {
-    "file": "js/chunk/fx-counter.Y3sF6D0T.js",
+    "file": "js/chunks/fx-counter.js",
     "name": "fx-counter",
     "src": "resources/scripts/core/fx/animation/fx-counter.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/scripts/index.js",
-      "_dom.D9i0Io8z.js",
-      "_weak.ConRZkkO.js"
+      "_dom.js",
+      "_weak.js"
     ],
     "css": [
-      "css/chunk/fx-counter.BHHZpctv.css"
+      "css/fx-counter.css"
     ]
   },
   "resources/scripts/core/fx/animation/fx-lottie.js": {
-    "file": "js/chunk/fx-lottie.Bcb_KSmK.js",
+    "file": "js/chunks/fx-lottie.js",
     "name": "fx-lottie",
     "src": "resources/scripts/core/fx/animation/fx-lottie.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/scripts/index.js",
-      "_dom.D9i0Io8z.js",
-      "_weak.ConRZkkO.js"
+      "_dom.js",
+      "_weak.js"
     ],
     "css": [
-      "css/chunk/fx-lottie.eti4JHf1.css"
+      "css/fx-lottie.css"
     ]
   },
   "resources/scripts/core/fx/animation/fx-magnetic.js": {
-    "file": "js/chunk/fx-magnetic.DY3hlVBu.js",
+    "file": "js/chunks/fx-magnetic.js",
     "name": "fx-magnetic",
     "src": "resources/scripts/core/fx/animation/fx-magnetic.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/scripts/index.js",
-      "_dom.D9i0Io8z.js",
-      "_weak.ConRZkkO.js"
+      "_dom.js",
+      "_weak.js"
     ]
   },
   "resources/scripts/core/fx/dropdown/fx-dropdown-menu.js": {
-    "file": "js/chunk/fx-dropdown-menu.C01j88jx.js",
+    "file": "js/chunks/fx-dropdown-menu.js",
     "name": "fx-dropdown-menu",
     "src": "resources/scripts/core/fx/dropdown/fx-dropdown-menu.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/scripts/index.js",
-      "_dom.D9i0Io8z.js",
-      "_weak.ConRZkkO.js"
+      "_dom.js",
+      "_weak.js"
     ],
     "css": [
-      "css/chunk/fx-dropdown-menu.C-yfC_oK.css"
+      "css/fx-dropdown-menu.css"
     ]
   },
   "resources/scripts/core/fx/dropdown/fx-dropdown.js": {
-    "file": "js/chunk/fx-dropdown.GWRR-MKo.js",
+    "file": "js/chunks/fx-dropdown.js",
     "name": "fx-dropdown",
     "src": "resources/scripts/core/fx/dropdown/fx-dropdown.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/scripts/index.js",
-      "_dom.D9i0Io8z.js",
-      "_weak.ConRZkkO.js"
+      "_dom.js",
+      "_weak.js"
     ],
     "css": [
-      "css/chunk/fx-dropdown.CSlVj-mh.css"
+      "css/fx-dropdown.css"
     ]
   },
   "resources/scripts/core/fx/grid/fx-freeform.js": {
-    "file": "js/chunk/fx-freeform.4kV2mCyq.js",
+    "file": "js/chunks/fx-freeform.js",
     "name": "fx-freeform",
     "src": "resources/scripts/core/fx/grid/fx-freeform.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/scripts/index.js",
-      "_dom.D9i0Io8z.js",
-      "_helpers.DubRJUtt.js",
-      "_weak.ConRZkkO.js"
+      "_dom.js",
+      "_helpers.js",
+      "_weak.js"
     ],
     "css": [
-      "css/chunk/fx-freeform.DzLN0xba.css"
+      "css/fx-freeform.css"
     ]
   },
   "resources/scripts/core/fx/grid/fx-hybrid.js": {
-    "file": "js/chunk/fx-hybrid.r1Snhelu.js",
+    "file": "js/chunks/fx-hybrid.js",
     "name": "fx-hybrid",
     "src": "resources/scripts/core/fx/grid/fx-hybrid.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/scripts/index.js",
-      "_dom.D9i0Io8z.js",
-      "_helpers.DubRJUtt.js",
-      "_weak.ConRZkkO.js"
+      "_dom.js",
+      "_helpers.js",
+      "_weak.js"
     ],
     "css": [
-      "css/chunk/fx-hybrid.DieRVrZ0.css"
+      "css/fx-hybrid.css"
     ]
   },
   "resources/scripts/core/fx/grid/fx-masonry.js": {
-    "file": "js/chunk/fx-masonry.BS8neTkV.js",
+    "file": "js/chunks/fx-masonry.js",
     "name": "fx-masonry",
     "src": "resources/scripts/core/fx/grid/fx-masonry.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/scripts/index.js",
-      "_dom.D9i0Io8z.js",
-      "_helpers.DubRJUtt.js",
-      "_weak.ConRZkkO.js"
+      "_dom.js",
+      "_helpers.js",
+      "_weak.js"
     ],
     "css": [
-      "css/chunk/fx-masonry.Bn3EeXUx.css"
+      "css/fx-masonry.css"
     ]
   },
   "resources/scripts/core/fx/lightbox/fx-lightbox.js": {
-    "file": "js/chunk/fx-lightbox.CYb6IltL.js",
+    "file": "js/chunks/fx-lightbox.js",
     "name": "fx-lightbox",
     "src": "resources/scripts/core/fx/lightbox/fx-lightbox.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/scripts/index.js",
-      "_photoswipe.esm.BUPEGPf-.js",
-      "_dom.D9i0Io8z.js"
+      "_photoswipe.esm.js",
+      "_dom.js"
     ],
     "css": [
-      "css/chunk/fx-lightbox.D7fYjYP5.css"
+      "css/fx-lightbox.css"
     ]
   },
   "resources/scripts/core/fx/modal/fx-modal.js": {
-    "file": "js/chunk/fx-modal.BJhcFXTB.js",
+    "file": "js/chunks/fx-modal.js",
     "name": "fx-modal",
     "src": "resources/scripts/core/fx/modal/fx-modal.js",
     "isDynamicEntry": true,
     "imports": [
-      "_dom.D9i0Io8z.js",
-      "_weak.ConRZkkO.js"
+      "_dom.js",
+      "_weak.js"
     ],
     "css": [
-      "css/chunk/fx-modal.D3VDpyRc.css"
+      "css/fx-modal.css"
     ]
   },
   "resources/scripts/core/fx/offcanvas/fx-offcanvas.js": {
-    "file": "js/chunk/fx-offcanvas.T4WTJ3RQ.js",
+    "file": "js/chunks/fx-offcanvas.js",
     "name": "fx-offcanvas",
     "src": "resources/scripts/core/fx/offcanvas/fx-offcanvas.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/scripts/index.js",
-      "_dom.D9i0Io8z.js",
-      "_weak.ConRZkkO.js"
+      "_dom.js",
+      "_weak.js"
     ],
     "css": [
-      "css/chunk/fx-offcanvas.DGxd7NXC.css"
+      "css/fx-offcanvas.css"
     ]
   },
   "resources/scripts/core/fx/scroll-top/fx-scroll-top.js": {
-    "file": "js/chunk/fx-scroll-top.IIgZh_Si.js",
+    "file": "js/chunks/fx-scroll-top.js",
     "name": "fx-scroll-top",
     "src": "resources/scripts/core/fx/scroll-top/fx-scroll-top.js",
     "isDynamicEntry": true,
     "imports": [
-      "_dom.D9i0Io8z.js",
-      "_weak.ConRZkkO.js"
+      "_dom.js",
+      "_weak.js"
     ]
   },
   "resources/scripts/core/fx/scrollspy/fx-scrollspy.js": {
-    "file": "js/chunk/fx-scrollspy.BDqaGsgJ.js",
+    "file": "js/chunks/fx-scrollspy.js",
     "name": "fx-scrollspy",
     "src": "resources/scripts/core/fx/scrollspy/fx-scrollspy.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/scripts/index.js",
-      "_dom.D9i0Io8z.js",
-      "_weak.ConRZkkO.js"
+      "_dom.js",
+      "_weak.js"
     ],
     "css": [
-      "css/chunk/fx-scrollspy.CWzhW5zq.css"
+      "css/fx-scrollspy.css"
     ]
   },
   "resources/scripts/core/fx/share/fx-share.js": {
-    "file": "js/chunk/fx-share.qkIbF0XE.js",
+    "file": "js/chunks/fx-share.js",
     "name": "fx-share",
     "src": "resources/scripts/core/fx/share/fx-share.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/scripts/index.js",
-      "_dom.D9i0Io8z.js",
-      "_weak.ConRZkkO.js"
+      "_dom.js",
+      "_weak.js"
     ],
     "css": [
-      "css/chunk/fx-share.ChGZncRt.css"
+      "css/fx-share.css"
     ]
   },
   "resources/scripts/core/fx/slider/fx-slider.js": {
-    "file": "js/chunk/fx-slider.hg-5gbP-.js",
+    "file": "js/chunks/fx-slider.js",
     "name": "fx-slider",
     "src": "resources/scripts/core/fx/slider/fx-slider.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/scripts/index.js",
-      "_free-mode.CKFWmEJe.js",
-      "_dom.D9i0Io8z.js",
-      "_weak.ConRZkkO.js"
+      "_free-mode.js",
+      "_dom.js",
+      "_weak.js"
     ],
     "css": [
-      "css/chunk/fx-slider.CgziI_FO.css"
+      "css/fx-slider.css"
     ]
   },
   "resources/scripts/core/fx/smoothscroll/fx-smoothscroll.js": {
-    "file": "js/chunk/fx-smoothscroll.CQsDxEmS.js",
+    "file": "js/chunks/fx-smoothscroll.js",
     "name": "fx-smoothscroll",
     "src": "resources/scripts/core/fx/smoothscroll/fx-smoothscroll.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/scripts/index.js",
-      "_dom.D9i0Io8z.js",
-      "_weak.ConRZkkO.js"
+      "_dom.js",
+      "_weak.js"
     ]
   },
   "resources/scripts/core/fx/sticky/fx-sticky.js": {
-    "file": "js/chunk/fx-sticky.BslnZTiw.js",
+    "file": "js/chunks/fx-sticky.js",
     "name": "fx-sticky",
     "src": "resources/scripts/core/fx/sticky/fx-sticky.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/scripts/index.js",
-      "_dom.D9i0Io8z.js",
-      "_weak.ConRZkkO.js"
+      "_dom.js",
+      "_weak.js"
     ]
   },
   "resources/scripts/core/fx/tabs/fx-tabs.js": {
-    "file": "js/chunk/fx-tabs.DuECXRD5.js",
+    "file": "js/chunks/fx-tabs.js",
     "name": "fx-tabs",
     "src": "resources/scripts/core/fx/tabs/fx-tabs.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/scripts/index.js",
-      "_dom.D9i0Io8z.js",
-      "_weak.ConRZkkO.js"
+      "_dom.js",
+      "_weak.js"
     ],
     "css": [
-      "css/chunk/fx-tabs.5WEridUF.css"
+      "css/fx-tabs.css"
     ]
   },
   "resources/scripts/core/fx/video-embed/fx-video-embed.js": {
-    "file": "js/chunk/fx-video-embed.CTPleXqj.js",
+    "file": "js/chunks/fx-video-embed.js",
     "name": "fx-video-embed",
     "src": "resources/scripts/core/fx/video-embed/fx-video-embed.js",
     "isDynamicEntry": true,
     "imports": [
-      "_dom.D9i0Io8z.js",
-      "_weak.ConRZkkO.js"
+      "_dom.js",
+      "_weak.js"
     ]
   },
   "resources/scripts/core/modules/form/form-dropzone.js": {
-    "file": "js/chunk/form-dropzone.Da2muigG.js",
+    "file": "js/chunks/form-dropzone.js",
     "name": "form-dropzone",
     "src": "resources/scripts/core/modules/form/form-dropzone.js",
     "isDynamicEntry": true,
     "css": [
-      "css/chunk/form-dropzone.rP2sBWTV.css"
+      "css/form-dropzone.css"
     ]
   },
   "resources/scripts/core/modules/form/form-dynamic.js": {
-    "file": "js/chunk/form-dynamic.CSITd2Yf.js",
+    "file": "js/chunks/form-dynamic.js",
     "name": "form-dynamic",
     "src": "resources/scripts/core/modules/form/form-dynamic.js",
     "isDynamicEntry": true
   },
   "resources/scripts/core/modules/form/form-logic.js": {
-    "file": "js/chunk/form-logic.DrQOjFOr.js",
+    "file": "js/chunks/form-logic.js",
     "name": "form-logic",
     "src": "resources/scripts/core/modules/form/form-logic.js",
     "isDynamicEntry": true,
     "css": [
-      "css/chunk/form-logic.dKtkmARa.css"
+      "css/form-logic.css"
     ]
   },
   "resources/scripts/core/modules/form/form-repeater.js": {
-    "file": "js/chunk/form-repeater.Dfe-tAXG.js",
+    "file": "js/chunks/form-repeater.js",
     "name": "form-repeater",
     "src": "resources/scripts/core/modules/form/form-repeater.js",
     "isDynamicEntry": true,
     "css": [
-      "css/chunk/form-repeater.DXhdGavV.css"
+      "css/form-repeater.css"
     ]
   },
   "resources/scripts/core/modules/form/form-steps.js": {
-    "file": "js/chunk/form-steps.CpwRcHNs.js",
+    "file": "js/chunks/form-steps.js",
     "name": "form-steps",
     "src": "resources/scripts/core/modules/form/form-steps.js",
     "isDynamicEntry": true,
     "css": [
-      "css/chunk/form-steps.SSPOgSu5.css"
+      "css/form-steps.css"
     ]
   },
   "resources/scripts/core/modules/form/form-tracking.js": {
-    "file": "js/chunk/form-tracking.CDjasdOF.js",
+    "file": "js/chunks/form-tracking.js",
     "name": "form-tracking",
     "src": "resources/scripts/core/modules/form/form-tracking.js",
     "isDynamicEntry": true
   },
   "resources/scripts/core/modules/form/form.js": {
-    "file": "js/chunk/form.CyJbJDCG.js",
+    "file": "js/chunks/form.js",
     "name": "form",
     "src": "resources/scripts/core/modules/form/form.js",
     "isDynamicEntry": true,
     "css": [
-      "css/chunk/form.CBUQLAlT.css"
+      "css/form.css"
     ]
   },
   "resources/scripts/core/modules/woocommerce/filter/filter.js": {
-    "file": "js/chunk/filter.DtvkLALL.js",
+    "file": "js/chunks/filter.js",
     "name": "filter",
     "src": "resources/scripts/core/modules/woocommerce/filter/filter.js",
     "isDynamicEntry": true,
     "imports": [
-      "_dom.D9i0Io8z.js",
+      "_dom.js",
       "resources/scripts/core/fx/modal/fx-modal.js"
     ],
     "css": [
-      "css/chunk/filter.qhY8R4Bb.css"
+      "css/filter.css"
     ]
   },
   "resources/scripts/core/modules/woocommerce/gallery/gallery-thumbs.js": {
-    "file": "js/chunk/gallery-thumbs.CmQWq7TS.js",
+    "file": "js/chunks/gallery-thumbs.js",
     "name": "gallery-thumbs",
     "src": "resources/scripts/core/modules/woocommerce/gallery/gallery-thumbs.js",
     "isDynamicEntry": true,
     "imports": [
-      "_photoswipe.esm.BUPEGPf-.js",
-      "_free-mode.CKFWmEJe.js",
-      "_dom.D9i0Io8z.js"
+      "_photoswipe.esm.js",
+      "_free-mode.js",
+      "_dom.js"
     ],
     "css": [
-      "css/chunk/gallery-thumbs.8q-mBObF.css"
+      "css/gallery-thumbs.css"
     ]
   },
   "resources/scripts/core/modules/woocommerce/gallery/gallery-tracking.js": {
-    "file": "js/chunk/gallery-tracking.BDttLL8e.js",
+    "file": "js/chunks/gallery-tracking.js",
     "name": "gallery-tracking",
     "src": "resources/scripts/core/modules/woocommerce/gallery/gallery-tracking.js",
     "isDynamicEntry": true
   },
   "resources/scripts/core/modules/woocommerce/quickview/quickview.js": {
-    "file": "js/chunk/quickview.B6k5SGwn.js",
+    "file": "js/chunks/quickview.js",
     "name": "quickview",
     "src": "resources/scripts/core/modules/woocommerce/quickview/quickview.js",
     "isDynamicEntry": true,
     "imports": [
-      "_dom.D9i0Io8z.js",
+      "_dom.js",
       "resources/scripts/core/fx/modal/fx-modal.js"
     ],
     "css": [
-      "css/chunk/quickview.BNfLfFaR.css"
+      "css/quickview.css"
     ]
   },
   "resources/scripts/core/modules/woocommerce/swatches/variation-swatches.js": {
-    "file": "js/chunk/variation-swatches.DPZcLSPR.js",
+    "file": "js/chunks/variation-swatches.js",
     "name": "variation-swatches",
     "src": "resources/scripts/core/modules/woocommerce/swatches/variation-swatches.js",
     "isDynamicEntry": true,
     "imports": [
-      "_dom.D9i0Io8z.js"
+      "_dom.js"
     ],
     "css": [
-      "css/chunk/variation-swatches.Sc7DR3lj.css"
+      "css/variation-swatches.css"
     ]
   },
   "resources/scripts/index.js": {
-    "file": "js/index.CT3Y_1rb.js",
+    "file": "js/index.js",
     "name": "index",
     "src": "resources/scripts/index.js",
     "isEntry": true,
@@ -471,24 +452,17 @@
       "resources/scripts/core/modules/form/form-dynamic.js"
     ],
     "css": [
-      "css/index.D6ooHLJy.css",
-      "css/chunk/tw.dJdUR2cV.css"
+      "css/index.css"
     ]
   },
   "resources/scripts/preflight.js": {
-    "file": "js/preflight.MZ-zDmFB.js",
+    "file": "js/preflight.js",
     "name": "preflight",
     "src": "resources/scripts/preflight.js",
     "isEntry": true
   },
-  "resources/scripts/woocommerce.js": {
-    "file": "js/woocommerce.CNNSi6da.js",
-    "name": "woocommerce",
-    "src": "resources/scripts/woocommerce.js",
-    "isEntry": true
-  },
   "resources/styles/editor-style.scss": {
-    "file": "css/editor-style.CLqe9ZUi.css",
+    "file": "css/editor-style.css",
     "name": "editor-style",
     "names": [
       "editor-style.css"
@@ -497,7 +471,7 @@
     "isEntry": true
   },
   "resources/styles/page.scss": {
-    "file": "css/page.DZpUGWkn.css",
+    "file": "css/page.css",
     "name": "page",
     "names": [
       "page.css"
@@ -506,7 +480,7 @@
     "isEntry": true
   },
   "resources/styles/share.scss": {
-    "file": "css/share.x1XGuNl0.css",
+    "file": "css/share.css",
     "name": "share",
     "names": [
       "share.css"
@@ -515,7 +489,7 @@
     "isEntry": true
   },
   "resources/styles/woocommerce.scss": {
-    "file": "css/woocommerce.DhW1zk6c.css",
+    "file": "css/woocommerce.css",
     "name": "woocommerce",
     "names": [
       "woocommerce.css"

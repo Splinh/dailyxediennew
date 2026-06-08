@@ -1,0 +1,1 @@
+var e=()=>{let e=new WeakMap,t=e=>typeof e==`object`&&!!e;return{has(n){return t(n)&&e.has(n)},get(n){return t(n)?e.get(n):void 0},set(n,r){t(n)&&e.set(n,r)},delete(n){t(n)&&e.delete(n)},getOrCreate(n,r){if(!t(n))return;if(e.has(n))return e.get(n);let i=r();return e.set(n,i),i},cleanup(n,r){!t(n)||!e.has(n)||(r(e.get(n)),e.delete(n))}}};export{e as t};

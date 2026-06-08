@@ -3,7 +3,7 @@
  * Template Name: Trang Chủ
  *
  * Home page template with ACF flexible content.
- * Renders sections: hero, features, flash_sale, categories, products, about, blog.
+ * Renders sections from the htmlmau mockup.
  *
  * @package SPL
  */
@@ -27,45 +27,70 @@ if ( $sections ) :
 		$layout = $section['acf_fc_layout'] ?? '';
 
 		switch ( $layout ) :
-			case 'hero':
-				get_template_part( 'parts/home/hero', null, $section );
+			case 'hero_slider':
+				get_template_part( 'parts/home/hero-slider', null, $section );
 				break;
 
-			case 'features':
-				get_template_part( 'parts/home/features', null, $section );
-				break;
-
-			case 'flash_sale':
-				get_template_part( 'parts/home/flash-sale', null, $section );
+			case 'usp_bar':
+				get_template_part( 'parts/home/usp-bar', null, $section );
 				break;
 
 			case 'categories':
 				get_template_part( 'parts/home/categories', null, $section );
 				break;
 
-			case 'products':
-				get_template_part( 'parts/home/products', null, $section );
+			case 'best_sellers':
+				get_template_part( 'parts/home/best-sellers', null, $section );
 				break;
 
-			case 'about':
-				get_template_part( 'parts/home/about', null, $section );
+			case 'tech_spotlight':
+				get_template_part( 'parts/home/tech-spotlight', null, $section );
 				break;
 
-			case 'blog':
-				get_template_part( 'parts/home/blog', null, $section );
+			case 'promo_banners':
+				get_template_part( 'parts/home/promo-banners', null, $section );
+				break;
+
+			case 'media_reviews':
+				get_template_part( 'parts/home/media-reviews', null, $section );
+				break;
+
+			case 'event_gallery':
+				get_template_part( 'parts/home/event-gallery', null, $section );
+				break;
+
+			case 'store_locator':
+				get_template_part( 'parts/home/store-locator', null, $section );
+				break;
+
+			case 'brands':
+				get_template_part( 'parts/home/brands', null, $section );
+				break;
+
+			case 'news':
+				get_template_part( 'parts/home/news', null, $section );
+				break;
+
+			case 'consult_form':
+				get_template_part( 'parts/home/consult-form', null, $section );
 				break;
 		endswitch;
 	endforeach;
 
 else :
-	// Fallback: render all sections with default content when ACF is not configured.
-	get_template_part( 'parts/home/hero' );
-	get_template_part( 'parts/home/features' );
-	get_template_part( 'parts/home/flash-sale' );
+	// Fallback: render basic mock sections in correct order when ACF is not configured.
+	get_template_part( 'parts/home/hero-slider' );
+	get_template_part( 'parts/home/usp-bar' );
 	get_template_part( 'parts/home/categories' );
-	get_template_part( 'parts/home/products' );
-	get_template_part( 'parts/home/about' );
-	get_template_part( 'parts/home/blog' );
+	get_template_part( 'parts/home/best-sellers' );
+	get_template_part( 'parts/home/tech-spotlight' );
+	get_template_part( 'parts/home/promo-banners' );
+	get_template_part( 'parts/home/media-reviews' );
+	get_template_part( 'parts/home/event-gallery' );
+	get_template_part( 'parts/home/store-locator' );
+	get_template_part( 'parts/home/brands' );
+	get_template_part( 'parts/home/news' );
+	get_template_part( 'parts/home/consult-form' );
 endif;
 
 get_footer();

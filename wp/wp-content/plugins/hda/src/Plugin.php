@@ -304,7 +304,7 @@ final class Plugin {
 	 */
 	public function adminEnqueueAssets( string $hook ): void {
 		// Global admin assets (CSS extracted from JS by Vite).
-		Asset::enqueueJS( 'admin-core.js', [ 'jquery-core' ], null, true, [ 'module', 'defer' ] );
+		Asset::enqueueJS( 'admin-core.js', [ 'jquery-core' ] );
 
 		// Addon settings pages only.
 		$allowed_pages = [
@@ -320,7 +320,7 @@ final class Plugin {
 		wp_enqueue_style( 'wp-color-picker' );
 		wp_enqueue_script( 'wp-color-picker' );
 
-		Asset::enqueueJS( 'settings.js', [ 'wp-color-picker', 'jquery-ui-sortable' ], null, true, [ 'module', 'defer' ] );
+		Asset::enqueueJS( 'settings.js', [ 'wp-color-picker', 'jquery-ui-sortable' ] );
 
 		// CodeMirror.
 		wp_enqueue_style( 'wp-codemirror' );

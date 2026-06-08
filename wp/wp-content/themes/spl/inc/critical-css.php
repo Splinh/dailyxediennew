@@ -47,29 +47,37 @@ function spl_google_font_resource_hints( array $urls, string $relation_type ): a
 
 /**
  * Enqueue critical + pages CSS as external files (cacheable).
+ *
+ * Note: critical.css chứa design system cũ (--color-primary: #60b301 green)
+ * xung đột với Tailwind-based design của DailyXeDien (blue #1e73be).
+ * Đã tạm disable để Tailwind utilities trong header/footer/parts/home hoạt động đúng.
+ * Khi cần restore cho site khác, bật lại block wp_enqueue_style('spl-critical') bên dưới.
  */
 function spl_enqueue_core_css(): void {
 	wp_enqueue_style(
 		'spl-fonts',
-		'https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&display=swap',
+		'https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap',
 		[],
 		null
 	);
 
-	wp_enqueue_style(
-		'spl-critical',
-		get_template_directory_uri() . '/inc/critical.css',
-		[ 'spl-fonts' ],
-		spl_theme_asset_version( 'inc/critical.css' )
-	);
+	// critical.css disabled — conflicts with DailyXeDien Tailwind design.
+	// wp_enqueue_style(
+	// 	'spl-critical',
+	// 	get_template_directory_uri() . '/inc/critical.css',
+	// 	[ 'spl-fonts' ],
+	// 	spl_theme_asset_version( 'inc/critical.css' )
+	// );
 
-	// Sub-page styles (about, contact, news, single).
-	if ( ! is_front_page() ) {
-		wp_enqueue_style(
-			'spl-pages',
-			get_template_directory_uri() . '/inc/pages.css',
-			[ 'spl-critical' ],
-			spl_theme_asset_version( 'inc/pages.css' )
-		);
-	}
+	// Sub-page styles — also old theme design system, disabled.
+	// pages.css dùng --color-bg, --color-border từ critical.css (green theme).
+	// Tailwind page.scss/share.scss từ Vite build handles inner page styling.
+	// if ( ! is_front_page() ) {
+	// 	wp_enqueue_style(
+	// 		'spl-pages',
+	// 		get_template_directory_uri() . '/inc/pages.css',
+	// 		[ 'spl-fonts' ],
+	// 		spl_theme_asset_version( 'inc/pages.css' )
+	// 	);
+	// }
 }

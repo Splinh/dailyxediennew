@@ -3,7 +3,7 @@
 > **Google Sheets gốc**: [Link](https://docs.google.com/spreadsheets/d/1xi5Rv1YKgoAD1wuGH0h1k-cNrX3juF2oYC10uKxvP8k/edit?gid=2085828008#gid=2085828008)
 > **Repo**: [github.com/Splinh/dailyxediennew](https://github.com/Splinh/dailyxediennew)
 > **Khởi tạo**: 2026-06-06
-> **Cập nhật lần cuối**: 2026-06-06
+> **Cập nhật lần cuối**: 2026-06-08
 
 ---
 
@@ -204,23 +204,139 @@
 
 ---
 
+### 🔨 ĐỢT THỰC HIỆN: Trang Chủ + Header/Footer (T3 #32) — bắt đầu 2026-06-07
+
+> Mục tiêu: dựng trang chủ dailyxedien theo `htmlmau/index.html`, ưu tiên header/footer.
+> Brand lấy từ `docs/brand-guide.md` (primary `#1e73be`, accent `#ffa500`, navy `#002647`, font **Be Vietnam Pro**).
+> Trang chủ = ACF Flexible Content; header/footer nhập qua ACF Options page (mở rộng).
+> Stack: **Tailwind v4 + Vite** (pipeline đã có sẵn ở `resources/styles/tailwind/`).
+
+**Quyết định đã chốt:** (1) Tailwind+Vite; (2) thay TOÀN BỘ section trang chủ theo htmlmau; (3) mở rộng ACF Options đầy đủ; (4) brand theo `docs/brand-guide.md`, font Be Vietnam Pro (giữ, không đổi Inter).
+
+**Build:** máy dev chạy `npm run watch` / `npm run build` trong thư mục theme (`wp/wp-content/themes/spl`) là được (user xác nhận). Tailwind v4 chỉ sinh class đang dùng → **phải build lại** sau khi sửa template. JS thì enqueue thẳng, không cần build.
+
+**Icon = SVG inline** (user chốt, KHÔNG FontAwesome). Helper `spl_icon($name,$class)` trong `header.php`.
+
+#### A. Nền build (Tailwind + brand)
+| # | Việc | Trạng thái | Ghi chú |
+|---|------|-----------|---------|
+| A1 | `@theme` trong `themes.css`: primary `#1e73be`, accent `#ffa500`, accent-dark, sale, navy `#002647`, scale primary-50…900, shadow-premium/hover-card, animate float/fade-in; font Be Vietnam Pro | ✅ | thay teal |
+| A2 | Port custom utility/animation htmlmau → `components/dailyxedien.css` (no-scrollbar, hero-slide, tab-btn.active, skip-link, back-to-top, ring-pulse, shimmer, .dxd-mainmenu/mobilemenu/footermenu). Import vào `components/index.css` | ✅ | + FontAwesome đã GỠ khỏi `inc/critical-css.php` |
+| A3 | `npm run build`/`watch` → regenerate `assets/.vite/manifest.json` + `tw.*.css` | ✅ | `pnpm build` thành công |
+| A4 | Bỏ enqueue CSS vanilla cũ (`inc/critical.css`, `inc/pages.css`) | ✅ | Disable trong critical-css.php, inline-js.php |
+
+#### B. Header (ưu tiên) — `header.php` ✅ XONG
+| # | Việc | Trạng thái |
+|---|------|-----------|
+| B1 | Top utility bar (navy): topbar_links ACF + login + giỏ hàng | ✅ |
+| B2 | Main header sticky: logo (`custom_logo` + fallback DXD), search WC (`post_type=product`), hotline | ✅ |
+| B3 | Mobile drawer + accordion danh mục (`mobile-nav`/`main-nav` + `product_cat`) | ✅ |
+| B4 | Nav bar xanh: nút "Danh mục SP" + dropdown (`get_terms('product_cat')`) + `wp_nav_menu('main-nav')` | ✅ |
+| B5 | JS `inc/dxd-ui.js` (drawer, dropdown touch, back-to-top, no-scroll, ESC) — enqueue ở `inc/inline-js.php` | ✅ |
+
+#### C. Footer (ưu tiên) — `footer.php` ✅ XONG
+| # | Việc | Trạng thái |
+|---|------|-----------|
+| C1 | Footer navy 4 cột: Cty+social / Chính sách (`policy-nav`) / Hỗ trợ (`about-nav`) / Liên hệ | ✅ |
+| C2 | Copyright bar + nút nổi (Zalo/Phone/back-to-top) + `parts/global/company-activity` | ✅ |
+
+#### E. ACF Options mở rộng — `acf-json/group_lachuy_options.json`
+| # | Việc | Trạng thái |
+|---|------|-----------|
+| E1 | Tab Header: `topbar_links` (repeater), `logo` (image), `logo_tagline`, `hotline_label`, hotline phụ | ✅ |
+| E2 | Footer: cột chính sách/hỗ trợ qua WP menu (`policy-nav`/`about-nav`) + giữ `footer_desc`, social, `website_url` | ✅ |
+
+#### D. Trang chủ flexible — `acf-json/group_lachuy_home.json` + `templates/template-page-home.php` + `parts/home/*`
+| # | Section (theo htmlmau) | Trạng thái |
+|---|------|-----------|
+| D1 | Viết lại layouts flexible: hero_slider, usp_bar, categories, best_sellers (tabs), tech_spotlight, promo_banners, media_reviews, event_gallery, store_locator, brands, news, consult_form | ✅ |
+| D2 | Sửa `template-page-home.php` switch map layout mới | ✅ |
+| D3 | Viết lại `parts/home/*` (Tailwind) nhận `$args` flexible | ✅ | 12 file |
+| D4 | Sửa `parts/product-card.php` sang style EV (ảnh, tên, giá, sao, "đã bán", badge) | ✅ |
+| D5 | Port JS htmlmau → `resources/scripts/components/page-home.js` (hero slider, switchTab, drawer, cart, testimonials, scroll-top, toast) | ✅ |
+
+#### Verify
+- `pnpm build:theme` ok → `assets/.vite/manifest.json` cập nhật.
+- Set 1 Page template "Trang Chủ" làm front page; nhập vài section ACF.
+- `http://dailynew.test/` khớp `htmlmau/index.html`; đổi ACF → frontend đổi; mobile drawer ok; không lỗi PHP (WP_DEBUG).
+
+---
+
+### 🆕 HDA Plugin (SPL Toolkit) Fix — 2026-06-08
+
+> Fix settings page không hoạt động sau khi clone project.
+
+| # | Công việc | Trạng thái | Ghi chú |
+|---|----------|-----------|--------|
+| I1 | Diagnose: ACF active, HDA active, 17 modules, capability OK | ✅ | Stale transients blocking manifest |
+| I2 | Fix stale transient cache | ✅ | Xóa `_transient_hda_*` |
+| I3 | Fix settings panel visibility (first panel `show` class) | ✅ | |
+| I4 | Fix tab switching (standalone vanilla JS tab switcher) | ✅ | |
+| I5 | Fix script loading: bỏ `type="module"` + `defer` | ✅ | CJS bundle ≠ ESM |
+| I6 | Fix settings save: PHP POST fallback + module settings delegation | ✅ | |
+| I7 | Evaluate tools-thamkhao → kết luận: không cần, xóa được | ✅ | |
+
+### 🆕 Admin UI Tweaks — 2026-06-08
+
+| # | Công việc | Trạng thái | Ghi chú |
+|---|----------|-----------|--------|
+| J1 | Remove `fixed` class từ admin list tables | ✅ | `admin-core.js` source + build |
+
+---
+
 ## 📊 Tổng Kết Tiến Độ
 
 | Phase | Tổng tasks | ✅ Done | 🔄 Doing | ⬜ Todo | % |
 |-------|-----------|--------|---------|-------|---|
 | Htmlmau design | 8 | 8 | 0 | 0 | 100% |
 | Pre-project setup | 5 | 5 | 0 | 0 | 100% |
+| T3 #32 — Header/Footer | 7 (A-C) | 7 | 0 | 0 | 100% |
+| T3 #32 — ACF Options | 2 (E) | 2 | 0 | 0 | 100% |
+| T3 #32 — Trang chủ flexible | 5 (D) | 5 | 0 | 0 | 100% |
+| HDA Plugin Fix | 7 (I) | 7 | 0 | 0 | 100% |
+| Admin UI Tweaks | 1 (J) | 1 | 0 | 0 | 100% |
 | T1 — Setup & Child Theme | 17 | 0 | 0 | 17 | 0% |
 | T2 — Custom Modules | 14 | 0 | 0 | 14 | 0% |
-| T3 — Frontend & Perf | 10 | 0 | 0 | 10 | 0% |
+| T3 — Frontend & Perf (còn lại) | 8 | 0 | 0 | 8 | 0% |
 | T4 — QA & Deploy | 15 | 0 | 0 | 15 | 0% |
-| **TỔNG** | **69** | **13** | **0** | **56** | **19%** |
+| **TỔNG** | **89** | **35** | **0** | **54** | **39%** |
 
 ---
 
 ## 📝 Changelog
 
 > Ghi lại mỗi lần cập nhật plan log.
+
+### 2026-06-08 (chiều)
+- **HDA Plugin Fix** — Settings page trống sau khi clone:
+  - Root cause: `settings.js` (CJS bundle) bị load `type="module"` → JS crash → tab switching + AJAX save hỏng
+  - Fix: bỏ `type="module"` + `defer` khỏi `Plugin.php` enqueue
+  - Thêm PHP POST fallback handler trong `GlobalSetting.php` (cả module toggles + module settings)
+  - Thêm standalone inline tab switcher + first panel `show` class trong `settings.php` view
+  - Xóa stale transients (`_transient_hda_*`), grant `hda_manage_options` capability
+  - Kết luận `tools-thamkhao/`: không cần, legacy tools
+- **Admin UI** — thêm remove `.fixed` class từ list tables vào `admin-core.js` source → build
+- **Hero Slider Fix** — dùng `<img>` thay `background-image`, bỏ Ken Burns zoom, smoother crossfade
+- **Legacy CSS Cleanup** — disable `critical.css`, `pages.css`, `core-ui.js` (conflict Tailwind)
+- Cập nhật task D1-D5, E1-E2, A3-A4 → ✅ tất cả
+
+### 2026-06-08 (sáng)
+- Review lại project theo yêu cầu homepage: xác nhận WordPress root là `wp/`, theme chính là `wp/wp-content/themes/spl`, trang chủ dùng `templates/template-page-home.php` và ACF flexible field `home_sections`.
+- **Hoàn thành D1-D5**: 12 ACF flexible layouts, 12 template parts, product card EV style, page-home.js
+- **Hoàn thành E1-E2**: ACF Options mở rộng (Header tab + Footer integration)
+- Seeding data: `populate-home-dailyxedien.php` + `populate-media-and-fix.php`
+- Fix CSS load order (`Asset.php` — tailwind dep check), slider aspect-ratio, logo fallback
+- `pnpm build` theme + HDA plugin thành công
+- Tạo bộ tài liệu mới: HOMEPAGE-IMPLEMENTATION-PLAN, HOMEPAGE-TODO, HOMEPAGE-PROGRESS, PLAN-TRACKING, DAILYXEDIEN-SOURCE-OF-TRUTH
+
+### 2026-06-07
+- Bắt đầu đợt T3 #32: Trang chủ + Header/Footer dailyxedien (theo htmlmau)
+- Tạo `docs/brand-guide.md` (brand thật từ site: #1e73be / #ffa500 / #002647, Be Vietnam Pro, logo, nav, social)
+- Khảo sát kiến trúc theme: xác nhận pipeline Tailwind v4 + Vite có sẵn (`resources/styles/tailwind/`, enqueue qua `Asset`/manifest); phát hiện `tools/` (vite shared config) bị thiếu → user build bằng `npm run watch`/`build` trong theme
+- Ghi chi tiết việc cần làm A–E vào PLAN-LOG
+- **Hoàn thành A (nền brand/Tailwind), B (header.php), C (footer.php)** — toàn bộ icon SVG inline (helper `spl_icon`), bỏ FontAwesome
+- Set brand `themes.css` + utility `components/dailyxedien.css`; viết `inc/dxd-ui.js` (drawer/dropdown/back-to-top)
+- Còn lại: E (ACF Options mở rộng) + D (trang chủ flexible) — làm tiếp buổi chiều
 
 ### 2026-06-06
 - Khởi tạo PLAN-LOG.md

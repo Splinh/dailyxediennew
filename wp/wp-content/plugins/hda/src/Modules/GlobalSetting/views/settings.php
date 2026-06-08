@@ -19,6 +19,11 @@ $hda_config             = Helper::getOption( GlobalSetting::OPTION_NAME, [] );
 $global_setting_options = $hda_config[ GlobalSetting::KEY_MODULES ] ?? [];
 
 ?>
+<?php
+// Show success notice when saved via PHP fallback.
+if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] === 'true' ) : ?>
+	<div class="notice notice-success is-dismissible"><p><?php esc_html_e( 'Your settings have been saved.', 'hda' ); ?></p></div>
+<?php endif; ?>
 <div class="wrap" id="_container">
 	<form role="form" id="_settings_form" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
 
@@ -94,7 +99,7 @@ $global_setting_options = $hda_config[ GlobalSetting::KEY_MODULES ] ?? [];
 				<h2 class="hidden-text"></h2>
 
 				<!-- Global Setting panel (always visible) -->
-				<div id="global_setting_settings" class="group tabs-panel">
+				<div id="global_setting_settings" class="group tabs-panel show">
 					<div class="section-heading">
 						<h2><?php esc_html_e( 'Global Setting', 'hda' ); ?></h2>
 						<div class="desc"><?php esc_html_e( 'Enable or disable plugin modules.', 'hda' ); ?></div>
@@ -138,22 +143,51 @@ $global_setting_options = $hda_config[ GlobalSetting::KEY_MODULES ] ?? [];
 				</div>
 
 				<script>
-				// Pre-activate tab from URL hash (sync, before Vite bundle).
-				(function(){
-					var h=location.hash.slice(1);if(!h)return;
-					var w=document.getElementById('_content');if(!w)return;
-					var p=w.parentElement;if(!p)return;
-					var tabs=p.querySelectorAll('.tabs-nav .menu-group-item>[data-tab]');
-					var panels=w.querySelectorAll(':scope>.tabs-panel');
-					for(var i=0;i<tabs.length;i++){
-						if(tabs[i].getAttribute('data-tab')===h){
-							for(var j=0;j<tabs.length;j++){tabs[j].classList.remove('current');panels[j]&&panels[j].classList.remove('show');}
-							tabs[i].classList.add('current');panels[i]&&panels[i].classList.add('show');
-							break;
-						}
+			// Standalone tab switcher — works without settings.js bundle.
+			(function(){
+				var w = document.getElementById('_content');
+				if (!w) return;
+				var p = w.parentElement;
+				if (!p) return;
+
+				var tabs   = p.querySelectorAll('.tabs-nav .menu-group-item>[data-tab]');
+				var panels = w.querySelectorAll(':scope>.tabs-panel');
+
+				function activateTab(slug) {
+					var found = -1;
+					for (var i = 0; i < tabs.length; i++) {
+						tabs[i].classList.remove('current');
+						if (panels[i]) panels[i].classList.remove('show');
+						if (tabs[i].getAttribute('data-tab') === slug) found = i;
 					}
-				})();
-				</script>
+					if (found < 0) found = 0;
+					tabs[found].classList.add('current');
+					if (panels[found]) panels[found].classList.add('show');
+				}
+
+				// Initial: activate from hash or first tab
+				var hash = location.hash.slice(1);
+				activateTab(hash || (tabs[0] ? tabs[0].getAttribute('data-tab') : ''));
+
+				// Click handler for sidebar tabs
+				var nav = p.querySelector('.tabs-nav');
+				if (nav) {
+					nav.addEventListener('click', function(e) {
+						var btn = e.target.closest('[data-tab]');
+						if (!btn) return;
+						e.preventDefault();
+						var slug = btn.getAttribute('data-tab');
+						location.hash = slug;
+						activateTab(slug);
+					});
+				}
+
+				// Hash change handler
+				window.addEventListener('hashchange', function() {
+					activateTab(location.hash.slice(1) || '');
+				});
+			})();
+			</script>
 			</div>
 		</div>
 	</form>

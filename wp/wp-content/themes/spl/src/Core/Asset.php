@@ -225,9 +225,10 @@ final class Asset {
 			}
 
 			$src     = self::assetUrl( $cssFile );
+			$tailwindHandle = self::handle( 'tailwind.css' );
 			$cssDeps = match ( $entry ) {
 				'admin.js' => [],
-				default    => [ self::handle( 'tailwind.css' ) ],
+				default    => ( $tailwindHandle && wp_style_is( $tailwindHandle, 'registered' ) ) ? [ $tailwindHandle ] : [],
 			};
 
 			self::enqueueStyle(

@@ -24,7 +24,7 @@ while ( have_posts() ) :
 	// Author.
 	$author_name = get_the_author();
 	$author_bio  = get_the_author_meta( 'description' );
-	$author_role = $author_bio ? '' : __( 'Chuyên gia thảo dược', 'spl' );
+	$author_role = $author_bio ? '' : __( 'Chuyên gia xe điện', 'spl' );
 	$initials    = '';
 	foreach ( array_slice( explode( ' ', trim( $author_name ) ), -2 ) as $w ) {
 		$initials .= mb_substr( $w, 0, 1 );
@@ -147,7 +147,7 @@ while ( have_posts() ) :
 						</div>
 						<div class="post-author-box__info">
 							<h4><?php echo esc_html( $author_name ); ?></h4>
-							<p><?php echo esc_html( $author_bio ?: __( 'Đội ngũ chuyên gia thảo dược và dược liệu, với sứ mệnh chia sẻ kiến thức y học cổ truyền và mang đến sản phẩm thiên nhiên tốt nhất cho cộng đồng.', 'spl' ) ); ?></p>
+							<p><?php echo esc_html( $author_bio ?: __( 'Đội ngũ chuyên gia xe điện của DailyXeDien, chia sẻ kiến thức chọn xe, sử dụng và bảo dưỡng để mang đến trải nghiệm tốt nhất cho khách hàng.', 'spl' ) ); ?></p>
 							<div class="post-author-box__social">
 								<a href="<?php echo esc_url( $fb_url ?: '#' ); ?>"<?php echo $fb_url ? ' target="_blank" rel="noopener"' : ''; ?>>Facebook</a>
 								<a href="<?php echo esc_url( $yt_url ?: '#' ); ?>"<?php echo $yt_url ? ' target="_blank" rel="noopener"' : ''; ?>>Youtube</a>
@@ -248,7 +248,7 @@ while ( have_posts() ) :
 						<div class="sidebar-cta">
 							<svg class="icon icon-xl" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
 							<h4><?php esc_html_e( 'Cần tư vấn?', 'spl' ); ?></h4>
-							<p><?php esc_html_e( 'Gọi ngay cho chúng tôi để được tư vấn miễn phí về các sản phẩm thảo dược.', 'spl' ); ?></p>
+							<p><?php esc_html_e( 'Gọi ngay cho chúng tôi để được tư vấn miễn phí về các dòng xe điện.', 'spl' ); ?></p>
 							<a href="<?php echo esc_url( $hotline_url ); ?>" class="btn btn--primary btn--sm"><?php echo esc_html( $hotline ); ?></a>
 						</div>
 					</div>

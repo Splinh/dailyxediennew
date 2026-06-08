@@ -8,9 +8,9 @@
 	--breakpoint-xl: 1280px;
 	--breakpoint-2xl: 1536px;
 
-	/* Fonts */
-	--font-header: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-	--font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+	/* Fonts — dailyxedien.vn dùng Be Vietnam Pro (xem docs/brand-guide.md) */
+	--font-header: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+	--font-body: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
 	--font-mono: Consolas, 'Liberation Mono', Courier, monospace;
 
 	/* Override Tailwind defaults */
@@ -23,13 +23,64 @@
 	--global-fs: 1rem;
 	--text-base--line-height: var(--global-line-height);
 
-	/* Colors - Primary & Secondary (Tailwind 4 namespace) */
-	/* Usage: .text-primary, .bg-primary, .border-primary, etc. */
-	--color-primary: var(--color-teal-500);
-	--color-primary-hover: var(--color-teal-600);
-	--color-secondary: var(--color-blue-600);
-	--color-secondary-hover: var(--color-blue-700);
-	--color-background: #fcfcfc;
-	--color-background-dark: var(--color-slate-900);
+	/* ========================================================================
+	 * Brand colors — dailyxedien.vn (nguồn: docs/brand-guide.md, site thật)
+	 * Usage semantic: .text-primary, .bg-primary, .bg-accent, .bg-navy ...
+	 * Usage scale (theo htmlmau): .bg-primary-600, .text-primary-500 ...
+	 * ====================================================================== */
+	--color-primary: #1e73be;
+	--color-primary-hover: #155a92;
+	--color-secondary: #002647;
+	--color-secondary-hover: #001a33;
+
+	/* Primary scale (xanh thương hiệu) */
+	--color-primary-50: #eaf3fb;
+	--color-primary-100: #cfe3f5;
+	--color-primary-200: #a6ccec;
+	--color-primary-300: #6ba9dd;
+	--color-primary-400: #3d8ccf;
+	--color-primary-500: #1e73be;
+	--color-primary-600: #155a92;
+	--color-primary-700: #104a78;
+	--color-primary-800: #0d3c61;
+	--color-primary-900: #002647;
+	--color-primary-950: #001a33;
+
+	/* Accent (cam CTA) */
+	--color-accent: #ffa500;
+	--color-accent-dark: #dd9933;
+	--color-accent-50: #fff6e6;
+	--color-accent-100: #ffe8bf;
+	--color-accent-500: #ffa500;
+	--color-accent-600: #dd9933;
+
+	/* Trạng thái & neutral thương hiệu */
+	--color-sale: #f41e1e;
+	--color-navy: #002647;
+	--color-dark-gray: #4d4d4d;
+	--color-light-gray: #f1f1f1;
+
+	--color-background: #ffffff;
+	--color-background-dark: var(--color-navy);
 	--color-body: #000000;
+
+	/* Shadows (htmlmau premium cards) — dùng: shadow-premium, shadow-hover-card */
+	--shadow-premium: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 8px -1px rgba(0, 0, 0, 0.02);
+	--shadow-hover-card: 0 20px 40px -4px rgba(0, 0, 0, 0.08), 0 8px 20px -2px rgba(0, 0, 0, 0.03);
+	--shadow-glow: 0 0 20px rgba(30, 115, 190, 0.15);
+
+	/* Animations (htmlmau) — dùng: animate-float, animate-fade-in */
+	--animate-float: float 4s ease-in-out infinite;
+	--animate-fade-in: fade-in 0.5s ease-out both;
+}
+
+/* Keyframes cho animation token ở trên */
+@keyframes float {
+	0%, 100% { transform: translateY(0); }
+	50% { transform: translateY(-8px); }
+}
+
+@keyframes fade-in {
+	from { opacity: 0; transform: translateY(12px); }
+	to { opacity: 1; transform: translateY(0); }
 }

@@ -1,60 +1,48 @@
 {
-  "_rolldown-runtime.Cko4QHwX.js": {
-    "file": "js/chunk/rolldown-runtime.Cko4QHwX.js",
-    "name": "rolldown-runtime"
-  },
-  "_tw.BEFGY8yJ.css": {
-    "file": "css/chunk/tw.BEFGY8yJ.css",
-    "src": "_tw.BEFGY8yJ.css"
-  },
   "resources/scripts/admin-core.js": {
-    "file": "js/admin-core.BvF0Cq0f.js",
+    "file": "js/admin-core.js",
     "name": "admin-core",
     "src": "resources/scripts/admin-core.js",
     "isEntry": true,
     "css": [
-      "css/admin-core.dx6wctR3.css"
+      "css/admin-core.css"
     ]
   },
   "resources/scripts/converter.js": {
-    "file": "js/converter.Bh0x6fvK.js",
+    "file": "js/converter.js",
     "name": "converter",
     "src": "resources/scripts/converter.js",
     "isEntry": true,
     "css": [
-      "css/converter.CKC0GPgx.css"
+      "css/converter.css"
     ]
   },
   "resources/scripts/login.js": {
-    "file": "js/login.BYKDwmqa.js",
+    "file": "js/login.js",
     "name": "login",
     "src": "resources/scripts/login.js",
     "isEntry": true,
     "css": [
-      "css/login.Qi5zRH-3.css"
+      "css/login.css"
     ]
   },
   "resources/scripts/profile.js": {
-    "file": "js/profile.CR7FtL-D.js",
+    "file": "js/profile.js",
     "name": "profile",
     "src": "resources/scripts/profile.js",
     "isEntry": true
   },
   "resources/scripts/settings.js": {
-    "file": "js/settings.DvtoIz9X.js",
+    "file": "js/settings.js",
     "name": "settings",
     "src": "resources/scripts/settings.js",
     "isEntry": true,
-    "imports": [
-      "_rolldown-runtime.Cko4QHwX.js"
-    ],
     "css": [
-      "css/settings.WbH6NnEm.css",
-      "css/chunk/tw.BEFGY8yJ.css"
+      "css/settings.css"
     ]
   },
   "resources/scripts/sorting.js": {
-    "file": "js/sorting.Bhf3c0PU.js",
+    "file": "js/sorting.js",
     "name": "sorting",
     "src": "resources/scripts/sorting.js",
     "isEntry": true

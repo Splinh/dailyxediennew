@@ -53,10 +53,67 @@ final class GlobalSetting {
 
 	/**
 	 * Initialize admin menu (AJAX is handled by SettingsManager).
+	 * PHP POST handler added as fallback when JS AJAX fails.
 	 */
 	public function __construct() {
 		add_action( 'admin_menu', $this->adminMenu( ... ) );
 		add_action( 'admin_menu', $this->renameFirstSubmenu( ... ), 999 );
+		add_action( 'admin_init', $this->handlePostSave( ... ) );
+	}
+
+	/**
+	 * PHP fallback: handle direct POST form submission (when AJAX fails).
+	 *
+	 * Mirrors SettingsManager::ajaxSubmitSettings():
+	 * 1. Saves module toggles to hda_config
+	 * 2. Delegates to each HasSettings module via registry
+	 */
+	private function handlePostSave(): void {
+		if (
+			! isset( $_POST['_submit_settings'] )
+			|| ! is_admin()
+			|| wp_doing_ajax()
+		) {
+			return;
+		}
+
+		// Verify nonce.
+		check_admin_referer( '_wpnonce_settings_form_' . get_current_user_id() );
+
+		if ( ! current_user_can( Plugin::CAPABILITY ) ) {
+			wp_die( esc_html__( 'You do not have permission to perform this action.', 'hda' ) );
+		}
+
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$data = wp_unslash( $_POST );
+
+		$registry = ModuleRegistry::getInstance();
+		$config   = $registry->getConfig();
+
+		// 1. Module toggles.
+		$enabled = [];
+		foreach ( $config as $slug => $value ) {
+			if ( ! empty( $data[ $slug ] ) ) {
+				$enabled[ $slug ] = 1;
+			}
+		}
+
+		$hda_config = [
+			self::KEY_MODULES         => $enabled,
+			self::KEY_CLEAN_UNINSTALL => ! empty( $data[ self::KEY_CLEAN_UNINSTALL ] ) ? 1 : 0,
+		];
+
+		\HDAddons\Helper::updateOption( self::OPTION_NAME, $hda_config, 0, false );
+
+		// 2. Module-specific settings (same delegation as SettingsManager).
+		$registry->processSettingsSave( $data );
+
+		\HDAddons\Helper::clearAllCache();
+
+		// Redirect back with success message.
+		$referer = wp_get_referer() ?: admin_url( 'admin.php?page=hda-settings' );
+		wp_safe_redirect( add_query_arg( 'settings-updated', 'true', $referer ) );
+		exit;
 	}
 
 	// --------------------------------------------------
