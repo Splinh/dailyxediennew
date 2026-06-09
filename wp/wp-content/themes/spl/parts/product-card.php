@@ -15,7 +15,7 @@ $extra_classes = array_filter(
 		preg_split( '/\s+/', (string) ( $data['class'] ?? '' ) ) ?: []
 	)
 );
-$card_classes  = implode( ' ', array_merge( [ 'bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 flex flex-col justify-between group relative' ], $extra_classes ) );
+$card_classes  = implode( ' ', array_merge( [ 'bg-white border border-slate-100 rounded-xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 flex flex-col justify-between group relative' ], $extra_classes ) );
 
 /** @var \WC_Product|null $card_product */
 $card_product = $data['product'] ?? null;
@@ -126,12 +126,12 @@ $stars_count     = $average_rating > 0 ? round( $average_rating ) : 5;
 	<?php endif; ?>
 
 	<a href="<?php echo esc_url( $permalink ); ?>" class="block">
-		<div class="p-3 bg-slate-50/50 flex items-center justify-center h-36 md:h-48 relative overflow-hidden">
+		<div class="bg-slate-50/50 flex items-center justify-center h-36 md:h-48 relative overflow-hidden">
 			<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $name ); ?>" loading="lazy" class="max-h-full max-w-full object-contain transform group-hover:scale-105 transition-transform duration-300" />
 		</div>
 	</a>
 
-	<div class="p-3 md:p-5 flex-grow flex flex-col justify-between">
+	<div class="px-4 pt-[15px] pb-4 flex-grow flex flex-col justify-between">
 		<div>
 			<?php if ( $cat_name ) : ?>
 				<span class="text-[9px] md:text-[10px] text-slate-400 font-bold uppercase tracking-wider"><?php echo esc_html( $cat_name ); ?></span>

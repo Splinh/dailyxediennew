@@ -181,11 +181,125 @@ $('.wp-list-table.fixed').removeClass('fixed');
 
 ---
 
+## BUG-010: Tailwind `@source` không quét `parts/` — class trang chủ bị purge 🔴 ✅
+
+**Ngày phát hiện**: 2026-06-08
+**File liên quan**: `wp/wp-content/themes/spl/resources/styles/tailwind/index.css`
+
+**Triệu chứng**: Trang chủ vỡ giao diện dù template đúng; nhiều class (`shadow-hover-card`, `snap-mandatory`, `aspect-[1920/750]`, `lg:grid-cols-6`…) không có trong CSS build. (Khác BUG-001: ở đây CSS có load nhưng class bị purge.)
+
+**Root cause**: Tailwind v4 dùng `source(none)` + danh sách `@source` thủ công, chỉ quét `{src,config,template-parts,templates,woocommerce}`. Toàn bộ part trang chủ ở `parts/**` không được quét → purge.
+
+**Fix**: Thêm `inc,parts` vào glob PHP + `inc/**/*.js`, rồi `pnpm build`.
+```diff
+- @source "../../../{src,config,template-parts,templates,woocommerce}/**/*.php";
++ @source "../../../{src,config,inc,parts,template-parts,templates,woocommerce}/**/*.php";
+```
+**Phòng ngừa**: thêm thư mục template mới → nhớ thêm vào `@source`.
+
+---
+
+## BUG-011: ACF JSON còn brand "Lạc Huy / lachuy" 🟡 ✅
+
+**Ngày phát hiện**: 2026-06-08
+**File liên quan**: `acf-json/group_lachuy_*.json` (4 file)
+
+**Triệu chứng**: Tên file, group `key`/`title`, prefix field và data còn "Lạc Huy".
+
+**Fix**: Đổi tên 4 file → `group_daily_*.json`; `group_lachuy_/field_lachuy_/layout_lachuy_` → `daily`; "Lạc Huy" → "DailyXeDien". **Giữ nguyên field `name`** (`home_sections`…) để template không vỡ.
+
+---
+
+## BUG-012: `spl_icon` thiếu icon → render SVG rỗng 🟡 ✅
+
+**Ngày phát hiện**: 2026-06-08
+**File liên quan**: `header.php` (hàm `spl_icon`)
+
+**Triệu chứng**: Nút slider, danh mục, tab hiện icon rỗng.
+
+**Root cause**: Map icon tĩnh thiếu `chevron-left`, `bicycle`, `motorcycle`, `truck`.
+
+**Fix**: Bổ sung 4 path Lucide. **Thêm icon mới phải khai báo trong map này.**
+
+---
+
+## BUG-013: Class Tailwind không tồn tại trong config 🟡 ✅
+
+**Ngày phát hiện**: 2026-06-08
+**File liên quan**: `resources/styles/tailwind/themes.css`, `parts/home/consult-form.php`
+
+**Triệu chứng**: Badge tech & tiêu đề consult form sai style.
+
+**Root cause**: `bg-primary-950/50` (scale chỉ tới 900) và `md:text-3.5xl` (size không chuẩn) không sinh được.
+
+**Fix**: Thêm token `--color-primary-950: #001a33`; đổi `md:text-3.5xl` → `md:text-4xl`.
+**Kiểm chứng**: 526 class trong DOM → **0 class Tailwind thiếu** (22 còn lại là class WP/WooCommerce/JS-marker).
+
+---
+
+## BUG-014: `SwatchesAdmin` fatal khi WooCommerce chưa active 🔴 ⬜
+
+**Ngày phát hiện**: 2026-06-08
+**File liên quan**: `src/Modules/WooCommerce/Swatches/Admin/SwatchesAdmin.php:39`
+
+**Triệu chứng**: `PHP Fatal: Call to undefined function wc_get_attribute_taxonomy_names()` (hook `admin_init`); WP-CLI prompt "--skip-themes=spl".
+
+**Root cause**: Gọi hàm WC trong `hookAttributeTaxonomies()` mà không kiểm tra WC đã load.
+
+**Hiện trạng**: Không trigger vì WooCommerce đang active (né tạm). **Chưa sửa code.**
+
+**Khuyến nghị**: Bọc đầu hàm:
+```php
+if ( ! function_exists( 'wc_get_attribute_taxonomy_names' ) ) { return; }
+```
+
+---
+
+## BUG-015: `sed -i` (Windows) làm rỗng file 🟡 ✅
+
+**Ngày phát hiện**: 2026-06-08
+**File liên quan**: `.env`, `parts/home/consult-form.php`
+
+**Triệu chứng**: Sau khi chạy `sed -i`, file bị **rỗng 0 byte** (cả hai gitignore/chưa commit → không khôi phục từ git).
+
+**Root cause**: `sed -i` không ổn định trên môi trường Windows/Git-bash của máy dev.
+
+**Fix**: Dựng lại `.env` (DB/URL/9 salts mới, `FORCE_SSL_ADMIN=false`) và `consult-form.php` (theo `htmlmau/index.html` + contract JS).
+**Phòng ngừa**: **KHÔNG dùng `sed -i`** trên dự án này — dùng Edit/Write hoặc PHP.
+
+---
+
+## BUG-016: WP-CLI + WooCommerce — cảnh báo "Undefined array key routes" 🟢 ✅
+
+**Ngày phát hiện**: 2026-06-08
+**File liên quan**: `woocommerce/includes/cli/class-wc-cli-runner.php`
+
+**Triệu chứng**: Mọi lệnh `wp` in cảnh báo, làm bẩn output `--porcelain` (từng set nhầm ID khi capture biến shell).
+
+**Root cause**: Tương thích WC + WP-CLI khi REST routes chưa sẵn. Vô hại với frontend.
+
+**Workaround**: `--skip-plugins=woocommerce` cho lệnh không cần WC; `grep -v` lọc cảnh báo.
+
+---
+
+## BUG-017: "Không thấy settings SPL Toolkit" (lần kiểm tra 2026-06-09) 🟡 ✅
+
+**Ngày phát hiện**: 2026-06-09
+**File liên quan**: `hda/src/Plugin.php`, `hda/src/Modules/GlobalSetting/GlobalSetting.php`
+
+**Triệu chứng**: User báo vào admin không thấy settings của SPL Toolkit.
+
+**Kết luận**: Không phải bug mới (liên quan BUG-005/006/007 đã fix). Đã verify: plugin active, cap `hda_manage_options` đã cấp cho `administrator`+`quantri`, menu **`SPL`** (icon ⚙️) đăng ký đúng, `settings.js` build+enqueue đúng screen, truy cập thật `admin.php?page=hda-settings` trả về đủ UI (257KB).
+
+**Nguyên nhân cảm nhận**: menu tên "SPL" (không phải "SPL Toolkit"); cap được sync ở lần `admin_init` đầu → cần **đăng xuất/đăng nhập lại** hoặc hard-refresh. URL trực tiếp: `/wp/wp-admin/admin.php?page=hda-settings`.
+
+---
+
 ## Thống kê
 
 | Severity | Tổng | Đã fix | Chưa fix |
 |----------|------|--------|----------|
-| 🔴 Critical | 5 | 5 | 0 |
-| 🟡 Medium | 3 | 3 | 0 |
-| 🟢 Low | 1 | 1 | 0 |
-| **Tổng** | **9** | **9** | **0** |
+| 🔴 Critical | 7 | 6 | 1 (BUG-014) |
+| 🟡 Medium | 7 | 7 | 0 |
+| 🟢 Low | 2 | 2 | 0 |
+| **Tổng** | **17** | **16** | **1** |

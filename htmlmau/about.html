@@ -75,10 +75,10 @@
     <div class="bg-slate-900 text-slate-300 text-xs py-2.5 px-4 border-b border-slate-800 relative z-50 hidden md:block">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
             <div class="flex flex-wrap items-center gap-5 justify-center md:justify-start">
-                <a href="index.html#store-section" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-primary-500 animate-pulse"></i> Hệ thống cửa hàng</a>
+                <a href="he-thong-dai-ly.html" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-primary-500 animate-pulse"></i> Hệ thống cửa hàng</a>
                 <a href="#" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-solid fa-magnifying-glass text-slate-400"></i> Tra cứu đơn hàng</a>
-                <a href="index.html#news-section" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-regular fa-newspaper"></i> Tin tức</a>
-                <a href="index.html#consult-form" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-regular fa-envelope"></i> Liên hệ</a>
+                <a href="tin-tuc.html" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-regular fa-newspaper"></i> Tin tức</a>
+                <a href="lien-he.html" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-regular fa-envelope"></i> Liên hệ</a>
             </div>
             <div class="flex items-center gap-5">
                 <a href="#" class="hover:text-white transition-colors flex items-center gap-1.5"><i class="fa-regular fa-user"></i> Đăng nhập / Đăng ký</a>
@@ -169,15 +169,13 @@
             </form>
 
             <!-- Navigation Links -->
-            <div class="space-y-1 text-sm font-semibold text-slate-700">
-                <a href="index.html" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-solid fa-house text-slate-400"></i> Trang chủ</a>
-                <a href="about.html" class="flex items-center gap-3 p-3 rounded-xl bg-primary-50 text-primary-600 transition-colors"><i class="fa-solid fa-building text-primary-500"></i> Về chúng tôi</a>
-                <a href="index.html#best-sellers" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-solid fa-bicycle text-slate-400"></i> Xe Điện</a>
-                <a href="index.html#best-sellers" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-solid fa-motorcycle text-slate-400"></i> Xe 50CC</a>
-                <a href="index.html#best-sellers" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-solid fa-bolt text-slate-400"></i> Xe Máy Điện</a>
-                <a href="index.html#ai-tech-spotlight" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors text-primary-600"><i class="fa-solid fa-microchip"></i> Công nghệ xe</a>
-                <a href="index.html#store-section" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-solid fa-location-dot text-slate-400"></i> Hệ Thống Cửa Hàng</a>
-                <a href="index.html#consult-form" onclick="closeMobileMenu()" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors text-yellow-600"><i class="fa-solid fa-gift text-slate-400"></i> Đăng Ký Khuyến Mãi</a>
+                        <div class="space-y-1 text-sm font-semibold text-slate-700">
+                <a href="index.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-house text-slate-400"></i> Trang chủ</a>
+                <a href="san-pham.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-bicycle text-slate-400"></i> Sản phẩm</a>
+                <a href="about.html" class="flex items-center gap-3 p-3 rounded-xl bg-primary-50 text-primary-600 transition-colors"><i class="fa-circle-info text-primary-500"></i> Về chúng tôi</a>
+                <a href="he-thong-dai-ly.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-location-dot text-slate-400"></i> Hệ thống đại lý</a>
+                <a href="tin-tuc.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-regular fa-newspaper text-slate-400"></i> Tin tức</a>
+                <a href="lien-he.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors"><i class="fa-regular fa-envelope text-slate-400"></i> Liên hệ</a>
             </div>
 
             <!-- Interactive Accordion Mobile Categories -->
@@ -205,92 +203,56 @@
         </div>
     </div>
 
-    <!-- NAVIGATION MENU BAR (Hidden on Mobile) -->
+        <!-- NAVIGATION BAR -->
     <nav class="bg-primary-600 text-white shadow-md relative z-40 hidden md:block">
         <div class="max-w-7xl mx-auto flex items-center">
-            
-            <!-- Category Trigger with Hover/Click dropdown functionality -->
             <div class="relative group" id="category-menu-container">
-                <button class="bg-primary-700 hover:bg-primary-800 px-6 py-4 flex items-center gap-3 cursor-pointer transition-colors font-semibold text-sm select-none" id="category-trigger">
+                <button class="bg-primary-700 hover:bg-primary-600/80 px-6 py-4 flex items-center gap-3 font-semibold text-sm select-none" id="category-trigger">
                     <i class="fa-solid fa-bars text-lg"></i>
                     <span>DANH MỤC SẢN PHẨM</span>
                     <i class="fa-solid fa-chevron-down text-xs ml-1 transition-transform group-hover:rotate-180"></i>
                 </button>
-                
                 <!-- Dropping Menu on hover/click -->
                 <div class="absolute top-full left-0 w-64 bg-white border border-slate-100 rounded-b-2xl shadow-premium overflow-hidden p-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-50">
                     <div class="space-y-1">
-                        <a href="index.html#best-sellers" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group">
+                        <a href="san-pham.html" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group">
                             <span class="flex items-center gap-3">
                                 <span class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-500 flex items-center justify-center group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors"><i class="fa-solid fa-bicycle"></i></span>
                                 Xe điện
                             </span>
                             <i class="fa-solid fa-chevron-right text-xs opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
                         </a>
-                        <a href="index.html#best-sellers" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group">
+                        <a href="san-pham.html" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group">
                             <span class="flex items-center gap-3">
                                 <span class="w-8 h-8 rounded-lg bg-blue-50 text-blue-500 flex items-center justify-center group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors"><i class="fa-solid fa-motorcycle"></i></span>
                                 Xe 50cc
                             </span>
                             <i class="fa-solid fa-chevron-right text-xs opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
                         </a>
-                        <a href="index.html#best-sellers" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group">
+                        <a href="san-pham.html" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group">
                             <span class="flex items-center gap-3">
                                 <span class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-500 flex items-center justify-center group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors"><i class="fa-solid fa-bolt"></i></span>
                                 Xe máy điện
                             </span>
                             <i class="fa-solid fa-chevron-right text-xs opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
                         </a>
-                        <a href="index.html#best-sellers" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group">
-                            <span class="flex items-center gap-3">
-                                <span class="w-8 h-8 rounded-lg bg-amber-50 text-amber-500 flex items-center justify-center group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors"><i class="fa-solid fa-truck-pickup"></i></span>
-                                Xe 3 bánh
-                            </span>
-                            <i class="fa-solid fa-chevron-right text-xs opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
-                        </a>
-                        <a href="#" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group">
-                            <span class="flex items-center gap-3">
-                                <span class="w-8 h-8 rounded-lg bg-pink-50 text-pink-500 flex items-center justify-center group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors"><i class="fa-solid fa-gauge"></i></span>
-                                Xe đạp điện
-                            </span>
-                            <i class="fa-solid fa-chevron-right text-xs opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
-                        </a>
-                        <a href="#" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group">
+                        <a href="san-pham.html" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group">
                             <span class="flex items-center gap-3">
                                 <span class="w-8 h-8 rounded-lg bg-violet-50 text-violet-500 flex items-center justify-center group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors"><i class="fa-solid fa-gears"></i></span>
                                 Phụ kiện
                             </span>
                             <i class="fa-solid fa-chevron-right text-xs opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
                         </a>
-                        <a href="#" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-medium transition-all group">
-                            <span class="flex items-center gap-3">
-                                <span class="w-8 h-8 rounded-lg bg-rose-50 text-rose-500 flex items-center justify-center group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors"><i class="fa-solid fa-car-battery"></i></span>
-                                Ắc quy xe điện
-                            </span>
-                            <i class="fa-solid fa-chevron-right text-xs opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
-                        </a>
-                        <a href="#" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 text-slate-700 hover:text-primary-500 font-semibold text-yellow-600 transition-all group">
-                            <span class="flex items-center gap-3">
-                                <span class="w-8 h-8 rounded-lg bg-yellow-50 text-yellow-500 flex items-center justify-center group-hover:bg-yellow-100 transition-colors"><i class="fa-solid fa-gift"></i></span>
-                                Khuyến mãi hot
-                            </span>
-                            <i class="fa-solid fa-chevron-right text-xs opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
-                        </a>
                     </div>
                 </div>
             </div>
-
-            <!-- Main Navigation Links -->
             <div class="flex items-center gap-1 px-4 text-sm font-medium overflow-x-auto no-scrollbar">
-                <a href="index.html#best-sellers" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">XE ĐIỆN</a>
-                <a href="index.html#best-sellers" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">XE 50CC</a>
-                <a href="index.html#best-sellers" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">XE MÁY ĐIỆN</a>
-                <a href="index.html#best-sellers" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">XE 3 BÁNH</a>
-                <a href="#" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">PHỤ KIỆN</a>
-                <a href="#" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">ẮC QUY</a>
-                <a href="index.html#ai-tech-spotlight" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap font-semibold flex items-center gap-1"><i class="fa-solid fa-microchip"></i> CÔNG NGHỆ XE</a>
-                <a href="index.html#store-section" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap">HỆ THỐNG CỬA HÀNG</a>
-                <a href="index.html#consult-form" class="px-4 py-4 hover:bg-primary-700/50 transition-colors text-yellow-300 font-bold whitespace-nowrap flex items-center gap-1"><i class="fa-solid fa-fire text-xs"></i> ĐĂNG KÝ KHUYẾN MÃI</a>
+                <a href="san-pham.html" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap flex items-center gap-1.5" id="menu-xe-dien">XE ĐIỆN</a>
+                <a href="san-pham.html" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap flex items-center gap-1.5" id="menu-xe-50cc">XE 50CC</a>
+                <a href="about.html" class="px-4 py-4 bg-white/10 font-bold whitespace-nowrap flex items-center gap-1.5" id="menu-about">VỀ CHÚNG TÔI</a>
+                <a href="he-thong-dai-ly.html" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap flex items-center gap-1.5" id="menu-dai-ly">HỆ THỐNG CỬA HÀNG</a>
+                <a href="tin-tuc.html" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap flex items-center gap-1.5" id="menu-tin-tuc"><i class="fa-regular fa-newspaper text-xs"></i> TIN TỨC</a>
+                <a href="lien-he.html" class="px-4 py-4 hover:bg-primary-700/50 transition-colors whitespace-nowrap flex items-center gap-1.5" id="menu-lien-he"><i class="fa-regular fa-envelope text-xs"></i> LIÊN HỆ</a>
             </div>
         </div>
     </nav>
@@ -759,7 +721,7 @@
                         Bạn đang tìm xe điện cho bản thân hoặc gia đình? Hãy liên hệ ngay để được tư vấn miễn phí, chọn đúng xe phù hợp với ngân sách và nhu cầu sử dụng.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="index.html#consult-form" class="inline-flex items-center justify-center gap-2 bg-white text-primary-600 px-8 py-4 rounded-xl font-bold text-sm hover:bg-slate-50 transition-all shadow-lg transform hover:scale-105">
+                        <a href="lien-he.html" class="inline-flex items-center justify-center gap-2 bg-white text-primary-600 px-8 py-4 rounded-xl font-bold text-sm hover:bg-slate-50 transition-all shadow-lg transform hover:scale-105">
                             <i class="fa-solid fa-paper-plane"></i> Đăng ký tư vấn miễn phí
                         </a>
                         <a href="tel:0933505222" class="inline-flex items-center justify-center gap-2 bg-white/15 border border-white/30 text-white px-8 py-4 rounded-xl font-bold text-sm hover:bg-white/25 transition-all">

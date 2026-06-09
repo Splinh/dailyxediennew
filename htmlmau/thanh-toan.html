@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh toán đơn hàng - dailyxedien.vn</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Thanh toán đơn hàng xe điện, xe 50cc chính hãng tại dailyxedien.vn. Hỗ trợ COD, chuyển khoản, trả góp 0%.">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#1e73be">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Be Vietnam Pro', 'sans-serif'] },
+                    colors: {
+                        primary: { 50: '#f0f5ff', 100: '#e0ebff', 500: '#1e73be', 600: '#165da0', 700: '#0e4880' },
+                        accent: { 500: '#ffa500', 600: '#e69500' },
+                        navy: { 700: '#002647', 800: '#001c36', 900: '#001325' }
+                    },
+                    boxShadow: {
+                        'premium': '0 4px 20px -2px rgba(0,0,0,0.05), 0 2px 8px -1px rgba(0,0,0,0.02)',
+                        'hover-card': '0 20px 40px -4px rgba(0,0,0,0.08), 0 8px 20px -2px rgba(0,0,0,0.03)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .form-input:focus { box-shadow: 0 0 0 3px rgba(30, 115, 190, 0.12); }
+        .payment-option.active { border-color: #1e73be; background-color: #f0f5ff; }
+        .payment-option.active .pay-radio { border-color: #1e73be; }
+        .payment-option.active .pay-radio::after { content: ''; display: block; width: 8px; height: 8px; border-radius: 50%; background: #1e73be; }
+        .pay-radio { width: 18px; height: 18px; border: 2px solid #cbd5e1; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
+        .step-line { position: relative; }
+        .step-line::after { content: ''; position: absolute; top: 50%; left: 100%; width: 100%; height: 2px; background: #e2e8f0; }
+        .step-line.completed::after { background: #10b981; }
+    </style>
+</head>
+<body class="text-slate-800 antialiased overflow-x-hidden font-sans bg-[#fafbfd]">
+
+    <!-- Skip link -->
+    <a href="#checkout-content" class="skip-link">Bỏ qua tới nội dung chính</a>
+
+    <!-- CHECKOUT HEADER (simplified) -->
+    <header class="bg-white py-4 px-4 border-b border-slate-100 shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 md:gap-3">
+                <div class="bg-gradient-to-r from-primary-500 to-primary-600 text-white font-black p-2 md:p-2.5 rounded-xl text-lg md:text-xl shadow-lg shadow-primary-500/20 tracking-wider">D<span class="text-emerald-400">XD</span></div>
+                <div>
+                    <span class="text-lg md:text-2xl font-extrabold tracking-tight text-slate-900">dailyxedien<span class="text-primary-500">.vn</span></span>
+                    <p class="text-[8px] md:text-[10px] tracking-widest text-slate-400 uppercase font-bold hidden sm:block">Thanh toán an toàn & bảo mật</p>
+                </div>
+            </a>
+            <!-- Checkout Steps -->
+            <div class="hidden md:flex items-center gap-0">
+                <div class="flex items-center gap-2 text-xs">
+                    <div class="w-7 h-7 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-[11px]"><i class="fa-solid fa-check text-[10px]"></i></div>
+                    <span class="font-semibold text-emerald-600">Giỏ hàng</span>
+                </div>
+                <div class="w-10 h-0.5 bg-emerald-500 mx-1"></div>
+                <div class="flex items-center gap-2 text-xs">
+                    <div class="w-7 h-7 rounded-full bg-primary-500 text-white flex items-center justify-center font-bold text-[11px]">2</div>
+                    <span class="font-bold text-primary-500">Thanh toán</span>
+                </div>
+                <div class="w-10 h-0.5 bg-slate-200 mx-1"></div>
+                <div class="flex items-center gap-2 text-xs">
+                    <div class="w-7 h-7 rounded-full bg-slate-200 text-slate-400 flex items-center justify-center font-bold text-[11px]">3</div>
+                    <span class="font-medium text-slate-400">Hoàn tất</span>
+                </div>
+            </div>
+            <!-- Security badge -->
+            <div class="hidden sm:flex items-center gap-2 text-xs text-slate-400">
+                <i class="fa-solid fa-shield-halved text-emerald-500 text-base"></i>
+                <span class="font-medium">SSL Bảo mật</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main id="checkout-content" class="max-w-6xl mx-auto px-4 py-8 md:py-10">
+
+        <!-- BREADCRUMB -->
+        <nav class="flex items-center gap-2 text-xs text-slate-400 mb-6" aria-label="Breadcrumb">
+            <a href="index.html" class="hover:text-primary-500 transition-colors">Trang chủ</a>
+            <i class="fa-solid fa-chevron-right text-[8px]"></i>
+            <a href="gio-hang.html" class="hover:text-primary-500 transition-colors">Giỏ hàng</a>
+            <i class="fa-solid fa-chevron-right text-[8px]"></i>
+            <span class="text-slate-700 font-semibold">Thanh toán</span>
+        </nav>
+
+        <form id="checkout-form" onsubmit="handleCheckout(event)">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+                <!-- LEFT COLUMN: Billing + Shipping + Payment (7 cols) -->
+                <div class="lg:col-span-7 space-y-6">
+
+                    <!-- BILLING DETAILS -->
+                    <section class="bg-white border border-slate-100 rounded-xl shadow-premium p-5 md:p-7">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-8 h-8 rounded-lg bg-primary-50 text-primary-500 flex items-center justify-center text-sm"><i class="fa-solid fa-user"></i></div>
+                            <h2 class="text-lg font-black text-slate-900 tracking-tight">Thông tin người nhận</h2>
+                        </div>
+
+                        <div class="space-y-4">
+                            <!-- Name + Phone -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="billing-name" class="block text-xs font-bold text-slate-600 mb-1.5">Họ và tên <span class="text-red-500">*</span></label>
+                                    <input type="text" id="billing-name" name="billing_name" required placeholder="Nguyễn Văn A" class="form-input w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:bg-white focus:border-primary-500 transition-all">
+                                </div>
+                                <div>
+                                    <label for="billing-phone" class="block text-xs font-bold text-slate-600 mb-1.5">Số điện thoại <span class="text-red-500">*</span></label>
+                                    <input type="tel" id="billing-phone" name="billing_phone" required placeholder="0912 345 678" pattern="[0-9]{10,11}" class="form-input w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:bg-white focus:border-primary-500 transition-all">
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div>
+                                <label for="billing-email" class="block text-xs font-bold text-slate-600 mb-1.5">Email <span class="text-xs text-slate-400 font-normal">(Nhận xác nhận đơn hàng)</span></label>
+                                <input type="email" id="billing-email" name="billing_email" placeholder="email@example.com" class="form-input w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:bg-white focus:border-primary-500 transition-all">
+                            </div>
+
+                            <!-- Province + District -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="billing-province" class="block text-xs font-bold text-slate-600 mb-1.5">Tỉnh/Thành phố <span class="text-red-500">*</span></label>
+                                    <select id="billing-province" name="billing_province" required class="form-input w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:bg-white focus:border-primary-500 transition-all appearance-none cursor-pointer">
+                                        <option value="">— Chọn Tỉnh/TP —</option>
+                                        <option>TP. Hồ Chí Minh</option>
+                                        <option>Hà Nội</option>
+                                        <option>Đà Nẵng</option>
+                                        <option>Bình Dương</option>
+                                        <option>Đồng Nai</option>
+                                        <option>Bà Rịa - Vũng Tàu</option>
+                                        <option>Lâm Đồng</option>
+                                        <option>An Giang</option>
+                                        <option>Cần Thơ</option>
+                                        <option>Khánh Hòa</option>
+                                        <option>Long An</option>
+                                        <option>Bình Phước</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="billing-district" class="block text-xs font-bold text-slate-600 mb-1.5">Quận/Huyện <span class="text-red-500">*</span></label>
+                                    <select id="billing-district" name="billing_district" required class="form-input w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:bg-white focus:border-primary-500 transition-all appearance-none cursor-pointer">
+                                        <option value="">— Chọn Quận/Huyện —</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Ward -->
+                            <div>
+                                <label for="billing-ward" class="block text-xs font-bold text-slate-600 mb-1.5">Phường/Xã <span class="text-red-500">*</span></label>
+                                <select id="billing-ward" name="billing_ward" required class="form-input w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:bg-white focus:border-primary-500 transition-all appearance-none cursor-pointer">
+                                    <option value="">— Chọn Phường/Xã —</option>
+                                </select>
+                            </div>
+
+                            <!-- Address -->
+                            <div>
+                                <label for="billing-address" class="block text-xs font-bold text-slate-600 mb-1.5">Địa chỉ cụ thể <span class="text-red-500">*</span></label>
+                                <input type="text" id="billing-address" name="billing_address" required placeholder="Số nhà, tên đường..." class="form-input w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:bg-white focus:border-primary-500 transition-all">
+                            </div>
+
+                            <!-- Order notes -->
+                            <div>
+                                <label for="order-notes" class="block text-xs font-bold text-slate-600 mb-1.5">Ghi chú đơn hàng <span class="text-xs text-slate-400 font-normal">(Tùy chọn)</span></label>
+                                <textarea id="order-notes" name="order_notes" rows="3" placeholder="Ví dụ: Giao hàng giờ hành chính, gọi trước khi giao..." class="form-input w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:bg-white focus:border-primary-500 transition-all resize-y"></textarea>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- SHIPPING METHOD -->
+                    <section class="bg-white border border-slate-100 rounded-xl shadow-premium p-5 md:p-7">
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-500 flex items-center justify-center text-sm"><i class="fa-solid fa-truck-fast"></i></div>
+                            <h2 class="text-lg font-black text-slate-900 tracking-tight">Phương thức vận chuyển</h2>
+                        </div>
+
+                        <div class="space-y-3">
+                            <label class="shipping-option flex items-center gap-4 p-4 border-2 border-primary-500 bg-primary-50/50 rounded-xl cursor-pointer transition-all">
+                                <input type="radio" name="shipping" value="free" checked class="accent-primary-500 w-4 h-4 shrink-0">
+                                <div class="flex-1">
+                                    <span class="font-bold text-sm text-slate-800">Giao hàng tiêu chuẩn</span>
+                                    <p class="text-xs text-slate-400 mt-0.5">Giao trong 3-5 ngày làm việc</p>
+                                </div>
+                                <span class="font-bold text-sm text-emerald-600">Miễn phí</span>
+                            </label>
+                            <label class="shipping-option flex items-center gap-4 p-4 border border-slate-200 hover:border-slate-300 rounded-xl cursor-pointer transition-all">
+                                <input type="radio" name="shipping" value="express" class="accent-primary-500 w-4 h-4 shrink-0">
+                                <div class="flex-1">
+                                    <span class="font-bold text-sm text-slate-800">Giao hàng nhanh</span>
+                                    <p class="text-xs text-slate-400 mt-0.5">Giao trong 1-2 ngày (nội thành)</p>
+                                </div>
+                                <span class="font-bold text-sm text-slate-700">200.000đ</span>
+                            </label>
+                            <label class="shipping-option flex items-center gap-4 p-4 border border-slate-200 hover:border-slate-300 rounded-xl cursor-pointer transition-all">
+                                <input type="radio" name="shipping" value="pickup" class="accent-primary-500 w-4 h-4 shrink-0">
+                                <div class="flex-1">
+                                    <span class="font-bold text-sm text-slate-800">Nhận tại cửa hàng</span>
+                                    <p class="text-xs text-slate-400 mt-0.5">466 Nguyễn Duy Trinh, TP. Thủ Đức</p>
+                                </div>
+                                <span class="font-bold text-sm text-emerald-600">Miễn phí</span>
+                            </label>
+                        </div>
+                    </section>
+
+                    <!-- PAYMENT METHOD -->
+                    <section class="bg-white border border-slate-100 rounded-xl shadow-premium p-5 md:p-7">
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-500 flex items-center justify-center text-sm"><i class="fa-solid fa-credit-card"></i></div>
+                            <h2 class="text-lg font-black text-slate-900 tracking-tight">Phương thức thanh toán</h2>
+                        </div>
+
+                        <div class="space-y-3">
+                            <!-- COD -->
+                            <div onclick="selectPayment('cod')" class="payment-option active flex items-start gap-4 p-4 border-2 rounded-xl cursor-pointer transition-all" data-method="cod">
+                                <div class="pay-radio mt-0.5"></div>
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2">
+                                        <span class="font-bold text-sm text-slate-800">Thanh toán khi nhận hàng (COD)</span>
+                                        <span class="bg-emerald-100 text-emerald-700 text-[9px] font-bold px-2 py-0.5 rounded-full">Phổ biến</span>
+                                    </div>
+                                    <p class="text-xs text-slate-400 mt-1">Thanh toán tiền mặt khi nhận xe tại nhà hoặc cửa hàng.</p>
+                                </div>
+                                <i class="fa-solid fa-money-bill-wave text-emerald-500 text-lg mt-0.5 shrink-0"></i>
+                            </div>
+
+                            <!-- Bank Transfer -->
+                            <div onclick="selectPayment('bank')" class="payment-option flex items-start gap-4 p-4 border border-slate-200 rounded-xl cursor-pointer transition-all hover:border-slate-300" data-method="bank">
+                                <div class="pay-radio mt-0.5"></div>
+                                <div class="flex-1">
+                                    <span class="font-bold text-sm text-slate-800">Chuyển khoản ngân hàng</span>
+                                    <p class="text-xs text-slate-400 mt-1">Chuyển khoản trước, xác nhận tự động. Hỗ trợ QR Pay.</p>
+                                    <div id="bank-details" class="hidden mt-3 p-3 bg-slate-50 rounded-lg border border-slate-100 space-y-1.5 text-xs">
+                                        <p class="font-semibold text-slate-700">Thông tin chuyển khoản:</p>
+                                        <p class="text-slate-500">Ngân hàng: <strong class="text-slate-800">Vietcombank</strong></p>
+                                        <p class="text-slate-500">Số TK: <strong class="text-slate-800">0123 4567 8901</strong></p>
+                                        <p class="text-slate-500">Chủ TK: <strong class="text-slate-800">CONG TY TNHH DAILY XE DIEN</strong></p>
+                                        <p class="text-slate-500">Nội dung: <strong class="text-primary-500">DXD-[Số điện thoại]</strong></p>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-building-columns text-primary-500 text-lg mt-0.5 shrink-0"></i>
+                            </div>
+
+                            <!-- Installment -->
+                            <div onclick="selectPayment('installment')" class="payment-option flex items-start gap-4 p-4 border border-slate-200 rounded-xl cursor-pointer transition-all hover:border-slate-300" data-method="installment">
+                                <div class="pay-radio mt-0.5"></div>
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2">
+                                        <span class="font-bold text-sm text-slate-800">Trả góp 0% lãi suất</span>
+                                        <span class="bg-red-100 text-red-700 text-[9px] font-bold px-2 py-0.5 rounded-full">Hot</span>
+                                    </div>
+                                    <p class="text-xs text-slate-400 mt-1">Duyệt nhanh 15 phút. Chỉ cần CCCD. Kỳ hạn 6–24 tháng.</p>
+                                    <div id="installment-details" class="hidden mt-3 space-y-2">
+                                        <div class="grid grid-cols-3 gap-2">
+                                            <label class="text-center p-2 border border-slate-200 rounded-lg cursor-pointer hover:border-primary-500 transition-colors">
+                                                <input type="radio" name="installment_term" value="6" class="hidden">
+                                                <span class="text-xs font-bold text-slate-700 block">6 tháng</span>
+                                                <span class="text-[10px] text-slate-400">~7.9M/tháng</span>
+                                            </label>
+                                            <label class="text-center p-2 border border-slate-200 rounded-lg cursor-pointer hover:border-primary-500 transition-colors">
+                                                <input type="radio" name="installment_term" value="12" class="hidden">
+                                                <span class="text-xs font-bold text-slate-700 block">12 tháng</span>
+                                                <span class="text-[10px] text-slate-400">~3.9M/tháng</span>
+                                            </label>
+                                            <label class="text-center p-2 border border-slate-200 rounded-lg cursor-pointer hover:border-primary-500 transition-colors">
+                                                <input type="radio" name="installment_term" value="24" class="hidden">
+                                                <span class="text-xs font-bold text-slate-700 block">24 tháng</span>
+                                                <span class="text-[10px] text-slate-400">~1.9M/tháng</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-percent text-amber-500 text-lg mt-0.5 shrink-0"></i>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+                <!-- RIGHT COLUMN: Order Summary (5 cols) -->
+                <div class="lg:col-span-5 space-y-5">
+
+                    <!-- Order Review -->
+                    <section class="bg-white border border-slate-100 rounded-xl shadow-premium p-5 md:p-6 lg:sticky lg:top-24">
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-500 flex items-center justify-center text-sm"><i class="fa-solid fa-bag-shopping"></i></div>
+                            <h2 class="text-lg font-black text-slate-900 tracking-tight">Đơn hàng của bạn</h2>
+                            <a href="gio-hang.html" class="ml-auto text-xs font-semibold text-primary-500 hover:text-primary-600 transition-colors">Sửa giỏ hàng</a>
+                        </div>
+
+                        <!-- Order Items -->
+                        <div class="space-y-3 mb-5">
+                            <!-- Item 1 -->
+                            <div class="flex gap-3 items-center">
+                                <div class="w-16 h-16 rounded-lg bg-slate-50 shrink-0 flex items-center justify-center overflow-hidden relative">
+                                    <img src="https://images.unsplash.com/photo-1595054179361-b0e66d9bb7a3?auto=format&fit=crop&w=120&q=80" alt="Vespa Roma S" class="max-w-full max-h-full object-contain" onerror="this.src='https://placehold.co/120x120/f1f5f9/475569?text=DXD'">
+                                    <span class="absolute -top-1 -right-1 w-5 h-5 bg-slate-600 text-white text-[10px] font-bold rounded-full flex items-center justify-center">1</span>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-bold text-slate-800 leading-snug line-clamp-1">Xe điện Vespa Roma S</p>
+                                    <p class="text-[10px] text-slate-400 mt-0.5">Trắng Ngọc Trai</p>
+                                </div>
+                                <span class="text-sm font-extrabold text-slate-900 shrink-0">19.900.000đ</span>
+                            </div>
+                            <!-- Item 2 -->
+                            <div class="flex gap-3 items-center">
+                                <div class="w-16 h-16 rounded-lg bg-slate-50 shrink-0 flex items-center justify-center overflow-hidden relative">
+                                    <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=120&q=80" alt="Xmen One" class="max-w-full max-h-full object-contain" onerror="this.src='https://placehold.co/120x120/f1f5f9/475569?text=DXD'">
+                                    <span class="absolute -top-1 -right-1 w-5 h-5 bg-slate-600 text-white text-[10px] font-bold rounded-full flex items-center justify-center">2</span>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-bold text-slate-800 leading-snug line-clamp-1">Xe điện Xmen One cá tính</p>
+                                    <p class="text-[10px] text-slate-400 mt-0.5">Đen Bóng × 2</p>
+                                </div>
+                                <span class="text-sm font-extrabold text-slate-900 shrink-0">31.000.000đ</span>
+                            </div>
+                            <!-- Item 3 -->
+                            <div class="flex gap-3 items-center">
+                                <div class="w-16 h-16 rounded-lg bg-slate-50 shrink-0 flex items-center justify-center overflow-hidden relative">
+                                    <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=120&q=80" alt="Mũ bảo hiểm" class="max-w-full max-h-full object-contain" onerror="this.src='https://placehold.co/120x120/f1f5f9/475569?text=DXD'">
+                                    <span class="absolute -top-1 -right-1 w-5 h-5 bg-slate-600 text-white text-[10px] font-bold rounded-full flex items-center justify-center">1</span>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-bold text-slate-800 leading-snug line-clamp-1">Mũ bảo hiểm DXD chính hãng</p>
+                                    <p class="text-[10px] text-slate-400 mt-0.5">Đen mờ · Size L</p>
+                                </div>
+                                <span class="text-sm font-extrabold text-slate-900 shrink-0">350.000đ</span>
+                            </div>
+                        </div>
+
+                        <!-- Coupon -->
+                        <div class="flex gap-2 mb-5">
+                            <input type="text" placeholder="Mã giảm giá" class="flex-1 px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm outline-none focus:border-primary-500 transition-all" aria-label="Mã giảm giá">
+                            <button type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2.5 rounded-lg text-xs font-bold transition-colors">Áp dụng</button>
+                        </div>
+
+                        <!-- Totals -->
+                        <div class="border-t border-slate-100 pt-4 space-y-2.5 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-slate-500">Tạm tính (4 sản phẩm)</span>
+                                <span class="font-semibold text-slate-700">51.250.000đ</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-500">Giảm giá</span>
+                                <span class="font-semibold text-red-500">−3.800.000đ</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-500">Phí vận chuyển</span>
+                                <span class="font-semibold text-emerald-600">Miễn phí</span>
+                            </div>
+                            <div class="border-t border-slate-100 pt-3 flex justify-between items-center">
+                                <span class="font-black text-slate-900">TỔNG CỘNG</span>
+                                <span class="text-2xl font-black text-primary-500">47.450.000đ</span>
+                            </div>
+                            <p class="text-[10px] text-slate-400 text-right">(Đã bao gồm VAT nếu có)</p>
+                        </div>
+
+                        <!-- Place Order Button -->
+                        <div class="mt-6 space-y-4">
+                            <button type="submit" id="place-order-btn" class="w-full bg-primary-500 hover:bg-primary-600 active:scale-[0.98] text-white font-black py-4 rounded-xl transition-all shadow-lg shadow-primary-500/20 flex items-center justify-center gap-2.5 text-sm tracking-wide">
+                                <i class="fa-solid fa-lock text-xs"></i> ĐẶT HÀNG — 47.450.000đ
+                            </button>
+
+                            <!-- Terms -->
+                            <div class="flex items-start gap-2.5">
+                                <input type="checkbox" id="agree-terms" name="agree_terms" required class="mt-1 accent-primary-500 w-4 h-4 shrink-0 cursor-pointer">
+                                <label for="agree-terms" class="text-xs text-slate-500 leading-relaxed cursor-pointer">
+                                    Tôi đã đọc và đồng ý với <a href="#" class="text-primary-500 font-semibold hover:underline">Điều khoản dịch vụ</a> và <a href="#" class="text-primary-500 font-semibold hover:underline">Chính sách bảo mật</a> của dailyxedien.vn
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Trust Badges -->
+                        <div class="mt-6 pt-5 border-t border-slate-100">
+                            <div class="grid grid-cols-3 gap-3">
+                                <div class="text-center">
+                                    <div class="w-10 h-10 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center mx-auto mb-1.5"><i class="fa-solid fa-shield-halved"></i></div>
+                                    <p class="text-[10px] font-bold text-slate-600">Bảo mật 100%</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="w-10 h-10 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center mx-auto mb-1.5"><i class="fa-solid fa-rotate-left"></i></div>
+                                    <p class="text-[10px] font-bold text-slate-600">Đổi trả 7 ngày</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="w-10 h-10 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center mx-auto mb-1.5"><i class="fa-solid fa-headset"></i></div>
+                                    <p class="text-[10px] font-bold text-slate-600">Hỗ trợ 24/7</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Hotline Support -->
+                    <div class="bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl p-5 text-white relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-20 h-20 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                        <div class="relative z-10 flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/15 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-headset text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-white/70">Cần hỗ trợ thanh toán?</p>
+                                <p class="font-black text-lg tracking-tight">0933 505 222</p>
+                                <p class="text-[10px] text-white/60">Tư vấn 24/7 · Chat Zalo</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+
+    </main>
+
+    <!-- COMPACT FOOTER -->
+    <footer class="bg-navy-900 text-slate-400 py-8 mt-8">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <div class="bg-primary-500 text-white font-black p-1.5 rounded-lg text-sm">D<span class="text-emerald-400">XD</span></div>
+                    <span class="text-white font-extrabold">dailyxedien<span class="text-primary-500">.vn</span></span>
+                </div>
+                <div class="flex items-center gap-6 text-xs">
+                    <a href="#" class="hover:text-white transition-colors">Chính sách bảo mật</a>
+                    <a href="#" class="hover:text-white transition-colors">Điều khoản dịch vụ</a>
+                    <a href="#" class="hover:text-white transition-colors">Chính sách đổi trả</a>
+                    <a href="lien-he.html" class="hover:text-white transition-colors">Liên hệ</a>
+                </div>
+                <p class="text-xs text-slate-500">© 2026 dailyxedien.vn</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- TOAST -->
+    <div id="toast-notify" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[200] bg-slate-900 text-white px-6 py-3 rounded-xl shadow-2xl text-sm font-medium flex items-center gap-3 opacity-0 translate-y-5 pointer-events-none transition-all duration-300 max-w-md">
+        <i class="fa-solid fa-circle-check text-emerald-400"></i>
+        <span id="toast-msg"></span>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // ===== PAYMENT METHOD SELECT =====
+        function selectPayment(method) {
+            // Reset all
+            document.querySelectorAll('.payment-option').forEach(opt => {
+                opt.classList.remove('active');
+                opt.style.borderColor = '';
+                opt.style.backgroundColor = '';
+            });
+            // Hide all details
+            document.getElementById('bank-details').classList.add('hidden');
+            document.getElementById('installment-details').classList.add('hidden');
+
+            // Activate selected
+            const selected = document.querySelector(`.payment-option[data-method="${method}"]`);
+            if (selected) {
+                selected.classList.add('active');
+            }
+
+            // Show relevant details
+            if (method === 'bank') {
+                document.getElementById('bank-details').classList.remove('hidden');
+            } else if (method === 'installment') {
+                document.getElementById('installment-details').classList.remove('hidden');
+            }
+        }
+
+        // ===== SHIPPING OPTION HIGHLIGHT =====
+        document.querySelectorAll('.shipping-option').forEach(opt => {
+            opt.addEventListener('change', function() {
+                document.querySelectorAll('.shipping-option').forEach(o => {
+                    o.classList.remove('border-primary-500', 'bg-primary-50/50');
+                    o.classList.add('border-slate-200');
+                });
+                this.classList.remove('border-slate-200');
+                this.classList.add('border-primary-500', 'bg-primary-50/50');
+            });
+        });
+        // Init first shipping option
+        document.querySelector('.shipping-option').classList.remove('border-slate-200');
+
+        // ===== FORM SUBMIT =====
+        function handleCheckout(e) {
+            e.preventDefault();
+            const btn = document.getElementById('place-order-btn');
+            const originalText = btn.innerHTML;
+
+            // Loading state
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Đang xử lý...';
+            btn.classList.add('opacity-75', 'cursor-not-allowed');
+
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> ĐẶT HÀNG THÀNH CÔNG!';
+                btn.classList.remove('bg-primary-500', 'hover:bg-primary-600', 'opacity-75');
+                btn.classList.add('bg-emerald-500', 'cursor-default');
+                showToast('Đơn hàng đã được ghi nhận! Chúng tôi sẽ liên hệ xác nhận.');
+            }, 2000);
+        }
+
+        // ===== TOAST =====
+        function showToast(message) {
+            const toast = document.getElementById('toast-notify');
+            document.getElementById('toast-msg').textContent = message;
+            toast.classList.remove('opacity-0', 'translate-y-5', 'pointer-events-none');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-5', 'pointer-events-none');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>

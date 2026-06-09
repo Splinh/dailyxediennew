@@ -1408,15 +1408,16 @@
                                     "key": "field_br_link",
                                     "label": "Link liên kết",
                                     "name": "link",
-                                    "type": "url",
-                                    "instructions": "",
+                                    "type": "text",
+                                    "instructions": "Để trống hoặc nhập # nếu chưa có link.",
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
                                         "width": "50",
                                         "class": "",
                                         "id": ""
-                                    }
+                                    },
+                                    "placeholder": "https://example.com hoặc #"
                                 }
                             ]
                         }
