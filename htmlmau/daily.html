@@ -271,16 +271,18 @@
     </nav>
 
     <!-- FULL WIDTH HERO BANNER SECTION (Standard Dimensions, No Overlapping Text, Fits DailyXeDien Design) -->
-    <section class="relative w-full overflow-hidden bg-[#0077c8] aspect-[1920/750] sm:aspect-[1920/650] md:aspect-[1200/480] lg:aspect-[1920/760] xl:aspect-[1920/700]">
+    <section class="relative w-full overflow-hidden bg-white" aria-label="Banners nổi bật">
         <!-- Slide Track -->
-        <div id="hero-slider" class="w-full h-full relative">
+        <div id="hero-slider" class="relative w-full">
             <!-- Slide 1 (The exact standard design banner requested - No text overlays) -->
-            <div class="absolute inset-0 w-full h-full opacity-100 transition-opacity duration-700 ease-in-out bg-cover bg-center" style="background-image: url('z7821367027271_6c9304ca31b27a7f0bffa95e21c37a47 (1).jpg');">
+            <div class="hero-slide relative w-full opacity-100 z-10" aria-hidden="false">
+                <img src="z7821367027271_6c9304ca31b27a7f0bffa95e21c37a47 (1).jpg" alt="Banner Bluesuda Lăn Bánh Hè Sang Chảnh - Giảm ngay 2 triệu" width="1920" height="750" loading="eager" fetchpriority="high" decoding="async" class="w-full h-auto block select-none" />
             </div>
             
             <!-- Slide 2 (Alternate beautiful showcase banner) -->
-            <div class="absolute inset-0 w-full h-full opacity-0 transition-opacity duration-700 ease-in-out bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1595054179361-b0e66d9bb7a3?auto=format&fit=crop&w=1920&q=80');">
-                <div class="absolute inset-0 bg-gradient-to-r from-slate-950/80 to-transparent flex items-center px-8 md:px-16">
+            <div class="hero-slide absolute inset-0 w-full h-full opacity-0 z-0 pointer-events-none" aria-hidden="true">
+                <img src="https://images.unsplash.com/photo-1595054179361-b0e66d9bb7a3?auto=format&fit=crop&w=1920&q=80" alt="Mùa Hè Rực Rỡ" width="1920" height="750" loading="lazy" fetchpriority="low" decoding="async" class="w-full h-full object-contain object-top select-none" />
+                <div class="absolute inset-0 bg-gradient-to-r from-slate-950/80 to-transparent flex items-center px-8 md:px-16 pointer-events-auto">
                     <div class="max-w-xl text-white space-y-4">
                         <span class="bg-primary-500 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Mùa Hè Rực Rỡ</span>
                         <h2 class="text-3xl md:text-5xl font-black leading-tight">LĂN BÁNH HÈ SANG<br>ƯU ĐÃI KHỦNG 2 TRIỆU</h2>
@@ -291,8 +293,9 @@
             </div>
 
             <!-- Slide 3 (Alternative standard catalog) -->
-            <div class="absolute inset-0 w-full h-full opacity-0 transition-opacity duration-700 ease-in-out bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1920&q=80');">
-                <div class="absolute inset-0 bg-gradient-to-r from-slate-950/80 to-transparent flex items-center px-8 md:px-16">
+            <div class="hero-slide absolute inset-0 w-full h-full opacity-0 z-0 pointer-events-none" aria-hidden="true">
+                <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1920&q=80" alt="Xe điện công nghệ AI" width="1920" height="750" loading="lazy" fetchpriority="low" decoding="async" class="w-full h-full object-contain object-top select-none" />
+                <div class="absolute inset-0 bg-gradient-to-r from-slate-950/80 to-transparent flex items-center px-8 md:px-16 pointer-events-auto">
                     <div class="max-w-xl text-white space-y-4">
                         <span class="bg-emerald-500 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Công Nghệ AI Mới</span>
                         <h2 class="text-3xl md:text-5xl font-black leading-tight">XE ĐIỆN CÔNG NGHỆ AI<br>MỞ KHÓA KHÔNG CẦN CHÌA</h2>
@@ -304,18 +307,18 @@
         </div>
 
         <!-- Slider controls -->
-        <button onclick="moveHeroSlide(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all z-20">
-            <i class="fa-solid fa-chevron-left"></i>
+        <button onclick="moveHeroSlide(-1)" aria-label="Banner trước" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all z-20">
+            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
         </button>
-        <button onclick="moveHeroSlide(1)" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all z-20">
-            <i class="fa-solid fa-chevron-right"></i>
+        <button onclick="moveHeroSlide(1)" aria-label="Banner kế tiếp" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all z-20">
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
         </button>
 
         <!-- Slider Dots Indicators -->
-        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2.5 z-20">
-            <span onclick="setHeroSlide(0)" class="hero-dot w-6 h-2 rounded-full bg-white cursor-pointer transition-all"></span>
-            <span onclick="setHeroSlide(1)" class="hero-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white cursor-pointer transition-all"></span>
-            <span onclick="setHeroSlide(2)" class="hero-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white cursor-pointer transition-all"></span>
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2.5 z-20" role="tablist" aria-label="Chọn banner">
+            <button onclick="setHeroSlide(0)" aria-label="Banner 1" class="hero-dot w-6 h-2 rounded-full bg-white cursor-pointer transition-all"></button>
+            <button onclick="setHeroSlide(1)" aria-label="Banner 2" class="hero-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white cursor-pointer transition-all"></button>
+            <button onclick="setHeroSlide(2)" aria-label="Banner 3" class="hero-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white cursor-pointer transition-all"></button>
         </div>
     </section>
 
@@ -1539,12 +1542,14 @@
             const dots = document.querySelectorAll('.hero-dot');
             for(let i=0; i<slides.length; i++) {
                 if(i === currentHeroSlideIndex) {
-                    slides[i].classList.remove('opacity-0');
-                    slides[i].classList.add('opacity-100');
+                    slides[i].classList.remove('opacity-0', 'z-0', 'pointer-events-none');
+                    slides[i].classList.add('opacity-100', 'z-10');
+                    slides[i].setAttribute('aria-hidden', 'false');
                     dots[i].className = "hero-dot w-6 h-2 rounded-full bg-white cursor-pointer transition-all";
                 } else {
-                    slides[i].classList.remove('opacity-100');
-                    slides[i].classList.add('opacity-0');
+                    slides[i].classList.remove('opacity-100', 'z-10');
+                    slides[i].classList.add('opacity-0', 'z-0', 'pointer-events-none');
+                    slides[i].setAttribute('aria-hidden', 'true');
                     dots[i].className = "hero-dot w-2 h-2 rounded-full bg-white/50 hover:bg-white cursor-pointer transition-all";
                 }
             }

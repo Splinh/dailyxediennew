@@ -68,7 +68,10 @@ function updateHeroSlider() {
     slides.forEach((slide, i) => {
         slide.classList.toggle('opacity-0', i !== currentHeroSlide);
         slide.classList.toggle('opacity-100', i === currentHeroSlide);
-        slide.setAttribute('aria-hidden', i !== currentHeroSlide);
+        slide.classList.toggle('z-10', i === currentHeroSlide);
+        slide.classList.toggle('z-0', i !== currentHeroSlide);
+        slide.classList.toggle('pointer-events-none', i !== currentHeroSlide);
+        slide.setAttribute('aria-hidden', i !== currentHeroSlide ? 'true' : 'false');
     });
     dots.forEach((dot, i) => {
         const active = i === currentHeroSlide;
