@@ -39,12 +39,12 @@ const mockStores = [
 ];
 
 const eventImages = [
-    { url: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80', caption: 'Sự kiện khai trương hệ thống đại lý mới tại TP.HCM' },
-    { url: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80', caption: 'Lễ trao giải tri ân khách hàng thân thiết hàng năm' },
-    { url: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=800&q=80', caption: 'Chương trình lái thử xe điện Bluera thế hệ mới' },
-    { url: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=800&q=80', caption: 'Ngày hội bảo dưỡng xe điện miễn phí cho khách hàng' },
-    { url: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=800&q=80', caption: 'Ngày hội công nghệ xanh - Giao lưu cùng chuyên gia xe điện' },
-    { url: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80', caption: 'Giới thiệu các tính năng kết nối trên xe điện' }
+    { url: 'https://dailyxedien.vn/wp-content/uploads/2026/03/top-5-ly-do-nen-chuyen-sang-xe-dien-trong-nam-2026.jpg', caption: 'Sự kiện khai trương hệ thống đại lý mới tại TP.HCM' },
+    { url: 'https://dailyxedien.vn/wp-content/uploads/2026/03/gia-xang-dau-2026-xu-huong-chuyen-dich-sang-xe-dien-2.jpg', caption: 'Lễ trao giải tri ân khách hàng thân thiết hàng năm' },
+    { url: 'https://dailyxedien.vn/wp-content/uploads/2026/02/khai-truong-dai-ly-xe-dien-bluera-viet-nhat-ron-bike-pro-tai-can-tho-dlxd.jpg', caption: 'Chương trình lái thử xe điện Bluera thế hệ mới' },
+    { url: 'https://dailyxedien.vn/wp-content/uploads/2026/01/chi-tiet-lo-trinh-han-che-xe-xang-dau-vao-trung-tam-tphcm.jpg', caption: 'Ngày hội bảo dưỡng xe điện miễn phí cho khách hàng' },
+    { url: 'https://dailyxedien.vn/wp-content/uploads/2026/01/dap-xe-dien-don-xuan-quay-qua-cuc-da-mua-xe-dien-bluera-viet-nhat-dlxd.jpg', caption: 'Ngày hội công nghệ xanh - Giao lưu cùng chuyên gia xe điện' },
+    { url: 'https://dailyxedien.vn/wp-content/uploads/2026/01/cung-nguoi-thuong-tren-chiec-xe-dap-dien-2-cho-cuc-em.jpg', caption: 'Giới thiệu các tính năng kết nối trên xe điện' }
 ];
 
 /* --------------------------------------------------------------------------
