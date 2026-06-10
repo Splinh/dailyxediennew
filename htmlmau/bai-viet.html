@@ -699,5 +699,36 @@
         setTimeout(function(){o.style.display='none';p.style.display='none';},300);
     }
     </script>
+
+    <!-- MOBILE SEARCH OVERLAY -->
+    <div id="mobile-search-overlay" onclick="closeMobileSearch()"></div>
+    <div id="mobile-search-bar">
+        <form onsubmit="event.preventDefault()">
+            <input type="text" id="mobile-search-input" placeholder="Tìm xe điện, xe 50cc, phụ kiện..." autocomplete="off">
+            <button type="button" class="search-close-btn" onclick="closeMobileSearch()" aria-label="Đóng tìm kiếm">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </form>
+    </div>
+    <script>
+    function openMobileSearch(){
+        var o=document.getElementById('mobile-search-overlay');
+        var b=document.getElementById('mobile-search-bar');
+        o.style.display='block';b.style.display='block';
+        document.body.classList.add('no-scroll');
+        requestAnimationFrame(function(){requestAnimationFrame(function(){
+            o.classList.add('open');b.classList.add('open');
+            setTimeout(function(){document.getElementById('mobile-search-input').focus();},250);
+        })});
+    }
+    function closeMobileSearch(){
+        var o=document.getElementById('mobile-search-overlay');
+        var b=document.getElementById('mobile-search-bar');
+        o.classList.remove('open');b.classList.remove('open');
+        document.body.classList.remove('no-scroll');
+        document.getElementById('mobile-search-input').blur();
+        setTimeout(function(){o.style.display='none';b.style.display='none';},250);
+    }
+    </script>
 </body>
 </html>

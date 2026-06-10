@@ -72,7 +72,7 @@
                 <button class="absolute right-1.5 top-1.5 bottom-1.5 bg-primary-500 hover:bg-primary-600 text-white px-5 rounded-lg text-xs font-semibold transition-colors">Tìm kiếm</button>
             </div>
             <div class="flex items-center gap-1 md:gap-3.5">
-                <button onclick="openMobileMenu(); setTimeout(()=>document.getElementById('mobile-search').focus(),300)" aria-label="Tìm kiếm" class="md:hidden text-slate-700 hover:text-primary-500 p-2 text-lg"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button onclick="openMobileSearch()" aria-label="Tìm kiếm" class="md:hidden text-slate-700 hover:text-primary-500 p-2 text-lg"><i class="fa-solid fa-magnifying-glass"></i></button>
                 <button onclick="openCart()" aria-label="Giỏ hàng" class="md:hidden text-slate-700 hover:text-primary-500 p-2 text-lg relative"><i class="fa-solid fa-cart-shopping"></i><span class="bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full absolute top-0 right-0 shadow-sm" id="cart-count-mobile">0</span></button>
                 <div class="hidden sm:flex items-center gap-3.5">
                     <div class="w-11 h-11 rounded-full bg-primary-50 flex items-center justify-center text-primary-500 shadow-sm"><i class="fa-solid fa-phone-volume text-lg animate-bounce"></i></div>
@@ -588,6 +588,37 @@
         o.classList.remove('open');p.classList.remove('open');
         document.body.classList.remove('no-scroll');
         setTimeout(function(){o.style.display='none';p.style.display='none';},300);
+    }
+    </script>
+
+    <!-- MOBILE SEARCH OVERLAY -->
+    <div id="mobile-search-overlay" onclick="closeMobileSearch()"></div>
+    <div id="mobile-search-bar">
+        <form onsubmit="event.preventDefault()">
+            <input type="text" id="mobile-search-input" placeholder="Tìm xe điện, xe 50cc, phụ kiện..." autocomplete="off">
+            <button type="button" class="search-close-btn" onclick="closeMobileSearch()" aria-label="Đóng tìm kiếm">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </form>
+    </div>
+    <script>
+    function openMobileSearch(){
+        var o=document.getElementById('mobile-search-overlay');
+        var b=document.getElementById('mobile-search-bar');
+        o.style.display='block';b.style.display='block';
+        document.body.classList.add('no-scroll');
+        requestAnimationFrame(function(){requestAnimationFrame(function(){
+            o.classList.add('open');b.classList.add('open');
+            setTimeout(function(){document.getElementById('mobile-search-input').focus();},250);
+        })});
+    }
+    function closeMobileSearch(){
+        var o=document.getElementById('mobile-search-overlay');
+        var b=document.getElementById('mobile-search-bar');
+        o.classList.remove('open');b.classList.remove('open');
+        document.body.classList.remove('no-scroll');
+        document.getElementById('mobile-search-input').blur();
+        setTimeout(function(){o.style.display='none';b.style.display='none';},250);
     }
     </script>
 </body>
