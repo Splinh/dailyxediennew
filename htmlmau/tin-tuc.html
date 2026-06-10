@@ -543,10 +543,63 @@
     <!-- MOBILE BOTTOM NAVIGATION BAR -->
     <nav id="mobile-bottom-nav" aria-label="Menu di động">
         <a href="index.html"><i class="fa-solid fa-house"></i><span>Trang chủ</span></a>
-        <a href="san-pham.html" class="active"><i class="fa-solid fa-th-large"></i><span>Danh mục</span></a>
+        <a href="#" onclick="openCategoryPanel(); return false;" class="active"><i class="fa-solid fa-th-large"></i><span>Danh mục</span></a>
         <a href="tel:0933505222" class="nav-hotline"><i class="fa-solid fa-phone-volume"></i><span>Hotline</span></a>
         <a href="https://zalo.me/0933505222" target="_blank" class="nav-zalo"><i class="fa-solid fa-comment-sms"></i><span>Zalo</span></a>
         <a href="#" onclick="openCart(); return false;"><i class="fa-solid fa-cart-shopping"></i><span>Giỏ hàng</span></a>
     </nav>
+
+    <!-- MOBILE CATEGORY SLIDE-UP PANEL -->
+    <div id="category-panel-overlay" onclick="closeCategoryPanel()"></div>
+    <div id="category-panel">
+        <div class="cat-header">
+            <h3>Danh mục sản phẩm</h3>
+            <button onclick="closeCategoryPanel()" aria-label="Đóng"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cat-grid">
+            <a href="san-pham.html">
+                <div class="cat-icon" style="background:#eef2ff;color:#6366f1"><i class="fa-solid fa-bicycle"></i></div>
+                <span>Xe điện</span>
+            </a>
+            <a href="san-pham.html">
+                <div class="cat-icon" style="background:#eff6ff;color:#3b82f6"><i class="fa-solid fa-motorcycle"></i></div>
+                <span>Xe 50cc</span>
+            </a>
+            <a href="san-pham.html">
+                <div class="cat-icon" style="background:#ecfdf5;color:#10b981"><i class="fa-solid fa-bolt"></i></div>
+                <span>Xe máy điện</span>
+            </a>
+            <a href="san-pham.html">
+                <div class="cat-icon" style="background:#fdf4ff;color:#a855f7"><i class="fa-solid fa-truck-pickup"></i></div>
+                <span>Xe 3 bánh</span>
+            </a>
+            <a href="san-pham.html">
+                <div class="cat-icon" style="background:#fefce8;color:#eab308"><i class="fa-solid fa-bicycle"></i></div>
+                <span>Xe đạp điện</span>
+            </a>
+            <a href="san-pham.html">
+                <div class="cat-icon" style="background:#fef2f2;color:#ef4444"><i class="fa-solid fa-gears"></i></div>
+                <span>Phụ kiện</span>
+            </a>
+        </div>
+    </div>
+    <script>
+    function openCategoryPanel(){
+        var o=document.getElementById('category-panel-overlay');
+        var p=document.getElementById('category-panel');
+        o.style.display='block';p.style.display='block';
+        document.body.classList.add('no-scroll');
+        requestAnimationFrame(function(){requestAnimationFrame(function(){
+            o.classList.add('open');p.classList.add('open');
+        })});
+    }
+    function closeCategoryPanel(){
+        var o=document.getElementById('category-panel-overlay');
+        var p=document.getElementById('category-panel');
+        o.classList.remove('open');p.classList.remove('open');
+        document.body.classList.remove('no-scroll');
+        setTimeout(function(){o.style.display='none';p.style.display='none';},300);
+    }
+    </script>
 </body>
 </html>
