@@ -455,3 +455,96 @@ textarea {
         min-height: 2.2rem;
     }
 }
+
+/* --------------------------------------------------------------------------
+   Mobile Bottom Navigation Bar
+   -------------------------------------------------------------------------- */
+#mobile-bottom-nav {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    #mobile-bottom-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 90;
+        background: var(--surface);
+        border-top: 1px solid var(--line);
+        box-shadow: 0 -2px 12px rgba(15, 23, 42, 0.06);
+        padding: 0.25rem 0;
+        padding-bottom: calc(0.25rem + env(safe-area-inset-bottom, 0px));
+    }
+
+    #mobile-bottom-nav a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        gap: 0.15rem;
+        padding: 0.35rem 0;
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.625rem;
+        font-weight: 600;
+        transition: color 0.2s;
+        -webkit-tap-highlight-color: transparent;
+        position: relative;
+    }
+
+    #mobile-bottom-nav a i {
+        font-size: 1.15rem;
+        line-height: 1;
+    }
+
+    #mobile-bottom-nav a.active {
+        color: var(--brand);
+    }
+
+    #mobile-bottom-nav a.active::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 25%;
+        right: 25%;
+        height: 2px;
+        background: var(--brand);
+        border-radius: 0 0 2px 2px;
+    }
+
+    /* Hotline item special color */
+    #mobile-bottom-nav a.nav-hotline {
+        color: #dc2626;
+    }
+    #mobile-bottom-nav a.nav-hotline i {
+        animation: ring-pulse 1.8s infinite;
+    }
+
+    /* Zalo item special color */
+    #mobile-bottom-nav a.nav-zalo {
+        color: #0068ff;
+    }
+
+    /* Hide floating buttons on mobile — bottom nav replaces them */
+    .fixed.bottom-6.right-6.z-50 {
+        display: none !important;
+    }
+
+    /* Adjust back-to-top above bottom nav */
+    #back-to-top {
+        bottom: 4.5rem !important;
+    }
+
+    /* Adjust toast above bottom nav */
+    #toast-notify {
+        bottom: 4.5rem !important;
+    }
+
+    /* Add safe bottom padding so content isn't hidden behind nav */
+    body {
+        padding-bottom: 3.75rem;
+    }
+}
