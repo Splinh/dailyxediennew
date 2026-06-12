@@ -90,6 +90,10 @@
             100% { box-shadow: 0 0 0 0 rgba(30, 115, 190, 0); }
         }
         .pulse-ring { animation: pulse-ring 2s ease-out infinite; }
+        .location-tab.active { pointer-events: none; }
+        .location-tab.active-store { border-color: #1e73be; background: #f0f5ff; color: #165da0; }
+        .location-tab.active-factory1 { border-color: #10b981; background: #ecfdf5; color: #059669; }
+        .location-tab.active-factory2 { border-color: #f59e0b; background: #fffbeb; color: #d97706; }
     </style>
 </head>
 <body class="text-slate-800 antialiased overflow-x-hidden font-sans">
@@ -315,6 +319,114 @@
             </div>
         </section>
 
+        <!-- HỆ THỐNG CƠ SỞ -->
+        <section class="mb-14 md:mb-20">
+            <div class="flex items-center gap-3 mb-3">
+                <span class="w-1.5 h-6 bg-primary-500 rounded-full"></span>
+                <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-tight">Hệ thống cơ sở</h2>
+            </div>
+            <p class="text-sm text-slate-500 mb-8 ml-5">Cửa hàng chính và 2 nhà máy sản xuất của Công ty CP Công nghệ Xe điện AI Ebike</p>
+
+            <!-- Location Tabs -->
+            <div class="flex flex-wrap gap-2 mb-6" id="location-tabs" role="tablist">
+                <button onclick="switchLocation(0)" role="tab" aria-selected="true"
+                    class="location-tab active flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold transition-all border-2 border-primary-500 bg-primary-50 text-primary-600 shadow-sm">
+                    <i class="fa-solid fa-store text-xs"></i> Cửa hàng chính
+                </button>
+                <button onclick="switchLocation(1)" role="tab" aria-selected="false"
+                    class="location-tab flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold transition-all border-2 border-slate-200 bg-white text-slate-600 hover:border-emerald-400 hover:text-emerald-600">
+                    <i class="fa-solid fa-industry text-xs"></i> Nhà máy 1
+                </button>
+                <button onclick="switchLocation(2)" role="tab" aria-selected="false"
+                    class="location-tab flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold transition-all border-2 border-slate-200 bg-white text-slate-600 hover:border-amber-400 hover:text-amber-600">
+                    <i class="fa-solid fa-industry text-xs"></i> Nhà máy 2
+                </button>
+            </div>
+
+            <!-- Location Cards -->
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+
+                <!-- Map Area (3 cols) -->
+                <div class="lg:col-span-3">
+                    <div class="bg-white border border-slate-100 rounded-2xl shadow-premium overflow-hidden">
+                        <div class="aspect-[16/9] md:aspect-[16/8] bg-slate-100 relative">
+                            <iframe id="location-map"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.5!2d106.77!3d10.77!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDQ2JzEyLjAiTiAxMDbCsDQ2JzEyLjAiRQ!5e0!3m2!1svi!2svn!4v1!"
+                                class="w-full h-full border-0"
+                                allowfullscreen=""
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="Bản đồ cơ sở dailyxedien.vn">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Panel (2 cols) -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white border border-slate-100 rounded-2xl shadow-premium p-6 h-full flex flex-col" id="location-info-panel">
+
+                        <!-- Badge -->
+                        <div class="mb-4" id="location-badge">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-primary-50 text-primary-600 border border-primary-100">
+                                <i class="fa-solid fa-store"></i> Cửa hàng chính
+                            </span>
+                        </div>
+
+                        <!-- Company Name -->
+                        <h3 class="font-black text-slate-900 text-base mb-1" id="location-name">Showroom & Trung tâm bảo hành DailyXeDien</h3>
+                        <p class="text-xs text-slate-400 mb-4 font-medium" id="location-company">CÔNG TY CỔ PHẦN CÔNG NGHỆ XE ĐIỆN AI EBIKE</p>
+
+                        <!-- Details -->
+                        <div class="space-y-3 flex-grow">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-slate-50 text-slate-400 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-location-dot text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400 font-semibold mb-0.5">Địa chỉ</p>
+                                    <p class="text-sm text-slate-700 font-medium leading-relaxed" id="location-address">466 Nguyễn Duy Trinh, P. Bình Trưng Đông, TP. Thủ Đức, TP.HCM</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-slate-50 text-slate-400 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-phone text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400 font-semibold mb-0.5">Điện thoại</p>
+                                    <p class="text-sm text-slate-700 font-bold" id="location-phone">0933 505 222</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3" id="location-fax-row">
+                                <div class="w-8 h-8 rounded-lg bg-slate-50 text-slate-400 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-fax text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400 font-semibold mb-0.5">Fax / ĐT bàn</p>
+                                    <p class="text-sm text-slate-700 font-bold" id="location-fax">—</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-slate-50 text-slate-400 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-clock text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400 font-semibold mb-0.5">Giờ hoạt động</p>
+                                    <p class="text-sm text-slate-700 font-medium" id="location-hours">8:00 – 21:00 (T2–CN)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CTA -->
+                        <a href="#" target="_blank" id="location-direction-btn"
+                            class="mt-5 w-full bg-primary-500 hover:bg-primary-600 text-white px-5 py-3 rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-primary-500/20 hover:shadow-primary-500/30 active:scale-[0.98]">
+                            <i class="fa-solid fa-diamond-turn-right"></i> Chỉ đường đến đây
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- FORM + INFO GRID -->
         <section class="mb-14 md:mb-20">
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12">
@@ -470,49 +582,6 @@
                             </a>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- GOOGLE MAP -->
-        <section class="mb-14 md:mb-20">
-            <div class="flex items-center gap-3 mb-6">
-                <span class="w-1.5 h-6 bg-primary-500 rounded-full"></span>
-                <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-tight">Bản đồ Showroom chính</h2>
-            </div>
-            <div class="bg-white border border-slate-100 rounded-2xl shadow-premium overflow-hidden">
-                <div class="aspect-[16/7] md:aspect-[16/5] bg-slate-100 relative">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.5!2d106.77!3d10.77!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDQ2JzEyLjAiTiAxMDbCsDQ2JzEyLjAiRQ!5e0!3m2!1svi!2svn!4v1!"
-                        class="w-full h-full border-0"
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"
-                        title="Bản đồ Showroom dailyxedien.vn">
-                    </iframe>
-                    <!-- Map fallback -->
-                    <div class="absolute inset-0 flex items-center justify-center bg-slate-50 pointer-events-none" id="map-fallback">
-                        <div class="text-center">
-                            <i class="fa-solid fa-map-location-dot text-4xl text-primary-500 mb-3"></i>
-                            <p class="text-sm font-bold text-slate-700">466 Nguyễn Duy Trinh</p>
-                            <p class="text-xs text-slate-400">P. Bình Trưng Đông, TP. Thủ Đức, TP.HCM</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <div class="flex items-start gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-primary-50 text-primary-500 flex items-center justify-center shrink-0 mt-0.5">
-                            <i class="fa-solid fa-location-dot text-lg"></i>
-                        </div>
-                        <div>
-                            <p class="text-sm font-bold text-slate-800">Showroom & Trung tâm bảo hành DailyXeDien</p>
-                            <p class="text-xs text-slate-500 mt-0.5">466 Nguyễn Duy Trinh, P. Bình Trưng Đông, TP. Thủ Đức, TP.HCM</p>
-                        </div>
-                    </div>
-                    <a href="https://maps.google.com/?q=466+Nguyễn+Duy+Trinh+Thủ+Đức" target="_blank"
-                        class="shrink-0 bg-primary-500 hover:bg-primary-600 text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-colors flex items-center gap-2 shadow-sm">
-                        <i class="fa-solid fa-diamond-turn-right"></i> Chỉ đường
-                    </a>
                 </div>
             </div>
         </section>
@@ -726,14 +795,94 @@
             }, 1500);
         }
 
-        // Hide map fallback when iframe loads
-        const mapIframe = document.querySelector('#contact-content iframe');
-        if (mapIframe) {
-            mapIframe.addEventListener('load', () => {
-                const fallback = document.getElementById('map-fallback');
-                if (fallback) fallback.style.display = 'none';
+        // ============ LOCATION SWITCHER ============
+        const locationData = [
+            {
+                badge: '<i class="fa-solid fa-store"></i> Cửa hàng chính',
+                badgeClass: 'bg-primary-50 text-primary-600 border-primary-100',
+                tabClass: 'active-store',
+                name: 'Showroom & Trung tâm bảo hành DailyXeDien',
+                company: 'CÔNG TY CỔ PHẦN CÔNG NGHỆ XE ĐIỆN AI EBIKE',
+                address: '466 Nguyễn Duy Trinh, P. Bình Trưng Đông, TP. Thủ Đức, TP.HCM',
+                phone: '0933 505 222',
+                fax: '—',
+                hours: '8:00 – 21:00 (T2–CN)',
+                mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.5!2d106.77!3d10.77!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDQ2JzEyLjAiTiAxMDbCsDQ2JzEyLjAiRQ!5e0!3m2!1svi!2svn!4v1!',
+                directionUrl: 'https://maps.google.com/?q=466+Nguyễn+Duy+Trinh+Thủ+Đức'
+            },
+            {
+                badge: '<i class="fa-solid fa-industry"></i> Nhà máy 1',
+                badgeClass: 'bg-emerald-50 text-emerald-600 border-emerald-100',
+                tabClass: 'active-factory1',
+                name: 'Nhà máy sản xuất 1',
+                company: 'CÔNG TY CỔ PHẦN CÔNG NGHỆ XE ĐIỆN AI EBIKE',
+                address: 'Số 1351, Quốc Lộ 51, ấp Tập Phước, Xã Long Phước, Huyện Long Thành, Tỉnh Đồng Nai',
+                phone: '0933 505 222',
+                fax: '0251 2860 559',
+                hours: '7:00 – 17:00 (T2–T7)',
+                mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.5!2d106.88!3d10.73!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDQzJzQ4LjAiTiAxMDbCsDUyJzQ4LjAiRQ!5e0!3m2!1svi!2svn!4v1!',
+                directionUrl: 'https://maps.google.com/?q=1351+Quốc+Lộ+51+Long+Phước+Long+Thành+Đồng+Nai'
+            },
+            {
+                badge: '<i class="fa-solid fa-industry"></i> Nhà máy 2',
+                badgeClass: 'bg-amber-50 text-amber-600 border-amber-100',
+                tabClass: 'active-factory2',
+                name: 'Nhà máy sản xuất 2',
+                company: 'CÔNG TY CỔ PHẦN CÔNG NGHỆ XE ĐIỆN AI EBIKE',
+                address: 'Số 1351, Quốc Lộ 51, ấp Tập Phước, Xã Long Phước, Huyện Long Thành, Tỉnh Đồng Nai',
+                phone: '0933 505 222',
+                fax: '0251 2860 559',
+                hours: '7:00 – 17:00 (T2–T7)',
+                mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.5!2d106.88!3d10.73!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDQzJzQ4LjAiTiAxMDbCsDUyJzQ4LjAiRQ!5e0!3m2!1svi!2svn!4v1!',
+                directionUrl: 'https://maps.google.com/?q=1351+Quốc+Lộ+51+Long+Phước+Long+Thành+Đồng+Nai'
+            }
+        ];
+
+        function switchLocation(index) {
+            const loc = locationData[index];
+            if (!loc) return;
+
+            // Update tabs
+            const tabs = document.querySelectorAll('.location-tab');
+            tabs.forEach((tab, i) => {
+                tab.classList.remove('active', 'active-store', 'active-factory1', 'active-factory2');
+                tab.setAttribute('aria-selected', 'false');
+                tab.style.borderColor = '';
+                tab.style.background = '';
+                tab.style.color = '';
+                if (i === index) {
+                    tab.classList.add('active', loc.tabClass);
+                    tab.setAttribute('aria-selected', 'true');
+                }
             });
+
+            // Update info panel with fade
+            const panel = document.getElementById('location-info-panel');
+            panel.style.opacity = '0';
+            panel.style.transform = 'translateY(8px)';
+
+            setTimeout(() => {
+                document.getElementById('location-badge').innerHTML =
+                    `<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold ${loc.badgeClass} border">${loc.badge}</span>`;
+                document.getElementById('location-name').textContent = loc.name;
+                document.getElementById('location-company').textContent = loc.company;
+                document.getElementById('location-address').textContent = loc.address;
+                document.getElementById('location-phone').textContent = loc.phone;
+                document.getElementById('location-fax').textContent = loc.fax;
+                document.getElementById('location-hours').textContent = loc.hours;
+                document.getElementById('location-direction-btn').href = loc.directionUrl;
+
+                // Update map
+                document.getElementById('location-map').src = loc.mapSrc;
+
+                panel.style.opacity = '1';
+                panel.style.transform = 'translateY(0)';
+            }, 200);
         }
+
+        // Add transition to info panel
+        const infoPanel = document.getElementById('location-info-panel');
+        if (infoPanel) infoPanel.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
 
         // Scroll animation
         const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };

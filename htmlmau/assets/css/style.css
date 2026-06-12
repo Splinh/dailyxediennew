@@ -164,6 +164,32 @@ textarea:focus-visible {
 }
 
 /* --------------------------------------------------------------------------
+   Breadcrumb alignment fix
+   -------------------------------------------------------------------------- */
+nav[aria-label="Breadcrumb"] {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    line-height: 1.5 !important;
+}
+
+nav[aria-label="Breadcrumb"] a,
+nav[aria-label="Breadcrumb"] span {
+    display: inline-flex !important;
+    align-items: center !important;
+    line-height: 1.5 !important;
+    white-space: nowrap;
+}
+
+nav[aria-label="Breadcrumb"] i.fa-chevron-right {
+    font-size: 0.5rem !important;
+    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
+/* --------------------------------------------------------------------------
    UX/UI polish pass
    -------------------------------------------------------------------------- */
 :root {
