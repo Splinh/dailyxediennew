@@ -100,11 +100,13 @@
 
 		/* ---------- Cart Modal ---------- */
 		const cartModal = document.querySelector( '[data-cart-modal]' );
+		const cartOverlay = document.querySelector( '.dxd-cart-overlay' );
 
 		const openCart = () => {
 			if ( ! cartModal ) return;
 			cartModal.classList.add( 'is-open' );
 			cartModal.setAttribute( 'aria-hidden', 'false' );
+			if ( cartOverlay ) cartOverlay.classList.add( 'is-open' );
 			body.classList.add( 'no-scroll' );
 		};
 
@@ -112,6 +114,7 @@
 			if ( ! cartModal ) return;
 			cartModal.classList.remove( 'is-open' );
 			cartModal.setAttribute( 'aria-hidden', 'true' );
+			if ( cartOverlay ) cartOverlay.classList.remove( 'is-open' );
 			body.classList.remove( 'no-scroll' );
 		};
 
