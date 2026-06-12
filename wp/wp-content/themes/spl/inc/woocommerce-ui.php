@@ -55,9 +55,22 @@ function spl_register_woocommerce_ui_hooks(): void {
  */
 function spl_cart_fragments( array $fragments ): array {
 	$count = WC()->cart ? WC()->cart->get_cart_contents_count() : 0;
+	$total = WC()->cart ? WC()->cart->get_cart_total() : wc_price( 0 );
 
+	// Header + mobile bottom-nav badge (all elements with data-cart-count).
+	$badge = '<span class="bg-sale text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full absolute -top-2.5 -right-4 shadow-sm" data-cart-count>' . esc_html( $count ) . '</span>';
+	$fragments['[data-cart-count]'] = $badge;
+
+	// Mini-cart modal count badge.
+	$fragments['.dxd-minicart__count'] = '<span class="dxd-minicart__count" data-cart-count>' . esc_html( $count ) . '</span>';
+
+	// Mini-cart total price.
+	$fragments['[data-cart-total]'] = '<span class="dxd-minicart__total-price" data-cart-total>' . wp_kses_post( $total ) . '</span>';
+
+	// Legacy badge (backward compat).
 	$fragments['#cart-badge'] = '<span class="btn-icon__badge" id="cart-badge">' . esc_html( $count ) . '</span>';
 
+	// Fragment-replaceable cart content.
 	ob_start();
 	get_template_part( 'template-parts/woocommerce/mini-cart-content' );
 	$fragments['.mini-cart-offcanvas__content'] = (string) ob_get_clean();

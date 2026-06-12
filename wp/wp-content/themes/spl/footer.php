@@ -147,7 +147,7 @@ get_template_part( 'parts/global/company-activity' );
 </footer>
 
 <!-- ===== NÚT NỔI ===== -->
-<div class="fixed right-4 bottom-4 z-[90] flex flex-col gap-3">
+<div class="fixed right-4 bottom-4 z-[90] flex flex-col gap-3" id="floating-btns">
 	<a href="<?php echo esc_url( $zalo_url ); ?>" target="_blank" rel="noopener" class="w-12 h-12 rounded-full bg-[#0068ff] text-white flex items-center justify-center shadow-lg ring-pulse" aria-label="Chat Zalo" title="Chat Zalo">
 		<span class="text-[11px] font-black">Zalo</span>
 	</a>
@@ -157,6 +157,90 @@ get_template_part( 'parts/global/company-activity' );
 	<button id="back-to-top" data-scroll-top class="w-12 h-12 rounded-full bg-slate-800 hover:bg-slate-900 text-white flex items-center justify-center shadow-lg" aria-label="<?php esc_attr_e( 'Lên đầu trang', 'spl' ); ?>">
 		<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
 	</button>
+</div>
+
+<!-- ===== MOBILE BOTTOM NAV ===== -->
+<?php
+$cart_count_footer = ( class_exists( 'WooCommerce' ) && WC()->cart ) ? WC()->cart->get_cart_contents_count() : 0;
+$is_home           = is_front_page() || is_home();
+$is_shop           = function_exists( 'is_shop' ) && ( is_shop() || is_product_category() || is_product_tag() || is_product() );
+?>
+<nav id="mobile-bottom-nav" aria-label="<?php esc_attr_e( 'Menu di động', 'spl' ); ?>">
+	<a href="<?php echo esc_url( home_url( '/' ) ); ?>"<?php echo $is_home ? ' class="active"' : ''; ?>>
+		<?php echo spl_icon( 'bolt', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		<span><?php esc_html_e( 'Trang chủ', 'spl' ); ?></span>
+	</a>
+	<button type="button" data-cat-panel-open<?php echo $is_shop ? ' class="active"' : ''; ?>>
+		<?php echo spl_icon( 'menu', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		<span><?php esc_html_e( 'Danh mục', 'spl' ); ?></span>
+	</button>
+	<a href="<?php echo esc_url( $hotline_url ); ?>" class="nav-hotline">
+		<?php echo spl_icon( 'phone', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		<span><?php esc_html_e( 'Hotline', 'spl' ); ?></span>
+	</a>
+	<a href="<?php echo esc_url( $zalo_url ); ?>" target="_blank" rel="noopener" class="nav-zalo">
+		<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+		<span>Zalo</span>
+	</a>
+	<button type="button" data-cart-open class="relative">
+		<?php echo spl_icon( 'cart', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		<span><?php esc_html_e( 'Giỏ hàng', 'spl' ); ?></span>
+		<?php if ( $cart_count_footer > 0 ) : ?>
+			<span class="dxd-bottom-nav__badge" data-cart-count><?php echo esc_html( (string) $cart_count_footer ); ?></span>
+		<?php endif; ?>
+	</button>
+</nav>
+
+<!-- ===== CATEGORY SLIDE-UP PANEL (Mobile) ===== -->
+<div id="category-panel-overlay" data-cat-panel-close></div>
+<div id="category-panel">
+	<div class="cat-header">
+		<h3><?php esc_html_e( 'Danh Mục Sản Phẩm', 'spl' ); ?></h3>
+		<button type="button" data-cat-panel-close aria-label="<?php esc_attr_e( 'Đóng', 'spl' ); ?>">
+			<?php echo spl_icon( 'close', 'w-4 h-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		</button>
+	</div>
+	<div class="cat-grid">
+		<?php
+		if ( class_exists( 'WooCommerce' ) ) :
+			$panel_cats = get_terms( [
+				'taxonomy'   => 'product_cat',
+				'hide_empty' => false,
+				'parent'     => 0,
+				'orderby'    => 'menu_order',
+				'order'      => 'ASC',
+				'number'     => 9,
+			] );
+			if ( ! is_wp_error( $panel_cats ) && ! empty( $panel_cats ) ) :
+				$cat_icons  = [ 'motorcycle', 'bicycle', 'bolt', 'truck', 'bolt', 'bicycle', 'motorcycle', 'truck', 'bolt' ];
+				$cat_colors = [
+					[ '#eff6ff', '#3b82f6' ],
+					[ '#ecfdf5', '#10b981' ],
+					[ '#fefce8', '#eab308' ],
+					[ '#fef2f2', '#ef4444' ],
+					[ '#f5f3ff', '#8b5cf6' ],
+					[ '#fff7ed', '#f97316' ],
+					[ '#eff6ff', '#3b82f6' ],
+					[ '#ecfdf5', '#10b981' ],
+					[ '#fefce8', '#eab308' ],
+				];
+				foreach ( $panel_cats as $i => $cat ) :
+					$cat_link = get_term_link( $cat );
+					if ( is_wp_error( $cat_link ) ) { continue; }
+					$icon  = $cat_icons[ $i % count( $cat_icons ) ];
+					$color = $cat_colors[ $i % count( $cat_colors ) ];
+					?>
+					<a href="<?php echo esc_url( $cat_link ); ?>">
+						<div class="cat-icon" style="background:<?php echo esc_attr( $color[0] ); ?>;color:<?php echo esc_attr( $color[1] ); ?>">
+							<?php echo spl_icon( $icon, 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						</div>
+						<span><?php echo esc_html( $cat->name ); ?></span>
+					</a>
+				<?php endforeach;
+			endif;
+		endif;
+		?>
+	</div>
 </div>
 
 <?php

@@ -26,7 +26,15 @@ function spl_enqueue_core_ui_js(): void {
 	// 	[ 'strategy' => 'defer', 'in_footer' => true ]
 	// );
 
-	// dailyxedien UI: header drawer, category dropdown, back-to-top (plain JS, no build).
+	// dailyxedien UI: header drawer, category dropdown, back-to-top,
+	// cart modal, mobile bottom nav, category panel (plain JS + CSS, no build).
+	wp_enqueue_style(
+		'dxd-ui',
+		get_template_directory_uri() . '/inc/dxd-ui.css',
+		[],
+		function_exists( 'spl_theme_asset_version' ) ? spl_theme_asset_version( 'inc/dxd-ui.css' ) : (string) THEME_VERSION
+	);
+
 	wp_enqueue_script(
 		'dxd-ui',
 		get_template_directory_uri() . '/inc/dxd-ui.js',

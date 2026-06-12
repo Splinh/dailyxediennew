@@ -108,7 +108,7 @@ do_action( 'spl_header_before_action' );
 		<div class="flex items-center gap-5">
 			<a href="<?php echo esc_url( wp_login_url() ); ?>" class="hover:text-white transition-colors flex items-center gap-1.5"><?php echo spl_icon( 'user', 'w-3.5 h-3.5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> <?php esc_html_e( 'Đăng nhập / Đăng ký', 'spl' ); ?></a>
 			<span class="text-white/20">|</span>
-			<a href="<?php echo esc_url( $cart_url ); ?>" class="hover:text-white transition-colors flex items-center gap-1.5 font-medium relative">
+			<a href="<?php echo esc_url( $cart_url ); ?>" data-cart-open class="hover:text-white transition-colors flex items-center gap-1.5 font-medium relative">
 				<?php echo spl_icon( 'cart', 'w-3.5 h-3.5 text-accent' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> <?php esc_html_e( 'Giỏ hàng', 'spl' ); ?>
 				<span class="bg-sale text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full absolute -top-2.5 -right-4 shadow-sm" data-cart-count><?php echo esc_html( (string) $cart_count ); ?></span>
 			</a>
@@ -164,10 +164,10 @@ do_action( 'spl_header_before_action' );
 			<button data-drawer-open data-focus-search class="md:hidden text-slate-700 hover:text-primary p-2" aria-label="<?php esc_attr_e( 'Tìm kiếm', 'spl' ); ?>">
 				<?php echo spl_icon( 'search', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</button>
-			<a href="<?php echo esc_url( $cart_url ); ?>" class="md:hidden text-slate-700 hover:text-primary p-2 relative" aria-label="<?php esc_attr_e( 'Giỏ hàng', 'spl' ); ?>">
+			<button type="button" data-cart-open class="md:hidden text-slate-700 hover:text-primary p-2 relative" aria-label="<?php esc_attr_e( 'Giỏ hàng', 'spl' ); ?>">
 				<?php echo spl_icon( 'cart', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				<span class="bg-sale text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full absolute top-0 right-0 shadow-sm" data-cart-count><?php echo esc_html( (string) $cart_count ); ?></span>
-			</a>
+			</button>
 			<div class="hidden sm:flex items-center gap-3.5">
 				<div class="w-11 h-11 rounded-full bg-primary-50 flex items-center justify-center text-primary shadow-sm shrink-0">
 					<?php echo spl_icon( 'phone', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
