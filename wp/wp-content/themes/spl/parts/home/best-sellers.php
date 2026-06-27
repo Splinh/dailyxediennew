@@ -79,28 +79,37 @@ if ( empty( $tabs ) ) {
 				$rendered = false;
 
 				if ( Helper::isWoocommerceActive() ) :
-					$query_args = [
-						'post_type'           => 'product',
-						'posts_per_page'      => $count,
-						'orderby'             => 'date',
-						'order'               => 'DESC',
-						'ignore_sticky_posts' => true,
-						'no_found_rows'       => true,
-						'fields'              => 'ids',
-					];
+					$cache_key  = spl_product_ids_cache_key( 'spl_products_bs', [
+						'cat'   => $cat_id,
+						'count' => $count,
+					] );
+					$product_ids = spl_get_cached_product_ids( $cache_key );
 
-					if ( $cat_id ) {
-						$query_args['tax_query'] = [
-							[
-								'taxonomy' => 'product_cat',
-								'field'    => 'term_id',
-								'terms'    => $cat_id,
-							],
+					if ( false === $product_ids ) {
+						$query_args = [
+							'post_type'           => 'product',
+							'posts_per_page'      => $count,
+							'orderby'             => 'date',
+							'order'               => 'DESC',
+							'ignore_sticky_posts' => true,
+							'no_found_rows'       => true,
+							'fields'              => 'ids',
 						];
-					}
 
-					$products_query = new \WP_Query( $query_args );
-					$product_ids    = array_values( array_filter( array_map( 'absint', $products_query->posts ) ) );
+						if ( $cat_id ) {
+							$query_args['tax_query'] = [
+								[
+									'taxonomy' => 'product_cat',
+									'field'    => 'term_id',
+									'terms'    => $cat_id,
+								],
+							];
+						}
+
+						$products_query = new \WP_Query( $query_args );
+						$product_ids    = array_values( array_filter( array_map( 'absint', $products_query->posts ) ) );
+						spl_set_cached_product_ids( $cache_key, $product_ids, HOUR_IN_SECONDS );
+					}
 
 					if ( ! empty( $product_ids ) ) :
 						$rendered = true;

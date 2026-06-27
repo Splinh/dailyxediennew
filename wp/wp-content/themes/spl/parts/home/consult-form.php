@@ -4,7 +4,7 @@
  *
  * Reads ACF: title, subtitle, cf7_shortcode. When a Contact Form 7 shortcode is
  * provided it is rendered; otherwise the built-in demo form (validated client-side
- * by handleConsultSubmit() in inc/page-home.js) is shown.
+ * by handleConsultSubmit() in resources/scripts/home.js) is shown.
  *
  * @package SPL
  */
@@ -105,7 +105,7 @@ $label_class = 'text-xs font-bold text-slate-500 uppercase tracking-wider block'
 	</div>
 </section>
 
-<!-- Toast notification (driven by showToast() in inc/page-home.js) -->
+<!-- Toast notification (driven by showToast() in resources/scripts/home.js) -->
 <div id="toast-notify" role="status" aria-live="polite" class="fixed bottom-6 right-6 z-[120] max-w-xs bg-white border border-slate-100 shadow-hover-card rounded-xl px-4 py-3 flex items-center gap-3 opacity-0 translate-y-5 pointer-events-none transition-all duration-300">
 	<span id="toast-icon" class="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center text-white text-xs shrink-0"></span>
 	<span id="toast-msg" class="text-xs font-semibold text-slate-700"></span>

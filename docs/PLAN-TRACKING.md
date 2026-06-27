@@ -203,15 +203,19 @@ Use this section only after product import starts.
 
 ## KPI Tracking
 
-Only fill after implementation has real pages/data.
+Measured 2026-06-18 (after Performance Phase A–I).
 
 | KPI | Baseline | Target | Current | Status |
 |---|---:|---:|---:|---|
-| Homepage mobile PageSpeed | TBD | >= 75 | TBD | Waiting |
-| Homepage desktop PageSpeed | TBD | >= 92 | TBD | Waiting |
-| TTFB cached | TBD | <= 150ms | TBD | Waiting |
-| TTFB uncached | TBD | <= 1200ms | TBD | Waiting |
-| Homepage DB queries | TBD | <= 80 | TBD | Waiting |
+| Homepage mobile PageSpeed | TBD | >= 75 | TBD | Waiting (after feature complete) |
+| Homepage desktop PageSpeed | TBD | >= 92 | TBD | Waiting (after feature complete) |
+| TTFB cached | TBD | <= 150ms | TBD | Waiting (page cache active) |
+| TTFB uncached | TBD | <= 1200ms | ~560ms | 🟢 On track |
+| Homepage DB queries | 322 | <= 80 | 171 | 🟡 −47% (need object cache for ≤80) |
+| Homepage page time | 2.47s | < 1s | 0.56s | 🟢 Achieved |
+| Frontend scripts | ~15+ | <= 5 | 7 | 🟡 Close |
+| Frontend styles | ~15+ | <= 7 | 10 | 🟡 Close |
+| Memory peak | N/A | < 20MB | 15.7MB | 🟢 Good |
 | Product archive DB queries | TBD | TBD | TBD | Waiting |
 | Broken links | TBD | 0 | TBD | Waiting |
 | GSC critical errors | TBD | 0 | TBD | Waiting |

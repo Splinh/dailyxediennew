@@ -1,0 +1,331 @@
+<?php
+/**
+ * Home page — Portfolio Gallery with Tabs + Slider + Lightbox.
+ *
+ * Pulls from dxd_gallery CPT grouped by dxd_gallery_cat taxonomy.
+ * Uses data-fx-tabs for tab switching, data-fx-slider (Swiper) for >4 items,
+ * and data-fx-lightbox for image zoom/browse.
+ *
+ * @package SPL
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+use SPL\Features\Optimizer\PortfolioGallery;
+
+// Render JS Error Console early to catch initialization errors.
+?>
+<!-- Floating JS Error Console for Frontend Debugging -->
+<div id="dxd-debug-console" style="position: fixed; bottom: 20px; right: 20px; z-index: 99999; max-width: 450px; width: calc(100% - 40px); background: rgba(15, 23, 42, 0.95); color: #f1f5f9; padding: 16px; border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); font-family: monospace; font-size: 11px; border: 1px solid rgba(239, 68, 68, 0.3); display: none;">
+	<div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(51, 65, 85, 0.5); padding-bottom: 8px; margin-bottom: 8px;">
+		<span style="color: #f87171; font-weight: bold; display: flex; align-items: center; gap: 6px;">
+			<span style="width: 8px; height: 8px; background-color: #ef4444; border-radius: 50%; display: inline-block;"></span>
+			JS Error Console (Debug Mode)
+		</span>
+		<button onclick="this.parentElement.parentElement.remove()" style="color: #94a3b8; background: none; border: none; font-size: 14px; cursor: pointer;">✕</button>
+	</div>
+	<div id="dxd-debug-logs" style="display: flex; flex-direction: column; gap: 8px; max-height: 200px; overflow-y: auto;"></div>
+</div>
+
+<script>
+(function() {
+	var consoleEl = document.getElementById('dxd-debug-console');
+	var logsEl = document.getElementById('dxd-debug-logs');
+	if (!consoleEl || !logsEl) return;
+
+	function logError(message, source, lineno, colno, type) {
+		consoleEl.style.display = 'block';
+		var div = document.createElement('div');
+		var isWarn = type === 'warning';
+		div.style.borderLeft = isWarn ? '2px solid #f59e0b' : '2px solid #ef4444';
+		div.style.paddingLeft = '8px';
+		div.style.color = isWarn ? '#fcd34d' : '#fca5a5';
+		
+		var fileInfo = '';
+		if (source) {
+			var filename = source.split('/').pop();
+			fileInfo = ' at ' + filename + (lineno ? ':' + lineno : '');
+		}
+		
+		div.innerHTML = '<strong>' + (isWarn ? 'Warning' : 'Error') + ':</strong> ' + message + (fileInfo ? '<br><span style="color: #64748b; font-size: 10px;">' + fileInfo + '</span>' : '');
+		logsEl.appendChild(div);
+		logsEl.scrollTop = logsEl.scrollHeight;
+	}
+
+	// Intercept global errors
+	window.addEventListener('error', function(e) {
+		logError(e.message, e.filename, e.lineno, e.colno, 'error');
+	});
+
+	window.addEventListener('unhandledrejection', function(e) {
+		logError('Unhandled Promise Rejection: ' + (e.reason ? e.reason.message || e.reason : 'Unknown'), '', '', '', 'error');
+	});
+
+	// Intercept console.error and console.warn
+	var originalError = console.error;
+	console.error = function() {
+		originalError.apply(console, arguments);
+		var msg = Array.prototype.slice.call(arguments).map(function(arg) {
+			if (arg instanceof Error) return arg.message + '\n' + arg.stack;
+			if (typeof arg === 'object') {
+				try { return JSON.stringify(arg); } catch(e) { return String(arg); }
+			}
+			return String(arg);
+		}).join(' ');
+		logError(msg, '', '', '', 'error');
+	};
+
+	var originalWarn = console.warn;
+	console.warn = function() {
+		originalWarn.apply(console, arguments);
+		var msg = Array.prototype.slice.call(arguments).map(function(arg) {
+			if (typeof arg === 'object') {
+				try { return JSON.stringify(arg); } catch(e) { return String(arg); }
+			}
+			return String(arg);
+		}).join(' ');
+		logError(msg, '', '', '', 'warning');
+	};
+})();
+</script>
+
+<?php
+$data     = $args ?? [];
+$title    = $data['title'] ?? __( 'Hình ảnh sự kiện', 'spl' );
+$subtitle = $data['subtitle'] ?? __( 'Hoạt động tại cửa hàng', 'spl' );
+$tabs     = $data['tabs'] ?? [];
+$per_tab  = (int) ( $data['per_tab'] ?? 12 );
+
+if ( empty( $tabs ) ) {
+	// Fallback: auto-detect all dxd_gallery_cat terms.
+	$all_terms = get_terms( [
+		'taxonomy'   => PortfolioGallery::TAXONOMY,
+		'hide_empty' => true,
+		'orderby'    => 'term_id',
+		'order'      => 'ASC',
+	] );
+	if ( ! is_wp_error( $all_terms ) && $all_terms ) {
+		foreach ( $all_terms as $term ) {
+			$tabs[] = [
+				'tab_label'    => $term->name,
+				'tab_category' => $term->term_id,
+			];
+		}
+	}
+}
+
+if ( empty( $tabs ) ) {
+	return;
+}
+
+// Pre-query posts for each tab.
+$tab_data = [];
+foreach ( $tabs as $tab ) {
+	$term_id = (int) ( $tab['tab_category'] ?? 0 );
+	$label   = $tab['tab_label'] ?? '';
+
+	if ( ! $term_id ) {
+		continue;
+	}
+
+	if ( ! $label ) {
+		$term  = get_term( $term_id, PortfolioGallery::TAXONOMY );
+		$label = ( $term && ! is_wp_error( $term ) ) ? $term->name : __( 'Tab', 'spl' );
+	}
+
+	$posts = get_posts( [
+		'post_type'      => PortfolioGallery::POST_TYPE,
+		'posts_per_page' => $per_tab,
+		'post_status'    => 'publish',
+		'orderby'        => 'menu_order date',
+		'order'          => 'ASC',
+		'tax_query'      => [ // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+			[
+				'taxonomy' => PortfolioGallery::TAXONOMY,
+				'terms'    => $term_id,
+			],
+		],
+	] );
+
+	if ( $posts ) {
+		$tab_data[] = [
+			'label' => $label,
+			'posts' => $posts,
+		];
+	}
+}
+
+if ( empty( $tab_data ) ) {
+	return;
+}
+
+$tabs_id        = 'portfolio-gallery-tabs';
+$slider_options = wp_json_encode( [
+	'slidesPerView'    => 2,
+	'spaceBetween'     => 12,
+	'navigation'       => true,
+	'watchSlidesProgress' => true,
+	'observer'         => true,
+	'observeParents'   => true,
+	'breakpoints'      => [
+		640  => [ 'slidesPerView' => 3, 'spaceBetween' => 16 ],
+		1024 => [ 'slidesPerView' => 4, 'spaceBetween' => 20 ],
+	],
+], JSON_UNESCAPED_SLASHES );
+?>
+<section class="max-w-7xl mx-auto px-4 mb-16">
+	<!-- Section header -->
+	<div class="flex items-center justify-between mb-8">
+		<div class="flex items-center gap-3">
+			<span class="w-1.5 h-6 bg-primary rounded-full"></span>
+			<h2 class="text-2xl font-black text-slate-900 tracking-tight"><?php echo esc_html( $title ); ?></h2>
+		</div>
+		<span class="text-sm font-semibold text-slate-400"><?php echo esc_html( $subtitle ); ?></span>
+	</div>
+
+	<!-- Tab navigation -->
+	<ul id="<?php echo esc_attr( $tabs_id ); ?>" class="tabs-list flex gap-2 mb-6" data-fx-tabs>
+		<?php foreach ( $tab_data as $i => $td ) : ?>
+			<li class="tabs-title<?php echo 0 === $i ? ' is-active' : ''; ?>">
+				<button type="button" class="portfolio-tab-btn px-4 py-2 rounded-full text-sm font-bold transition-all">
+					<?php echo esc_html( $td['label'] ); ?>
+				</button>
+			</li>
+		<?php endforeach; ?>
+	</ul>
+
+	<!-- Tab panels -->
+	<div class="tabs-content" data-fx-tabs-content="<?php echo esc_attr( $tabs_id ); ?>">
+		<?php foreach ( $tab_data as $i => $td ) :
+			// Filter posts with thumbnails and fetch their dimensions.
+			$valid_posts = [];
+			foreach ( $td['posts'] as $post ) {
+				$thumb_id = get_post_thumbnail_id( $post->ID );
+				if ( ! $thumb_id ) {
+					continue;
+				}
+				$img_src  = wp_get_attachment_image_src( $thumb_id, 'large' );
+				$valid_posts[] = [
+					'id'        => $post->ID,
+					'thumb_url' => wp_get_attachment_image_url( $thumb_id, 'medium_large' ),
+					'full_url'  => $img_src ? $img_src[0] : wp_get_attachment_image_url( $thumb_id, 'large' ),
+					'width'     => $img_src ? $img_src[1] : 1024,
+					'height'    => $img_src ? $img_src[2] : 768,
+					'alt'       => get_the_title( $post ),
+				];
+			}
+
+			$use_slider = count( $valid_posts ) > 4;
+			?>
+			<div class="tabs-panel<?php echo 0 === $i ? ' is-active' : ''; ?>">
+				<?php if ( $use_slider ) : ?>
+					<!-- Slider layout (>4 items) with lightbox container grouping -->
+					<div class="relative closest-swiper">
+						<div class="swiper" data-fx-slider data-fx-lightbox>
+							<div class="swiper-wrapper" data-swiper-options='<?php echo $slider_options; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>'>
+								<?php foreach ( $valid_posts as $p ) : ?>
+									<div class="swiper-slide h-auto!">
+										<a href="<?php echo esc_url( $p['full_url'] ?: $p['thumb_url'] ); ?>"
+										   data-pswp-width="<?php echo esc_attr( $p['width'] ); ?>"
+										   data-pswp-height="<?php echo esc_attr( $p['height'] ); ?>"
+										   class="group flex flex-col h-full bg-white border border-slate-100 p-2 rounded-2xl shadow-premium hover:shadow-hover-card transition-all duration-300">
+											<div class="rounded-xl overflow-hidden aspect-[4/3] relative">
+												<img loading="lazy"
+													 src="<?php echo esc_url( $p['thumb_url'] ); ?>"
+													 alt="<?php echo esc_attr( $p['alt'] ); ?>"
+													 width="400" height="300"
+													 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+												<div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+													<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+												</div>
+											</div>
+											<p class="text-[11px] md:text-xs font-bold text-slate-700 mt-2 text-center line-clamp-2 px-1 flex-grow flex items-center justify-center min-h-[32px] md:min-h-[40px]"><?php echo esc_html( $p['alt'] ); ?></p>
+										</a>
+									</div>
+								<?php endforeach; ?>
+							</div>
+						</div>
+
+						<!-- Navigation controls -->
+						<div class="swiper-controls">
+							<button class="swiper-button swiper-button-prev absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white border border-slate-200 shadow-md hover:bg-slate-50 text-slate-600 flex items-center justify-center transition-all focus:outline-none disabled:opacity-40 disabled:pointer-events-none">
+								<?php echo spl_icon( 'chevron-down', 'w-4 h-4 rotate-90' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+							</button>
+							<button class="swiper-button swiper-button-next absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white border border-slate-200 shadow-md hover:bg-slate-50 text-slate-600 flex items-center justify-center transition-all focus:outline-none disabled:opacity-40 disabled:pointer-events-none">
+								<?php echo spl_icon( 'chevron-down', 'w-4 h-4 -rotate-90' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+							</button>
+						</div>
+					</div>
+				<?php else : ?>
+					<!-- Grid layout (≤4 items) with lightbox container grouping -->
+					<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" data-fx-lightbox>
+						<?php foreach ( $valid_posts as $p ) : ?>
+							<a href="<?php echo esc_url( $p['full_url'] ?: $p['thumb_url'] ); ?>"
+							   data-pswp-width="<?php echo esc_attr( $p['width'] ); ?>"
+							   data-pswp-height="<?php echo esc_attr( $p['height'] ); ?>"
+							   class="group flex flex-col h-full bg-white border border-slate-100 p-2 rounded-2xl shadow-premium hover:shadow-hover-card transition-all duration-300">
+								<div class="rounded-xl overflow-hidden aspect-[4/3] relative">
+									<img loading="lazy"
+										 src="<?php echo esc_url( $p['thumb_url'] ); ?>"
+										 alt="<?php echo esc_attr( $p['alt'] ); ?>"
+										 width="400" height="300"
+										 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+									<div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+										<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+									</div>
+								</div>
+								<p class="text-[11px] md:text-xs font-bold text-slate-700 mt-2 text-center line-clamp-2 px-1 flex-grow flex items-center justify-center min-h-[32px] md:min-h-[40px]"><?php echo esc_html( $p['alt'] ); ?></p>
+							</a>
+						<?php endforeach; ?>
+					</div>
+				<?php endif; ?>
+			</div>
+		<?php endforeach; ?>
+	</div>
+</section>
+
+<?php // Re-scan FX modules (slider, lightbox) when switching tabs so hidden panels initialize. ?>
+<script>
+(function() {
+	var tabs = document.getElementById('<?php echo esc_js( $tabs_id ); ?>');
+	if (!tabs) return;
+
+	function debugHeights() {
+		var section = document.querySelector('.max-w-7xl');
+		var content = document.querySelector('.tabs-content');
+		var panels = document.querySelectorAll('.tabs-panel');
+		console.warn('--- Debug Heights ---');
+		if (section) console.warn('Section height: ' + section.offsetHeight + 'px');
+		if (content) console.warn('Tabs Content height: ' + content.offsetHeight + 'px');
+		panels.forEach(function(p, idx) {
+			var style = window.getComputedStyle(p);
+			console.warn('Panel ' + (idx + 1) + ' (' + (p.classList.contains('is-active') ? 'active' : 'inactive') + ') height: ' + p.offsetHeight + 'px, display: ' + style.display + ', position: ' + style.position);
+		});
+		var activeSwiper = document.querySelector('.tabs-panel.is-active .swiper');
+		if (activeSwiper) {
+			console.warn('Active Swiper height: ' + activeSwiper.offsetHeight + 'px');
+			var wrapper = activeSwiper.querySelector('.swiper-wrapper');
+			if (wrapper) console.warn('Active Swiper Wrapper height: ' + wrapper.offsetHeight + 'px');
+		}
+	}
+
+	// Register click listener immediately since elements are already parsed.
+	tabs.addEventListener('click', function(e) {
+		// Defer to next frame after browser processes the tab panel toggle.
+		requestAnimationFrame(function() {
+			var activePanel = document.querySelector(
+				'[data-fx-tabs-content="<?php echo esc_js( $tabs_id ); ?>"] > .tabs-panel.is-active'
+			);
+			if (activePanel) {
+				// Rescan the active panel to initialize lazy-loaded Swiper sliders and PhotoSwipe lightboxes.
+				document.dispatchEvent(new CustomEvent('core:scan', { detail: { root: activePanel } }));
+			}
+			setTimeout(debugHeights, 300);
+		});
+	});
+
+	window.addEventListener('load', function() {
+		setTimeout(debugHeights, 1000);
+	});
+})();
+</script>

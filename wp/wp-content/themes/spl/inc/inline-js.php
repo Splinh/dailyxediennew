@@ -1,55 +1,32 @@
 <?php
 /**
- * Core UI JavaScript — enqueued as external cacheable file.
+ * DailyXeDien UI scripts — enqueued via Vite build pipeline.
  *
- * Previously inlined (~25KB per page), now served as a cacheable
- * script file. Browser caches after first visit.
+ * dxd.js: header drawer, category dropdown, back-to-top, cart modal,
+ *         mobile bottom nav, category panel, add-to-cart AJAX, buy now.
+ * home.js: homepage hero slider, tabs, store locator, lightbox, toast.
+ *
+ * CSS: dxd-ui styles are now bundled via SCSS partial (_dxd-ui.scss)
+ * and included in the main CSS build — no separate enqueue needed.
  *
  * @package SPL
  */
 
+use SPL\Core\Asset;
+
 defined( 'ABSPATH' ) || exit;
 
-add_action( 'wp_enqueue_scripts', 'spl_enqueue_core_ui_js', 99 );
+add_action( 'wp_enqueue_scripts', 'spl_enqueue_dxd_ui', 99 );
 
 /**
- * Enqueue core UI interactions (mobile menu, reveal, tabs, etc.) as external file.
+ * Enqueue DailyXeDien UI interactions via Vite-built assets.
  */
-function spl_enqueue_core_ui_js(): void {
-	// core-ui.js disabled — old theme selectors (#mobile-menu-btn, .activity-card, .sp-tabs__tab)
-	// clash with DailyXeDien Tailwind templates. dxd-ui.js handles drawer/dropdown/backToTop.
-	// wp_enqueue_script(
-	// 	'spl-core-ui',
-	// 	get_template_directory_uri() . '/inc/core-ui.js',
-	// 	[],
-	// 	function_exists( 'spl_theme_asset_version' ) ? spl_theme_asset_version( 'inc/core-ui.js' ) : (string) THEME_VERSION,
-	// 	[ 'strategy' => 'defer', 'in_footer' => true ]
-	// );
+function spl_enqueue_dxd_ui(): void {
+	// Global DXD UI (drawer, cart modal, back-to-top, category dropdown, etc.)
+	Asset::enqueueJS( 'dxd.js', [], null, true, [ 'defer' ] );
 
-	// dailyxedien UI: header drawer, category dropdown, back-to-top,
-	// cart modal, mobile bottom nav, category panel (plain JS + CSS, no build).
-	wp_enqueue_style(
-		'dxd-ui',
-		get_template_directory_uri() . '/inc/dxd-ui.css',
-		[],
-		function_exists( 'spl_theme_asset_version' ) ? spl_theme_asset_version( 'inc/dxd-ui.css' ) : (string) THEME_VERSION
-	);
-
-	wp_enqueue_script(
-		'dxd-ui',
-		get_template_directory_uri() . '/inc/dxd-ui.js',
-		[],
-		function_exists( 'spl_theme_asset_version' ) ? spl_theme_asset_version( 'inc/dxd-ui.js' ) : (string) THEME_VERSION,
-		[ 'strategy' => 'defer', 'in_footer' => true ]
-	);
-
+	// Homepage-only interactions (hero slider, store locator, lightbox, etc.)
 	if ( is_front_page() || is_page_template( 'templates/template-page-home.php' ) ) {
-		wp_enqueue_script(
-			'dxd-home',
-			get_template_directory_uri() . '/inc/page-home.js',
-			[ 'dxd-ui' ],
-			function_exists( 'spl_theme_asset_version' ) ? spl_theme_asset_version( 'inc/page-home.js' ) : (string) THEME_VERSION,
-			[ 'strategy' => 'defer', 'in_footer' => true ]
-		);
+		Asset::enqueueJS( 'home.js', [ Asset::handle( 'dxd.js' ) ], null, true, [ 'defer' ] );
 	}
 }

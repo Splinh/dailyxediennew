@@ -19,6 +19,16 @@ $address      = Helper::getField( 'address', 'option' ) ?: '466 Nguyễn Duy Tri
 $website_url  = Helper::getField( 'website_url', 'option' ) ?: 'https://www.dailyxedien.vn';
 $footer_desc  = Helper::getField( 'footer_desc', 'option' ) ?: __( 'Dailyxedien.vn - Hệ thống phân phối xe điện, xe 50cc, xe máy điện chính hãng. Cam kết sản phẩm rõ nguồn gốc, chính sách giá minh bạch và hậu mãi dễ theo dõi.', 'spl' );
 
+// Floating Action options (default to true)
+$show_zalo_float  = Helper::getField( 'show_zalo_float', 'option' );
+$show_zalo_float  = ( null === $show_zalo_float ) ? true : (bool) $show_zalo_float;
+
+$show_phone_float = Helper::getField( 'show_phone_float', 'option' );
+$show_phone_float = ( null === $show_phone_float ) ? true : (bool) $show_phone_float;
+
+$show_back_to_top = Helper::getField( 'show_back_to_top', 'option' );
+$show_back_to_top = ( null === $show_back_to_top ) ? true : (bool) $show_back_to_top;
+
 $hotline_display = is_array( $hotline ) ? ( $hotline['title'] ?? $hotline['url'] ?? '0933 505 222' ) : $hotline;
 $hotline_url     = is_array( $hotline ) ? ( $hotline['url'] ?? 'tel:' . preg_replace( '/[^0-9+]/', '', $hotline_display ) ) : 'tel:' . preg_replace( '/[^0-9+]/', '', $hotline );
 
@@ -147,17 +157,25 @@ get_template_part( 'parts/global/company-activity' );
 </footer>
 
 <!-- ===== NÚT NỔI ===== -->
-<div class="fixed right-4 bottom-4 z-[90] flex flex-col gap-3" id="floating-btns">
-	<a href="<?php echo esc_url( $zalo_url ); ?>" target="_blank" rel="noopener" class="w-12 h-12 rounded-full bg-[#0068ff] text-white flex items-center justify-center shadow-lg ring-pulse" aria-label="Chat Zalo" title="Chat Zalo">
-		<span class="text-[11px] font-black">Zalo</span>
-	</a>
-	<a href="<?php echo esc_url( $hotline_url ); ?>" class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center shadow-lg" aria-label="<?php esc_attr_e( 'Gọi điện', 'spl' ); ?>" title="<?php esc_attr_e( 'Gọi điện', 'spl' ); ?>">
-		<?php echo spl_icon( 'phone', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-	</a>
-	<button id="back-to-top" data-scroll-top class="w-12 h-12 rounded-full bg-slate-800 hover:bg-slate-900 text-white flex items-center justify-center shadow-lg" aria-label="<?php esc_attr_e( 'Lên đầu trang', 'spl' ); ?>">
-		<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
-	</button>
-</div>
+<?php if ( $show_zalo_float || $show_phone_float || $show_back_to_top ) : ?>
+	<div class="fixed right-4 bottom-4 z-[90] flex flex-col gap-3" id="floating-btns">
+		<?php if ( $show_zalo_float ) : ?>
+			<a href="<?php echo esc_url( $zalo_url ); ?>" target="_blank" rel="noopener" class="w-12 h-12 rounded-full bg-[#0068ff] text-white flex items-center justify-center shadow-lg ring-pulse" aria-label="Chat Zalo" title="Chat Zalo">
+				<span class="text-[11px] font-black">Zalo</span>
+			</a>
+		<?php endif; ?>
+		<?php if ( $show_phone_float ) : ?>
+			<a href="<?php echo esc_url( $hotline_url ); ?>" class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center shadow-lg" aria-label="<?php esc_attr_e( 'Gọi điện', 'spl' ); ?>" title="<?php esc_attr_e( 'Gọi điện', 'spl' ); ?>">
+				<?php echo spl_icon( 'phone', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			</a>
+		<?php endif; ?>
+		<?php if ( $show_back_to_top ) : ?>
+			<button id="back-to-top" data-scroll-top class="w-12 h-12 rounded-full bg-slate-800 hover:bg-slate-900 text-white flex items-center justify-center shadow-lg" aria-label="<?php esc_attr_e( 'Lên đầu trang', 'spl' ); ?>">
+				<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+			</button>
+		<?php endif; ?>
+	</div>
+<?php endif; ?>
 
 <!-- ===== MOBILE BOTTOM NAV ===== -->
 <?php

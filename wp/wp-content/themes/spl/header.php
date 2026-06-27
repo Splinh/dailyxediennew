@@ -24,21 +24,35 @@ if ( ! function_exists( 'spl_icon' ) ) {
 	 */
 	function spl_icon( string $name, string $class = 'w-5 h-5' ): string {
 		static $icons = [
-			'menu'         => '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>',
-			'search'       => '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
-			'cart'         => '<circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>',
-			'user'         => '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
-			'phone'        => '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>',
-			'close'        => '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>',
-			'chevron-right'=> '<polyline points="9 18 15 12 9 6"/>',
-			'chevron-left' => '<polyline points="15 18 9 12 15 6"/>',
-			'chevron-down' => '<polyline points="6 9 12 15 18 9"/>',
-			'bolt'         => '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
-			'bicycle'      => '<circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/>',
-			'motorcycle'   => '<circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M5.5 17.5h7l3.5-6H20"/><path d="M9 11.5h6"/><path d="M14 8h3l1.5 3.5"/>',
-			'truck'        => '<path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/>',
-			'map-pin'      => '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
-			'mail'         => '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
+			'menu'           => '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>',
+			'search'         => '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+			'cart'           => '<circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>',
+			'shopping-cart'  => '<circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>',
+			'user'           => '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+			'phone'          => '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>',
+			'close'          => '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>',
+			'x'              => '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>',
+			'chevron-right'  => '<polyline points="9 18 15 12 9 6"/>',
+			'chevron-left'   => '<polyline points="15 18 9 12 15 6"/>',
+			'chevron-down'   => '<polyline points="6 9 12 15 18 9"/>',
+			'bolt'           => '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+			'bicycle'        => '<circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/>',
+			'motorcycle'     => '<circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M5.5 17.5h7l3.5-6H20"/><path d="M9 11.5h6"/><path d="M14 8h3l1.5 3.5"/>',
+			'truck'          => '<path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/>',
+			'map-pin'        => '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
+			'mail'           => '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
+			'trash-2'        => '<polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/>',
+			'tag'            => '<path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/>',
+			'arrow-left'     => '<line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>',
+			'check-circle'   => '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>',
+			'shield'         => '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+			'refresh-cw'     => '<polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>',
+			'headphones'     => '<path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>',
+			'file-text'      => '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>',
+			'message-circle' => '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>',
+			'store'          => '<path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M7 14h10"/><path d="M9 18h6"/>',
+			'clock'          => '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+			'share'          => '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>',
 		];
 
 		$inner = $icons[ $name ] ?? '';
@@ -127,15 +141,19 @@ do_action( 'spl_header_before_action' );
 
 		<!-- Logo -->
 		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-2 md:gap-3 shrink-0" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
-			<?php 
-			$logo_acf = Helper::getField( 'logo', 'option' );
-			$logo_url = '';
-			if ( $logo_acf ) {
-				$logo_url = is_array( $logo_acf ) ? ( $logo_acf['url'] ?? '' ) : ( is_numeric( $logo_acf ) ? wp_get_attachment_url( $logo_acf ) : $logo_acf );
-			}
-			if ( $logo_url ) : ?>
-				<img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" class="h-10 md:h-12 w-auto object-contain" />
-			<?php else : ?>
+			<?php
+			// Use theme's built-in Helper::siteLogo() — handles custom_logo, theme variants, Polylang.
+			$site_logo = Helper::siteLogo( 'default', '' );
+			if ( $site_logo ) :
+				// siteLogo() returns <a><img></a>. We already have an <a> wrapper, so extract just <img>.
+				preg_match( '/<img[^>]+>/i', $site_logo, $matches );
+				if ( ! empty( $matches[0] ) ) :
+					// Add Tailwind sizing classes to the extracted img.
+					echo str_replace( '<img ', '<img class="h-10 md:h-12 w-auto object-contain" ', $matches[0] );
+				else :
+					echo wp_kses_post( $site_logo );
+				endif;
+			else : ?>
 				<div class="bg-gradient-to-r from-primary to-primary-600 text-white font-black p-2 md:p-2.5 rounded-xl text-lg md:text-xl shadow-lg shadow-primary/20 tracking-wider">D<span class="text-accent">XD</span></div>
 				<div>
 					<span class="text-lg md:text-2xl font-extrabold tracking-tight text-slate-900">dailyxedien<span class="text-primary">.vn</span></span>
@@ -187,8 +205,16 @@ do_action( 'spl_header_before_action' );
 	<div class="overflow-y-auto grow p-5 space-y-6">
 		<div class="flex items-center justify-between border-b border-slate-100 pb-4">
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-2">
-				<div class="bg-primary text-white font-black p-1.5 rounded-lg text-sm">D<span class="text-accent">XD</span></div>
-				<span class="font-bold text-slate-800 text-base"><?php bloginfo( 'name' ); ?></span>
+				<?php
+				if ( $site_logo ) :
+					preg_match( '/<img[^>]+>/i', $site_logo, $m_matches );
+					if ( ! empty( $m_matches[0] ) ) :
+						echo str_replace( '<img ', '<img class="h-8 w-auto object-contain" ', $m_matches[0] );
+					endif;
+				else : ?>
+					<div class="bg-primary text-white font-black p-1.5 rounded-lg text-sm">D<span class="text-accent">XD</span></div>
+					<span class="font-bold text-slate-800 text-base"><?php bloginfo( 'name' ); ?></span>
+				<?php endif; ?>
 			</a>
 			<button data-drawer-close class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition-colors" aria-label="<?php esc_attr_e( 'Đóng menu', 'spl' ); ?>">
 				<?php echo spl_icon( 'close', 'w-4 h-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
@@ -226,15 +252,8 @@ do_action( 'spl_header_before_action' );
 
 		<!-- Accordion danh mục sản phẩm -->
 		<?php
-		$mobile_cats = Helper::isWoocommerceActive() ? get_terms( [
-			'taxonomy'   => 'product_cat',
-			'hide_empty' => false,
-			'parent'     => 0,
-			'orderby'    => 'menu_order',
-			'order'      => 'ASC',
-			'number'     => 20,
-		] ) : [];
-		if ( ! is_wp_error( $mobile_cats ) && ! empty( $mobile_cats ) ) :
+		$mobile_cats = spl_get_product_categories();
+		if ( ! empty( $mobile_cats ) ) :
 			?>
 			<div class="border-t border-slate-100 pt-5">
 				<h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 px-3"><?php esc_html_e( 'Danh Mục Sản Phẩm', 'spl' ); ?></h4>
@@ -269,15 +288,8 @@ do_action( 'spl_header_before_action' );
 				<?php echo spl_icon( 'chevron-down', 'w-3.5 h-3.5 ml-1 transition-transform group-hover:rotate-180' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</button>
 			<?php
-			$nav_cats = Helper::isWoocommerceActive() ? get_terms( [
-				'taxonomy'   => 'product_cat',
-				'hide_empty' => false,
-				'parent'     => 0,
-				'orderby'    => 'menu_order',
-				'order'      => 'ASC',
-				'number'     => 15,
-			] ) : [];
-			if ( ! is_wp_error( $nav_cats ) && ! empty( $nav_cats ) ) :
+			$nav_cats = spl_get_product_categories( 15 );
+			if ( ! empty( $nav_cats ) ) :
 				?>
 				<div class="absolute top-full left-0 w-64 bg-white border border-slate-100 rounded-b-2xl shadow-premium overflow-hidden p-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-50" role="menu">
 					<div class="space-y-1">

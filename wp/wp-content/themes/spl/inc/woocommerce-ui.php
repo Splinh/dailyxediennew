@@ -30,18 +30,23 @@ function spl_register_woocommerce_ui_hooks(): void {
 
 	if ( is_cart() || is_checkout() ) {
 		add_filter( 'the_content', 'spl_prepend_checkout_steps_to_content', 5 );
+		add_action( 'wp_enqueue_scripts', 'spl_enqueue_commerce_css' );
 	}
 
 	if ( is_cart() ) {
 		add_action( 'woocommerce_before_cart_table', 'spl_render_cart_intro', 5 );
 		add_action( 'woocommerce_before_cart', 'spl_open_cart_grid', 20 );
 		add_action( 'woocommerce_before_cart_collaterals', 'spl_switch_cart_grid_column', 5 );
+		add_action( 'woocommerce_before_cart_totals', 'spl_render_cart_coupon_card', 5 );
 		add_action( 'woocommerce_after_cart', 'spl_close_cart_grid', 5 );
+		add_action( 'woocommerce_after_cart_totals', 'spl_render_cart_shipping_info', 10 );
+		add_action( 'woocommerce_after_cart_totals', 'spl_render_cart_support', 20 );
 	}
 
 	if ( is_checkout() ) {
 		add_action( 'woocommerce_checkout_before_customer_details', 'spl_open_checkout_grid', 1 );
 		add_action( 'woocommerce_checkout_after_customer_details', 'spl_switch_checkout_grid_column', 99 );
+		add_action( 'woocommerce_checkout_after_order_review', 'spl_render_checkout_trust_badges', 5 );
 		add_action( 'woocommerce_checkout_after_order_review', 'spl_close_checkout_grid', 99 );
 	}
 }
@@ -286,38 +291,194 @@ function spl_prepend_checkout_steps_to_content( string $content ): string {
 	ob_start();
 	spl_render_checkout_steps();
 
-	return '<div class="container">' . (string) ob_get_clean() . $content . '</div>';
+	return (string) ob_get_clean() . $content;
 }
 
 function spl_render_cart_intro(): void {
+	$count = WC()->cart ? WC()->cart->get_cart_contents_count() : 0;
 	?>
-	<div class="commerce-panel__intro">
-		<h1><?php esc_html_e( 'Giỏ hàng của bạn', 'spl' ); ?></h1>
-		<p><?php esc_html_e( 'Kiểm tra sản phẩm, số lượng và ưu đãi trước khi thanh toán.', 'spl' ); ?></p>
+	<div class="flex items-center gap-3 mb-6 md:mb-8">
+		<span class="w-1.5 h-7 bg-primary rounded-full"></span>
+		<h1 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight"><?php esc_html_e( 'GIỎ HÀNG CỦA BẠN', 'spl' ); ?></h1>
+		<?php if ( $count ) : ?>
+			<span class="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full"><?php echo esc_html( $count . ' sản phẩm' ); ?></span>
+		<?php endif; ?>
 	</div>
 	<?php
 }
 
 function spl_open_cart_grid(): void {
-	echo '<div class="commerce-shell"><div class="commerce-cart-grid"><section class="commerce-panel commerce-cart-grid__main">';
+	echo '<div class="max-w-6xl mx-auto px-4 py-8 md:py-10"><div class="grid grid-cols-1 lg:grid-cols-3 gap-8"><section class="lg:col-span-2">';
 }
 
 function spl_switch_cart_grid_column(): void {
-	echo '</section><aside class="commerce-panel commerce-cart-grid__aside">';
+	echo '</section><aside class="lg:col-span-1 space-y-5">';
 }
 
 function spl_close_cart_grid(): void {
 	echo '</aside></div></div>';
 }
 
+/**
+ * Coupon card in cart sidebar (matches gio-hang.html mockup).
+ *
+ * Standalone form that POSTs to cart URL — WC handles coupon natively.
+ */
+function spl_render_cart_coupon_card(): void {
+	if ( ! wc_coupons_enabled() ) {
+		return;
+	}
+	?>
+	<div class="bg-white border border-slate-100 rounded-xl shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] p-5 mb-5">
+		<h3 class="font-bold text-slate-800 text-sm flex items-center gap-2 mb-3">
+			<?php echo spl_icon( 'tag', 'w-4 h-4 text-primary' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<?php esc_html_e( 'Mã giảm giá', 'spl' ); ?>
+		</h3>
+		<form method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>">
+			<div class="flex gap-2">
+				<input
+					type="text"
+					name="coupon_code"
+					id="sidebar_coupon_code"
+					value=""
+					placeholder="<?php esc_attr_e( 'Nhập mã coupon', 'spl' ); ?>"
+					class="flex-1 px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm outline-none focus:border-primary focus:bg-white transition-all"
+				/>
+				<button
+					type="submit"
+					name="apply_coupon"
+					value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>"
+					class="bg-primary hover:bg-primary-hover text-white px-4 py-2.5 rounded-lg text-xs font-bold transition-colors whitespace-nowrap"
+				><?php esc_html_e( 'Áp dụng', 'spl' ); ?></button>
+			</div>
+			<?php wp_nonce_field( 'woocommerce-cart', 'woocommerce-cart-nonce' ); ?>
+		</form>
+		<?php
+		// Show applied coupons.
+		$coupons = WC()->cart ? WC()->cart->get_applied_coupons() : [];
+		if ( $coupons ) :
+			?>
+			<div class="mt-3 space-y-1.5">
+				<?php foreach ( $coupons as $code ) : ?>
+					<div class="flex items-center justify-between bg-emerald-50 rounded-lg px-3 py-2">
+						<span class="text-xs font-bold text-emerald-700 flex items-center gap-1.5">
+							<?php echo spl_icon( 'check-circle', 'w-3.5 h-3.5 text-emerald-500' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+							<?php echo esc_html( $code ); ?>
+						</span>
+						<a
+							href="<?php echo esc_url( add_query_arg( 'remove_coupon', rawurlencode( $code ), wc_get_cart_url() ) ); ?>"
+							class="text-xs text-red-400 hover:text-red-600 font-semibold transition-colors no-underline"
+						><?php echo spl_icon( 'x', 'w-3.5 h-3.5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a>
+					</div>
+				<?php endforeach; ?>
+			</div>
+		<?php endif; ?>
+	</div>
+	<?php
+}
+
 function spl_open_checkout_grid(): void {
-	echo '<div class="commerce-checkout-grid"><section class="commerce-panel commerce-checkout-grid__main">';
+	echo '<div class="max-w-6xl mx-auto px-4 py-8 md:py-10"><div class="grid grid-cols-1 lg:grid-cols-12 gap-8"><section class="lg:col-span-7 space-y-6">';
 }
 
 function spl_switch_checkout_grid_column(): void {
-	echo '</section><aside class="commerce-panel commerce-checkout-grid__aside">';
+	echo '</section><aside class="lg:col-span-5 lg:sticky lg:top-24 lg:self-start"><div class="bg-white border border-slate-100 rounded-xl shadow-premium p-5 md:p-6 space-y-5">';
 }
 
 function spl_close_checkout_grid(): void {
-	echo '</aside></div>';
+	echo '</div></aside></div></div>';
 }
+
+/**
+ * Enqueue commerce styles on cart/checkout pages (Vite-built).
+ */
+function spl_enqueue_commerce_css(): void {
+	\SPL\Core\Asset::enqueueCSS( 'commerce.scss' );
+}
+
+/**
+ * Shipping info panel below cart totals (matches gio-hang.html sidebar).
+ */
+function spl_render_cart_shipping_info(): void {
+	?>
+	<div class="bg-gradient-to-br from-emerald-50 to-emerald-100/50 border border-emerald-200/50 rounded-xl p-5 mt-5">
+		<h4 class="font-bold text-emerald-800 text-sm flex items-center gap-2 mb-3">
+			<?php echo spl_icon( 'truck', 'w-4 h-4 text-emerald-600' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<?php esc_html_e( 'Chính sách giao hàng', 'spl' ); ?>
+		</h4>
+		<ul class="space-y-2.5 list-none p-0 m-0">
+			<li class="flex items-start gap-2 text-xs text-emerald-700">
+				<?php echo spl_icon( 'check-circle', 'w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<span><strong><?php esc_html_e( 'Miễn phí', 'spl' ); ?></strong> <?php esc_html_e( 'giao xe trong bán kính 10km', 'spl' ); ?></span>
+			</li>
+			<li class="flex items-start gap-2 text-xs text-emerald-700">
+				<?php echo spl_icon( 'check-circle', 'w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<span><?php esc_html_e( 'Giao toàn quốc qua vận chuyển chuyên dụng', 'spl' ); ?></span>
+			</li>
+			<li class="flex items-start gap-2 text-xs text-emerald-700">
+				<?php echo spl_icon( 'check-circle', 'w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<span><?php esc_html_e( 'Hỗ trợ trả góp 0% lãi suất, duyệt 15 phút', 'spl' ); ?></span>
+			</li>
+		</ul>
+	</div>
+	<?php
+}
+
+/**
+ * Support contact card below shipping info.
+ */
+function spl_render_cart_support(): void {
+	?>
+	<div class="bg-white border border-slate-100 rounded-xl shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] p-5 mt-5">
+		<h4 class="font-bold text-slate-800 text-sm flex items-center gap-2 mb-3">
+			<?php echo spl_icon( 'headphones', 'w-4 h-4 text-primary' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<?php esc_html_e( 'Cần hỗ trợ?', 'spl' ); ?>
+		</h4>
+		<div class="space-y-2">
+			<a href="tel:0933505222" class="flex items-center gap-3 p-3 bg-primary/5 hover:bg-primary/10 rounded-lg transition-colors no-underline">
+				<?php echo spl_icon( 'phone', 'w-4 h-4 text-primary' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<div>
+					<span class="font-bold text-slate-800 text-xs block">0933 505 222</span>
+					<p class="text-[10px] text-slate-400 m-0"><?php esc_html_e( 'Hotline 24/7', 'spl' ); ?></p>
+				</div>
+			</a>
+			<a href="https://zalo.me/0933505222" target="_blank" rel="noopener" class="flex items-center gap-3 p-3 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors no-underline">
+				<?php echo spl_icon( 'message-circle', 'w-4 h-4 text-blue-500' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<div>
+					<span class="font-bold text-slate-800 text-xs block"><?php esc_html_e( 'Chat Zalo', 'spl' ); ?></span>
+					<p class="text-[10px] text-slate-400 m-0"><?php esc_html_e( 'Phản hồi nhanh 5 phút', 'spl' ); ?></p>
+				</div>
+			</a>
+		</div>
+	</div>
+	<?php
+}
+
+/**
+ * Trust badges after checkout order review (matches thanh-toan.html).
+ */
+function spl_render_checkout_trust_badges(): void {
+	?>
+	<div class="grid grid-cols-3 gap-3 mt-6 pt-5 border-t border-slate-100">
+		<div class="text-center">
+			<div class="w-10 h-10 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center mx-auto mb-1.5">
+				<?php echo spl_icon( 'shield', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			</div>
+			<p class="text-[10px] font-bold text-slate-600 m-0"><?php esc_html_e( 'Bảo mật 100%', 'spl' ); ?></p>
+		</div>
+		<div class="text-center">
+			<div class="w-10 h-10 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center mx-auto mb-1.5">
+				<?php echo spl_icon( 'refresh-cw', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			</div>
+			<p class="text-[10px] font-bold text-slate-600 m-0"><?php esc_html_e( 'Đổi trả 7 ngày', 'spl' ); ?></p>
+		</div>
+		<div class="text-center">
+			<div class="w-10 h-10 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center mx-auto mb-1.5">
+				<?php echo spl_icon( 'headphones', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			</div>
+			<p class="text-[10px] font-bold text-slate-600 m-0"><?php esc_html_e( 'Hỗ trợ 24/7', 'spl' ); ?></p>
+		</div>
+	</div>
+	<?php
+}
+

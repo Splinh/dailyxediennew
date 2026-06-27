@@ -49,15 +49,21 @@ final class WcAssets {
 			'sourcebuster-js',
 			'js-cookie',
 			'jquery-blockui',
+			'wp-block-library',
 		];
 
 		// Styles to dequeue on non-WC pages.
 		$styles = [
 			'wc-blocks-style',
 			'wc-blocks-vendors-style',
+			'wc-blocks-style-active-filters',
+			'wc-blocks-style-price-filter',
+			'wc-blocks-style-attribute-filter',
+			'wc-blocks-style-stock-filter',
 			'woocommerce-general',
 			'woocommerce-layout',
 			'woocommerce-smallscreen',
+			'wp-block-library',
 		];
 
 		foreach ( $scripts as $handle ) {

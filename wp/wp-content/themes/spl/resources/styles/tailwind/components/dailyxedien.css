@@ -213,7 +213,7 @@
 	/* Mobile homepage polish */
 	@media (max-width: 767px) {
 		body.page-template-template-page-home main {
-			padding-top: 1.25rem;
+			padding-top: 0;
 		}
 
 		body.page-template-template-page-home main > section {

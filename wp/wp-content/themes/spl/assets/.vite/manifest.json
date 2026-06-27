@@ -411,6 +411,18 @@
       "css/variation-swatches.css"
     ]
   },
+  "resources/scripts/dxd.js": {
+    "file": "js/dxd.js",
+    "name": "dxd",
+    "src": "resources/scripts/dxd.js",
+    "isEntry": true
+  },
+  "resources/scripts/home.js": {
+    "file": "js/home.js",
+    "name": "home",
+    "src": "resources/scripts/home.js",
+    "isEntry": true
+  },
   "resources/scripts/index.js": {
     "file": "js/index.js",
     "name": "index",
@@ -459,6 +471,15 @@
     "file": "js/preflight.js",
     "name": "preflight",
     "src": "resources/scripts/preflight.js",
+    "isEntry": true
+  },
+  "resources/styles/commerce.scss": {
+    "file": "css/commerce.css",
+    "name": "commerce",
+    "names": [
+      "commerce.css"
+    ],
+    "src": "resources/styles/commerce.scss",
     "isEntry": true
   },
   "resources/styles/editor-style.scss": {

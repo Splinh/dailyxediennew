@@ -295,11 +295,52 @@ if ( ! function_exists( 'wc_get_attribute_taxonomy_names' ) ) { return; }
 
 ---
 
+## BUG-018: Vite dynamic imports trả về 404 — không load được CSS/JS của module 🔴 ✅
+
+**Ngày phát hiện**: 2026-06-26
+**File liên quan**: `wp/wp-content/themes/spl/vite.config.ts`
+
+**Triệu chứng**: Các module lazy-loaded (tabs, slider, lightbox) bị lỗi khởi tạo hoàn toàn. Bảng điều khiển debug báo lỗi `Unable to preload CSS for /css/fx-tabs.css`.
+
+**Root cause**: Vite biên dịch các link preloading sử dụng base path mặc định là `/`, dẫn đến việc tải tài nguyên từ root của domain (ví dụ `https://dailynew.test/css/fx-tabs.css`) thay vì thư mục theme (`/wp-content/themes/spl/assets/`).
+
+**Fix**: Thêm thuộc tính `base: '/wp-content/themes/spl/assets/'` vào cấu hình `vite.config.ts` để các tệp chunk được định tuyến chính xác.
+
+---
+
+## BUG-019: Vòng lặp tính toán chiều cao vô hạn (6-million-pixel whitespace gap) 🔴 ✅
+
+**Ngày phát hiện**: 2026-06-26
+**File liên quan**: `wp/wp-content/themes/spl/resources/styles/partials/_base.scss`
+
+**Triệu chứng**: Khoảng trắng khổng lồ hàng triệu pixel xuất hiện ở dưới chân trang, đẩy các phần tử khác xuống dưới.
+
+**Root cause**: Các tab panel ẩn (`not(.is-active)`) được cấu hình `position: absolute; visibility: hidden;` nhưng không có giới hạn chiều cao. Khi kết hợp với Swiper slides có `height: auto` và card links có `height: 100%` trong môi trường flexbox, trình duyệt rơi vào vòng lặp layout đệ quy vô hạn, phình to chiều cao panel ẩn lên mức kịch khung của trình duyệt (`6,291,497px`).
+
+**Fix**: Thêm `height: 0;` cho khối panel ẩn `&:not(.is-active)` trong `_base.scss` để ngắt vòng lặp.
+
+---
+
+## BUG-020: Page Cache tĩnh không tự động xóa khi bấm Clear Cache 🔴 ✅
+
+**Ngày phát hiện**: 2026-06-26
+**File liên quan**: `wp/wp-content/themes/spl/src/Features/Optimizer/PageCache.php`
+
+**Triệu chứng**: Khách vãng lai (không đăng nhập) vẫn nhìn thấy giao diện/dữ liệu cũ kể cả sau khi quản trị viên đã bấm Clear Cache trong admin.
+
+**Root cause**:
+1. Hàm dọn dẹp file tĩnh `PageCache::purgeAll()` chưa được móc vào hành động xóa cache tập trung `hd_clear_all_cache` của theme.
+2. Phương thức `PageCache::register()` trả về sớm khi `is_admin()` là true, ngăn chặn việc đăng ký các hàm dọn dẹp (`save_post`, `woocommerce_update_product`, v.v.) trong môi trường quản trị.
+
+**Fix**: Tách biệt đăng ký các hàm dọn dẹp ra khỏi khối điều kiện `is_admin()` trong `PageCache.php` và liên kết `PageCache::purgeAll` vào action `hd_clear_all_cache`.
+
+---
+
 ## Thống kê
 
 | Severity | Tổng | Đã fix | Chưa fix |
 |----------|------|--------|----------|
-| 🔴 Critical | 7 | 6 | 1 (BUG-014) |
+| 🔴 Critical | 10 | 9 | 1 (BUG-014) |
 | 🟡 Medium | 7 | 7 | 0 |
 | 🟢 Low | 2 | 2 | 0 |
-| **Tổng** | **17** | **16** | **1** |
+| **Tổng** | **19** | **18** | **1** |

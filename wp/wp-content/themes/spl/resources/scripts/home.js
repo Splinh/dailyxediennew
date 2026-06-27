@@ -1,16 +1,9 @@
 /**
  * dailyxedien.vn — Homepage specific interactions.
- * Plain vanilla JS, enqueued directly (no build step needed).
- * Handles hero slider, testimonials vertical loop, tech tabs, store filtering, lightbox.
+ * Vite entry point — handles hero slider, testimonials, tech tabs, store filtering, lightbox.
+ *
+ * Functions are assigned to `window` because HTML templates call them via inline onclick handlers.
  */
-
-// Define functions in global scope so they are callable by inline HTML onclick handlers
-let moveHeroSlide, setHeroSlide, switchTechTab, switchTab, filterCategory;
-let scrollProvinces, filterProvince, switchStoreTab;
-let scrollTestimonials, pauseTestimonial, resumeTestimonial;
-let openVideoModal, closeVideoModal;
-let openLightbox, closeLightbox, navigateLightbox;
-let handleConsultSubmit, showToast;
 
 ( function () {
 	'use strict';
@@ -86,13 +79,13 @@ let handleConsultSubmit, showToast;
 			} );
 		}
 
-		setHeroSlide = function ( idx ) {
+		window.setHeroSlide = function ( idx ) {
 			currentHeroSlide = idx;
 			updateHeroSlider();
 			restartHeroAutoplay();
 		};
 
-		moveHeroSlide = function ( direction ) {
+		window.moveHeroSlide = function ( direction ) {
 			const total = $$( '#hero-slider .hero-slide' ).length;
 			if ( ! total ) return;
 			currentHeroSlide = ( currentHeroSlide + direction + total) % total;
@@ -118,7 +111,7 @@ let handleConsultSubmit, showToast;
 		// ----------------------------------------------------
 		// C. TECHNOLOGY SPOTLIGHT TABS
 		// ----------------------------------------------------
-		switchTechTab = function ( tabId, btn ) {
+		window.switchTechTab = function ( tabId, btn ) {
 			const activeBtnCls = 'bg-gradient-to-r from-primary to-indigo-600 border-primary text-white shadow-lg shadow-primary/20';
 			const inactiveBtnCls = 'bg-white/5 border-white/10 text-slate-300 hover:bg-white/10 hover:text-white';
 
@@ -149,7 +142,7 @@ let handleConsultSubmit, showToast;
 		// ----------------------------------------------------
 		// D. BEST SELLERS PRODUCT TABS
 		// ----------------------------------------------------
-		switchTab = function ( tabId, clickedBtn ) {
+		window.switchTab = function ( tabId, clickedBtn ) {
 			const container = $( '#tab-container' );
 			if ( ! container ) return;
 
@@ -176,7 +169,7 @@ let handleConsultSubmit, showToast;
 			}
 		};
 
-		filterCategory = function ( tabId ) {
+		window.filterCategory = function ( tabId ) {
 			switchTab( tabId );
 			const section = $( '#best-sellers' );
 			if ( section ) section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
@@ -194,14 +187,14 @@ let handleConsultSubmit, showToast;
 			currentProvince = firstProvBtn.textContent.trim();
 		}
 
-		scrollProvinces = function ( direction ) {
+		window.scrollProvinces = function ( direction ) {
 			const container = $( '#province-scroll' );
 			if ( container ) {
 				container.scrollBy( { left: direction === 'left' ? -200 : 200, behavior: 'smooth' } );
 			}
 		};
 
-		filterProvince = function ( provName, btn ) {
+		window.filterProvince = function ( provName, btn ) {
 			currentProvince = provName;
 			$$( '.prov-btn' ).forEach( ( b ) => {
 				const isActive = b === btn;
@@ -212,7 +205,7 @@ let handleConsultSubmit, showToast;
 			renderStores();
 		};
 
-		switchStoreTab = function ( type ) {
+		window.switchStoreTab = function ( type ) {
 			currentStoreTab = type;
 			const authBtn = $( '#tab-auth-btn' );
 			const regBtn  = $( '#tab-reg-btn' );
@@ -316,14 +309,39 @@ let handleConsultSubmit, showToast;
 			return offset;
 		}
 
-		scrollTestimonials = function ( direction ) {
+		window.scrollTestimonials = function ( direction ) {
 			const scroller = $( '#testimonial-scroller' );
-			if ( ! scroller ) return;
-			const total = $$( '#testimonial-scroller > *' ).length;
+			const container = $( '#testimonial-container' );
+			if ( ! scroller || ! container ) return;
+			const items = $$( '#testimonial-scroller > *' );
+			const total = items.length;
 			if ( ! total ) return;
 
+			const maxScroll = scroller.offsetHeight - container.offsetHeight;
+			if ( maxScroll <= 10 ) {
+				scroller.style.transform = 'translateY(0px)';
+				return;
+			}
+
 			testimonialIndex = ( testimonialIndex + direction + total ) % total;
-			scroller.style.transform = `translateY(-${getTestimonialOffset( testimonialIndex )}px)`;
+			let offset = getTestimonialOffset( testimonialIndex );
+
+			if ( offset > maxScroll ) {
+				if ( direction > 0 ) {
+					testimonialIndex = 0;
+					offset = 0;
+				} else {
+					offset = maxScroll;
+					for ( let i = 0; i < total; i++ ) {
+						if ( getTestimonialOffset( i ) >= maxScroll ) {
+							testimonialIndex = i;
+							break;
+						}
+					}
+				}
+			}
+
+			scroller.style.transform = `translateY(-${offset}px)`;
 		};
 
 		function startTestimonialAutoplay() {
@@ -334,19 +352,92 @@ let handleConsultSubmit, showToast;
 
 		startTestimonialAutoplay();
 
-		pauseTestimonial = function () {
+		window.pauseTestimonial = function () {
 			clearInterval( testimonialTimer );
 		};
 
-		resumeTestimonial = function () {
+		window.resumeTestimonial = function () {
 			clearInterval( testimonialTimer );
 			startTestimonialAutoplay();
 		};
 
+		window.addEventListener( 'resize', () => {
+			testimonialIndex = 0;
+			const scroller = $( '#testimonial-scroller' );
+			if ( scroller ) {
+				scroller.style.transform = 'translateY(0px)';
+			}
+		} );
+
 		// ----------------------------------------------------
-		// G. VIDEO MODAL POPUP
+		// G. VIDEO PLAYLIST & MODAL
 		// ----------------------------------------------------
-		openVideoModal = function ( url ) {
+		let playlistData = [];
+		try {
+			const playlistEl = $( '#dxd-playlist-data' );
+			if ( playlistEl ) {
+				playlistData = JSON.parse( playlistEl.textContent );
+			}
+		} catch ( e ) {
+			console.error( 'Error parsing playlist data:', e );
+		}
+
+		let activeVideoIdx = 0;
+
+		/**
+		 * Select a video from the playlist — swap main preview.
+		 */
+		window.selectVideo = function ( idx ) {
+			if ( idx < 0 || idx >= playlistData.length ) return;
+
+			activeVideoIdx = idx;
+			const item = playlistData[ idx ];
+
+			// Update main preview trigger.
+			const trigger  = $( '#video-main-trigger' );
+			const mainImg  = $( '#video-main-thumb' );
+			const mainDur  = $( '#video-main-duration' );
+
+			if ( trigger ) trigger.setAttribute( 'data-video-url', item.url );
+			if ( mainImg ) {
+				if ( item.thumbLg ) {
+					mainImg.src = item.thumbLg;
+					mainImg.classList.remove( 'hidden' );
+				} else {
+					mainImg.src = '';
+					mainImg.classList.add( 'hidden' );
+				}
+			}
+			if ( mainDur ) mainDur.textContent = item.duration || '';
+
+			// Update video caption.
+			const mainCaption = $( '#video-main-caption' );
+			if ( mainCaption ) mainCaption.textContent = item.title || '';
+
+			// Highlight active thumbnail.
+			$$( '.video-thumb-item' ).forEach( ( el ) => {
+				const elIdx = parseInt( el.getAttribute( 'data-playlist-idx' ), 10 );
+				if ( elIdx === idx ) {
+					el.classList.remove( 'border-slate-200', 'opacity-70' );
+					el.classList.add( 'border-primary', 'opacity-100', 'ring-2', 'ring-primary/30' );
+				} else {
+					el.classList.remove( 'border-primary', 'opacity-100', 'ring-2', 'ring-primary/30' );
+					el.classList.add( 'border-slate-200', 'opacity-70' );
+				}
+			} );
+
+			// Auto-scroll slider to bring active thumbnail into view.
+			scrollPlaylistToIdx( idx );
+		};
+
+		function scrollPlaylistToIdx( idx ) {
+			const swiperEl = $( '#video-playlist-swiper' );
+			if ( swiperEl && swiperEl.swiper ) {
+				swiperEl.swiper.slideTo( idx );
+			}
+		}
+
+		window.openVideoModal = function ( url ) {
 			const modal  = $( '#video-modal' );
 			const iframe = $( '#video-iframe' );
 			if ( ! modal || ! iframe ) return;
@@ -357,7 +448,7 @@ let handleConsultSubmit, showToast;
 			lockScroll();
 		};
 
-		closeVideoModal = function () {
+		window.closeVideoModal = function () {
 			const modal  = $( '#video-modal' );
 			const iframe = $( '#video-iframe' );
 			if ( ! modal || ! iframe ) return;
@@ -382,7 +473,7 @@ let handleConsultSubmit, showToast;
 			cap.textContent = eventImages[currentLightboxIndex].caption;
 		}
 
-		openLightbox = function ( index ) {
+		window.openLightbox = function ( index ) {
 			currentLightboxIndex = index;
 			renderLightbox();
 			const modal = $( '#lightbox-modal' );
@@ -393,7 +484,7 @@ let handleConsultSubmit, showToast;
 			lockScroll();
 		};
 
-		closeLightbox = function () {
+		window.closeLightbox = function () {
 			const modal = $( '#lightbox-modal' );
 			if ( ! modal ) return;
 
@@ -402,7 +493,7 @@ let handleConsultSubmit, showToast;
 			unlockScroll();
 		};
 
-		navigateLightbox = function ( direction ) {
+		window.navigateLightbox = function ( direction ) {
 			const len = eventImages.length;
 			if ( ! len ) return;
 			currentLightboxIndex = ( currentLightboxIndex + direction + len ) % len;
@@ -430,7 +521,7 @@ let handleConsultSubmit, showToast;
 		// ----------------------------------------------------
 		let toastTimer = null;
 
-		showToast = function ( message, type = 'success' ) {
+		window.showToast = function ( message, type = 'success' ) {
 			const toast = $( '#toast-notify' );
 			const icon  = $( '#toast-icon' );
 			const msg   = $( '#toast-msg' );
@@ -456,7 +547,7 @@ let handleConsultSubmit, showToast;
 			}, 3500 );
 		};
 
-		handleConsultSubmit = function () {
+		window.handleConsultSubmit = function () {
 			const nameInput = $( '#consult-name' );
 			const phoneInput = $( '#consult-phone' );
 			const interestSelect = $( '#consult-interest' );

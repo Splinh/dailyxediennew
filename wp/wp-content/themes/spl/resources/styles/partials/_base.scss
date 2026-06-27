@@ -160,13 +160,38 @@ img[src=''] {
 // Prevent FOUC - must load before JS. Enhanced styles in fx-tabs.scss
 // ============================================================================
 
+.tabs-content {
+	position: relative;
+}
+
 .tabs-content .tabs-panel {
 	opacity: 0;
+
+	&.is-active {
+		opacity: 1;
+	}
 
 	&:not(.is-active) {
 		position: absolute;
 		visibility: hidden;
 		overflow: hidden;
+		height: 0;
+	}
+}
+
+// Portfolio gallery tab buttons — driven by is-active toggled via FX tabs JS.
+.portfolio-tab-btn {
+	background-color: var(--color-slate-100, #f1f5f9);
+	color: var(--color-slate-600, #475569);
+
+	&:hover {
+		background-color: var(--color-slate-200, #e2e8f0);
+	}
+
+	.tabs-title.is-active > & {
+		background-color: var(--color-primary, #fe5242);
+		color: #fff;
+		box-shadow: 0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1);
 	}
 }
 

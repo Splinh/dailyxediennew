@@ -5,7 +5,6 @@
  * @package SPL
  */
 
-use SPL\Core\Helper;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -36,46 +35,56 @@ $cols_class = $cols_class_map[ $columns ] ?? 'lg:grid-cols-6';
 
 	<div class="grid grid-cols-2 md:grid-cols-3 <?php echo esc_attr( $cols_class ); ?> gap-4 md:gap-6">
 		<?php
+		$selected_ids = $data['selected_categories'] ?? [];
+		$selected_ids = is_array( $selected_ids ) ? array_filter( array_map( 'absint', $selected_ids ) ) : [];
+
+		if ( ! empty( $selected_ids ) ) {
+			// Admin picked specific categories — fetch in exact order.
+			$cats = [];
+			foreach ( $selected_ids as $tid ) {
+				$term = get_term( $tid, 'product_cat' );
+				if ( $term && ! is_wp_error( $term ) ) {
+					$cats[] = $term;
+				}
+			}
+		} else {
+			// Fallback: show all top-level product categories.
+			$all_cats    = spl_get_product_categories();
+			$default_cat = (int) get_option( 'default_product_cat' );
+			$cats        = $default_cat
+				? array_filter( $all_cats, static fn( $c ) => $c->term_id !== $default_cat )
+				: $all_cats;
+		}
+
 		$rendered = false;
 
-		if ( Helper::isWoocommerceActive() ) :
-			$cats = get_terms( [
-				'taxonomy'   => 'product_cat',
-				'hide_empty' => false,
-				'parent'     => 0,
-				'orderby'    => 'menu_order',
-				'order'      => 'ASC',
-				'exclude'    => [ (int) get_option( 'default_product_cat' ) ],
-			] );
+		if ( ! empty( $cats ) ) :
+			foreach ( $cats as $cat ) :
+				$cat_link = get_term_link( $cat );
+				if ( is_wp_error( $cat_link ) ) { continue; }
+				$rendered = true;
 
-			if ( ! is_wp_error( $cats ) && ! empty( $cats ) ) :
-				foreach ( $cats as $cat ) :
-					$cat_link = get_term_link( $cat );
-					if ( is_wp_error( $cat_link ) ) { continue; }
-					$rendered = true;
-
-					// Select icon depending on category slug/name.
-					$slug = $cat->slug;
+				// Select icon depending on category slug/name.
+				$slug = $cat->slug;
+				$icon_name = 'bolt';
+				if ( false !== stripos( $slug, 'dap' ) || false !== stripos( $slug, 'dap-dien' ) || false !== stripos( $slug, 'xe-dien' ) ) {
+					$icon_name = 'bicycle';
+				} elseif ( false !== stripos( $slug, '50cc' ) || false !== stripos( $slug, '50-cc' ) ) {
+					$icon_name = 'motorcycle';
+				} elseif ( false !== stripos( $slug, 'may-dien' ) ) {
 					$icon_name = 'bolt';
-					if ( false !== stripos( $slug, 'dap' ) || false !== stripos( $slug, 'dap-dien' ) || false !== stripos( $slug, 'xe-dien' ) ) {
-						$icon_name = 'bicycle';
-					} elseif ( false !== stripos( $slug, '50cc' ) || false !== stripos( $slug, '50-cc' ) ) {
-						$icon_name = 'motorcycle';
-					} elseif ( false !== stripos( $slug, 'may-dien' ) ) {
-						$icon_name = 'bolt';
-					} elseif ( false !== stripos( $slug, '3-banh' ) || false !== stripos( $slug, 'ba-banh' ) ) {
-						$icon_name = 'map-pin'; // use map-pin or fallback
-					}
-					?>
-					<a href="<?php echo esc_url( $cat_link ); ?>" class="bg-white hover:border-primary border border-slate-100 p-4 md:p-6 rounded-2xl text-center shadow-premium transition-all hover:-translate-y-1 hover:shadow-hover-card flex flex-col items-center group">
-						<div class="w-16 h-16 md:w-20 md:h-20 bg-slate-50 rounded-full flex items-center justify-center p-2 mb-3 md:mb-4 group-hover:bg-primary-50 transition-colors">
-							<?php echo spl_icon( $icon_name, 'w-8 h-8 text-slate-400 group-hover:text-primary transition-colors' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-						</div>
-						<span class="font-bold text-slate-800 text-xs md:text-sm group-hover:text-primary transition-colors"><?php echo esc_html( $cat->name ); ?></span>
-					</a>
-					<?php
-				endforeach;
-			endif;
+				} elseif ( false !== stripos( $slug, '3-banh' ) || false !== stripos( $slug, 'ba-banh' ) ) {
+					$icon_name = 'map-pin'; // use map-pin or fallback
+				}
+				?>
+				<a href="<?php echo esc_url( $cat_link ); ?>" class="bg-white hover:border-primary border border-slate-100 p-4 md:p-6 rounded-2xl text-center shadow-premium transition-all hover:-translate-y-1 hover:shadow-hover-card flex flex-col items-center group">
+					<div class="w-16 h-16 md:w-20 md:h-20 bg-slate-50 rounded-full flex items-center justify-center p-2 mb-3 md:mb-4 group-hover:bg-primary-50 transition-colors">
+						<?php echo spl_icon( $icon_name, 'w-8 h-8 text-slate-400 group-hover:text-primary transition-colors' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</div>
+					<span class="font-bold text-slate-800 text-xs md:text-sm group-hover:text-primary transition-colors"><?php echo esc_html( $cat->name ); ?></span>
+				</a>
+				<?php
+			endforeach;
 		endif;
 
 		if ( ! $rendered ) :

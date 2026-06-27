@@ -40,6 +40,7 @@ final class Bootstrap {
 		Features\Admin::class,
 		Features\ShortcodeLoader::class,
 		Features\TemplateHooks::class,
+		Features\DebugConsole::class,
 	];
 
 	// --------------------------------------------------

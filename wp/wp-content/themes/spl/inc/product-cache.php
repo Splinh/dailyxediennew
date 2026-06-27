@@ -78,6 +78,47 @@ function spl_prime_product_card_caches( array $product_ids ): void {
 	update_object_term_cache( $product_ids, 'product' );
 }
 
+/**
+ * Get top-level product categories — single query, multiple consumers.
+ *
+ * Called from header.php (desktop + mobile) and categories.php.
+ * Uses wp_cache to avoid redundant get_terms within the same request.
+ *
+ * @param int $limit Max categories to return. 0 = no limit.
+ * @return \WP_Term[]
+ */
+function spl_get_product_categories( int $limit = 0 ): array {
+	if ( ! function_exists( 'is_woocommerce' ) ) {
+		return [];
+	}
+
+	$cache_key = 'spl_product_cats_top';
+	$cached    = wp_cache_get( $cache_key, 'spl' );
+
+	if ( false === $cached ) {
+		$cached = get_terms( [
+			'taxonomy'   => 'product_cat',
+			'hide_empty' => false,
+			'parent'     => 0,
+			'orderby'    => 'menu_order',
+			'order'      => 'ASC',
+			'number'     => 20,
+		] );
+
+		if ( is_wp_error( $cached ) ) {
+			$cached = [];
+		}
+
+		wp_cache_set( $cache_key, $cached, 'spl' );
+	}
+
+	if ( $limit > 0 && count( $cached ) > $limit ) {
+		return array_slice( $cached, 0, $limit );
+	}
+
+	return $cached;
+}
+
 function spl_clear_product_transients(): void {
 	global $wpdb;
 

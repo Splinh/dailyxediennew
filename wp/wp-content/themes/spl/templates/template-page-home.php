@@ -55,8 +55,8 @@ if ( $sections ) :
 				get_template_part( 'parts/home/media-reviews', null, $section );
 				break;
 
-			case 'event_gallery':
-				get_template_part( 'parts/home/event-gallery', null, $section );
+			case 'portfolio_gallery':
+				get_template_part( 'parts/home/portfolio-gallery', null, $section );
 				break;
 
 			case 'store_locator':

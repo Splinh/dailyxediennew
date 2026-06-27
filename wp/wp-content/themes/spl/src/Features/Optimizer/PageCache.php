@@ -31,7 +31,15 @@ final class PageCache {
 	 * Register cache hooks.
 	 */
 	public static function register(): void {
-		// Skip in development, admin, CLI, or logged-in users.
+		// Always register purge hooks so they work in admin/CLI/cron/etc.
+		add_action( 'save_post', [ self::class, 'purgeAll' ] );
+		add_action( 'woocommerce_update_product', [ self::class, 'purgeAll' ] );
+		add_action( 'woocommerce_new_product', [ self::class, 'purgeAll' ] );
+		add_action( 'switch_theme', [ self::class, 'purgeAll' ] );
+		add_action( 'customize_save_after', [ self::class, 'purgeAll' ] );
+		add_action( 'hd_clear_all_cache', [ self::class, 'purgeAll' ] );
+
+		// Skip caching in development, admin, CLI, or logged-in users.
 		if (
 			Helper::development()
 			|| is_admin()
@@ -47,13 +55,6 @@ final class PageCache {
 
 		// Start output buffering to capture the page.
 		add_action( 'template_redirect', [ self::class, 'startBuffer' ], 1 );
-
-		// Purge hooks.
-		add_action( 'save_post', [ self::class, 'purgeAll' ] );
-		add_action( 'woocommerce_update_product', [ self::class, 'purgeAll' ] );
-		add_action( 'woocommerce_new_product', [ self::class, 'purgeAll' ] );
-		add_action( 'switch_theme', [ self::class, 'purgeAll' ] );
-		add_action( 'customize_save_after', [ self::class, 'purgeAll' ] );
 	}
 
 	/**

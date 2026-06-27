@@ -74,8 +74,14 @@ export function createLoader(config, name = 'Loader', { debug = false } = {}) {
 			log(`Init - needed modules:`, needed);
 
 			const promises = needed.map(async (key) => {
-				const m = await load(key);
-				m?.initAll?.(root);
+				try {
+					const m = await load(key);
+					if (m) {
+						m.initAll?.(root);
+					}
+				} catch (e) {
+					console.error(`[${name}] Error initializing module "${key}":`, e);
+				}
 			});
 
 			await Promise.all(promises);

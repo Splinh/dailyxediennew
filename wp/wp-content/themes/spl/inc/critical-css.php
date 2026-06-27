@@ -1,17 +1,52 @@
 <?php
 /**
- * Theme core CSS — enqueued as external files for browser caching.
+ * Theme fonts & core CSS setup.
  *
- * Previously inlined (~150KB per page load), now served as cacheable
- * stylesheet files. Browser caches them after first visit.
+ * Self-hosts Be Vietnam Pro woff2 (Vietnamese + Latin subsets).
+ * Font files: static/fonts/ → assets/fonts/ (via Vite publicDir).
  *
  * @package SPL
  */
 
 defined( 'ABSPATH' ) || exit;
 
-add_action( 'wp_enqueue_scripts', 'spl_enqueue_core_css', 1 );
-add_filter( 'wp_resource_hints', 'spl_google_font_resource_hints', 10, 2 );
+add_action( 'wp_enqueue_scripts', 'spl_enqueue_fonts', 5 );
+
+/**
+ * Register self-hosted Be Vietnam Pro @font-face via inline CSS.
+ *
+ * Using inline style avoids an extra HTTP request while keeping
+ * font declarations out of the Vite build (no URL resolution issues).
+ */
+function spl_enqueue_fonts(): void {
+	$font_url = get_template_directory_uri() . '/assets/fonts';
+
+	$weights = [
+		300 => [ 'vi' => 'BeVietnamPro-300-vi.woff2', 'la' => 'BeVietnamPro-300-la.woff2' ],
+		400 => [ 'vi' => 'BeVietnamPro-400-vi.woff2', 'la' => 'BeVietnamPro-400-la.woff2' ],
+		500 => [ 'vi' => 'BeVietnamPro-500-vi.woff2', 'la' => 'BeVietnamPro-500-la.woff2' ],
+		600 => [ 'vi' => 'BeVietnamPro-600-vi.woff2', 'la' => 'BeVietnamPro-600-la.woff2' ],
+		700 => [ 'vi' => 'BeVietnamPro-700-vi.woff2', 'la' => 'BeVietnamPro-700-la.woff2' ],
+	];
+
+	$vi_range = 'U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB';
+	$la_range = 'U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD';
+
+	$css = '';
+
+	foreach ( $weights as $weight => $files ) {
+		// Vietnamese subset.
+		$css .= "@font-face{font-family:'Be Vietnam Pro';font-style:normal;font-weight:{$weight};font-display:swap;src:url('{$font_url}/{$files['vi']}') format('woff2');unicode-range:{$vi_range}}";
+
+		// Latin subset.
+		$css .= "@font-face{font-family:'Be Vietnam Pro';font-style:normal;font-weight:{$weight};font-display:swap;src:url('{$font_url}/{$files['la']}') format('woff2');unicode-range:{$la_range}}";
+	}
+
+	// Register a dummy handle for inline CSS.
+	wp_register_style( 'spl-fonts', false, [], null );
+	wp_enqueue_style( 'spl-fonts' );
+	wp_add_inline_style( 'spl-fonts', $css );
+}
 
 if ( ! function_exists( 'spl_theme_asset_version' ) ) {
 	/**
@@ -22,62 +57,4 @@ if ( ! function_exists( 'spl_theme_asset_version' ) ) {
 
 		return is_file( $path ) ? (string) filemtime( $path ) : (string) THEME_VERSION;
 	}
-}
-
-/**
- * Add preconnect hints for Google Fonts.
- *
- * @param array<int, string|array<string, string>> $urls          Resource URLs.
- * @param string                                   $relation_type Resource hint type.
- * @return array<int, string|array<string, string>>
- */
-function spl_google_font_resource_hints( array $urls, string $relation_type ): array {
-	if ( 'preconnect' !== $relation_type ) {
-		return $urls;
-	}
-
-	$urls[] = 'https://fonts.googleapis.com';
-	$urls[] = [
-		'href'        => 'https://fonts.gstatic.com',
-		'crossorigin' => 'anonymous',
-	];
-
-	return $urls;
-}
-
-/**
- * Enqueue critical + pages CSS as external files (cacheable).
- *
- * Note: critical.css chứa design system cũ (--color-primary: #60b301 green)
- * xung đột với Tailwind-based design của DailyXeDien (blue #1e73be).
- * Đã tạm disable để Tailwind utilities trong header/footer/parts/home hoạt động đúng.
- * Khi cần restore cho site khác, bật lại block wp_enqueue_style('spl-critical') bên dưới.
- */
-function spl_enqueue_core_css(): void {
-	wp_enqueue_style(
-		'spl-fonts',
-		'https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap',
-		[],
-		null
-	);
-
-	// critical.css disabled — conflicts with DailyXeDien Tailwind design.
-	// wp_enqueue_style(
-	// 	'spl-critical',
-	// 	get_template_directory_uri() . '/inc/critical.css',
-	// 	[ 'spl-fonts' ],
-	// 	spl_theme_asset_version( 'inc/critical.css' )
-	// );
-
-	// Sub-page styles — also old theme design system, disabled.
-	// pages.css dùng --color-bg, --color-border từ critical.css (green theme).
-	// Tailwind page.scss/share.scss từ Vite build handles inner page styling.
-	// if ( ! is_front_page() ) {
-	// 	wp_enqueue_style(
-	// 		'spl-pages',
-	// 		get_template_directory_uri() . '/inc/pages.css',
-	// 		[ 'spl-fonts' ],
-	// 		spl_theme_asset_version( 'inc/pages.css' )
-	// 	);
-	// }
 }

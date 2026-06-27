@@ -58,14 +58,30 @@
                             "sub_fields": [
                                 {
                                     "key": "field_hero_slide_image",
-                                    "label": "Ảnh banner",
+                                    "label": "Ảnh banner (Desktop)",
                                     "name": "bg_image",
                                     "type": "image",
-                                    "instructions": "",
+                                    "instructions": "Kích thước chuẩn: 1920×750px",
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
-                                        "width": "50",
+                                        "width": "33",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "id",
+                                    "preview_size": "medium"
+                                },
+                                {
+                                    "key": "field_hero_slide_image_mobile",
+                                    "label": "Ảnh banner (Mobile)",
+                                    "name": "bg_image_mobile",
+                                    "type": "image",
+                                    "instructions": "Kích thước chuẩn: 880×660px. Nếu bỏ trống sẽ dùng ảnh Desktop.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "33",
                                         "class": "",
                                         "id": ""
                                     },
@@ -268,6 +284,28 @@
                                 "6": "6 cột"
                             },
                             "default_value": "6"
+                        },
+                        {
+                            "key": "field_daily_cat_selected",
+                            "label": "Chọn danh mục hiển thị",
+                            "name": "selected_categories",
+                            "type": "taxonomy",
+                            "instructions": "Để trống = hiển thị tất cả danh mục sản phẩm",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "taxonomy": "product_cat",
+                            "add_term": 0,
+                            "save_terms": 0,
+                            "load_terms": 0,
+                            "return_format": "id",
+                            "field_type": "multi_select",
+                            "allow_null": 1,
+                            "multiple": 1
                         }
                     ]
                 },
@@ -843,7 +881,7 @@
                             "label": "Danh sách phát phụ (Playlist)",
                             "name": "playlist",
                             "type": "repeater",
-                            "instructions": "",
+                            "instructions": "Ảnh đại diện tự lấy từ YouTube nếu để trống.",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -852,9 +890,23 @@
                                 "id": ""
                             },
                             "layout": "table",
-                            "max": 4,
+                            "max": 10,
                             "button_label": "Thêm video vào playlist",
                             "sub_fields": [
+                                {
+                                    "key": "field_mr_play_title",
+                                    "label": "Tiêu đề video",
+                                    "name": "title",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "35",
+                                        "class": "",
+                                        "id": ""
+                                    }
+                                },
                                 {
                                     "key": "field_mr_play_url",
                                     "label": "Đường dẫn Iframe Youtube",
@@ -864,7 +916,7 @@
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
-                                        "width": "",
+                                        "width": "40",
                                         "class": "",
                                         "id": ""
                                     },
@@ -872,18 +924,19 @@
                                 },
                                 {
                                     "key": "field_mr_play_thumb",
-                                    "label": "Ảnh đại diện",
+                                    "label": "Ảnh đại diện (tùy chọn)",
                                     "name": "thumbnail",
                                     "type": "image",
-                                    "instructions": "",
+                                    "instructions": "Để trống = tự lấy từ YouTube",
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
-                                        "width": "",
+                                        "width": "25",
                                         "class": "",
                                         "id": ""
                                     },
-                                    "return_format": "id"
+                                    "return_format": "id",
+                                    "preview_size": "thumbnail"
                                 }
                             ]
                         },
@@ -1017,14 +1070,14 @@
                         }
                     ]
                 },
-                "layout_home_event_gallery": {
-                    "key": "layout_home_event_gallery",
-                    "name": "event_gallery",
-                    "label": "Thư viện ảnh sự kiện",
+                "layout_home_portfolio_gallery": {
+                    "key": "layout_home_portfolio_gallery",
+                    "name": "portfolio_gallery",
+                    "label": "Thư viện ảnh sự kiện (Tabs)",
                     "display": "block",
                     "sub_fields": [
                         {
-                            "key": "field_event_gallery_disable",
+                            "key": "field_portfolio_gallery_disable",
                             "label": "Ẩn section này",
                             "name": "disable",
                             "type": "true_false",
@@ -1042,7 +1095,7 @@
                             "default_value": 0
                         },
                         {
-                            "key": "field_event_gallery_title",
+                            "key": "field_portfolio_gallery_title",
                             "label": "Tiêu đề chính",
                             "name": "title",
                             "type": "text",
@@ -1057,7 +1110,7 @@
                             "default_value": "Hình ảnh sự kiện"
                         },
                         {
-                            "key": "field_event_gallery_subtitle",
+                            "key": "field_portfolio_gallery_subtitle",
                             "label": "Phụ đề",
                             "name": "subtitle",
                             "type": "text",
@@ -1072,11 +1125,11 @@
                             "default_value": "Hoạt động tại cửa hàng"
                         },
                         {
-                            "key": "field_event_gallery_items",
-                            "label": "Danh sách ảnh",
-                            "name": "gallery",
+                            "key": "field_portfolio_gallery_tabs",
+                            "label": "Danh mục tabs",
+                            "name": "tabs",
                             "type": "repeater",
-                            "instructions": "",
+                            "instructions": "Mỗi dòng = 1 tab. Chọn danh mục hình ảnh sự kiện (dxd_gallery_cat).",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -1084,41 +1137,63 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "layout": "block",
-                            "button_label": "Thêm hình ảnh",
+                            "layout": "table",
+                            "button_label": "Thêm tab",
                             "sub_fields": [
                                 {
-                                    "key": "field_eg_image",
-                                    "label": "Hình ảnh",
-                                    "name": "image",
-                                    "type": "image",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "50",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "return_format": "id",
-                                    "preview_size": "medium"
-                                },
-                                {
-                                    "key": "field_eg_caption",
-                                    "label": "Chú thích ảnh",
-                                    "name": "caption",
+                                    "key": "field_pg_tab_label",
+                                    "label": "Nhãn tab",
+                                    "name": "tab_label",
                                     "type": "text",
                                     "instructions": "",
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
-                                        "width": "50",
+                                        "width": "40",
                                         "class": "",
                                         "id": ""
                                     },
-                                    "placeholder": "VD: Khai trương đại lý mới"
+                                    "placeholder": "VD: Sự kiện"
+                                },
+                                {
+                                    "key": "field_pg_tab_category",
+                                    "label": "Danh mục",
+                                    "name": "tab_category",
+                                    "type": "taxonomy",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "60",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "taxonomy": "dxd_gallery_cat",
+                                    "field_type": "select",
+                                    "allow_null": 0,
+                                    "add_term": 1,
+                                    "save_terms": 0,
+                                    "load_terms": 0,
+                                    "return_format": "id"
                                 }
                             ]
+                        },
+                        {
+                            "key": "field_portfolio_gallery_per_tab",
+                            "label": "Số ảnh mỗi tab",
+                            "name": "per_tab",
+                            "type": "number",
+                            "instructions": "Giới hạn số ảnh hiển thị mỗi tab. Mặc định 8.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "30",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": 8,
+                            "min": 4,
+                            "max": 24
                         }
                     ]
                 },
@@ -1478,19 +1553,75 @@
                             "default_value": "Cập nhật tin tức và mẹo vặt sử dụng xe hữu ích"
                         },
                         {
-                            "key": "field_news_count",
-                            "label": "Số bài viết hiển thị",
-                            "name": "count",
-                            "type": "number",
-                            "instructions": "",
+                            "key": "field_news_tabs",
+                            "label": "Danh mục tabs",
+                            "name": "tabs",
+                            "type": "repeater",
+                            "instructions": "Mỗi dòng = 1 tab. Chọn danh mục bài viết (category). Nếu bỏ trống, tự động lấy tất cả category có bài.",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "50",
+                                "width": "",
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": 3
+                            "layout": "table",
+                            "button_label": "Thêm tab",
+                            "sub_fields": [
+                                {
+                                    "key": "field_news_tab_label",
+                                    "label": "Nhãn tab",
+                                    "name": "tab_label",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "40",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "placeholder": "VD: Tin Xe Điện"
+                                },
+                                {
+                                    "key": "field_news_tab_category",
+                                    "label": "Danh mục",
+                                    "name": "tab_category",
+                                    "type": "taxonomy",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "60",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "taxonomy": "category",
+                                    "field_type": "select",
+                                    "allow_null": 0,
+                                    "add_term": 1,
+                                    "save_terms": 0,
+                                    "load_terms": 0,
+                                    "return_format": "id"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_news_count",
+                            "label": "Số bài mỗi tab",
+                            "name": "count",
+                            "type": "number",
+                            "instructions": "Số bài viết hiển thị mỗi tab. Mặc định 3.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "30",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": 3,
+                            "min": 1,
+                            "max": 12
                         }
                     ]
                 },

@@ -20,6 +20,18 @@ use SPL\Features\Optimizer\ImageSize;
 use SPL\Features\Optimizer\PageCache;
 use SPL\Features\Optimizer\ScriptLoader;
 use SPL\Features\Optimizer\WcAssets;
+use SPL\Features\Optimizer\CheckoutFields;
+use SPL\Features\Optimizer\PriceDisplay;
+use SPL\Features\Optimizer\SrsltidRedirect;
+use SPL\Features\Optimizer\WcTranslations;
+use SPL\Features\Optimizer\TSKTDisplay;
+use SPL\Features\Optimizer\TSKTImport;
+use SPL\Features\Optimizer\TSKTExport;
+use SPL\Features\Optimizer\TrackingPixels;
+use SPL\Features\Optimizer\LoanShortcode;
+use SPL\Features\Optimizer\SeasonalModule;
+use SPL\Features\Optimizer\PortfolioGallery;
+use SPL\Features\Optimizer\PostImporter;
 use SPL\Core\DB;
 use SPL\Core\Helper;
 
@@ -35,7 +47,19 @@ final class Optimizer extends Feature {
 		ScriptLoader::register();
 		CssClass::register();
 		WcAssets::register();
+		CheckoutFields::register();
+		PriceDisplay::register();
+		SrsltidRedirect::register();
+		WcTranslations::register();
+		TSKTDisplay::register();
+		TSKTImport::register();
+		TSKTExport::register();
 		PageCache::register();
+		TrackingPixels::register();
+		// LoanShortcode::register(); // Deferred — Bảo Kim trả góp cần domain chính.
+		SeasonalModule::register();
+		PortfolioGallery::register();
+		PostImporter::register();
 
 		// Permalink — only on theme activation (flush_rules is expensive).
 		add_action( 'after_switch_theme', self::configurePermalink( ... ) );

@@ -571,6 +571,333 @@
                     "default_value": ""
                 }
             ]
+        },
+        {
+            "key": "field_daily_opt_tab_floating",
+            "label": "Nút nổi (Floating)",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_daily_opt_show_zalo_float",
+            "label": "Hiển thị nút Zalo nổi",
+            "name": "show_zalo_float",
+            "type": "true_false",
+            "instructions": "Hiển thị nút chat Zalo ở góc dưới màn hình",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_daily_opt_show_phone_float",
+            "label": "Hiển thị nút Điện thoại nổi",
+            "name": "show_phone_float",
+            "type": "true_false",
+            "instructions": "Hiển thị nút gọi điện hotline nhanh ở góc dưới màn hình",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_daily_opt_show_back_to_top",
+            "label": "Hiển thị nút Lên đầu trang",
+            "name": "show_back_to_top",
+            "type": "true_false",
+            "instructions": "Hiển thị nút cuộn lên đầu trang nhanh ở góc dưới màn hình",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_daily_opt_tab_tracking",
+            "label": "Tracking & Analytics",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_daily_opt_tracking_enabled",
+            "label": "Bật Tracking trên Frontend",
+            "name": "tracking_enabled",
+            "type": "true_false",
+            "instructions": "Tắt khi cần debug hoặc maintenance. Khi tắt, không có script tracking nào được inject.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "100",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Bật",
+            "ui_off_text": "Tắt"
+        },
+        {
+            "key": "field_daily_opt_ga4_measurement_id",
+            "label": "GA4 Measurement ID",
+            "name": "ga4_measurement_id",
+            "type": "text",
+            "instructions": "Ví dụ: G-XXXXXXXXXX. Để trống nếu chưa cần GA4.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "G-XXXXXXXXXX",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_daily_opt_ga4_ads_conversion_id",
+            "label": "Google Ads Conversion ID",
+            "name": "ga4_ads_conversion_id",
+            "type": "text",
+            "instructions": "Ví dụ: AW-XXXXXXXXX. Để trống nếu không chạy Google Ads.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "AW-XXXXXXXXX",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_daily_opt_ga4_ads_conversion_label",
+            "label": "Google Ads Conversion Label",
+            "name": "ga4_ads_conversion_label",
+            "type": "text",
+            "instructions": "Label cho event purchase. Để trống nếu không cần.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_daily_opt_fb_pixel_id",
+            "label": "Facebook Pixel ID",
+            "name": "fb_pixel_id",
+            "type": "text",
+            "instructions": "Ví dụ: 123456789012345. Để trống nếu chưa cần Facebook Pixel.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "123456789012345",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_daily_opt_tab_seasonal",
+            "label": "Trang trí Mùa / Lễ",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_daily_opt_seasonal_enabled",
+            "label": "Bật trang trí mùa/lễ",
+            "name": "seasonal_enabled",
+            "type": "true_false",
+            "instructions": "Khi bật, body class và thanh thông báo mùa lễ sẽ hiển thị trên frontend.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "Bật",
+            "ui_off_text": "Tắt"
+        },
+        {
+            "key": "field_daily_opt_seasonal_preset",
+            "label": "Chọn mùa/lễ",
+            "name": "seasonal_preset",
+            "type": "select",
+            "instructions": "Chọn preset sẵn hoặc 'Tùy chỉnh' để nhập class riêng.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "none": "— Không —",
+                "tet": "Tết Nguyên Đán",
+                "summer": "Khuyến mãi Hè",
+                "mid_autumn": "Trung Thu",
+                "christmas": "Giáng Sinh",
+                "custom": "Tùy chỉnh"
+            },
+            "default_value": "none",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 1,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_daily_opt_seasonal_custom_class",
+            "label": "Body class tùy chỉnh",
+            "name": "seasonal_custom_class",
+            "type": "text",
+            "instructions": "Chỉ dùng khi chọn 'Tùy chỉnh'. Ví dụ: is-black-friday",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_daily_opt_seasonal_preset",
+                        "operator": "==",
+                        "value": "custom"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "is-black-friday",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_daily_opt_seasonal_bar_text",
+            "label": "Nội dung thanh thông báo",
+            "name": "seasonal_bar_text",
+            "type": "text",
+            "instructions": "Hiển thị thanh banner nhỏ trên cùng trang. Để trống = ẩn thanh.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "🎉 Khuyến mãi Hè — Giảm đến 3 triệu!",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_daily_opt_seasonal_bar_link",
+            "label": "Link thanh thông báo",
+            "name": "seasonal_bar_link",
+            "type": "url",
+            "instructions": "Để trống nếu không cần link.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https://dailyxedien.vn/khuyen-mai/"
+        },
+        {
+            "key": "field_daily_opt_seasonal_bar_color",
+            "label": "Màu nền thanh thông báo",
+            "name": "seasonal_bar_color",
+            "type": "color_picker",
+            "instructions": "Mặc định: đỏ (#dc2626).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "#dc2626",
+            "enable_opacity": 0,
+            "return_format": "string"
         }
     ],
     "location": [

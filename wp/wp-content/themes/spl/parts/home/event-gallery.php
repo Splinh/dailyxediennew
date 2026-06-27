@@ -15,12 +15,12 @@ $gallery = $data['gallery'] ?? [];
 // Default fallback events if empty.
 if ( empty( $gallery ) ) {
 	$gallery = [
-		[ 'image' => 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=400&q=80', 'caption' => __( 'Khai trương đại lý mới', 'spl' ) ],
-		[ 'image' => 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=400&q=80', 'caption' => __( 'Tri ân khách hàng', 'spl' ) ],
-		[ 'image' => 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=400&q=80', 'caption' => __( 'Lái thử xe điện', 'spl' ) ],
-		[ 'image' => 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=400&q=80', 'caption' => __( 'Bảo dưỡng miễn phí', 'spl' ) ],
-		[ 'image' => 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=400&q=80', 'caption' => __( 'Ngày hội công nghệ', 'spl' ) ],
-		[ 'image' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=400&q=80', 'caption' => __( 'Chuyển giao công nghệ', 'spl' ) ],
+		[ 'image' => '', 'caption' => __( 'Khai trương đại lý mới', 'spl' ) ],
+		[ 'image' => '', 'caption' => __( 'Tri ân khách hàng', 'spl' ) ],
+		[ 'image' => '', 'caption' => __( 'Lái thử xe điện', 'spl' ) ],
+		[ 'image' => '', 'caption' => __( 'Bảo dưỡng miễn phí', 'spl' ) ],
+		[ 'image' => '', 'caption' => __( 'Ngày hội công nghệ', 'spl' ) ],
+		[ 'image' => '', 'caption' => __( 'Chuyển giao công nghệ', 'spl' ) ],
 	];
 }
 ?>

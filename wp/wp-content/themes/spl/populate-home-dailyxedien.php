@@ -205,20 +205,14 @@ $home_sections = [
 			[ 'name' => 'Hoàng Nam', 'location' => 'Quận 7, TP.HCM', 'avatar_text' => 'HN', 'rating' => 5, 'comment' => '"Dịch vụ bảo dưỡng vàng 3 năm cực chu đáo. Hệ thống đại lý chuyên nghiệp, đáng tin cậy lắm!"' ],
 		]
 	],
-	// 8. EVENT GALLERY
+	// 8. PORTFOLIO GALLERY (tabs from dxd_gallery CPT)
 	[
-		'acf_fc_layout' => 'event_gallery',
+		'acf_fc_layout' => 'portfolio_gallery',
 		'disable'       => 0,
 		'title'         => 'Hình ảnh sự kiện',
 		'subtitle'      => 'Hoạt động tại cửa hàng',
-		'gallery'       => [
-			[ 'image' => 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=400&q=80', 'caption' => 'Khai trương đại lý mới' ],
-			[ 'image' => 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=400&q=80', 'caption' => 'Tri ân khách hàng' ],
-			[ 'image' => 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=400&q=80', 'caption' => 'Lái thử xe điện' ],
-			[ 'image' => 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=400&q=80', 'caption' => 'Bảo dưỡng miễn phí' ],
-			[ 'image' => 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=400&q=80', 'caption' => 'Ngày hội công nghệ' ],
-			[ 'image' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=400&q=80', 'caption' => 'Chuyển giao công nghệ' ],
-		],
+		'per_tab'       => 8,
+		'tabs'          => [],  // Auto-detect from dxd_gallery_cat terms (fallback in template)
 	],
 	// 9. STORE LOCATOR
 	[
