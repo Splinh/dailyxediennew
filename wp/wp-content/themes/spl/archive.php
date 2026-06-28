@@ -97,80 +97,75 @@ if ( $all_cats && ! is_wp_error( $all_cats ) ) :
 
 <!-- ===== MAIN CONTENT ===== -->
 <main id="blog-content" class="max-w-7xl mx-auto px-4 py-8 md:py-12">
-	<div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+	<div class="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-8">
 
-		<!-- LEFT: Posts (2/3) -->
-		<div class="lg:col-span-2">
+		<!-- LEFT: Posts -->
+		<div>
 			<?php if ( have_posts() ) : ?>
 
 				<?php
-				// First post = featured (only on page 1).
+				// First 2 posts = featured (only on page 1).
 				$paged = get_query_var( 'paged' ) ?: 1;
 				if ( 1 === (int) $paged ) :
-					the_post();
-					$feat_id    = get_the_ID();
-					$feat_cats  = get_the_category();
-					$feat_cat   = ! empty( $feat_cats ) ? $feat_cats[0] : null;
-					$feat_thumb = get_the_post_thumbnail_url( $feat_id, 'large' );
-					$word_count = count( preg_split( '/\s+/', trim( wp_strip_all_tags( get_the_content() ) ) ) );
-					$read_time  = max( 1, (int) ceil( $word_count / 200 ) );
-					$author     = get_the_author();
-					$initials   = '';
-					foreach ( array_slice( explode( ' ', trim( $author ) ), -2 ) as $w ) {
-						$initials .= mb_substr( $w, 0, 1 );
+					$feat_posts = [];
+					for ( $fi = 0; $fi < 2 && have_posts(); $fi++ ) {
+						the_post();
+						$fid       = get_the_ID();
+						$f_cats    = get_the_category();
+						$f_cat     = ! empty( $f_cats ) ? $f_cats[0] : null;
+						$f_thumb   = get_the_post_thumbnail_url( $fid, 'large' );
+						$feat_posts[] = [
+							'id'        => $fid,
+							'permalink' => get_permalink(),
+							'title'     => get_the_title(),
+							'cat'       => $f_cat,
+							'thumb'     => $f_thumb,
+							'date'      => get_the_date(),
+							'excerpt'   => wp_trim_words( get_the_excerpt(), 20 ),
+						];
 					}
-					$initials = mb_strtoupper( $initials ?: 'DX' );
 					?>
-					<!-- Featured Post -->
-					<article class="bg-white border border-slate-100 rounded-xl shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] overflow-hidden group hover:shadow-[0_20px_40px_-4px_rgba(0,0,0,0.08)] transition-all duration-300 mb-8">
-						<a href="<?php the_permalink(); ?>" class="block">
-							<div class="<?php echo esc_attr( $ratio_css ); ?> bg-slate-100 relative overflow-hidden">
-								<?php if ( $feat_thumb ) : ?>
-									<img src="<?php echo esc_url( $feat_thumb ); ?>" alt="<?php the_title_attribute(); ?>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="eager" />
-								<?php else : ?>
-									<div class="w-full h-full min-h-[200px] bg-slate-100 flex items-center justify-center">
-										<svg class="w-16 h-16 text-slate-300" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+					<!-- Featured Posts (2 columns) -->
+					<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+						<?php foreach ( $feat_posts as $fp ) : ?>
+							<article class="bg-white border border-slate-100 rounded-xl shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] overflow-hidden group hover:shadow-[0_20px_40px_-4px_rgba(0,0,0,0.08)] transition-all duration-300">
+								<a href="<?php echo esc_url( $fp['permalink'] ); ?>" class="block">
+									<div class="<?php echo esc_attr( $ratio_css ); ?> bg-slate-100 relative overflow-hidden">
+										<?php if ( $fp['thumb'] ) : ?>
+											<img src="<?php echo esc_url( $fp['thumb'] ); ?>" alt="<?php echo esc_attr( $fp['title'] ); ?>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="eager" />
+										<?php else : ?>
+											<div class="w-full h-full min-h-[160px] bg-slate-100 flex items-center justify-center">
+												<svg class="w-12 h-12 text-slate-300" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+											</div>
+										<?php endif; ?>
+										<div class="absolute top-3 left-3">
+											<span class="bg-red-500 text-white text-[9px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-sm"><?php esc_html_e( 'Nổi bật', 'spl' ); ?></span>
+										</div>
 									</div>
-								<?php endif; ?>
-								<div class="absolute top-4 left-4">
-									<span class="bg-red-500 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm"><?php esc_html_e( 'Nổi bật', 'spl' ); ?></span>
-								</div>
-							</div>
-						</a>
-						<div class="p-5 md:p-7">
-							<div class="flex items-center gap-3 mb-3">
-								<?php if ( $feat_cat ) : ?>
-									<span class="bg-[#f0f5ff] text-[#1e73be] text-[10px] font-bold px-2.5 py-1 rounded-full border border-[#e0ebff]"><?php echo esc_html( $feat_cat->name ); ?></span>
-								<?php endif; ?>
-								<span class="text-[10px] text-slate-400 font-semibold flex items-center gap-1">
-									<svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-									<?php echo esc_html( get_the_date() ); ?>
-								</span>
-								<span class="text-[10px] text-slate-400 font-semibold flex items-center gap-1">
-									<svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-									<?php echo esc_html( sprintf( __( '%d phút đọc', 'spl' ), $read_time ) ); ?>
-								</span>
-							</div>
-							<h2 class="text-lg md:text-xl font-black text-slate-900 leading-snug group-hover:text-[#1e73be] transition-colors">
-								<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-							</h2>
-							<p class="text-sm text-slate-500 mt-3 leading-relaxed line-clamp-3"><?php echo esc_html( wp_trim_words( get_the_excerpt(), 35 ) ); ?></p>
-							<div class="flex items-center justify-between mt-5 pt-4 border-t border-slate-100">
-								<div class="flex items-center gap-3">
-									<div class="w-8 h-8 rounded-full bg-[#e0ebff] text-[#1e73be] flex items-center justify-center text-xs font-bold"><?php echo esc_html( $initials ); ?></div>
-									<span class="text-xs font-semibold text-slate-600"><?php echo esc_html( $author ); ?></span>
-								</div>
-								<a href="<?php the_permalink(); ?>" class="text-xs font-bold text-[#1e73be] hover:text-[#165da0] flex items-center gap-1.5 transition-colors">
-									<?php esc_html_e( 'Đọc tiếp', 'spl' ); ?>
-									<svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
 								</a>
-							</div>
-						</div>
-					</article>
+								<div class="p-4 md:p-5 space-y-2">
+									<div class="flex items-center gap-2">
+										<?php if ( $fp['cat'] ) : ?>
+											<span class="bg-[#f0f5ff] text-[#1e73be] text-[10px] font-bold px-2 py-0.5 rounded-full border border-[#e0ebff]"><?php echo esc_html( $fp['cat']->name ); ?></span>
+										<?php endif; ?>
+										<span class="text-[10px] text-slate-400 font-semibold"><?php echo esc_html( $fp['date'] ); ?></span>
+									</div>
+									<h2 class="text-sm md:text-base font-bold text-slate-900 leading-snug line-clamp-2 group-hover:text-[#1e73be] transition-colors">
+										<a href="<?php echo esc_url( $fp['permalink'] ); ?>"><?php echo esc_html( $fp['title'] ); ?></a>
+									</h2>
+									<p class="text-xs text-slate-500 line-clamp-2 leading-relaxed"><?php echo esc_html( $fp['excerpt'] ); ?></p>
+									<a href="<?php echo esc_url( $fp['permalink'] ); ?>" class="text-xs font-bold text-[#1e73be] hover:text-[#165da0] flex items-center gap-1 transition-colors pt-1">
+										<?php esc_html_e( 'Đọc tiếp', 'spl' ); ?>
+										<svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+									</a>
+								</div>
+							</article>
+						<?php endforeach; ?>
+					</div>
 				<?php endif; ?>
 
-				<!-- Post Grid -->
-				<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+				<!-- Post Grid (3 columns) -->
+				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 					<?php
 					while ( have_posts() ) :
 						the_post();
@@ -257,8 +252,8 @@ if ( $all_cats && ! is_wp_error( $all_cats ) ) :
 			<?php endif; ?>
 		</div>
 
-		<!-- RIGHT: Sidebar (1/3) -->
-		<aside class="lg:col-span-1 space-y-6">
+		<!-- RIGHT: Sidebar -->
+		<aside class="space-y-5">
 			<!-- Search -->
 			<div class="bg-white border border-slate-100 rounded-xl shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] p-5">
 				<h3 class="font-bold text-slate-800 text-sm flex items-center gap-2 mb-3">
