@@ -554,7 +554,7 @@ trait Misc {
 	 */
 	private static function parseAspectRatio( string $postType = '', ?string $option = '' ): array {
 		$postType = $postType ?: 'post';
-		$option   = $option ?: 'aspect_ratio__options';
+		$option   = $option ?: 'hda_aspect_ratio';
 
 		$options = self::getOption( $option );
 		if ( ! is_array( $options ) ) {
