@@ -209,12 +209,21 @@ final class Asset {
 			$replacement = $key === 0 ? '-css' : '-' . $key . '-css';
 			$handle      = preg_replace( '/-js$/', $replacement, $resolve['handle'] );
 
-			// Skip if already enqueued or vendor CSS
-			if ( wp_style_is( $handle )
-				|| wp_style_is( $handle, 'registered' )
-				|| str_contains( $cssFile, 'vendor.' )
-			) {
+			// Skip if vendor CSS
+			if ( str_contains( $cssFile, 'vendor.' ) ) {
 				continue;
+			}
+
+			// Skip if already registered with a valid source.
+			// If it is only a placeholder dependency (registered without src), unset it first.
+			global $wp_styles;
+			$isRegistered = isset( $wp_styles->registered[ $handle ] ) && ! empty( $wp_styles->registered[ $handle ]->src );
+			if ( $isRegistered ) {
+				continue;
+			}
+
+			if ( isset( $wp_styles->registered[ $handle ] ) ) {
+				unset( $wp_styles->registered[ $handle ] );
 			}
 
 			// Skip tailwind.css if already enqueued via PHP
