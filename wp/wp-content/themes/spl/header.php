@@ -106,20 +106,20 @@ $cart_url   = Helper::isWoocommerceActive() ? wc_get_cart_url() : home_url( '/gi
 do_action( 'spl_header_before_action' );
 ?>
 
-<!-- ===== TOP UTILITY BAR (ẩn trên mobile) ===== -->
-<div class="bg-navy text-slate-300 text-xs py-2.5 px-4 border-b border-white/10 relative z-50 hidden md:block">
+<!-- ===== TOP UTILITY BAR ===== -->
+<div class="bg-navy text-slate-300 text-[11px] md:text-xs py-1.5 md:py-2.5 px-4 border-b border-white/10 relative z-50">
 	<div class="max-w-7xl mx-auto flex flex-row justify-between items-center gap-2">
-		<div class="flex flex-wrap items-center gap-5">
+		<div class="flex items-center gap-3 md:gap-5 overflow-x-auto scrollbar-hide whitespace-nowrap -mx-1 px-1">
 			<?php foreach ( $topbar_links as $row ) :
 				$lk = $row['link'] ?? null;
 				if ( ! $lk || empty( $lk['url'] ) ) { continue; }
 				?>
-				<a href="<?php echo esc_url( $lk['url'] ); ?>" class="hover:text-white transition-colors flex items-center gap-1.5">
+				<a href="<?php echo esc_url( $lk['url'] ); ?>" class="hover:text-white transition-colors flex items-center gap-1 md:gap-1.5 shrink-0">
 					<?php echo spl_icon( 'chevron-right', 'w-3 h-3 text-primary-300' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php echo esc_html( $lk['title'] ?? $lk['url'] ); ?>
 				</a>
 			<?php endforeach; ?>
 		</div>
-		<div class="flex items-center gap-5">
+		<div class="hidden md:flex items-center gap-5">
 			<a href="<?php echo esc_url( wp_login_url() ); ?>" class="hover:text-white transition-colors flex items-center gap-1.5"><?php echo spl_icon( 'user', 'w-3.5 h-3.5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> <?php esc_html_e( 'Đăng nhập / Đăng ký', 'spl' ); ?></a>
 			<span class="text-white/20">|</span>
 			<a href="<?php echo esc_url( $cart_url ); ?>" data-cart-open class="hover:text-white transition-colors flex items-center gap-1.5 font-medium relative">

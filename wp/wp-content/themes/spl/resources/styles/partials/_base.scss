@@ -47,6 +47,16 @@ img[src=''] {
 	aspect-ratio: 16 / 9;
 }
 
+// Scrollbar hide utility (horizontal scroll without visible bar)
+.scrollbar-hide {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
 // ============================================================================
 // OFF-CANVAS CRITICAL STYLES
 // Prevent FOUC - must load before JS. Enhanced styles in fx-offcanvas.scss
