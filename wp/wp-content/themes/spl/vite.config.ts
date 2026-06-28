@@ -21,7 +21,7 @@ export default defineConfig({
 		},
 		chunkDirs,
 	}),
-	base: '/wp-content/themes/spl/assets/',
+	base: '/wp/wp-content/themes/spl/assets/',
 
 	// Static assets (fonts) — copied to outDir on build, survives emptyOutDir.
 	publicDir: 'static',
