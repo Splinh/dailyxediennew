@@ -96,6 +96,7 @@ Config::define( 'NONCE_SALT', env( 'NONCE_SALT' ) );
 /** Security */
 Config::define( 'DISALLOW_FILE_EDIT', true );
 Config::define( 'DISALLOW_FILE_MODS', false );
+Config::define( 'FS_METHOD', 'direct' );
 Config::define( 'FORCE_SSL_ADMIN', env( 'FORCE_SSL_ADMIN' ) ?? true );
 Config::define( 'DISALLOW_INDEXING', env( 'DISALLOW_INDEXING' ) ?? false );
 

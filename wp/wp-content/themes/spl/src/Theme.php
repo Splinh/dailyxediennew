@@ -114,7 +114,10 @@ final class Theme {
 		$isHomeOrLanding = is_front_page() || Helper::isPageTemplate( '/^templates\/template-/' );
 		$conditionalCss  = $isHomeOrLanding ? 'share.scss' : 'page.scss';
 
-		Asset::enqueueCSS( $conditionalCss, [ Asset::handle( 'tailwind.css' ) ] );
+		$tailwindHandle = Asset::handle( 'tailwind.css' );
+		$baseCssDeps    = $tailwindHandle ? [ $tailwindHandle ] : [ 'index-css' ];
+
+		Asset::enqueueCSS( $conditionalCss, $baseCssDeps );
 
 		/** JS */
 		Asset::enqueueJS( 'preflight.js', [], null, false );
@@ -170,7 +173,10 @@ final class Theme {
 		add_action(
 			'wp_enqueue_scripts',
 			static function () use ( $templateSlug, $hookName ): void {
-				Asset::enqueueCSS( "components/{$templateSlug}.scss", [ Asset::handle( 'tailwind.css' ) ] );
+				$tailwindHandle = Asset::handle( 'tailwind.css' );
+				$baseCssDeps    = $tailwindHandle ? [ $tailwindHandle ] : [ 'index-css' ];
+
+				Asset::enqueueCSS( "components/{$templateSlug}.scss", $baseCssDeps );
 				Asset::enqueueJS( "components/{$templateSlug}.js", [ Asset::handle( 'index.js' ) ], null, true, [ 'module', 'defer' ] );
 
 				// Dynamic hooks for extension.
