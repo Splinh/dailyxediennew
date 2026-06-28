@@ -12,11 +12,12 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$data     = $args ?? [];
-$title    = $data['title'] ?? __( 'Tin tức nổi bật', 'spl' );
-$subtitle = $data['subtitle'] ?? __( 'Cập nhật tin tức và mẹo vặt sử dụng xe hữu ích', 'spl' );
-$tabs     = $data['tabs'] ?? [];
-$per_tab  = isset( $data['count'] ) ? absint( $data['count'] ) : 6;
+$data       = $args ?? [];
+$title      = $data['title'] ?? __( 'Tin tức nổi bật', 'spl' );
+$subtitle   = $data['subtitle'] ?? __( 'Cập nhật tin tức và mẹo vặt sử dụng xe hữu ích', 'spl' );
+$tabs       = $data['tabs'] ?? [];
+$per_tab    = isset( $data['count'] ) ? absint( $data['count'] ) : 6;
+$ratio_css  = \SPL\Core\Helper::aspectRatioClass( 'post' );
 
 // ── Fallback: auto-detect all non-empty post categories. ──────────────
 if ( empty( $tabs ) ) {
@@ -137,7 +138,7 @@ $slider_options = wp_json_encode( [
 									<div class="swiper-slide h-auto!">
 										<article class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 group flex flex-col justify-between h-full">
 											<div>
-												<div class="relative overflow-hidden aspect-[4/3]">
+												<div class="relative overflow-hidden <?php echo esc_attr( $ratio_css ); ?>">
 													<img loading="lazy"
 														 src="<?php echo esc_url( $img_url ); ?>"
 														 alt="<?php echo esc_attr( get_the_title( $post ) ); ?>"
@@ -186,7 +187,7 @@ $slider_options = wp_json_encode( [
 							?>
 							<article class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 group flex flex-col justify-between">
 								<div>
-									<div class="relative overflow-hidden aspect-[4/3]">
+									<div class="relative overflow-hidden <?php echo esc_attr( $ratio_css ); ?>">
 										<img loading="lazy"
 											 src="<?php echo esc_url( $img_url ); ?>"
 											 alt="<?php echo esc_attr( get_the_title( $post ) ); ?>"

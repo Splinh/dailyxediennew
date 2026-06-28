@@ -23,6 +23,7 @@ get_header();
 $query_text   = get_search_query();
 $total_found  = $wp_query->found_posts ?? 0;
 $is_product   = false; // Product searches never reach here.
+$ratio_css    = Helper::aspectRatioClass( 'post' );
 ?>
 
 <!-- Breadcrumb -->
@@ -164,7 +165,7 @@ $is_product   = false; // Product searches never reach here.
 						?>
 						<article class="blog-card reveal">
 							<?php if ( $thumb ) : ?>
-								<a href="<?php the_permalink(); ?>" class="blog-card__image">
+								<a href="<?php the_permalink(); ?>" class="blog-card__image <?php echo esc_attr( $ratio_css ); ?>">
 									<img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy" />
 								</a>
 							<?php endif; ?>

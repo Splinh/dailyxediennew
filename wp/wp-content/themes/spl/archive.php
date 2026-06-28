@@ -43,6 +43,7 @@ if ( $is_search ) {
 // Options.
 $hotline     = Helper::getField( 'hotline', 'option' ) ?: '098 750 33 60';
 $hotline_url = 'tel:' . preg_replace( '/\s+/', '', $hotline );
+$ratio_css   = Helper::aspectRatioClass( 'post' );
 ?>
 
 <!-- ===== HERO BANNER ===== -->
@@ -123,7 +124,7 @@ if ( $all_cats && ! is_wp_error( $all_cats ) ) :
 					<!-- Featured Post -->
 					<article class="bg-white border border-slate-100 rounded-xl shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] overflow-hidden group hover:shadow-[0_20px_40px_-4px_rgba(0,0,0,0.08)] transition-all duration-300 mb-8">
 						<a href="<?php the_permalink(); ?>" class="block">
-							<div class="aspect-[16/8] bg-slate-100 relative overflow-hidden">
+							<div class="<?php echo esc_attr( $ratio_css ); ?> bg-slate-100 relative overflow-hidden">
 								<?php if ( $feat_thumb ) : ?>
 									<img src="<?php echo esc_url( $feat_thumb ); ?>" alt="<?php the_title_attribute(); ?>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="eager" />
 								<?php else : ?>
@@ -180,7 +181,7 @@ if ( $all_cats && ! is_wp_error( $all_cats ) ) :
 						?>
 						<article class="bg-white border border-slate-100 rounded-xl shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] overflow-hidden group hover:shadow-[0_20px_40px_-4px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300">
 							<a href="<?php the_permalink(); ?>" class="block">
-								<div class="aspect-video bg-slate-100 relative overflow-hidden">
+								<div class="<?php echo esc_attr( $ratio_css ); ?> bg-slate-100 relative overflow-hidden">
 									<?php if ( $p_thumb ) : ?>
 										<img src="<?php echo esc_url( $p_thumb ); ?>" alt="<?php the_title_attribute(); ?>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
 									<?php else : ?>

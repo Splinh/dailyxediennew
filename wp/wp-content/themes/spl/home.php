@@ -33,6 +33,7 @@ function spl_news_fallback_img( int $index = 0 ): string {
 }
 
 $is_first_page = ! is_paged();
+$ratio_css     = Helper::aspectRatioClass( 'post' );
 ?>
 
 <!-- Breadcrumb -->
@@ -79,7 +80,7 @@ $is_first_page = ! is_paged();
 		<section class="news-featured">
 			<div class="container">
 				<a href="<?php the_permalink(); ?>" class="news-featured__card reveal">
-					<div class="news-featured__image">
+					<div class="news-featured__image <?php echo esc_attr( $ratio_css ); ?>">
 						<img src="<?php echo esc_url( $feat_img ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" loading="eager" />
 						<span class="news-featured__badge"><?php esc_html_e( 'Nổi bật', 'spl' ); ?></span>
 					</div>
@@ -127,7 +128,7 @@ $is_first_page = ! is_paged();
 							$card_img = get_the_post_thumbnail_url( get_the_ID(), 'medium_large' ) ?: spl_news_fallback_img( $card_index );
 							?>
 							<a href="<?php the_permalink(); ?>" class="news-card reveal">
-								<div class="news-card__image">
+								<div class="news-card__image <?php echo esc_attr( $ratio_css ); ?>">
 									<img src="<?php echo esc_url( $card_img ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy" />
 									<span class="news-card__cat"><?php echo esc_html( $cat_name ); ?></span>
 								</div>
