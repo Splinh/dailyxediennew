@@ -261,6 +261,25 @@ const run = () => {
 		updateSelectedVariation();
 	}
 
+	// Handle Grid/List View Toggle
+	const viewBtns = document.querySelectorAll('.archive-view-btn');
+	const productsGrid = document.querySelector('.products-grid');
+	if (viewBtns.length && productsGrid) {
+		viewBtns.forEach(btn => {
+			btn.addEventListener('click', (e) => {
+				e.preventDefault();
+				viewBtns.forEach(b => b.classList.remove('active'));
+				btn.classList.add('active');
+				const view = btn.dataset.view;
+				if (view === 'list') {
+					productsGrid.classList.add('is-list-view');
+				} else {
+					productsGrid.classList.remove('is-list-view');
+				}
+			});
+		});
+	}
+
 	// ── jQuery-dependent WC integration ──
 	if (window.jQuery) {
 		jQuery(() => {
