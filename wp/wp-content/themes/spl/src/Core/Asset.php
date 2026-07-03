@@ -194,7 +194,7 @@ final class Asset {
 		}
 
 		$resolve['deps']      = $deps;
-		$resolve['ver']       = $ver;
+		$resolve['ver']       = ( $ver === false || $ver === null ) ? self::version() : $ver;
 		$resolve['in_footer'] = $inFooter;
 		$resolve['extra']     = $extra;
 
@@ -245,7 +245,7 @@ final class Asset {
 					'handle' => $handle,
 					'src'    => $src,
 					'deps'   => $cssDeps,
-					'ver'    => $ver,
+					'ver'    => ( $ver === false || $ver === null ) ? self::version() : $ver,
 					'media'  => 'all',
 				]
 			);
@@ -275,7 +275,7 @@ final class Asset {
 		}
 
 		$resolve['deps']  = $deps;
-		$resolve['ver']   = $ver;
+		$resolve['ver']   = ( $ver === false || $ver === null ) ? self::version() : $ver;
 		$resolve['media'] = $media;
 
 		self::enqueueStyle( $resolve );
