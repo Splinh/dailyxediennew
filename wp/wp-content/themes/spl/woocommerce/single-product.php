@@ -362,10 +362,6 @@ while ( have_posts() ) :
 					</div>
 					<!-- Promo strip matching mockup -->
 					<div class="price-promo">
-						<span class="price-promo__item price-promo__item--installment">
-							<svg class="icon" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-							<?php echo sprintf( __( 'Trả góp 0%% từ %s', 'spl' ), '<strong class="text-slate-700">832K/tháng</strong>' ); ?>
-						</span>
 						<span class="price-promo__item price-promo__item--delivery">
 							<svg class="icon" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
 							<strong class="text-emerald-600"><?php esc_html_e( 'Miễn phí giao hàng', 'spl' ); ?></strong>
