@@ -328,6 +328,7 @@
 			const origHtml = btn.innerHTML;
 			btn.disabled = true;
 			btn.style.opacity = '0.7';
+			btn.innerHTML = '<span class="spl-spinner"></span>';
 
 			fetch( wcAjaxUrl, {
 				method: 'POST',
@@ -351,12 +352,21 @@
 							} );
 						} );
 					}
-					btn.innerHTML = origHtml;
-					btn.disabled = false;
-					btn.style.opacity = '';
+					
+					// Success state: show checkmark briefly, then restore original
+					btn.innerHTML = '<svg class="w-3.5 h-3.5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+					setTimeout( () => {
+						btn.innerHTML = origHtml;
+						btn.disabled = false;
+						btn.style.opacity = '';
+					}, 1200 );
+					
 					openCart();
 				} )
 				.catch( () => {
+					btn.innerHTML = origHtml;
+					btn.disabled = false;
+					btn.style.opacity = '';
 					window.location.href = location.origin + location.pathname + '?add-to-cart=' + ( variationId || productId ) + '&quantity=' + qty;
 				} );
 		};

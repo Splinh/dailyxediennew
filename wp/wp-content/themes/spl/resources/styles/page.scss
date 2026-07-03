@@ -796,7 +796,93 @@
 
 	&.is-list-view {
 		grid-template-columns: 1fr;
+		gap: 1rem;
+
+		> div {
+			flex-direction: row;
+			align-items: stretch;
+			min-height: 140px;
+
+			@media (min-width: vars.$md) {
+				min-height: 180px;
+			}
+
+			> a {
+				flex-shrink: 0;
+				width: 130px;
+
+				@media (min-width: vars.$md) {
+					width: 220px;
+				}
+
+				> div {
+					height: 100%;
+					border-radius: 0.75rem 0 0 0.75rem;
+				}
+			}
+
+			> div {
+				flex-grow: 1;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				padding: 1rem;
+
+				@media (min-width: vars.$md) {
+					padding: 1.25rem 1.5rem;
+				}
+
+				// Restrict button width in list view
+				.grid.grid-cols-5,
+				.mt-3 > .mt-3 {
+					max-width: 260px;
+				}
+			}
+		}
 	}
+}
+
+.add-cart-btn {
+	border: 1px solid var(--color-primary-100, #d6e4f7);
+	background: #f8fafc;
+	color: var(--color-primary, #1e73be);
+	width: 2.25rem;
+	height: 2.25rem;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+
+	@media (min-width: vars.$md) {
+		width: 2.5rem;
+		height: 2.5rem;
+	}
+
+	&:hover {
+		background: var(--color-primary, #1e73be);
+		color: #fff;
+		border-color: var(--color-primary, #1e73be);
+	}
+
+	&[disabled] {
+		opacity: 0.7;
+		pointer-events: none;
+	}
+}
+
+@keyframes spl-spin {
+	to { transform: rotate(360deg); }
+}
+
+.spl-spinner {
+	animation: spl-spin 1s linear infinite;
+	width: 0.875rem;
+	height: 0.875rem;
+	display: inline-block;
+	border: 2px solid currentColor;
+	border-right-color: transparent;
+	border-radius: 50%;
 }
 
 // ============================================================================

@@ -160,7 +160,7 @@ $stars_count     = $average_rating > 0 ? round( $average_rating ) : 5;
 			<?php if ( $purchasable ) : ?>
 				<div class="grid grid-cols-5 gap-1.5 mt-3">
 					<a href="<?php echo esc_url( function_exists( 'wc_get_checkout_url' ) ? wc_get_checkout_url() . '?add-to-cart=' . $pid : '#' ); ?>" class="col-span-4 bg-primary hover:bg-primary-hover active:scale-95 text-white text-[10px] md:text-xs font-bold py-2 md:py-2.5 rounded-lg transition-all text-center flex items-center justify-center"><?php esc_html_e( 'Mua ngay', 'spl' ); ?></a>
-					<button type="button" class="bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-600 flex items-center justify-center rounded-lg transition-all add-cart-btn" data-product-id="<?php echo esc_attr( $pid ); ?>" title="<?php esc_attr_e( 'Thêm vào giỏ', 'spl' ); ?>">
+					<button type="button" class="add-cart-btn active:scale-95 flex items-center justify-center rounded-lg transition-all" data-product-id="<?php echo esc_attr( $pid ); ?>" title="<?php esc_attr_e( 'Thêm vào giỏ', 'spl' ); ?>">
 						<?php echo spl_icon( 'cart', 'w-3.5 h-3.5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</button>
 				</div>
