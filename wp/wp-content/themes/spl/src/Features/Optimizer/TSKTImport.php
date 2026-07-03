@@ -140,6 +140,18 @@ final class TSKTImport {
 	}
 
 	/**
+	 * Normalize strings for safe, accented case-insensitive comparison.
+	 *
+	 * @param string $str Original string.
+	 * @return string Normalized string.
+	 */
+	private static function normalizeString( string $str ): string {
+		$str = html_entity_decode( $str, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+		$str = preg_replace( '/\s+/u', ' ', $str );
+		return trim( mb_strtolower( $str, 'UTF-8' ) );
+	}
+
+	/**
 	 * Process CSV file import.
 	 *
 	 * @param string $filePath Absolute path to CSV file.
@@ -150,20 +162,55 @@ final class TSKTImport {
 			return [ 'updated' => 0, 'skipped' => 0 ];
 		}
 
-		$handle = fopen( $filePath, 'r' );
-		if ( ! $handle ) {
+		$content = file_get_contents( $filePath );
+		if ( false === $content ) {
 			return [ 'updated' => 0, 'skipped' => 0 ];
 		}
 
-		// Read BOM if present.
-		$bom = fread( $handle, 3 );
-		if ( "\xEF\xBB\xBF" !== $bom ) {
-			rewind( $handle );
+		// Detect and handle encoding/BOM
+		$first2 = substr( $content, 0, 2 );
+		if ( "\xFF\xFE" === $first2 ) {
+			$content = mb_convert_encoding( substr( $content, 2 ), 'UTF-8', 'UTF-16LE' );
+		} elseif ( "\xFE\xFF" === $first2 ) {
+			$content = mb_convert_encoding( substr( $content, 2 ), 'UTF-8', 'UTF-16BE' );
+		} elseif ( "\xEF\xBB\xBF" === substr( $content, 0, 3 ) ) {
+			$content = substr( $content, 3 );
 		}
 
-		$headers = fgetcsv( $handle );
+		// Detect delimiter from first line
+		$lines = preg_split( '/\r\n|\r|\n/', $content );
+		if ( empty( $lines ) || empty( $lines[0] ) ) {
+			return [ 'updated' => 0, 'skipped' => 0 ];
+		}
+
+		$first_line = $lines[0];
+		$comma_count = substr_count( $first_line, ',' );
+		$semicolon_count = substr_count( $first_line, ';' );
+		$tab_count = substr_count( $first_line, "\t" );
+
+		$delimiter = ',';
+		if ( $semicolon_count > $comma_count && $semicolon_count > $tab_count ) {
+			$delimiter = ';';
+		} elseif ( $tab_count > $comma_count && $tab_count > $semicolon_count ) {
+			$delimiter = "\t";
+		}
+
+		// Save UTF-8 content to temp stream for fgetcsv
+		$handle = fopen( 'php://temp', 'r+' );
+		if ( ! $handle ) {
+			return [ 'updated' => 0, 'skipped' => 0 ];
+		}
+		fwrite( $handle, $content );
+		rewind( $handle );
+
+		// Set locale to prevent Windows fgetcsv multibyte issues
+		$old_locale = setlocale( LC_CTYPE, '0' );
+		setlocale( LC_CTYPE, '.UTF8' );
+
+		$headers = fgetcsv( $handle, 0, $delimiter );
 		if ( ! $headers ) {
 			fclose( $handle );
+			setlocale( LC_CTYPE, $old_locale );
 			return [ 'updated' => 0, 'skipped' => 0 ];
 		}
 
@@ -173,7 +220,7 @@ final class TSKTImport {
 		$updated_count = 0;
 		$skipped_count = 0;
 
-		while ( ( $row = fgetcsv( $handle ) ) !== false ) {
+		while ( ( $row = fgetcsv( $handle, 0, $delimiter ) ) !== false ) {
 			if ( empty( $row ) ) {
 				continue;
 			}
@@ -235,6 +282,7 @@ final class TSKTImport {
 		}
 
 		fclose( $handle );
+		setlocale( LC_CTYPE, $old_locale );
 
 		return [
 			'updated' => $updated_count,

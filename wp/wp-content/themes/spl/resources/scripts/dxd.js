@@ -428,6 +428,36 @@
 			input.dispatchEvent( new Event( 'change', { bubbles: true } ) );
 		} );
 
+		/* ---------- Single Product Tabs Switcher ---------- */
+		const tabsNav = document.querySelector( '.sp-tabs__nav' );
+		if ( tabsNav ) {
+			const tabBtns = tabsNav.querySelectorAll( '.sp-tabs__tab' );
+			tabBtns.forEach( ( btn ) => {
+				btn.addEventListener( 'click', ( e ) => {
+					e.preventDefault();
+					const targetId = btn.getAttribute( 'data-tab' );
+					if ( ! targetId ) return;
+
+					// Deactivate other tabs & panels
+					tabBtns.forEach( ( b ) => {
+						b.classList.remove( 'active' );
+						b.setAttribute( 'aria-selected', 'false' );
+					} );
+					document.querySelectorAll( '.sp-tabs__panel' ).forEach( ( panel ) => {
+						panel.classList.remove( 'active' );
+					} );
+
+					// Activate selected tab & panel
+					btn.classList.add( 'active' );
+					btn.setAttribute( 'aria-selected', 'true' );
+					const targetPanel = document.getElementById( 'tab-' + targetId );
+					if ( targetPanel ) {
+						targetPanel.classList.add( 'active' );
+					}
+				} );
+			} );
+		}
+
 		/* ---------- ESC closes all panels ---------- */
 		document.addEventListener( 'keydown', ( e ) => {
 			if ( e.key === 'Escape' ) {

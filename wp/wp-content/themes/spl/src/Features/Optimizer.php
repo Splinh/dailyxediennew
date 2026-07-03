@@ -32,6 +32,7 @@ use SPL\Features\Optimizer\LoanShortcode;
 use SPL\Features\Optimizer\SeasonalModule;
 use SPL\Features\Optimizer\PortfolioGallery;
 use SPL\Features\Optimizer\PostImporter;
+use SPL\Features\Optimizer\ContentCleanup;
 use SPL\Core\DB;
 use SPL\Core\Helper;
 
@@ -60,6 +61,7 @@ final class Optimizer extends Feature {
 		SeasonalModule::register();
 		PortfolioGallery::register();
 		PostImporter::register();
+		ContentCleanup::register();
 
 		// Permalink — only on theme activation (flush_rules is expensive).
 		add_action( 'after_switch_theme', self::configurePermalink( ... ) );

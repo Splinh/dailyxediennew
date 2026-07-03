@@ -86,7 +86,7 @@ else :
 	get_template_part( 'parts/home/tech-spotlight' );
 	get_template_part( 'parts/home/promo-banners' );
 	get_template_part( 'parts/home/media-reviews' );
-	get_template_part( 'parts/home/event-gallery' );
+	get_template_part( 'parts/home/portfolio-gallery' );
 	get_template_part( 'parts/home/store-locator' );
 	get_template_part( 'parts/home/brands' );
 	get_template_part( 'parts/home/news' );

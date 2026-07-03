@@ -2,8 +2,8 @@
 
 > **Source**: [Google Sheet](https://docs.google.com/spreadsheets/d/1xi5Rv1YKgoAD1wuGH0h1k-cNrX3juF2oYC10uKxvP8k/edit?gid=2085828008#gid=2085828008) + [PLAN-LOG.md](file:///d:/laragon/www/dailynew/docs/PLAN-LOG.md)
 > **HTML Mockups Vercel**: [thietkedaily.vercel.app](https://thietkedaily.vercel.app/)
-> **Updated**: 2026-06-27
-> **Progress**: 75/114 tasks done (~66%)
+> **Updated**: 2026-07-01
+> **Progress**: 86/114 tasks done (~75%)
 > **Timeline**: T6–T9/2026 (4 tháng)
 
 ---
@@ -138,54 +138,59 @@
 #### Session 26D — Homepage News: category tabs ✅ 2026-06-27
 - [x] T2-24h. Thêm tab danh mục cho phần Tin tức trang chủ (ACF repeater tabs + template rewrite, giống pattern portfolio gallery)
 
-#### Session 27 — PolylangBridge: WooCommerceSync
-- [ ] T2-25. Code PolylangBridge — WooCommerceSync (stock/price sync)
+#### Session 27 — PolylangBridge: WooCommerceSync ✅ 2026-06-30
+- [x] T2-25. Code PolylangBridge — WooCommerceSync (stock/price sync)
 
 ---
 
 ### ═══════ T7: TUẦN 4 (21–27/07) — Portfolio Gallery + Polylang ═══════
 
-#### Session 28 — PolylangBridge: StringTranslation
-- [ ] T2-26. Code PolylangBridge — StringTranslation (Admin UI strings)
+#### Session 28 — PolylangBridge: StringTranslation ✅ 2026-06-30
+- [x] T2-26. Code PolylangBridge — StringTranslation (Admin UI strings)
 
-#### Session 29 — PolylangBridge: DuplicateContent
-- [ ] T2-27. Code PolylangBridge — DuplicateContent (Duplicate to EN)
+#### Session 29 — PolylangBridge: DuplicateContent ✅ 2026-06-30
+- [x] T2-27. Code PolylangBridge — DuplicateContent (Duplicate to EN)
 
-#### Session 30 — PolylangBridge: SEO
-- [ ] T2-28. Code PolylangBridge — SEOIntegration (Hreflang, canonical)
+#### Session 30 — PolylangBridge: SEO ✅ 2026-06-30
+- [x] T2-28. Code PolylangBridge — SEOIntegration (Hreflang, canonical)
 
-#### Session 31 — Content cleanup: products
-- [ ] T2-29. Dọn SP: xóa/ẩn ngừng kinh doanh + 301 redirect
+#### Session 31 — Content cleanup: products ✅ 2026-07-01
+- [x] T2-29. Dọn SP: xóa/ẩn ngừng kinh doanh + 301 redirect (Created ContentCleanup.php & registered in Optimizer)
 
-#### Session 32 — Content cleanup: posts + media
-- [ ] T2-30. Dọn bài viết không liên quan (du lịch, thể thao)
-- [ ] T2-31. Dọn hình ảnh orphaned + chuẩn hóa alt text
+#### Session 32 — Content cleanup: posts + media ✅ 2026-07-01
+- [x] T2-30. Dọn bài viết không liên quan (du lịch, thể thao - Disassociated post 505 from 8 categories)
+- [x] T2-31. Dọn hình ảnh orphaned + chuẩn hóa alt text (Updated alt text for 404 images from filenames)
 
-#### Session 33 — Content cleanup: taxonomy
-- [ ] T2-32. Dọn tags/danh mục rỗng (giảm tag sitemaps)
+#### Session 33 — Content cleanup: taxonomy ✅ 2026-07-01
+- [x] T2-32. Dọn tags/danh mục rỗng (Deleted 9 empty categories and 2 empty product categories)
 
 ---
 
 ### ═══════ T8: TUẦN 1 (01–06/08) — Frontend: Homepage + Product ═══════
 
-#### Session 34 — Homepage template polish
-- [ ] T3-32a. Review + refine homepage sections (spacing, alignment, colors)
+#### Session 34 — Homepage template polish ✅ 2026-07-01
+- [x] T3-32a. Review + refine homepage sections (spacing, alignment, colors)
 
-#### Session 35 — Homepage template: product integration
-- [ ] T3-32b. Test homepage với real products (sau import)
+#### Session 35 — Homepage template: product integration ✅ 2026-07-01
+- [x] T3-32b. Test homepage với real products (sau import)
 
-#### Session 36 — Product page: TSKT tab
-- [ ] T3-33a. Frontend product page — TSKT specifications tab
+#### Session 36 — Product page: TSKT tab ✅ 2026-07-01
+- [x] T3-33a. Frontend product page — TSKT specifications tab
 
-#### Session 37 — Product page: enhancements
-- [ ] T3-33b. Frontend product page — gallery, reviews, related products
+#### Session 37 — Content Pages: CSS Styling (ALL pages)
+- [x] T3-33b. Shared components CSS — breadcrumb, sidebar, buttons, icons, reveal ✅ 2026-07-03
+- [x] T3-33c. Single product page CSS — sp-* classes (gallery, tabs, reviews, related) ✅ 2026-07-03
+- [x] T3-33d. Archive product page CSS — archive-*, filter-* classes ✅ 2026-07-03
+- [x] T3-33e. Blog listing + single post CSS — news-*, post-* classes ✅ 2026-07-03
+- [x] T3-33f. About + Contact pages — CSS styling ✅ 2026-07-03
+- [ ] T3-33g. Cooperation page — new template + CSS
 
 ---
 
-### ═══════ T8: TUẦN 2 (07–13/08) — Category + Mobile ═══════
+### ═══════ T8: TUẦN 2 (07–13/08) — Interactions + Mobile ═══════
 
-#### Session 38 — Category page: layout
-- [ ] T3-34a. Frontend category page — layout + sidebar filter
+#### Session 38 — Product page: JS interactions
+- [ ] T3-34a. Gallery click/zoom/lightbox, review stars, related slider (data-fx-slider)
 
 #### Session 39 — Category page: AJAX filter
 - [ ] T3-34b. Frontend category page — AJAX filter implementation
@@ -196,17 +201,8 @@
 #### Session 41 — Mobile responsive: grids + overflow
 - [ ] T3-35b. Mobile responsive — product grids, tab overflow, long text
 
-#### Session 42 — Cooperation Page Template
-- [ ] T3-35c. Port `htmlmau/hop-tac.html` to `templates/template-page-cooperation.php`
-
-#### Session 43 — About & Contact Page Templates
-- [ ] T3-35d. Verify and polish `template-page-about.php` and `template-page-contact.php` to match mockups
-
-#### Session 44 — Blog & Single Post Templates
-- [ ] T3-35e. Port `tin-tuc.html` and `bai-viet.html` to `home.php` and `single.php`
-
-#### Session 45 — WooCommerce Cart & Checkout Pages
-- [ ] T3-35f. Port `gio-hang.html` and `thanh-toan.html` to WooCommerce cart/checkout layouts
+#### Session 42 — WooCommerce Cart & Checkout polish
+- [ ] T3-35c. Verify and polish cart/checkout layouts to match mockups
 
 ---
 

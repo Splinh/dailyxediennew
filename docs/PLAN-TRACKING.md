@@ -32,7 +32,7 @@ Theo Sheet, timeline gốc là T6-T9/2026:
 | 4 | T6 | Test & fix basic rendering | 22/06-30/06 | Chưa triển khai đầy đủ |
 | 5 | T7 | Code TSKT Module | 01/07-07/07 | Chưa triển khai |
 | 6 | T7 | Code TrackingPixels + LoanCalc | 08/07-14/07 | Chưa triển khai |
-| 7 | T7 | Code PolylangBridge Module | 15/07-28/07 | Chưa triển khai |
+| 7 | T7 | Code PolylangBridge Module | 15/07-28/07 | Đã hoàn thành và verify |
 | 8 | T7 | Dọn dẹp nội dung | 22/07-31/07 | Chưa triển khai |
 | 9 | T8 | Frontend: Homepage + Product | 01/08-14/08 | Đang chuẩn bị theo batch trang chủ |
 | 10 | T8 | Dọn dẹp nội dung tiếp | 01/08-14/08 | Chờ data/content thật |
@@ -244,7 +244,52 @@ Measured 2026-06-18 (after Performance Phase A–I).
 
 ### Next Actions
 
-1. Audit current modified `header.php` and `footer.php` before editing.
-2. Add/adjust ACF Options fields for header/footer.
-3. Create idempotent options populate script.
-4. Start flexible JSON migration only after field key strategy is chosen.
+1. Content cleanup: Audit and remove/hide discontinued products and configure 301 redirects.
+2. Clean up unrelated posts (travel, sports, etc.).
+3. Clean up orphaned media and standardize alt texts.
+4. Clean up empty tags and taxonomies to optimize sitemaps.
+
+## Weekly Snapshot - 2026-06-30
+
+### Summary
+
+- Overall status: Polylang Integration and Pro features successfully activated and verified.
+- Main focus: Multi-language orchestration, WooCommerce translation sync, String scanning, and SEO/canonical setup.
+- Completed:
+  - Installed and configured free Polylang plugin.
+  - Programmatically set up languages (vi as default, en as secondary).
+  - Enabled all custom HD Polylang Pro settings (`translate_slugs`, `duplicate_content`, `share_slugs`, `locale_fallback`).
+  - Verified `Products.php` (WooCommerceSync), `Scanner.php` (StringTranslation), `DuplicateContent.php` (DuplicateContent), and `Frontend.php` / `TranslateSlugs.php` (SEO & Canonical).
+- In progress: Content cleanup preparations.
+- Blocked/waiting: None.
+
+### Progress By Area
+
+| Area | Status | % | Notes |
+|---|---|---:|---|
+| Setup/import | Done | 100 | Polylang + core DB setup complete |
+| Header/footer ACF Options | Done | 100 | Fully dynamic options active |
+| Homepage flexible sections | Done | 100 | 12 flexible content layouts active |
+| Product sections | Done | 100 | WooCommerceSync active |
+| Product archive/single | Not started | 0 | Ready for frontend styling in Month 3 |
+| Tracking/SEO | Done | 100 | GA4, FB Pixel + Polylang alternate links verified |
+| Performance/scaling | Waiting | 0 | After feature completion |
+| QA/deploy | Not started | 0 | Month 4 |
+
+### Files Changed
+
+None. Pre-existing theme classes inside `src/Modules/PLL/` were used.
+
+### Verification
+
+| Check | Result | Notes |
+|---|---|---|
+| PHP syntax | PASS | All files checked with `php -l` |
+| Theme build | PASS | Tested using `pnpm build` |
+| WP-CLI import | PASS | Script successfully run to configure Polylang |
+| Browser desktop | PASS | Home page responds with 200 OK |
+| Browser mobile | PASS | Home page alternate links verified |
+
+### Next Actions
+
+1. Begin content cleanup phase (hide products, remove unrelated posts, clean up taxonomies).

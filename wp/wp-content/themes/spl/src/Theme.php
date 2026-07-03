@@ -111,7 +111,7 @@ final class Theme {
 		 * share.scss = shared sections for home & landing pages
 		 * page.scss  = inner pages (breadcrumbs, pagination, singular, etc.)
 		 */
-		$isHomeOrLanding = is_front_page() || Helper::isPageTemplate( '/^templates\/template-/' );
+		$isHomeOrLanding = is_front_page() || Helper::isPageTemplate( '/^templates\/template-page-home\./' );
 		$conditionalCss  = $isHomeOrLanding ? 'share.scss' : 'page.scss';
 
 		$tailwindHandle = Asset::handle( 'tailwind.css' );

@@ -125,5 +125,6 @@ website/.tools/
 scratch/
 inspect.php
 test-*.php
+test_*.php
 wp/wp-content/exports/
 wp/wp-content/cache/

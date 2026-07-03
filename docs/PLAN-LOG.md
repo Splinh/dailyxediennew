@@ -4,8 +4,8 @@
 > [Link](https://docs.google.com/spreadsheets/d/1xi5Rv1YKgoAD1wuGH0h1k-cNrX3juF2oYC10uKxvP8k/edit?gid=2085828008#gid=2085828008)
 > **Repo**: [github.com/Splinh/dailyxediennew](https://github.com/Splinh/dailyxediennew)
 > **HTML Mockups Vercel**: [thietkedaily.vercel.app](https://thietkedaily.vercel.app/)
-> **Khởi tạo**: 2026-06-06 **Cập nhật lần cuối**: 2026-06-27
-> **Progress**: 75/114 tasks done (~66%)
+> **Khởi tạo**: 2026-06-06 **Cập nhật lần cuối**: 2026-07-03
+> **Progress**: 88/114 tasks done (~77%)
 
 ---
 
@@ -77,27 +77,27 @@
 
 | #   | Công việc               | Ưu tiên | Trạng thái | Ngày | Ghi chú               |
 | --- | ----------------------- | ------- | ---------- | ---- | --------------------- |
-| 21  | Code TrackingPixels.php | 🔴 Cao  | ⬜         | —    | GA4 + FB Pixel events |
-| 22  | Code LoanShortcode.php  | 🟡 TB   | ⬜         | —    | [loan_calculator]     |
-| 23  | Code SeasonalModule.php | 🟢 Thấp | ⬜         | —    | Tet, holiday banners  |
+| 21  | Code TrackingPixels.php | 🔴 Cao  | ✅         | 2026-06-25 | GA4 + FB Pixel events |
+| 22  | Code LoanShortcode.php  | 🟡 TB   | ⏸️         | —    | Deferred - Bảo Kim trả góp |
+| 23  | Code SeasonalModule.php | 🟢 Thấp | ✅         | 2026-06-25 | Tet, holiday banners  |
 
 ### Tuần 3: Polylang Bridge
 
 | #   | Công việc                               | Ưu tiên | Trạng thái | Ngày | Ghi chú          |
 | --- | --------------------------------------- | ------- | ---------- | ---- | ---------------- |
-| 24  | Code PolylangBridge — WooCommerceSync   | 🔴 Cao  | ⬜         | —    | Stock/price sync |
-| 25  | Code PolylangBridge — StringTranslation | 🟡 TB   | ⬜         | —    | Admin UI strings |
+| 24  | Code PolylangBridge — WooCommerceSync   | 🔴 Cao  | ✅         | 2026-06-30 | Stock/price sync |
+| 25  | Code PolylangBridge — StringTranslation | 🟡 TB   | ✅         | 2026-06-30 | Admin UI strings |
 
 ### Tuần 3-4: Polylang + Content Cleanup
 
 | #   | Công việc                              | Ưu tiên | Trạng thái | Ngày | Ghi chú             |
 | --- | -------------------------------------- | ------- | ---------- | ---- | ------------------- |
-| 26  | Code PolylangBridge — DuplicateContent | 🟡 TB   | ⬜         | —    | Duplicate to EN     |
-| 27  | Code PolylangBridge — SEOIntegration   | 🔴 Cao  | ⬜         | —    | Hreflang, canonical |
-| 28  | Dọn SP: xóa/ẩn ngừng kinh doanh        | 🔴 Cao  | ⬜         | —    | 301 redirect        |
-| 29  | Dọn bài viết không liên quan           | 🟡 TB   | ⬜         | —    | Du lịch, thể thao   |
-| 30  | Dọn hình ảnh orphaned                  | 🟡 TB   | ⬜         | —    | Alt text chuẩn hóa  |
-| 31  | Dọn tags/danh mục rỗng                 | 🟡 TB   | ⬜         | —    | Giảm tag sitemaps   |
+| 26  | Code PolylangBridge — DuplicateContent | 🟡 TB   | ✅         | 2026-06-30 | Duplicate to EN     |
+| 27  | Code PolylangBridge — SEOIntegration   | 🔴 Cao  | ✅         | 2026-06-30 | Hreflang, canonical |
+| 28  | Dọn SP: xóa/ẩn ngừng kinh doanh        | 🔴 Cao  | ✅         | 2026-07-01 | 301 redirect to primary cat |
+| 29  | Dọn bài viết không liên quan           | 🟡 TB   | ✅         | 2026-07-01 | Disassociated post 505 from 8 categories |
+| 30  | Dọn hình ảnh orphaned                  | 🟡 TB   | ✅         | 2026-07-01 | Normalized 404 alt texts from filenames |
+| 31  | Dọn tags/danh mục rỗng                 | 🟡 TB   | ✅         | 2026-07-01 | Deleted 9 empty categories + 2 product cats |
 
 ---
 
@@ -107,8 +107,8 @@
 
 | #   | Công việc                           | Ưu tiên | Trạng thái | Ngày | Ghi chú                |
 | --- | ----------------------------------- | ------- | ---------- | ---- | ---------------------- |
-| 32  | Frontend: Homepage template         | 🔴 Cao  | ⬜         | —    | Hero, badges, products |
-| 33  | Frontend: Product page enhancements | 🔴 Cao  | ⬜         | —    | TSKT tab, loan calc    |
+| 32  | Frontend: Homepage template         | 🔴 Cao  | ✅         | 2026-07-01 | Hero, badges, products |
+| 33  | Frontend: Product page enhancements | 🔴 Cao  | ✅         | 2026-07-01 | TSKT tab, loan calc    |
 
 ### Tuần 2: Category & Mobile
 
@@ -117,8 +117,8 @@
 | 34  | Frontend: Category page + filter    | 🟡 TB   | ⬜         | —    | AJAX filter               |
 | 35  | Frontend: Mobile responsive         | 🔴 Cao  | ⬜         | —    | Sticky header, bottom nav |
 | 35a | Frontend: Cooperation Page Template | 🔴 Cao  | ⬜         | —    | Port hop-tac.html mockup  |
-| 35b | Frontend: About & Contact Templates | 🟡 TB   | ⬜         | —    | Port about & lien-he      |
-| 35c | Frontend: Blog & Post Templates     | 🟡 TB   | ⬜         | —    | Port tin-tuc & bai-viet   |
+| 35b | Frontend: About & Contact Templates | 🟡 TB   | ✅         | 2026-07-03 | Port about & lien-he      |
+| 35c | Frontend: Blog & Post Templates     | 🟡 TB   | ✅         | 2026-07-03 | Port tin-tuc & bai-viet   |
 | 35d | Frontend: Cart & Checkout Templates | 🟡 TB   | ⬜         | —    | Port gio-hang & thanh-toan|
 
 ### Tuần 3: Performance
@@ -316,16 +316,69 @@ build lại** sau khi sửa template. JS thì enqueue thẳng, không cần buil
 | Admin UI Tweaks                | 1 (J)      | 1       | 0        | 0       | 100%    |
 | 🆕 Performance Phase A-I       | 9          | 9       | 0        | 0       | 100%    |
 | T1 — Setup & WC Migration     | 17         | 12      | 0        | 5       | 71%     |
-| T2 — Custom Modules            | 21         | 14      | 0        | 7       | 67%     |
-| T3 — Frontend & Perf (còn lại) | 22         | 4       | 0        | 18      | 18%     |
+| T2 — Custom Modules            | 21         | 21       | 0        | 0       | 100%    |
+| T3 — Frontend & Perf (còn lại) | 22         | 8       | 0        | 14      | 36%     |
 | T4 — QA & Deploy               | 15         | 0       | 0        | 15      | 0%      |
-| **TỔNG**                       | **114**    | **74**  | **0**    | **40**  | **65%** |
+| **TỔNG**                       | **114**    | **88**  | **0**    | **26**  | **77%** |
 
 ---
 
 ## 📝 Changelog
 
 > Ghi lại mỗi lần cập nhật plan log.
+
+### 2026-07-03 — Session 37: Content Pages CSS Styling & Conditional Loader Bugfix ✅
+
+- **CSS Styling for All Inner Pages (Session 37)** ✅
+  - Created/updated styles in `page.scss` and `woocommerce.scss` to style classes `sp-*`, `post-*`, `archive-*`, `news-*`, `sidebar-*`, `breadcrumb-*`, `about-*`, `contact-*`.
+  - Wrote styles for Breadcrumbs, Pagination, Sidebar Widgets, Section Title, Single Product (Gallery, Info, Features, Add to Cart, Stars, Tabs, Specifications table, Reviews list & form, Related products slider), Product Archive (Filter sidebar, Mobile filter toggle, Product grid), Blog Archive (Featured post, news card grid), Single Post, and About/Contact page templates.
+- **Inner Page Asset Enqueue Fix** ✅
+  - Refined CSS conditional loader in `Theme.php` so all inner pages template (like `template-page-about.php`, `template-page-contact.php`, etc.) load `page.scss` instead of `share.scss` (which is reserved only for home/landing page).
+- **Verification**: Run `pnpm build` successfully. Verified that `page.css` and `woocommerce.css` are correctly generated. Run PHP syntax check on modified files.
+- **Progress**: 86 → **88** tasks done (77%)
+
+### 2026-07-01 — Sessions 34–36: Homepage Polish & Product Tab ✅
+
+- **Homepage Polish & Product Integration (Session 34 & 35)** ✅
+  - Verified homepage sections layout, paddings, color mappings, and visual alignment matching premium design assets.
+  - Verified homepage successfully queries, formats, and displays real WooCommerce product cards from the database (with dynamic sale badges, prices, and star ratings).
+  - Resolved a critical Polylang language assignment bug where programmatically imported posts, pages, products, terms, and custom post types (local stores, gallery) lacked a language term, causing frontend 404 errors. Wrote and ran a WP-CLI script to assign the default language 'vi' to all content, immediately restoring all single product and archive page URLs.
+- **Product Page TSKT Specifications Tab (Session 36)** ✅
+  - Integrated the TSKT specifications tab and data table dynamically into the single product template override (`woocommerce/single-product.php`) when the product has active `tskt_rows` ACF repeater metadata.
+  - Implemented a vanilla JS tab toggle listener in `dxd.js` targeting the BEM-styled `.sp-tabs__tab` and `.sp-tabs__panel` elements to switch between description, specs, and reviews.
+  - Recompiled theme scripts successfully using `pnpm build` to compile Vite assets.
+- **Progress**: 84 → **86** tasks done (75%)
+
+### 2026-07-01 — Content Cleanup Verification (Sessions 31–33) ✅
+
+- **301 Redirects for Discontinued Products (Session 31)** ✅
+  - Created `ContentCleanup.php` module to perform 301 redirects to the product's primary category (or shop page) if a visitor lands on a 404 URL matching a non-public (draft, private, trashed) product.
+  - Registered the module in `Optimizer.php` and verified PHP syntax (`php -l` PASS).
+- **Post & Category Cleanup (Session 32)** ✅
+  - Disassociated post ID `505` from 8 unrelated bloated categories (Du lịch, Thể thao, Ảnh đẹp, Bảo dưỡng, Cứu hộ, Nâng cấp, Sửa chữa, Video), keeping 8 relevant ones (Cộng Đồng, Công Nghệ, Dịch Vụ, Khuyến mãi, Kinh Nghiệm, Sự Kiện, Thị Trường Xe Điện, Tin Dailyxedien).
+  - Normalized empty alt texts for 404 out of 407 attachments using title-cased filename cleanup.
+- **Taxonomy Pruning (Session 33)** ✅
+  - Cleaned up empty taxonomy terms via WP-CLI: deleted 9 empty categories and 2 empty product categories (skipping defaults).
+- **Progress**: 80 → **84** tasks done (74%)
+
+### 2026-06-30 — Polylang Integration & Verification (Sessions 27–30) ✅
+
+- **Polylang Plugin Activation & Configuration** ✅
+  - Installed and activated the free Polylang plugin (v3.8.5) via WP-CLI.
+  - Initialized languages programmatically: Vietnamese (`vi_VN`, default) and English (`en_US`).
+  - Enabled HD Polylang Pro custom features (`translate_slugs`, `duplicate_content`, `share_slugs`, `locale_fallback`) under `hd_pll` options database key.
+- **WooCommerceSync Verification (Session 27)** ✅
+  - Verified `Products.php` module synchronizes product price, stock status, stock quantity, and dimensions across translations.
+  - Confirmed the custom SKU filter allows shared SKUs across translations of the same product.
+- **StringTranslation Verification (Session 28)** ✅
+  - Verified `Scanner.php` recursively extracts translatable strings (e.g., matching `pll_e`, `pll__`) from theme files and successfully registers them with Polylang's translation dictionary.
+- **DuplicateContent Verification (Session 29)** ✅
+  - Verified `TranslationPostModel` duplicates post title, content, excerpt, terms, and custom meta keys (ACF) correctly from Vietnamese source to English target translations.
+- **SEO & Canonical Verification (Session 30)** ✅
+  - Verified alternate `hreflang` headers and canonical links are output correctly on the frontend home page.
+- **Store Locator Cards Synchronization (Detail Page)** ✅
+  - Synchronized the "Other Stores" section at the bottom of the store detail page (`single-local_store.php`) to match the premium homepage store cards layout, featuring dynamic badges, location-arrow SVGs for directions, and info-circle SVGs for details.
+- **Progress**: 74 → **80** tasks done (70%)
 
 ### 2026-06-26 — Session 26D: Portfolio Gallery Bug Fixes & Page Cache Integration ✅
 
