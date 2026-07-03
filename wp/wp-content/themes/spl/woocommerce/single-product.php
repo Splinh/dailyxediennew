@@ -723,36 +723,57 @@ while ( have_posts() ) :
 
 			<!-- Related Products -->
 			<?php
-			$related_ids = wc_get_related_products( get_the_ID(), 8 );
+			$related_ids = wc_get_related_products( get_the_ID(), 5 );
 			if ( ! empty( $related_ids ) ) :
 				?>
-				<section class="section-compact section-related">
+				<section class="mt-12 md:mt-16 reveal">
 					<div class="container">
-						<div class="section-title reveal">
-							<div class="section-title__label">
-								<svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-								<?php esc_html_e( 'Gợi Ý', 'spl' ); ?>
-							</div>
-							<h2 class="section-title__heading">
-								<svg class="section-title__icon" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-								<?php esc_html_e( 'Sản Phẩm Liên Quan', 'spl' ); ?>
-							</h2>
-							<div class="section-title__line"></div>
+						<div class="flex items-center gap-3 mb-6">
+							<span class="w-1.5 h-6 bg-primary rounded-full"></span>
+							<h2 class="text-xl font-bold text-slate-900 tracking-tight"><?php esc_html_e( 'Sản phẩm tương tự', 'spl' ); ?></h2>
 						</div>
-						<div class="sp-related-slider" id="related-products">
-							<div class="sp-related-slider__track">
-								<?php foreach ( $related_ids as $rid ) : ?>
-									<div class="sp-related-slider__slide">
-										<?php get_template_part( 'parts/product-card', null, [ 'id' => $rid ] ); ?>
+						<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5">
+							<?php
+							foreach ( $related_ids as $rid ) :
+								$rel_product = wc_get_product( $rid );
+								if ( ! $rel_product ) {
+									continue;
+								}
+								$rel_permalink = get_permalink( $rid );
+								$rel_name      = $rel_product->get_name();
+								$rel_image_url = wp_get_attachment_image_url( $rel_product->get_image_id(), 'woocommerce_thumbnail' ) ?: wc_placeholder_img_src();
+
+								$rel_cat = '';
+								$rel_terms = get_the_terms( $rid, 'product_cat' );
+								if ( $rel_terms && ! is_wp_error( $rel_terms ) ) {
+									$rel_cat = $rel_terms[0]->name;
+								}
+
+								// Price HTML
+								$rel_price_html = $rel_product->get_price_html();
+								?>
+								<div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 flex flex-col justify-between group relative">
+									<a href="<?php echo esc_url( $rel_permalink ); ?>" class="block">
+										<div class="p-3 bg-slate-50/50 flex items-center justify-center h-36 md:h-40 overflow-hidden">
+											<img loading="lazy" src="<?php echo esc_url( $rel_image_url ); ?>" alt="<?php echo esc_attr( $rel_name ); ?>" class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300">
+										</div>
+									</a>
+									<div class="p-3 md:p-4 flex-grow flex flex-col justify-between">
+										<div>
+											<?php if ( $rel_cat ) : ?>
+												<span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider"><?php echo esc_html( $rel_cat ); ?></span>
+											<?php endif; ?>
+											<h3 class="font-bold text-slate-800 text-xs line-clamp-2 mt-0.5 group-hover:text-primary transition-colors leading-snug">
+												<a href="<?php echo esc_url( $rel_permalink ); ?>"><?php echo esc_html( $rel_name ); ?></a>
+											</h3>
+										</div>
+										<div class="mt-2">
+											<span class="text-sm font-extrabold text-slate-900"><?php echo wp_kses_post( $rel_price_html ); ?></span><br>
+											<a href="<?php echo esc_url( $rel_permalink ); ?>" class="w-full mt-2 bg-primary hover:bg-primary-hover text-white text-[10px] font-bold py-2 rounded-lg transition-all text-center flex items-center justify-center"><?php esc_html_e( 'Xem chi tiết', 'spl' ); ?></a>
+										</div>
 									</div>
-								<?php endforeach; ?>
-							</div>
-							<button type="button" class="sp-related-slider__nav sp-related-slider__nav--prev" aria-label="<?php esc_attr_e( 'Trước', 'spl' ); ?>">
-								<svg class="icon" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-							</button>
-							<button type="button" class="sp-related-slider__nav sp-related-slider__nav--next" aria-label="<?php esc_attr_e( 'Sau', 'spl' ); ?>">
-								<svg class="icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-							</button>
+								</div>
+							<?php endforeach; ?>
 						</div>
 					</div>
 				</section>
