@@ -131,6 +131,51 @@ while ( have_posts() ) :
 	$review_count = (int) $product->get_review_count();
 	$total_sales  = (int) get_post_meta( get_the_ID(), 'total_sales', true );
 
+	// Retrieve ACF specifications
+	$specs = Helper::getField( 'tskt_specs', get_the_ID() ) ?: Helper::getField( 'tskt_rows', get_the_ID() );
+
+	// Search specs or attributes for strip values
+	$spec_power   = '';
+	$spec_range   = '';
+	$spec_speed   = '';
+	$spec_battery = '';
+
+	if ( ! empty( $specs ) && is_array( $specs ) ) {
+		foreach ( $specs as $row ) {
+			$label = strtolower( trim( (string) ( $row['tskt_label'] ?? $row['label'] ?? '' ) ) );
+			$val   = trim( (string) ( $row['tskt_value'] ?? $row['value'] ?? '' ) );
+			if ( strpos( $label, 'công suất' ) !== false || strpos( $label, 'động cơ' ) !== false ) {
+				$spec_power = $val;
+			} elseif ( strpos( $label, 'quãng đường' ) !== false || strpos( $label, 'đi được' ) !== false ) {
+				$spec_range = $val;
+			} elseif ( strpos( $label, 'vận tốc' ) !== false || strpos( $label, 'tốc độ' ) !== false ) {
+				$spec_speed = $val;
+			} elseif ( strpos( $label, 'ắc quy' ) !== false || strpos( $label, 'pin' ) !== false ) {
+				$spec_battery = $val;
+			}
+		}
+	}
+
+	// Search in WC attributes if still empty
+	if ( empty( $spec_power ) ) {
+		$spec_power = $product->get_attribute( 'pa_dong-co' ) ?: $product->get_attribute( 'pa_cong-suat' );
+	}
+	if ( empty( $spec_range ) ) {
+		$spec_range = $product->get_attribute( 'pa_quang-duong' ) ?: $product->get_attribute( 'pa_quang-duong-di-chuyen' );
+	}
+	if ( empty( $spec_speed ) ) {
+		$spec_speed = $product->get_attribute( 'pa_van-toc' ) ?: $product->get_attribute( 'pa_toc-do-toi-da' );
+	}
+	if ( empty( $spec_battery ) ) {
+		$spec_battery = $product->get_attribute( 'pa_ac-quy-pin' ) ?: $product->get_attribute( 'pa_ac-quy' ) ?: $product->get_attribute( 'pa_pin' );
+	}
+
+	// Fallback to mockup defaults
+	$spec_power   = $spec_power ?: '1200 W';
+	$spec_range   = $spec_range ?: '60-80 KM';
+	$spec_speed   = $spec_speed ?: '50 KM/H';
+	$spec_battery = $spec_battery ?: '60V – 22Ah';
+
 	// Sale discount.
 	$reg_price  = (float) $product->get_regular_price();
 	$cur_price  = (float) $product->get_price();
@@ -271,6 +316,34 @@ while ( have_posts() ) :
 					<?php endif; ?>
 				</div>
 
+				<!-- Quick Specs Strip -->
+				<div class="sp-specs-strip">
+					<div class="sp-specs-strip__item">
+						<div class="sp-specs-strip__icon sp-specs-strip__icon--blue">
+							<svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+						</div>
+						<span class="sp-specs-strip__value"><?php echo esc_html( $spec_power ); ?></span>
+					</div>
+					<div class="sp-specs-strip__item">
+						<div class="sp-specs-strip__icon sp-specs-strip__icon--amber">
+							<svg class="icon" viewBox="0 0 24 24"><path d="M2 22 22 2"/></svg>
+						</div>
+						<span class="sp-specs-strip__value"><?php echo esc_html( $spec_range ); ?></span>
+					</div>
+					<div class="sp-specs-strip__item">
+						<div class="sp-specs-strip__icon sp-specs-strip__icon--red">
+							<svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+						</div>
+						<span class="sp-specs-strip__value"><?php echo esc_html( $spec_speed ); ?></span>
+					</div>
+					<div class="sp-specs-strip__item">
+						<div class="sp-specs-strip__icon sp-specs-strip__icon--emerald">
+							<svg class="icon" viewBox="0 0 24 24"><rect x="2" y="7" width="16" height="10" rx="2" ry="2"/><line x1="22" y1="11" x2="22" y2="13"/></svg>
+						</div>
+						<span class="sp-specs-strip__value"><?php echo esc_html( $spec_battery ); ?></span>
+					</div>
+				</div>
+
 				<?php if ( $product->get_short_description() ) : ?>
 					<div class="sp-info__short-desc">
 						<?php echo wp_kses_post( wpautop( $product->get_short_description() ) ); ?>
@@ -390,23 +463,50 @@ while ( have_posts() ) :
 						'return' => '<polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>',
 					];
 					?>
-					<div class="sp-trust">
-						<?php foreach ( $trust_items as $ti ) :
-							$icon_key = $ti['icon'] ?? 'truck';
-							$icon_svg = $trust_icons[ $icon_key ] ?? $trust_icons['truck'];
-							?>
-							<div class="sp-trust__item">
-								<svg class="icon" viewBox="0 0 24 24"><?php echo $icon_svg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></svg>
-								<span><?php echo esc_html( $ti['text'] ?? '' ); ?></span>
+					<!-- Trust Badges Grid -->
+					<div class="sp-trust-grid">
+						<div class="sp-trust-card">
+							<div class="sp-trust-card__icon sp-trust-card__icon--emerald">
+								<svg class="icon" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
 							</div>
-						<?php endforeach; ?>
+							<div class="sp-trust-card__content">
+								<p class="sp-trust-card__title"><?php esc_html_e( 'Giao hàng miễn phí', 'spl' ); ?></p>
+								<p class="sp-trust-card__desc"><?php esc_html_e( 'Toàn quốc trong 3-5 ngày', 'spl' ); ?></p>
+							</div>
+						</div>
+						<div class="sp-trust-card">
+							<div class="sp-trust-card__icon sp-trust-card__icon--blue">
+								<svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+							</div>
+							<div class="sp-trust-card__content">
+								<p class="sp-trust-card__title"><?php esc_html_e( 'Bảo hành 3 năm', 'spl' ); ?></p>
+								<p class="sp-trust-card__desc"><?php esc_html_e( 'Chính hãng toàn quốc', 'spl' ); ?></p>
+							</div>
+						</div>
+						<div class="sp-trust-card">
+							<div class="sp-trust-card__icon sp-trust-card__icon--amber">
+								<svg class="icon" viewBox="0 0 24 24"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+							</div>
+							<div class="sp-trust-card__content">
+								<p class="sp-trust-card__title"><?php esc_html_e( 'Đổi trả 7 ngày', 'spl' ); ?></p>
+								<p class="sp-trust-card__desc"><?php esc_html_e( 'Miễn phí, không lý do', 'spl' ); ?></p>
+							</div>
+						</div>
+						<div class="sp-trust-card">
+							<div class="sp-trust-card__icon sp-trust-card__icon--primary">
+								<svg class="icon" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2" ry="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+							</div>
+							<div class="sp-trust-card__content">
+								<p class="sp-trust-card__title"><?php esc_html_e( 'Trả góp 0%', 'spl' ); ?></p>
+								<p class="sp-trust-card__desc"><?php esc_html_e( 'Duyệt nhanh trong 15 phút', 'spl' ); ?></p>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 
 			<!-- Tabs -->
 			<?php
-			$specs    = Helper::getField( 'tskt_rows', get_the_ID() );
 			$has_tskt = ! empty( $specs ) && is_array( $specs );
 			?>
 			<div class="sp-tabs reveal">
@@ -477,8 +577,8 @@ while ( have_posts() ) :
 							<table class="sp-spec-table">
 								<tbody>
 									<?php foreach ( $specs as $row ) :
-										$label = trim( (string) ( $row['tskt_label'] ?? '' ) );
-										$value = trim( (string) ( $row['tskt_value'] ?? '' ) );
+										$label = trim( (string) ( $row['tskt_label'] ?? $row['label'] ?? '' ) );
+										$value = trim( (string) ( $row['tskt_value'] ?? $row['value'] ?? '' ) );
 
 										if ( '' === $label && '' === $value ) {
 											continue;
