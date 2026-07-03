@@ -473,6 +473,12 @@
     "src": "resources/scripts/preflight.js",
     "isEntry": true
   },
+  "resources/scripts/woocommerce.js": {
+    "file": "js/woocommerce.js",
+    "name": "woocommerce",
+    "src": "resources/scripts/woocommerce.js",
+    "isEntry": true
+  },
   "resources/styles/commerce.scss": {
     "file": "css/commerce.css",
     "name": "commerce",
@@ -510,10 +516,10 @@
     "isEntry": true
   },
   "resources/styles/woocommerce.scss": {
-    "file": "css/woocommerce.css",
-    "name": "woocommerce",
+    "file": "css/woocommerce-css.css",
+    "name": "woocommerce-css",
     "names": [
-      "woocommerce.css"
+      "woocommerce-css.css"
     ],
     "src": "resources/styles/woocommerce.scss",
     "isEntry": true

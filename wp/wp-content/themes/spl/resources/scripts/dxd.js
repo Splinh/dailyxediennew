@@ -208,6 +208,8 @@
 		);
 
 		/* ---------- Single Product: Quantity Stepper ---------- */
+		// Commented out to prevent conflict with woocommerce.js
+		/*
 		const qtyInput = document.getElementById( 'qty-input' );
 		const qtyMinus = document.getElementById( 'qty-minus' );
 		const qtyPlus = document.getElementById( 'qty-plus' );
@@ -216,8 +218,11 @@
 			if ( qtyMinus ) qtyMinus.addEventListener( 'click', () => { qtyInput.value = clamp( parseInt( qtyInput.value, 10 ) - 1 ); } );
 			if ( qtyPlus ) qtyPlus.addEventListener( 'click', () => { qtyInput.value = clamp( parseInt( qtyInput.value, 10 ) + 1 ); } );
 		}
+		*/
 
 		/* ---------- Single Product: Variation Selector ---------- */
+		// Commented out to prevent conflict with woocommerce.js
+		/*
 		const variationsWrap = document.getElementById( 'sp-variations' );
 		if ( variationsWrap ) {
 			const variations = JSON.parse( variationsWrap.dataset.variations || '[]' );
@@ -288,6 +293,7 @@
 			}
 			updateVariation();
 		}
+		*/
 
 		/* ---------- Add to Cart (AJAX) ---------- */
 		const getQty = () => qtyInput ? Math.max( 1, parseInt( qtyInput.value, 10 ) || 1 ) : 1;

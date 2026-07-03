@@ -234,6 +234,11 @@ while ( have_posts() ) :
 		}
 	}
 
+	// If battery contains commas (multiple options), take the first one for initial display
+	if ( strpos( $spec_battery, ',' ) !== false ) {
+		$battery_parts = explode( ',', $spec_battery );
+		$spec_battery = trim( $battery_parts[0] );
+	}
 	// Keep battery name concise by stripping prefixes
 	$spec_battery = preg_replace( '/^(Ắc-quy:|Pin Lithium:|Ắc quy:|Pin:)\s*/iu', '', $spec_battery );
 	?>
@@ -325,8 +330,8 @@ while ( have_posts() ) :
 							<?php if ( $default_variation_oldprice ) : ?>
 								<span class="sp-info__old-price"><?php echo wp_kses_post( $default_variation_oldprice ); ?></span>
 								<?php
-								$reg_val = (float) wp_strip_all_tags( $default_variation_oldprice );
-								$cur_val = (float) wp_strip_all_tags( $default_variation_price );
+								$reg_val = (float) preg_replace( '/[^\d]/', '', wp_strip_all_tags( $default_variation_oldprice ) );
+								$cur_val = (float) preg_replace( '/[^\d]/', '', wp_strip_all_tags( $default_variation_price ) );
 								if ( $reg_val > $cur_val ) {
 									$savings = $reg_val - $cur_val;
 									$savings_formatted = $savings >= 1000000 
