@@ -269,12 +269,14 @@ while ( have_posts() ) :
 			<div class="sp-detail__grid">
 
 				<!-- Gallery -->
-				<div class="sp-gallery reveal">
+				<div class="sp-gallery reveal" data-fx-lightbox>
 					<div class="sp-gallery__main" id="sp-gallery-main">
 						<?php if ( $sale_pct > 0 ) : ?>
 							<span class="sp-gallery__badge">-<?php echo (int) $sale_pct; ?>%</span>
 						<?php endif; ?>
-						<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $product->get_name() ); ?>" id="sp-main-img" />
+						<a href="<?php echo esc_url( $image_url ); ?>" id="sp-main-link" data-pswp-width="1200" data-pswp-height="1200">
+							<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $product->get_name() ); ?>" id="sp-main-img" />
+						</a>
 						<button class="sp-gallery__zoom" aria-label="<?php esc_attr_e( 'Phóng to ảnh', 'spl' ); ?>" id="sp-zoom-btn">
 							<svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
 						</button>
@@ -286,13 +288,13 @@ while ( have_posts() ) :
 						</button>
 					</div>
 					<div class="sp-gallery__thumbs" id="sp-gallery-thumbs">
-						<button class="sp-gallery__thumb active" data-img="<?php echo esc_url( $image_url ); ?>">
+						<a href="<?php echo esc_url( $image_url ); ?>" class="sp-gallery__thumb active" data-img="<?php echo esc_url( $image_url ); ?>" data-pswp-width="1200" data-pswp-height="1200">
 							<img src="<?php echo esc_url( wp_get_attachment_image_url( $image_id, 'thumbnail' ) ?: $image_url ); ?>" alt="<?php esc_attr_e( 'Ảnh 1', 'spl' ); ?>" />
-						</button>
+						</a>
 						<?php foreach ( $gallery as $i => $gal_id ) : ?>
-							<button class="sp-gallery__thumb" data-img="<?php echo esc_url( wp_get_attachment_image_url( $gal_id, 'large' ) ); ?>">
+							<a href="<?php echo esc_url( wp_get_attachment_image_url( $gal_id, 'large' ) ); ?>" class="sp-gallery__thumb" data-img="<?php echo esc_url( wp_get_attachment_image_url( $gal_id, 'large' ) ); ?>" data-pswp-width="1200" data-pswp-height="1200">
 								<img src="<?php echo esc_url( wp_get_attachment_image_url( $gal_id, 'thumbnail' ) ); ?>" alt="<?php echo esc_attr( sprintf( __( 'Ảnh %d', 'spl' ), $i + 2 ) ); ?>" />
-							</button>
+							</a>
 						<?php endforeach; ?>
 					</div>
 				</div>

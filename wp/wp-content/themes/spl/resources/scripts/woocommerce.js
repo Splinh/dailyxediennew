@@ -16,18 +16,38 @@ const run = () => {
 
 		// Handle thumb click
 		thumbs.forEach(thumb => {
-			thumb.addEventListener('click', () => {
+			thumb.addEventListener('click', (e) => {
+				e.preventDefault();
+				e.stopPropagation(); // Prevent opening lightbox directly when thumb is clicked
+
 				thumbs.forEach(t => t.classList.remove('active'));
 				thumb.classList.add('active');
 				if (thumb.dataset.img) {
 					mainImg.style.opacity = '0.3';
 					mainImg.src = thumb.dataset.img;
+					
+					// Sync lightbox link href
+					const mainLink = document.getElementById('sp-main-link');
+					if (mainLink) {
+						mainLink.href = thumb.dataset.img;
+					}
+
 					setTimeout(() => {
 						mainImg.style.opacity = '1';
 					}, 150);
 				}
 			});
 		});
+
+		// Handle Zoom button click
+		const zoomBtn = document.getElementById('sp-zoom-btn');
+		const mainLink = document.getElementById('sp-main-link');
+		if (zoomBtn && mainLink) {
+			zoomBtn.addEventListener('click', (e) => {
+				e.preventDefault();
+				mainLink.click();
+			});
+		}
 
 		// Handle prev/next arrows
 		const cycleThumb = (direction) => {
@@ -174,6 +194,13 @@ const run = () => {
 				if (mainImg && matched.image && matched.image.src) {
 					mainImg.style.opacity = '0.3';
 					mainImg.src = matched.image.src;
+
+					// Sync lightbox link href
+					const mainLink = document.getElementById('sp-main-link');
+					if (mainLink) {
+						mainLink.href = matched.image.src;
+					}
+
 					setTimeout(() => {
 						mainImg.style.opacity = '1';
 					}, 150);
