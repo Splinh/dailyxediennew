@@ -214,7 +214,28 @@ while ( have_posts() ) :
 		$default_variation_id       = absint( $default_variation['variation_id'] ?? 0 );
 		$default_variation_price    = $default_variation['spl_price_html'] ?? '';
 		$default_variation_oldprice = $default_variation['spl_old_price_html'] ?? '';
+
+		// Retrieve default variation battery option
+		if ( ! empty( $default_variation_attrs ) ) {
+			foreach ( $default_variation_attrs as $attr_key => $attr_value ) {
+				if ( strpos( $attr_key, 'ac-quy' ) !== false || strpos( $attr_key, 'pin' ) !== false ) {
+					$taxonomy = str_replace( 'attribute_', '', $attr_key );
+					if ( taxonomy_exists( $taxonomy ) ) {
+						$term = get_term_by( 'slug', $attr_value, $taxonomy );
+						if ( $term ) {
+							$spec_battery = $term->name;
+						}
+					} else {
+						$spec_battery = $attr_value;
+					}
+					break;
+				}
+			}
+		}
 	}
+
+	// Keep battery name concise by stripping prefixes
+	$spec_battery = preg_replace( '/^(Ắc-quy:|Pin Lithium:|Ắc quy:|Pin:)\s*/iu', '', $spec_battery );
 	?>
 
 	<!-- ===== BREADCRUMB ===== -->
@@ -298,22 +319,53 @@ while ( have_posts() ) :
 					<?php endif; ?>
 
 				<div class="sp-info__price-box" id="sp-price-box">
-					<?php if ( $product->is_type( 'variable' ) && $default_variation_price ) : ?>
-						<span class="sp-info__price"><?php echo wp_kses_post( $default_variation_price ); ?></span>
-						<?php if ( $default_variation_oldprice ) : ?>
-							<span class="sp-info__old-price"><?php echo wp_kses_post( $default_variation_oldprice ); ?></span>
+					<div class="price-row">
+						<?php if ( $product->is_type( 'variable' ) && $default_variation_price ) : ?>
+							<span class="sp-info__price"><?php echo wp_kses_post( $default_variation_price ); ?></span>
+							<?php if ( $default_variation_oldprice ) : ?>
+								<span class="sp-info__old-price"><?php echo wp_kses_post( $default_variation_oldprice ); ?></span>
+								<?php
+								$reg_val = (float) wp_strip_all_tags( $default_variation_oldprice );
+								$cur_val = (float) wp_strip_all_tags( $default_variation_price );
+								if ( $reg_val > $cur_val ) {
+									$savings = $reg_val - $cur_val;
+									$savings_formatted = $savings >= 1000000 
+										? number_format( $savings / 1000000, 1, '.', '' ) . 'tr'
+										: number_format( $savings, 0, '', ',' ) . 'đ';
+									$savings_formatted = str_replace( '.0', '', $savings_formatted );
+									echo '<span class="sp-info__discount-tag">' . esc_html__( 'Tiết kiệm', 'spl' ) . ' ' . esc_html( $savings_formatted ) . '</span>';
+								}
+								?>
+							<?php endif; ?>
+						<?php elseif ( $product->is_type( 'variable' ) ) : ?>
+							<span class="sp-info__price"><?php echo wp_kses_post( $product->get_price_html() ); ?></span>
+						<?php elseif ( $is_sale && $reg_price > 0 ) : ?>
+							<span class="sp-info__price"><?php echo wp_kses_post( wc_price( $cur_price ) ); ?></span>
+							<span class="sp-info__old-price"><?php echo wp_kses_post( wc_price( $reg_price ) ); ?></span>
+							<?php if ( $saving_amt > 0 ) : ?>
+								<?php
+								$savings_formatted = $saving_amt >= 1000000 
+									? number_format( $saving_amt / 1000000, 1, '.', '' ) . 'tr'
+									: number_format( $saving_amt, 0, '', ',' ) . 'đ';
+								$savings_formatted = str_replace( '.0', '', $savings_formatted );
+								?>
+								<span class="sp-info__discount-tag"><?php echo esc_html__( 'Tiết kiệm', 'spl' ) . ' ' . esc_html( $savings_formatted ); ?></span>
+							<?php endif; ?>
+						<?php else : ?>
+							<span class="sp-info__price"><?php echo wp_kses_post( $product->get_price_html() ); ?></span>
 						<?php endif; ?>
-					<?php elseif ( $product->is_type( 'variable' ) ) : ?>
-						<span class="sp-info__price"><?php echo wp_kses_post( $product->get_price_html() ); ?></span>
-					<?php elseif ( $is_sale && $reg_price > 0 ) : ?>
-						<span class="sp-info__price"><?php echo wp_kses_post( wc_price( $cur_price ) ); ?></span>
-						<span class="sp-info__old-price"><?php echo wp_kses_post( wc_price( $reg_price ) ); ?></span>
-						<?php if ( $saving_amt > 0 ) : ?>
-							<span class="sp-info__discount-tag"><?php echo esc_html__( 'Tiết kiệm', 'spl' ) . ' ' . wp_strip_all_tags( wc_price( $saving_amt ) ); ?></span>
-						<?php endif; ?>
-					<?php else : ?>
-						<span class="sp-info__price"><?php echo wp_kses_post( $product->get_price_html() ); ?></span>
-					<?php endif; ?>
+					</div>
+					<!-- Promo strip matching mockup -->
+					<div class="price-promo">
+						<span class="price-promo__item price-promo__item--installment">
+							<svg class="icon" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+							<?php echo sprintf( __( 'Trả góp 0%% từ %s', 'spl' ), '<strong class="text-slate-700">832K/tháng</strong>' ); ?>
+						</span>
+						<span class="price-promo__item price-promo__item--delivery">
+							<svg class="icon" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+							<strong class="text-emerald-600"><?php esc_html_e( 'Miễn phí giao hàng', 'spl' ); ?></strong>
+						</span>
+					</div>
 				</div>
 
 				<!-- Quick Specs Strip -->
@@ -340,7 +392,7 @@ while ( have_posts() ) :
 						<div class="sp-specs-strip__icon sp-specs-strip__icon--emerald">
 							<svg class="icon" viewBox="0 0 24 24"><rect x="2" y="7" width="16" height="10" rx="2" ry="2"/><line x1="22" y1="11" x2="22" y2="13"/></svg>
 						</div>
-						<span class="sp-specs-strip__value"><?php echo esc_html( $spec_battery ); ?></span>
+						<span class="sp-specs-strip__value" id="spec-battery-val"><?php echo esc_html( $spec_battery ); ?></span>
 					</div>
 				</div>
 

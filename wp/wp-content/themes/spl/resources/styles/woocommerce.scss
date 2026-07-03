@@ -336,39 +336,96 @@
 		}
 	}
 
-	&__price {
+	&__price-box {
+		background: linear-gradient(to right, #fef2f2, #fff7ed);
+		border: 1px solid #fecaca;
+		border-radius: 1rem;
+		padding: 1.25rem;
+		margin-bottom: 1.5rem;
 		display: flex;
-		flex-wrap: wrap;
-		align-items: baseline;
+		flex-direction: column;
 		gap: 0.75rem;
-		margin-bottom: 1.25rem;
-		padding: 0.75rem 0;
-		border-bottom: 1px solid #f1f5f9;
-	}
 
-	&__current-price {
-		font-size: 1.5rem;
-		font-weight: 900;
-		color: #ef4444;
-
-		@media (min-width: vars.$md) {
-			font-size: 1.75rem;
+		.price-row {
+			display: flex;
+			align-items: baseline;
+			flex-wrap: wrap;
+			gap: 0.75rem;
 		}
-	}
 
-	&__original-price {
-		font-size: 1rem;
-		color: #94a3b8;
-		text-decoration: line-through;
-	}
+		.sp-info__price,
+		.price,
+		ins {
+			font-size: 1.75rem;
+			font-weight: 900;
+			color: #dc2626;
+			text-decoration: none;
+			display: inline-block;
 
-	&__save-badge {
-		font-size: 0.6875rem;
-		font-weight: 700;
-		background: #fef2f2;
-		color: #ef4444;
-		padding: 0.25rem 0.5rem;
-		border-radius: 9999px;
+			@media (min-width: vars.$md) {
+				font-size: 2rem;
+			}
+		}
+
+		.sp-info__old-price,
+		del {
+			font-size: 0.875rem;
+			color: #94a3b8;
+			text-decoration: line-through;
+			font-weight: 500;
+		}
+
+		.sp-info__discount-tag,
+		.discount-tag {
+			background: #ef4444;
+			color: #fff;
+			font-size: 0.625rem;
+			font-weight: 800;
+			padding: 0.15rem 0.5rem;
+			border-radius: 0.375rem;
+			text-transform: uppercase;
+			display: inline-block;
+		}
+
+		.price-promo {
+			display: flex;
+			align-items: center;
+			flex-wrap: wrap;
+			gap: 1rem;
+			font-size: 0.75rem;
+			color: #64748b;
+			border-top: 1px solid rgba(254, 202, 202, 0.4);
+			padding-top: 0.625rem;
+
+			&__item {
+				display: flex;
+				align-items: center;
+				gap: 0.375rem;
+
+				.icon {
+					width: 0.875rem;
+					height: 0.875rem;
+				}
+
+				&--installment {
+					.icon {
+						color: #0052cc;
+					}
+					strong {
+						color: #334155;
+					}
+				}
+
+				&--delivery {
+					.icon {
+						color: #059669;
+					}
+					strong {
+						color: #059669;
+					}
+				}
+			}
+		}
 	}
 
 	&__stock {

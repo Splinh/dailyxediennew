@@ -122,6 +122,16 @@ const run = () => {
 				const activeBtn = field.querySelector('.sp-variations__btn.active');
 				if (activeBtn) {
 					selections[attrName] = activeBtn.dataset.value;
+
+					// Dynamically sync selected battery option text to specs strip (concise)
+					if (attrName.includes('ac-quy') || attrName.includes('pin')) {
+						const btnText = activeBtn.textContent || activeBtn.innerText;
+						const shortText = btnText.replace(/^(Ắc-quy:|Pin Lithium:|Ắc quy:|Pin:)\s*/i, '').trim();
+						const specBatteryVal = document.getElementById('spec-battery-val');
+						if (specBatteryVal) {
+							specBatteryVal.textContent = shortText;
+						}
+					}
 				} else {
 					allSelected = false;
 				}
@@ -141,11 +151,23 @@ const run = () => {
 
 				// Update price
 				if (priceBox) {
-					let priceHtml = matched.spl_price_html;
-					if (matched.spl_old_price_html) {
-						priceHtml += ` <span class="sp-info__old-price">${matched.spl_old_price_html}</span>`;
+					const priceRow = priceBox.querySelector('.price-row');
+					if (priceRow) {
+						let priceHtml = `<span class="sp-info__price">${matched.spl_price_html}</span>`;
+						if (matched.spl_old_price_html) {
+							priceHtml += ` <span class="sp-info__old-price">${matched.spl_old_price_html}</span>`;
+							const regVal = parseFloat(matched.display_regular_price);
+							const curVal = parseFloat(matched.display_price);
+							if (regVal > curVal) {
+								const savings = regVal - curVal;
+								const savingsFormatted = savings >= 1000000 
+									? (savings / 1000000).toFixed(1).replace('.0', '') + 'tr'
+									: savings.toLocaleString('vi-VN') + 'đ';
+								priceHtml += ` <span class="sp-info__discount-tag">Tiết kiệm ${savingsFormatted}</span>`;
+							}
+						}
+						priceRow.innerHTML = priceHtml;
 					}
-					priceBox.innerHTML = priceHtml;
 				}
 
 				// Update main image if variation has an image
