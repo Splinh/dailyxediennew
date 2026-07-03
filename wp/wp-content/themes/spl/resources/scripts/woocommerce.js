@@ -140,8 +140,15 @@ const run = () => {
 			fields.forEach(field => {
 				const attrName = field.dataset.attribute;
 				const activeBtn = field.querySelector('.sp-variations__btn.active');
+				const parentField = field.closest('.sp-variations__field');
+				const labelValueEl = parentField ? parentField.querySelector('.sp-variations__label-value') : null;
 				if (activeBtn) {
 					selections[attrName] = activeBtn.dataset.value;
+
+					// Update active label value display
+					if (labelValueEl) {
+						labelValueEl.textContent = activeBtn.textContent || activeBtn.innerText;
+					}
 
 					// Dynamically sync selected battery option text to specs strip (concise)
 					if (attrName.includes('ac-quy') || attrName.includes('pin')) {
@@ -153,6 +160,9 @@ const run = () => {
 						}
 					}
 				} else {
+					if (labelValueEl) {
+						labelValueEl.textContent = '';
+					}
 					allSelected = false;
 				}
 			});
