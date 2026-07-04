@@ -3,7 +3,7 @@
 > **Source**: [Google Sheet](https://docs.google.com/spreadsheets/d/1xi5Rv1YKgoAD1wuGH0h1k-cNrX3juF2oYC10uKxvP8k/edit?gid=2085828008#gid=2085828008) + [PLAN-LOG.md](file:///d:/laragon/www/dailynew/docs/PLAN-LOG.md)
 > **HTML Mockups Vercel**: [thietkedaily.vercel.app](https://thietkedaily.vercel.app/)
 > **Updated**: 2026-07-04
-> **Progress**: 87/114 tasks done (~76%)
+> **Progress**: 90/114 tasks done (~79%)
 > **Timeline**: T6–T9/2026 (4 tháng)
 
 ---
@@ -189,8 +189,8 @@
 
 ### ═══════ T8: TUẦN 2 (07–13/08) — Interactions + Mobile ═══════
 
-#### Session 38 — Product page: JS interactions
-- [ ] T3-34a. Gallery click/zoom/lightbox, review stars, related slider (data-fx-slider)
+#### Session 38 — Product page: JS interactions ✅ 2026-07-04
+- [x] T3-34a. Gallery click/zoom/lightbox, review stars, related slider (data-fx-slider)
 
 #### Session 39 — Category page: AJAX filter
 - [ ] T3-34b. Frontend category page — AJAX filter implementation

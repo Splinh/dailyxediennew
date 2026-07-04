@@ -5,7 +5,7 @@
 > **Repo**: [github.com/Splinh/dailyxediennew](https://github.com/Splinh/dailyxediennew)
 > **HTML Mockups Vercel**: [thietkedaily.vercel.app](https://thietkedaily.vercel.app/)
 > **Khởi tạo**: 2026-06-06 **Cập nhật lần cuối**: 2026-07-04
-> **Progress**: 89/114 tasks done (~78%)
+> **Progress**: 90/114 tasks done (~79%)
 
 ---
 
@@ -317,15 +317,24 @@ build lại** sau khi sửa template. JS thì enqueue thẳng, không cần buil
 | 🆕 Performance Phase A-I       | 9          | 9       | 0        | 0       | 100%    |
 | T1 — Setup & WC Migration     | 17         | 12      | 0        | 5       | 71%     |
 | T2 — Custom Modules            | 21         | 21       | 0        | 0       | 100%    |
-| T3 — Frontend & Perf (còn lại) | 22         | 9       | 0        | 13      | 41%     |
+| T3 — Frontend & Perf (còn lại) | 22         | 10      | 0        | 12      | 45%     |
 | T4 — QA & Deploy               | 15         | 0       | 0        | 15      | 0%      |
-| **TỔNG**                       | **114**    | **89**  | **0**    | **25**  | **78%** |
+| **TỔNG**                       | **114**    | **90**  | **0**    | **24**  | **79%** |
 
 ---
 
 ## 📝 Changelog
 
 > Ghi lại mỗi lần cập nhật plan log.
+
+### 2026-07-04 — Session 38: Product Page JS Interactions (T3-34a) ✅
+
+- **Product Page Swiper Related Products (Session 38 - T3-34a)** ✅
+  - Converted the static products grid in `woocommerce/single-product.php` into a Swiper-based slider (`data-fx-slider`) with navigation controls, supporting responsive slides per view (2 columns on mobile, 3 columns on tablet, 5 columns on desktop).
+- **Interactive CSS-Only Star Rating Selector** ✅
+  - Implemented pure CSS rating hover and selected states in `woocommerce.scss` using `flex-direction: row-reverse` layout and general sibling selectors. Enables native interaction and form submissions without adding custom JS overhead.
+- **Verification**: Ran `pnpm build` successfully, re-generating `page.css` and `woocommerce.css` assets. Verified PHP syntax on modified templates.
+- **Progress**: 89 → **90** tasks done (79%)
 
 ### 2026-07-04 — Session 37: Cooperation Page Template & Styling (T3-33g) ✅
 
