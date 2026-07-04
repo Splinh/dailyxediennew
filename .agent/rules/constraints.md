@@ -73,6 +73,9 @@ default. Apply these rules without being asked:
   lazy-load large datasets.
 - Avoid layout-triggering inline styles; prefer utility classes or CSS custom
   properties that the browser can batch.
+## Progress & Planning Reports
+
+- When generating progress reports, timeline estimates, or status updates, always exclude the days the user was off (days with zero activity/commits) from any calculated durations, pacing, or timelines.
 
 ## Lazy-Loaded Local Skills
 
