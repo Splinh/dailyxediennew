@@ -48,9 +48,10 @@ function spl_main_nav_fallback(): void {
 	}
 
 	$pages = [
-		'gioi-thieu' => __( 'Giới Thiệu', 'spl' ),
-		'tin-tuc'    => __( 'Tin Tức', 'spl' ),
-		'lien-he'    => __( 'Liên Hệ', 'spl' ),
+		'gioi-thieu'     => __( 'Giới Thiệu', 'spl' ),
+		'co-hoi-hop-tac' => __( 'Hợp Tác', 'spl' ),
+		'tin-tuc'        => __( 'Tin Tức', 'spl' ),
+		'lien-he'        => __( 'Liên Hệ', 'spl' ),
 	];
 	foreach ( $pages as $slug => $label ) {
 		$page = get_page_by_path( $slug );

@@ -1,0 +1,456 @@
+{
+    "key": "group_daily_cooperation",
+    "title": "DailyXeDien - Trang Hợp Tác",
+    "fields": [
+        {
+            "key": "field_daily_coop_fc",
+            "label": "Nội dung trang hợp tác",
+            "name": "cooperation_sections",
+            "type": "flexible_content",
+            "instructions": "Thêm các section cho trang hợp tác đại lý",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layouts": {
+                "layout_daily_coop_hero": {
+                    "key": "layout_daily_coop_hero",
+                    "name": "cooperation_hero",
+                    "label": "Hero Banner + Chỉ Số",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_coop_hero_disable",
+                            "label": "Ẩn section này",
+                            "name": "disable",
+                            "type": "true_false",
+                            "message": "Ẩn section",
+                            "default_value": 0,
+                            "ui": 1
+                        },
+                        {
+                            "key": "field_coop_hero_tagline",
+                            "label": "Tagline",
+                            "name": "tagline",
+                            "type": "text",
+                            "default_value": "Tuyển Đại Lý Toàn Quốc 2026"
+                        },
+                        {
+                            "key": "field_coop_hero_title",
+                            "label": "Tiêu đề lớn",
+                            "name": "title",
+                            "type": "textarea",
+                            "default_value": "Cùng dailyxedien.vn\nkiến tạo thị trường xe điện",
+                            "rows": 2
+                        },
+                        {
+                            "key": "field_coop_hero_subtitle",
+                            "label": "Tiêu đề phụ",
+                            "name": "subtitle",
+                            "type": "textarea",
+                            "default_value": "Trở thành đại lý ủy quyền chính hãng — nhận chiết khấu lên đến 35%, hỗ trợ marketing toàn diện, đào tạo bán hàng chuyên nghiệp.",
+                            "rows": 2
+                        },
+                        {
+                            "key": "field_coop_hero_btn1_text",
+                            "label": "Text Nút 1",
+                            "name": "btn_text_1",
+                            "type": "text",
+                            "default_value": "Đăng ký ngay"
+                        },
+                        {
+                            "key": "field_coop_hero_btn1_link",
+                            "label": "Link Nút 1",
+                            "name": "btn_link_1",
+                            "type": "text",
+                            "default_value": "#register-form"
+                        },
+                        {
+                            "key": "field_coop_hero_btn2_text",
+                            "label": "Text Nút 2",
+                            "name": "btn_text_2",
+                            "type": "text",
+                            "default_value": "Xem gói hợp tác"
+                        },
+                        {
+                            "key": "field_coop_hero_btn2_link",
+                            "label": "Link Nút 2",
+                            "name": "btn_link_2",
+                            "type": "text",
+                            "default_value": "#packages"
+                        },
+                        {
+                            "key": "field_coop_hero_stats",
+                            "label": "Danh sách chỉ số",
+                            "name": "stats",
+                            "type": "repeater",
+                            "layout": "table",
+                            "button_label": "Thêm chỉ số",
+                            "sub_fields": [
+                                {
+                                    "key": "field_coop_hero_stat_num",
+                                    "label": "Số liệu",
+                                    "name": "stat_number",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_coop_hero_stat_lbl",
+                                    "label": "Nhãn",
+                                    "name": "stat_label",
+                                    "type": "text"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_daily_coop_benefits": {
+                    "key": "layout_daily_coop_benefits",
+                    "name": "cooperation_benefits",
+                    "label": "Quyền Lợi Đại Lý",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_coop_benefits_disable",
+                            "label": "Ẩn section này",
+                            "name": "disable",
+                            "type": "true_false",
+                            "message": "Ẩn section",
+                            "default_value": 0,
+                            "ui": 1
+                        },
+                        {
+                            "key": "field_coop_benefits_title",
+                            "label": "Tiêu đề",
+                            "name": "title",
+                            "type": "text",
+                            "default_value": "Tại sao hợp tác với chúng tôi?"
+                        },
+                        {
+                            "key": "field_coop_benefits_subtitle",
+                            "label": "Tiêu đề phụ",
+                            "name": "subtitle",
+                            "type": "text",
+                            "default_value": "Dailyxedien.vn cung cấp mọi thứ bạn cần để kinh doanh xe điện thành công"
+                        },
+                        {
+                            "key": "field_coop_benefits_cards",
+                            "label": "Danh sách quyền lợi",
+                            "name": "cards",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Thêm thẻ quyền lợi",
+                            "sub_fields": [
+                                {
+                                    "key": "field_coop_benefit_icon",
+                                    "label": "Icon SVG hoặc FontAwesome",
+                                    "name": "icon",
+                                    "type": "textarea",
+                                    "rows": 2
+                                },
+                                {
+                                    "key": "field_coop_benefit_title",
+                                    "label": "Tiêu đề",
+                                    "name": "title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_coop_benefit_desc",
+                                    "label": "Mô tả ngắn",
+                                    "name": "description",
+                                    "type": "textarea",
+                                    "rows": 2
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_daily_coop_packages": {
+                    "key": "layout_daily_coop_packages",
+                    "name": "cooperation_packages",
+                    "label": "Gói Hợp Tác",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_coop_packages_disable",
+                            "label": "Ẩn section này",
+                            "name": "disable",
+                            "type": "true_false",
+                            "message": "Ẩn section",
+                            "default_value": 0,
+                            "ui": 1
+                        },
+                        {
+                            "key": "field_coop_packages_title",
+                            "label": "Tiêu đề",
+                            "name": "title",
+                            "type": "text",
+                            "default_value": "Gói hợp tác đại lý"
+                        },
+                        {
+                            "key": "field_coop_packages_subtitle",
+                            "label": "Tiêu đề phụ",
+                            "name": "subtitle",
+                            "type": "text",
+                            "default_value": "Chọn gói phù hợp với quy mô kinh doanh của bạn"
+                        },
+                        {
+                            "key": "field_coop_packages_list",
+                            "label": "Danh sách các gói",
+                            "name": "packages",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Thêm gói",
+                            "sub_fields": [
+                                {
+                                    "key": "field_coop_pkg_badge",
+                                    "label": "Badge (Ví dụ: Cơ bản, Premium)",
+                                    "name": "badge",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_coop_pkg_title",
+                                    "label": "Tên gói",
+                                    "name": "title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_coop_pkg_subtitle",
+                                    "label": "Mô tả gói",
+                                    "name": "subtitle",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_coop_pkg_discount",
+                                    "label": "Mức chiết khấu",
+                                    "name": "discount",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_coop_pkg_details",
+                                    "label": "Danh sách chi tiết quyền lợi (Mỗi dòng một ý)",
+                                    "name": "details",
+                                    "type": "textarea",
+                                    "rows": 4
+                                },
+                                {
+                                    "key": "field_coop_pkg_btn_text",
+                                    "label": "Text nút",
+                                    "name": "btn_text",
+                                    "type": "text",
+                                    "default_value": "Đăng ký tư vấn"
+                                },
+                                {
+                                    "key": "field_coop_pkg_btn_link",
+                                    "label": "Link nút",
+                                    "name": "btn_link",
+                                    "type": "text",
+                                    "default_value": "#register-form"
+                                },
+                                {
+                                    "key": "field_coop_pkg_featured",
+                                    "label": "Gói nổi bật (Highlight)?",
+                                    "name": "is_featured",
+                                    "type": "true_false",
+                                    "default_value": 0,
+                                    "ui": 1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_daily_coop_process": {
+                    "key": "layout_daily_coop_process",
+                    "name": "cooperation_process",
+                    "label": "Quy Trình Hợp Tác",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_coop_process_disable",
+                            "label": "Ẩn section này",
+                            "name": "disable",
+                            "type": "true_false",
+                            "message": "Ẩn section",
+                            "default_value": 0,
+                            "ui": 1
+                        },
+                        {
+                            "key": "field_coop_process_title",
+                            "label": "Tiêu đề",
+                            "name": "title",
+                            "type": "text",
+                            "default_value": "Quy trình hợp tác"
+                        },
+                        {
+                            "key": "field_coop_process_subtitle",
+                            "label": "Tiêu đề phụ",
+                            "name": "subtitle",
+                            "type": "text",
+                            "default_value": "Chỉ 4 bước đơn giản để trở thành đại lý chính thức"
+                        },
+                        {
+                            "key": "field_coop_process_steps",
+                            "label": "Các bước quy trình",
+                            "name": "steps",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Thêm bước",
+                            "sub_fields": [
+                                {
+                                    "key": "field_coop_step_icon",
+                                    "label": "Icon SVG hoặc FontAwesome",
+                                    "name": "icon",
+                                    "type": "textarea",
+                                    "rows": 2
+                                },
+                                {
+                                    "key": "field_coop_step_title",
+                                    "label": "Tiêu đề bước",
+                                    "name": "title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_coop_step_desc",
+                                    "label": "Mô tả bước",
+                                    "name": "description",
+                                    "type": "textarea",
+                                    "rows": 2
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_daily_coop_form": {
+                    "key": "layout_daily_coop_form",
+                    "name": "cooperation_form",
+                    "label": "Form Đăng Ký & FAQ",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_coop_form_disable",
+                            "label": "Ẩn section này",
+                            "name": "disable",
+                            "type": "true_false",
+                            "message": "Ẩn section",
+                            "default_value": 0,
+                            "ui": 1
+                        },
+                        {
+                            "key": "field_coop_form_title",
+                            "label": "Tiêu đề Form",
+                            "name": "form_title",
+                            "type": "text",
+                            "default_value": "Đăng ký đại lý"
+                        },
+                        {
+                            "key": "field_coop_form_subtitle",
+                            "label": "Tiêu đề phụ Form",
+                            "name": "form_subtitle",
+                            "type": "text",
+                            "default_value": "Chúng tôi sẽ liên hệ bạn trong vòng 24h làm việc."
+                        },
+                        {
+                            "key": "field_coop_form_cf7",
+                            "label": "Shortcode Contact Form 7",
+                            "name": "cf7_shortcode",
+                            "type": "text",
+                            "instructions": "Nếu nhập shortcode CF7, form tĩnh sẽ được thay thế bằng CF7."
+                        },
+                        {
+                            "key": "field_coop_contact_title",
+                            "label": "Tiêu đề Liên hệ trực tiếp",
+                            "name": "contact_title",
+                            "type": "text",
+                            "default_value": "Liên hệ trực tiếp"
+                        },
+                        {
+                            "key": "field_coop_contact_sub",
+                            "label": "Mô tả Liên hệ",
+                            "name": "contact_subtitle",
+                            "type": "text",
+                            "default_value": "Đội ngũ phát triển đại lý luôn sẵn sàng tư vấn chi tiết về chính sách hợp tác."
+                        },
+                        {
+                            "key": "field_coop_contacts",
+                            "label": "Danh sách thông tin liên hệ",
+                            "name": "contacts",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Thêm liên hệ",
+                            "sub_fields": [
+                                {
+                                    "key": "field_coop_contact_icon",
+                                    "label": "Icon SVG hoặc FontAwesome",
+                                    "name": "icon",
+                                    "type": "textarea",
+                                    "rows": 2
+                                },
+                                {
+                                    "key": "field_coop_contact_lbl",
+                                    "label": "Nhãn",
+                                    "name": "label",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_coop_contact_val",
+                                    "label": "Giá trị",
+                                    "name": "value",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_coop_faq_title",
+                            "label": "Tiêu đề FAQ",
+                            "name": "faq_title",
+                            "type": "text",
+                            "default_value": "Câu hỏi thường gặp"
+                        },
+                        {
+                            "key": "field_coop_faqs",
+                            "label": "Danh sách câu hỏi thường gặp",
+                            "name": "faqs",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Thêm câu hỏi",
+                            "sub_fields": [
+                                {
+                                    "key": "field_coop_faq_q",
+                                    "label": "Câu hỏi",
+                                    "name": "question",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_coop_faq_a",
+                                    "label": "Câu trả lời",
+                                    "name": "answer",
+                                    "type": "textarea",
+                                    "rows": 3
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "templates/template-page-cooperation.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": ""
+}

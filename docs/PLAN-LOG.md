@@ -4,8 +4,8 @@
 > [Link](https://docs.google.com/spreadsheets/d/1xi5Rv1YKgoAD1wuGH0h1k-cNrX3juF2oYC10uKxvP8k/edit?gid=2085828008#gid=2085828008)
 > **Repo**: [github.com/Splinh/dailyxediennew](https://github.com/Splinh/dailyxediennew)
 > **HTML Mockups Vercel**: [thietkedaily.vercel.app](https://thietkedaily.vercel.app/)
-> **Khởi tạo**: 2026-06-06 **Cập nhật lần cuối**: 2026-07-03
-> **Progress**: 88/114 tasks done (~77%)
+> **Khởi tạo**: 2026-06-06 **Cập nhật lần cuối**: 2026-07-04
+> **Progress**: 89/114 tasks done (~78%)
 
 ---
 
@@ -116,7 +116,7 @@
 | --- | ----------------------------------- | ------- | ---------- | ---- | ------------------------- |
 | 34  | Frontend: Category page + filter    | 🟡 TB   | ⬜         | —    | AJAX filter               |
 | 35  | Frontend: Mobile responsive         | 🔴 Cao  | ⬜         | —    | Sticky header, bottom nav |
-| 35a | Frontend: Cooperation Page Template | 🔴 Cao  | ⬜         | —    | Port hop-tac.html mockup  |
+| 35a | Frontend: Cooperation Page Template | 🔴 Cao  | ✅         | 2026-07-04 | Port hop-tac.html mockup  |
 | 35b | Frontend: About & Contact Templates | 🟡 TB   | ✅         | 2026-07-03 | Port about & lien-he      |
 | 35c | Frontend: Blog & Post Templates     | 🟡 TB   | ✅         | 2026-07-03 | Port tin-tuc & bai-viet   |
 | 35d | Frontend: Cart & Checkout Templates | 🟡 TB   | ⬜         | —    | Port gio-hang & thanh-toan|
@@ -317,15 +317,28 @@ build lại** sau khi sửa template. JS thì enqueue thẳng, không cần buil
 | 🆕 Performance Phase A-I       | 9          | 9       | 0        | 0       | 100%    |
 | T1 — Setup & WC Migration     | 17         | 12      | 0        | 5       | 71%     |
 | T2 — Custom Modules            | 21         | 21       | 0        | 0       | 100%    |
-| T3 — Frontend & Perf (còn lại) | 22         | 8       | 0        | 14      | 36%     |
+| T3 — Frontend & Perf (còn lại) | 22         | 9       | 0        | 13      | 41%     |
 | T4 — QA & Deploy               | 15         | 0       | 0        | 15      | 0%      |
-| **TỔNG**                       | **114**    | **88**  | **0**    | **26**  | **77%** |
+| **TỔNG**                       | **114**    | **89**  | **0**    | **25**  | **78%** |
 
 ---
 
 ## 📝 Changelog
 
 > Ghi lại mỗi lần cập nhật plan log.
+
+### 2026-07-04 — Session 37: Cooperation Page Template & Styling (T3-33g) ✅
+
+- **Cooperation Page Template & Styling (Session 37 - T3-33g)** ✅
+  - Created page template `template-page-cooperation.php` and its layout parts: `hero.php`, `benefits.php`, `packages.php`, `process.php`, and `register-form.php`.
+  - Registered ACF field group configuration in `acf-json/group_daily_cooperation.json` to allow full section customization.
+  - Added CSS style overrides for accordions and sections in `page.scss`.
+- **Homepage & Responsive Polish** ✅
+  - Aligned the homepage static fallback product cards in `best-sellers.php` to match the updated styling of the shared `parts/product-card.php` card layout (swapped `rounded-2xl` for `rounded-xl`, optimized image padding, updated card body spacing and discount badge display).
+  - Improved mobile responsiveness of card grids for the About page (`.about-values__grid`) and Contact page (`.contact-info__grid`) in `page.scss` by shifting to 1 column by default on screens under 480px, preventing text overflows and tight spacing.
+  - Integrated the Cooperation page to the primary navigation menu ("Menu chính") at position 5 under the name "Hợp Tác", and registered fallback settings in `setup.php`.
+- **Verification**: Run `pnpm build` successfully, re-generating `page.css`. Checked PHP syntax on all template files (no syntax errors).
+- **Progress**: 88 → **89** tasks done (78%)
 
 ### 2026-07-03 — Session 37: Content Pages CSS Styling & Conditional Loader Bugfix ✅
 

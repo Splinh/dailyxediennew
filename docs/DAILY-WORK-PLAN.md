@@ -2,8 +2,8 @@
 
 > **Source**: [Google Sheet](https://docs.google.com/spreadsheets/d/1xi5Rv1YKgoAD1wuGH0h1k-cNrX3juF2oYC10uKxvP8k/edit?gid=2085828008#gid=2085828008) + [PLAN-LOG.md](file:///d:/laragon/www/dailynew/docs/PLAN-LOG.md)
 > **HTML Mockups Vercel**: [thietkedaily.vercel.app](https://thietkedaily.vercel.app/)
-> **Updated**: 2026-07-01
-> **Progress**: 86/114 tasks done (~75%)
+> **Updated**: 2026-07-04
+> **Progress**: 87/114 tasks done (~76%)
 > **Timeline**: T6–T9/2026 (4 tháng)
 
 ---
@@ -183,7 +183,7 @@
 - [x] T3-33d. Archive product page CSS — archive-*, filter-* classes ✅ 2026-07-03
 - [x] T3-33e. Blog listing + single post CSS — news-*, post-* classes ✅ 2026-07-03
 - [x] T3-33f. About + Contact pages — CSS styling ✅ 2026-07-03
-- [ ] T3-33g. Cooperation page — new template + CSS
+- [x] T3-33g. Cooperation page — new template + CSS ✅ 2026-07-04
 
 ---
 

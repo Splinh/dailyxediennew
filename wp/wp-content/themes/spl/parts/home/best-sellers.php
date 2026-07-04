@@ -130,15 +130,21 @@ if ( empty( $tabs ) ) {
 						[ 'name' => 'Xe đạp điện Bluera Cap X', 'price' => 12500000, 'old_price' => 14000000, 'brand' => 'Bluera', 'sales' => '320' ],
 					];
 					foreach ( $static_products as $p ) :
+						$old_price_val = (float) $p['old_price'];
+						$price_val = (float) $p['price'];
+						$discount_badge = '';
+						if ( $old_price_val > $price_val ) {
+							$discount_badge = '-' . round( ( ( $old_price_val - $price_val ) / $old_price_val ) * 100 ) . '%';
+						}
 						?>
-						<div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 flex flex-col justify-between group relative">
-							<?php if ( $p['old_price'] > $p['price'] ) : ?>
-								<span class="absolute top-2.5 left-2.5 bg-red-500 text-white font-black text-[9px] md:text-[10px] px-2 py-0.5 md:px-2.5 md:py-1 rounded-lg z-10 shadow-sm uppercase">Hot</span>
+						<div class="bg-white border border-slate-100 rounded-xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 flex flex-col justify-between group relative">
+							<?php if ( $discount_badge ) : ?>
+								<span class="absolute top-2.5 left-2.5 bg-red-500 text-white font-black text-[9px] md:text-[10px] px-2 py-0.5 md:px-2.5 md:py-1 rounded-lg z-10 shadow-sm uppercase"><?php echo esc_html( $discount_badge ); ?></span>
 							<?php endif; ?>
-							<div class="p-3 bg-slate-50/50 flex items-center justify-center h-36 md:h-48 relative overflow-hidden">
+							<div class="bg-slate-50/50 flex items-center justify-center h-36 md:h-48 relative overflow-hidden">
 								<img loading="lazy" src="<?php echo esc_url( wc_placeholder_img_src() ); ?>" alt="<?php echo esc_attr( $p['name'] ); ?>" class="max-h-full max-w-full object-contain transform group-hover:scale-105 transition-transform duration-300">
 							</div>
-							<div class="p-3 md:p-5 flex-grow flex flex-col justify-between">
+							<div class="px-4 pt-[15px] pb-4 flex-grow flex flex-col justify-between">
 								<div>
 									<span class="text-[9px] md:text-[10px] text-slate-400 font-bold uppercase tracking-wider"><?php echo esc_html( $p['brand'] ); ?></span>
 									<h3 class="font-bold text-slate-800 text-xs md:text-sm line-clamp-2 mt-0.5 group-hover:text-primary transition-colors leading-snug"><?php echo esc_html( $p['name'] ); ?></h3>
