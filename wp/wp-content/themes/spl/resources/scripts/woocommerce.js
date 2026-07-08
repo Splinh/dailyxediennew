@@ -309,31 +309,48 @@ const run = () => {
 	const descToggle = document.getElementById('sp-desc-toggle-btn');
 
 	if (descWrapper && descContent && descToggle) {
-		const contentHeight = descContent.scrollHeight;
-		if (contentHeight > 450) { // Only show collapse if content is tall enough
-			descWrapper.classList.add('is-collapsed');
-			descToggle.style.display = 'block';
+		const btn = descToggle.querySelector('.btn-show-more');
+		
+		if (btn) {
+			btn.addEventListener('click', (e) => {
+				e.preventDefault();
+				const currentHeight = descContent.scrollHeight;
+				if (descWrapper.classList.contains('is-collapsed')) {
+					descWrapper.classList.remove('is-collapsed');
+					descWrapper.style.maxHeight = (currentHeight + 100) + 'px'; // Expand fully
+					btn.textContent = 'Thu gọn';
+					descToggle.classList.add('is-expanded');
+				} else {
+					descWrapper.classList.add('is-collapsed');
+					descWrapper.style.maxHeight = '400px'; // Collapse back
+					btn.textContent = 'Xem thêm';
+					descToggle.classList.remove('is-expanded');
+					
+					// Smooth scroll to top of description wrapper
+					descWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				}
+			});
 
-			const btn = descToggle.querySelector('.btn-show-more');
-			if (btn) {
-				btn.addEventListener('click', (e) => {
-					e.preventDefault();
-					if (descWrapper.classList.contains('is-collapsed')) {
-						descWrapper.classList.remove('is-collapsed');
-						descWrapper.style.maxHeight = (contentHeight + 100) + 'px'; // Expand fully
-						btn.textContent = 'Thu gọn';
-						descToggle.classList.add('is-expanded');
+			// Use ResizeObserver to detect image loading/height updates
+			const ro = new ResizeObserver((entries) => {
+				for (let entry of entries) {
+					const contentHeight = entry.target.scrollHeight;
+					if (contentHeight > 450) {
+						if (!descToggle.classList.contains('is-expanded') && !descWrapper.classList.contains('is-collapsed')) {
+							descWrapper.classList.add('is-collapsed');
+							descWrapper.style.maxHeight = '400px';
+							descToggle.style.display = 'block';
+						}
 					} else {
-						descWrapper.classList.add('is-collapsed');
-						descWrapper.style.maxHeight = '400px'; // Collapse back
-						btn.textContent = 'Xem thêm';
-						descToggle.classList.remove('is-expanded');
-						
-						// Smooth scroll to top of description wrapper
-						descWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+						if (!descToggle.classList.contains('is-expanded')) {
+							descWrapper.classList.remove('is-collapsed');
+							descWrapper.style.maxHeight = '';
+							descToggle.style.display = 'none';
+						}
 					}
-				});
-			}
+				}
+			});
+			ro.observe(descContent);
 		}
 	}
 
