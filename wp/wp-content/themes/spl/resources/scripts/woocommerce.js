@@ -303,6 +303,40 @@ const run = () => {
 		});
 	}
 
+	// ── 4. COLLAPSE/EXPAND DESCRIPTION ──
+	const descWrapper = document.getElementById('sp-desc-wrapper');
+	const descContent = document.getElementById('sp-desc-content');
+	const descToggle = document.getElementById('sp-desc-toggle-btn');
+
+	if (descWrapper && descContent && descToggle) {
+		const contentHeight = descContent.scrollHeight;
+		if (contentHeight > 450) { // Only show collapse if content is tall enough
+			descWrapper.classList.add('is-collapsed');
+			descToggle.style.display = 'block';
+
+			const btn = descToggle.querySelector('.btn-show-more');
+			if (btn) {
+				btn.addEventListener('click', (e) => {
+					e.preventDefault();
+					if (descWrapper.classList.contains('is-collapsed')) {
+						descWrapper.classList.remove('is-collapsed');
+						descWrapper.style.maxHeight = (contentHeight + 100) + 'px'; // Expand fully
+						btn.textContent = 'Thu gọn';
+						descToggle.classList.add('is-expanded');
+					} else {
+						descWrapper.classList.add('is-collapsed');
+						descWrapper.style.maxHeight = '400px'; // Collapse back
+						btn.textContent = 'Xem thêm';
+						descToggle.classList.remove('is-expanded');
+						
+						// Smooth scroll to top of description wrapper
+						descWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+					}
+				});
+			}
+		}
+	}
+
 	// ── jQuery-dependent WC integration ──
 	if (window.jQuery) {
 		jQuery(() => {

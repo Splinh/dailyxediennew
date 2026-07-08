@@ -607,33 +607,38 @@ while ( have_posts() ) :
 
 				<!-- Panel: Description -->
 				<div class="sp-tabs__panel active" id="tab-desc">
-					<div class="sp-desc">
-						<?php
-						$content = get_the_content();
-						if ( trim( $content ) ) {
-							echo wp_kses_post( apply_filters( 'the_content', $content ) );
-						} else {
-							echo '<p>' . esc_html( $product->get_short_description() ?: __( 'Đang cập nhật mô tả sản phẩm.', 'spl' ) ) . '</p>';
-						}
+					<div class="sp-desc-wrapper" id="sp-desc-wrapper">
+						<div class="sp-desc" id="sp-desc-content">
+							<?php
+							$content = get_the_content();
+							if ( trim( $content ) ) {
+								echo wp_kses_post( apply_filters( 'the_content', $content ) );
+							} else {
+								echo '<p>' . esc_html( $product->get_short_description() ?: __( 'Đang cập nhật mô tả sản phẩm.', 'spl' ) ) . '</p>';
+							}
 
-						// Spec table from product attributes.
-						$attributes = $product->get_attributes();
-						if ( ! empty( $attributes ) ) :
-							?>
-							<h3><?php esc_html_e( 'Thông số sản phẩm', 'spl' ); ?></h3>
-							<table class="sp-spec-table">
-								<?php foreach ( $attributes as $attribute ) :
-									$label = wc_attribute_label( $attribute->get_name() );
-									$value = $product->get_attribute( $attribute->get_name() );
-									if ( ! $value ) { continue; }
-									?>
-									<tr>
-										<td><?php echo esc_html( $label ); ?></td>
-										<td><?php echo esc_html( $value ); ?></td>
-									</tr>
-								<?php endforeach; ?>
-							</table>
-						<?php endif; ?>
+							// Spec table from product attributes.
+							$attributes = $product->get_attributes();
+							if ( ! empty( $attributes ) ) :
+								?>
+								<h3><?php esc_html_e( 'Thông số sản phẩm', 'spl' ); ?></h3>
+								<table class="sp-spec-table">
+									<?php foreach ( $attributes as $attribute ) :
+										$label = wc_attribute_label( $attribute->get_name() );
+										$value = $product->get_attribute( $attribute->get_name() );
+										if ( ! $value ) { continue; }
+										?>
+										<tr>
+											<td><?php echo esc_html( $label ); ?></td>
+											<td><?php echo esc_html( $value ); ?></td>
+										</tr>
+									<?php endforeach; ?>
+								</table>
+							<?php endif; ?>
+						</div>
+						<div class="sp-desc-toggle" id="sp-desc-toggle-btn" style="display: none;">
+							<button type="button" class="btn-show-more"><?php esc_html_e( 'Xem thêm', 'spl' ); ?></button>
+						</div>
 					</div>
 				</div>
 
