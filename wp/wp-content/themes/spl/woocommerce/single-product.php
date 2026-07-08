@@ -509,7 +509,7 @@ while ( have_posts() ) :
 						data-product-id="<?php echo esc_attr( get_the_ID() ); ?>"
 						data-product-type="<?php echo esc_attr( $product->get_type() ); ?>">
 						<svg class="icon" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-						<?php esc_html_e( 'Thêm vào giỏ hàng', 'spl' ); ?>
+						<?php esc_html_e( 'Thêm vào giỏ', 'spl' ); ?>
 					</button>
 					<button class="btn btn--accent btn--lg sp-buy-now" id="sp-buy-now"
 						data-product-id="<?php echo esc_attr( get_the_ID() ); ?>"
