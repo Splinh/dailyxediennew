@@ -289,17 +289,15 @@ while ( have_posts() ) :
 					</div>
 					<?php
 					$total_images = 1 + count( $gallery );
-					$use_slider   = $total_images > 8;
+					$use_slider   = $total_images > 6;
 					
 					if ( $use_slider ) :
 						$swiper_options = [
 							'slidesPerView' => 4,
 							'spaceBetween'  => 8,
 							'freeMode'      => true,
-							'breakpoints'   => [
-								'sm' => [ 'slidesPerView' => 6 ],
-								'lg' => [ 'slidesPerView' => 8 ],
-							],
+							'sm'            => [ 'slidesPerView' => 5 ],
+							'lg'            => [ 'slidesPerView' => 6 ],
 						];
 						?>
 						<div class="sp-gallery__thumbs swiper closest-swiper" id="sp-gallery-thumbs" data-fx-slider>
