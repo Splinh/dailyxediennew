@@ -1579,10 +1579,12 @@
 		display: flex !important;
 		flex-direction: column !important;
 
-		// Ensure slide child components stretch to fill height
-		> * {
-			flex-grow: 1 !important;
-			height: 100% !important;
+		// Only force child components to stretch if the slide is a wrapper (not the card itself)
+		&:not(.bg-white) {
+			> * {
+				flex-grow: 1 !important;
+				height: 100% !important;
+			}
 		}
 	}
 }
