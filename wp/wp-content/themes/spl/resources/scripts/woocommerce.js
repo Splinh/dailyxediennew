@@ -59,7 +59,12 @@ const run = () => {
 			if (nextIndex < 0) nextIndex = thumbs.length - 1;
 
 			thumbs[nextIndex].click();
-			thumbs[nextIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+			
+			if (galleryThumbs.swiper) {
+				galleryThumbs.swiper.slideTo(nextIndex);
+			} else {
+				thumbs[nextIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+			}
 		};
 
 		if (prevBtn) prevBtn.addEventListener('click', () => cycleThumb(-1));
@@ -222,7 +227,15 @@ const run = () => {
 							if (t.dataset.img === matched.image.src) {
 								thumbs.forEach(other => other.classList.remove('active'));
 								t.classList.add('active');
-								t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+								
+								if (galleryThumbs.swiper) {
+									const idx = Array.from(thumbs).indexOf(t);
+									if (idx !== -1) {
+										galleryThumbs.swiper.slideTo(idx);
+									}
+								} else {
+									t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+								}
 							}
 						});
 					}

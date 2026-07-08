@@ -143,6 +143,7 @@
 
 .sp-gallery {
 	position: relative;
+	min-width: 0;
 
 	&__main {
 		position: relative;
@@ -246,6 +247,17 @@
 		// Hide scrollbar
 		scrollbar-width: none;
 		&::-webkit-scrollbar { display: none; }
+
+		&.swiper {
+			display: block;
+			gap: 0;
+			overflow: hidden;
+
+			.swiper-wrapper {
+				display: flex;
+				flex-flow: row nowrap;
+			}
+		}
 	}
 
 	&__thumb {

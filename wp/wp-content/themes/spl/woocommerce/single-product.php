@@ -287,16 +287,45 @@ while ( have_posts() ) :
 							<svg class="icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
 						</button>
 					</div>
-					<div class="sp-gallery__thumbs" id="sp-gallery-thumbs">
-						<a href="<?php echo esc_url( $image_url ); ?>" class="sp-gallery__thumb active" data-img="<?php echo esc_url( $image_url ); ?>" data-pswp-width="1200" data-pswp-height="1200">
-							<img src="<?php echo esc_url( wp_get_attachment_image_url( $image_id, 'thumbnail' ) ?: $image_url ); ?>" alt="<?php esc_attr_e( 'Ảnh 1', 'spl' ); ?>" />
-						</a>
-						<?php foreach ( $gallery as $i => $gal_id ) : ?>
-							<a href="<?php echo esc_url( wp_get_attachment_image_url( $gal_id, 'large' ) ); ?>" class="sp-gallery__thumb" data-img="<?php echo esc_url( wp_get_attachment_image_url( $gal_id, 'large' ) ); ?>" data-pswp-width="1200" data-pswp-height="1200">
-								<img src="<?php echo esc_url( wp_get_attachment_image_url( $gal_id, 'thumbnail' ) ); ?>" alt="<?php echo esc_attr( sprintf( __( 'Ảnh %d', 'spl' ), $i + 2 ) ); ?>" />
+					<?php
+					$total_images = 1 + count( $gallery );
+					$use_slider   = $total_images > 8;
+					
+					if ( $use_slider ) :
+						$swiper_options = [
+							'slidesPerView' => 4,
+							'spaceBetween'  => 8,
+							'freeMode'      => true,
+							'breakpoints'   => [
+								'sm' => [ 'slidesPerView' => 6 ],
+								'lg' => [ 'slidesPerView' => 8 ],
+							],
+						];
+						?>
+						<div class="sp-gallery__thumbs swiper closest-swiper" id="sp-gallery-thumbs" data-fx-slider>
+							<div class="swiper-wrapper" data-swiper-options="<?php echo esc_attr( wp_json_encode( $swiper_options ) ); ?>">
+								<a href="<?php echo esc_url( $image_url ); ?>" class="sp-gallery__thumb swiper-slide active" data-img="<?php echo esc_url( $image_url ); ?>" data-pswp-width="1200" data-pswp-height="1200">
+									<img src="<?php echo esc_url( wp_get_attachment_image_url( $image_id, 'thumbnail' ) ?: $image_url ); ?>" alt="<?php esc_attr_e( 'Ảnh 1', 'spl' ); ?>" />
+								</a>
+								<?php foreach ( $gallery as $i => $gal_id ) : ?>
+									<a href="<?php echo esc_url( wp_get_attachment_image_url( $gal_id, 'large' ) ); ?>" class="sp-gallery__thumb swiper-slide" data-img="<?php echo esc_url( wp_get_attachment_image_url( $gal_id, 'large' ) ); ?>" data-pswp-width="1200" data-pswp-height="1200">
+										<img src="<?php echo esc_url( wp_get_attachment_image_url( $gal_id, 'thumbnail' ) ); ?>" alt="<?php echo esc_attr( sprintf( __( 'Ảnh %d', 'spl' ), $i + 2 ) ); ?>" />
+									</a>
+								<?php endforeach; ?>
+							</div>
+						</div>
+					<?php else : ?>
+						<div class="sp-gallery__thumbs" id="sp-gallery-thumbs">
+							<a href="<?php echo esc_url( $image_url ); ?>" class="sp-gallery__thumb active" data-img="<?php echo esc_url( $image_url ); ?>" data-pswp-width="1200" data-pswp-height="1200">
+								<img src="<?php echo esc_url( wp_get_attachment_image_url( $image_id, 'thumbnail' ) ?: $image_url ); ?>" alt="<?php esc_attr_e( 'Ảnh 1', 'spl' ); ?>" />
 							</a>
-						<?php endforeach; ?>
-					</div>
+							<?php foreach ( $gallery as $i => $gal_id ) : ?>
+								<a href="<?php echo esc_url( wp_get_attachment_image_url( $gal_id, 'large' ) ); ?>" class="sp-gallery__thumb" data-img="<?php echo esc_url( wp_get_attachment_image_url( $gal_id, 'large' ) ); ?>" data-pswp-width="1200" data-pswp-height="1200">
+									<img src="<?php echo esc_url( wp_get_attachment_image_url( $gal_id, 'thumbnail' ) ); ?>" alt="<?php echo esc_attr( sprintf( __( 'Ảnh %d', 'spl' ), $i + 2 ) ); ?>" />
+								</a>
+							<?php endforeach; ?>
+						</div>
+					<?php endif; ?>
 				</div>
 
 				<!-- Product Info -->
