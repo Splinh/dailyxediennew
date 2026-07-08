@@ -748,45 +748,12 @@ while ( have_posts() ) :
 								] ) ); ?>'>
 									<?php
 									foreach ( $related_ids as $rid ) :
-										$rel_product = wc_get_product( $rid );
-										if ( ! $rel_product ) {
-											continue;
-										}
-										$rel_permalink = get_permalink( $rid );
-										$rel_name      = $rel_product->get_name();
-										$rel_image_url = wp_get_attachment_image_url( $rel_product->get_image_id(), 'woocommerce_thumbnail' ) ?: wc_placeholder_img_src();
-
-										$rel_cat = '';
-										$rel_terms = get_the_terms( $rid, 'product_cat' );
-										if ( $rel_terms && ! is_wp_error( $rel_terms ) ) {
-											$rel_cat = $rel_terms[0]->name;
-										}
-
-										// Price HTML
-										$rel_price_html = $rel_product->get_price_html();
-										?>
-										<div class="swiper-slide h-auto bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 flex flex-col justify-between group relative">
-											<a href="<?php echo esc_url( $rel_permalink ); ?>" class="block">
-												<div class="p-3 bg-slate-50/50 flex items-center justify-center h-36 md:h-40 overflow-hidden">
-													<img loading="lazy" src="<?php echo esc_url( $rel_image_url ); ?>" alt="<?php echo esc_attr( $rel_name ); ?>" class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300">
-												</div>
-											</a>
-											<div class="p-3 md:p-4 flex-grow flex flex-col justify-between">
-												<div>
-													<?php if ( $rel_cat ) : ?>
-														<span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider"><?php echo esc_html( $rel_cat ); ?></span>
-													<?php endif; ?>
-													<h3 class="font-bold text-slate-800 text-xs line-clamp-2 mt-0.5 group-hover:text-primary transition-colors leading-snug">
-														<a href="<?php echo esc_url( $rel_permalink ); ?>"><?php echo esc_html( $rel_name ); ?></a>
-													</h3>
-												</div>
-												<div class="mt-2">
-													<span class="text-sm font-extrabold text-slate-900"><?php echo wp_kses_post( $rel_price_html ); ?></span><br>
-													<a href="<?php echo esc_url( $rel_permalink ); ?>" class="w-full mt-2 bg-primary hover:bg-primary-hover text-white text-[10px] font-bold py-2 rounded-lg transition-all text-center flex items-center justify-center"><?php esc_html_e( 'Xem chi tiết', 'spl' ); ?></a>
-												</div>
-											</div>
-										</div>
-									<?php endforeach; ?>
+										get_template_part( 'parts/product-card', null, [
+											'id'    => $rid,
+											'class' => 'swiper-slide',
+										] );
+									endforeach;
+									?>
 								</div>
 							</div>
 							<div class="swiper-controls"></div>

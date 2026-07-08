@@ -14,17 +14,17 @@ $steps   = [
 	3 => __( 'Hoàn tất', 'spl' ),
 ];
 ?>
-<div class="bg-white border-b border-slate-100 py-5">
-	<div class="container">
+<div class="bg-white border-b border-slate-100 py-3 sm:py-5">
+	<div class="container px-3 sm:px-4">
 		<ol class="flex items-center justify-center gap-0 list-none p-0 m-0">
 			<?php foreach ( $steps as $index => $label ) :
 				$is_complete = $index < $current;
 				$is_active   = $index === $current;
 
 				// Circle classes.
-				$circle_cls = 'w-7 h-7 rounded-full text-[11px] font-extrabold flex items-center justify-center shrink-0 transition-all';
+				$circle_cls = 'w-6 h-6 sm:w-7 sm:h-7 rounded-full text-[10px] sm:text-[11px] font-extrabold flex items-center justify-center shrink-0 transition-all';
 				if ( $is_active ) {
-					$circle_cls .= ' bg-primary text-white shadow-[0_0_0_4px_rgba(30,115,190,0.15)]';
+					$circle_cls .= ' bg-primary text-white shadow-[0_0_0_3px_rgba(30,115,190,0.15)] sm:shadow-[0_0_0_4px_rgba(30,115,190,0.15)]';
 				} elseif ( $is_complete ) {
 					$circle_cls .= ' bg-emerald-500 text-white';
 				} else {
@@ -32,7 +32,7 @@ $steps   = [
 				}
 
 				// Label classes.
-				$label_cls = 'text-[13px] font-semibold';
+				$label_cls = 'text-[11px] sm:text-[13px] font-bold sm:font-semibold';
 				if ( $is_active ) {
 					$label_cls .= ' text-slate-900';
 				} elseif ( $is_complete ) {
@@ -42,14 +42,14 @@ $steps   = [
 				}
 
 				// Connector classes.
-				$connector_cls = 'w-10 h-0.5 mx-4 shrink-0';
+				$connector_cls = 'w-4 sm:w-10 h-0.5 mx-1 sm:mx-4 shrink-0';
 				if ( $is_complete || $is_active ) {
 					$connector_cls .= ' bg-emerald-500';
 				} else {
 					$connector_cls .= ' bg-slate-200';
 				}
 				?>
-				<li class="flex items-center gap-2 text-[13px] font-semibold text-slate-400">
+				<li class="flex items-center gap-1 sm:gap-2">
 					<?php if ( $index > 1 ) : ?>
 						<span class="<?php echo esc_attr( $connector_cls ); ?>"></span>
 					<?php endif; ?>

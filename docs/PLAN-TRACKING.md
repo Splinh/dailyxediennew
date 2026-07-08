@@ -293,3 +293,66 @@ None. Pre-existing theme classes inside `src/Modules/PLL/` were used.
 ### Next Actions
 
 1. Begin content cleanup phase (hide products, remove unrelated posts, clean up taxonomies).
+
+## Weekly Snapshot - 2026-07-08
+
+### Summary
+
+- Overall status: Cooperation page, Blog templates, product page interactions, mobile filter drawer, and checkout progress steps complete.
+- Main focus: Inner pages styling, mobile layout interactions, Table of Contents (TOC) feature integration, and WooCommerce responsive components.
+- Completed:
+  - Cooperation Page Template & dynamic ACF settings.
+  - Styled all inner content pages (About, Contact, Blog archive, Single post, Product Single, Product Archive) via `page.scss` and `woocommerce.scss`.
+  - Product page Swiper related products slider and CSS-only interactive review stars.
+  - Rebuilt blog listing index (`home.php`) and single post layout (`single.php`) to match Vercel design mockups.
+  - Implemented Table of Contents (`TOC.php`) class parsing `<h2>` headers and prepending collapsible TOC list.
+  - Configured WordPress Posts page settings to map `/tin-tuc/` routing.
+  - WooCommerce shortcode product cards styled as clean grids.
+  - Related products swiper forced to equal height using flexbox stretching.
+  - Mobile responsive sliding filter drawer and toolbar actions on category archive page.
+  - Mobile responsive checkout steps progress bar.
+- In progress: Category AJAX filters.
+- Blocked/waiting: None.
+
+### Progress By Area
+
+| Area | Status | % | Notes |
+|---|---|---:|---|
+| Setup/import | Done | 100 | |
+| Header/footer ACF Options | Done | 100 | |
+| Homepage flexible sections | Done | 100 | |
+| Product sections | Done | 100 | |
+| Product archive/single | Done | 100 | Inner styles, mobile filter drawer, and related heights complete |
+| Tracking/SEO | Done | 100 | |
+| Performance/scaling | Waiting | 0 | |
+| QA/deploy | Not started | 0 | |
+
+### Files Changed
+
+| File | Change | Reason |
+|---|---|---|
+| `wp/wp-content/themes/spl/template-page-cooperation.php` | NEW | Cooperation page template |
+| `wp/wp-content/themes/spl/home.php` | MODIFY | Rebuilt blog listing layout |
+| `wp/wp-content/themes/spl/single.php` | MODIFY | Rebuilt single post layout |
+| `wp/wp-content/themes/spl/src/Features/Optimizer/TOC.php` | NEW | Dynamic Table of Contents module |
+| `wp/wp-content/themes/spl/src/Features/Optimizer.php` | MODIFY | Register TOC feature |
+| `wp/wp-content/themes/spl/resources/styles/page.scss` | MODIFY | Inner page styles & mobile filter drawer |
+| `wp/wp-content/themes/spl/resources/styles/woocommerce.scss` | MODIFY | WC shortcode styles & equal swiper heights |
+| `wp/wp-content/themes/spl/woocommerce/archive-product.php` | MODIFY | Filter drawer overlay & toolbar markup |
+| `wp/wp-content/themes/spl/woocommerce/single-product.php` | MODIFY | Synchronized related products slider |
+| `wp/wp-content/themes/spl/template-parts/woocommerce/checkout-steps.php` | MODIFY | Checkout steps mobile spacing |
+
+### Verification
+
+| Check | Result | Notes |
+|---|---|---|
+| PHP syntax | PASS | Verified all files via `php -l` |
+| Theme build | PASS | Tested using `pnpm build` |
+| WP-CLI setup | PASS | Set page_for_posts option to link /tin-tuc/ |
+| Browser desktop | PASS | Home, shop, blog, and checkout pages respond with HTTP 200 OK |
+
+### Next Actions
+
+1. Category page AJAX filtering integration.
+2. Mobile bottom navigation bar.
+

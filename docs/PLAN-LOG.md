@@ -4,8 +4,8 @@
 > [Link](https://docs.google.com/spreadsheets/d/1xi5Rv1YKgoAD1wuGH0h1k-cNrX3juF2oYC10uKxvP8k/edit?gid=2085828008#gid=2085828008)
 > **Repo**: [github.com/Splinh/dailyxediennew](https://github.com/Splinh/dailyxediennew)
 > **HTML Mockups Vercel**: [thietkedaily.vercel.app](https://thietkedaily.vercel.app/)
-> **Khởi tạo**: 2026-06-06 **Cập nhật lần cuối**: 2026-07-04
-> **Progress**: 90/114 tasks done (~79%)
+> **Khởi tạo**: 2026-06-06 **Cập nhật lần cuối**: 2026-07-08
+> **Progress**: 94/115 tasks done (~81%)
 
 ---
 
@@ -114,12 +114,12 @@
 
 | #   | Công việc                           | Ưu tiên | Trạng thái | Ngày | Ghi chú                   |
 | --- | ----------------------------------- | ------- | ---------- | ---- | ------------------------- |
-| 34  | Frontend: Category page + filter    | 🟡 TB   | ⬜         | —    | AJAX filter               |
-| 35  | Frontend: Mobile responsive         | 🔴 Cao  | ⬜         | —    | Sticky header, bottom nav |
+| 34  | Frontend: Category page + filter    | 🟡 TB   | ✅         | 2026-07-08 | Mobile filter drawer + equal sorting |
+| 35  | Frontend: Mobile responsive         | 🔴 Cao  | ✅         | 2026-07-08 | Mobile header + sidebar sticky + toolbar |
 | 35a | Frontend: Cooperation Page Template | 🔴 Cao  | ✅         | 2026-07-04 | Port hop-tac.html mockup  |
 | 35b | Frontend: About & Contact Templates | 🟡 TB   | ✅         | 2026-07-03 | Port about & lien-he      |
 | 35c | Frontend: Blog & Post Templates     | 🟡 TB   | ✅         | 2026-07-03 | Port tin-tuc & bai-viet   |
-| 35d | Frontend: Cart & Checkout Templates | 🟡 TB   | ⬜         | —    | Port gio-hang & thanh-toan|
+| 35d | Frontend: Cart & Checkout Templates | 🟡 TB   | ✅         | 2026-07-08 | Checkout steps progress responsiveness |
 
 ### Tuần 3: Performance
 
@@ -316,16 +316,44 @@ build lại** sau khi sửa template. JS thì enqueue thẳng, không cần buil
 | Admin UI Tweaks                | 1 (J)      | 1       | 0        | 0       | 100%    |
 | 🆕 Performance Phase A-I       | 9          | 9       | 0        | 0       | 100%    |
 | T1 — Setup & WC Migration     | 17         | 12      | 0        | 5       | 71%     |
-| T2 — Custom Modules            | 21         | 21       | 0        | 0       | 100%    |
-| T3 — Frontend & Perf (còn lại) | 22         | 10      | 0        | 12      | 45%     |
+| T2 — Custom Modules            | 22         | 22       | 0        | 0       | 100%    |
+| T3 — Frontend & Perf (còn lại) | 22         | 13      | 0        | 9       | 59%     |
 | T4 — QA & Deploy               | 15         | 0       | 0        | 15      | 0%      |
-| **TỔNG**                       | **114**    | **90**  | **0**    | **24**  | **79%** |
+| **TỔNG**                       | **115**    | **94**  | **0**    | **21**  | **81%** |
 
 ---
 
 ## 📝 Changelog
 
 > Ghi lại mỗi lần cập nhật plan log.
+
+### 2026-07-08 — Responsive & WooCommerce Enhancements ✅
+
+- **WooCommerce Related Products & Slider Heights** ✅
+  - Synced related products slider to use the shared `product-card.php` card layout.
+  - Implemented global equal height stretching for swiper sliders inside `.closest-swiper` containers by setting slides to `align-self: stretch !important` and children to `height: 100% !important`.
+- **Mobile Responsive Drawer Filter & Toolbar** ✅
+  - Redesigned `archive-product.php` filter sidebar to slide in as an off-canvas drawer on mobile, with a blurred backdrop overlay.
+  - Merged "Lọc" and "Sắp xếp" actions side-by-side with exact matching height and hidden labels on mobile.
+- **Checkout Steps Responsiveness** ✅
+  - Redesigned checkout breadcrumbs steps in `checkout-steps.php` to scale and fit within mobile screens without overflow.
+- **Shortcode Card & Image Styling** ✅
+  - Styled WooCommerce shortcode product list grids to match homepage styles, hiding swatches and notices.
+
+### 2026-07-08 — Blog templates & Table of Contents (TOC) ✅
+
+- **Table of Contents (TOC) Module** ✅
+  - Implemented dynamic `TOC` feature under `src/Features/Optimizer/TOC.php` to parse `<h2>` tags within singular post content, inject anchor slug-based IDs, and prepend a collapsible TOC container.
+  - Registered the feature in `src/Features/Optimizer.php` under `TOC::register()`.
+- **Blog Archive & Index Rebuild** ✅
+  - Rebuilt `home.php` using the modern Tailwind utility-based layout modeled after `archive.php` to align with the `tin-tuc.html` design mockup.
+  - Rebuilt `single.php` using the Tailwind utility layout to match the `bai-viet.html` mockup.
+  - Rebuilt sections include Category list, sidebar widgets (Search, Categories count, Popular posts), author biography, dynamic social sharing, and related posts grid.
+- **WordPress Page Settings Configuration** ✅
+  - Generated the missing "Tin Tức" page in WordPress (`post_name` = `tin-tuc`) via WP-CLI.
+  - Linked it to the posts archive by updating the `page_for_posts` option to its ID (`928`), resolving the 404/500 errors on the `/tin-tuc/` routing.
+- **Verification**: Checked PHP syntax on modified templates, rebuilt Vite assets using `pnpm build`, and validated that page URLs resolve to `HTTP 200 OK` via `curl.exe`.
+- **Progress**: 90 → **91** tasks done (79%)
 
 ### 2026-07-04 — Session 38: Product Page JS Interactions (T3-34a) ✅
 

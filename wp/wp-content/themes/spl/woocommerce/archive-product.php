@@ -106,13 +106,18 @@ if ( $is_search ) {
 		<div class="archive-layout<?php echo $is_search ? ' archive-layout--full' : ''; ?>">
 
 		<?php if ( ! $is_search ) : ?>
-			<!-- Sidebar Filters -->
-			<button type="button" class="archive-filter-toggle" id="archive-filter-toggle" aria-controls="archive-sidebar" aria-expanded="false">
-				<svg class="icon" viewBox="0 0 24 24"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
-				<?php esc_html_e( 'Bộ lọc sản phẩm', 'spl' ); ?>
-			</button>
+			<div class="archive-filter-overlay" id="archive-filter-overlay"></div>
 
 			<aside class="archive-sidebar reveal" id="archive-sidebar">
+				<div class="lg:hidden flex items-center justify-between p-4 border-b border-slate-100 mb-4 bg-slate-50">
+					<span class="font-bold text-slate-800 text-sm flex items-center gap-1.5">
+						<svg class="w-4 h-4 text-[#1e73be]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+						<?php esc_html_e( 'Bộ lọc sản phẩm', 'spl' ); ?>
+					</span>
+					<button type="button" id="archive-filter-close" class="w-8 h-8 rounded-full bg-white border border-slate-200 text-slate-400 hover:text-slate-600 flex items-center justify-center transition-colors">
+						<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+					</button>
+				</div>
 				<form class="archive-filter-form" id="archive-filter-form" method="get">
 				<div class="filter-group">
 					<h3 class="filter-group__title">
@@ -234,6 +239,12 @@ if ( $is_search ) {
 						?>
 					</div>
 					<div class="archive-toolbar__actions">
+						<?php if ( ! $is_search ) : ?>
+							<button type="button" class="archive-filter-toggle" id="archive-filter-toggle" aria-controls="archive-sidebar" aria-expanded="false">
+								<svg class="icon" viewBox="0 0 24 24"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+								<?php esc_html_e( 'Lọc', 'spl' ); ?>
+							</button>
+						<?php endif; ?>
 						<div class="archive-sort">
 							<label for="sort-select"><?php esc_html_e( 'Sắp xếp:', 'spl' ); ?></label>
 							<?php
@@ -330,5 +341,34 @@ if ( $is_search ) {
 		</div>
 	</div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+	var toggleBtn = document.getElementById('archive-filter-toggle');
+	var closeBtn = document.getElementById('archive-filter-close');
+	var sidebar = document.getElementById('archive-sidebar');
+	var overlay = document.getElementById('archive-filter-overlay');
+	var body = document.body;
+
+	if (toggleBtn && sidebar && overlay) {
+		toggleBtn.addEventListener('click', function() {
+			sidebar.classList.add('is-open');
+			overlay.classList.add('is-visible');
+			body.classList.add('overflow-hidden');
+		});
+
+		var closeSidebar = function() {
+			sidebar.classList.remove('is-open');
+			overlay.classList.remove('is-visible');
+			body.classList.remove('overflow-hidden');
+		};
+
+		if (closeBtn) {
+			closeBtn.addEventListener('click', closeSidebar);
+		}
+		overlay.addEventListener('click', closeSidebar);
+	}
+});
+</script>
 
 <?php get_footer(); ?>

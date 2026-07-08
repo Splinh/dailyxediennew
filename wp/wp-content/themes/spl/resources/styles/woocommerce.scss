@@ -1330,3 +1330,259 @@
 		line-height: 1.2;
 	}
 }
+
+// Standard WooCommerce Shortcode Products Grid (e.g. inside blog articles)
+.woocommerce {
+	ul.products {
+		list-style: none !important;
+		padding: 0 !important;
+		margin: 1.5rem 0 !important;
+		display: grid !important;
+		grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+		gap: 1rem !important;
+
+		@media (min-width: 640px) {
+			grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+			gap: 1.5rem !important;
+		}
+
+		@media (min-width: 1024px) {
+			grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+		}
+
+		li.product {
+			float: none !important;
+			width: auto !important;
+			margin: 0 !important;
+			background: #ffffff !important;
+			border: 1px solid #f1f5f9 !important;
+			border-radius: 0.75rem !important; // rounded-xl
+			box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05) !important; // shadow-premium
+			transition: all 0.3s duration-300 !important;
+			overflow: hidden !important;
+			display: flex !important;
+			flex-direction: column !important;
+			justify-content: space-between !important;
+			position: relative !important;
+
+			&:hover {
+				transform: translateY(-4px) !important;
+				box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important; // shadow-hover-card
+				border-color: #e2e8f0 !important;
+			}
+
+			// Sale Badge
+			.onsale {
+				position: absolute !important;
+				top: 0.625rem !important; // top-2.5
+				left: 0.625rem !important; // left-2.5
+				margin: 0 !important;
+				background-color: #ef4444 !important; // bg-red-500
+				color: #ffffff !important;
+				font-size: 9px !important;
+				@media (min-width: 768px) {
+					font-size: 10px !important;
+				}
+				font-weight: 900 !important; // font-black
+				padding: 0.125rem 0.5rem !important; // px-2 py-0.5
+				@media (min-width: 768px) {
+					padding: 0.25rem 0.625rem !important; // px-2.5 py-1
+				}
+				border-radius: 0.5rem !important; // rounded-lg
+				z-index: 10 !important;
+				box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important; // shadow-sm
+				text-transform: uppercase !important;
+				line-height: 1 !important;
+				min-height: auto !important;
+				min-width: auto !important;
+			}
+
+			// Product Link & Image
+			a.woocommerce-LoopProduct-link {
+				display: flex !important;
+				flex-direction: column !important;
+				flex-grow: 1 !important;
+				text-decoration: none !important;
+				color: inherit !important;
+				margin-bottom: 0.5rem !important;
+
+				img {
+					width: 100% !important;
+					height: 9rem !important; // h-36
+					@media (min-width: 768px) {
+						height: 12rem !important; // h-48
+					}
+					object-fit: contain !important; // object-contain
+					background-color: #f8fafc !important; // bg-slate-50/50
+					display: block !important;
+					margin: 0 !important;
+					padding: 0.75rem !important;
+					transition: transform 0.3s !important;
+
+					&:hover {
+						transform: scale(1.05) !important; // group-hover:scale-105
+					}
+				}
+
+				.woocommerce-loop-product__title {
+					font-family: inherit !important;
+					font-size: 0.75rem !important; // text-xs
+					@media (min-width: 768px) {
+						font-size: 0.875rem !important; // text-sm
+					}
+					font-weight: 700 !important;
+					line-height: 1.4 !important;
+					color: #1e293b !important;
+					padding: 0.75rem 1rem 0 !important; // px-4 pt-[15px]
+					margin: 0 !important;
+					display: -webkit-box !important;
+					-webkit-line-clamp: 2 !important;
+					-webkit-box-orient: vertical !important;
+					overflow: hidden !important;
+					text-overflow: ellipsis !important;
+					min-height: 2.8rem !important; // Ensure space for 2 lines
+					transition: color 0.2s !important;
+
+					&:hover {
+						color: var(--color-primary, #1e73be) !important;
+					}
+				}
+
+				.price {
+					padding: 0.5rem 1rem 0 !important; // px-4 mt-3
+					margin-top: auto !important;
+					display: flex !important;
+					flex-wrap: wrap !important;
+					align-items: baseline !important;
+					gap: 0.25rem !important;
+					color: #0f172a !important; // text-slate-900
+					font-size: 0.875rem !important; // text-sm
+					@media (min-width: 768px) {
+						font-size: 1rem !important; // text-base
+					}
+					font-weight: 800 !important; // font-extrabold
+
+					ins {
+						text-decoration: none !important;
+						background: transparent !important;
+						span.woocommerce-Price-amount {
+							color: #ef4444 !important; // red color for sale current price
+						}
+					}
+
+					del {
+						color: #94a3b8 !important; // text-slate-400
+						font-size: 0.625rem !important; // text-[10px]
+						@media (min-width: 768px) {
+							font-size: 0.75rem !important; // text-xs
+						}
+						font-weight: 500 !important;
+						margin-right: 0.25rem !important;
+						text-decoration: line-through !important;
+
+						span.woocommerce-Price-amount {
+							color: #94a3b8 !important;
+						}
+					}
+				}
+			}
+
+			// Variation notices (Hide)
+			.wvs-variation-notice,
+			.wvs-loop-variation-notice,
+			.wvs-variation-description,
+			.wvs-loop-variation-description,
+			p.wvs-variation-notice {
+				display: none !important;
+			}
+
+			// Variation swatches (Hide)
+			.variable-items-wrapper {
+				display: none !important;
+			}
+
+			// Button: Mua ngay / Xem chi tiết
+			.button, a.button {
+				display: flex !important;
+				align-items: center !important;
+				justify-content: center !important;
+				width: calc(100% - 2rem) !important; // full width minus margin padding
+				margin: auto 1rem 1rem !important; // bottom margin
+				padding: 0.5rem 1rem !important; // py-2
+				@media (min-width: 768px) {
+					padding: 0.625rem 1rem !important; // py-2.5
+				}
+				background-color: var(--color-primary, #1e73be) !important; // bg-primary
+				color: #ffffff !important;
+				border: none !important;
+				border-radius: 0.5rem !important; // rounded-lg
+				font-size: 10px !important;
+				@media (min-width: 768px) {
+					font-size: 12px !important;
+				}
+				font-weight: 700 !important;
+				text-align: center !important;
+				transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+				text-decoration: none !important;
+				line-height: 1.2 !important;
+
+				&:hover {
+					background-color: var(--color-primary-dark, #165da0) !important; // bg-primary-hover
+					color: #ffffff !important;
+					transform: scale(0.98) !important;
+				}
+
+				&.loading {
+					opacity: 0.7 !important;
+				}
+
+				&.added {
+					display: none !important;
+				}
+			}
+
+			.added_to_cart {
+				display: flex !important;
+				align-items: center !important;
+				justify-content: center !important;
+				width: calc(100% - 2rem) !important;
+				margin: auto 1rem 1rem !important;
+				padding: 0.5rem 1rem !important;
+				@media (min-width: 768px) {
+					padding: 0.625rem 1rem !important;
+				}
+				background-color: #10b981 !important; // bg-emerald-500
+				color: #ffffff !important;
+				border-radius: 0.5rem !important;
+				font-size: 10px !important;
+				@media (min-width: 768px) {
+					font-size: 12px !important;
+				}
+				font-weight: 700 !important;
+				text-align: center !important;
+				text-decoration: none !important;
+				line-height: 1.2 !important;
+			}
+		}
+	}
+}
+
+// Force equal height for slides inside swiper wrapper in containers with class .closest-swiper
+.closest-swiper {
+	.swiper-wrapper {
+		align-items: stretch !important;
+	}
+
+	.swiper-slide {
+		height: auto !important;
+		align-self: stretch !important;
+		display: flex !important;
+		flex-direction: column !important;
+
+		// Ensure slide child components stretch to fill height
+		> * {
+			flex-grow: 1 !important;
+			height: 100% !important;
+		}
+	}
+}
