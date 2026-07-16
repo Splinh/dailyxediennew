@@ -891,3 +891,285 @@
 	padding-left: 1rem;
 	padding-right: 1rem;
 }
+
+/* ==========================================================================
+   Checkout — Shipping Methods Layout Refinement
+   ========================================================================== */
+
+.woocommerce-shipping-methods {
+	list-style: none !important;
+	padding: 0 !important;
+	margin: 0.5rem 0 0 !important;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+
+	li {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 0.75rem 1rem;
+		background: #f8fafc;
+		border: 1px solid #e2e8f0;
+		border-radius: 0.75rem;
+		cursor: pointer;
+		transition: all 0.2s;
+
+		input[type="radio"] {
+			accent-color: var(--color-primary, #1e73be);
+			margin: 0;
+			width: 1.125rem;
+			height: 1.125rem;
+			flex-shrink: 0;
+		}
+
+		label {
+			display: flex;
+			flex: 1;
+			align-items: center;
+			justify-content: space-between;
+			gap: 0.5rem;
+			font-size: 0.8125rem;
+			font-weight: 700;
+			color: #1e293b;
+			cursor: pointer;
+			margin: 0;
+
+			.amount {
+				font-weight: 800;
+				color: #0f172a;
+			}
+		}
+
+		&:hover {
+			background: #fff;
+			border-color: var(--color-primary, #1e73be);
+		}
+	}
+}
+
+/* ==========================================================================
+   Checkout — Order Received / Thank You Page
+   ========================================================================== */
+
+.woocommerce-order {
+	max-width: 48rem;
+	margin: 2rem auto;
+	padding: 0 1rem;
+}
+
+/* Success Card */
+.woocommerce-notice.woocommerce-order-received {
+	background: #fff;
+	border: 1px solid #f1f5f9;
+	border-radius: 1rem;
+	padding: 2.5rem 2rem;
+	text-align: center;
+	font-size: 1.125rem;
+	font-weight: 800;
+	color: #0f172a;
+	box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+	margin-bottom: 2rem;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+
+	&::before {
+		content: "✓";
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 3.5rem;
+		height: 3.5rem;
+		background: #ecfdf5;
+		color: #10b981;
+		border-radius: 50%;
+		font-size: 1.75rem;
+		font-weight: 900;
+	}
+}
+
+/* Order Details Overview Grid */
+.woocommerce-order-overview.order_details {
+	list-style: none !important;
+	padding: 0 !important;
+	margin: 0 0 2rem !important;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 0.75rem;
+
+	@media (min-width: 640px) {
+		grid-template-columns: repeat(4, 1fr);
+	}
+
+	li {
+		background: #fff;
+		border: 1px solid #f1f5f9;
+		border-radius: 0.75rem;
+		padding: 1rem 0.75rem;
+		text-align: center;
+		font-size: 0.75rem;
+		color: #64748b;
+		box-shadow: 0 2px 8px -1px rgba(0, 0, 0, 0.02);
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+
+		strong {
+			font-size: 0.875rem;
+			font-weight: 800;
+			color: #0f172a;
+		}
+	}
+}
+
+/* Bank Details (BACS) */
+.woocommerce-order h2 {
+	font-size: 1.125rem;
+	font-weight: 900;
+	color: #0f172a;
+	margin: 2rem 0 1rem;
+	letter-spacing: -0.01em;
+}
+
+.wc-bacs-bank-details {
+	list-style: none !important;
+	padding: 0 !important;
+	margin: 0 0 2rem !important;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 1rem;
+
+	@media (min-width: 640px) {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	li {
+		background: #fff;
+		border: 1px solid #f1f5f9;
+		border-radius: 1rem;
+		padding: 1.25rem;
+		box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+
+		.wc-bacs-bank-details-account-name {
+			font-size: 0.875rem;
+			font-weight: 800;
+			color: #0f172a;
+			margin-bottom: 0.75rem;
+			display: block;
+			border-bottom: 1px solid #f1f5f9;
+			padding-bottom: 0.5rem;
+		}
+
+		ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			font-size: 0.8125rem;
+			color: #64748b;
+			display: flex;
+			flex-direction: column;
+			gap: 0.375rem;
+
+			strong {
+				color: #0f172a;
+			}
+		}
+	}
+}
+
+/* Thank You Order Details Table */
+.woocommerce-table--order-details {
+	width: 100%;
+	border-collapse: collapse;
+	background: #fff;
+	border: 1px solid #f1f5f9;
+	border-radius: 1rem;
+	overflow: hidden;
+	box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+	margin-bottom: 2rem;
+
+	thead th {
+		background: #f8fafc;
+		padding: 1rem;
+		font-size: 0.75rem;
+		font-weight: 800;
+		color: #475569;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		border-bottom: 1px solid #e2e8f0;
+	}
+
+	tbody td {
+		padding: 1rem;
+		font-size: 0.875rem;
+		color: #334155;
+		border-bottom: 1px solid #f1f5f9;
+		vertical-align: middle;
+
+		a {
+			font-weight: 700;
+			color: #0f172a;
+			text-decoration: none;
+
+			&:hover {
+				color: var(--color-primary, #1e73be);
+			}
+		}
+	}
+
+	tfoot th,
+	tfoot td {
+		padding: 1rem;
+		font-size: 0.875rem;
+		color: #475569;
+		border-bottom: 1px solid #f1f5f9;
+	}
+
+	tfoot tr:last-child th,
+	tfoot tr:last-child td {
+		border-bottom: none;
+	}
+
+	tfoot td {
+		text-align: right;
+		font-weight: 700;
+		color: #0f172a;
+	}
+
+	tfoot tr.order-total th {
+		font-weight: 800;
+		color: #0f172a;
+	}
+
+	tfoot tr.order-total td {
+		font-size: 1.125rem;
+		font-weight: 900;
+		color: var(--color-primary, #1e73be);
+	}
+}
+
+/* Customer Details Section on Thank You page */
+.woocommerce-customer-details {
+	background: #fff;
+	border: 1px solid #f1f5f9;
+	border-radius: 1rem;
+	padding: 1.5rem;
+	box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+	margin-bottom: 2rem;
+
+	h2 {
+		margin-top: 0 !important;
+		border-bottom: 1px solid #f1f5f9;
+		padding-bottom: 0.75rem;
+	}
+
+	address {
+		font-style: normal;
+		font-size: 0.8125rem;
+		color: #475569;
+		line-height: 1.6;
+	}
+}

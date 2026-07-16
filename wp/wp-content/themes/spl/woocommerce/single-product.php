@@ -423,7 +423,10 @@ while ( have_posts() ) :
 
 				<?php if ( $product->get_short_description() ) : ?>
 					<div class="sp-info__short-desc">
-						<?php echo wp_kses_post( wpautop( $product->get_short_description() ) ); ?>
+						<?php
+						$cleaned_desc = \SPL\Features\Optimizer\FlatsomeShortcodeCleaner::cleanShortcodes( $product->get_short_description() );
+						echo wp_kses_post( wpautop( $cleaned_desc ) );
+						?>
 					</div>
 				<?php endif; ?>
 
@@ -636,9 +639,9 @@ while ( have_posts() ) :
 								</table>
 							<?php endif; ?>
 						</div>
-						<div class="sp-desc-toggle" id="sp-desc-toggle-btn" style="display: none;">
-							<button type="button" class="btn-show-more"><?php esc_html_e( 'Xem thêm', 'spl' ); ?></button>
-						</div>
+					</div>
+					<div class="sp-desc-toggle" id="sp-desc-toggle-btn" style="display: none;">
+						<button type="button" class="btn-show-more"><?php esc_html_e( 'Xem thêm', 'spl' ); ?></button>
 					</div>
 				</div>
 

@@ -57,6 +57,16 @@ final class FilterAPI extends AbstractAPI {
 						'default'           => 0,
 						'sanitize_callback' => 'absint',
 					],
+					'taxonomy'  => [
+						'type'              => 'string',
+						'default'           => '',
+						'sanitize_callback' => 'sanitize_key',
+					],
+					'term'      => [
+						'type'              => 'string',
+						'default'           => '',
+						'sanitize_callback' => 'sanitize_key',
+					],
 				],
 			]
 		);
@@ -196,6 +206,17 @@ final class FilterAPI extends AbstractAPI {
 			'meta_query'     => [ 'relation' => 'AND' ],
 		];
 
+		// Scope query to current taxonomy/term context (e.g. browsing category page)
+		$contextTaxonomy = sanitize_key( $request->get_param( 'taxonomy' ) );
+		$contextTerm     = sanitize_key( $request->get_param( 'term' ) );
+		if ( $contextTaxonomy && $contextTerm ) {
+			$args['tax_query'][] = [
+				'taxonomy' => $contextTaxonomy,
+				'field'    => 'slug',
+				'terms'    => $contextTerm,
+			];
+		}
+
 		// Build filter instances once — reuse for applyToQuery + getCounts
 		$filterInstances = [];
 		foreach ( $filterConfigs as $config ) {
@@ -256,27 +277,25 @@ final class FilterAPI extends AbstractAPI {
 		);
 	}
 
-	/**
-	 * Render products from query using WC template parts.
-	 *
-	 * @param \WP_Query $query Product query.
-	 *
-	 * @return string Rendered HTML.
-	 */
 	private function renderProducts( \WP_Query $query ): string {
 		ob_start();
 
 		if ( $query->have_posts() ) {
-			woocommerce_product_loop_start();
+			echo '<div class="products-grid products" id="archive-products">';
 
 			while ( $query->have_posts() ) {
 				$query->the_post();
-				wc_get_template_part( 'content', 'product' );
+				get_template_part( 'parts/product-card', null, [ 'id' => get_the_ID() ] );
 			}
 
-			woocommerce_product_loop_end();
+			echo '</div>';
 		} else {
-			wc_get_template( 'loop/no-products-found.php' );
+			echo '<div class="products-grid products" id="archive-products">';
+			echo '<div class="archive-no-products">';
+			echo '<svg class="icon icon-xl" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>';
+			echo '<p>' . esc_html__( 'Không tìm thấy sản phẩm nào.', 'spl' ) . '</p>';
+			echo '</div>';
+			echo '</div>';
 		}
 
 		$html = ob_get_clean();
@@ -299,7 +318,7 @@ final class FilterAPI extends AbstractAPI {
 
 		ob_start();
 
-		echo '<nav class="woocommerce-pagination">';
+		echo '<nav class="pagination woocommerce-pagination">';
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_kses_post applied
 		echo wp_kses_post(
 			paginate_links(

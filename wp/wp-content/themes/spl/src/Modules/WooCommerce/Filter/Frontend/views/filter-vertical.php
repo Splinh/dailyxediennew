@@ -25,11 +25,22 @@ $class     = $args['class'] ?? '';
 if ( empty( $groups ) ) {
 	return;
 }
+
+$mobilePopup     = $args['mobile_popup'] ?? true;
+$currentTaxonomy = $args['currentTaxonomy'] ?? '';
+$currentTerm     = $args['currentTerm'] ?? '';
 ?>
 <div class="hd-filter hd-filter--vertical <?php echo esc_attr( $class ); ?>"
 	data-wc-filter
 	data-preset="<?php echo absint( $presetId ); ?>"
-	data-trigger="<?php echo esc_attr( $trigger ); ?>">
+	data-trigger="<?php echo esc_attr( $trigger ); ?>"
+	<?php if ( ! $mobilePopup ) : ?>
+		data-mobile-popup="false"
+	<?php endif; ?>
+	<?php if ( $currentTaxonomy && $currentTerm ) : ?>
+		data-taxonomy="<?php echo esc_attr( $currentTaxonomy ); ?>"
+		data-term="<?php echo esc_attr( $currentTerm ); ?>"
+	<?php endif; ?>>
 
 	<?php if ( $chipsHtml ) : ?>
 		<?php echo $chipsHtml; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Already escaped ?>

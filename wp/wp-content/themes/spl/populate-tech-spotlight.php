@@ -95,9 +95,9 @@ function dxd_sideload_theme_image( string $filename, string $alt_text = '' ): in
 
 // ── Sideload tech images ──
 echo "\n── Uploading tech images ──\n";
-$img_bms         = dxd_sideload_theme_image( 'bms-battery.png', 'Hệ thống Pin LFP & BMS Thông Minh' );
+$img_bms         = dxd_sideload_theme_image( 'bms-battery-v2.png', 'Hệ thống Pin LFP & BMS Thông Minh' );
 $img_fingerprint = dxd_sideload_theme_image( 'fingerprint-lock.png', 'Khóa Vân Tay Bảo Mật Sinh Trắc Học' );
-$img_app         = dxd_sideload_theme_image( 'smart-app-connect.png', 'Kết Nối App Quản Lý Xe Thông Minh' );
+$img_app         = dxd_sideload_theme_image( 'smart-app-connect-v2.png', 'Kết Nối App Quản Lý Xe Thông Minh' );
 
 // ── Read existing home_sections ──
 $sections = get_field( 'home_sections', $home_id );
@@ -145,13 +145,13 @@ $tech_data = [
 			'feature_id'   => 'smart-app',
 			'feature_name' => 'Kết nối App Thông Minh',
 			'icon'         => '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>',
-			'title'        => 'Kết Nối Bluetooth & App Quản Lý Xe Thông Minh',
-			'description'  => 'Kết nối Bluetooth 5.0 với app chuyên dụng trên smartphone giúp theo dõi hành trình GPS, kiểm tra pin real-time, chẩn đoán lỗi từ xa và cập nhật firmware OTA. Tính năng chống trộm thông minh gửi cảnh báo khi xe bị di chuyển bất thường. Trang bị trên dòng AI Ebike thế hệ mới.',
+			'title'        => 'Hệ Sinh Thái IoT & Ứng Dụng Di Động AI EBIKE',
+			'description'  => 'Ứng dụng tích hợp công nghệ đỉnh cao, kết nối IoT thời gian thực, quản lý pin BMS thông minh, định vị GPS toàn cầu chính xác cao và kích hoạt bảo hành điện tử tiện lợi. Tải ứng dụng để tối ưu hóa trải nghiệm lái xe điện của bạn.',
 			'image'        => $img_app,
 			'details'      => [
-				[ 'label' => 'Kết nối', 'value' => 'Bluetooth 5.0 Low Energy' ],
-				[ 'label' => 'Chống trộm', 'value' => 'GPS + cảnh báo real-time' ],
-				[ 'label' => 'Tương thích', 'value' => 'iOS 14+ & Android 10+' ],
+				[ 'label' => 'Hệ sinh thái', 'value' => 'Kết nối IoT thời gian thực' ],
+				[ 'label' => 'Định vị xe', 'value' => 'GPS chính xác cao' ],
+				[ 'label' => 'Bảo hành', 'value' => 'Kích hoạt điện tử tự động' ],
 			],
 		],
 	],

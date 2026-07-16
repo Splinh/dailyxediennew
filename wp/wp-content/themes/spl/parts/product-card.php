@@ -127,7 +127,7 @@ $stars_count     = $average_rating > 0 ? round( $average_rating ) : 5;
 
 	<a href="<?php echo esc_url( $permalink ); ?>" class="block">
 		<div class="bg-slate-50/50 flex items-center justify-center h-36 md:h-48 relative overflow-hidden">
-			<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $name ); ?>" loading="lazy" class="max-h-full max-w-full object-contain transform group-hover:scale-105 transition-transform duration-300" />
+			<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $name ); ?>" width="300" height="300" loading="lazy" class="max-h-full max-w-full object-contain transform group-hover:scale-105 transition-transform duration-300" style="aspect-ratio: 1;" />
 		</div>
 	</a>
 
@@ -139,7 +139,7 @@ $stars_count     = $average_rating > 0 ? round( $average_rating ) : 5;
 			<h3 class="font-bold text-slate-800 text-xs md:text-sm line-clamp-2 mt-0.5 group-hover:text-primary transition-colors leading-snug">
 				<a href="<?php echo esc_url( $permalink ); ?>"><?php echo esc_html( $name ); ?></a>
 			</h3>
-			<div class="flex items-center gap-0.5 mt-1.5 text-amber-400 text-[10px]" aria-label="<?php echo esc_attr( sprintf( __( 'Đánh giá %s sao', 'spl' ), $stars_count ) ); ?>">
+			<div class="flex flex-wrap items-center gap-y-1 gap-x-0.5 mt-1.5 text-amber-400 text-[10px]" aria-label="<?php echo esc_attr( sprintf( __( 'Đánh giá %s sao', 'spl' ), $stars_count ) ); ?>">
 				<?php for ( $i = 0; $i < 5; $i++ ) :
 					$fill_class = $i < $stars_count ? 'fill-current' : 'text-slate-200';
 					?>

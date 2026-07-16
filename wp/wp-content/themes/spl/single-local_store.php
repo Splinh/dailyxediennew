@@ -149,9 +149,9 @@ $map_dir_url = ( $lat && $lng ) ? 'https://www.google.com/maps/dir//' . $lat . '
 			</div>
 
 			<!-- Featured Image -->
-			<?php if ( $thumb ) : ?>
+			<?php if ( false && $thumb ) : // Temporarily hidden ?>
 			<div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)]">
-				<div class="relative aspect-[16/9] bg-slate-100 overflow-hidden">
+				<div class="relative aspect-[4/3] bg-slate-100 overflow-hidden">
 					<img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( $title ); ?>" class="w-full h-full object-cover" loading="eager" />
 				</div>
 			</div>

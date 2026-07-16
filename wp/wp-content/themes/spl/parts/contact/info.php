@@ -10,7 +10,28 @@ use SPL\Core\Helper;
 defined( 'ABSPATH' ) || exit;
 
 $data  = $args ?? [];
-$cards = $data['cards'] ?? [];
+$cards = ! empty( $data['cards'] ) ? $data['cards'] : [
+	[
+		'title' => 'Hotline 24/7',
+		'value' => '0933 505 222',
+		'note'  => 'Tư vấn & đặt hàng mọi lúc',
+	],
+	[
+		'title' => 'Email',
+		'value' => 'info@dailyxedien.vn',
+		'note'  => 'Phản hồi trong vòng 2 giờ',
+	],
+	[
+		'title' => 'Chat Zalo',
+		'value' => 'Nhắn tin ngay',
+		'note'  => 'Trả lời nhanh trong 5 phút',
+	],
+	[
+		'title' => 'Showroom chính',
+		'value' => '466 Nguyễn Duy Trinh, Thủ Đức',
+		'note'  => 'Mở cửa: 8:00 – 21:00',
+	],
+];
 
 $fallback_icons = [
 	'<svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',
@@ -20,24 +41,49 @@ $fallback_icons = [
 ];
 ?>
 <?php if ( ! empty( $cards ) ) : ?>
-<section class="contact-info">
+<section class="mb-14 md:mb-20 mt-12">
 	<div class="container">
-		<div class="contact-info__grid">
-			<?php foreach ( $cards as $index => $card ) : ?>
-				<div class="contact-card reveal">
-					<div class="contact-card__icon">
+		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+			<?php foreach ( $cards as $index => $card ) :
+				// Determine link destination
+				$link_url = '#';
+				$target   = '';
+				$val      = trim( (string) ( $card['value'] ?? '' ) );
+				if ( 0 === $index ) {
+					$link_url = 'tel:' . preg_replace( '/[^0-9+]/', '', $val );
+				} elseif ( 1 === $index ) {
+					$link_url = 'mailto:' . $val;
+				} elseif ( 2 === $index ) {
+					$link_url = 'https://zalo.me/' . preg_replace( '/[^0-9+]/', '', $val ?: '0933505222' );
+					$target   = 'target="_blank"';
+				} else {
+					$link_url = 'https://maps.google.com/?q=' . urlencode( $val );
+					$target   = 'target="_blank"';
+				}
+
+				// Color mappings for icons
+				$color_classes = [
+					'bg-primary-50 text-primary-500',
+					'bg-emerald-50 text-emerald-500',
+					'bg-blue-50 text-blue-500',
+					'bg-amber-50 text-amber-500',
+				];
+				$bg_color = $color_classes[ $index % count( $color_classes ) ];
+				?>
+				<a href="<?php echo esc_url( $link_url ); ?>" <?php echo $target; ?> class="contact-card bg-white border border-slate-100 rounded-2xl p-6 shadow-premium hover:shadow-hover-card hover:-translate-y-1 transition-all text-center group cursor-pointer block">
+					<div class="w-16 h-16 rounded-2xl <?php echo esc_attr( $bg_color ); ?> flex items-center justify-center mx-auto mb-4 transition-transform <?php echo 0 === $index ? 'pulse-ring' : ''; ?>">
 						<?php
 						$icon = trim( (string) ( $card['icon'] ?? '' ) );
 						$icon = $icon ?: $fallback_icons[ $index % count( $fallback_icons ) ];
 						echo wp_kses( $icon, Helper::ksesSVG() );
 						?>
 					</div>
-					<h3><?php echo esc_html( $card['title'] ?? '' ); ?></h3>
-					<p><?php echo wp_kses_post( $card['value'] ?? '' ); ?></p>
+					<h3 class="font-bold text-slate-800 mb-1 text-sm"><?php echo esc_html( $card['title'] ?? '' ); ?></h3>
+					<p class="text-base font-black text-slate-900 tracking-tight group-hover:text-primary-500 transition-colors"><?php echo wp_kses_post( $card['value'] ?? '' ); ?></p>
 					<?php if ( ! empty( $card['note'] ) ) : ?>
-						<span><?php echo esc_html( $card['note'] ); ?></span>
+						<p class="text-xs text-slate-400 mt-1"><?php echo esc_html( $card['note'] ); ?></p>
 					<?php endif; ?>
-				</div>
+				</a>
 			<?php endforeach; ?>
 		</div>
 	</div>

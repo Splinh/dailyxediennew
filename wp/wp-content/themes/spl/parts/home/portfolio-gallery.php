@@ -181,7 +181,7 @@ $slider_options = wp_json_encode( [
 					</div>
 				<?php else : ?>
 					<!-- Grid layout (≤4 items) with lightbox container grouping -->
-					<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" data-fx-lightbox>
+					<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6" data-fx-lightbox>
 						<?php foreach ( $valid_posts as $p ) : ?>
 							<a href="<?php echo esc_url( $p['full_url'] ?: $p['thumb_url'] ); ?>"
 							   data-pswp-width="<?php echo esc_attr( $p['width'] ); ?>"

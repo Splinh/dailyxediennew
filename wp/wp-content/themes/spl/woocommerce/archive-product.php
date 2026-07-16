@@ -118,91 +118,13 @@ if ( $is_search ) {
 						<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
 					</button>
 				</div>
-				<form class="archive-filter-form" id="archive-filter-form" method="get">
-				<div class="filter-group">
-					<h3 class="filter-group__title">
-						<svg class="icon" viewBox="0 0 24 24"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
-						<?php esc_html_e( 'Bộ lọc', 'spl' ); ?>
-					</h3>
-				</div>
 
-				<div class="filter-group">
-					<h4 class="filter-group__heading"><?php esc_html_e( 'Danh mục', 'spl' ); ?></h4>
-					<div class="filter-options">
-						<?php
-						$product_cats = get_terms( [
-							'taxonomy'   => 'product_cat',
-							'hide_empty' => true,
-							'parent'     => 0,
-							'orderby'    => 'count',
-							'order'      => 'DESC',
-						] );
-						if ( ! is_wp_error( $product_cats ) ) :
-							$current_cat = $queried instanceof WP_Term ? $queried->term_id : 0;
-							?>
-							<label class="filter-check">
-								<input type="checkbox" <?php checked( $is_shop ); ?> onclick="window.location='<?php echo esc_url( get_permalink( wc_get_page_id( 'shop' ) ) ); ?>'" />
-								<span><?php esc_html_e( 'Tất cả sản phẩm', 'spl' ); ?></span>
-							</label>
-							<?php foreach ( $product_cats as $cat ) : ?>
-								<label class="filter-check">
-									<input type="checkbox" <?php checked( $current_cat, $cat->term_id ); ?> onclick="window.location='<?php echo esc_url( get_term_link( $cat ) ); ?>'" />
-									<span><?php echo esc_html( $cat->name ); ?></span>
-									<em>(<?php echo esc_html( $cat->count ); ?>)</em>
-								</label>
-							<?php endforeach; ?>
-						<?php endif; ?>
-					</div>
-				</div>
-
-				<div class="filter-group">
-					<h4 class="filter-group__heading"><?php esc_html_e( 'Khoảng giá', 'spl' ); ?></h4>
-					<div class="filter-options">
-						<?php
-						$price_ranges = [
-							''             => __( 'Tất cả', 'spl' ),
-							'0-50000'      => __( 'Dưới 50.000₫', 'spl' ),
-							'50000-100000' => '50.000₫ - 100.000₫',
-							'100000-200000' => '100.000₫ - 200.000₫',
-							'200000-'      => __( 'Trên 200.000₫', 'spl' ),
-						];
-						// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-						$current_price = isset( $_GET['price_range'] ) ? sanitize_text_field( wp_unslash( $_GET['price_range'] ) ) : '';
-						foreach ( $price_ranges as $value => $label ) : ?>
-							<label class="filter-check">
-								<input type="radio" name="price_range" value="<?php echo esc_attr( $value ); ?>" <?php checked( $current_price, $value ); ?> />
-								<span><?php echo esc_html( $label ); ?></span>
-							</label>
-						<?php endforeach; ?>
-					</div>
-				</div>
-
-				<div class="filter-group">
-					<h4 class="filter-group__heading"><?php esc_html_e( 'Đánh giá', 'spl' ); ?></h4>
-					<div class="filter-options">
-						<?php
-						// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-						$current_rating = isset( $_GET['rating_filter'] ) ? absint( $_GET['rating_filter'] ) : 0;
-						for ( $stars = 5; $stars >= 3; $stars-- ) :
-							?>
-							<label class="filter-check filter-check--stars">
-								<input type="radio" name="rating_filter" value="<?php echo (int) $stars; ?>" <?php checked( $current_rating, $stars ); ?> />
-								<span>
-									<?php for ( $s = 1; $s <= 5; $s++ ) : ?>
-										<svg viewBox="0 0 24 24"<?php echo $s <= $stars ? '' : ' class="sp-star--half"'; ?>><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-									<?php endfor; ?>
-									<?php esc_html_e( 'trở lên', 'spl' ); ?>
-								</span>
-							</label>
-						<?php endfor; ?>
-					</div>
-				</div>
-
-				<div class="archive-filter-actions">
-					<button type="submit" class="btn btn--primary"><?php esc_html_e( 'Áp dụng', 'spl' ); ?></button>
-					<a href="<?php echo esc_url( strtok( home_url( wp_unslash( $_SERVER['REQUEST_URI'] ?? '/' ) ), '?' ) ); ?>"><?php esc_html_e( 'Xóa lọc', 'spl' ); ?></a>
-				</div>
-				</form>
+				<?php
+				if ( class_exists( '\SPL\Modules\WooCommerce\Filter\Frontend\FilterRenderer' ) ) {
+					$preset_id = \SPL\Modules\WooCommerce\Filter\FilterManager::resolvePresetId() ?: 0;
+					\SPL\Modules\WooCommerce\Filter\Frontend\FilterRenderer::render( $preset_id, 'vertical', 'archive-filter-form', [ 'mobile_popup' => false ] );
+				}
+				?>
 
 				<!-- Sidebar CTA -->
 				<div class="sidebar-widget sidebar-widget--cta">
@@ -220,7 +142,7 @@ if ( $is_search ) {
 			<div class="archive-products">
 				<!-- Toolbar -->
 				<div class="archive-toolbar reveal">
-					<div class="archive-toolbar__results">
+					<div class="archive-toolbar__results woocommerce-result-count">
 						<svg class="icon" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 17 3.5s1 2.5-1 6c-2 3.5-5 5.5-5 5.5"/><path d="M14 21c0-3.5-2-7-2-7"/></svg>
 						<?php
 						global $wp_query;
@@ -281,7 +203,7 @@ if ( $is_search ) {
 				</div>
 
 				<!-- Products -->
-				<div class="products-grid" id="archive-products">
+				<div class="products-grid products" id="archive-products">
 					<?php
 					if ( woocommerce_product_loop() ) :
 						while ( have_posts() ) :
@@ -303,7 +225,7 @@ if ( $is_search ) {
 				$total_pages = $wp_query->max_num_pages;
 				if ( $total_pages > 1 ) :
 					?>
-					<div class="pagination reveal">
+					<div class="pagination woocommerce-pagination reveal">
 						<?php
 						// Previous.
 						if ( $current > 1 ) :
@@ -367,6 +289,9 @@ document.addEventListener('DOMContentLoaded', function() {
 			closeBtn.addEventListener('click', closeSidebar);
 		}
 		overlay.addEventListener('click', closeSidebar);
+
+		// Close mobile filter drawer after AJAX update
+		document.addEventListener('hd:filter:updated', closeSidebar);
 	}
 });
 </script>

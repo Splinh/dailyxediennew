@@ -710,6 +710,281 @@
                     ],
                     "min": "",
                     "max": "1"
+                },
+                "layout_daily_about_why_choose_us": {
+                    "key": "layout_daily_about_why_choose_us",
+                    "name": "about_why_choose_us",
+                    "label": "Tại sao chọn chúng tôi",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_about_why_choose_us_disable",
+                            "label": "Ẩn section này",
+                            "name": "disable",
+                            "type": "true_false",
+                            "instructions": "Bật để ẩn section này ở frontend.",
+                            "required": 0,
+                            "default_value": 0,
+                            "ui": 1,
+                            "ui_on_text": "Ẩn",
+                            "ui_off_text": "Hiện"
+                        },
+                        {
+                            "key": "field_daily_abw_title",
+                            "label": "Tiêu đề",
+                            "name": "title",
+                            "type": "text",
+                            "default_value": "Tại sao chọn dailyxedien.vn?"
+                        },
+                        {
+                            "key": "field_daily_abw_desc",
+                            "label": "Mô tả",
+                            "name": "description",
+                            "type": "textarea",
+                            "default_value": "Những lý do khách hàng tin tưởng và gắn bó với chúng tôi"
+                        },
+                        {
+                            "key": "field_daily_abw_items",
+                            "label": "Danh sách lý do",
+                            "name": "items",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Thêm lý do",
+                            "sub_fields": [
+                                {
+                                    "key": "field_daily_abw_item_title",
+                                    "label": "Tiêu đề",
+                                    "name": "title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_daily_abw_item_desc",
+                                    "label": "Mô tả",
+                                    "name": "desc",
+                                    "type": "textarea"
+                                },
+                                {
+                                    "key": "field_daily_abw_item_icon",
+                                    "label": "Icon class hoặc SVG",
+                                    "name": "icon",
+                                    "type": "textarea",
+                                    "rows": 2
+                                },
+                                {
+                                    "key": "field_daily_abw_item_class",
+                                    "label": "CSS class phụ (Icon box background)",
+                                    "name": "class",
+                                    "type": "text"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_daily_about_timeline": {
+                    "key": "layout_daily_about_timeline",
+                    "name": "about_timeline",
+                    "label": "Hành trình phát triển (Timeline)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_about_timeline_disable",
+                            "label": "Ẩn section này",
+                            "name": "disable",
+                            "type": "true_false",
+                            "instructions": "Bật để ẩn section này ở frontend.",
+                            "required": 0,
+                            "default_value": 0,
+                            "ui": 1,
+                            "ui_on_text": "Ẩn",
+                            "ui_off_text": "Hiện"
+                        },
+                        {
+                            "key": "field_daily_abt_title",
+                            "label": "Tiêu đề",
+                            "name": "title",
+                            "type": "text",
+                            "default_value": "Hành trình phát triển"
+                        },
+                        {
+                            "key": "field_daily_abt_desc",
+                            "label": "Mô tả",
+                            "name": "description",
+                            "type": "textarea",
+                            "default_value": "Từng bước xây dựng hệ thống phân phối xe điện uy tín"
+                        },
+                        {
+                            "key": "field_daily_abt_items",
+                            "label": "Danh sách cột mốc",
+                            "name": "items",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Thêm cột mốc",
+                            "sub_fields": [
+                                {
+                                    "key": "field_daily_abt_item_year",
+                                    "label": "Năm",
+                                    "name": "year",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_daily_abt_item_title",
+                                    "label": "Tiêu đề",
+                                    "name": "title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_daily_abt_item_desc",
+                                    "label": "Mô tả",
+                                    "name": "desc",
+                                    "type": "textarea"
+                                },
+                                {
+                                    "key": "field_daily_abt_item_icon",
+                                    "label": "Icon class hoặc SVG",
+                                    "name": "icon",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_daily_abt_item_class",
+                                    "label": "CSS class phụ (Dot background)",
+                                    "name": "class",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_daily_abt_item_color",
+                                    "label": "CSS class màu sắc (Year color)",
+                                    "name": "color",
+                                    "type": "text"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_daily_about_team": {
+                    "key": "layout_daily_about_team",
+                    "name": "about_team",
+                    "label": "Đội ngũ",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_about_team_disable",
+                            "label": "Ẩn section này",
+                            "name": "disable",
+                            "type": "true_false",
+                            "instructions": "Bật để ẩn section này ở frontend.",
+                            "required": 0,
+                            "default_value": 0,
+                            "ui": 1,
+                            "ui_on_text": "Ẩn",
+                            "ui_off_text": "Hiện"
+                        },
+                        {
+                            "key": "field_daily_abe_title",
+                            "label": "Tiêu đề",
+                            "name": "title",
+                            "type": "text",
+                            "default_value": "Đội ngũ của chúng tôi"
+                        },
+                        {
+                            "key": "field_daily_abe_desc",
+                            "label": "Mô tả",
+                            "name": "description",
+                            "type": "textarea",
+                            "default_value": "Những con người tận tâm đứng sau mỗi chiếc xe giao đến tay bạn"
+                        },
+                        {
+                            "key": "field_daily_abe_items",
+                            "label": "Danh sách thành viên",
+                            "name": "items",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Thêm thành viên",
+                            "sub_fields": [
+                                {
+                                    "key": "field_daily_abe_item_name",
+                                    "label": "Tên",
+                                    "name": "name",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_daily_abe_item_role",
+                                    "label": "Chức vụ",
+                                    "name": "role",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_daily_abe_item_desc",
+                                    "label": "Mô tả ngắn",
+                                    "name": "desc",
+                                    "type": "textarea"
+                                },
+                                {
+                                    "key": "field_daily_abe_item_image",
+                                    "label": "Hình ảnh",
+                                    "name": "image",
+                                    "type": "image",
+                                    "return_format": "id"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_daily_about_partners": {
+                    "key": "layout_daily_about_partners",
+                    "name": "about_partners",
+                    "label": "Đối tác & Thương hiệu",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_about_partners_disable",
+                            "label": "Ẩn section này",
+                            "name": "disable",
+                            "type": "true_false",
+                            "instructions": "Bật để ẩn section này ở frontend.",
+                            "required": 0,
+                            "default_value": 0,
+                            "ui": 1,
+                            "ui_on_text": "Ẩn",
+                            "ui_off_text": "Hiện"
+                        },
+                        {
+                            "key": "field_daily_abp_title",
+                            "label": "Tiêu đề",
+                            "name": "title",
+                            "type": "text",
+                            "default_value": "Đối tác & Thương hiệu"
+                        },
+                        {
+                            "key": "field_daily_abp_desc",
+                            "label": "Mô tả",
+                            "name": "description",
+                            "type": "textarea",
+                            "default_value": "Đại lý ủy quyền chính thức của các hãng xe điện hàng đầu"
+                        },
+                        {
+                            "key": "field_daily_abp_items",
+                            "label": "Danh sách đối tác",
+                            "name": "items",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Thêm đối tác",
+                            "sub_fields": [
+                                {
+                                    "key": "field_daily_abp_item_name",
+                                    "label": "Tên đối tác (Chữ hiển thị nếu không có Logo)",
+                                    "name": "name",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_daily_abp_item_logo",
+                                    "label": "Logo đối tác",
+                                    "name": "logo",
+                                    "type": "image",
+                                    "return_format": "id"
+                                }
+                            ]
+                        }
+                    ]
                 }
             },
             "button_label": "Thêm Section",

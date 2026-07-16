@@ -112,8 +112,8 @@ while ( have_posts() ) :
 					</div>
 
 					<!-- Featured Image -->
-					<?php if ( $hero_url ) : ?>
-						<div class="my-6 rounded-xl overflow-hidden aspect-[16/9] bg-slate-100 shadow-sm relative group">
+					<?php if ( false && $hero_url ) : // Temporarily hidden ?>
+						<div class="my-6 rounded-xl overflow-hidden aspect-[4/3] bg-slate-100 shadow-sm relative group">
 							<img src="<?php echo esc_url( $hero_url ); ?>" alt="<?php the_title_attribute(); ?>" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" loading="eager" />
 						</div>
 					<?php endif; ?>

@@ -74,7 +74,7 @@ if ( empty( $tabs ) ) {
 			$count = isset( $tab['count'] ) ? absint( $tab['count'] ) : 5;
 			$active_panel_class = $index === 0 ? 'grid' : 'hidden grid';
 			?>
-			<div id="<?php echo esc_attr( $tab_slug ); ?>" class="tab-panel <?php echo esc_attr( $active_panel_class ); ?> grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6">
+			<div id="<?php echo esc_attr( $tab_slug ); ?>" class="tab-panel <?php echo esc_attr( $active_panel_class ); ?> grid-cols-2 lg:grid-cols-5 gap-3 md:gap-6">
 				<?php
 				$rendered = false;
 

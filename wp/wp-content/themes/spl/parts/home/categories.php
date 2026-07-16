@@ -33,7 +33,7 @@ $cols_class = $cols_class_map[ $columns ] ?? 'lg:grid-cols-6';
 		<span class="text-sm font-semibold text-slate-400"><?php echo esc_html( $subtitle ); ?></span>
 	</div>
 
-	<div class="grid grid-cols-2 md:grid-cols-3 <?php echo esc_attr( $cols_class ); ?> gap-4 md:gap-6">
+	<div class="grid grid-cols-2 md:grid-cols-3 <?php echo esc_attr( $cols_class ); ?> gap-3 md:gap-6">
 		<?php
 		$selected_ids = $data['selected_categories'] ?? [];
 		$selected_ids = is_array( $selected_ids ) ? array_filter( array_map( 'absint', $selected_ids ) ) : [];

@@ -130,6 +130,11 @@ final class PageCache {
 	 * Purge all cached pages.
 	 */
 	public static function purgeAll(): void {
+		// Purge LiteSpeed Cache if plugin is active.
+		if ( has_action( 'litespeed_purge_all' ) ) {
+			do_action( 'litespeed_purge_all' );
+		}
+
 		$dir = self::DIR;
 		if ( ! is_dir( $dir ) ) {
 			return;

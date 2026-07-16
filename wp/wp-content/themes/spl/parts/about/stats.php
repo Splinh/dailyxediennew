@@ -8,7 +8,12 @@
 defined( 'ABSPATH' ) || exit;
 
 $data  = $args ?? [];
-$stats = $data['stats'] ?? [];
+$stats = ! empty( $data['stats'] ) ? $data['stats'] : [
+	[ 'number' => '20+', 'label' => 'Cửa hàng toàn quốc' ],
+	[ 'number' => '10K+', 'label' => 'Khách hàng hài lòng' ],
+	[ 'number' => '50+', 'label' => 'Thương hiệu đối tác' ],
+	[ 'number' => '98%', 'label' => 'Tỷ lệ hài lòng' ],
+];
 ?>
 <?php if ( ! empty( $stats ) ) : ?>
 <section class="about-stats">

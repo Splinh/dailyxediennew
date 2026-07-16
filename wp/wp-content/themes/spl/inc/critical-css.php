@@ -58,3 +58,34 @@ if ( ! function_exists( 'spl_theme_asset_version' ) ) {
 		return is_file( $path ) ? (string) filemtime( $path ) : (string) THEME_VERSION;
 	}
 }
+
+add_action( 'wp_head', 'spl_preload_assets', 1 );
+
+/**
+ * Output preload and preconnect resource hints in wp_head.
+ */
+function spl_preload_assets(): void {
+	$font_url = get_template_directory_uri() . '/assets/fonts';
+
+	// 1. Preconnect to external trackers/analytics domains.
+	$preconnect_domains = [
+		'https://www.googletagmanager.com',
+		'https://www.google-analytics.com',
+		'https://connect.facebook.net',
+	];
+	foreach ( $preconnect_domains as $domain ) {
+		echo '<link rel="preconnect" href="' . esc_url( $domain ) . '">' . "\n";
+		echo '<link rel="dns-prefetch" href="' . esc_url( $domain ) . '">' . "\n";
+	}
+
+	// 2. Preload critical fonts for LCP / layout.
+	$critical_fonts = [
+		'BeVietnamPro-400-vi.woff2',
+		'BeVietnamPro-400-la.woff2',
+		'BeVietnamPro-600-vi.woff2',
+		'BeVietnamPro-600-la.woff2',
+	];
+	foreach ( $critical_fonts as $font ) {
+		echo '<link rel="preload" href="' . esc_url( "{$font_url}/{$font}" ) . '" as="font" type="font/woff2" crossorigin>' . "\n";
+	}
+}

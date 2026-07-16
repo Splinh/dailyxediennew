@@ -444,6 +444,25 @@
 			input.dispatchEvent( new Event( 'change', { bubbles: true } ) );
 		} );
 
+		// Auto-update cart page when quantity changes
+		if ( document.querySelector( '.woocommerce-cart-form' ) ) {
+			let updateTimeout;
+			document.body.addEventListener( 'change', ( e ) => {
+				const qtyInput = e.target.closest( '.woocommerce-cart-form .qty' );
+				if ( ! qtyInput ) return;
+
+				clearTimeout( updateTimeout );
+				updateTimeout = setTimeout( () => {
+					const updateButton = document.querySelector( '[name="update_cart"]' );
+					if ( updateButton ) {
+						updateButton.disabled = false;
+						updateButton.click();
+					}
+				}, 600 );
+			} );
+		}
+
+
 		/* ---------- Single Product Tabs Switcher ---------- */
 		const tabsNav = document.querySelector( '.sp-tabs__nav' );
 		if ( tabsNav ) {
@@ -472,6 +491,22 @@
 					}
 				} );
 			} );
+		}
+
+		/* ---------- Scroll-triggered Header State ---------- */
+		const headerEl = document.getElementById( 'header' );
+		if ( headerEl ) {
+			const handleHeaderScroll = () => {
+				const isScrolled = window.scrollY > 10;
+				headerEl.classList.toggle( 'shadow-md', isScrolled );
+				headerEl.classList.toggle( 'shadow-sm', ! isScrolled );
+				headerEl.classList.toggle( 'py-1.5', isScrolled );
+				headerEl.classList.toggle( 'py-3', ! isScrolled );
+				headerEl.classList.toggle( 'md:py-2.5', isScrolled );
+				headerEl.classList.toggle( 'md:py-4', ! isScrolled );
+			};
+			window.addEventListener( 'scroll', handleHeaderScroll, { passive: true } );
+			handleHeaderScroll();
 		}
 
 		/* ---------- ESC closes all panels ---------- */

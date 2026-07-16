@@ -170,6 +170,23 @@ img[src=''] {
 // Prevent FOUC - must load before JS. Enhanced styles in fx-tabs.scss
 // ============================================================================
 
+.tabs-list {
+	display: flex;
+	gap: 0.5rem;
+	overflow-x: auto;
+	scrollbar-width: none;
+	-webkit-overflow-scrolling: touch;
+	width: 100%;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	& > li {
+		flex-shrink: 0;
+	}
+}
+
 .tabs-content {
 	position: relative;
 }

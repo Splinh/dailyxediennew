@@ -114,11 +114,12 @@ final class FilterRenderer {
 	/**
 	 * Render the filter UI for a given preset.
 	 *
-	 * @param int    $presetId Preset post ID.
-	 * @param string $layout   Layout override (vertical|horizontal). Empty = use preset default.
-	 * @param string $cssClass Extra CSS class.
+	 * @param int    $presetId  Preset post ID.
+	 * @param string $layout    Layout override (vertical|horizontal). Empty = use preset default.
+	 * @param string $cssClass  Extra CSS class.
+	 * @param array  $extraArgs Extra arguments passed to view template.
 	 */
-	public static function render( int $presetId, string $layout = '', string $cssClass = '' ): void {
+	public static function render( int $presetId, string $layout = '', string $cssClass = '', array $extraArgs = [] ): void {
 		$presetId      = PolylangIntegration::translatePresetId( $presetId );
 		$filterConfigs = FilterManager::getFilterConfigs( $presetId );
 		if ( empty( $filterConfigs ) ) {
@@ -170,15 +171,28 @@ final class FilterRenderer {
 
 		$chipsHtml = self::renderChips( $presetId );
 
+		// Detect current product taxonomy context
+		$currentTaxonomy = '';
+		$currentTerm     = '';
+		if ( function_exists( 'is_product_taxonomy' ) && is_product_taxonomy() ) {
+			$queriedObject = get_queried_object();
+			if ( $queriedObject instanceof \WP_Term ) {
+				$currentTaxonomy = $queriedObject->taxonomy;
+				$currentTerm     = $queriedObject->slug;
+			}
+		}
+
 		// Delegate to template part
-		$templateArgs = [
-			'groups'    => $groups,
-			'presetId'  => $presetId,
-			'layout'    => $layout,
-			'trigger'   => $trigger,
-			'chipsHtml' => $chipsHtml,
-			'class'     => $cssClass,
-		];
+		$templateArgs = array_merge( [
+			'groups'          => $groups,
+			'presetId'        => $presetId,
+			'layout'          => $layout,
+			'trigger'         => $trigger,
+			'chipsHtml'       => $chipsHtml,
+			'class'           => $cssClass,
+			'currentTaxonomy' => $currentTaxonomy,
+			'currentTerm'     => $currentTerm,
+		], $extraArgs );
 
 		$viewFile = __DIR__ . '/views/filter-' . $layout . '.php';
 

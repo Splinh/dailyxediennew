@@ -80,7 +80,7 @@ function initFilter(root) {
 	restoreFromUrl(container);
 
 	// Mobile: floating filter button → full-screen popup
-	if (!isDesktop) {
+	if (!isDesktop && container.dataset.mobilePopup !== 'false') {
 		initMobilePopup(container);
 	}
 }
@@ -129,6 +129,8 @@ async function handleFilterChange(e) {
 				page: 1,
 				per_page: 12,
 				preset_id: parseInt(container.dataset.preset, 10) || 0,
+				taxonomy: container.dataset.taxonomy || '',
+				term: container.dataset.term || '',
 			}),
 			signal: myController.signal,
 		});

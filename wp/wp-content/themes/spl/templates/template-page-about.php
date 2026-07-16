@@ -47,14 +47,26 @@ if ( $sections ) :
 			case 'about_story':
 				get_template_part( 'parts/about/story', null, $section );
 				break;
+			case 'about_mission':
+				get_template_part( 'parts/about/mission', null, $section );
+				break;
 			case 'about_values':
 				get_template_part( 'parts/about/values', null, $section );
 				break;
+			case 'about_why_choose_us':
+				get_template_part( 'parts/about/why-choose-us', null, $section );
+				break;
+			case 'about_timeline':
+				get_template_part( 'parts/about/timeline', null, $section );
+				break;
+			case 'about_team':
+				get_template_part( 'parts/about/team', null, $section );
+				break;
+			case 'about_partners':
+				get_template_part( 'parts/about/partners', null, $section );
+				break;
 			case 'about_stats':
 				get_template_part( 'parts/about/stats', null, $section );
-				break;
-			case 'about_mission':
-				get_template_part( 'parts/about/mission', null, $section );
 				break;
 			case 'about_cta':
 				get_template_part( 'parts/about/cta', null, $section );
@@ -66,6 +78,13 @@ else :
 	// Fallback when ACF not configured.
 	get_template_part( 'parts/about/hero' );
 	get_template_part( 'parts/about/story' );
+	get_template_part( 'parts/about/mission' );
+	get_template_part( 'parts/about/values' );
+	get_template_part( 'parts/about/why-choose-us' );
+	get_template_part( 'parts/about/timeline' );
+	get_template_part( 'parts/about/team' );
+	get_template_part( 'parts/about/partners' );
+	get_template_part( 'parts/about/cta' );
 endif;
 
 get_footer();

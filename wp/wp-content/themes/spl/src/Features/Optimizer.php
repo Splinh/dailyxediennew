@@ -18,6 +18,7 @@ use SPL\Contracts\Feature;
 use SPL\Features\Optimizer\CssClass;
 use SPL\Features\Optimizer\ImageSize;
 use SPL\Features\Optimizer\PageCache;
+use SPL\Features\Optimizer\DbOptimizer;
 use SPL\Features\Optimizer\ScriptLoader;
 use SPL\Features\Optimizer\WcAssets;
 use SPL\Features\Optimizer\CheckoutFields;
@@ -34,6 +35,8 @@ use SPL\Features\Optimizer\PortfolioGallery;
 use SPL\Features\Optimizer\PostImporter;
 use SPL\Features\Optimizer\ContentCleanup;
 use SPL\Features\Optimizer\TOC;
+use SPL\Features\Optimizer\FlatsomeShortcodeCleaner;
+use SPL\Features\Optimizer\SEO;
 use SPL\Core\DB;
 use SPL\Core\Helper;
 
@@ -57,6 +60,7 @@ final class Optimizer extends Feature {
 		TSKTImport::register();
 		TSKTExport::register();
 		PageCache::register();
+		DbOptimizer::register();
 		TrackingPixels::register();
 		// LoanShortcode::register(); // Deferred — Bảo Kim trả góp cần domain chính.
 		SeasonalModule::register();
@@ -64,6 +68,8 @@ final class Optimizer extends Feature {
 		PostImporter::register();
 		ContentCleanup::register();
 		TOC::register();
+		FlatsomeShortcodeCleaner::register();
+		SEO::register();
 
 		// Permalink — only on theme activation (flush_rules is expensive).
 		add_action( 'after_switch_theme', self::configurePermalink( ... ) );

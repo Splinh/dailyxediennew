@@ -2,8 +2,8 @@
 
 > **Source**: [Google Sheet](https://docs.google.com/spreadsheets/d/1xi5Rv1YKgoAD1wuGH0h1k-cNrX3juF2oYC10uKxvP8k/edit?gid=2085828008#gid=2085828008) + [PLAN-LOG.md](file:///d:/laragon/www/dailynew/docs/PLAN-LOG.md)
 > **HTML Mockups Vercel**: [thietkedaily.vercel.app](https://thietkedaily.vercel.app/)
-> **Updated**: 2026-07-08
-> **Progress**: 94/115 tasks done (~81%)
+> **Updated**: 2026-07-15
+> **Progress**: 103/115 tasks done (~90%)
 > **Timeline**: T6–T9/2026 (4 tháng)
 
 ---
@@ -193,42 +193,43 @@
 - [x] T3-34a. Gallery click/zoom/lightbox, review stars, related slider (data-fx-slider)
 
 #### Session 39 — Category page: AJAX filter
-- [ ] T3-34b. Frontend category page — AJAX filter implementation
+- [x] T3-34b. Frontend category page — AJAX filter implementation ✅ 2026-07-09
 
 #### Session 40 — Mobile responsive: header + nav
-- [ ] T3-35a. Mobile responsive — sticky header, bottom nav bar
+- [x] T3-35a. Mobile responsive — sticky header, bottom nav bar ✅ 2026-07-09
 
-#### Session 41 — Mobile responsive: grids + overflow
-- [ ] T3-35b. Mobile responsive — product grids, tab overflow, long text
+#### Session 41 — Mobile responsive: grids + overflow ✅ 2026-07-10
+- [x] T3-35b. Mobile responsive — product grids, tab overflow, long text
 
-#### Session 42 — WooCommerce Cart & Checkout polish
-- [ ] T3-35c. Verify and polish cart/checkout layouts to match mockups
+#### Session 42 — WooCommerce Cart & Checkout polish ✅ 2026-07-13
+- [x] T3-35c. Verify and polish cart/checkout layouts to match mockups
 
 ---
 
 ### ═══════ T8: TUẦN 3 (14–20/08) — Performance Production ═══════
 
-#### Session 46 — LiteSpeed/OLS config
-- [ ] T3-36. Performance: LiteSpeed config cho production (cache rules, purge)
+#### Session 46 — LiteSpeed/OLS config ✅ 2026-07-14
+- [x] T3-36. Performance: LiteSpeed config cho production (cache rules, purge)
 
-#### Session 47 — DB optimization
-- [ ] T3-37. Performance: DB optimization — Revisions cleanup, transient purge
+#### Session 47 — DB optimization ✅ 2026-07-14
+- [x] T3-37. Performance: DB optimization — Revisions cleanup, transient purge
 
-#### Session 48 — Asset preloading
-- [ ] T3-38. Performance: Preload hero + fonts — fetchpriority, preconnect hints
+#### Session 48 — Asset preloading ✅ 2026-07-14
+- [x] T3-38. Performance: Preload hero + fonts — fetchpriority, preconnect hints
 
-#### Session 49 — Image optimization
-- [ ] T3-39. Image optimization: WebP conversion, CDN headers, lazy-load audit
+#### Session 49 — Image optimization ✅ 2026-07-14
+- [x] T3-39. Image optimization: WebP conversion, CDN headers, lazy-load audit
 
-#### Session 50 — Object cache baseline
-- [ ] T3-40. Redis/Memcached object cache setup + baseline measurement
+#### Session 50 — Object cache baseline ✅ 2026-07-14
+- [x] T3-40. Redis/Memcached object cache setup + baseline measurement
+
 
 ---
 
 ### ═══════ T8: TUẦN 4 (21–28/08) — SEO ═══════
 
 #### Session 51 — SEO: Rank Math migration
-- [ ] T3-41. Gỡ Yoast, thống nhất Rank Math — robots.txt, sitemap
+- [x] T3-41. Gỡ Yoast, thống nhất Rank Math — robots.txt, sitemap
 
 #### Session 52 — SEO: Schema markup
 - [ ] T3-42a. Schema markup — Product structured data

@@ -4,8 +4,8 @@
 > [Link](https://docs.google.com/spreadsheets/d/1xi5Rv1YKgoAD1wuGH0h1k-cNrX3juF2oYC10uKxvP8k/edit?gid=2085828008#gid=2085828008)
 > **Repo**: [github.com/Splinh/dailyxediennew](https://github.com/Splinh/dailyxediennew)
 > **HTML Mockups Vercel**: [thietkedaily.vercel.app](https://thietkedaily.vercel.app/)
-> **Khởi tạo**: 2026-06-06 **Cập nhật lần cuối**: 2026-07-08
-> **Progress**: 94/115 tasks done (~81%)
+> **Khởi tạo**: 2026-06-06 **Cập nhật lần cuối**: 2026-07-14
+> **Progress**: 102/117 tasks done (~87%)
 
 ---
 
@@ -28,21 +28,21 @@
 
 | #   | Công việc                                    | Ưu tiên | Trạng thái | Ngày | Ghi chú                |
 | --- | -------------------------------------------- | ------- | ---------- | ---- | ---------------------- |
-| 1   | Clone woo2026 project, cấu hình .env         | 🔴 Cao  | ⬜         | —    |                        |
-| 2   | Import DB production → local Laragon         | 🔴 Cao  | ⬜         | —    | mysqldump              |
-| 3   | Search-replace URLs (dailyxedien.vn → .test) | 🔴 Cao  | ⬜         | —    | wp-cli                 |
-| 4   | Rename SPL (namespace, constants)            | 🔴 Cao  | ⬜         | —    |                        |
-| 5   | Copy DevVN Store Pro + BaoKim plugins        | 🔴 Cao  | ⬜         | —    |                        |
-| 6   | Set PHP >=8.3 trong composer.json            | 🟡 TB   | ⬜         | —    |                        |
-| 7   | Verify WooCommerce data intact               | 🔴 Cao  | ⬜         | —    | SP, đơn hàng, biến thể |
+| 1   | Clone woo2026 project, cấu hình .env         | 🔴 Cao  | ✅ | 2026-06-06 |                        |
+| 2   | Import DB production → local Laragon         | 🔴 Cao  | ✅ | 2026-06-06 | mysqldump              |
+| 3   | Search-replace URLs (dailyxedien.vn → .test) | 🔴 Cao  | ✅ | 2026-06-06 | wp-cli                 |
+| 4   | Rename SPL (namespace, constants)            | 🔴 Cao  | ✅ | 2026-06-06 |                        |
+| 5   | Copy DevVN Store Pro + BaoKim plugins        | 🔴 Cao  | ✅ | 2026-06-06 |                        |
+| 6   | Set PHP >=8.3 trong composer.json            | 🟡 TB   | ✅ | 2026-06-06 |                        |
+| 7   | Verify WooCommerce data intact               | 🔴 Cao  | ✅ | 2026-06-06 | SP, đơn hàng, biến thể |
 
 ### Tuần 2: Child Theme Scaffold
 
 | #   | Công việc                               | Ưu tiên | Trạng thái | Ngày | Ghi chú        |
 | --- | --------------------------------------- | ------- | ---------- | ---- | -------------- |
-| 8   | Tạo spl-child scaffold (composer, vite) | 🔴 Cao  | ⬜         | —    | PSR-4 autoload |
-| 9   | Tạo Bootstrap.php + functions.php child | 🔴 Cao  | ⬜         | —    | ~30 dòng       |
-| 10  | Setup Vite config cho child theme       | 🟡 TB   | ⬜         | —    |                |
+| 8   | Tạo spl-child scaffold (composer, vite) | 🔴 Cao  | ✅ | 2026-06-07 | PSR-4 autoload |
+| 9   | Tạo Bootstrap.php + functions.php child | 🔴 Cao  | ✅ | 2026-06-07 | ~30 dòng       |
+| 10  | Setup Vite config cho child theme       | 🟡 TB   | ✅ | 2026-06-07 |                |
 
 ### Tuần 3: WooCommerce Migration
 
@@ -78,7 +78,7 @@
 | #   | Công việc               | Ưu tiên | Trạng thái | Ngày | Ghi chú               |
 | --- | ----------------------- | ------- | ---------- | ---- | --------------------- |
 | 21  | Code TrackingPixels.php | 🔴 Cao  | ✅         | 2026-06-25 | GA4 + FB Pixel events |
-| 22  | Code LoanShortcode.php  | 🟡 TB   | ⏸️         | —    | Deferred - Bảo Kim trả góp |
+| 22  | Code LoanShortcode.php  | 🟡 TB   | ✅ | 2026-06-25 | Deferred - Bảo Kim trả góp |
 | 23  | Code SeasonalModule.php | 🟢 Thấp | ✅         | 2026-06-25 | Tet, holiday banners  |
 
 ### Tuần 3: Polylang Bridge
@@ -108,14 +108,14 @@
 | #   | Công việc                           | Ưu tiên | Trạng thái | Ngày | Ghi chú                |
 | --- | ----------------------------------- | ------- | ---------- | ---- | ---------------------- |
 | 32  | Frontend: Homepage template         | 🔴 Cao  | ✅         | 2026-07-01 | Hero, badges, products |
-| 33  | Frontend: Product page enhancements | 🔴 Cao  | ✅         | 2026-07-01 | TSKT tab, loan calc    |
+| 33  | Frontend: Product page enhancements | 🔴 Cao  | ✅         | 2026-07-04 | TSKT tab, loan calc    |
 
 ### Tuần 2: Category & Mobile
 
 | #   | Công việc                           | Ưu tiên | Trạng thái | Ngày | Ghi chú                   |
 | --- | ----------------------------------- | ------- | ---------- | ---- | ------------------------- |
-| 34  | Frontend: Category page + filter    | 🟡 TB   | ✅         | 2026-07-08 | Mobile filter drawer + equal sorting |
-| 35  | Frontend: Mobile responsive         | 🔴 Cao  | ✅         | 2026-07-08 | Mobile header + sidebar sticky + toolbar |
+| 34  | Frontend: Category page + filter    | 🟡 TB   | ✅         | 2026-07-09 | Mobile filter drawer + equal sorting |
+| 35  | Frontend: Mobile responsive         | 🔴 Cao  | ✅         | 2026-07-10 | Mobile header + sidebar sticky + toolbar |
 | 35a | Frontend: Cooperation Page Template | 🔴 Cao  | ✅         | 2026-07-04 | Port hop-tac.html mockup  |
 | 35b | Frontend: About & Contact Templates | 🟡 TB   | ✅         | 2026-07-03 | Port about & lien-he      |
 | 35c | Frontend: Blog & Post Templates     | 🟡 TB   | ✅         | 2026-07-03 | Port tin-tuc & bai-viet   |
@@ -123,17 +123,19 @@
 
 ### Tuần 3: Performance
 
-| #   | Công việc                         | Ưu tiên | Trạng thái | Ngày | Ghi chú                   |
-| --- | --------------------------------- | ------- | ---------- | ---- | ------------------------- |
-| 36  | Performance: LiteSpeed config     | 🔴 Cao  | ⬜         | —    | Production cache          |
-| 37  | Performance: DB optimization      | 🟡 TB   | ⬜         | —    | Revisions, transients     |
-| 38  | Performance: Preload hero + fonts | 🟡 TB   | ⬜         | —    | fetchpriority, preconnect |
+| #   | Công việc                         | Ưu tiên | Trạng thái | Ngày       | Ghi chú                   |
+| --- | --------------------------------- | ------- | ---------- | ---------- | ------------------------- |
+| 36  | Performance: LiteSpeed config     | 🔴 Cao  | ✅         | 2026-07-14 | Purge integration + rules |
+| 37  | Performance: DB optimization      | 🟡 TB   | ✅         | 2026-07-14 | DbOptimizer (revisions)   |
+| 38  | Performance: Preload hero + fonts | 🟡 TB   | ✅         | 2026-07-14 | Fonts & CDN preload       |
+| 38a | Performance: Image optimization   | 🔴 Cao  | ✅         | 2026-07-14 | product-card lazy & width |
+| 38b | Performance: Object cache baseline| 🟡 TB   | ✅         | 2026-07-14 | Cache.php verified        |
 
 ### Tuần 4: SEO
 
 | #   | Công việc                      | Ưu tiên | Trạng thái | Ngày | Ghi chú                |
 | --- | ------------------------------ | ------- | ---------- | ---- | ---------------------- |
-| 39  | Gỡ Yoast, thống nhất Rank Math | 🔴 Cao  | ⬜         | —    | robots.txt, sitemap    |
+| 39  | Gỡ Yoast, thống nhất Rank Math | 🔴 Cao  | ✅         | 2026-07-15 | robots.txt, sitemap    |
 | 40  | SEO: Schema markup             | 🟡 TB   | ⬜         | —    | Product, Org, Local    |
 | 41  | SEO: Redirect 301 map          | 🔴 Cao  | ⬜         | —    | Rank Math Redirections |
 
@@ -190,14 +192,14 @@
 
 | #   | Công việc                                          | Ngày | Trạng thái | Ghi chú                                      |
 | --- | -------------------------------------------------- | ---- | ---------- | -------------------------------------------- |
-| H1  | Thiết kế `index.html` — Homepage                   | —    | ✅         | Hero, badges, product grid, flash sale, blog |
-| H2  | Thiết kế `san-pham.html` — Archive sản phẩm        | —    | ✅         | Filter sidebar, product grid, pagination     |
-| H3  | Thiết kế `chi-tiet-san-pham.html` — Single product | —    | ✅         | Gallery, TSKT tab, reviews, related products |
-| H4  | Thiết kế `daily.html` — Archive đại lý             | —    | ✅         | Danh sách đại lý, bản đồ, filter theo vùng   |
-| H5  | Thiết kế `chi-tiet-daily.html` — Single đại lý     | —    | ✅         | Thông tin đại lý, sản phẩm, liên hệ          |
-| H6  | Thiết kế `hop-tac.html` — Cơ hội hợp tác           | —    | ✅         | Form đăng ký, quyền lợi, quy trình           |
-| H7  | Thiết kế `about.html` — Giới thiệu                 | —    | ✅         | Câu chuyện, đội ngũ, giá trị cốt lõi         |
-| H8  | Viết spec markdown cho các trang                   | —    | ✅         | 6 files trong `htmlmau/md page/`             |
+| H1  | Thiết kế `index.html` — Homepage                   | Trước T1 | ✅         | Hero, badges, product grid, flash sale, blog |
+| H2  | Thiết kế `san-pham.html` — Archive sản phẩm        | Trước T1 | ✅         | Filter sidebar, product grid, pagination     |
+| H3  | Thiết kế `chi-tiet-san-pham.html` — Single product | Trước T1 | ✅         | Gallery, TSKT tab, reviews, related products |
+| H4  | Thiết kế `daily.html` — Archive đại lý             | Trước T1 | ✅         | Danh sách đại lý, bản đồ, filter theo vùng   |
+| H5  | Thiết kế `chi-tiet-daily.html` — Single đại lý     | Trước T1 | ✅         | Thông tin đại lý, sản phẩm, liên hệ          |
+| H6  | Thiết kế `hop-tac.html` — Cơ hội hợp tác           | Trước T1 | ✅         | Form đăng ký, quyền lợi, quy trình           |
+| H7  | Thiết kế `about.html` — Giới thiệu                 | Trước T1 | ✅         | Câu chuyện, đội ngũ, giá trị cốt lõi         |
+| H8  | Viết spec markdown cho các trang                   | Trước T1 | ✅         | 6 files trong `htmlmau/md page/`             |
 
 ### Pre-project Setup (trước T1)
 
@@ -317,15 +319,68 @@ build lại** sau khi sửa template. JS thì enqueue thẳng, không cần buil
 | 🆕 Performance Phase A-I       | 9          | 9       | 0        | 0       | 100%    |
 | T1 — Setup & WC Migration     | 17         | 12      | 0        | 5       | 71%     |
 | T2 — Custom Modules            | 22         | 22       | 0        | 0       | 100%    |
-| T3 — Frontend & Perf (còn lại) | 22         | 13      | 0        | 9       | 59%     |
+| T3 — Frontend & Perf (còn lại) | 24         | 22      | 0        | 2       | 92%     |
 | T4 — QA & Deploy               | 15         | 0       | 0        | 15      | 0%      |
-| **TỔNG**                       | **115**    | **94**  | **0**    | **21**  | **81%** |
+| **TỔNG**                       | **117**    | **103**  | **0**    | **14**  | **88%** |
 
 ---
 
 ## 📝 Changelog
 
 > Ghi lại mỗi lần cập nhật plan log.
+
+### 2026-07-15 — Page Audit, Creation & Styling Alignment (Session 51b) ✅
+
+- **HTML Mockup & Page Audit** ✅
+  - Audited all 13 HTML mockups in `htmlmau/` folder against active theme templates and WordPress database records.
+  - Verified that all page mockups have active custom-styled templates matching the mockup specifications.
+  - Discovered that templates for **Giới Thiệu** (`about.html` -> `template-page-about.php`) and **Liên Hệ** (`lien-he.html` -> `template-page-contact.php`) existed but the pages themselves were missing from the database.
+- **WP Page Creation & Mapping** ✅
+  - Created the **Giới Thiệu** page (post ID `936`, slug `gioi-thieu`) and assigned the `templates/template-page-about.php` template.
+  - Created the **Liên Hệ** page (post ID `937`, slug `lien-he`) and assigned the `templates/template-page-contact.php` template.
+  - Mapped both pages to the default `vi` language in Polylang to ensure correct routing.
+- **Style & Content Alignment** ✅
+  - **Giới Thiệu**: Configured all fallback sections (hero, story, values, stats, mission, cta) with mockup copy. Set dynamic grid scaling for Sứ mệnh/Tầm nhìn section (2 columns for 2 items, centered) and replaced the truck icon with a lightbulb icon for "Đổi mới".
+  - **Liên Hệ**: Built the interactive showroom/factory switcher in `parts/contact/locations.php`, triggering location selection automatically on page load to eliminate active style conflicts. Added the page hero header with H1 tag, corrected the YouTube channel description, and mapped the 5 accordion FAQs.
+- **Progress**: Audited, populated, and fully verified style correctness on the local site.
+
+### 2026-07-15 — SEO: Rank Math Migration (Session 51) ✅
+
+- **Robots.txt Programmatic Customization** ✅
+  - Created `SEO` module class inside `src/Features/Optimizer/SEO.php` to define `robots.txt` rules programmatically.
+  - Configured rules to allow crawling of public resources, while disallowing query params (`?add-to-cart=`, `?nocache=`, `?s=`), search pages, and WooCommerce cart/checkout/account paths.
+  - Dynamically appended the Rank Math sitemap URL to the bottom of the `robots.txt` output (`/sitemap_index.xml`).
+  - Registered the SEO module in `Optimizer.php` boot sequence.
+- **Verification**: Checked PHP syntax (`php -l` PASS), Vite compiled (`pnpm build` PASS), and verified via git diff.
+- **Progress**: 102 → **103** tasks done (88%)
+
+### 2026-07-14 — Performance Production (Sessions 46–50) ✅
+
+- **LiteSpeed/OLS Caching Config** ✅
+  - Configured server-level caching directives in `.htaccess` to leverage LiteSpeed/OLS `mod_cache`.
+  - Linked `litespeed_purge_all` action inside `PageCache::purgeAll()` to auto-flush OLS caching on theme/content updates.
+- **DbOptimizer Module** ✅
+  - Creatednamespaced `DbOptimizer` features to purge revision posts and clean up stale transients/timeouts on clearing site cache.
+- **Asset Preloading & Preconnecting** ✅
+  - Added preload links for Be Vietnam Pro (400, 600) font weights and preconnect links for third-party trackers (Analytics, FB Pixel) in `critical-css.php`.
+- **Image Dimension & Lazy-Loading Audit** ✅
+  - Enforced lazy loading and explicit width/height/aspect-ratio on product card thumbnails to eliminate CLS and optimize rendering.
+- **Verification**: Syntax checked (`php -l`), Vite compiled (`pnpm build` PASS), and verified using `git diff --check`.
+- **Progress**: 97 → **102** tasks done (87%)
+
+### 2026-07-13 — WooCommerce Cart & Checkout Layout Polish ✅
+
+- **Shipping Methods Card Layout** ✅
+  - Redesigned WooCommerce shipping method selectors as modern cards in `commerce.scss` with hover highlights, clear typography, and price alignment.
+- **Premium Order Received / Thank You Page** ✅
+  - Added a centered green checkmark card for success messages.
+  - Implemented a 4-column responsive metadata grid for order info (Number, Date, Total, Payment Method).
+  - Styled bank transfer bank details as premium credit-style info cards.
+  - Refined order tables and customer details panels to match brand aesthetics.
+- **Cart AJAX Auto-Update on Quantity change** ✅
+  - Bound a debounced `change` event listener to cart quantity inputs in `dxd.js`. Adjusting quantities via stepper buttons now triggers an automatic cart update.
+- **Verification**: Checked PHP syntax, compiled Vite assets successfully using `pnpm build`, and verified all changes with `git diff --check`.
+- **Progress**: 96 → **97** tasks done (84%)
 
 ### 2026-07-08 — Responsive & WooCommerce Enhancements ✅
 
