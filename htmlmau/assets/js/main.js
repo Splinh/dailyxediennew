@@ -569,41 +569,133 @@ function initMobileBottomNav() {
         <div id="news-panel-overlay" onclick="closeNewsPanel()"></div>
         <div id="news-panel">
             <div class="news-header">
-                <h3>Tin tức & Tư vấn nổi bật</h3>
+                <h3>Tin tức & Tư vấn</h3>
                 <button onclick="closeNewsPanel()" aria-label="Đóng"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <!-- Danh mục tin tức -->
-            <div class="news-cats-flex">
-                <a href="tin-tuc.html"><span class="news-cat-badge">Tin xe điện</span></a>
-                <a href="tin-tuc.html"><span class="news-cat-badge">Khuyến mãi</span></a>
-                <a href="tin-tuc.html"><span class="news-cat-badge">Kinh nghiệm</span></a>
-                <a href="tin-tuc.html"><span class="news-cat-badge">Thị trường</span></a>
-            </div>
-            <!-- Bài viết nổi bật -->
-            <div class="news-featured-section">
-                <h4>Bài viết mới nhất</h4>
-                <div class="news-featured-list">
-                    <a href="bai-viet.html" class="news-featured-item">
-                        <img src="https://dailyxedien.vn/wp-content/uploads/2026/03/top-5-ly-do-nen-chuyen-sang-xe-dien-trong-nam-2026.jpg" alt="Bài viết">
-                        <div class="news-featured-info">
-                            <h5>Hướng dẫn sạc pin xe điện an toàn và tăng tuổi thọ pin</h5>
-                            <span>14 Tháng 7, 2026</span>
+            
+            <div class="news-content-layout">
+                <!-- Cột trái: Danh mục (Tabs dọc) -->
+                <div class="news-sidebar-left">
+                    <button class="news-tab-item active" onclick="switchNewsTab(event, 'all')">Tất cả</button>
+                    <button class="news-tab-item" onclick="switchNewsTab(event, 'xedien')">Tin Xe Điện</button>
+                    <button class="news-tab-item" onclick="switchNewsTab(event, 'khuyenmai')">Khuyến Mãi</button>
+                    <button class="news-tab-item" onclick="switchNewsTab(event, 'kinhnghiem')">Kinh Nghiệm</button>
+                    <button class="news-tab-item" onclick="switchNewsTab(event, 'thitruong')">Thị Trường</button>
+                </div>
+                
+                <!-- Cột phải: Danh sách bài viết -->
+                <div class="news-articles-right">
+                    <!-- Tab: Tất cả -->
+                    <div id="news-tab-panel-all" class="news-tab-panel active">
+                        <div class="news-list-vertical">
+                            <a href="bai-viet.html" class="news-row-item">
+                                <img src="https://dailyxedien.vn/wp-content/uploads/2026/03/top-5-ly-do-nen-chuyen-sang-xe-dien-trong-nam-2026.jpg" alt="Bài viết">
+                                <div class="news-row-info">
+                                    <h5>Hướng dẫn sạc pin xe điện an toàn và tăng tuổi thọ pin</h5>
+                                    <span>14 Tháng 7, 2026</span>
+                                </div>
+                            </a>
+                            <a href="bai-viet.html" class="news-row-item">
+                                <img src="https://dailyxedien.vn/wp-content/uploads/2026/03/gia-xang-dau-2026-xu-huong-chuyen-dich-sang-xe-dien-2.jpg" alt="Bài viết">
+                                <div class="news-row-info">
+                                    <h5>Top 5 xe máy điện bán chạy nhất nửa đầu năm 2026</h5>
+                                    <span>10 Tháng 7, 2026</span>
+                                </div>
+                            </a>
+                            <a href="bai-viet.html" class="news-row-item">
+                                <img src="https://dailyxedien.vn/wp-content/uploads/2026/02/khai-truong-dai-ly-xe-dien-bluera-viet-nhat-ron-bike-pro-tai-can-tho-dlxd.jpg" alt="Bài viết">
+                                <div class="news-row-info">
+                                    <h5>Chính sách bảo hành và bảo dưỡng định kỳ xe điện tại Đại Lý</h5>
+                                    <span>05 Tháng 7, 2026</span>
+                                </div>
+                            </a>
+                            <a href="tin-tuc.html" class="news-see-more-link">Xem thêm tin tức <i class="fa-solid fa-chevron-right"></i></a>
                         </div>
-                    </a>
-                    <a href="bai-viet.html" class="news-featured-item">
-                        <img src="https://dailyxedien.vn/wp-content/uploads/2026/03/gia-xang-dau-2026-xu-huong-chuyen-dich-sang-xe-dien-2.jpg" alt="Bài viết">
-                        <div class="news-featured-info">
-                            <h5>Top 5 xe máy điện bán chạy nhất nửa đầu năm 2026</h5>
-                            <span>10 Tháng 7, 2026</span>
+                    </div>
+                    
+                    <!-- Tab: Tin Xe Điện -->
+                    <div id="news-tab-panel-xedien" class="news-tab-panel">
+                        <div class="news-list-vertical">
+                            <a href="bai-viet.html" class="news-row-item">
+                                <img src="https://dailyxedien.vn/wp-content/uploads/2026/03/top-5-ly-do-nen-chuyen-sang-xe-dien-trong-nam-2026.jpg" alt="Bài viết">
+                                <div class="news-row-info">
+                                    <h5>Hướng dẫn sạc pin xe điện an toàn và tăng tuổi thọ pin</h5>
+                                    <span>14 Tháng 7, 2026</span>
+                                </div>
+                            </a>
+                            <a href="bai-viet.html" class="news-row-item">
+                                <img src="https://dailyxedien.vn/wp-content/uploads/2026/03/gia-xang-dau-2026-xu-huong-chuyen-dich-sang-xe-dien-2.jpg" alt="Bài viết">
+                                <div class="news-row-info">
+                                    <h5>Công nghệ pin LFP mới cho xe máy điện Bluera Việt Nhật</h5>
+                                    <span>01 Tháng 7, 2026</span>
+                                </div>
+                            </a>
+                            <a href="tin-tuc.html" class="news-see-more-link">Xem tất cả Tin Xe Điện <i class="fa-solid fa-chevron-right"></i></a>
                         </div>
-                    </a>
-                    <a href="bai-viet.html" class="news-featured-item">
-                        <img src="https://dailyxedien.vn/wp-content/uploads/2026/02/khai-truong-dai-ly-xe-dien-bluera-viet-nhat-ron-bike-pro-tai-can-tho-dlxd.jpg" alt="Bài viết">
-                        <div class="news-featured-info">
-                            <h5>Chính sách bảo hành và bảo dưỡng định kỳ xe điện tại Đại Lý</h5>
-                            <span>05 Tháng 7, 2026</span>
+                    </div>
+
+                    <!-- Tab: Khuyến Mãi -->
+                    <div id="news-tab-panel-khuyenmai" class="news-tab-panel">
+                        <div class="news-list-vertical">
+                            <a href="bai-viet.html" class="news-row-item">
+                                <img src="https://dailyxedien.vn/wp-content/uploads/2026/01/dap-xe-dien-don-xuan-quay-qua-cuc-da-mua-xe-dien-bluera-viet-nhat-dlxd.jpg" alt="Bài viết">
+                                <div class="news-row-info">
+                                    <h5>Chương trình khuyến mãi hè 2026: Mua xe điện, nhận quà khủng</h5>
+                                    <span>28 Tháng 6, 2026</span>
+                                </div>
+                            </a>
+                            <a href="bai-viet.html" class="news-row-item">
+                                <img src="https://dailyxedien.vn/wp-content/uploads/2026/01/cung-nguoi-thuong-tren-chiec-xe-dap-dien-2-cho-cuc-em.jpg" alt="Bài viết">
+                                <div class="news-row-info">
+                                    <h5>Giảm giá lên đến 20% phụ kiện xe điện trong tháng 7</h5>
+                                    <span>15 Tháng 6, 2026</span>
+                                </div>
+                            </a>
+                            <a href="tin-tuc.html" class="news-see-more-link">Xem tất cả Khuyến Mãi <i class="fa-solid fa-chevron-right"></i></a>
                         </div>
-                    </a>
+                    </div>
+
+                    <!-- Tab: Kinh Nghiệm -->
+                    <div id="news-tab-panel-kinhnghiem" class="news-tab-panel">
+                        <div class="news-list-vertical">
+                            <a href="bai-viet.html" class="news-row-item">
+                                <img src="https://dailyxedien.vn/wp-content/uploads/2026/03/top-5-ly-do-nen-chuyen-sang-xe-dien-trong-nam-2026.jpg" alt="Bài viết">
+                                <div class="news-row-info">
+                                    <h5>Mẹo bảo quản ắc quy xe đạp điện không bị chai phồng</h5>
+                                    <span>12 Tháng 6, 2026</span>
+                                </div>
+                            </a>
+                            <a href="bai-viet.html" class="news-row-item">
+                                <img src="https://dailyxedien.vn/wp-content/uploads/2026/01/chi-tiet-lo-trinh-han-che-xe-xang-dau-vao-trung-tam-tphcm.jpg" alt="Bài viết">
+                                <div class="news-row-info">
+                                    <h5>Cách xử lý nhanh khi xe máy điện bị ngập nước mùa mưa</h5>
+                                    <span>04 Tháng 6, 2026</span>
+                                </div>
+                            </a>
+                            <a href="tin-tuc.html" class="news-see-more-link">Xem tất cả Kinh Nghiệm <i class="fa-solid fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Tab: Thị Trường -->
+                    <div id="news-tab-panel-thitruong" class="news-tab-panel">
+                        <div class="news-list-vertical">
+                            <a href="bai-viet.html" class="news-row-item">
+                                <img src="https://dailyxedien.vn/wp-content/uploads/2026/03/gia-xang-dau-2026-xu-huong-chuyen-dich-sang-xe-dien-2.jpg" alt="Bài viết">
+                                <div class="news-row-info">
+                                    <h5>Xu hướng thị trường xe máy điện thông minh Việt Nam 2026</h5>
+                                    <span>18 Tháng 6, 2026</span>
+                                </div>
+                            </a>
+                            <a href="bai-viet.html" class="news-row-item">
+                                <img src="https://dailyxedien.vn/wp-content/uploads/2026/01/chi-tiet-lo-trinh-han-che-xe-xang-dau-vao-trung-tam-tphcm.jpg" alt="Bài viết">
+                                <div class="news-row-info">
+                                    <h5>Lộ trình cấm xe xăng tại các thành phố lớn và tác động đến thị trường</h5>
+                                    <span>10 Tháng 5, 2026</span>
+                                </div>
+                            </a>
+                            <a href="tin-tuc.html" class="news-see-more-link">Xem tất cả Thị Trường <i class="fa-solid fa-chevron-right"></i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -639,6 +731,30 @@ window.closeNewsPanel = function() {
             o.style.display = 'none';
             p.style.display = 'none';
         }, 300);
+    }
+};
+
+window.switchNewsTab = function(e, tabId) {
+    e.preventDefault();
+    
+    // Deactivate all tab items
+    const tabItems = document.querySelectorAll('.news-tab-item');
+    tabItems.forEach(item => item.classList.remove('active'));
+    
+    // Activate clicked tab item
+    e.currentTarget.classList.add('active');
+    
+    // Hide all panels
+    const panels = document.querySelectorAll('.news-tab-panel');
+    panels.forEach(panel => panel.classList.remove('active'));
+    
+    // Show corresponding panel
+    const targetPanel = document.getElementById('news-tab-panel-' + tabId);
+    if (targetPanel) {
+        targetPanel.classList.add('active');
+        // Scroll right side back to top
+        const rightContainer = document.querySelector('.news-articles-right');
+        if (rightContainer) rightContainer.scrollTop = 0;
     }
 };
 
