@@ -646,7 +646,7 @@
 .cat-sidebar-left,
 .news-sidebar-left,
 .dealer-sidebar-left {
-	width: 32%;
+	width: 26%;
 	background: #f8fafc;
 	border-right: 1px solid #e3e8ef;
 	display: flex;
@@ -660,11 +660,11 @@
 .dealer-tab-item {
 	display: block;
 	width: 100%;
-	padding: 0.875rem 0.625rem;
-	font-size: 0.75rem;
+	padding: 0.875rem 0.375rem;
+	font-size: 0.7rem;
 	font-weight: 700;
 	color: #475569;
-	text-align: left;
+	text-align: center;
 	border: none;
 	border-bottom: 1px solid #f1f5f9;
 	background: transparent;
@@ -688,7 +688,7 @@
 .cat-products-right,
 .news-articles-right,
 .dealer-stores-right {
-	width: 68%;
+	width: 74%;
 	background: #f8fafc;
 	overflow-y: auto;
 	-webkit-overflow-scrolling: touch;
@@ -802,10 +802,10 @@
 .cat-product-row img,
 .news-row-item img,
 .dealer-row-item img {
-	width: 3.5rem;
-	height: 3rem;
+	width: 3.25rem;
+	height: 3.25rem;
 	object-fit: cover;
-	border-radius: 0.25rem;
+	border-radius: 0.375rem;
 	background: #f8fafc;
 	border: 1px solid #f1f5f9;
 	flex-shrink: 0;
@@ -816,7 +816,7 @@
 .dealer-row-info {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: flex-start;
 	flex: 1;
 	min-width: 0;
 }
@@ -832,7 +832,7 @@
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2;
 	overflow: hidden;
-	margin: 0;
+	margin: 0 0 0.25rem 0;
 }
 
 .cat-product-price {

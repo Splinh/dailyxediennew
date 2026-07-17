@@ -238,7 +238,7 @@
 - [x] T3-42b. Schema markup — Organization, LocalBusiness ✅ 2026-07-17
 
 #### Session 53.5 — Mobile Bottom Nav & Slide Panels
-- [x] T3-42c. Mobile Bottom Nav & Slide Panels (2-column Category, News, Store locator, Contacts, price fix, Swiper fix, ACF options) ✅ 2026-07-17
+- [x] T3-42c. Mobile Bottom Nav & Slide Panels (2-column Category, News, Store locator, Contacts, price fix, Swiper fix, ACF options, layout width optimization to prevent text compression) ✅ 2026-07-17
 
 #### Session 54 — SEO: Redirect map
 - [ ] T3-43. Redirect 301 map — Rank Math Redirections (old URLs → new)
