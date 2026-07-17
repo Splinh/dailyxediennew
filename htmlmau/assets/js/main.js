@@ -526,6 +526,9 @@ function initKeyboard() {
             
             const newsPanel = $('#news-panel');
             if (newsPanel && newsPanel.classList.contains('open')) closeNewsPanel();
+            
+            const categoryPanel = $('#category-panel');
+            if (categoryPanel && categoryPanel.classList.contains('open')) closeCategoryPanel();
         }
         // Điều hướng lightbox bằng phím mũi tên khi đang mở
         if (!$('#lightbox-modal').classList.contains('hidden')) {
@@ -560,6 +563,200 @@ function initMobileBottomNav() {
             // Insert right next to Category link
             catLink.parentNode.insertBefore(newsLink, catLink.nextSibling);
         }
+    }
+
+    // Rewrite category panel dynamically if present
+    const categoryPanel = $('#category-panel');
+    if (categoryPanel && !categoryPanel.querySelector('.cat-content-layout')) {
+        categoryPanel.innerHTML = `
+        <div class="cat-header">
+            <h3>Danh mục sản phẩm</h3>
+            <button onclick="closeCategoryPanel()" aria-label="Đóng"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cat-content-layout">
+            <!-- Cột trái: Danh mục cha -->
+            <div class="cat-sidebar-left">
+                <button class="cat-tab-item active" onclick="switchCategoryTab(event, 'xedien')">Xe điện</button>
+                <button class="cat-tab-item" onclick="switchCategoryTab(event, 'xemaydien')">Xe máy điện</button>
+                <button class="cat-tab-item" onclick="switchCategoryTab(event, 'xe50cc')">Xe 50cc</button>
+                <button class="cat-tab-item" onclick="switchCategoryTab(event, 'xedapdien')">Xe đạp điện</button>
+                <button class="cat-tab-item" onclick="switchCategoryTab(event, 'xe3banh')">Xe 3 bánh</button>
+                <button class="cat-tab-item" onclick="switchCategoryTab(event, 'phukien')">Phụ kiện</button>
+            </div>
+            
+            <!-- Cột phải: Danh mục con & sản phẩm nổi bật -->
+            <div class="cat-products-right">
+                <!-- Tab: Xe điện -->
+                <div id="cat-tab-panel-xedien" class="cat-tab-panel active">
+                    <div class="cat-subcats-section">
+                        <h4>Danh mục con</h4>
+                        <div class="cat-subcats-grid">
+                            <a href="san-pham.html" class="cat-subcat-card">Xe đạp điện</a>
+                            <a href="san-pham.html" class="cat-subcat-card">Xe máy điện</a>
+                            <a href="san-pham.html" class="cat-subcat-card">Xe điện 3 bánh</a>
+                            <a href="san-pham.html" class="cat-subcat-card">Xe máy 50cc</a>
+                        </div>
+                    </div>
+                    <div class="cat-popular-section">
+                        <h4>Sản phẩm nổi bật</h4>
+                        <div class="cat-popular-list">
+                            <a href="chi-tiet-san-pham.html" class="cat-product-row">
+                                <img src="https://dailyxedien.vn/wp-content/uploads/2026/03/top-5-ly-do-nen-chuyen-sang-xe-dien-trong-nam-2026.jpg" alt="Xe điện">
+                                <div class="cat-product-info">
+                                    <h5>Xe máy điện Vespa Roma Lite thế hệ mới</h5>
+                                    <span class="cat-product-price">18.200.000 đ</span>
+                                </div>
+                            </a>
+                            <a href="chi-tiet-san-pham.html" class="cat-product-row">
+                                <img src="https://dailyxedien.vn/wp-content/uploads/2026/02/khai-truong-dai-ly-xe-dien-bluera-viet-nhat-ron-bike-pro-tai-can-tho-dlxd.jpg" alt="Xe điện">
+                                <div class="cat-product-info">
+                                    <h5>Xe đạp điện Bluera Cap X Pro chính hãng</h5>
+                                    <span class="cat-product-price">12.500.000 đ</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tab: Xe máy điện -->
+                <div id="cat-tab-panel-xemaydien" class="cat-tab-panel">
+                    <div class="cat-subcats-section">
+                        <h4>Danh mục con</h4>
+                        <div class="cat-subcats-grid">
+                            <a href="san-pham.html" class="cat-subcat-card">Vespa điện</a>
+                            <a href="san-pham.html" class="cat-subcat-card">Gogo điện</a>
+                            <a href="san-pham.html" class="cat-subcat-card">Xmen điện</a>
+                            <a href="san-pham.html" class="cat-subcat-card">Jeek điện</a>
+                        </div>
+                    </div>
+                    <div class="cat-popular-section">
+                        <h4>Sản phẩm nổi bật</h4>
+                        <div class="cat-popular-list">
+                            <a href="chi-tiet-san-pham.html" class="cat-product-row">
+                                <img src="https://dailyxedien.vn/wp-content/uploads/2026/02/khai-truong-dai-ly-xe-dien-bluera-viet-nhat-ron-bike-pro-tai-can-tho-dlxd.jpg" alt="Xe điện">
+                                <div class="cat-product-info">
+                                    <h5>Xe máy điện Bluera Gogo S4 thông minh</h5>
+                                    <span class="cat-product-price">16.900.000 đ</span>
+                                </div>
+                            </a>
+                            <a href="chi-tiet-san-pham.html" class="cat-product-row">
+                                <img src="https://dailyxedien.vn/wp-content/uploads/2026/03/top-5-ly-do-nen-chuyen-sang-xe-dien-trong-nam-2026.jpg" alt="Xe điện">
+                                <div class="cat-product-info">
+                                    <h5>Xe máy điện Xmen Neo thể thao phong cách</h5>
+                                    <span class="cat-product-price">15.500.000 đ</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Xe 50cc -->
+                <div id="cat-tab-panel-xe50cc" class="cat-tab-panel">
+                    <div class="cat-subcats-section">
+                        <h4>Danh mục con</h4>
+                        <div class="cat-subcats-grid">
+                            <a href="san-pham.html" class="cat-subcat-card">Xe ga 50cc</a>
+                            <a href="san-pham.html" class="cat-subcat-card">Xe số 50cc</a>
+                            <a href="san-pham.html" class="cat-subcat-card">Xe Cub 50cc</a>
+                            <a href="san-pham.html" class="cat-subcat-card">Wave 50cc</a>
+                        </div>
+                    </div>
+                    <div class="cat-popular-section">
+                        <h4>Sản phẩm nổi bật</h4>
+                        <div class="cat-popular-list">
+                            <a href="chi-tiet-san-pham.html" class="cat-product-row">
+                                <img src="https://dailyxedien.vn/wp-content/uploads/2026/03/gia-xang-dau-2026-xu-huong-chuyen-dich-sang-xe-dien-2.jpg" alt="Xe điện">
+                                <div class="cat-product-info">
+                                    <h5>Xe ga 50cc Giorno Smile nhập khẩu</h5>
+                                    <span class="cat-product-price">19.000.000 đ</span>
+                                </div>
+                            </a>
+                            <a href="chi-tiet-san-pham.html" class="cat-product-row">
+                                <img src="https://dailyxedien.vn/wp-content/uploads/2026/01/chi-tiet-lo-trinh-han-che-xe-xang-dau-vao-trung-tam-tphcm.jpg" alt="Xe điện">
+                                <div class="cat-product-info">
+                                    <h5>Xe máy Cub 50cc Classic hoài cổ</h5>
+                                    <span class="cat-product-price">14.800.000 đ</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Xe đạp điện -->
+                <div id="cat-tab-panel-xedapdien" class="cat-tab-panel">
+                    <div class="cat-subcats-section">
+                        <h4>Danh mục con</h4>
+                        <div class="cat-subcats-grid">
+                            <a href="san-pham.html" class="cat-subcat-card">Xe đạp điện mini</a>
+                            <a href="san-pham.html" class="cat-subcat-card">Xe đạp điện gấp</a>
+                            <a href="san-pham.html" class="cat-subcat-card">Xe đạp điện 2 yên</a>
+                        </div>
+                    </div>
+                    <div class="cat-popular-section">
+                        <h4>Sản phẩm nổi bật</h4>
+                        <div class="cat-popular-list">
+                            <a href="chi-tiet-san-pham.html" class="cat-product-row">
+                                <img src="https://dailyxedien.vn/wp-content/uploads/2026/02/khai-truong-dai-ly-xe-dien-bluera-viet-nhat-ron-bike-pro-tai-can-tho-dlxd.jpg" alt="Xe điện">
+                                <div class="cat-product-info">
+                                    <h5>Xe đạp điện Bluera Cap X 2026</h5>
+                                    <span class="cat-product-price">11.500.000 đ</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Xe 3 bánh -->
+                <div id="cat-tab-panel-xe3banh" class="cat-tab-panel">
+                    <div class="cat-subcats-section">
+                        <h4>Danh mục con</h4>
+                        <div class="cat-subcats-grid">
+                            <a href="san-pham.html" class="cat-subcat-card">Xe 3 bánh chở hàng</a>
+                            <a href="san-pham.html" class="cat-subcat-card">Xe 3 bánh chở khách</a>
+                            <a href="san-pham.html" class="cat-subcat-card">Xe 3 bánh mini</a>
+                        </div>
+                    </div>
+                    <div class="cat-popular-section">
+                        <h4>Sản phẩm nổi bật</h4>
+                        <div class="cat-popular-list">
+                            <a href="chi-tiet-san-pham.html" class="cat-product-row">
+                                <img src="https://dailyxedien.vn/wp-content/uploads/2026/01/dap-xe-dien-don-xuan-quay-qua-cuc-da-mua-xe-dien-bluera-viet-nhat-dlxd.jpg" alt="Xe điện">
+                                <div class="cat-product-info">
+                                    <h5>Xe máy điện 3 bánh Super nhập khẩu</h5>
+                                    <span class="cat-product-price">19.500.000 đ</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Phụ kiện -->
+                <div id="cat-tab-panel-phukien" class="cat-tab-panel">
+                    <div class="cat-subcats-section">
+                        <h4>Danh mục con</h4>
+                        <div class="cat-subcats-grid">
+                            <a href="san-pham.html" class="cat-subcat-card">Ắc quy & Sạc</a>
+                            <a href="san-pham.html" class="cat-subcat-card">Lốp & Săm</a>
+                            <a href="san-pham.html" class="cat-subcat-card">Mũ bảo hiểm</a>
+                            <a href="san-pham.html" class="cat-subcat-card">Động cơ điện</a>
+                        </div>
+                    </div>
+                    <div class="cat-popular-section">
+                        <h4>Sản phẩm nổi bật</h4>
+                        <div class="cat-popular-list">
+                            <a href="chi-tiet-san-pham.html" class="cat-product-row">
+                                <img src="https://dailyxedien.vn/wp-content/uploads/2026/01/cung-nguoi-thuong-tren-chiec-xe-dap-dien-2-cho-cuc-em.jpg" alt="Xe điện">
+                                <div class="cat-product-info">
+                                    <h5>Sạc xe máy điện thông minh 60V-20Ah</h5>
+                                    <span class="cat-product-price">350.000 đ</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `;
     }
 
     // Inject news panel if not already present
@@ -754,6 +951,30 @@ window.switchNewsTab = function(e, tabId) {
         targetPanel.classList.add('active');
         // Scroll right side back to top
         const rightContainer = document.querySelector('.news-articles-right');
+        if (rightContainer) rightContainer.scrollTop = 0;
+    }
+};
+
+window.switchCategoryTab = function(e, tabId) {
+    e.preventDefault();
+    
+    // Deactivate all tab items
+    const tabItems = document.querySelectorAll('.cat-tab-item');
+    tabItems.forEach(item => item.classList.remove('active'));
+    
+    // Activate clicked tab item
+    e.currentTarget.classList.add('active');
+    
+    // Hide all panels
+    const panels = document.querySelectorAll('.cat-tab-panel');
+    panels.forEach(panel => panel.classList.remove('active'));
+    
+    // Show corresponding panel
+    const targetPanel = document.getElementById('cat-tab-panel-' + tabId);
+    if (targetPanel) {
+        targetPanel.classList.add('active');
+        // Scroll right side back to top
+        const rightContainer = document.querySelector('.cat-products-right');
         if (rightContainer) rightContainer.scrollTop = 0;
     }
 };
