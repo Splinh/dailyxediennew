@@ -982,3 +982,10 @@
 	margin: 0.15rem 0 0 0;
 	font-weight: 600;
 }
+
+/* Swiper Custom Button Fix */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+	display: none !important;
+	content: "" !important;
+}

@@ -1153,4 +1153,11 @@ textarea {
     background: #dbeafe;
 }
 
+/* Swiper Custom Button Fix */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    display: none !important;
+    content: "" !important;
+}
+
 
