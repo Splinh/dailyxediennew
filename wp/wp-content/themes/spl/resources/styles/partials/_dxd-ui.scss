@@ -849,7 +849,8 @@
 	margin-top: 0.25rem;
 }
 
-.news-see-more-link {
+.news-see-more-link,
+.cat-see-more-link {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -867,7 +868,9 @@
 }
 
 .news-see-more-link:active,
-.news-see-more-link:hover {
+.news-see-more-link:hover,
+.cat-see-more-link:active,
+.cat-see-more-link:hover {
 	background: #dbeafe;
 }
 

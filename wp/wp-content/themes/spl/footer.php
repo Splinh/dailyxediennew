@@ -61,13 +61,8 @@ if ( function_exists( 'dxd_dealer_get_stores' ) ) {
 			$prov_counts[ $prov ]++;
 		}
 	}
-	// Sort by store count descending, then by name alphabetically
-	uksort( $prov_counts, function( $a, $b ) use ( $prov_counts ) {
-		if ( $prov_counts[$a] === $prov_counts[$b] ) {
-			return strcasecmp( $a, $b );
-		}
-		return $prov_counts[$b] - $prov_counts[$a];
-	} );
+	// Sort by store count descending
+	arsort( $prov_counts );
 	$prov_list = array_keys( $prov_counts );
 }
 
@@ -250,8 +245,8 @@ $is_dealer         = is_page( 'he-thong-cua-hang' ) || is_post_type_archive( 'lo
 	</div>
 	
 	<?php
-	$parent_cats = [];
-	if ( class_exists( 'WooCommerce' ) ) {
+	$parent_cats = Helper::getField( 'bottom_nav_categories', 'option' );
+	if ( empty( $parent_cats ) && class_exists( 'WooCommerce' ) ) {
 		$parent_cats = get_terms( [
 			'taxonomy'   => 'product_cat',
 			'hide_empty' => false,
@@ -333,6 +328,9 @@ $is_dealer         = is_page( 'he-thong-cua-hang' ) || is_post_type_archive( 'lo
 								</div>
 							</div>
 						<?php endif; ?>
+						<a href="<?php echo esc_url( get_term_link( $cat ) ); ?>" class="cat-see-more-link">
+							<?php printf( esc_html__( 'Xem tất cả %s', 'spl' ), $cat->name ); ?> <i class="fa-solid fa-chevron-right"></i>
+						</a>
 					</div>
 				<?php endforeach; ?>
 			</div>
@@ -355,10 +353,13 @@ $is_dealer         = is_page( 'he-thong-cua-hang' ) || is_post_type_archive( 'lo
 				<?php esc_html_e( 'Tất cả', 'spl' ); ?>
 			</button>
 			<?php
-			$news_cats = get_terms( [
-				'taxonomy'   => 'category',
-				'hide_empty' => true,
-			] );
+			$news_cats = Helper::getField( 'bottom_nav_news_categories', 'option' );
+			if ( empty( $news_cats ) ) {
+				$news_cats = get_terms( [
+					'taxonomy'   => 'category',
+					'hide_empty' => true,
+				] );
+			}
 			if ( ! is_wp_error( $news_cats ) && ! empty( $news_cats ) ) :
 				foreach ( $news_cats as $cat ) :
 					?>

@@ -89,3 +89,54 @@ function spl_register_acf_options_page(): void {
 		'position'   => 2,
 	] );
 }
+
+add_action( 'acf/init', 'spl_register_bottom_nav_acf_fields' );
+function spl_register_bottom_nav_acf_fields(): void {
+	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
+		return;
+	}
+
+	acf_add_local_field_group( [
+		'key'    => 'group_mobile_bottom_nav_options',
+		'title'  => __( 'Cấu hình Bottom Nav Mobile', 'spl' ),
+		'fields' => [
+			[
+				'key'           => 'field_bottom_nav_categories',
+				'label'         => __( 'Danh mục sản phẩm hiển thị', 'spl' ),
+				'name'          => 'bottom_nav_categories',
+				'type'          => 'taxonomy',
+				'taxonomy'      => 'product_cat',
+				'field_type'    => 'multi_select',
+				'allow_null'    => 1,
+				'add_term'      => 0,
+				'save_terms'    => 0,
+				'load_terms'    => 0,
+				'return_format' => 'object',
+				'instructions'  => __( 'Chọn các danh mục sản phẩm cha muốn hiển thị trong slide panel di động. Bỏ trống để hiển thị tất cả.', 'spl' ),
+			],
+			[
+				'key'           => 'field_bottom_nav_news_categories',
+				'label'         => __( 'Danh mục tin tức hiển thị', 'spl' ),
+				'name'          => 'bottom_nav_news_categories',
+				'type'          => 'taxonomy',
+				'taxonomy'      => 'category',
+				'field_type'    => 'multi_select',
+				'allow_null'    => 1,
+				'add_term'      => 0,
+				'save_terms'    => 0,
+				'load_terms'    => 0,
+				'return_format' => 'object',
+				'instructions'  => __( 'Chọn các danh mục tin tức muốn hiển thị trong slide panel di động. Bỏ trống để hiển thị tất cả.', 'spl' ),
+			],
+		],
+		'location' => [
+			[
+				[
+					'param'    => 'options_page',
+					'operator' => '==',
+					'value'    => 'acf-options',
+				],
+			],
+		],
+	] );
+}
