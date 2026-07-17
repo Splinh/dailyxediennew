@@ -46,6 +46,21 @@ $footer_socials = [
 	'zalo'     => [ 'url' => $zalo_url, 'label' => 'Zalo', 'svg' => '<path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 17 3.5s1 2.5-1 6c-2 3.5-5 5.5-5 5.5"/><path d="M14 21c0-3.5-2-7-2-7"/>' ],
 ];
 
+// Query store provinces for Mobile Dealer slide-up panel
+$stores    = [];
+$prov_list = [];
+if ( function_exists( 'dxd_dealer_get_stores' ) ) {
+	$stores = dxd_dealer_get_stores();
+	$provinces = [];
+	foreach ( $stores as $s ) {
+		if ( ! empty( $s['p'] ) ) {
+			$provinces[ $s['p'] ] = true;
+		}
+	}
+	$prov_list = array_keys( $provinces );
+	sort( $prov_list );
+}
+
 ?>
 </main>
 
@@ -182,7 +197,6 @@ get_template_part( 'parts/global/company-activity' );
 $cart_count_footer = ( class_exists( 'WooCommerce' ) && WC()->cart ) ? WC()->cart->get_cart_contents_count() : 0;
 $is_home           = is_front_page() || is_home();
 $is_shop           = function_exists( 'is_shop' ) && ( is_shop() || is_product_category() || is_product_tag() || is_product() );
-$is_partner        = is_page( 'co-hoi-hop-tac' ) || is_page_template( 'templates/template-page-cooperation.php' );
 $is_dealer         = is_page( 'he-thong-cua-hang' ) || is_post_type_archive( 'local_store' ) || is_singular( 'local_store' );
 ?>
 <nav id="mobile-bottom-nav" aria-label="<?php esc_attr_e( 'Menu di động', 'spl' ); ?>">
@@ -194,18 +208,18 @@ $is_dealer         = is_page( 'he-thong-cua-hang' ) || is_post_type_archive( 'lo
 		<?php echo spl_icon( 'menu', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		<span><?php esc_html_e( 'Danh mục', 'spl' ); ?></span>
 	</button>
-	<a href="<?php echo esc_url( home_url( '/co-hoi-hop-tac/' ) ); ?>" class="nav-partner<?php echo $is_partner ? ' active' : ''; ?>">
-		<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-		<span><?php esc_html_e( 'Hợp tác', 'spl' ); ?></span>
-	</a>
-	<a href="<?php echo esc_url( home_url( '/he-thong-cua-hang/' ) ); ?>" class="nav-dealer<?php echo $is_dealer ? ' active' : ''; ?>">
+	<button type="button" data-news-panel-open>
+		<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M16 8h2"/><path d="M16 12h2"/><path d="M16 16h2"/><path d="M6 8h6v8H6z"/></svg>
+		<span><?php esc_html_e( 'Tin tức', 'spl' ); ?></span>
+	</button>
+	<button type="button" data-dealer-panel-open<?php echo $is_dealer ? ' class="active"' : ''; ?>>
 		<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
 		<span><?php esc_html_e( 'Đại lý', 'spl' ); ?></span>
-	</a>
-	<a href="<?php echo esc_url( $hotline_url ); ?>" class="nav-hotline">
-		<?php echo spl_icon( 'phone', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-		<span><?php esc_html_e( 'Hotline', 'spl' ); ?></span>
-	</a>
+	</button>
+	<button type="button" data-contact-panel-open>
+		<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+		<span><?php esc_html_e( 'Liên hệ', 'spl' ); ?></span>
+	</button>
 	<button type="button" data-cart-open class="relative">
 		<?php echo spl_icon( 'cart', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		<span><?php esc_html_e( 'Giỏ hàng', 'spl' ); ?></span>
@@ -219,51 +233,282 @@ $is_dealer         = is_page( 'he-thong-cua-hang' ) || is_post_type_archive( 'lo
 <div id="category-panel-overlay" data-cat-panel-close></div>
 <div id="category-panel">
 	<div class="cat-header">
-		<h3><?php esc_html_e( 'Danh Mục Sản Phẩm', 'spl' ); ?></h3>
+		<h3><?php esc_html_e( 'Danh mục sản phẩm', 'spl' ); ?></h3>
 		<button type="button" data-cat-panel-close aria-label="<?php esc_attr_e( 'Đóng', 'spl' ); ?>">
 			<?php echo spl_icon( 'close', 'w-4 h-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</button>
 	</div>
-	<div class="cat-grid">
-		<?php
-		if ( class_exists( 'WooCommerce' ) ) :
-			$panel_cats = get_terms( [
-				'taxonomy'   => 'product_cat',
-				'hide_empty' => false,
-				'parent'     => 0,
-				'orderby'    => 'menu_order',
-				'order'      => 'ASC',
-				'number'     => 9,
-			] );
-			if ( ! is_wp_error( $panel_cats ) && ! empty( $panel_cats ) ) :
-				$cat_icons  = [ 'motorcycle', 'bicycle', 'bolt', 'truck', 'bolt', 'bicycle', 'motorcycle', 'truck', 'bolt' ];
-				$cat_colors = [
-					[ '#eff6ff', '#3b82f6' ],
-					[ '#ecfdf5', '#10b981' ],
-					[ '#fefce8', '#eab308' ],
-					[ '#fef2f2', '#ef4444' ],
-					[ '#f5f3ff', '#8b5cf6' ],
-					[ '#fff7ed', '#f97316' ],
-					[ '#eff6ff', '#3b82f6' ],
-					[ '#ecfdf5', '#10b981' ],
-					[ '#fefce8', '#eab308' ],
-				];
-				foreach ( $panel_cats as $i => $cat ) :
-					$cat_link = get_term_link( $cat );
-					if ( is_wp_error( $cat_link ) ) { continue; }
-					$icon  = $cat_icons[ $i % count( $cat_icons ) ];
-					$color = $cat_colors[ $i % count( $cat_colors ) ];
-					?>
-					<a href="<?php echo esc_url( $cat_link ); ?>">
-						<div class="cat-icon" style="background:<?php echo esc_attr( $color[0] ); ?>;color:<?php echo esc_attr( $color[1] ); ?>">
-							<?php echo spl_icon( $icon, 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-						</div>
-						<span><?php echo esc_html( $cat->name ); ?></span>
-					</a>
-				<?php endforeach;
-			endif;
-		endif;
+	
+	<?php
+	$parent_cats = [];
+	if ( class_exists( 'WooCommerce' ) ) {
+		$parent_cats = get_terms( [
+			'taxonomy'   => 'product_cat',
+			'hide_empty' => false,
+			'parent'     => 0,
+			'orderby'    => 'menu_order',
+			'order'      => 'ASC',
+		] );
+	}
+	if ( ! empty( $parent_cats ) && ! is_wp_error( $parent_cats ) ) :
 		?>
+		<div class="cat-content-layout">
+			<!-- Cột trái: Danh mục cha -->
+			<div class="cat-sidebar-left">
+				<?php foreach ( $parent_cats as $i => $cat ) : ?>
+					<button class="cat-tab-item<?php echo $i === 0 ? ' active' : ''; ?>" onclick="switchCategoryTab(event, '<?php echo esc_attr( $cat->slug ); ?>')">
+						<?php echo esc_html( $cat->name ); ?>
+					</button>
+				<?php endforeach; ?>
+			</div>
+			
+			<!-- Cột phải: Chi tiết từng danh mục -->
+			<div class="cat-products-right">
+				<?php foreach ( $parent_cats as $i => $cat ) : ?>
+					<div id="cat-tab-panel-<?php echo esc_attr( $cat->slug ); ?>" class="cat-tab-panel<?php echo $i === 0 ? ' active' : ''; ?>">
+						<?php
+						$subcats = get_terms( [
+							'taxonomy'   => 'product_cat',
+							'hide_empty' => false,
+							'parent'     => $cat->term_id,
+						] );
+						if ( ! is_wp_error( $subcats ) && ! empty( $subcats ) ) :
+							?>
+							<div class="cat-subcats-section">
+								<h4><?php esc_html_e( 'Danh mục con', 'spl' ); ?></h4>
+								<div class="cat-subcats-grid">
+									<?php foreach ( $subcats as $subcat ) : ?>
+										<a href="<?php echo esc_url( get_term_link( $subcat ) ); ?>" class="cat-subcat-card">
+											<?php echo esc_html( $subcat->name ); ?>
+										</a>
+									<?php endforeach; ?>
+								</div>
+							</div>
+						<?php endif; ?>
+						
+						<?php
+						$prod_query = new WP_Query( [
+							'post_type'      => 'product',
+							'posts_per_page' => 3,
+							'orderby'        => 'meta_value_num',
+							'meta_key'       => 'total_sales',
+							'order'          => 'DESC',
+							'tax_query'      => [
+								[
+									'taxonomy' => 'product_cat',
+									'field'    => 'term_id',
+									'terms'    => $cat->term_id,
+								],
+							],
+						] );
+						if ( $prod_query->have_posts() ) :
+							?>
+							<div class="cat-popular-section">
+								<h4><?php esc_html_e( 'Sản phẩm nổi bật', 'spl' ); ?></h4>
+								<div class="cat-popular-list">
+									<?php
+									while ( $prod_query->have_posts() ) :
+										$prod_query->the_post();
+										$product = wc_get_product( get_the_ID() );
+										$img_url = get_the_post_thumbnail_url( get_the_ID(), 'thumbnail' ) ?: wc_placeholder_img_src();
+										?>
+										<a href="<?php the_permalink(); ?>" class="cat-product-row">
+											<img src="<?php echo esc_url( $img_url ); ?>" alt="<?php the_title_attribute(); ?>">
+											<div class="cat-product-info">
+												<h5><?php the_title(); ?></h5>
+												<span class="cat-product-price"><?php echo $product ? $product->get_price_html() : ''; ?></span>
+											</div>
+										</a>
+									<?php endwhile; wp_reset_postdata(); ?>
+								</div>
+							</div>
+						<?php endif; ?>
+					</div>
+				<?php endforeach; ?>
+			</div>
+		</div>
+	<?php endif; ?>
+</div>
+
+<!-- ===== NEWS SLIDE-UP PANEL (Mobile) ===== -->
+<div id="news-panel-overlay" data-news-panel-close></div>
+<div id="news-panel">
+	<div class="news-header">
+		<h3><?php esc_html_e( 'Tin tức & Tư vấn', 'spl' ); ?></h3>
+		<button type="button" data-news-panel-close aria-label="<?php esc_attr_e( 'Đóng', 'spl' ); ?>">
+			<?php echo spl_icon( 'close', 'w-4 h-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		</button>
+	</div>
+	<div class="news-content-layout">
+		<div class="news-sidebar-left">
+			<button class="news-tab-item active" onclick="switchNewsTab(event, 'all')">
+				<?php esc_html_e( 'Tất cả', 'spl' ); ?>
+			</button>
+			<?php
+			$news_cats = get_terms( [
+				'taxonomy'   => 'category',
+				'hide_empty' => true,
+			] );
+			if ( ! is_wp_error( $news_cats ) && ! empty( $news_cats ) ) :
+				foreach ( $news_cats as $cat ) :
+					?>
+					<button class="news-tab-item" onclick="switchNewsTab(event, '<?php echo esc_attr( $cat->slug ); ?>')">
+						<?php echo esc_html( $cat->name ); ?>
+					</button>
+					<?php
+				endforeach;
+			endif;
+			?>
+		</div>
+		
+		<div class="news-articles-right">
+			<div id="news-tab-panel-all" class="news-tab-panel active">
+				<div class="news-list-vertical">
+					<?php
+					$all_posts = get_posts( [
+						'numberposts' => 4,
+						'post_status' => 'publish',
+					] );
+					foreach ( $all_posts as $post ) :
+						setup_postdata( $post );
+						$img = get_the_post_thumbnail_url( $post->ID, 'thumbnail' ) ?: 'data:image/svg+xml,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 140"><rect fill="#f1f5f9" width="200" height="140"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="#94a3b8" font-size="14">DXD</text></svg>');
+						?>
+						<a href="<?php echo esc_url( get_permalink( $post->ID ) ); ?>" class="news-row-item">
+							<img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( get_the_title( $post->ID ) ); ?>">
+							<div class="news-row-info">
+								<h5><?php echo esc_html( get_the_title( $post->ID ) ); ?></h5>
+								<span><?php echo get_the_date( '', $post->ID ); ?></span>
+							</div>
+						</a>
+					<?php endforeach; wp_reset_postdata(); ?>
+					<a href="<?php echo esc_url( get_post_type_archive_link( 'post' ) ); ?>" class="news-see-more-link">
+						<?php esc_html_e( 'Xem thêm tin tức', 'spl' ); ?> <i class="fa-solid fa-chevron-right"></i>
+					</a>
+				</div>
+			</div>
+			
+			<?php
+			if ( ! is_wp_error( $news_cats ) && ! empty( $news_cats ) ) :
+				foreach ( $news_cats as $cat ) :
+					?>
+					<div id="news-tab-panel-<?php echo esc_attr( $cat->slug ); ?>" class="news-tab-panel">
+						<div class="news-list-vertical">
+							<?php
+							$cat_posts = get_posts( [
+								'numberposts' => 4,
+								'category'    => $cat->term_id,
+								'post_status' => 'publish',
+							] );
+							foreach ( $cat_posts as $post ) :
+								setup_postdata( $post );
+								$img = get_the_post_thumbnail_url( $post->ID, 'thumbnail' ) ?: 'data:image/svg+xml,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 140"><rect fill="#f1f5f9" width="200" height="140"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="#94a3b8" font-size="14">DXD</text></svg>');
+								?>
+								<a href="<?php echo esc_url( get_permalink( $post->ID ) ); ?>" class="news-row-item">
+									<img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( get_the_title( $post->ID ) ); ?>">
+									<div class="news-row-info">
+										<h5><?php echo esc_html( get_the_title( $post->ID ) ); ?></h5>
+										<span><?php echo get_the_date( '', $post->ID ); ?></span>
+									</div>
+								</a>
+							<?php endforeach; wp_reset_postdata(); ?>
+							<a href="<?php echo esc_url( get_term_link( $cat ) ); ?>" class="news-see-more-link">
+								<?php printf( esc_html__( 'Xem tất cả %s', 'spl' ), $cat->name ); ?> <i class="fa-solid fa-chevron-right"></i>
+							</a>
+						</div>
+					</div>
+					<?php
+				endforeach;
+			endif;
+			?>
+		</div>
+	</div>
+</div>
+
+<!-- ===== DEALER SLIDE-UP PANEL (Mobile) ===== -->
+<div id="dealer-panel-overlay" data-dealer-panel-close></div>
+<div id="dealer-panel">
+	<div class="dealer-header">
+		<h3><?php esc_html_e( 'Hệ Thống Đại Lý', 'spl' ); ?></h3>
+		<button type="button" data-dealer-panel-close aria-label="<?php esc_attr_e( 'Đóng', 'spl' ); ?>">
+			<?php echo spl_icon( 'close', 'w-4 h-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		</button>
+	</div>
+	<?php if ( ! empty( $prov_list ) ) : ?>
+		<div class="dealer-content-layout">
+			<!-- Cột trái: Tỉnh thành -->
+			<div class="dealer-sidebar-left">
+				<?php foreach ( $prov_list as $i => $prov ) : ?>
+					<button class="dealer-tab-item<?php echo $i === 0 ? ' active' : ''; ?>" onclick="switchDealerTab(event, '<?php echo esc_attr( sanitize_title( $prov ) ); ?>')">
+						<?php echo esc_html( mb_strtoupper( $prov ) ); ?>
+					</button>
+				<?php endforeach; ?>
+			</div>
+			<!-- Cột phải: Hệ thống cửa hàng -->
+			<div class="dealer-stores-right">
+				<?php foreach ( $prov_list as $i => $prov ) : ?>
+					<div id="dealer-tab-panel-<?php echo esc_attr( sanitize_title( $prov ) ); ?>" class="dealer-tab-panel<?php echo $i === 0 ? ' active' : ''; ?>">
+						<div class="dealer-list-vertical">
+							<?php
+							foreach ( $stores as $s ) :
+								if ( $s['p'] !== $prov ) { continue; }
+								$img = $s['img'] ?: 'data:image/svg+xml,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 140"><rect fill="#f1f5f9" width="200" height="140"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="#94a3b8" font-size="14">DXD</text></svg>');
+								?>
+								<a href="<?php echo esc_url( $s['u'] ); ?>" class="dealer-row-item">
+									<img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( $s['t'] ); ?>">
+									<div class="dealer-row-info">
+										<h5><?php echo esc_html( $s['t'] ); ?></h5>
+										<p class="dealer-address"><svg class="w-3 h-3 text-emerald-600 shrink-0 inline mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><?php echo esc_html( $s['a'] ); ?></p>
+										<?php if ( ! empty( $s['ph'] ) ) : ?>
+											<span class="dealer-phone"><svg class="w-3.5 h-3.5 text-blue-500 shrink-0 inline mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><?php echo esc_html( $s['ph'] ); ?></span>
+										<?php endif; ?>
+									</div>
+								</a>
+							<?php endforeach; ?>
+						</div>
+					</div>
+				<?php endforeach; ?>
+			</div>
+		</div>
+	<?php endif; ?>
+</div>
+
+<!-- ===== CONTACT SLIDE-UP PANEL (Mobile) ===== -->
+<div id="contact-panel-overlay" data-contact-panel-close></div>
+<div id="contact-panel">
+	<div class="contact-header">
+		<h3><?php esc_html_e( 'Liên Hệ & Hỗ Trợ', 'spl' ); ?></h3>
+		<button type="button" data-contact-panel-close aria-label="<?php esc_attr_e( 'Đóng', 'spl' ); ?>">
+			<?php echo spl_icon( 'close', 'w-4 h-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		</button>
+	</div>
+	<div class="contact-content-layout-simple">
+		<a href="<?php echo esc_url( $hotline_url ); ?>" class="contact-option-row">
+			<div class="contact-option-icon hotline">
+				<?php echo spl_icon( 'phone', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			</div>
+			<div class="contact-option-info">
+				<h5><?php esc_html_e( 'Gọi Hotline mua hàng', 'spl' ); ?></h5>
+				<p><?php echo esc_html( $hotline_display ); ?></p>
+			</div>
+		</a>
+		<a href="<?php echo esc_url( $zalo_url ); ?>" target="_blank" class="contact-option-row">
+			<div class="contact-option-icon zalo">
+				<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 17 3.5s1 2.5-1 6c-2 3.5-5 5.5-5 5.5"/><path d="M14 21c0-3.5-2-7-2-7"/></svg>
+			</div>
+			<div class="contact-option-info">
+				<h5><?php esc_html_e( 'Trò chuyện qua Zalo', 'spl' ); ?></h5>
+				<p><?php esc_html_e( 'Giải đáp thắc mắc & mua hàng nhanh', 'spl' ); ?></p>
+			</div>
+		</a>
+		<a href="<?php echo esc_url( home_url( '/lien-he/' ) ); ?>" class="contact-option-row">
+			<div class="contact-option-icon email">
+				<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+			</div>
+			<div class="contact-option-info">
+				<h5><?php esc_html_e( 'Gửi Form Liên Hệ', 'spl' ); ?></h5>
+				<p><?php esc_html_e( 'Góp ý hoặc yêu cầu hỗ trợ trực tuyến', 'spl' ); ?></p>
+			</div>
+		</a>
 	</div>
 </div>
 

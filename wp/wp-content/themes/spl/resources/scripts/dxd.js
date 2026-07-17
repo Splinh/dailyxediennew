@@ -171,41 +171,101 @@
 			} );
 		}
 
-		/* ---------- Category Slide-Up Panel ---------- */
-		const catPanel = document.getElementById( 'category-panel' );
-		const catPanelOverlay = document.getElementById( 'category-panel-overlay' );
+		/* ---------- Unified Slide-Up Panels Helper ---------- */
+		const registerSlidePanel = ( panelId, openSelector, closeSelector ) => {
+			const panel = document.getElementById( panelId );
+			const overlay = document.getElementById( panelId + '-overlay' );
+			if ( ! panel || ! overlay ) return () => {};
 
-		const openCatPanel = () => {
-			if ( ! catPanel || ! catPanelOverlay ) return;
-			catPanelOverlay.style.display = 'block';
-			catPanel.style.display = 'block';
-			body.classList.add( 'no-scroll' );
-			requestAnimationFrame( () => {
+			const openPanel = () => {
+				overlay.style.display = 'block';
+				panel.style.display = 'block';
+				body.classList.add( 'no-scroll' );
 				requestAnimationFrame( () => {
-					catPanelOverlay.classList.add( 'open' );
-					catPanel.classList.add( 'open' );
+					requestAnimationFrame( () => {
+						overlay.classList.add( 'open' );
+						panel.classList.add( 'open' );
+					} );
 				} );
-			} );
+			};
+
+			const closePanel = () => {
+				overlay.classList.remove( 'open' );
+				panel.classList.remove( 'open' );
+				
+				setTimeout( () => {
+					overlay.style.display = 'none';
+					panel.style.display = 'none';
+					
+					const anyOpen = Array.from( document.querySelectorAll( '#category-panel, #news-panel, #dealer-panel, #contact-panel, [data-cart-modal]' ) ).some( p => p.classList.contains( 'open' ) || p.classList.contains( 'is-open' ) );
+					if ( ! anyOpen ) {
+						body.classList.remove( 'no-scroll' );
+					}
+				}, 300 );
+			};
+
+			document.querySelectorAll( openSelector ).forEach( btn => btn.addEventListener( 'click', ( e ) => { e.preventDefault(); openPanel(); } ) );
+			document.querySelectorAll( closeSelector ).forEach( btn => btn.addEventListener( 'click', closePanel ) );
+			overlay.addEventListener( 'click', closePanel );
+
+			return closePanel;
 		};
 
-		const closeCatPanel = () => {
-			if ( ! catPanel || ! catPanelOverlay ) return;
-			catPanelOverlay.classList.remove( 'open' );
-			catPanel.classList.remove( 'open' );
-			body.classList.remove( 'no-scroll' );
-			setTimeout( () => {
-				catPanelOverlay.style.display = 'none';
-				catPanel.style.display = 'none';
-			}, 300 );
+		const closeCatPanel = registerSlidePanel( 'category-panel', '[data-cat-panel-open]', '[data-cat-panel-close]' );
+		const closeNewsPanel = registerSlidePanel( 'news-panel', '[data-news-panel-open]', '[data-news-panel-close]' );
+		const closeDealerPanel = registerSlidePanel( 'dealer-panel', '[data-dealer-panel-open]', '[data-dealer-panel-close]' );
+		const closeContactPanel = registerSlidePanel( 'contact-panel', '[data-contact-panel-open]', '[data-contact-panel-close]' );
+
+		window.switchCategoryTab = function( e, tabId ) {
+			e.preventDefault();
+			const wrap = e.currentTarget.closest( '#category-panel' );
+			if ( ! wrap ) return;
+
+			wrap.querySelectorAll( '.cat-tab-item' ).forEach( item => item.classList.remove( 'active' ) );
+			e.currentTarget.classList.add( 'active' );
+
+			wrap.querySelectorAll( '.cat-tab-panel' ).forEach( panel => panel.classList.remove( 'active' ) );
+			const target = document.getElementById( 'cat-tab-panel-' + tabId );
+			if ( target ) {
+				target.classList.add( 'active' );
+				const scrollContainer = wrap.querySelector( '.cat-products-right' );
+				if ( scrollContainer ) scrollContainer.scrollTop = 0;
+			}
 		};
 
-		document.querySelectorAll( '[data-cat-panel-open]' ).forEach( ( btn ) =>
-			btn.addEventListener( 'click', openCatPanel )
-		);
+		window.switchNewsTab = function( e, tabId ) {
+			e.preventDefault();
+			const wrap = e.currentTarget.closest( '#news-panel' );
+			if ( ! wrap ) return;
 
-		document.querySelectorAll( '[data-cat-panel-close]' ).forEach( ( btn ) =>
-			btn.addEventListener( 'click', closeCatPanel )
-		);
+			wrap.querySelectorAll( '.news-tab-item' ).forEach( item => item.classList.remove( 'active' ) );
+			e.currentTarget.classList.add( 'active' );
+
+			wrap.querySelectorAll( '.news-tab-panel' ).forEach( panel => panel.classList.remove( 'active' ) );
+			const target = document.getElementById( 'news-tab-panel-' + tabId );
+			if ( target ) {
+				target.classList.add( 'active' );
+				const scrollContainer = wrap.querySelector( '.news-articles-right' );
+				if ( scrollContainer ) scrollContainer.scrollTop = 0;
+			}
+		};
+
+		window.switchDealerTab = function( e, tabId ) {
+			e.preventDefault();
+			const wrap = e.currentTarget.closest( '#dealer-panel' );
+			if ( ! wrap ) return;
+
+			wrap.querySelectorAll( '.dealer-tab-item' ).forEach( item => item.classList.remove( 'active' ) );
+			e.currentTarget.classList.add( 'active' );
+
+			wrap.querySelectorAll( '.dealer-tab-panel' ).forEach( panel => panel.classList.remove( 'active' ) );
+			const target = document.getElementById( 'dealer-tab-panel-' + tabId );
+			if ( target ) {
+				target.classList.add( 'active' );
+				const scrollContainer = wrap.querySelector( '.dealer-stores-right' );
+				if ( scrollContainer ) scrollContainer.scrollTop = 0;
+			}
+		};
 
 		/* ---------- Single Product: Quantity Stepper ---------- */
 		// Commented out to prevent conflict with woocommerce.js
@@ -514,7 +574,10 @@
 			if ( e.key === 'Escape' ) {
 				closeDrawer();
 				closeCart();
-				closeCatPanel();
+				if ( typeof closeCatPanel === 'function' ) closeCatPanel();
+				if ( typeof closeNewsPanel === 'function' ) closeNewsPanel();
+				if ( typeof closeDealerPanel === 'function' ) closeDealerPanel();
+				if ( typeof closeContactPanel === 'function' ) closeContactPanel();
 			}
 		} );
 	} );

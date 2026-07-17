@@ -532,7 +532,14 @@
    Category Slide-Up Panel
    ========================================================================== */
 
-#category-panel-overlay {
+/* ==========================================================================
+   Slide-Up Panels Layout (Categories, News, Dealers, Contact)
+   ========================================================================== */
+
+#category-panel-overlay,
+#news-panel-overlay,
+#dealer-panel-overlay,
+#contact-panel-overlay {
 	display: none;
 	position: fixed;
 	inset: 0;
@@ -544,11 +551,17 @@
 	transition: opacity 0.25s ease;
 }
 
-#category-panel-overlay.open {
+#category-panel-overlay.open,
+#news-panel-overlay.open,
+#dealer-panel-overlay.open,
+#contact-panel-overlay.open {
 	opacity: 1;
 }
 
-#category-panel {
+#category-panel,
+#news-panel,
+#dealer-panel,
+#contact-panel {
 	display: none;
 	position: fixed;
 	bottom: 0;
@@ -561,34 +574,45 @@
 	padding: 0;
 	transform: translateY(100%);
 	transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-	max-height: 70vh;
-	overflow-y: auto;
+	max-height: 75vh;
+	overflow: hidden;
 }
 
-#category-panel.open {
+#category-panel.open,
+#news-panel.open,
+#dealer-panel.open,
+#contact-panel.open {
 	transform: translateY(0);
 }
 
-#category-panel .cat-header {
+#category-panel .cat-header,
+#news-panel .news-header,
+#dealer-panel .dealer-header,
+#contact-panel .contact-header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 1rem 1.25rem 0.75rem;
 	border-bottom: 1px solid #e3e8ef;
-	position: sticky;
-	top: 0;
 	background: #fff;
-	z-index: 1;
+	height: 3.5rem;
+	box-sizing: border-box;
 }
 
-#category-panel .cat-header h3 {
+#category-panel .cat-header h3,
+#news-panel .news-header h3,
+#dealer-panel .dealer-header h3,
+#contact-panel .contact-header h3 {
 	font-size: 0.875rem;
 	font-weight: 800;
 	color: #172033;
 	margin: 0;
 }
 
-#category-panel .cat-header button {
+#category-panel .cat-header button,
+#news-panel .news-header button,
+#dealer-panel .dealer-header button,
+#contact-panel .contact-header button {
 	width: 2rem;
 	height: 2rem;
 	border-radius: 50%;
@@ -602,49 +626,322 @@
 	transition: background 0.2s;
 }
 
-#category-panel .cat-header button:hover {
+#category-panel .cat-header button:hover,
+#news-panel .news-header button:hover,
+#dealer-panel .dealer-header button:hover,
+#contact-panel .contact-header button:hover {
 	background: #e2e8f0;
 }
 
-#category-panel .cat-grid {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 0.5rem;
-	padding: 1rem 1.25rem 1.5rem;
+/* Two-column layout */
+.cat-content-layout,
+.news-content-layout,
+.dealer-content-layout {
+	display: flex;
+	height: calc(75vh - 3.5rem - env(safe-area-inset-bottom, 0px));
+	overflow: hidden;
 }
 
-#category-panel .cat-grid a {
+/* Left Sidebar tabs */
+.cat-sidebar-left,
+.news-sidebar-left,
+.dealer-sidebar-left {
+	width: 32%;
+	background: #f8fafc;
+	border-right: 1px solid #e3e8ef;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+.cat-tab-item,
+.news-tab-item,
+.dealer-tab-item {
+	display: block;
+	width: 100%;
+	padding: 0.875rem 0.625rem;
+	font-size: 0.75rem;
+	font-weight: 700;
+	color: #475569;
+	text-align: left;
+	border: none;
+	border-bottom: 1px solid #f1f5f9;
+	background: transparent;
+	cursor: pointer;
+	transition: all 0.2s;
+	outline: none;
+	line-height: 1.3;
+	font-family: inherit;
+}
+
+.cat-tab-item.active,
+.news-tab-item.active,
+.dealer-tab-item.active {
+	background: #fff;
+	color: #0758b7;
+	border-left: 3px solid #0758b7;
+	font-weight: 800;
+}
+
+/* Right scrollable sections */
+.cat-products-right,
+.news-articles-right,
+.dealer-stores-right {
+	width: 68%;
+	background: #fff;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	padding: 0.75rem;
+}
+
+.cat-tab-panel,
+.news-tab-panel,
+.dealer-tab-panel {
+	display: none;
+}
+
+.cat-tab-panel.active,
+.news-tab-panel.active,
+.dealer-tab-panel.active {
+	display: block;
+}
+
+/* Subcategories styling */
+.cat-subcats-section h4 {
+	font-size: 0.7rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: #64748b;
+	margin-bottom: 0.5rem;
+	font-weight: 700;
+	margin-top: 0;
+}
+
+.cat-subcats-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
 	gap: 0.5rem;
-	padding: 0.875rem 0.5rem;
-	border-radius: 0.5rem;
-	border: 1px solid #e3e8ef;
+	margin-bottom: 1.25rem;
+}
+
+.cat-subcat-card {
+	display: block;
+	padding: 0.5rem;
+	background: #f8fafc;
+	border: 1px solid #f1f5f9;
+	border-radius: 0.375rem;
+	font-size: 0.6875rem;
+	font-weight: 700;
+	color: #334155;
+	text-align: center;
 	text-decoration: none;
 	transition: all 0.2s;
-	-webkit-tap-highlight-color: transparent;
 }
 
-#category-panel .cat-grid a:active {
-	transform: scale(0.96);
-	background: #f0f5ff;
-	border-color: #0758b7;
+.cat-subcat-card:active,
+.cat-subcat-card:hover {
+	background: #eff6ff;
+	color: #0758b7;
+	border-color: #dbeafe;
 }
 
-#category-panel .cat-grid a .cat-icon {
-	width: 2.75rem;
-	height: 2.75rem;
-	border-radius: 0.75rem;
+/* Category & News rows list */
+.cat-popular-section h4,
+.news-list-vertical h4 {
+	font-size: 0.7rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: #64748b;
+	margin-bottom: 0.5rem;
+	font-weight: 700;
+	margin-top: 0;
+}
+
+.cat-popular-list,
+.news-list-vertical,
+.dealer-list-vertical {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+.cat-product-row,
+.news-row-item,
+.dealer-row-item {
+	display: flex;
+	gap: 0.625rem;
+	padding-bottom: 0.75rem;
+	border-bottom: 1px solid #f1f5f9;
+	text-decoration: none;
+	transition: background 0.2s;
+}
+
+.cat-product-row:last-child,
+.news-row-item:last-child,
+.dealer-row-item:last-child {
+	border-bottom: none;
+	padding-bottom: 0;
+}
+
+.cat-product-row img,
+.news-row-item img,
+.dealer-row-item img {
+	width: 3.5rem;
+	height: 3rem;
+	object-fit: cover;
+	border-radius: 0.25rem;
+	background: #f8fafc;
+	border: 1px solid #f1f5f9;
+	flex-shrink: 0;
+}
+
+.cat-product-info,
+.news-row-info,
+.dealer-row-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	flex: 1;
+	min-width: 0;
+}
+
+.cat-product-info h5,
+.news-row-info h5,
+.dealer-row-info h5 {
+	font-size: 0.725rem;
+	font-weight: 700;
+	color: #172033;
+	line-height: 1.35;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+	margin: 0;
+}
+
+.cat-product-price {
+	font-size: 0.6875rem;
+	font-weight: 800;
+	color: #0758b7;
+	margin-top: 0.15rem;
+}
+
+.news-row-info span {
+	font-size: 0.575rem;
+	color: #64748b;
+	font-weight: 600;
+	margin-top: 0.25rem;
+}
+
+.news-see-more-link {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	gap: 0.25rem;
+	padding: 0.625rem;
+	font-size: 0.7rem;
+	font-weight: 700;
+	color: #0758b7;
+	text-decoration: none;
+	background: #eff6ff;
+	border-radius: 0.25rem;
+	text-align: center;
+	margin-top: 0.25rem;
+	margin-bottom: 0.5rem;
 }
 
-#category-panel .cat-grid a span {
-	font-size: 0.6875rem;
+.news-see-more-link:active,
+.news-see-more-link:hover {
+	background: #dbeafe;
+}
+
+/* Dealer system locator tweaks */
+.dealer-row-info .dealer-address {
+	font-size: 0.625rem;
+	color: #64748b;
+	margin: 0.15rem 0;
+	line-height: 1.3;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+}
+
+.dealer-row-info .dealer-phone {
+	font-size: 0.625rem;
+	font-weight: 700;
+	color: #059669;
+}
+
+/* Contact Simple Panel Layout */
+.contact-content-layout-simple {
+	padding: 1.25rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+.contact-option-row {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding: 0.875rem;
+	border: 1px solid #e3e8ef;
+	border-radius: 0.5rem;
+	text-decoration: none;
+	transition: all 0.2s;
+}
+
+.contact-option-row:active,
+.contact-option-row:hover {
+	background: #f8fafc;
+	border-color: #0758b7;
+}
+
+.contact-option-icon {
+	width: 2.5rem;
+	height: 2.5rem;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.15rem;
+	flex-shrink: 0;
+}
+
+.contact-option-icon.hotline {
+	background: #fef2f2;
+	color: #dc2626;
+}
+
+.contact-option-icon.zalo {
+	background: #eff6ff;
+	color: #0758b7;
+}
+
+.contact-option-icon.email {
+	background: #f5f3ff;
+	color: #8b5cf6;
+}
+
+.contact-option-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.contact-option-info h5 {
+	font-size: 0.75rem;
 	font-weight: 700;
 	color: #172033;
-	text-align: center;
-	line-height: 1.2;
+	margin: 0;
+}
+
+.contact-option-info p {
+	font-size: 0.625rem;
+	color: #64748b;
+	margin: 0.15rem 0 0 0;
+	font-weight: 600;
 }
