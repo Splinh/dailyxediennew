@@ -523,6 +523,9 @@ function initKeyboard() {
             if (!$('#video-modal').classList.contains('hidden'))   closeVideoModal();
             if (!$('#cart-modal').classList.contains('hidden'))    closeCart();
             if (!$('#mobile-drawer').classList.contains('-translate-x-full')) closeMobileMenu();
+            
+            const newsPanel = $('#news-panel');
+            if (newsPanel && newsPanel.classList.contains('open')) closeNewsPanel();
         }
         // Điều hướng lightbox bằng phím mũi tên khi đang mở
         if (!$('#lightbox-modal').classList.contains('hidden')) {
@@ -531,6 +534,113 @@ function initKeyboard() {
         }
     });
 }
+
+/* ==========================================================================
+   MOBILE BOTTOM NAVIGATION & NEWS PANEL
+   ========================================================================== */
+function initMobileBottomNav() {
+    const bottomNav = $('#mobile-bottom-nav');
+    if (!bottomNav) return;
+
+    const links = Array.from(bottomNav.querySelectorAll('a'));
+    const catLink = links.find(a => a.textContent.includes('Danh mục'));
+    if (catLink) {
+        // Ensure Category link opens the category panel on mobile
+        catLink.setAttribute('href', '#');
+        catLink.setAttribute('onclick', 'openCategoryPanel(); return false;');
+
+        // Check if "Tin tức" link already exists
+        const newsLinkExists = links.some(a => a.textContent.includes('Tin tức'));
+        if (!newsLinkExists) {
+            const newsLink = document.createElement('a');
+            newsLink.setAttribute('href', '#');
+            newsLink.setAttribute('onclick', 'openNewsPanel(); return false;');
+            newsLink.innerHTML = '<i class="fa-solid fa-newspaper"></i><span>Tin tức</span>';
+            
+            // Insert right next to Category link
+            catLink.parentNode.insertBefore(newsLink, catLink.nextSibling);
+        }
+    }
+
+    // Inject news panel if not already present
+    if (!document.getElementById('news-panel')) {
+        const newsPanelHTML = `
+        <!-- MOBILE NEWS SLIDE-UP PANEL -->
+        <div id="news-panel-overlay" onclick="closeNewsPanel()"></div>
+        <div id="news-panel">
+            <div class="news-header">
+                <h3>Tin tức & Tư vấn nổi bật</h3>
+                <button onclick="closeNewsPanel()" aria-label="Đóng"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <!-- Danh mục tin tức -->
+            <div class="news-cats-flex">
+                <a href="tin-tuc.html"><span class="news-cat-badge">Tin xe điện</span></a>
+                <a href="tin-tuc.html"><span class="news-cat-badge">Khuyến mãi</span></a>
+                <a href="tin-tuc.html"><span class="news-cat-badge">Kinh nghiệm</span></a>
+                <a href="tin-tuc.html"><span class="news-cat-badge">Thị trường</span></a>
+            </div>
+            <!-- Bài viết nổi bật -->
+            <div class="news-featured-section">
+                <h4>Bài viết mới nhất</h4>
+                <div class="news-featured-list">
+                    <a href="bai-viet.html" class="news-featured-item">
+                        <img src="https://dailyxedien.vn/wp-content/uploads/2026/03/top-5-ly-do-nen-chuyen-sang-xe-dien-trong-nam-2026.jpg" alt="Bài viết">
+                        <div class="news-featured-info">
+                            <h5>Hướng dẫn sạc pin xe điện an toàn và tăng tuổi thọ pin</h5>
+                            <span>14 Tháng 7, 2026</span>
+                        </div>
+                    </a>
+                    <a href="bai-viet.html" class="news-featured-item">
+                        <img src="https://dailyxedien.vn/wp-content/uploads/2026/03/gia-xang-dau-2026-xu-huong-chuyen-dich-sang-xe-dien-2.jpg" alt="Bài viết">
+                        <div class="news-featured-info">
+                            <h5>Top 5 xe máy điện bán chạy nhất nửa đầu năm 2026</h5>
+                            <span>10 Tháng 7, 2026</span>
+                        </div>
+                    </a>
+                    <a href="bai-viet.html" class="news-featured-item">
+                        <img src="https://dailyxedien.vn/wp-content/uploads/2026/02/khai-truong-dai-ly-xe-dien-bluera-viet-nhat-ron-bike-pro-tai-can-tho-dlxd.jpg" alt="Bài viết">
+                        <div class="news-featured-info">
+                            <h5>Chính sách bảo hành và bảo dưỡng định kỳ xe điện tại Đại Lý</h5>
+                            <span>05 Tháng 7, 2026</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', newsPanelHTML);
+    }
+}
+
+window.openNewsPanel = function() {
+    const o = document.getElementById('news-panel-overlay');
+    const p = document.getElementById('news-panel');
+    if (o && p) {
+        o.style.display = 'block';
+        p.style.display = 'block';
+        lockScroll();
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                o.classList.add('open');
+                p.classList.add('open');
+            });
+        });
+    }
+};
+
+window.closeNewsPanel = function() {
+    const o = document.getElementById('news-panel-overlay');
+    const p = document.getElementById('news-panel');
+    if (o && p) {
+        o.classList.remove('open');
+        p.classList.remove('open');
+        unlockScroll();
+        setTimeout(() => {
+            o.style.display = 'none';
+            p.style.display = 'none';
+        }, 300);
+    }
+};
 
 /* ==========================================================================
    KHỞI TẠO
@@ -544,4 +654,5 @@ window.addEventListener('DOMContentLoaded', () => {
     initBackToTop();
     initKeyboard();
     updateCartCount();
+    initMobileBottomNav();
 });

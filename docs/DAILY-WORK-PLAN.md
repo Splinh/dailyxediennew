@@ -232,10 +232,10 @@
 - [x] T3-41. Gỡ Yoast, thống nhất Rank Math — robots.txt, sitemap
 
 #### Session 52 — SEO: Schema markup
-- [ ] T3-42a. Schema markup — Product structured data
+- [x] T3-42a. Schema markup — Product structured data ✅ 2026-07-17
 
 #### Session 53 — SEO: Schema Organization + Local
-- [ ] T3-42b. Schema markup — Organization, LocalBusiness
+- [x] T3-42b. Schema markup — Organization, LocalBusiness ✅ 2026-07-17
 
 #### Session 54 — SEO: Redirect map
 - [ ] T3-43. Redirect 301 map — Rank Math Redirections (old URLs → new)
