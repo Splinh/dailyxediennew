@@ -694,7 +694,7 @@ textarea {
 /* Right Section */
 .cat-products-right {
     width: 68%;
-    background: var(--surface);
+    background: #f8fafc;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     padding: 0.75rem;
@@ -766,15 +766,27 @@ textarea {
 
 .cat-product-row {
     display: flex;
-    gap: 0.625rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid #f1f5f9;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border: 1px solid #f1f5f9;
+    border-radius: var(--radius-sm);
+    background: var(--surface);
     text-decoration: none;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.02);
+    transition: all 0.2s ease;
+    margin-bottom: 0.5rem;
 }
 
 .cat-product-row:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.cat-product-row:hover,
+.cat-product-row:active {
+    border-color: var(--brand);
+    background: #fafcff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(7, 88, 183, 0.04);
 }
 
 .cat-product-row img {
@@ -1019,7 +1031,7 @@ textarea {
 /* Right Section: Articles List */
 .news-articles-right {
     width: 68%;
-    background: var(--surface);
+    background: #f8fafc;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     padding: 0.75rem;
@@ -1041,21 +1053,27 @@ textarea {
 
 .news-row-item {
     display: flex;
-    gap: 0.625rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid #f1f5f9;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border: 1px solid #f1f5f9;
+    border-radius: var(--radius-sm);
+    background: var(--surface);
     text-decoration: none;
-    transition: background 0.2s;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.02);
+    transition: all 0.2s ease;
+    margin-bottom: 0.5rem;
 }
 
 .news-row-item:last-child {
-    border-bottom: none;
+    margin-bottom: 0;
 }
 
-.news-row-item:active,
-.news-row-item:hover {
-    background: #f8fafc;
-    border-radius: var(--radius-sm);
+.news-row-item:hover,
+.news-row-item:active {
+    border-color: var(--brand);
+    background: #fafcff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(7, 88, 183, 0.04);
 }
 
 .news-row-item img {

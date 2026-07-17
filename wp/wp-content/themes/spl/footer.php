@@ -51,14 +51,24 @@ $stores    = [];
 $prov_list = [];
 if ( function_exists( 'dxd_dealer_get_stores' ) ) {
 	$stores = dxd_dealer_get_stores();
-	$provinces = [];
+	$prov_counts = [];
 	foreach ( $stores as $s ) {
 		if ( ! empty( $s['p'] ) ) {
-			$provinces[ $s['p'] ] = true;
+			$prov = $s['p'];
+			if ( ! isset( $prov_counts[ $prov ] ) ) {
+				$prov_counts[ $prov ] = 0;
+			}
+			$prov_counts[ $prov ]++;
 		}
 	}
-	$prov_list = array_keys( $provinces );
-	sort( $prov_list );
+	// Sort by store count descending, then by name alphabetically
+	uksort( $prov_counts, function( $a, $b ) use ( $prov_counts ) {
+		if ( $prov_counts[$a] === $prov_counts[$b] ) {
+			return strcasecmp( $a, $b );
+		}
+		return $prov_counts[$b] - $prov_counts[$a];
+	} );
+	$prov_list = array_keys( $prov_counts );
 }
 
 ?>

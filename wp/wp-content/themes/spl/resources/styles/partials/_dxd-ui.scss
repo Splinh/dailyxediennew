@@ -689,7 +689,7 @@
 .news-articles-right,
 .dealer-stores-right {
 	width: 68%;
-	background: #fff;
+	background: #f8fafc;
 	overflow-y: auto;
 	-webkit-overflow-scrolling: touch;
 	padding: 0.75rem;
@@ -770,18 +770,33 @@
 .news-row-item,
 .dealer-row-item {
 	display: flex;
-	gap: 0.625rem;
-	padding-bottom: 0.75rem;
-	border-bottom: 1px solid #f1f5f9;
+	gap: 0.75rem;
+	padding: 0.75rem;
+	border: 1px solid #f1f5f9;
+	border-radius: 0.5rem;
+	background: #fff;
 	text-decoration: none;
-	transition: background 0.2s;
+	box-shadow: 0 1px 3px rgba(15, 23, 42, 0.02);
+	transition: all 0.2s ease;
+	margin-bottom: 0.625rem;
 }
 
 .cat-product-row:last-child,
 .news-row-item:last-child,
 .dealer-row-item:last-child {
-	border-bottom: none;
-	padding-bottom: 0;
+	margin-bottom: 0;
+}
+
+.cat-product-row:hover,
+.cat-product-row:active,
+.news-row-item:hover,
+.news-row-item:active,
+.dealer-row-item:hover,
+.dealer-row-item:active {
+	border-color: #0758b7;
+	background: #fafcff;
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(7, 88, 183, 0.04);
 }
 
 .cat-product-row img,
