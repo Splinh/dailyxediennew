@@ -2,8 +2,8 @@
 
 > **Source**: [Google Sheet](https://docs.google.com/spreadsheets/d/1xi5Rv1YKgoAD1wuGH0h1k-cNrX3juF2oYC10uKxvP8k/edit?gid=2085828008#gid=2085828008) + [PLAN-LOG.md](file:///d:/laragon/www/dailynew/docs/PLAN-LOG.md)
 > **HTML Mockups Vercel**: [thietkedaily.vercel.app](https://thietkedaily.vercel.app/)
-> **Updated**: 2026-07-15
-> **Progress**: 103/115 tasks done (~90%)
+> **Updated**: 2026-07-17
+> **Progress**: 106/118 tasks done (~90%)
 > **Timeline**: T6–T9/2026 (4 tháng)
 
 ---
@@ -236,6 +236,9 @@
 
 #### Session 53 — SEO: Schema Organization + Local
 - [x] T3-42b. Schema markup — Organization, LocalBusiness ✅ 2026-07-17
+
+#### Session 53.5 — Mobile Bottom Nav & Slide Panels
+- [x] T3-42c. Mobile Bottom Nav & Slide Panels (2-column Category, News, Store locator, Contacts, price fix, Swiper fix, ACF options) ✅ 2026-07-17
 
 #### Session 54 — SEO: Redirect map
 - [ ] T3-43. Redirect 301 map — Rank Math Redirections (old URLs → new)

@@ -5,7 +5,7 @@
 > **Repo**: [github.com/Splinh/dailyxediennew](https://github.com/Splinh/dailyxediennew)
 > **HTML Mockups Vercel**: [thietkedaily.vercel.app](https://thietkedaily.vercel.app/)
 > **Khởi tạo**: 2026-06-06 **Cập nhật lần cuối**: 2026-07-17
-> **Progress**: 105/117 tasks done (~90%)
+> **Progress**: 106/118 tasks done (~90%)
 
 ---
 
@@ -210,6 +210,20 @@
 | P3  | Xoá folder website/ (51MB cloudflared.exe) | 2026-06-06 | ✅         | Giảm repo size, thêm vào .gitignore |
 | P4  | Thay docs/ root bằng docs từ theme spl     | 2026-06-06 | ✅         | BLUEPRINT + PERFORMANCE + SCALING   |
 | P5  | Tạo PLAN-LOG.md                            | 2026-06-06 | ✅         | File này — tracking progress        |
+
+### Mobile Bottom Nav & Slide Panels (T3 #35e) — bắt đầu 2026-07-17
+
+| #   | Việc                                                                                                                                                                                                            | Ngày       | Trạng thái | Ghi chú                                         |
+| --- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ---------- | ----------------------------------------------- |
+| M1  | Tạo menu bottom mobile mới với 6 nút: Trang chủ, Danh mục, Tin tức, Đại lý, Liên hệ, Giỏ hàng                                                                                                                   | 2026-07-17 | ✅         | Đồng bộ icon SVG inline                         |
+| M2  | Thiết kế Slide-up Panel 2 cột dọc cho Danh mục sản phẩm (truy vấn WC categories động, sản phẩm nổi bật, và nút Xem tất cả)                                                                                      | 2026-07-17 | ✅         | Nút Xem tất cả danh mục                         |
+| M3  | Thiết kế Slide-up Panel 2 cột dọc cho Tin tức (truy vấn danh mục bài viết, hiển thị 4 bài viết mới nhất từng tab)                                                                                               | 2026-07-17 | ✅         |                                                 |
+| M4  | Thiết kế Slide-up Panel cho Đại lý (sắp xếp tỉnh thành theo số lượng đại lý giảm dần, đưa TP.HCM lên đầu)                                                                                                      | 2026-07-17 | ✅         |                                                 |
+| M5  | Thiết kế Slide-up Panel cho Liên hệ (Hotline, Zalo, Form link)                                                                                                                                                  | 2026-07-17 | ✅         |                                                 |
+| M6  | Đăng ký ACF Options trong Admin cho phép bật/tắt hoặc giới hạn danh mục sản phẩm/tin tức hiển thị trên menu bottom                                                                                            | 2026-07-17 | ✅         | `bottom_nav_categories` + `bottom_nav_news_cats` |
+| M7  | Fix giao diện dạng Card, hover/active highlight, sửa lỗi text giá sản phẩm WooCommerce và đè mũi tên của Swiper                                                                                                 | 2026-07-17 | ✅         | `display: none !important` cho screen-reader-text |
+
+---
 
 ---
 
