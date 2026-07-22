@@ -271,3 +271,77 @@ function spl_get_mega_menu_posts( int $count = 3 ): array {
 	return $cached;
 }
 
+/**
+ * Get products for a specific category for Mega Menu hover panels.
+ *
+ * @param int $cat_id Product category term ID.
+ * @param int $count Number of products to fetch.
+ * @return array Array of product data arrays.
+ */
+function spl_get_mega_menu_products_by_cat( int $cat_id, int $count = 3 ): array {
+	if ( ! function_exists( 'wc_get_products' ) ) {
+		return [];
+	}
+
+	$cache_key = 'spl_mega_cat_prods_' . $cat_id . '_' . $count;
+	$cached    = wp_cache_get( $cache_key, 'spl' );
+
+	if ( false === $cached ) {
+		$args = [
+			'limit'   => $count,
+			'status'  => 'publish',
+			'orderby' => 'date',
+			'order'   => 'DESC',
+		];
+
+		if ( $cat_id > 0 ) {
+			$term = get_term( $cat_id, 'product_cat' );
+			if ( $term && ! is_wp_error( $term ) ) {
+				$args['category'] = [ $term->slug ];
+			}
+		}
+
+		$products = wc_get_products( $args );
+
+		// Fallback to top products if category has no products
+		if ( empty( $products ) && $cat_id > 0 ) {
+			$products = wc_get_products( [
+				'limit'   => $count,
+				'status'  => 'publish',
+				'orderby' => 'date',
+				'order'   => 'DESC',
+			] );
+		}
+
+		$cached = [];
+		foreach ( $products as $product ) {
+			$image_id  = $product->get_image_id();
+			$image_url = $image_id ? wp_get_attachment_image_url( $image_id, 'woocommerce_thumbnail' ) : ( function_exists( 'wc_placeholder_img_src' ) ? wc_placeholder_img_src() : '' );
+			
+			$regular_price = (float) $product->get_regular_price();
+			$price         = (float) $product->get_price();
+			
+			$discount = '';
+			if ( $regular_price > $price && $regular_price > 0 ) {
+				$discount = '-' . round( ( ( $regular_price - $price ) / $regular_price ) * 100 ) . '%';
+			}
+
+			$cached[] = [
+				'id'            => $product->get_id(),
+				'name'          => $product->get_name(),
+				'url'           => $product->get_permalink(),
+				'image'         => $image_url,
+				'price_html'    => $product->get_price_html(),
+				'price'         => $price,
+				'regular_price' => $regular_price,
+				'discount'      => $discount,
+			];
+		}
+
+		wp_cache_set( $cache_key, $cached, 'spl' );
+	}
+
+	return $cached;
+}
+
+

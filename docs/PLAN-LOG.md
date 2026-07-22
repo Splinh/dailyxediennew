@@ -348,6 +348,15 @@ build lại** sau khi sửa template. JS thì enqueue thẳng, không cần buil
 
 > Ghi lại mỗi lần cập nhật plan log.
 
+### 2026-07-22 — Dynamic Category Hover Product Switching in PC Mega Menu ✅
+
+- **Dynamic Hover Category Product Tab Panel (`header.php` & `inc/product-cache.php`)**:
+  - Added `spl_get_mega_menu_products_by_cat()` helper in `inc/product-cache.php` to fetch top products filtered by product category.
+  - Updated Product Categories Mega Menu so hovering over any category on the left panel dynamically updates the right panel to show products belonging to that specific hovered category!
+  - Added `switchMegaCat()` JS switcher with instant tab switching and active highlight styling.
+- **Verification**: `php -l` PASS, `pnpm build` PASS (145 modules transformed, zero errors).
+- **Files changed**: `header.php` [MODIFY], `inc/product-cache.php` [MODIFY]
+
 ### 2026-07-22 — PC Header Mega Menus Container Alignment & Formatting ✅
 
 - **Container Bounded Mega Menus Alignment (`header.php`)**:

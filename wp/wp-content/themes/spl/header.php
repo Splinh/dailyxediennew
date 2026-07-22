@@ -296,17 +296,20 @@ do_action( 'spl_header_before_action' );
 				<div class="absolute top-full left-4 right-4 bg-white text-slate-800 border border-slate-100 rounded-b-2xl shadow-2xl overflow-hidden p-6 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-50 flex gap-6" role="menu">
 					
 					<!-- Left Column: Product Categories & Sub-categories -->
-					<div class="w-80 shrink-0 border-r border-slate-100 pr-5 space-y-2 max-h-[440px] overflow-y-auto no-scrollbar">
+					<div class="w-80 shrink-0 border-r border-slate-100 pr-5 space-y-1.5 max-h-[440px] overflow-y-auto no-scrollbar">
 						<h3 class="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider mb-2.5 px-1"><?php esc_html_e( 'DÒNG XE & PHỤ KIỆN', 'spl' ); ?></h3>
-						<?php foreach ( $nav_cats as $cat ) :
+						<?php foreach ( $nav_cats as $index => $cat ) :
 							$cat_link  = get_term_link( $cat );
 							if ( is_wp_error( $cat_link ) ) { continue; }
 							$sub_cats  = spl_get_product_sub_categories( $cat->term_id );
 							$thumb_id  = get_term_meta( $cat->term_id, 'thumbnail_id', true );
 							$thumb_url = $thumb_id ? wp_get_attachment_image_url( $thumb_id, 'thumbnail' ) : '';
+							$active_cls = $index === 0 ? 'bg-slate-100 text-primary border-primary-200' : 'text-slate-800 hover:bg-slate-50 hover:text-primary';
 							?>
 							<div class="group/cat rounded-xl transition-all">
-								<a href="<?php echo esc_url( $cat_link ); ?>" class="flex items-center justify-between p-2 rounded-xl hover:bg-slate-50 font-bold text-xs text-slate-800 hover:text-primary transition-colors">
+								<a href="<?php echo esc_url( $cat_link ); ?>"
+								   onmouseenter="switchMegaCat(<?php echo (int) $cat->term_id; ?>, this)"
+								   class="mega-cat-item flex items-center justify-between p-2 rounded-xl border border-transparent font-bold text-xs transition-colors <?php echo esc_attr( $active_cls ); ?>">
 									<span class="flex items-center gap-2.5">
 										<?php if ( $thumb_url ) : ?>
 											<img src="<?php echo esc_url( $thumb_url ); ?>" alt="<?php echo esc_attr( $cat->name ); ?>" class="w-6 h-6 object-contain shrink-0" />
@@ -334,59 +337,71 @@ do_action( 'spl_header_before_action' );
 						<?php endforeach; ?>
 					</div>
 
-					<!-- Right Column: Featured Products Grid -->
+					<!-- Right Column: Dynamic Category Products Panels -->
 					<div class="flex-1 space-y-4">
-						<div class="flex items-center justify-between border-b border-slate-100 pb-3">
-							<h3 class="text-xs font-black text-slate-900 tracking-tight flex items-center gap-2">
-								<span class="w-1.5 h-4 bg-primary rounded-full"></span>
-								<?php esc_html_e( 'SẢN PHẨM BÁN CHẠY', 'spl' ); ?>
-							</h3>
-							<?php $shop_url = function_exists( 'wc_get_page_id' ) ? get_permalink( wc_get_page_id( 'shop' ) ) : home_url( '/cua-hang/' ); ?>
-							<a href="<?php echo esc_url( $shop_url ); ?>" class="text-[11px] font-bold text-primary hover:underline flex items-center gap-1">
-								<?php esc_html_e( 'Xem tất cả', 'spl' ); ?>
-								<?php echo spl_icon( 'chevron-right', 'w-3 h-3' ); ?>
-							</a>
-						</div>
+						<?php foreach ( $nav_cats as $index => $cat ) :
+							$cat_products = spl_get_mega_menu_products_by_cat( $cat->term_id, 3 );
+							$cat_link     = get_term_link( $cat );
+							$cat_link_url = is_wp_error( $cat_link ) ? home_url( '/cua-hang/' ) : $cat_link;
+							$panel_class  = $index === 0 ? 'block' : 'hidden';
+							?>
+							<div id="mega-cat-panel-<?php echo (int) $cat->term_id; ?>" class="mega-cat-panel <?php echo esc_attr( $panel_class ); ?> space-y-4">
+								<div class="flex items-center justify-between border-b border-slate-100 pb-3">
+									<h3 class="text-xs font-black text-slate-900 tracking-tight flex items-center gap-2">
+										<span class="w-1.5 h-4 bg-primary rounded-full"></span>
+										<?php echo esc_html( mb_strtoupper( $cat->name ) ); ?>
+									</h3>
+									<a href="<?php echo esc_url( $cat_link_url ); ?>" class="text-[11px] font-bold text-primary hover:underline flex items-center gap-1">
+										<?php esc_html_e( 'Xem tất cả', 'spl' ); ?>
+										<?php echo spl_icon( 'chevron-right', 'w-3 h-3' ); ?>
+									</a>
+								</div>
 
-						<div class="grid grid-cols-3 gap-3.5">
-							<?php if ( ! empty( $mega_products ) ) : ?>
-								<?php foreach ( $mega_products as $p ) : ?>
-									<div class="bg-slate-50/70 border border-slate-100 rounded-xl p-3 hover:border-primary/30 hover:bg-white hover:shadow-md transition-all duration-300 flex flex-col justify-between group/p relative">
-										<?php if ( ! empty( $p['discount'] ) ) : ?>
-											<span class="absolute top-2 left-2 bg-red-500 text-white font-extrabold text-[9px] px-1.5 py-0.5 rounded shadow-sm z-10"><?php echo esc_html( $p['discount'] ); ?></span>
-										<?php endif; ?>
-										<a href="<?php echo esc_url( $p['url'] ); ?>" class="block aspect-square overflow-hidden rounded-lg mb-2 bg-white flex items-center justify-center">
-											<img src="<?php echo esc_url( $p['image'] ); ?>" alt="<?php echo esc_attr( $p['name'] ); ?>" class="max-h-full max-w-full object-contain group-hover/p:scale-105 transition-transform duration-300" />
-										</a>
-										<div>
-											<h4 class="font-bold text-slate-800 text-xs line-clamp-2 leading-snug group-hover/p:text-primary transition-colors">
-												<a href="<?php echo esc_url( $p['url'] ); ?>"><?php echo esc_html( $p['name'] ); ?></a>
-											</h4>
-											<div class="mt-2 flex items-baseline gap-1">
-												<span class="text-xs font-black text-slate-900"><?php echo esc_html( number_format( $p['price'], 0, ',', '.' ) ); ?>đ</span>
-												<?php if ( $p['regular_price'] > $p['price'] ) : ?>
-													<span class="text-[10px] text-slate-400 line-through"><?php echo esc_html( number_format( $p['regular_price'] / 1000000, 1 ) ); ?>M</span>
+								<div class="grid grid-cols-3 gap-3.5">
+									<?php if ( ! empty( $cat_products ) ) : ?>
+										<?php foreach ( $cat_products as $p ) : ?>
+											<div class="bg-slate-50/70 border border-slate-100 rounded-xl p-3 hover:border-primary/30 hover:bg-white hover:shadow-md transition-all duration-300 flex flex-col justify-between group/p relative">
+												<?php if ( ! empty( $p['discount'] ) ) : ?>
+													<span class="absolute top-2 left-2 bg-red-500 text-white font-extrabold text-[9px] px-1.5 py-0.5 rounded shadow-sm z-10"><?php echo esc_html( $p['discount'] ); ?></span>
 												<?php endif; ?>
+												<a href="<?php echo esc_url( $p['url'] ); ?>" class="block aspect-square overflow-hidden rounded-lg mb-2 bg-white flex items-center justify-center">
+													<img src="<?php echo esc_url( $p['image'] ); ?>" alt="<?php echo esc_attr( $p['name'] ); ?>" class="max-h-full max-w-full object-contain group-hover/p:scale-105 transition-transform duration-300" />
+												</a>
+												<div>
+													<h4 class="font-bold text-slate-800 text-xs line-clamp-2 leading-snug group-hover/p:text-primary transition-colors">
+														<a href="<?php echo esc_url( $p['url'] ); ?>"><?php echo esc_html( $p['name'] ); ?></a>
+													</h4>
+													<div class="mt-2 flex items-baseline gap-1">
+														<span class="text-xs font-black text-slate-900"><?php echo esc_html( number_format( $p['price'], 0, ',', '.' ) ); ?>đ</span>
+														<?php if ( $p['regular_price'] > $p['price'] ) : ?>
+															<span class="text-[10px] text-slate-400 line-through"><?php echo esc_html( number_format( $p['regular_price'] / 1000000, 1 ) ); ?>M</span>
+														<?php endif; ?>
+													</div>
+												</div>
 											</div>
+										<?php endforeach; ?>
+									<?php else : ?>
+										<div class="col-span-3 py-8 text-center text-slate-400 text-xs">
+											<?php esc_html_e( 'Chưa có sản phẩm thuộc danh mục này.', 'spl' ); ?>
+										</div>
+									<?php endif; ?>
+								</div>
+
+								<!-- Banner Highlight -->
+								<div class="bg-gradient-to-r from-primary to-indigo-600 rounded-xl p-3.5 text-white flex items-center justify-between shadow-sm">
+									<div class="flex items-center gap-2.5">
+										<span class="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center shrink-0"><?php echo spl_icon( 'bolt', 'w-4 h-4 text-yellow-300' ); ?></span>
+										<div>
+											<h4 class="font-black text-xs"><?php esc_html_e( 'HỖ TRỢ TRẢ GÓP 0%', 'spl' ); ?></h4>
+											<p class="text-[10px] text-blue-100"><?php esc_html_e( 'Xét duyệt nhanh 15 phút, không chứng minh thu nhập', 'spl' ); ?></p>
 										</div>
 									</div>
-								<?php endforeach; ?>
-							<?php endif; ?>
-						</div>
-
-						<!-- Banner Highlight -->
-						<div class="bg-gradient-to-r from-primary to-indigo-600 rounded-xl p-3.5 text-white flex items-center justify-between shadow-sm">
-							<div class="flex items-center gap-2.5">
-								<span class="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center shrink-0"><?php echo spl_icon( 'bolt', 'w-4 h-4 text-yellow-300' ); ?></span>
-								<div>
-									<h4 class="font-black text-xs"><?php esc_html_e( 'HỖ TRỢ TRẢ GÓP 0%', 'spl' ); ?></h4>
-									<p class="text-[10px] text-blue-100"><?php esc_html_e( 'Xét duyệt nhanh 15 phút, không chứng minh thu nhập', 'spl' ); ?></p>
+									<a href="#consult-form" class="bg-white text-primary hover:bg-slate-100 font-bold text-[10px] px-3.5 py-1.5 rounded-lg transition-colors shrink-0">
+										<?php esc_html_e( 'ĐĂNG KÝ', 'spl' ); ?>
+									</a>
 								</div>
 							</div>
-							<a href="#consult-form" class="bg-white text-primary hover:bg-slate-100 font-bold text-[10px] px-3.5 py-1.5 rounded-lg transition-colors shrink-0">
-								<?php esc_html_e( 'ĐĂNG KÝ', 'spl' ); ?>
-							</a>
-						</div>
+						<?php endforeach; ?>
 					</div>
 
 				</div>
@@ -487,6 +502,36 @@ do_action( 'spl_header_before_action' );
 
 	</div>
 </nav>
+
+<script>
+function switchMegaCat(catId, element) {
+	var container = element.closest('[role="menu"]');
+	if (!container) return;
+	
+	// Hide all panels
+	var panels = container.querySelectorAll('.mega-cat-panel');
+	panels.forEach(function(p) {
+		p.classList.add('hidden');
+		p.classList.remove('block');
+	});
+	
+	// Show target panel
+	var target = container.querySelector('#mega-cat-panel-' + catId);
+	if (target) {
+		target.classList.remove('hidden');
+		target.classList.add('block');
+	}
+	
+	// Active category item styling
+	var items = container.querySelectorAll('.mega-cat-item');
+	items.forEach(function(i) {
+		i.classList.remove('bg-slate-100', 'text-primary', 'border-primary-200');
+		i.classList.add('text-slate-800');
+	});
+	element.classList.remove('text-slate-800');
+	element.classList.add('bg-slate-100', 'text-primary', 'border-primary-200');
+}
+</script>
 
 <?php
 /** Hook: spl_header_after_action. */
