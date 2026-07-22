@@ -64,8 +64,11 @@ $cols_class = $cols_class_map[ $columns ] ?? 'lg:grid-cols-6';
 				if ( is_wp_error( $cat_link ) ) { continue; }
 				$rendered = true;
 
-				// Select icon depending on category slug/name.
-				$slug = $cat->slug;
+				// Check for category image attachment.
+				$slug         = $cat->slug;
+				$thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
+				$image_url    = $thumbnail_id ? wp_get_attachment_image_url( $thumbnail_id, 'thumbnail' ) : '';
+
 				$icon_name = 'bolt';
 				if ( false !== stripos( $slug, 'dap' ) || false !== stripos( $slug, 'dap-dien' ) || false !== stripos( $slug, 'xe-dien' ) ) {
 					$icon_name = 'bicycle';
@@ -74,14 +77,18 @@ $cols_class = $cols_class_map[ $columns ] ?? 'lg:grid-cols-6';
 				} elseif ( false !== stripos( $slug, 'may-dien' ) ) {
 					$icon_name = 'bolt';
 				} elseif ( false !== stripos( $slug, '3-banh' ) || false !== stripos( $slug, 'ba-banh' ) ) {
-					$icon_name = 'map-pin'; // use map-pin or fallback
+					$icon_name = 'map-pin';
 				}
 				?>
-				<a href="<?php echo esc_url( $cat_link ); ?>" class="bg-white hover:border-primary border border-slate-100 p-4 md:p-6 rounded-2xl text-center shadow-premium transition-all hover:-translate-y-1 hover:shadow-hover-card flex flex-col items-center group">
-					<div class="w-16 h-16 md:w-20 md:h-20 bg-slate-50 rounded-full flex items-center justify-center p-2 mb-3 md:mb-4 group-hover:bg-primary-50 transition-colors">
-						<?php echo spl_icon( $icon_name, 'w-8 h-8 text-slate-400 group-hover:text-primary transition-colors' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<a href="<?php echo esc_url( $cat_link ); ?>" class="bg-white hover:border-primary border border-slate-100 p-4 md:p-6 rounded-2xl text-center shadow-premium transition-all hover:-translate-y-1 hover:shadow-hover-card flex flex-col items-center justify-between group h-full">
+					<div class="w-16 h-16 md:w-20 md:h-20 bg-slate-50 rounded-full flex items-center justify-center p-2 mb-3 md:mb-4 group-hover:bg-primary-50 transition-colors shrink-0 overflow-hidden">
+						<?php if ( $image_url ) : ?>
+							<img loading="lazy" src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $cat->name ); ?>" class="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300">
+						<?php else : ?>
+							<?php echo spl_icon( $icon_name, 'w-8 h-8 text-slate-400 group-hover:text-primary transition-colors' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						<?php endif; ?>
 					</div>
-					<span class="font-bold text-slate-800 text-xs md:text-sm group-hover:text-primary transition-colors"><?php echo esc_html( $cat->name ); ?></span>
+					<span class="font-bold text-slate-800 text-xs md:text-sm group-hover:text-primary transition-colors leading-snug"><?php echo esc_html( $cat->name ); ?></span>
 				</a>
 				<?php
 			endforeach;

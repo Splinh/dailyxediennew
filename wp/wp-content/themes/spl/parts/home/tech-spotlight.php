@@ -74,7 +74,7 @@ if ( empty( $features ) ) {
 		<div class="relative z-10 grid grid-cols-1 lg:grid-cols-10 gap-8 items-start">
 			<!-- Sidebar selector controls -->
 			<div class="lg:col-span-3 flex flex-col gap-3.5 w-full">
-				<div class="flex lg:flex-col gap-2 overflow-x-auto no-scrollbar w-full pb-3 lg:pb-0" role="tablist" aria-label="<?php esc_attr_e( 'Chọn tính năng công nghệ', 'spl' ); ?>">
+				<div class="flex lg:flex-col gap-2 overflow-x-auto no-scrollbar w-full pb-3 lg:pb-0 snap-x scroll-smooth" role="tablist" aria-label="<?php esc_attr_e( 'Chọn tính năng công nghệ', 'spl' ); ?>">
 					<?php foreach ( $features as $index => $feat ) :
 						$feat_id = $feat['feature_id'] ?? '';
 						$feat_name = $feat['feature_name'] ?? '';
@@ -85,7 +85,7 @@ if ( empty( $features ) ) {
 						<button onclick="switchTechTab('<?php echo esc_attr( $feat_id ); ?>', this)"
 							role="tab"
 							aria-selected="<?php echo $index === 0 ? 'true' : 'false'; ?>"
-							class="w-full flex items-center gap-3.5 px-4.5 py-4 border text-left rounded-2xl font-bold text-xs tracking-wider transition-all whitespace-nowrap cursor-pointer <?php echo esc_attr( $active_btn ); ?>">
+							class="w-full shrink-0 lg:shrink flex items-center gap-3.5 px-4.5 py-4 border text-left rounded-2xl font-bold text-xs tracking-wider transition-all whitespace-nowrap cursor-pointer snap-start <?php echo esc_attr( $active_btn ); ?>">
 							<span class="shrink-0"><?php echo $feat['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 							<?php echo esc_html( $feat_name ); ?>
 						</button>

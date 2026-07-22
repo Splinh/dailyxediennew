@@ -348,6 +348,19 @@ build lại** sau khi sửa template. JS thì enqueue thẳng, không cần buil
 
 > Ghi lại mỗi lần cập nhật plan log.
 
+### 2026-07-22 — UX/UI & Responsive Optimization Polish ✅
+
+- **Homepage Product Categories (`parts/home/categories.php`)**:
+  - Added dynamic category thumbnail image rendering with `wp_get_attachment_image_url()`, falling back gracefully to SVG icons.
+  - Added smooth hover scale animation (`group-hover:scale-110`) and uniform card height flexbox layout (`h-full justify-between`).
+- **Best Sellers & Tech Spotlight Mobile UX (`parts/home/best-sellers.php`, `parts/home/tech-spotlight.php`)**:
+  - Enhanced horizontal tab scrolling on mobile touch devices with CSS `snap-x scroll-smooth` and `snap-start shrink-0` alignment.
+  - Prevented tab buttons from compressing on small mobile screens (`shrink-0`).
+- **Footer Official BCT Badge Integration (`footer.php`)**:
+  - Integrated official blue "Đã thông báo Bộ Công Thương" badge `DaThongBao.png`.
+- **Verification**: `php -l` PASS, `pnpm build` PASS (145 modules, zero errors).
+- **Files changed**: `parts/home/categories.php` [MODIFY], `parts/home/best-sellers.php` [MODIFY], `parts/home/tech-spotlight.php` [MODIFY], `footer.php` [MODIFY]
+
 ### 2026-07-22 — Tech Spotlight Image Sizing Polish ✅
 
 - **Homepage Tech Spotlight Section (`parts/home/tech-spotlight.php`)**:

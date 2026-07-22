@@ -45,14 +45,14 @@ if ( empty( $tabs ) ) {
 		</div>
 
 		<!-- Tab Buttons list -->
-		<div class="flex items-center gap-2 bg-slate-100/80 p-1.5 rounded-2xl overflow-x-auto no-scrollbar md:w-auto w-full" role="tablist" aria-label="<?php esc_attr_e( 'Lọc sản phẩm theo loại', 'spl' ); ?>">
+		<div class="flex items-center gap-2 bg-slate-100/80 p-1.5 rounded-2xl overflow-x-auto no-scrollbar md:w-auto w-full snap-x scroll-smooth" role="tablist" aria-label="<?php esc_attr_e( 'Lọc sản phẩm theo loại', 'spl' ); ?>">
 			<?php foreach ( $tabs as $index => $tab ) :
 				$tab_title = $tab['tab_title'] ?? '';
 				$tab_icon = $tab['tab_icon'] ?? 'bicycle';
 				$tab_slug = 'tab-bs-' . sanitize_title( $tab_title ) . '-' . $index;
 				$active_btn_class = $index === 0
-					? 'tab-btn active px-4 md:px-6 py-2.5 md:py-3 text-xs font-black rounded-xl transition-all whitespace-nowrap bg-gradient-to-r from-primary to-primary-hover text-white shadow-md shadow-primary/30'
-					: 'tab-btn px-4 md:px-6 py-2.5 md:py-3 text-xs font-bold rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-200/50 transition-all whitespace-nowrap';
+					? 'tab-btn active snap-start shrink-0 px-4 md:px-6 py-2.5 md:py-3 text-xs font-black rounded-xl transition-all whitespace-nowrap bg-gradient-to-r from-primary to-primary-hover text-white shadow-md shadow-primary/30'
+					: 'tab-btn snap-start shrink-0 px-4 md:px-6 py-2.5 md:py-3 text-xs font-bold rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-200/50 transition-all whitespace-nowrap';
 				?>
 				<button onclick="switchTab('<?php echo esc_attr( $tab_slug ); ?>', this)"
 					data-tab="<?php echo esc_attr( $tab_slug ); ?>"
