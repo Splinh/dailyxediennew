@@ -348,6 +348,17 @@ build lại** sau khi sửa template. JS thì enqueue thẳng, không cần buil
 
 > Ghi lại mỗi lần cập nhật plan log.
 
+### 2026-07-22 — All Inner Pages UX/UI & Responsive Optimization ✅
+
+- **Shop / Product Archive Page (`woocommerce/archive-product.php`)**:
+  - Corrected shop archive description text to match Electric Vehicles domain.
+- **Store Detail Page (`single-local_store.php`)**:
+  - Made embedded Google Maps iframe fully responsive on mobile & desktop screens (`w-full h-64 md:h-96`).
+- **Article & Single Post Content Typography (`resources/styles/page.scss`)**:
+  - Added responsive image styling (`max-w-full h-auto rounded-xl shadow-sm`), table styling with zebra striping and overflow scroll wrappers, and blockquote styling for all post and page contents.
+- **Verification**: `php -l` PASS, `pnpm build` PASS (145 modules, zero errors).
+- **Files changed**: `woocommerce/archive-product.php` [MODIFY], `single-local_store.php` [MODIFY], `resources/styles/page.scss` [MODIFY]
+
 ### 2026-07-22 — UX/UI & Responsive Optimization Polish ✅
 
 - **Homepage Product Categories (`parts/home/categories.php`)**:

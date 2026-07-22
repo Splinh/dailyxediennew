@@ -34,7 +34,7 @@ if ( $is_search ) {
 	);
 } else {
 	$cat_name        = $is_shop ? __( 'Tất Cả Sản Phẩm', 'spl' ) : ( $queried->name ?? '' );
-	$cat_description = $is_shop ? __( 'Khám phá bộ sưu tập sản phẩm thực phẩm tự nhiên chất lượng cao, được tuyển chọn kỹ lưỡng. Cam kết 100% nguồn gốc tự nhiên.', 'spl' ) : ( $queried->description ?? '' );
+	$cat_description = $is_shop ? __( 'Khám phá các dòng xe điện, xe máy điện, xe 50cc chính hãng chất lượng cao. Bảo hành 3 năm, hỗ trợ trả góp 0%.', 'spl' ) : ( $queried->description ?? '' );
 }
 ?>
 

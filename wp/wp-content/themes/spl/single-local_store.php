@@ -177,7 +177,7 @@ $map_dir_url = ( $lat && $lng ) ? 'https://www.google.com/maps/dir//' . $lat . '
 				</h2>
 				<div class="p-4">
 					<div class="rounded-xl overflow-hidden border border-slate-200">
-						<iframe src="<?php echo esc_url( $map_embed ); ?>" width="100%" height="350" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="rounded-xl"></iframe>
+						<iframe src="<?php echo esc_url( $map_embed ); ?>" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-full h-64 md:h-96 rounded-xl"></iframe>
 					</div>
 				</div>
 			</div>
