@@ -241,7 +241,22 @@
 - [x] T3-42c. Mobile Bottom Nav & Slide Panels (2-column Category, News, Store locator, Contacts, price fix, Swiper fix, ACF options, layout width optimization to prevent text compression) ✅ 2026-07-17
 
 #### Session 54 — SEO: Redirect map
-- [ ] T3-43. Redirect 301 map — Rank Math Redirections (old URLs → new)
+- [x] T3-43. Redirect 301 map — Rank Math Redirections (old URLs → new) ✅ 2026-07-18
+
+#### Session 54.5 — SEO: 404 Page
+- [x] T3-43a. 404 Page redesign — htmlmau & theme 404.php ✅ 2026-07-18
+
+#### Session 54.6 — Mobile Spacing Fix
+- [x] T3-43b. Mobile spacing fix — homepage mobile section margins ✅ 2026-07-18
+
+#### Session 54.7 — Breadcrumb Spacing Fix
+- [x] T3-43c. Breadcrumb spacing fix — single.php breadcrumbs and padding ✅ 2026-07-18
+
+#### Session 54.8 — Video Slider Arrows
+- [x] T3-43d. Video slider arrows — media-reviews.php custom SVGs ✅ 2026-07-18
+
+#### Session 54.9 — Footer Contrast & BCT Logo
+- [x] T3-43e. Footer styling and BCT logo integration — footer.php ✅ 2026-07-18
 
 ---
 

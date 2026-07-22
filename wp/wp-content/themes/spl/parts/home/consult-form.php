@@ -28,7 +28,7 @@ $regions   = [
 $input_class = 'w-full px-4 py-3 border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none rounded-xl text-sm transition-all bg-slate-50';
 $label_class = 'text-xs font-bold text-slate-500 uppercase tracking-wider block';
 ?>
-<section class="max-w-7xl mx-auto px-4 mb-16 scroll-mt-24" id="consult-form">
+<section class="max-w-7xl mx-auto px-4 mb-8 md:mb-16 scroll-mt-24" id="consult-form">
 	<div class="bg-gradient-to-r from-primary-600 to-indigo-700 rounded-3xl p-6 md:p-12 text-white relative overflow-hidden shadow-premium">
 		<div class="absolute -right-10 -bottom-10 w-80 h-80 bg-white/5 rounded-full blur-2xl"></div>
 		<div class="absolute top-0 left-1/3 w-60 h-60 bg-emerald-500/10 rounded-full blur-3xl"></div>

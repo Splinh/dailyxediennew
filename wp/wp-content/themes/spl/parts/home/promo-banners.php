@@ -54,7 +54,7 @@ $badge_classes = [
 	'green' => 'bg-white/20 text-white',
 ];
 ?>
-<section class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+<section class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 md:mb-16">
 	<?php foreach ( $banners as $b ) :
 		$grad_key = $b['gradient'] ?? 'blue';
 		$grad_cls = $gradient_classes[ $grad_key ] ?? $gradient_classes['blue'];

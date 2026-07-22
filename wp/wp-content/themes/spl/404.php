@@ -19,12 +19,14 @@ $home_url  = home_url( '/' );
 <section class="error-404">
 	<div class="container">
 		<div class="error-404__inner reveal">
-			<div class="error-404__icon">
-				<svg class="icon" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 17 3.5s1 2.5-1 6c-2 3.5-5 5.5-5 5.5"/><path d="M11.7 11.2a5.18 5.18 0 0 1 3.3-2.2c2.5-.4 4-1 4-1s-.3 2.3-2 4c-1.7 1.7-3.3 2.5-3.3 2.5"/><path d="M14 21c0-3.5-2-7-2-7"/></svg>
+			<div class="error-404__badge-wrapper">
+				<div class="error-404__code">404</div>
+				<div class="error-404__badge">
+					<?php esc_html_e( 'Không tìm thấy trang', 'spl' ); ?>
+				</div>
 			</div>
-			<div class="error-404__code">404</div>
-			<h1 class="error-404__title"><?php esc_html_e( 'Không tìm thấy trang', 'spl' ); ?></h1>
-			<p class="error-404__desc"><?php esc_html_e( 'Trang bạn tìm có thể đã bị xóa, đổi tên hoặc tạm thời không khả dụng. Hãy thử tìm kiếm hoặc quay lại trang chủ.', 'spl' ); ?></p>
+			<h1 class="error-404__title"><?php esc_html_e( 'Oops! Trang web này không tồn tại', 'spl' ); ?></h1>
+			<p class="error-404__desc"><?php esc_html_e( 'Trang bạn đang tìm kiếm có thể đã bị xóa, thay đổi tên đường dẫn hoặc tạm thời không khả dụng. Hãy thử tìm kiếm hoặc quay lại trang chủ.', 'spl' ); ?></p>
 
 			<div class="error-404__search search-bar" role="search">
 				<div class="search-bar__wrapper" data-search>

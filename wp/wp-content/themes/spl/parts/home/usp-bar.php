@@ -35,28 +35,28 @@ if ( empty( $features ) ) {
 	];
 }
 ?>
-<section class="max-w-7xl mx-auto px-4 mb-16 mt-8">
+<section class="max-w-7xl mx-auto px-4 mb-8 md:mb-16 mt-4 md:mt-8">
 	<div class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 no-scrollbar lg:grid lg:grid-cols-4 lg:pb-0">
 		<?php foreach ( $features as $feat ) :
 			$icon_code = $feat['icon'] ?? '';
 			$title = $feat['title'] ?? '';
 			$desc = $feat['desc'] ?? '';
 			?>
-			<div class="snap-center bg-white border border-slate-100 hover:border-primary-100 p-5 rounded-2xl flex items-center gap-4 shadow-premium transition-all hover:shadow-hover-card shrink-0 w-[80%] md:w-auto">
-				<div class="w-12 h-12 rounded-xl bg-primary-50 text-primary flex items-center justify-center text-xl shrink-0">
+			<div class="snap-center bg-white border border-slate-100 hover:border-primary-100 p-3 md:p-5 rounded-2xl flex items-center gap-3 md:gap-4 shadow-premium transition-all hover:shadow-hover-card shrink-0 w-[72%] md:w-auto">
+				<div class="w-9 h-9 rounded-lg md:w-12 md:h-12 md:rounded-xl bg-primary-50 text-primary flex items-center justify-center text-lg md:text-xl shrink-0">
 					<?php
 					if ( $icon_code ) {
 						// Clean class attribute from raw input SVG to match layout
-						$clean_icon = preg_replace( '/class="[^"]+"/', 'class="w-6 h-6 text-primary"', $icon_code );
+						$clean_icon = preg_replace( '/class="[^"]+"/', 'class="w-5 h-5 md:w-6 md:h-6 text-primary"', $icon_code );
 						echo $clean_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- admin raw SVG code input.
 					} else {
-						echo spl_icon( 'bolt', 'w-6 h-6 text-primary' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						echo spl_icon( 'bolt', 'w-5 h-5 md:w-6 md:h-6 text-primary' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					}
 					?>
 				</div>
 				<div>
-					<h3 class="font-bold text-slate-800 text-sm"><?php echo esc_html( $title ); ?></h3>
-					<p class="text-xs text-slate-500 mt-0.5"><?php echo esc_html( $desc ); ?></p>
+					<h3 class="font-bold text-slate-800 text-xs md:text-sm"><?php echo esc_html( $title ); ?></h3>
+					<p class="text-[10px] md:text-xs text-slate-500 mt-0.5"><?php echo esc_html( $desc ); ?></p>
 				</div>
 			</div>
 		<?php endforeach; ?>

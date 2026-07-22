@@ -4,8 +4,8 @@
 > [Link](https://docs.google.com/spreadsheets/d/1xi5Rv1YKgoAD1wuGH0h1k-cNrX3juF2oYC10uKxvP8k/edit?gid=2085828008#gid=2085828008)
 > **Repo**: [github.com/Splinh/dailyxediennew](https://github.com/Splinh/dailyxediennew)
 > **HTML Mockups Vercel**: [thietkedaily.vercel.app](https://thietkedaily.vercel.app/)
-> **Khởi tạo**: 2026-06-06 **Cập nhật lần cuối**: 2026-07-17
-> **Progress**: 106/118 tasks done (~90%)
+> **Khởi tạo**: 2026-06-06 **Cập nhật lần cuối**: 2026-07-22
+> **Progress**: 112/123 tasks done (~91%)
 
 ---
 
@@ -137,7 +137,12 @@
 | --- | ------------------------------ | ------- | ---------- | ---- | ---------------------- |
 | 39  | Gỡ Yoast, thống nhất Rank Math | 🔴 Cao  | ✅         | 2026-07-15 | robots.txt, sitemap    |
 | 40  | SEO: Schema markup             | 🟡 TB   | ✅         | 2026-07-17 | Product, Org, Local    |
-| 41  | SEO: Redirect 301 map          | 🔴 Cao  | ⬜         | —    | Rank Math Redirections |
+| 41  | SEO: Redirect 301 map          | 🔴 Cao  | ✅         | 2026-07-18 | Rank Math Redirections |
+| 41a | SEO: 404 Page redesign         | 🟡 TB   | ✅         | 2026-07-18 | htmlmau & theme 404.php |
+| 41b | Layout: Mobile spacing fix     | 🟢 Thấp | ✅         | 2026-07-18 | homepage mobile margins |
+| 41c | Layout: Breadcrumb mobile fix  | 🟢 Thấp | ✅         | 2026-07-18 | single.php breadcrumbs |
+| 41d | Layout: Video slider arrows    | 🟢 Thấp | ✅         | 2026-07-18 | media-reviews.php SVGs |
+| 41e | Layout: Footer text & BCT logo | 🟢 Thấp | ✅         | 2026-07-18 | footer.php and BCT SVG |
 
 ---
 
@@ -333,15 +338,35 @@ build lại** sau khi sửa template. JS thì enqueue thẳng, không cần buil
 | 🆕 Performance Phase A-I       | 9          | 9       | 0        | 0       | 100%    |
 | T1 — Setup & WC Migration     | 17         | 12      | 0        | 5       | 71%     |
 | T2 — Custom Modules            | 22         | 22       | 0        | 0       | 100%    |
-| T3 — Frontend & Perf (còn lại) | 24         | 22      | 0        | 2       | 92%     |
+| T3 — Frontend & Perf (còn lại) | 29         | 28      | 0        | 1       | 96%     |
 | T4 — QA & Deploy               | 15         | 0       | 0        | 15      | 0%      |
-| **TỔNG**                       | **117**    | **103**  | **0**    | **14**  | **88%** |
+| **TỔNG**                       | **120**    | **109**  | **0**    | **11**  | **91%** |
 
 ---
 
 ## 📝 Changelog
 
 > Ghi lại mỗi lần cập nhật plan log.
+
+### 2026-07-22 — Tech Spotlight Image Sizing Polish ✅
+
+- **Homepage Tech Spotlight Section (`parts/home/tech-spotlight.php`)**:
+  - Adjusted image height constraint from `max-h-44` (176px) to `max-h-64 md:max-h-80` (up to 320px) to allow technology images to fill the height of the right container.
+  - Rebalanced layout grid ratio from `md:w-3/5` / `md:w-2/5` to `md:w-7/12` (58%) for details and `md:w-5/12` (42%) for the image panel, setting `min-h-[280px]`.
+  - Added hover scaling and drop-shadow enhancements to the image preview.
+- **Verification**: `php -l` PASS, `pnpm build` PASS (145 modules, zero errors).
+- **Files changed**: `parts/home/tech-spotlight.php` [MODIFY]
+
+### 2026-07-18 — SEO: Redirect 301 Map (Session 54) ✅
+
+- **Rank Math 301 Redirection Map** ✅
+  - Programmatically seeded Rank Math's `w_rank_math_redirections` database table with regex and exact redirection rules.
+  - Resolved single product base URLs mapping from legacy `/san-pham/prod-slug` to `/product/prod-slug` using a negative lookahead regex to exclude category slugs.
+  - Mapped product category URLs from legacy `/san-pham/cat-slug` to `/product-category/cat-slug` using a combined regex pattern.
+  - Programmatically set up redirects for legacy pages `/he-thong-dai-ly` to `/he-thong-cua-hang` and `/co-hoi-hop-tac` to `/hop-tac`.
+  - Added legacy news category redirect for `/tin-dailyxedien` and `/category/tin-dailyxedien` to the new category path.
+- **Verification**: Verified redirection logic via WP-CLI test suite (`100% match rate` across all 11 test cases).
+- **Progress**: 106 → **107** tasks done (91%)
 
 ### 2026-07-17 — SEO: Schema Markup (Sessions 52 & 53) ✅
 

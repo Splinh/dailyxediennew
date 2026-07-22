@@ -119,7 +119,7 @@ if ( empty( $testimonials ) ) {
 <!-- Playlist data for JS hydration -->
 <script type="application/json" id="dxd-playlist-data"><?php echo wp_json_encode( $playlist_resolved ); ?></script>
 
-<section class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+<section class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8 md:mb-16">
 	<!-- Video Widget -->
 	<div class="lg:col-span-2 bg-white border border-slate-100 rounded-2xl p-5 md:p-6 shadow-premium flex flex-col justify-between">
 		<div>
@@ -169,10 +169,10 @@ if ( empty( $testimonials ) ) {
 					<!-- Navigation controls -->
 					<div class="swiper-controls">
 						<button class="swiper-button swiper-button-prev absolute -left-1 top-1/2 -translate-y-1/2 z-10 size-7 rounded-full bg-white shadow-md border border-slate-200 hover:bg-primary hover:text-white hover:border-primary text-slate-500 flex items-center justify-center transition-all duration-200 focus:outline-none disabled:opacity-30 disabled:pointer-events-none">
-							<svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+							<svg class="w-3 h-3" style="fill: none !important;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
 						</button>
 						<button class="swiper-button swiper-button-next absolute -right-1 top-1/2 -translate-y-1/2 z-10 size-7 rounded-full bg-white shadow-md border border-slate-200 hover:bg-primary hover:text-white hover:border-primary text-slate-500 flex items-center justify-center transition-all duration-200 focus:outline-none disabled:opacity-30 disabled:pointer-events-none">
-							<svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+							<svg class="w-3 h-3" style="fill: none !important;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
 						</button>
 					</div>
 				</div>

@@ -75,7 +75,7 @@ if ( empty( $stores ) ) {
 	return;
 }
 ?>
-<section class="max-w-7xl mx-auto px-4 mb-16 scroll-mt-24" id="store-section">
+<section class="max-w-7xl mx-auto px-4 mb-8 md:mb-16 scroll-mt-24" id="store-section">
 	<!-- Header -->
 	<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
 		<div class="flex items-center gap-3">

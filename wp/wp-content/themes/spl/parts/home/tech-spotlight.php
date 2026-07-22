@@ -57,7 +57,7 @@ if ( empty( $features ) ) {
 	];
 }
 ?>
-<section id="ai-tech-spotlight" class="max-w-7xl mx-auto px-4 mb-16">
+<section id="ai-tech-spotlight" class="max-w-7xl mx-auto px-4 mb-8 md:mb-16">
 	<div class="bg-gradient-to-br from-slate-900 to-indigo-950 rounded-3xl p-6 md:p-12 text-white relative overflow-hidden shadow-2xl">
 		<div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(99,102,241,0.15),transparent_60%)] pointer-events-none"></div>
 
@@ -110,7 +110,7 @@ if ( empty( $features ) ) {
 					$active_panel = $index === 0 ? 'flex' : 'hidden';
 					?>
 					<div class="ai-tab-panel flex-col md:flex-row gap-6 items-center <?php echo esc_attr( $active_panel ); ?>" id="panel-<?php echo esc_attr( $feat_id ); ?>">
-						<div class="flex-grow space-y-4 md:w-3/5">
+						<div class="flex-grow space-y-4 md:w-7/12">
 							<h3 class="font-extrabold text-base md:text-xl text-white leading-tight"><?php echo esc_html( $feat_title ); ?></h3>
 							<p class="text-slate-300 text-xs leading-relaxed"><?php echo esc_html( $feat_desc ); ?></p>
 
@@ -136,11 +136,11 @@ if ( empty( $features ) ) {
 							</div>
 						</div>
 
-						<div class="w-full md:w-2/5 flex items-center justify-center min-h-[160px]">
+						<div class="w-full md:w-5/12 flex items-center justify-center min-h-[220px] md:min-h-[280px]">
 							<?php if ( $img_url ) : ?>
-								<img loading="lazy" src="<?php echo esc_url( $img_url ); ?>" alt="<?php echo esc_attr( $feat_title ); ?>" class="max-h-44 object-contain filter drop-shadow-[0_10px_20px_rgba(99,102,241,0.3)] hover:scale-102 transition-transform duration-300">
+								<img loading="lazy" src="<?php echo esc_url( $img_url ); ?>" alt="<?php echo esc_attr( $feat_title ); ?>" class="w-full max-w-[280px] sm:max-w-[340px] md:max-w-none max-h-64 md:max-h-80 object-contain filter drop-shadow-[0_12px_24px_rgba(99,102,241,0.35)] hover:scale-105 transition-all duration-300">
 							<?php else : ?>
-								<div class="w-full max-w-[260px] aspect-[4/3] bg-gradient-to-tr from-primary to-indigo-600 rounded-xl flex items-center justify-center border border-white/20 shadow-inner">
+								<div class="w-full max-w-[300px] aspect-[4/3] bg-gradient-to-tr from-primary to-indigo-600 rounded-xl flex items-center justify-center border border-white/20 shadow-inner">
 									<?php echo spl_icon( 'bolt', 'w-16 h-16 text-white/60' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 								</div>
 							<?php endif; ?>

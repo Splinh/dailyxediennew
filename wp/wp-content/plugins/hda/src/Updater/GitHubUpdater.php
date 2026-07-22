@@ -21,7 +21,7 @@ final class GitHubUpdater {
 	/**
 	 * GitHub repository URL.
 	 */
-	private const REPO_URL = 'https://github.com/HD-Agency/hda';
+	private const REPO_URL = 'https://github.com/Splinh/sp_hda';
 
 	// --------------------------------------------------
 
@@ -43,7 +43,7 @@ final class GitHubUpdater {
 		try {
 			// Create update checker instance.
 			$updateChecker = PucFactory::buildUpdateChecker(
-				self::REPO_URL,
+				$this->getRepoUrl(),
 				HDA_PATH . 'hda.php',
 				'hda'
 			);
@@ -65,6 +65,21 @@ final class GitHubUpdater {
 		} catch ( \Throwable $e ) {
 			Helper::errorLog( '[GitHubUpdater] Init failed: ' . $e->getMessage() );
 		}
+	}
+
+	/**
+	 * Get GitHub repository URL.
+	 *
+	 * Priority: wp-config.php constant → default REPO_URL.
+	 *
+	 * @return string Repository URL.
+	 */
+	private function getRepoUrl(): string {
+		if ( defined( 'HDA_GITHUB_REPO_URL' ) && \HDA_GITHUB_REPO_URL ) {
+			return \HDA_GITHUB_REPO_URL;
+		}
+
+		return self::REPO_URL;
 	}
 
 	// --------------------------------------------------

@@ -47,24 +47,25 @@ while ( have_posts() ) :
 	?>
 
 	<!-- ===== BREADCRUMBS & ARTICLE HEADER ===== -->
-	<section class="bg-slate-50 border-b border-slate-100">
-		<div class="max-w-7xl mx-auto px-4 py-6">
-			<nav class="flex items-center gap-2 text-xs text-slate-500 mb-4" aria-label="Breadcrumb">
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="hover:text-[#1e73be] transition-colors">
+	<div class="breadcrumb-bar">
+		<div class="container">
+			<nav class="breadcrumb" aria-label="Breadcrumb">
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+					<svg class="icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
 					<?php esc_html_e( 'Trang chủ', 'spl' ); ?>
 				</a>
-				<svg class="w-2.5 h-2.5 text-slate-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-				<a href="<?php echo esc_url( get_post_type_archive_link( 'post' ) ); ?>" class="hover:text-[#1e73be] transition-colors">
+				<svg class="icon breadcrumb__sep" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+				<a href="<?php echo esc_url( get_post_type_archive_link( 'post' ) ); ?>">
 					<?php esc_html_e( 'Tin tức', 'spl' ); ?>
 				</a>
-				<svg class="w-2.5 h-2.5 text-slate-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-				<span class="text-slate-700 font-medium truncate max-w-[200px] sm:max-w-md md:max-w-xl lg:max-w-none"><?php the_title(); ?></span>
+				<svg class="icon breadcrumb__sep" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+				<span class="breadcrumb__current truncate max-w-[200px] sm:max-w-md md:max-w-xl lg:max-w-none"><?php the_title(); ?></span>
 			</nav>
 		</div>
-	</section>
+	</div>
 
 	<!-- ===== MAIN CONTENT ===== -->
-	<main id="article-main" class="max-w-7xl mx-auto px-4 py-8 md:py-12">
+	<main id="article-main" class="max-w-7xl mx-auto px-4 pt-4 pb-8 md:pt-8 md:pb-12">
 		<div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
 
 			<!-- LEFT: Article Content (9/12 = 75%) -->

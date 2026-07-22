@@ -96,7 +96,7 @@ $slider_options = wp_json_encode( [
 	],
 ], JSON_UNESCAPED_SLASHES );
 ?>
-<section class="max-w-7xl mx-auto px-4 mb-16">
+<section class="max-w-7xl mx-auto px-4 mb-8 md:mb-16">
 	<!-- Section header -->
 	<div class="flex items-center justify-between mb-8">
 		<div class="flex items-center gap-3">

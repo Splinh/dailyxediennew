@@ -78,7 +78,7 @@ get_template_part( 'parts/global/company-activity' );
 ?>
 
 <!-- ===== FOOTER ===== -->
-<footer class="bg-navy text-slate-400 text-sm pt-16 pb-8 border-t border-white/10">
+<footer class="bg-slate-50 text-slate-600 text-sm pt-16 pb-8 border-t border-slate-200">
 	<div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
 
 		<!-- Company + social -->
@@ -88,15 +88,15 @@ get_template_part( 'parts/global/company-activity' );
 					echo get_custom_logo();
 				else : ?>
 					<div class="bg-primary text-white font-black p-2 rounded-xl text-lg">D<span class="text-accent">XD</span></div>
-					<span class="text-xl font-extrabold text-white"><?php bloginfo( 'name' ); ?></span>
+					<span class="text-xl font-extrabold text-slate-800"><?php bloginfo( 'name' ); ?></span>
 				<?php endif; ?>
 			</a>
-			<p class="text-xs leading-relaxed text-slate-400"><?php echo esc_html( $footer_desc ); ?></p>
+			<p class="text-xs leading-relaxed text-slate-500"><?php echo esc_html( $footer_desc ); ?></p>
 			<div class="flex items-center gap-3 pt-2">
 				<?php foreach ( $footer_socials as $social ) :
 					if ( empty( $social['url'] ) || '#' === $social['url'] ) { continue; }
 					?>
-					<a href="<?php echo esc_url( $social['url'] ); ?>" target="_blank" rel="noopener" aria-label="<?php echo esc_attr( $social['label'] ); ?>" class="w-8 h-8 rounded-full bg-white/10 hover:bg-primary hover:text-white flex items-center justify-center transition-colors text-slate-300">
+					<a href="<?php echo esc_url( $social['url'] ); ?>" target="_blank" rel="noopener" aria-label="<?php echo esc_attr( $social['label'] ); ?>" class="w-8 h-8 rounded-full bg-slate-200/60 hover:bg-primary hover:text-white flex items-center justify-center transition-colors text-slate-500">
 						<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?php echo $social['svg']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?></svg>
 					</a>
 				<?php endforeach; ?>
@@ -105,60 +105,60 @@ get_template_part( 'parts/global/company-activity' );
 
 		<!-- Policy -->
 		<div class="space-y-4">
-			<h4 class="text-white font-bold text-sm tracking-wide"><?php esc_html_e( 'CHÍNH SÁCH CHUNG', 'spl' ); ?></h4>
+			<h4 class="text-slate-800 font-bold text-sm tracking-wide"><?php esc_html_e( 'CHÍNH SÁCH CHUNG', 'spl' ); ?></h4>
 			<?php if ( has_nav_menu( 'policy-nav' ) ) : ?>
 				<nav class="dxd-footermenu" aria-label="<?php esc_attr_e( 'Chính sách', 'spl' ); ?>">
 					<?php wp_nav_menu( [ 'theme_location' => 'policy-nav', 'container' => false, 'items_wrap' => '<ul class="space-y-2 text-xs">%3$s</ul>', 'fallback_cb' => false, 'depth' => 1 ] ); ?>
 				</nav>
 			<?php else : ?>
 				<ul class="space-y-2 text-xs">
-					<li><a href="#" class="hover:text-white transition-colors"><?php esc_html_e( 'Chính sách bảo hành', 'spl' ); ?></a></li>
-					<li><a href="#" class="hover:text-white transition-colors"><?php esc_html_e( 'Chính sách đổi trả trong 7 ngày', 'spl' ); ?></a></li>
-					<li><a href="#" class="hover:text-white transition-colors"><?php esc_html_e( 'Chính sách vận chuyển & giao nhận', 'spl' ); ?></a></li>
-					<li><a href="#" class="hover:text-white transition-colors"><?php esc_html_e( 'Chính sách thanh toán linh hoạt', 'spl' ); ?></a></li>
-					<li><a href="#" class="hover:text-white transition-colors"><?php esc_html_e( 'Chính sách bảo mật thông tin', 'spl' ); ?></a></li>
+					<li><a href="#" class="hover:text-primary transition-colors"><?php esc_html_e( 'Chính sách bảo hành', 'spl' ); ?></a></li>
+					<li><a href="#" class="hover:text-primary transition-colors"><?php esc_html_e( 'Chính sách đổi trả trong 7 ngày', 'spl' ); ?></a></li>
+					<li><a href="#" class="hover:text-primary transition-colors"><?php esc_html_e( 'Chính sách vận chuyển & giao nhận', 'spl' ); ?></a></li>
+					<li><a href="#" class="hover:text-primary transition-colors"><?php esc_html_e( 'Chính sách thanh toán linh hoạt', 'spl' ); ?></a></li>
+					<li><a href="#" class="hover:text-primary transition-colors"><?php esc_html_e( 'Chính sách bảo mật thông tin', 'spl' ); ?></a></li>
 				</ul>
 			<?php endif; ?>
 		</div>
 
 		<!-- Support -->
 		<div class="space-y-4">
-			<h4 class="text-white font-bold text-sm tracking-wide"><?php esc_html_e( 'HỖ TRỢ KHÁCH HÀNG', 'spl' ); ?></h4>
+			<h4 class="text-slate-800 font-bold text-sm tracking-wide"><?php esc_html_e( 'HỖ TRỢ KHÁCH HÀNG', 'spl' ); ?></h4>
 			<?php if ( has_nav_menu( 'about-nav' ) ) : ?>
 				<nav class="dxd-footermenu" aria-label="<?php esc_attr_e( 'Hỗ trợ', 'spl' ); ?>">
 					<?php wp_nav_menu( [ 'theme_location' => 'about-nav', 'container' => false, 'items_wrap' => '<ul class="space-y-2 text-xs">%3$s</ul>', 'fallback_cb' => false, 'depth' => 1 ] ); ?>
 				</nav>
 			<?php else : ?>
 				<ul class="space-y-2 text-xs">
-					<li><a href="#" class="hover:text-white transition-colors"><?php esc_html_e( 'Hướng dẫn mua hàng trực tuyến', 'spl' ); ?></a></li>
-					<li><a href="#" class="hover:text-white transition-colors"><?php esc_html_e( 'Hướng dẫn trả góp 0%', 'spl' ); ?></a></li>
-					<li><a href="#" class="hover:text-white transition-colors"><?php esc_html_e( 'Tra cứu tiến độ đơn hàng', 'spl' ); ?></a></li>
-					<li><a href="#" class="hover:text-white transition-colors"><?php esc_html_e( 'Câu hỏi thường gặp (FAQs)', 'spl' ); ?></a></li>
-					<li><a href="#" class="hover:text-white transition-colors"><?php esc_html_e( 'Bản đồ hệ thống đại lý', 'spl' ); ?></a></li>
+					<li><a href="#" class="hover:text-primary transition-colors"><?php esc_html_e( 'Hướng dẫn mua hàng trực tuyến', 'spl' ); ?></a></li>
+					<li><a href="#" class="hover:text-primary transition-colors"><?php esc_html_e( 'Hướng dẫn trả góp 0%', 'spl' ); ?></a></li>
+					<li><a href="#" class="hover:text-primary transition-colors"><?php esc_html_e( 'Tra cứu tiến độ đơn hàng', 'spl' ); ?></a></li>
+					<li><a href="#" class="hover:text-primary transition-colors"><?php esc_html_e( 'Câu hỏi thường gặp (FAQs)', 'spl' ); ?></a></li>
+					<li><a href="#" class="hover:text-primary transition-colors"><?php esc_html_e( 'Bản đồ hệ thống đại lý', 'spl' ); ?></a></li>
 				</ul>
 			<?php endif; ?>
 		</div>
 
 		<!-- Contact -->
 		<div class="space-y-4">
-			<h4 class="text-white font-bold text-sm tracking-wide"><?php esc_html_e( 'LIÊN HỆ VỚI CHÚNG TÔI', 'spl' ); ?></h4>
+			<h4 class="text-slate-800 font-bold text-sm tracking-wide"><?php esc_html_e( 'LIÊN HỆ VỚI CHÚNG TÔI', 'spl' ); ?></h4>
 			<div class="space-y-3 text-xs">
 				<p class="flex items-start gap-2.5 leading-relaxed">
-					<span class="text-primary-300 mt-0.5 shrink-0"><?php echo spl_icon( 'map-pin', 'w-4 h-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+					<span class="text-primary mt-0.5 shrink-0"><?php echo spl_icon( 'map-pin', 'w-4 h-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 					<span><?php echo esc_html( $address ); ?></span>
 				</p>
 				<p class="flex items-center gap-2.5">
-					<span class="text-primary-300 shrink-0"><?php echo spl_icon( 'phone', 'w-4 h-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-					<a href="<?php echo esc_url( $hotline_url ); ?>" class="hover:text-white transition-colors"><?php echo esc_html( $hotline_display ); ?></a>
+					<span class="text-primary shrink-0"><?php echo spl_icon( 'phone', 'w-4 h-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+					<a href="<?php echo esc_url( $hotline_url ); ?>" class="hover:text-primary transition-colors"><?php echo esc_html( $hotline_display ); ?></a>
 				</p>
 				<p class="flex items-center gap-2.5">
-					<span class="text-primary-300 shrink-0"><?php echo spl_icon( 'mail', 'w-4 h-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-					<a href="mailto:<?php echo esc_attr( $email ); ?>" class="hover:text-white transition-colors"><?php echo esc_html( $email ); ?></a>
+					<span class="text-primary shrink-0"><?php echo spl_icon( 'mail', 'w-4 h-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+					<a href="mailto:<?php echo esc_attr( $email ); ?>" class="hover:text-primary transition-colors"><?php echo esc_html( $email ); ?></a>
 				</p>
 				<?php if ( $website_url ) : ?>
 					<p class="flex items-center gap-2.5">
-						<span class="text-primary-300 shrink-0"><?php echo spl_icon( 'bolt', 'w-4 h-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-						<a href="<?php echo esc_url( $website_url ); ?>" target="_blank" rel="noopener" class="hover:text-white transition-colors"><?php echo esc_html( preg_replace( '#^https?://#', '', untrailingslashit( $website_url ) ) ); ?></a>
+						<span class="text-primary shrink-0"><?php echo spl_icon( 'bolt', 'w-4 h-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+						<a href="<?php echo esc_url( $website_url ); ?>" target="_blank" rel="noopener" class="hover:text-primary transition-colors"><?php echo esc_html( preg_replace( '#^https?://#', '', untrailingslashit( $website_url ) ) ); ?></a>
 					</p>
 				<?php endif; ?>
 			</div>
@@ -166,12 +166,17 @@ get_template_part( 'parts/global/company-activity' );
 	</div>
 
 	<!-- Copyright -->
-	<div class="border-t border-white/10 pt-8 text-center text-xs text-slate-500 max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+	<div class="border-t border-slate-200 pt-8 text-center text-xs text-slate-500 max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
 		<p>© <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>. <?php esc_html_e( 'Tất cả bản quyền được bảo lưu.', 'spl' ); ?></p>
-		<div class="flex items-center gap-4">
-			<a href="#" class="hover:text-slate-300 transition-colors"><?php esc_html_e( 'Bảo mật', 'spl' ); ?></a>
-			<span>•</span>
-			<a href="#" class="hover:text-slate-300 transition-colors"><?php esc_html_e( 'Điều khoản sử dụng', 'spl' ); ?></a>
+		<div class="flex flex-col sm:flex-row items-center gap-6">
+			<div class="flex items-center gap-4">
+				<a href="#" class="hover:text-slate-800 transition-colors"><?php esc_html_e( 'Bảo mật', 'spl' ); ?></a>
+				<span>•</span>
+				<a href="#" class="hover:text-slate-800 transition-colors"><?php esc_html_e( 'Điều khoản sử dụng', 'spl' ); ?></a>
+			</div>
+			<a href="http://online.gov.vn/nen-tang/d7eeaccf-92c4-4c57-9c19-cc749c427728" target="_blank" rel="noopener" class="inline-block transition-opacity hover:opacity-90">
+				<img src="<?php echo esc_url( get_theme_file_uri( 'resources/img/bo-cong-thuong.svg' ) ); ?>" alt="<?php esc_attr_e( 'Đăng ký Bộ Công Thương', 'spl' ); ?>" class="h-10 w-auto" style="height: 38px;" />
+			</a>
 		</div>
 	</div>
 </footer>

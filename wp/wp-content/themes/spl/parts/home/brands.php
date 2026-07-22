@@ -26,7 +26,7 @@ if ( empty( $brands ) ) {
 	];
 }
 ?>
-<section class="max-w-7xl mx-auto px-4 mb-16">
+<section class="max-w-7xl mx-auto px-4 mb-8 md:mb-16">
 	<div class="flex items-center justify-between mb-8">
 		<div class="flex items-center gap-3">
 			<span class="w-1.5 h-6 bg-primary rounded-full"></span>
