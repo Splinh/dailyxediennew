@@ -175,7 +175,7 @@ get_template_part( 'parts/global/company-activity' );
 				<a href="#" class="hover:text-slate-800 transition-colors"><?php esc_html_e( 'Điều khoản sử dụng', 'spl' ); ?></a>
 			</div>
 			<a href="http://online.gov.vn/nen-tang/d7eeaccf-92c4-4c57-9c19-cc749c427728" target="_blank" rel="noopener" class="inline-block transition-opacity hover:opacity-90">
-				<img src="<?php echo esc_url( get_theme_file_uri( 'resources/img/bo-cong-thuong.svg' ) ); ?>" alt="<?php esc_attr_e( 'Đăng ký Bộ Công Thương', 'spl' ); ?>" class="h-10 w-auto" style="height: 38px;" />
+				<img src="<?php echo esc_url( get_theme_file_uri( 'resources/img/bo-cong-thuong-xanh.svg' ) ); ?>" alt="<?php esc_attr_e( 'Đã thông báo Bộ Công Thương', 'spl' ); ?>" class="h-10 w-auto" style="height: 38px;" />
 			</a>
 		</div>
 	</div>
