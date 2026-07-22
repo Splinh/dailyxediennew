@@ -348,7 +348,19 @@ build lại** sau khi sửa template. JS thì enqueue thẳng, không cần buil
 
 > Ghi lại mỗi lần cập nhật plan log.
 
-### 2026-07-22 — PC Header Mega Menus (Product Categories & News) ✅
+### 2026-07-22 — PC Header Mega Menus Container Alignment & Formatting ✅
+
+- **Container Bounded Mega Menus Alignment (`header.php`)**:
+  - Aligned both Product Categories and News Mega Menu dropdown panels to span 100% full width of the parent `.max-w-7xl` container (`left-4 right-4` within relative container context).
+  - Fixed right-side overflow issue on desktop screens so dropdown content fills the container bounds cleanly without cutting off.
+- **Product Categories Mega Menu (`header.php` & `inc/product-cache.php`)**:
+  - Implemented rich PC Mega Menu panel displaying product sub-categories (danh mục con) on the left column with thumbnail icons and item counts.
+  - Added real-time featured products grid (Sản phẩm bán chạy) on the right column with product images, regular/discount prices, sale badges, and 0% installment promotion banner.
+- **News & Blog Mega Menu (`header.php` & `inc/product-cache.php`)**:
+  - Implemented PC News Mega Menu panel displaying news categories (Chuyên mục tin tức) on the left column.
+  - Added featured blog articles grid (Bài viết nổi bật) on the right column with thumbnails, category badges, titles, and publication dates.
+- **Verification**: `php -l` PASS, `pnpm build` PASS (145 modules transformed, zero errors).
+- **Files changed**: `header.php` [MODIFY], `inc/product-cache.php` [MODIFY]
 
 - **Product Categories Mega Menu (`header.php` & `inc/product-cache.php`)**:
   - Implemented rich PC Mega Menu panel (`w-[880px]`) displaying product sub-categories (danh mục con) on the left column with thumbnail icons and item counts.

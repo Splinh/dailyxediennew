@@ -278,25 +278,25 @@ do_action( 'spl_header_before_action' );
 
 <!-- ===== PRIMARY NAV BAR (PC Mega Menu) ===== -->
 <nav class="bg-primary text-white shadow-md relative z-40 hidden md:block" aria-label="<?php esc_attr_e( 'Main navigation', 'spl' ); ?>">
-	<div class="max-w-7xl mx-auto flex items-center justify-between">
+	<div class="max-w-7xl mx-auto flex items-center justify-between relative px-4">
 
-		<!-- 1. Category trigger + MEGA MENU SẢN PHẨM -->
-		<div class="relative group" data-cat-menu>
+		<!-- 1. Category trigger + MEGA MENU SẢN PHẨM (Full Container Width) -->
+		<div class="group static" data-cat-menu>
 			<button class="bg-primary-700 hover:bg-primary-800 px-6 py-4 flex items-center gap-3 cursor-pointer transition-colors font-bold text-sm select-none" data-cat-trigger aria-expanded="false">
 				<?php echo spl_icon( 'menu', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				<span><?php esc_html_e( 'DANH MỤC SẢN PHẨM', 'spl' ); ?></span>
 				<?php echo spl_icon( 'chevron-down', 'w-3.5 h-3.5 ml-1 transition-transform group-hover:rotate-180' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</button>
 			<?php
-			$nav_cats       = spl_get_product_categories( 8 );
+			$nav_cats       = spl_get_product_categories( 10 );
 			$mega_products = spl_get_mega_menu_products( 3 );
 			if ( ! empty( $nav_cats ) ) :
 				?>
-				<!-- MEGA MENU DROPDOWN PANEL (SẢN PHẨM) -->
-				<div class="absolute top-full left-0 w-[880px] max-w-[90vw] bg-white text-slate-800 border border-slate-100 rounded-b-2xl shadow-2xl overflow-hidden p-6 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-50 flex gap-6" role="menu">
+				<!-- MEGA MENU DROPDOWN PANEL (SẢN PHẨM - CONTAINER BOUNDED) -->
+				<div class="absolute top-full left-4 right-4 bg-white text-slate-800 border border-slate-100 rounded-b-2xl shadow-2xl overflow-hidden p-6 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-50 flex gap-6" role="menu">
 					
 					<!-- Left Column: Product Categories & Sub-categories -->
-					<div class="w-72 shrink-0 border-r border-slate-100 pr-5 space-y-2 max-h-[440px] overflow-y-auto no-scrollbar">
+					<div class="w-80 shrink-0 border-r border-slate-100 pr-5 space-y-2 max-h-[440px] overflow-y-auto no-scrollbar">
 						<h3 class="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider mb-2.5 px-1"><?php esc_html_e( 'DÒNG XE & PHỤ KIỆN', 'spl' ); ?></h3>
 						<?php foreach ( $nav_cats as $cat ) :
 							$cat_link  = get_term_link( $cat );
@@ -348,7 +348,7 @@ do_action( 'spl_header_before_action' );
 							</a>
 						</div>
 
-						<div class="grid grid-cols-3 gap-3">
+						<div class="grid grid-cols-3 gap-3.5">
 							<?php if ( ! empty( $mega_products ) ) : ?>
 								<?php foreach ( $mega_products as $p ) : ?>
 									<div class="bg-slate-50/70 border border-slate-100 rounded-xl p-3 hover:border-primary/30 hover:bg-white hover:shadow-md transition-all duration-300 flex flex-col justify-between group/p relative">
@@ -383,7 +383,7 @@ do_action( 'spl_header_before_action' );
 									<p class="text-[10px] text-blue-100"><?php esc_html_e( 'Xét duyệt nhanh 15 phút, không chứng minh thu nhập', 'spl' ); ?></p>
 								</div>
 							</div>
-							<a href="#consult-form" class="bg-white text-primary hover:bg-slate-100 font-bold text-[10px] px-3 py-1.5 rounded-lg transition-colors shrink-0">
+							<a href="#consult-form" class="bg-white text-primary hover:bg-slate-100 font-bold text-[10px] px-3.5 py-1.5 rounded-lg transition-colors shrink-0">
 								<?php esc_html_e( 'ĐĂNG KÝ', 'spl' ); ?>
 							</a>
 						</div>
@@ -393,7 +393,7 @@ do_action( 'spl_header_before_action' );
 			<?php endif; ?>
 		</div>
 
-		<!-- 2. Main menu links + MEGA MENU TIN TỨC -->
+		<!-- 2. Main menu links + MEGA MENU TIN TỨC (Full Container Width) -->
 		<div class="dxd-mainmenu flex items-center gap-1 px-4 text-sm font-bold">
 			<?php
 			$shop_page_url = function_exists( 'wc_get_page_id' ) ? get_permalink( wc_get_page_id( 'shop' ) ) : home_url( '/cua-hang/' );
@@ -406,18 +406,18 @@ do_action( 'spl_header_before_action' );
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="px-4 py-4 hover:bg-primary-700 transition-colors uppercase tracking-wider block"><?php esc_html_e( 'TRANG CHỦ', 'spl' ); ?></a>
 			<a href="<?php echo esc_url( $shop_page_url ); ?>" class="px-4 py-4 hover:bg-primary-700 transition-colors uppercase tracking-wider block"><?php esc_html_e( 'SẢN PHẨM', 'spl' ); ?></a>
 			
-			<!-- MEGA MENU TIN TỨC ITEM -->
-			<div class="relative group" data-news-mega>
+			<!-- MEGA MENU TIN TỨC ITEM (Full Container Bounded) -->
+			<div class="group static" data-news-mega>
 				<a href="<?php echo esc_url( $news_page_url ); ?>" class="px-4 py-4 hover:bg-primary-700 transition-colors uppercase tracking-wider flex items-center gap-1">
 					<span><?php esc_html_e( 'TIN TỨC', 'spl' ); ?></span>
 					<?php echo spl_icon( 'chevron-down', 'w-3.5 h-3.5 opacity-80 group-hover:rotate-180 transition-transform' ); ?>
 				</a>
 
-				<!-- MEGA MENU DROPDOWN PANEL (TIN TỨC) -->
-				<div class="absolute top-full left-0 w-[780px] max-w-[85vw] bg-white text-slate-800 border border-slate-100 rounded-b-2xl shadow-2xl overflow-hidden p-6 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-50 flex gap-6" role="menu">
+				<!-- MEGA MENU DROPDOWN PANEL (TIN TỨC - CONTAINER BOUNDED) -->
+				<div class="absolute top-full left-4 right-4 bg-white text-slate-800 border border-slate-100 rounded-b-2xl shadow-2xl overflow-hidden p-6 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-50 flex gap-6" role="menu">
 					
 					<!-- Left Column: News Categories -->
-					<div class="w-60 shrink-0 border-r border-slate-100 pr-5 space-y-2 max-h-[380px] overflow-y-auto no-scrollbar">
+					<div class="w-72 shrink-0 border-r border-slate-100 pr-5 space-y-2 max-h-[380px] overflow-y-auto no-scrollbar">
 						<h3 class="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider mb-2.5 px-1"><?php esc_html_e( 'CHUYÊN MỤC TIN TỨC', 'spl' ); ?></h3>
 						<?php
 						$news_categories = get_categories( [ 'hide_empty' => false, 'number' => 8 ] );
@@ -447,7 +447,7 @@ do_action( 'spl_header_before_action' );
 							</a>
 						</div>
 
-						<div class="grid grid-cols-3 gap-3">
+						<div class="grid grid-cols-3 gap-3.5">
 							<?php
 							$mega_posts = spl_get_mega_menu_posts( 3 );
 							if ( ! empty( $mega_posts ) ) :
