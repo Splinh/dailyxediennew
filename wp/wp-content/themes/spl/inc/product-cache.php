@@ -142,3 +142,132 @@ function spl_clear_product_transients_on_terms( int $object_id, mixed $terms, mi
 
 	spl_clear_product_transients();
 }
+
+/**
+ * Get child sub-categories for a parent product category.
+ *
+ * @param int $parent_id Parent term ID.
+ * @return \WP_Term[]
+ */
+function spl_get_product_sub_categories( int $parent_id ): array {
+	if ( ! function_exists( 'is_woocommerce' ) || $parent_id <= 0 ) {
+		return [];
+	}
+
+	$cache_key = 'spl_product_subcats_' . $parent_id;
+	$cached    = wp_cache_get( $cache_key, 'spl' );
+
+	if ( false === $cached ) {
+		$cached = get_terms( [
+			'taxonomy'   => 'product_cat',
+			'hide_empty' => false,
+			'parent'     => $parent_id,
+			'orderby'    => 'menu_order',
+			'order'      => 'ASC',
+			'number'     => 10,
+		] );
+
+		if ( is_wp_error( $cached ) ) {
+			$cached = [];
+		}
+
+		wp_cache_set( $cache_key, $cached, 'spl' );
+	}
+
+	return $cached;
+}
+
+/**
+ * Get featured products for Mega Menu dropdown.
+ *
+ * @param int $count Number of products to fetch.
+ * @return array Array of product data arrays.
+ */
+function spl_get_mega_menu_products( int $count = 3 ): array {
+	if ( ! function_exists( 'wc_get_products' ) ) {
+		return [];
+	}
+
+	$cache_key = 'spl_mega_products_' . $count;
+	$cached    = wp_cache_get( $cache_key, 'spl' );
+
+	if ( false === $cached ) {
+		$products = wc_get_products( [
+			'limit'   => $count,
+			'status'  => 'publish',
+			'orderby' => 'date',
+			'order'   => 'DESC',
+		] );
+
+		$cached = [];
+		foreach ( $products as $product ) {
+			$image_id  = $product->get_image_id();
+			$image_url = $image_id ? wp_get_attachment_image_url( $image_id, 'woocommerce_thumbnail' ) : ( function_exists( 'wc_placeholder_img_src' ) ? wc_placeholder_img_src() : '' );
+			
+			$regular_price = (float) $product->get_regular_price();
+			$price         = (float) $product->get_price();
+			
+			$discount = '';
+			if ( $regular_price > $price && $regular_price > 0 ) {
+				$discount = '-' . round( ( ( $regular_price - $price ) / $regular_price ) * 100 ) . '%';
+			}
+
+			$cached[] = [
+				'id'            => $product->get_id(),
+				'name'          => $product->get_name(),
+				'url'           => $product->get_permalink(),
+				'image'         => $image_url,
+				'price_html'    => $product->get_price_html(),
+				'price'         => $price,
+				'regular_price' => $regular_price,
+				'discount'      => $discount,
+			];
+		}
+
+		wp_cache_set( $cache_key, $cached, 'spl' );
+	}
+
+	return $cached;
+}
+
+/**
+ * Get featured posts for News Mega Menu dropdown.
+ *
+ * @param int $count Number of posts to fetch.
+ * @return array Array of post data arrays.
+ */
+function spl_get_mega_menu_posts( int $count = 3 ): array {
+	$cache_key = 'spl_mega_posts_' . $count;
+	$cached    = wp_cache_get( $cache_key, 'spl' );
+
+	if ( false === $cached ) {
+		$posts = get_posts( [
+			'post_type'      => 'post',
+			'posts_per_page' => $count,
+			'post_status'    => 'publish',
+			'orderby'        => 'date',
+			'order'          => 'DESC',
+		] );
+
+		$cached = [];
+		foreach ( $posts as $post ) {
+			$cats      = get_the_category( $post->ID );
+			$cat_name  = ! empty( $cats ) ? $cats[0]->name : __( 'Tin tức', 'spl' );
+			$thumb_url = get_the_post_thumbnail_url( $post->ID, 'medium' );
+
+			$cached[] = [
+				'id'       => $post->ID,
+				'title'    => get_the_title( $post ),
+				'url'      => get_permalink( $post ),
+				'image'    => $thumb_url,
+				'date'     => get_the_date( 'd/m/Y', $post ),
+				'category' => $cat_name,
+			];
+		}
+
+		wp_cache_set( $cache_key, $cached, 'spl' );
+	}
+
+	return $cached;
+}
+
