@@ -205,11 +205,11 @@ do_action( 'spl_header_before_action' );
 	<div class="max-w-7xl mx-auto flex items-center justify-between relative px-4">
 
 		<!-- 1. Category trigger + MEGA MENU SẢN PHẨM (Full Container Width) -->
-		<div class="group static" data-cat-menu>
+		<div class="static" data-mega-item="cat" data-cat-menu>
 			<button class="bg-primary-700 hover:bg-primary-800 px-6 py-4 flex items-center gap-3 cursor-pointer transition-colors font-bold text-sm select-none" data-cat-trigger aria-expanded="false">
 				<?php echo spl_icon( 'menu', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				<span><?php esc_html_e( 'DANH MỤC SẢN PHẨM', 'spl' ); ?></span>
-				<?php echo spl_icon( 'chevron-down', 'w-3.5 h-3.5 ml-1 transition-transform group-hover:rotate-180' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<?php echo spl_icon( 'chevron-down', 'w-3.5 h-3.5 ml-1 transition-transform' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</button>
 			<?php
 			$nav_cats       = spl_get_product_categories( 10 );
@@ -217,7 +217,7 @@ do_action( 'spl_header_before_action' );
 			if ( ! empty( $nav_cats ) ) :
 				?>
 				<!-- MEGA MENU DROPDOWN PANEL (SẢN PHẨM - CONTAINER BOUNDED) -->
-				<div class="absolute top-full left-4 right-4 bg-white text-slate-800 border border-slate-100 rounded-b-2xl shadow-2xl overflow-hidden p-6 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-40 group-hover:z-50 flex gap-6" role="menu">
+				<div data-mega-target="cat" class="absolute top-full left-4 right-4 bg-white text-slate-800 border border-slate-100 rounded-b-2xl shadow-2xl overflow-hidden p-6 opacity-0 translate-y-2 pointer-events-none transition-all duration-300 z-50 flex gap-6 hidden" role="menu">
 					
 					<!-- Left Column: Product Categories & Sub-categories -->
 					<div class="w-80 shrink-0 border-r border-slate-100 pr-5 space-y-1.5 max-h-[440px] overflow-y-auto no-scrollbar">
@@ -346,14 +346,14 @@ do_action( 'spl_header_before_action' );
 			<a href="<?php echo esc_url( $shop_page_url ); ?>" class="px-4 py-4 hover:bg-primary-700 transition-colors uppercase tracking-wider block"><?php esc_html_e( 'SẢN PHẨM', 'spl' ); ?></a>
 			
 			<!-- MEGA MENU TIN TỨC ITEM (Full Container Bounded) -->
-			<div class="group static" data-news-mega>
+			<div class="static" data-mega-item="news" data-news-mega>
 				<a href="<?php echo esc_url( $news_page_url ); ?>" class="px-4 py-4 hover:bg-primary-700 transition-colors uppercase tracking-wider flex items-center gap-1">
 					<span><?php esc_html_e( 'TIN TỨC', 'spl' ); ?></span>
-					<?php echo spl_icon( 'chevron-down', 'w-3.5 h-3.5 opacity-80 group-hover:rotate-180 transition-transform' ); ?>
+					<?php echo spl_icon( 'chevron-down', 'w-3.5 h-3.5 opacity-80 transition-transform' ); ?>
 				</a>
 
 				<!-- MEGA MENU DROPDOWN PANEL (TIN TỨC - CONTAINER BOUNDED) -->
-				<div class="absolute top-full left-4 right-4 bg-white text-slate-800 border border-slate-100 rounded-b-2xl shadow-2xl overflow-hidden p-6 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-40 group-hover:z-50 flex gap-6" role="menu">
+				<div data-mega-target="news" class="absolute top-full left-4 right-4 bg-white text-slate-800 border border-slate-100 rounded-b-2xl shadow-2xl overflow-hidden p-6 opacity-0 translate-y-2 pointer-events-none transition-all duration-300 z-50 flex gap-6 hidden" role="menu">
 					
 					<!-- Left Column: News Categories -->
 					<div class="w-72 shrink-0 border-r border-slate-100 pr-5 space-y-2 max-h-[380px] overflow-y-auto no-scrollbar">
@@ -456,6 +456,74 @@ function switchMegaCat(catId, element) {
 	element.classList.remove('text-slate-800');
 	element.classList.add('bg-slate-100', 'text-primary', 'border-primary-200');
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+	var megaItems = document.querySelectorAll('[data-mega-item]');
+	var megaDropdowns = document.querySelectorAll('[data-mega-target]');
+	var enterTimer = null;
+	var leaveTimer = null;
+
+	function closeAll() {
+		megaDropdowns.forEach(function(el) {
+			el.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none', 'hidden');
+			el.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+		});
+	}
+
+	function openMega(name) {
+		megaDropdowns.forEach(function(el) {
+			if (el.getAttribute('data-mega-target') === name) {
+				el.classList.remove('opacity-0', 'translate-y-2', 'pointer-events-none', 'hidden');
+				el.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+			} else {
+				el.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none', 'hidden');
+				el.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+			}
+		});
+	}
+
+	megaItems.forEach(function(item) {
+		var name = item.getAttribute('data-mega-item');
+		var targetDropdown = document.querySelector('[data-mega-target="' + name + '"]');
+
+		item.addEventListener('mouseenter', function() {
+			clearTimeout(leaveTimer);
+			clearTimeout(enterTimer);
+			enterTimer = setTimeout(function() {
+				openMega(name);
+			}, 120);
+		});
+
+		item.addEventListener('mouseleave', function(e) {
+			clearTimeout(enterTimer);
+			if (targetDropdown && (targetDropdown.contains(e.relatedTarget) || targetDropdown === e.relatedTarget)) {
+				return;
+			}
+			leaveTimer = setTimeout(function() {
+				if (!targetDropdown || !targetDropdown.matches(':hover')) {
+					closeAll();
+				}
+			}, 180);
+		});
+	});
+
+	megaDropdowns.forEach(function(dropdown) {
+		dropdown.addEventListener('mouseenter', function() {
+			clearTimeout(leaveTimer);
+			clearTimeout(enterTimer);
+		});
+		dropdown.addEventListener('mouseleave', function(e) {
+			var name = dropdown.getAttribute('data-mega-target');
+			var item = document.querySelector('[data-mega-item="' + name + '"]');
+			if (item && (item.contains(e.relatedTarget) || item === e.relatedTarget)) {
+				return;
+			}
+			leaveTimer = setTimeout(function() {
+				closeAll();
+			}, 180);
+		});
+	});
+});
 </script>
 
 <?php
