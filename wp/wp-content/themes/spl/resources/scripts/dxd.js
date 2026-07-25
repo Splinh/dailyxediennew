@@ -560,10 +560,6 @@
 				const isScrolled = window.scrollY > 10;
 				headerEl.classList.toggle( 'shadow-md', isScrolled );
 				headerEl.classList.toggle( 'shadow-sm', ! isScrolled );
-				headerEl.classList.toggle( 'py-1.5', isScrolled );
-				headerEl.classList.toggle( 'py-3', ! isScrolled );
-				headerEl.classList.toggle( 'md:py-2.5', isScrolled );
-				headerEl.classList.toggle( 'md:py-4', ! isScrolled );
 			};
 			window.addEventListener( 'scroll', handleHeaderScroll, { passive: true } );
 			handleHeaderScroll();
