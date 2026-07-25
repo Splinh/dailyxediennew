@@ -132,7 +132,7 @@ do_action( 'spl_header_before_action' );
 
 <!-- ===== MAIN HEADER (sticky) ===== -->
 <header class="sticky top-0 z-50 transition-all duration-300 shadow-md" id="header">
-	<div class="bg-white py-3 md:py-4 px-4 border-b border-slate-100">
+	<div class="bg-white py-2.5 md:py-3 px-4 border-b border-slate-100">
 		<div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
 
 			<!-- Hamburger (mobile) -->
@@ -217,7 +217,7 @@ do_action( 'spl_header_before_action' );
 			if ( ! empty( $nav_cats ) ) :
 				?>
 				<!-- MEGA MENU DROPDOWN PANEL (SẢN PHẨM - CONTAINER BOUNDED) -->
-				<div class="absolute top-full left-4 right-4 bg-white text-slate-800 border border-slate-100 rounded-b-2xl shadow-2xl overflow-hidden p-6 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-[60] flex gap-6" role="menu">
+				<div class="absolute top-full left-4 right-4 bg-white text-slate-800 border border-slate-100 rounded-b-2xl shadow-2xl overflow-hidden p-6 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-40 group-hover:z-50 flex gap-6" role="menu">
 					
 					<!-- Left Column: Product Categories & Sub-categories -->
 					<div class="w-80 shrink-0 border-r border-slate-100 pr-5 space-y-1.5 max-h-[440px] overflow-y-auto no-scrollbar">
@@ -353,7 +353,7 @@ do_action( 'spl_header_before_action' );
 				</a>
 
 				<!-- MEGA MENU DROPDOWN PANEL (TIN TỨC - CONTAINER BOUNDED) -->
-				<div class="absolute top-full left-4 right-4 bg-white text-slate-800 border border-slate-100 rounded-b-2xl shadow-2xl overflow-hidden p-6 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-50 group-hover:z-[55] flex gap-6" role="menu">
+				<div class="absolute top-full left-4 right-4 bg-white text-slate-800 border border-slate-100 rounded-b-2xl shadow-2xl overflow-hidden p-6 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-40 group-hover:z-50 flex gap-6" role="menu">
 					
 					<!-- Left Column: News Categories -->
 					<div class="w-72 shrink-0 border-r border-slate-100 pr-5 space-y-2 max-h-[380px] overflow-y-auto no-scrollbar">
