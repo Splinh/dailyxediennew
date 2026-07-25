@@ -66,9 +66,9 @@ if ( empty( $slides ) ) {
 			// First slide flows in document (sets container height), rest are absolute overlay.
 			if ( $is_active ) :
 			?>
-			<div class="hero-slide relative w-full opacity-100 z-10"
+			<div class="hero-slide relative w-full opacity-100 z-10 leading-none"
 				aria-hidden="false">
-				<picture>
+				<picture class="block w-full h-auto leading-none">
 					<?php if ( $mobile_url ) : ?>
 						<source media="(max-width: 767px)"
 							srcset="<?php echo esc_url( $mobile_url ); ?>"
@@ -80,7 +80,7 @@ if ( empty( $slides ) ) {
 						loading="eager"
 						fetchpriority="high"
 						decoding="async"
-						class="w-full h-auto block select-none"
+						class="w-full h-auto block select-none m-0 p-0 border-0"
 					/>
 				</picture>
 				<?php if ( $link && ! empty( $link['url'] ) ) : ?>
@@ -92,9 +92,9 @@ if ( empty( $slides ) ) {
 				<?php endif; ?>
 			</div>
 			<?php else : ?>
-			<div class="hero-slide absolute inset-0 w-full h-full opacity-0 z-0 pointer-events-none"
+			<div class="hero-slide absolute inset-0 w-full h-full opacity-0 z-0 pointer-events-none leading-none"
 				aria-hidden="true">
-				<picture>
+				<picture class="block w-full h-full leading-none">
 					<?php if ( $mobile_url ) : ?>
 						<source media="(max-width: 767px)"
 							srcset="<?php echo esc_url( $mobile_url ); ?>"
@@ -106,7 +106,7 @@ if ( empty( $slides ) ) {
 						loading="lazy"
 						fetchpriority="low"
 						decoding="async"
-						class="w-full h-full object-contain object-top select-none"
+						class="w-full h-full object-contain object-top select-none m-0 p-0 border-0"
 					/>
 				</picture>
 				<?php if ( $link && ! empty( $link['url'] ) ) : ?>

@@ -131,7 +131,7 @@ do_action( 'spl_header_before_action' );
 </div>
 
 <!-- ===== MAIN HEADER (sticky) ===== -->
-<header class="sticky top-0 z-50 transition-all duration-300 shadow-sm" id="header">
+<header class="sticky top-0 z-50 transition-all duration-300 shadow-sm bg-primary" id="header">
 	<div class="bg-white py-3 md:py-4 px-4 border-b border-slate-100">
 		<div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
 
