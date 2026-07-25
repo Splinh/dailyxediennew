@@ -221,5 +221,9 @@ $cooperation_sections = [
 // Update ACF field on page
 update_field( 'cooperation_sections', $cooperation_sections, $page_id );
 
+// Flush rewrite rules so page permalink works immediately
+flush_rewrite_rules( true );
+
 echo "✓ Populated ACF field 'cooperation_sections' on Page ID $page_id" . PHP_EOL;
+echo "✓ Flushed WordPress rewrite rules" . PHP_EOL;
 echo "=== POPULATE COOPERATION PAGE COMPLETED ===" . PHP_EOL;
