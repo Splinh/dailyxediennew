@@ -4,7 +4,7 @@
 > [Link](https://docs.google.com/spreadsheets/d/1xi5Rv1YKgoAD1wuGH0h1k-cNrX3juF2oYC10uKxvP8k/edit?gid=2085828008#gid=2085828008)
 > **Repo**: [github.com/Splinh/dailyxediennew](https://github.com/Splinh/dailyxediennew)
 > **HTML Mockups Vercel**: [thietkedaily.vercel.app](https://thietkedaily.vercel.app/)
-> **Khởi tạo**: 2026-06-06 **Cập nhật lần cuối**: 2026-07-22
+> **Khởi tạo**: 2026-06-06 **Cập nhật lần cuối**: 2026-07-25
 > **Progress**: 112/123 tasks done (~91%)
 
 ---
@@ -347,6 +347,26 @@ build lại** sau khi sửa template. JS thì enqueue thẳng, không cần buil
 ## 📝 Changelog
 
 > Ghi lại mỗi lần cập nhật plan log.
+
+### 2026-07-25 — Header UI Fixes, Bluera Cooperation Page & About Page Extensions ✅
+
+- **Header Scroll Padding & Sticky Alignment Polish (`resources/scripts/dxd.js`, `header.php`, `parts/home/hero-slider.php`)**:
+  - Removed dynamic `py-1.5`, `py-3`, `md:py-2.5`, `md:py-4` class toggling from `handleHeaderScroll` in `resources/scripts/dxd.js`, eliminating white space gaps around header on page scroll and load.
+  - Unified Logo Bar and Main Nav Bar inside a single sticky container with `top: 0`, and set `m-0 p-0` on hero banner section to attach hero banner directly to navigation bar.
+  - Added 120ms JS hover intent timer to PC mega menu navigation links, preventing accidental category/news mega menu switching when moving cursor horizontally.
+
+- **Cooperation Landing Page Data Integration & Routing (`templates/template-page-cooperation.php`, `populate-cooperation-bluera.php`)**:
+  - Scraped and integrated authentic Bluera Việt Nhật cooperation data from `https://bluerabike.com/tuyen-dai-ly-xe-dien/`.
+  - Created `populate-cooperation-bluera.php` script to seed 5 ACF Flexible Content sections: `cooperation_hero`, `cooperation_benefits`, `cooperation_packages`, `cooperation_process`, and `cooperation_form`.
+  - Converted Cooperation page template into a clean Landing Page format without breadcrumbs.
+  - Added `flush_rewrite_rules()` execution to resolve permalinks cleanly on local and VPS live server (`/co-hoi-hop-tac/`).
+
+- **📋 PLAN FOR NEXT SESSION (Tomorrow): About Page ("Giới Thiệu") Extensions**:
+  - **Task 1: "Thông Điệp Từ Trái Tim / Ban Giám Đốc" (Message from Board of Directors / CEO Quote Section)**:
+    - Implement responsive 2-column section: Left column with CEO/Founder photo card & quotation; Right column with structured letter/quote ("Thông điệp từ Ban Giám Đốc"), philosophy, and signature block (inspired by `https://unila.com.vn/tam-the-cong-su-unila-viet-nam/`).
+  - **Task 2: "Từng Mốc Dấu Ấn" (Interactive Timeline / Milestone Slider)**:
+    - Implement interactive timeline slider with clickable milestone years (2023, 2024, 2025, 2026), image showcase, and year description cards (inspired by `https://unila.com.vn/tam-the-cong-su-unila-viet-nam/`).
+- **Files changed**: `resources/scripts/dxd.js` [MODIFY], `header.php` [MODIFY], `parts/home/hero-slider.php` [MODIFY], `templates/template-page-cooperation.php` [MODIFY], `populate-cooperation-bluera.php` [NEW], `docs/PLAN-LOG.md` [MODIFY]
 
 ### 2026-07-22 — Dynamic Category Hover Product Switching in PC Mega Menu ✅
 
