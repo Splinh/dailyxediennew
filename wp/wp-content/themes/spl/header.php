@@ -132,7 +132,7 @@ do_action( 'spl_header_before_action' );
 
 <!-- ===== MAIN HEADER (sticky) ===== -->
 <header class="bg-white sticky top-0 z-50 transition-all duration-300 shadow-md" id="header">
-	<div class="py-3 md:py-4 px-4 border-b border-slate-100">
+	<div class="py-2 md:py-2.5 px-4 border-b border-slate-100">
 		<div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
 
 			<!-- Hamburger (mobile) -->
