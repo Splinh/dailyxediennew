@@ -131,153 +131,77 @@ do_action( 'spl_header_before_action' );
 </div>
 
 <!-- ===== MAIN HEADER (sticky) ===== -->
-<header class="bg-white py-3 md:py-4 px-4 sticky top-0 z-50 border-b border-slate-100 shadow-sm transition-all duration-300" id="header">
-	<div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+<header class="sticky top-0 z-50 transition-all duration-300 shadow-sm" id="header">
+	<div class="bg-white py-3 md:py-4 px-4 border-b border-slate-100">
+		<div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
 
-		<!-- Hamburger (mobile) -->
-		<button data-drawer-open class="md:hidden text-slate-700 hover:text-primary p-2 focus:outline-none" aria-label="<?php esc_attr_e( 'Mở menu', 'spl' ); ?>">
-			<?php echo spl_icon( 'menu', 'w-6 h-6' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-		</button>
-
-		<!-- Logo -->
-		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-2 md:gap-3 shrink-0" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
-			<?php
-			// Use theme's built-in Helper::siteLogo() — handles custom_logo, theme variants, Polylang.
-			$site_logo = Helper::siteLogo( 'default', '' );
-			if ( $site_logo ) :
-				// siteLogo() returns <a><img></a>. We already have an <a> wrapper, so extract just <img>.
-				preg_match( '/<img[^>]+>/i', $site_logo, $matches );
-				if ( ! empty( $matches[0] ) ) :
-					// Add Tailwind sizing classes to the extracted img.
-					echo str_replace( '<img ', '<img class="h-10 md:h-12 w-auto object-contain" ', $matches[0] );
-				else :
-					echo wp_kses_post( $site_logo );
-				endif;
-			else : ?>
-				<div class="bg-gradient-to-r from-primary to-primary-600 text-white font-black p-2 md:p-2.5 rounded-xl text-lg md:text-xl shadow-lg shadow-primary/20 tracking-wider">D<span class="text-accent">XD</span></div>
-				<div>
-					<span class="text-lg md:text-2xl font-extrabold tracking-tight text-slate-900">dailyxedien<span class="text-primary">.vn</span></span>
-					<p class="text-[8px] md:text-[10px] tracking-widest text-slate-400 uppercase font-bold hidden sm:block"><?php echo esc_html( $logo_tagline ); ?></p>
-				</div>
-			<?php endif; ?>
-		</a>
-
-		<!-- Search (desktop) -->
-		<div class="w-full md:max-w-xl relative hidden md:block" role="search">
-			<form action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get">
-				<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
-					<?php echo spl_icon( 'search', 'w-4 h-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				</div>
-				<label for="header-search" class="sr-only"><?php esc_html_e( 'Tìm kiếm sản phẩm', 'spl' ); ?></label>
-				<input id="header-search" type="search" name="s" value="<?php echo esc_attr( get_search_query() ); ?>" placeholder="<?php esc_attr_e( 'Bạn cần tìm xe điện, xe 50cc hay phụ kiện gì hôm nay?', 'spl' ); ?>" autocomplete="off" class="w-full pl-11 pr-24 py-3 bg-slate-50 border border-slate-200 focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary-100 rounded-xl outline-none transition-all text-sm" />
-				<?php if ( Helper::isWoocommerceActive() ) : ?>
-					<input type="hidden" name="post_type" value="product" />
-				<?php endif; ?>
-				<button type="submit" class="absolute right-1.5 top-1.5 bottom-1.5 bg-primary hover:bg-primary-hover text-white px-5 rounded-lg text-xs font-semibold transition-colors"><?php esc_html_e( 'Tìm kiếm', 'spl' ); ?></button>
-			</form>
-		</div>
-
-		<!-- Actions -->
-		<div class="flex items-center gap-1 md:gap-3.5">
-			<button data-drawer-open data-focus-search class="md:hidden text-slate-700 hover:text-primary p-2" aria-label="<?php esc_attr_e( 'Tìm kiếm', 'spl' ); ?>">
-				<?php echo spl_icon( 'search', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<!-- Hamburger (mobile) -->
+			<button data-drawer-open class="md:hidden text-slate-700 hover:text-primary p-2 focus:outline-none" aria-label="<?php esc_attr_e( 'Mở menu', 'spl' ); ?>">
+				<?php echo spl_icon( 'menu', 'w-6 h-6' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</button>
-			<button type="button" data-cart-open class="md:hidden text-slate-700 hover:text-primary p-2 relative" aria-label="<?php esc_attr_e( 'Giỏ hàng', 'spl' ); ?>">
-				<?php echo spl_icon( 'cart', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				<span class="bg-sale text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full absolute top-0 right-0 shadow-sm" data-cart-count><?php echo esc_html( (string) $cart_count ); ?></span>
-			</button>
-			<div class="hidden sm:flex items-center gap-3.5">
-				<div class="w-11 h-11 rounded-full bg-primary-50 flex items-center justify-center text-primary shadow-sm shrink-0">
-					<?php echo spl_icon( 'phone', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				</div>
-				<div class="text-right md:text-left">
-					<span class="text-xs text-slate-400 font-medium"><?php echo esc_html( $hotline_label ); ?></span>
-					<a href="<?php echo esc_url( $hotline_url ); ?>" class="block text-base font-bold text-slate-900 tracking-tight hover:text-primary transition-colors"><?php echo esc_html( $hotline_display ); ?></a>
-				</div>
-			</div>
-		</div>
-	</div>
-</header>
 
-<!-- ===== MOBILE DRAWER ===== -->
-<div data-drawer-overlay class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] hidden transition-opacity duration-300 opacity-0"></div>
-<div data-drawer class="fixed inset-y-0 left-0 w-80 max-w-[85vw] bg-white z-[110] shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between">
-	<div class="overflow-y-auto grow p-5 space-y-6">
-		<div class="flex items-center justify-between border-b border-slate-100 pb-4">
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-2">
+			<!-- Logo -->
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-2 md:gap-3 shrink-0" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
 				<?php
+				// Use theme's built-in Helper::siteLogo() — handles custom_logo, theme variants, Polylang.
+				$site_logo = Helper::siteLogo( 'default', '' );
 				if ( $site_logo ) :
-					preg_match( '/<img[^>]+>/i', $site_logo, $m_matches );
-					if ( ! empty( $m_matches[0] ) ) :
-						echo str_replace( '<img ', '<img class="h-8 w-auto object-contain" ', $m_matches[0] );
+					// siteLogo() returns <a><img></a>. We already have an <a> wrapper, so extract just <img>.
+					preg_match( '/<img[^>]+>/i', $site_logo, $matches );
+					if ( ! empty( $matches[0] ) ) :
+						// Add Tailwind sizing classes to the extracted img.
+						echo str_replace( '<img ', '<img class="h-10 md:h-12 w-auto object-contain" ', $matches[0] );
+					else :
+						echo wp_kses_post( $site_logo );
 					endif;
 				else : ?>
-					<div class="bg-primary text-white font-black p-1.5 rounded-lg text-sm">D<span class="text-accent">XD</span></div>
-					<span class="font-bold text-slate-800 text-base"><?php bloginfo( 'name' ); ?></span>
+					<div class="bg-gradient-to-r from-primary to-primary-600 text-white font-black p-2 md:p-2.5 rounded-xl text-lg md:text-xl shadow-lg shadow-primary/20 tracking-wider">D<span class="text-accent">XD</span></div>
+					<div>
+						<span class="text-lg md:text-2xl font-extrabold tracking-tight text-slate-900">dailyxedien<span class="text-primary">.vn</span></span>
+						<p class="text-[8px] md:text-[10px] tracking-widest text-slate-400 uppercase font-bold hidden sm:block"><?php echo esc_html( $logo_tagline ); ?></p>
+					</div>
 				<?php endif; ?>
 			</a>
-			<button data-drawer-close class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition-colors" aria-label="<?php esc_attr_e( 'Đóng menu', 'spl' ); ?>">
-				<?php echo spl_icon( 'close', 'w-4 h-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-			</button>
-		</div>
 
-		<form action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get" class="relative">
-			<label for="drawer-search" class="sr-only"><?php esc_html_e( 'Tìm kiếm', 'spl' ); ?></label>
-			<input id="drawer-search" data-drawer-search type="search" name="s" placeholder="<?php esc_attr_e( 'Tìm kiếm xe, phụ kiện...', 'spl' ); ?>" class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none text-sm focus:bg-white focus:border-primary transition-all" />
-			<?php if ( Helper::isWoocommerceActive() ) : ?><input type="hidden" name="post_type" value="product" /><?php endif; ?>
-			<span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"><?php echo spl_icon( 'search', 'w-3.5 h-3.5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-		</form>
+			<!-- Search (desktop) -->
+			<div class="w-full md:max-w-xl relative hidden md:block" role="search">
+				<form action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get">
+					<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+						<?php echo spl_icon( 'search', 'w-4 h-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</div>
+					<label for="header-search" class="sr-only"><?php esc_html_e( 'Tìm kiếm sản phẩm', 'spl' ); ?></label>
+					<input id="header-search" type="search" name="s" value="<?php echo esc_attr( get_search_query() ); ?>" placeholder="<?php esc_attr_e( 'Bạn cần tìm xe điện, xe 50cc hay phụ kiện gì hôm nay?', 'spl' ); ?>" autocomplete="off" class="w-full pl-11 pr-24 py-3 bg-slate-50 border border-slate-200 focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary-100 rounded-xl outline-none transition-all text-sm" />
+					<?php if ( Helper::isWoocommerceActive() ) : ?>
+						<input type="hidden" name="post_type" value="product" />
+					<?php endif; ?>
+					<button type="submit" class="absolute right-1.5 top-1.5 bottom-1.5 bg-primary hover:bg-primary-hover text-white px-5 rounded-lg text-xs font-semibold transition-colors"><?php esc_html_e( 'Tìm kiếm', 'spl' ); ?></button>
+				</form>
+			</div>
 
-		<!-- Nav links (mobile) -->
-		<nav class="dxd-mobilemenu space-y-1 text-sm font-semibold text-slate-700" aria-label="<?php esc_attr_e( 'Mobile navigation', 'spl' ); ?>">
-			<?php
-			wp_nav_menu( [
-				'theme_location' => 'mobile-nav',
-				'container'      => false,
-				'menu_class'     => 'space-y-1',
-				'items_wrap'     => '%3$s',
-				'fallback_cb'    => function () {
-					wp_nav_menu( [
-						'theme_location' => 'main-nav',
-						'container'      => false,
-						'items_wrap'     => '%3$s',
-						'fallback_cb'    => 'spl_main_nav_fallback',
-						'depth'          => 1,
-					] );
-				},
-				'depth'          => 1,
-			] );
-			?>
-		</nav>
-
-		<!-- Accordion danh mục sản phẩm -->
-		<?php
-		$mobile_cats = spl_get_product_categories();
-		if ( ! empty( $mobile_cats ) ) :
-			?>
-			<div class="border-t border-slate-100 pt-5">
-				<h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 px-3"><?php esc_html_e( 'Danh Mục Sản Phẩm', 'spl' ); ?></h4>
-				<div class="space-y-2">
-					<?php foreach ( $mobile_cats as $cat ) :
-						$cat_link = get_term_link( $cat );
-						if ( is_wp_error( $cat_link ) ) { continue; }
-						?>
-						<a href="<?php echo esc_url( $cat_link ); ?>" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 font-semibold text-xs text-slate-700 transition-colors">
-							<span class="flex items-center gap-2"><?php echo spl_icon( 'chevron-right', 'w-3.5 h-3.5 text-primary' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> <?php echo esc_html( $cat->name ); ?></span>
-						</a>
-					<?php endforeach; ?>
+			<!-- Actions -->
+			<div class="flex items-center gap-1 md:gap-3.5">
+				<button data-drawer-open data-focus-search class="md:hidden text-slate-700 hover:text-primary p-2" aria-label="<?php esc_attr_e( 'Tìm kiếm', 'spl' ); ?>">
+					<?php echo spl_icon( 'search', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				</button>
+				<button type="button" data-cart-open class="md:hidden text-slate-700 hover:text-primary p-2 relative" aria-label="<?php esc_attr_e( 'Giỏ hàng', 'spl' ); ?>">
+					<?php echo spl_icon( 'cart', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					<span class="bg-sale text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full absolute top-0 right-0 shadow-sm" data-cart-count><?php echo esc_html( (string) $cart_count ); ?></span>
+				</button>
+				<div class="hidden sm:flex items-center gap-3.5">
+					<div class="w-11 h-11 rounded-full bg-primary-50 flex items-center justify-center text-primary shadow-sm shrink-0">
+						<?php echo spl_icon( 'phone', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					</div>
+					<div class="text-right md:text-left">
+						<span class="text-xs text-slate-400 font-medium"><?php echo esc_html( $hotline_label ); ?></span>
+						<a href="<?php echo esc_url( $hotline_url ); ?>" class="block text-base font-bold text-slate-900 tracking-tight hover:text-primary transition-colors"><?php echo esc_html( $hotline_display ); ?></a>
+					</div>
 				</div>
 			</div>
-		<?php endif; ?>
+		</div>
 	</div>
-	<div class="p-5 border-t border-slate-100 bg-slate-50 space-y-3">
-		<p class="text-xs text-slate-500 flex items-center gap-2"><?php echo spl_icon( 'phone', 'w-3.5 h-3.5 text-primary' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> <a href="<?php echo esc_url( $hotline_url ); ?>"><strong><?php echo esc_html( $hotline_display ); ?></strong></a></p>
-		<p class="text-[11px] text-slate-400 leading-snug"><?php echo esc_html( $address ); ?></p>
-	</div>
-</div>
 
-<!-- ===== PRIMARY NAV BAR (PC Mega Menu) ===== -->
-<nav class="bg-primary text-white shadow-md relative z-40 hidden md:block" aria-label="<?php esc_attr_e( 'Main navigation', 'spl' ); ?>">
+	<!-- ===== PRIMARY NAV BAR (PC Mega Menu - Sticky) ===== -->
+	<nav class="bg-primary text-white shadow-md relative z-40 hidden md:block" aria-label="<?php esc_attr_e( 'Main navigation', 'spl' ); ?>">
 	<div class="max-w-7xl mx-auto flex items-center justify-between relative px-4">
 
 		<!-- 1. Category trigger + MEGA MENU SẢN PHẨM (Full Container Width) -->
@@ -502,6 +426,7 @@ do_action( 'spl_header_before_action' );
 
 	</div>
 </nav>
+</header>
 
 <script>
 function switchMegaCat(catId, element) {
