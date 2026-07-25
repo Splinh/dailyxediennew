@@ -42,7 +42,7 @@ if ( empty( $features ) ) {
 			$title = $feat['title'] ?? '';
 			$desc = $feat['desc'] ?? '';
 			?>
-			<div class="snap-center bg-white/90 backdrop-blur-sm border border-slate-100/80 hover:border-primary/30 p-3.5 md:p-5 rounded-2xl flex items-center gap-3.5 md:gap-4 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 shrink-0 w-[78%] sm:w-[48%] lg:w-auto group">
+			<div class="snap-center bg-white border border-slate-200/60 hover:border-primary-400 p-4 md:p-5 rounded-2xl flex items-center gap-3.5 md:gap-4 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_25px_rgba(0,104,255,0.12)] hover:-translate-y-1 transition-all duration-300 shrink-0 w-[78%] sm:w-[48%] lg:w-auto group">
 				<div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-br from-primary-50 to-primary-100/60 text-primary flex items-center justify-center shrink-0 shadow-inner group-hover:scale-105 transition-transform duration-300">
 					<?php
 					if ( $icon_code ) {
