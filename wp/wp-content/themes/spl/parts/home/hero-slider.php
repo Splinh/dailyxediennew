@@ -48,7 +48,7 @@ if ( empty( $slides ) ) {
 			}
 
 			if ( empty( $img_url ) ) {
-				$img_url = get_theme_file_uri( 'resources/img/hero-banner.png' );
+				$img_url = content_url( '/uploads/2026/06/banner-he-sang-chanh.jpg' );
 			}
 
 			// Mobile image: optional, falls back to desktop.
