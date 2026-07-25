@@ -13,18 +13,7 @@ use SPL\Core\Helper;
 defined( 'ABSPATH' ) || exit;
 
 get_header();
-
-// Breadcrumb
 ?>
-<div class="breadcrumb-bar bg-white border-b border-slate-100">
-	<div class="max-w-7xl mx-auto px-4 py-3">
-		<nav class="breadcrumb flex items-center gap-2 text-xs text-slate-400" aria-label="Breadcrumb">
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="hover:text-primary transition-colors"><?php esc_html_e( 'Trang chủ', 'spl' ); ?></a>
-			<svg class="icon w-2 h-2" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-			<span class="text-slate-700 font-semibold"><?php the_title(); ?></span>
-		</nav>
-	</div>
-</div>
 
 <main id="partner-content" class="reveal">
 	<?php
