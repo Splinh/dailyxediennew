@@ -61,12 +61,12 @@ $home_sections = [
 		'disable'       => 0,
 		'slides'        => [
 			[
-				'bg_image' => 'https://images.unsplash.com/photo-1595054179361-b0e66d9bb7a3?auto=format&fit=crop&w=1920&q=80',
+				'bg_image' => get_theme_file_uri( 'resources/img/hero-banner.png' ),
 				'link'     => [ 'title' => 'Xem xe điện', 'url' => '#best-sellers', 'target' => '' ],
 				'title'    => 'Banner Hè Sang Chảnh - Ưu đãi lớn',
 			],
 			[
-				'bg_image' => 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1920&q=80',
+				'bg_image' => get_theme_file_uri( 'resources/img/blog-post-hero.png' ),
 				'link'     => [ 'title' => 'Xem chi tiết', 'url' => '#best-sellers', 'target' => '' ],
 				'title'    => 'Thế hệ xe điện thể thao bứt phá',
 			]
