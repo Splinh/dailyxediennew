@@ -61,14 +61,14 @@ $home_sections = [
 		'disable'       => 0,
 		'slides'        => [
 			[
-				'bg_image'        => content_url( '/uploads/2026/06/banner-he-sang-chanh.jpg' ),
-				'bg_image_mobile' => content_url( '/uploads/2026/06/z7821409555432_1a2309b367af6d4955a4ec862a87a65e.jpg' ),
+				'bg_image'        => get_post( 13 ) ? 13 : content_url( '/uploads/2026/06/banner-he-sang-chanh.jpg' ),
+				'bg_image_mobile' => get_post( 387 ) ? 387 : content_url( '/uploads/2026/06/z7821409555432_1a2309b367af6d4955a4ec862a87a65e.jpg' ),
 				'link'            => [ 'title' => 'Xem xe điện', 'url' => '#best-sellers', 'target' => '' ],
 				'title'           => 'Banner Hè Sang Chảnh - Ưu đãi lớn',
 			],
 			[
-				'bg_image'        => content_url( '/uploads/2026/06/banner-coming-soon.jpg' ),
-				'bg_image_mobile' => content_url( '/uploads/2026/06/z7896359009522_d5e87803ac453b2c0fe465bee17322fe.jpg' ),
+				'bg_image'        => get_post( 14 ) ? 14 : content_url( '/uploads/2026/06/banner-coming-soon.jpg' ),
+				'bg_image_mobile' => get_post( 386 ) ? 386 : content_url( '/uploads/2026/06/z7896359009522_d5e87803ac453b2c0fe465bee17322fe.jpg' ),
 				'link'            => [ 'title' => 'Xem chi tiết', 'url' => '#best-sellers', 'target' => '' ],
 				'title'           => 'Thế hệ xe điện thể thao bứt phá',
 			]
