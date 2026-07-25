@@ -18,7 +18,8 @@
 
 body.admin-bar {
 	.site-header:not(.absolute),
-	#header {
+	#header,
+	nav {
 		top: 32px;
 
 		@include mixin.mq-max-width(782px) {
