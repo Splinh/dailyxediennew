@@ -40,14 +40,10 @@ if ( empty( $slides ) ) {
 			// Desktop image: support both attachment ID and direct URL.
 			if ( is_numeric( $img_raw ) && (int) $img_raw > 0 ) {
 				$img_url = wp_get_attachment_image_url( (int) $img_raw, 'full' );
+			} elseif ( ! empty( $img_raw ) && is_string( $img_raw ) ) {
+				$img_url = $img_raw;
 			} else {
-				$img_url = (string) $img_raw;
-			}
-
-			if ( ! $img_url ) {
-				$img_url = function_exists( 'wc_placeholder_img_src' )
-					? wc_placeholder_img_src( 'full' )
-					: get_theme_file_uri( 'resources/img/placeholder.jpg' );
+				$img_url = get_theme_file_uri( 'resources/img/banner-he-sang-chanh.jpg' );
 			}
 
 			// Mobile image: optional, falls back to desktop.

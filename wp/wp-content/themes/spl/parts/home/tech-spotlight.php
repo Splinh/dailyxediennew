@@ -8,8 +8,8 @@
 defined( 'ABSPATH' ) || exit;
 
 $data = $args ?? [];
-$title = $data['title'] ?? __( 'Công nghệ thông minh', 'spl' );
-$subtitle = $data['subtitle'] ?? __( 'Công nghệ bứt phá mọi giới hạn', 'spl' );
+$title = ! empty( $data['title'] ) ? $data['title'] : __( 'Công nghệ thông minh', 'spl' );
+$subtitle = ! empty( $data['subtitle'] ) ? $data['subtitle'] : __( 'Công nghệ bứt phá mọi giới hạn', 'spl' );
 $features = $data['features'] ?? [];
 
 // Default tech features if empty.

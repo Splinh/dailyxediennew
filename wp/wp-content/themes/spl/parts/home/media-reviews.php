@@ -34,10 +34,10 @@ function dxd_yt_thumb_url( string $video_id, string $quality = 'hqdefault' ): st
 }
 
 // ── Video settings ──
-$video_title    = $data['video_title'] ?? __( 'Video nổi bật', 'spl' );
-$video_subtitle = $data['video_subtitle'] ?? __( 'Trải nghiệm thực tế', 'spl' );
-$video_url      = $data['video_url'] ?? 'https://www.youtube.com/embed/dQw4w9WgXcQ';
-$video_dur      = $data['video_duration'] ?? '';
+$video_title    = ! empty( $data['video_title'] ) ? $data['video_title'] : __( 'Video nổi bật', 'spl' );
+$video_subtitle = ! empty( $data['video_subtitle'] ) ? $data['video_subtitle'] : __( 'Trải nghiệm thực tế', 'spl' );
+$video_url      = ! empty( $data['video_url'] ) ? $data['video_url'] : 'https://www.youtube.com/embed/dQw4w9WgXcQ';
+$video_dur      = ! empty( $data['video_duration'] ) ? $data['video_duration'] : '04:35';
 $video_thumb_id = $data['video_thumbnail'] ?? 0;
 $video_thumb    = is_numeric( $video_thumb_id ) && $video_thumb_id ? wp_get_attachment_image_url( (int) $video_thumb_id, 'large' ) : '';
 // Auto-generate from YouTube embed URL if no attachment thumbnail.
