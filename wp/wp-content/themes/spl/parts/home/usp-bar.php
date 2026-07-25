@@ -35,15 +35,15 @@ if ( empty( $features ) ) {
 	];
 }
 ?>
-<section class="max-w-7xl mx-auto px-4 mb-8 md:mb-16 mt-4 md:mt-8">
-	<div class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 no-scrollbar lg:grid lg:grid-cols-4 lg:pb-0">
+<section class="max-w-7xl mx-auto px-4 mb-8 md:mb-12 mt-4 md:mt-6">
+	<div class="flex overflow-x-auto snap-x snap-mandatory gap-3.5 md:gap-5 pb-3 no-scrollbar lg:grid lg:grid-cols-4 lg:pb-0">
 		<?php foreach ( $features as $feat ) :
 			$icon_code = $feat['icon'] ?? '';
 			$title = $feat['title'] ?? '';
 			$desc = $feat['desc'] ?? '';
 			?>
-			<div class="snap-center bg-white border border-slate-100 hover:border-primary-100 p-3 md:p-5 rounded-2xl flex items-center gap-3 md:gap-4 shadow-premium transition-all hover:shadow-hover-card shrink-0 w-[72%] md:w-auto">
-				<div class="w-9 h-9 rounded-lg md:w-12 md:h-12 md:rounded-xl bg-primary-50 text-primary flex items-center justify-center text-lg md:text-xl shrink-0">
+			<div class="snap-center bg-white/90 backdrop-blur-sm border border-slate-100/80 hover:border-primary/30 p-3.5 md:p-5 rounded-2xl flex items-center gap-3.5 md:gap-4 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 shrink-0 w-[78%] sm:w-[48%] lg:w-auto group">
+				<div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-br from-primary-50 to-primary-100/60 text-primary flex items-center justify-center shrink-0 shadow-inner group-hover:scale-105 transition-transform duration-300">
 					<?php
 					if ( $icon_code ) {
 						// Clean class attribute from raw input SVG to match layout
@@ -55,8 +55,8 @@ if ( empty( $features ) ) {
 					?>
 				</div>
 				<div>
-					<h3 class="font-bold text-slate-800 text-xs md:text-sm"><?php echo esc_html( $title ); ?></h3>
-					<p class="text-[10px] md:text-xs text-slate-500 mt-0.5"><?php echo esc_html( $desc ); ?></p>
+					<h3 class="font-extrabold text-slate-900 text-xs md:text-sm tracking-tight group-hover:text-primary transition-colors"><?php echo esc_html( $title ); ?></h3>
+					<p class="text-[11px] md:text-xs text-slate-500 mt-0.5 leading-snug"><?php echo esc_html( $desc ); ?></p>
 				</div>
 			</div>
 		<?php endforeach; ?>
