@@ -28,7 +28,7 @@ if ( empty( $slides ) ) {
 	];
 }
 ?>
-<section class="relative w-full overflow-hidden bg-white"
+<section class="relative w-full overflow-hidden bg-white m-0 p-0"
 	aria-label="<?php esc_attr_e( 'Banners nổi bật', 'spl' ); ?>">
 
 	<!-- Slide Track -->

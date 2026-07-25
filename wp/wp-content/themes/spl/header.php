@@ -531,4 +531,4 @@ document.addEventListener('DOMContentLoaded', function() {
 do_action( 'spl_header_after_action' );
 ?>
 
-<main id="main">
+<main id="main" class="m-0 p-0">
