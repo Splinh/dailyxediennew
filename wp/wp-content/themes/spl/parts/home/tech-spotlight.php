@@ -105,7 +105,16 @@ if ( empty( $features ) ) {
 					$feat_title = $feat['title'] ?? '';
 					$feat_desc = $feat['description'] ?? '';
 					$img_id = $feat['image'] ?? 0;
-					$img_url = is_numeric( $img_id ) ? wp_get_attachment_image_url( $img_id, 'large' ) : (string) $img_id;
+					$img_url = is_numeric( $img_id ) && (int) $img_id > 0 ? wp_get_attachment_image_url( (int) $img_id, 'large' ) : (string) $img_id;
+					if ( empty( $img_url ) ) {
+						if ( 'bms' === $feat_id ) {
+							$img_url = get_theme_file_uri( 'resources/img/bms-battery-v2.png' );
+						} elseif ( 'fingerprint' === $feat_id ) {
+							$img_url = get_theme_file_uri( 'resources/img/fingerprint-lock.png' );
+						} else {
+							$img_url = get_theme_file_uri( 'resources/img/smart-app-connect-v2.png' );
+						}
+					}
 					$details = $feat['details'] ?? [];
 					$active_panel = $index === 0 ? 'flex' : 'hidden';
 					?>
