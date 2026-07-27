@@ -148,12 +148,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 			<?php esc_html_e( 'Tiếp tục mua sắm', 'spl' ); ?>
 		</a>
 
-		<div class="flex items-center gap-4">
-			<button type="submit" class="text-sm font-semibold text-slate-400 hover:text-red-500 transition-colors flex items-center gap-2<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>">
-				<?php echo spl_icon( 'trash-2', 'w-3.5 h-3.5' ); // phpcs:ignore ?>
-				<?php esc_html_e( 'Cập nhật', 'spl' ); ?>
-			</button>
-		</div>
+		<button type="submit" class="hidden" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>"></button>
 
 		<?php do_action( 'woocommerce_cart_actions' ); ?>
 		<?php wp_nonce_field( 'woocommerce-cart', 'woocommerce-cart-nonce' ); ?>
