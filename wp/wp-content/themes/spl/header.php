@@ -266,7 +266,7 @@ do_action( 'spl_header_before_action' );
 						<?php foreach ( $nav_cats as $index => $cat ) :
 							$cat_products = spl_get_mega_menu_products_by_cat( $cat->term_id, 3 );
 							$cat_link     = get_term_link( $cat );
-							$cat_link_url = is_wp_error( $cat_link ) ? home_url( '/cua-hang/' ) : $cat_link;
+							$cat_link_url = is_wp_error( $cat_link ) ? wc_get_page_permalink( 'shop' ) : $cat_link;
 							$panel_class  = $index === 0 ? 'block' : 'hidden';
 							?>
 							<div id="mega-cat-panel-<?php echo (int) $cat->term_id; ?>" class="mega-cat-panel <?php echo esc_attr( $panel_class ); ?> space-y-4">
