@@ -109,6 +109,18 @@ function spl_get_product_categories( int $limit = 0 ): array {
 			$cached = [];
 		}
 
+		// Filter out accessories/spare parts/battery categories from top primary menu
+		$exclude_keywords = [ 'ac-quy', 'phu-tung', 'pin', 'battery', 'gio-xe', 'phu-kien', 'linh-kien' ];
+		$cached = array_values( array_filter( (array) $cached, function( $term ) use ( $exclude_keywords ) {
+			if ( ! isset( $term->slug ) ) return true;
+			foreach ( $exclude_keywords as $kw ) {
+				if ( str_contains( strtolower( $term->slug ), $kw ) ) {
+					return false;
+				}
+			}
+			return true;
+		} ) );
+
 		wp_cache_set( $cache_key, $cached, 'spl' );
 	}
 
