@@ -20,6 +20,8 @@ use SPL\Modules\WooCommerce\Filter\Frontend\FilterRenderer;
 defined( 'ABSPATH' ) || exit;
 
 final class FilterAPI extends AbstractAPI {
+	public const BYPASS_NONCE = true;
+
 	public const COUNTS_CACHE_GROUP = 'hd_wc_filter_counts';
 
 	private const COUNTS_CACHE_INDEX_KEY = 'hd_fc_index';

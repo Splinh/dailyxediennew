@@ -261,9 +261,8 @@ final class FilterRenderer {
 		return '<div class="hd-filter__chips" data-filter-chips>'
 			. implode( '', $chips )
 			. sprintf(
-				' <a href="%s" class="hd-filter__chip hd-filter__chip--reset">%s</a>',
-				esc_url( $resetUrl ),
-				esc_html__( 'Clear all', 'SPL' )
+				' <button type="button" class="hd-filter__chip hd-filter__chip--reset" data-filter-reset>%s</button>',
+				esc_html__( 'Xóa tất cả', 'spl' )
 			)
 			. '</div>';
 	}
@@ -310,7 +309,7 @@ final class FilterRenderer {
 			. implode( '', $chips )
 			. sprintf(
 				' <button type="button" class="hd-filter__chip hd-filter__chip--reset" data-filter-reset>%s</button>',
-				esc_html__( 'Clear all', 'SPL' )
+				esc_html__( 'Xóa tất cả', 'spl' )
 			)
 			. '</div>';
 	}

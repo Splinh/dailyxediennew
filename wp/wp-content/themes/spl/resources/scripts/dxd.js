@@ -43,19 +43,146 @@
 		};
 
 		document.querySelectorAll( '[data-drawer-open]' ).forEach( ( btn ) =>
-			btn.addEventListener( 'click', () =>
-				openDrawer( btn.hasAttribute( 'data-focus-search' ) )
-			)
+			btn.addEventListener( 'click', ( e ) => {
+				e.preventDefault();
+				openDrawer( btn.hasAttribute( 'data-focus-search' ) );
+			} )
 		);
 		document
 			.querySelectorAll( '[data-drawer-close]' )
-			.forEach( ( btn ) => btn.addEventListener( 'click', closeDrawer ) );
+			.forEach( ( btn ) => btn.addEventListener( 'click', ( e ) => {
+				e.preventDefault();
+				closeDrawer();
+			} ) );
 		if ( overlay ) overlay.addEventListener( 'click', closeDrawer );
 		// close drawer when a link inside is clicked
 		if ( drawer )
 			drawer.addEventListener( 'click', ( e ) => {
 				if ( e.target.closest( 'a' ) ) closeDrawer();
 			} );
+
+		/* ---------- Live AJAX Search ---------- */
+		const setupLiveSearch = ( searchInput ) => {
+			if ( ! searchInput || searchInput._liveSearchInited ) return;
+			searchInput._liveSearchInited = true;
+
+			const wrapper = searchInput.closest( '[role="search"]' ) || searchInput.parentElement;
+			if ( ! wrapper ) return;
+
+			// Ensure wrapper has relative positioning
+			if ( getComputedStyle( wrapper ).position === 'static' ) {
+				wrapper.style.position = 'relative';
+			}
+
+			// Create dropdown container
+			let dropdown = wrapper.querySelector( '.ajax-search-dropdown' );
+			if ( ! dropdown ) {
+				dropdown = document.createElement( 'div' );
+				dropdown.className = 'ajax-search-dropdown absolute left-0 right-0 top-full mt-2 bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden z-50 transition-all duration-200 opacity-0 translate-y-2 pointer-events-none max-h-[420px] overflow-y-auto';
+				wrapper.appendChild( dropdown );
+			}
+
+			let debounceTimer = null;
+			let abortController = null;
+
+			const showDropdown = () => {
+				dropdown.classList.remove( 'opacity-0', 'translate-y-2', 'pointer-events-none' );
+				dropdown.classList.add( 'opacity-100', 'translate-y-0', 'pointer-events-auto' );
+			};
+
+			const hideDropdown = () => {
+				dropdown.classList.add( 'opacity-0', 'translate-y-2', 'pointer-events-none' );
+				dropdown.classList.remove( 'opacity-100', 'translate-y-0', 'pointer-events-auto' );
+			};
+
+			const performSearch = async ( query ) => {
+				if ( abortController ) abortController.abort();
+				abortController = new AbortController();
+
+				dropdown.innerHTML = `
+					<div class="p-6 text-center text-slate-400 text-sm flex items-center justify-center gap-2">
+						<svg class="w-4 h-4 animate-spin text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
+						<span>Đang tìm kiếm sản phẩm...</span>
+					</div>
+				`;
+				showDropdown();
+
+				try {
+					const apiUrl = ( window.hdConfig?.restApiUrl || '/wp-json/spl/v1/' ) + 'search?q=' + encodeURIComponent( query );
+					const res = await fetch( apiUrl, { signal: abortController.signal } );
+					const json = await res.json();
+
+					if ( ! json.success || ! json.products || json.products.length === 0 ) {
+						dropdown.innerHTML = `
+							<div class="p-6 text-center text-slate-500 text-sm">
+								<p class="font-bold text-slate-700">Không tìm thấy sản phẩm nào</p>
+								<p class="text-xs text-slate-400 mt-1">Thử từ khóa khác như "xe 50cc", "xe điện"...</p>
+							</div>
+						`;
+						return;
+					}
+
+					let itemsHtml = json.products.map( ( p ) => `
+						<a href="${p.permalink}" class="flex items-center gap-3 py-2 px-3 hover:bg-slate-50 transition-colors group">
+							<div class="w-10 h-10 bg-slate-50 border border-slate-100 rounded-md shrink-0 p-0.5 flex items-center justify-center overflow-hidden">
+								${p.image ? `<img src="${p.image}" alt="${p.title}" class="max-h-full max-w-full object-contain" loading="lazy" />` : ''}
+							</div>
+							<div class="flex-grow min-w-0">
+								<h4 class="text-xs font-bold text-slate-800 truncate group-hover:text-primary transition-colors leading-tight">${p.title}</h4>
+								<div class="text-[11px] font-semibold text-slate-900 mt-0.5 flex items-center gap-1.5 [&_ins]:text-red-600 [&_ins]:no-underline [&_ins]:font-bold [&_del]:text-slate-400 [&_del]:font-normal">
+									${p.price_html}
+								</div>
+							</div>
+						</a>
+					` ).join( '' );
+
+					if ( json.all_url ) {
+						itemsHtml += `
+							<a href="${json.all_url}" class="block bg-slate-50 hover:bg-primary-50 text-primary font-bold text-xs py-2 px-3 text-center transition-colors border-t border-slate-100">
+								Xem tất cả kết quả cho "${query}" &rarr;
+							</a>
+						`;
+					}
+
+					dropdown.innerHTML = itemsHtml;
+				} catch ( err ) {
+					if ( err.name !== 'AbortError' ) {
+						hideDropdown();
+					}
+				}
+			};
+
+			searchInput.addEventListener( 'input', () => {
+				const q = searchInput.value.trim();
+				clearTimeout( debounceTimer );
+				if ( q.length < 2 ) {
+					hideDropdown();
+					return;
+				}
+				debounceTimer = setTimeout( () => performSearch( q ), 250 );
+			} );
+
+			searchInput.addEventListener( 'focus', () => {
+				const q = searchInput.value.trim();
+				if ( q.length >= 2 ) {
+					performSearch( q );
+				}
+			} );
+
+			document.addEventListener( 'click', ( e ) => {
+				if ( ! wrapper.contains( e.target ) ) {
+					hideDropdown();
+				}
+			} );
+
+			document.addEventListener( 'keydown', ( e ) => {
+				if ( e.key === 'Escape' ) {
+					hideDropdown();
+				}
+			} );
+		};
+
+		document.querySelectorAll( '#header-search, [data-drawer-search], input[type="search"][name="s"]' ).forEach( setupLiveSearch );
 
 		/* ---------- Category dropdown (touch/click) ---------- */
 		const catMenu = document.querySelector( '[data-cat-menu]' );
@@ -431,25 +558,26 @@
 				} );
 		};
 
-		document.querySelectorAll( '.add-cart-btn, #sp-add-cart' ).forEach( ( btn ) => {
-			btn.addEventListener( 'click', ( e ) => {
-				e.preventDefault();
-				const id = btn.dataset.productId;
-				if ( ! id ) return;
-				const qty = btn.id === 'sp-add-cart' ? getQty() : 1;
-				const type = btn.dataset.productType || 'simple';
-				if ( type === 'variable' ) {
-					const vid = getVariationId();
-					if ( ! vid ) {
-						btn.style.animation = 'ring 0.5s';
-						setTimeout( () => ( btn.style.animation = '' ), 600 );
-						return;
-					}
-					wcAjaxAddToCart( id, qty, vid, getAttrObj(), btn );
-				} else {
-					wcAjaxAddToCart( id, qty, null, null, btn );
+		document.addEventListener( 'click', ( e ) => {
+			const btn = e.target.closest( '.add-cart-btn, #sp-add-cart' );
+			if ( ! btn ) return;
+
+			e.preventDefault();
+			const id = btn.dataset.productId;
+			if ( ! id ) return;
+			const qty = btn.id === 'sp-add-cart' ? getQty() : 1;
+			const type = btn.dataset.productType || 'simple';
+			if ( type === 'variable' ) {
+				const vid = getVariationId();
+				if ( ! vid ) {
+					btn.style.animation = 'ring 0.5s';
+					setTimeout( () => ( btn.style.animation = '' ), 600 );
+					return;
 				}
-			} );
+				wcAjaxAddToCart( id, qty, vid, getAttrObj(), btn );
+			} else {
+				wcAjaxAddToCart( id, qty, null, null, btn );
+			}
 		} );
 
 		/* ---------- Buy Now ---------- */

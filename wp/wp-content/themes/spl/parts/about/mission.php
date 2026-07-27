@@ -12,16 +12,22 @@ defined( 'ABSPATH' ) || exit;
 $data     = $args ?? [];
 $missions = ! empty( $data['missions'] ) ? $data['missions'] : [
 	[
-		'title' => 'Sứ mệnh',
-		'desc'  => 'Mang đến giải pháp di chuyển xanh, tiện lợi và tiết kiệm cho mọi gia đình Việt. Đảm bảo mỗi khách hàng đều được tư vấn đúng nhu cầu, không bị ép mua sản phẩm không phù hợp.',
+		'title' => 'Đổi mới công nghệ & Nhận thức giao thông',
+		'desc'  => 'Đại Lý Xe Điện nỗ lực không ngừng nghỉ với mong muốn đem đến cho người tiêu dùng nhiều sản phẩm xe điện mang công nghệ tiên tiến. Đó chính là khát khao đem đến cho Việt Nam một môi trường sống tốt hơn, hạn chế khói bụi, tiếng ồn và quan trọng hơn cả, thay đổi nhận thức của người dân Việt trong việc lựa chọn phương tiện di chuyển hằng ngày.',
 		'icon'  => '<svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
-		'class' => 'from-primary-500 to-primary-700',
+		'class' => 'from-primary-600 to-primary-800',
 	],
 	[
-		'title' => 'Tầm nhìn',
-		'desc'  => 'Trở thành hệ thống phân phối xe điện đáng tin cậy nhất Việt Nam, với mạng lưới cửa hàng phủ rộng 63 tỉnh thành, phục vụ hàng triệu khách hàng hằng năm.',
+		'title' => 'Đóng góp cho xã hội & Môi trường',
+		'desc'  => 'Đại Lý Xe Điện mong muốn những sản phẩm xe điện mà chúng tôi cung cấp sẽ có thể đóng góp cho xã hội, giúp cho Việt Nam trở thành một trong những quốc gia tích cực nhất trong việc bảo vệ môi trường, và từ đó có thể giúp người dân Việt Nam có một cuộc sống tốt đẹp hơn.',
 		'icon'  => '<svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>',
-		'class' => 'from-emerald-500 to-emerald-700',
+		'class' => 'from-emerald-600 to-emerald-800',
+	],
+	[
+		'title' => 'Gieo mầm xanh trên mọi cung đường',
+		'desc'  => 'Chúng tôi nuôi hy vọng và mong chờ sản phẩm của mình sẽ trải một màu xanh đẹp đẽ trên mọi cung đường của đất nước, cũng như có thể gieo trồng được mầm xanh vào suy nghĩ, tư tưởng của tất cả người dân Việt.',
+		'icon'  => '<svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v8"/><path d="m4.93 10.93 4.24 4.24"/><path d="M2 18h20"/></svg>',
+		'class' => 'from-teal-600 to-teal-800',
 	],
 ];
 
@@ -32,9 +38,9 @@ $fallback_icons = [
 ];
 
 $fallback_classes = [
-	'from-primary-500 to-primary-700',
-	'from-emerald-500 to-emerald-700',
-	'from-amber-500 to-amber-700',
+	'from-primary-600 to-primary-800',
+	'from-emerald-600 to-emerald-800',
+	'from-teal-600 to-teal-800',
 ];
 ?>
 <?php if ( ! empty( $missions ) ) : ?>
@@ -42,18 +48,18 @@ $fallback_classes = [
 	<div class="max-w-7xl mx-auto px-4">
 		<!-- Section Header -->
 		<div class="text-center mb-10 reveal">
-			<div class="flex items-center gap-3 justify-center mb-4">
-				<span class="w-1.5 h-6 bg-primary-500 rounded-full"></span>
-				<h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Tầm nhìn & Sứ mệnh</h2>
+			<div class="flex items-center gap-3 justify-center mb-2">
+				<span class="w-1.5 h-6 bg-emerald-500 rounded-full"></span>
+				<h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">SỨ MỆNH VÀ KHÁT VỌNG CỦA ĐẠI LÝ XE ĐIỆN</h2>
 			</div>
-			<p class="text-sm text-slate-500 max-w-xl mx-auto">Định hướng phát triển bền vững, đặt khách hàng làm trung tâm</p>
+			<p class="text-base font-bold text-emerald-600 italic max-w-xl mx-auto">“Sự thay đổi sẽ đem đến những điều tốt đẹp hơn”</p>
 		</div>
 
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 			<?php foreach ( $missions as $index => $item ) : ?>
 				<?php
-				$bg_class   = $item['class'] ?? $fallback_classes[ $index % count( $fallback_classes ) ];
-				$icon_class = $item['icon'] ?? $fallback_icons[ $index % count( $fallback_icons ) ];
+				$bg_class   = ! empty( $item['class'] ) ? $item['class'] : $fallback_classes[ $index % count( $fallback_classes ) ];
+				$icon_class = ! empty( $item['icon'] ) ? $item['icon'] : $fallback_icons[ $index % count( $fallback_icons ) ];
 				?>
 				<div class="bg-gradient-to-br <?php echo esc_attr( $bg_class ); ?> rounded-2xl p-6 md:p-8 text-white relative overflow-hidden group hover:shadow-hover-card transition-all reveal">
 					<div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>

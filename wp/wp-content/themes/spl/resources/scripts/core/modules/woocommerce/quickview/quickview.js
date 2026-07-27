@@ -40,7 +40,7 @@ async function handleClick(e) {
 	addClass(btn, 'is-loading');
 
 	try {
-		const res = await fetch(`${window.hdConfig?.restApiUrl || '/wp-json/hd/v1/'}wc-quickview/${productId}`, {
+		const res = await fetch(`${window.hdConfig?.restApiUrl || '/wp-json/spl/v1/'}wc-quickview/${productId}`, {
 			method: 'GET',
 			headers: {
 				'X-Requested-With': 'XMLHttpRequest',

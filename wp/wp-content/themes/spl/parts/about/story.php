@@ -8,13 +8,13 @@
 defined( 'ABSPATH' ) || exit;
 
 $data         = $args ?? [];
-$title        = $data['title'] ?? 'Chúng tôi là ai?';
-$content      = $data['content'] ?? '<strong>Dailyxedien.vn</strong> là hệ thống phân phối xe điện, xe máy điện và xe 50cc chính hãng, hoạt động với mục tiêu mang đến trải nghiệm mua xe rõ ràng, minh bạch cho mọi khách hàng.<br><br>Chúng tôi không chỉ bán xe — chúng tôi hướng dẫn khách hàng chọn đúng sản phẩm phù hợp với nhu cầu thực tế. Từ xe đi làm hằng ngày, xe đi học cho con, đến xe vận chuyển nhỏ cho kinh doanh — mỗi dòng xe đều được tư vấn kỹ lưỡng.';
+$title        = $data['title'] ?? 'XE ĐẠP ĐIỆN ĐÃ RA ĐỜI NHƯ THẾ NÀO?';
+$content      = $data['content'] ?? 'Vấn đề ô nhiễm môi trường đã trở thành một vấn đề đáng báo động trên toàn cầu và đặc biệt là ở những quốc gia đang phát triển như Việt Nam, tình trạng ô nghiễm môi trường từ những hoạt động của con người đã trở thành nỗi lo sợ của mỗi người dân Việt.<br><br>Hàng ngày, chúng ta luôn phải đối mặt với những nguy cơ ô nhiễm làm ảnh hưởng nghiệm trọng tới chất lượng sống như ô nhiễm tiếng ồn, ô nhiễm khói bụi… Với mong muốn mang tới một giải pháp giao thông thân thiện với môi trường và an toàn cho người sử dụng, Đại Lý Xe Điện đã đưa ra thị trường nhiều sản phẩm xe điện – loại phương tiện di chuyển an toàn và thông minh, có khả năng cải thiện tình trạng môi trường, đem tới cho con người một bầu không khí trong lành.';
 $image_id     = $data['image'] ?? 0;
-$badge_number = $data['badge_number'] ?? 'Uy tín hàng đầu';
-$badge_label  = $data['badge_label'] ?? 'Đại lý ủy quyền chính hãng';
+$badge_number = $data['badge_number'] ?? 'Công nghệ Nhật';
+$badge_label  = $data['badge_label'] ?? 'Lắp ráp trực tiếp tại Việt Nam';
 
-$image_url = $image_id ? wp_get_attachment_image_url( $image_id, 'large' ) : 'https://dailyxedien.vn/wp-content/uploads/2026/02/khai-truong-dai-ly-xe-dien-bluera-viet-nhat-ron-bike-pro-tai-can-tho-dlxd.jpg';
+$image_url = $image_id ? wp_get_attachment_image_url( $image_id, 'large' ) : 'https://dailyxedien.vn/wp-content/uploads/2023/04/mau-xe-dap-dien-dep-nhat-hien-nay.jpg';
 ?>
 <section class="py-12 md:py-16 bg-white overflow-hidden">
 	<div class="max-w-7xl mx-auto px-4">

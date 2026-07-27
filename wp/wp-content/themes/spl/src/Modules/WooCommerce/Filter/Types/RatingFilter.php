@@ -30,10 +30,11 @@ final class RatingFilter extends AbstractFilterType {
 		$options  = [];
 
 		foreach ( self::LEVELS as $level ) {
-			$options[] = [
+			$gold_stars  = '<span class="rating-stars-gold" style="color:#f59e0b; font-size:15px; letter-spacing:1px; font-weight:bold;">' . str_repeat( '★', $level ) . '</span>';
+			$empty_stars = '<span class="rating-stars-empty" style="color:#cbd5e1; font-size:15px; letter-spacing:1px;">' . str_repeat( '☆', 5 - $level ) . '</span>';
+			$options[]   = [
 				'slug' => (string) $level,
-				'name' => str_repeat( '★', $level ) . str_repeat( '☆', 5 - $level ) . ' ' .
-							sprintf( __( '%d sao trở lên', 'SPL' ), $level ),
+				'name' => '<span class="inline-flex items-center gap-0.5">' . $gold_stars . $empty_stars . '</span> <span style="color:#475569; font-weight:600; font-size:13px; margin-left:4px;">' . sprintf( __( '%d sao trở lên', 'SPL' ), $level ) . '</span>',
 			];
 		}
 

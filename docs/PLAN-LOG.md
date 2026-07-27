@@ -4,8 +4,8 @@
 > [Link](https://docs.google.com/spreadsheets/d/1xi5Rv1YKgoAD1wuGH0h1k-cNrX3juF2oYC10uKxvP8k/edit?gid=2085828008#gid=2085828008)
 > **Repo**: [github.com/Splinh/dailyxediennew](https://github.com/Splinh/dailyxediennew)
 > **HTML Mockups Vercel**: [thietkedaily.vercel.app](https://thietkedaily.vercel.app/)
-> **Khởi tạo**: 2026-06-06 **Cập nhật lần cuối**: 2026-07-25
-> **Progress**: 112/123 tasks done (~91%)
+> **Khởi tạo**: 2026-06-06 **Cập nhật lần cuối**: 2026-07-27
+> **Progress**: 114/123 tasks done (~93%)
 
 ---
 
@@ -347,6 +347,33 @@ build lại** sau khi sửa template. JS thì enqueue thẳng, không cần buil
 ## 📝 Changelog
 
 > Ghi lại mỗi lần cập nhật plan log.
+
+### 2026-07-27 — About Page ("Giới Thiệu") Extensions — Htmlmau Design Alignment ✅
+
+- **Task 1: "Thông Điệp Từ Trái Tim / Ban Giám Đốc" (`parts/about/ceo-message.php`)**:
+  - Rebuilt CEO Message section layout to mirror exact design structure: 2-column layout with photo showcase on one side, and secondary subtitle ("Thông điệp từ trái tim"), primary title ("THÔNG ĐIỆP TỪ BAN GIÁM ĐỐC"), italicized letter/philosophy text, quote callout, and founder signature block on the other side.
+  - Added layout registration `layout_daily_about_ceo` into ACF JSON (`acf-json/group_daily_about.json`) and added switch case handler to `templates/template-page-about.php`.
+
+- **Task 2: "Hành Trình Phát Triển" & "Những Con Số Biết Nói" Alignment (`parts/about/timeline.php`, `parts/about/stats.php`)**:
+  - Rebuilt `timeline.php` and `stats.php` to match the exact light design system of `htmlmau/about.html`:
+  - **Timeline**: Clean light background (`bg-slate-50`), section title with primary indicator `w-1.5 h-6 bg-primary-600`, connected year stepper bar (2015 -> 2030), white card container (`bg-white border border-slate-200/80 shadow-sm`), image showcase with primary blue year badge, and Swiper slider controls.
+  - **Stats & Promises**: Clean light card containers (`bg-white border border-slate-100 shadow-sm`), stat numbers in vibrant primary/emerald/amber/blue tones, and 4 colored icon promise cards (Blue, Emerald, Amber, Rose).
+
+- **Mobile Navigation Drawer Bug Fix & Logo Update (`parts/global/mobile-drawer.php`, `update-site-logo.php`)**:
+  - Identified root cause: `dxd.js` target elements (`[data-drawer]` and `[data-drawer-overlay]`) were missing from HTML DOM.
+  - Created component `parts/global/mobile-drawer.php` containing header logo, search bar, navigation links, quick callout buttons, and address info.
+  - Embedded `get_template_part('parts/global/mobile-drawer')` in `footer.php` so all pages render the drawer.
+  - Created CLI script `update-site-logo.php` to set site logo option and mobile drawer logo.
+
+- **About Page CLI Populator (`populate-about-page.php`)**:
+  - Built and executed `populate-about-page.php` via WP-CLI to seed 5 ACF Flexible Content sections (`about_hero`, `about_story`, `about_ceo`, `about_timeline`, `about_stats`) with authentic company history and Unila-inspired imagery.
+
+- **📋 PLAN FOR NEXT SESSION: Single Product Page & Store Locator Audit**:
+  - **Task 1: Single Product Page (Chi Tiết Sản Phẩm) Audit & Specs Tab**:
+    - Audit single product page template (`single-product.php` / WC hooks): hero gallery swiper, price display, variant swatches, ACF `tskt_rows` technical specs table, contact/order CTAs, and installment calculator popup.
+  - **Task 2: Store Locator / Hệ Thống Cửa Hàng Interactivity Audit**:
+    - Verify store locator search filtering by city/district, Google Maps directions link, dynamic open/closed status badge, and store contact triggers (Zalo/Call).
+- **Files changed**: `parts/about/ceo-message.php` [NEW], `parts/about/timeline.php` [MODIFY], `parts/about/stats.php` [MODIFY], `parts/global/mobile-drawer.php` [NEW], `footer.php` [MODIFY], `resources/scripts/dxd.js` [MODIFY], `templates/template-page-about.php` [MODIFY], `acf-json/group_daily_about.json` [MODIFY], `populate-about-page.php` [NEW], `update-site-logo.php` [NEW], `docs/PLAN-LOG.md` [MODIFY]
 
 ### 2026-07-25 — Header UI Fixes, Bluera Cooperation Page & About Page Extensions ✅
 
@@ -875,7 +902,26 @@ build lại** sau khi sửa template. JS thì enqueue thẳng, không cần buil
 - **Admin UI** — thêm remove `.fixed` class từ list tables vào `admin-core.js` source → build
 - **Hero Slider Fix** — dùng `<img>` thay `background-image`, bỏ Ken Burns zoom, smoother crossfade
 - **Legacy CSS Cleanup** — disable `critical.css`, `pages.css`, `core-ui.js` (conflict Tailwind)
-- Cập nhật task D1-D5, E1-E2, A3-A4 → ✅ tất cả
+### 2026-07-27
+
+- **Trang Giới Thiệu (`/ve-chung-toi/`)**:
+  - Migration toàn bộ nội dung từ trang cũ dailyxedien.vn sang trang mới.
+  - Tối ưu 7 phần template parts: `hero`, `story`, `mission`, `stats`, `timeline`, `why-choose-us`, `ceo-message`.
+  - Tích hợp ACF Flexible Content & script `populate-about-page.php` nhập liệu tự động.
+- **Trang Sản Phẩm & Bộ Lọc AJAX**:
+  - Điều chỉnh lưới sản phẩm 2 xe/hàng trên mobile & tablet.
+  - Loại bỏ nhãn "Trả góp 0%", bo góc gọn gàng các nút "Mua ngay", "Xem chi tiết" & "Thêm vào giỏ".
+  - Chỉnh màu đánh giá ngôi sao sang vàng sẫm `#f59e0b`.
+  - Việt hóa hoàn toàn giao diện bộ lọc ("Xóa tất cả", "Khoảng giá").
+  - Sửa lỗi AJAX 403 CSRF/Nonce & 404 Endpoint (`/wp-json/spl/v1/wc-filter/products` + `BYPASS_NONCE = true`).
+  - Khôi phục hàm `spl_icon()` giải quyết triệt để lỗi PHP Fatal Error 500 khi lọc sản phẩm.
+  - Khắc phục sự kiện Add to Cart cho sản phẩm nạp động qua Event Delegation trên `document`.
+- **Live AJAX Search (Header & Mobile Drawer)**:
+  - Xây dựng endpoint REST API `/wp-json/spl/v1/search` cho tìm kiếm tự động sản phẩm.
+  - Thiết kế bảng gợi ý Live Search nhỏ gọn, đẹp mắt (Thumbnail, Tên xe, Giá KM màu đỏ, Giá gốc gạch ngang).
+  - Khắc phục cảnh báo Chrome "Thông tin bạn sắp gửi không an toàn" bằng cách chuyển `form action` sang relative URL.
+- **Asset Pipeline**:
+  - Biên dịch thành công toàn bộ CSS & JS bundles qua `pnpm build`.
 
 ### 2026-06-08 (sáng)
 

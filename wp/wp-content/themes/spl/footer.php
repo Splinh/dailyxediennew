@@ -529,6 +529,9 @@ $is_dealer         = is_page( 'he-thong-cua-hang' ) || is_post_type_archive( 'lo
 </div>
 
 <?php
+// Mobile Navigation Drawer Component
+get_template_part( 'parts/global/mobile-drawer' );
+
 /** Hook: spl_footer_action. */
 do_action( 'spl_footer_action' );
 

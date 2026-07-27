@@ -15,7 +15,7 @@
 //   <select name="product" data-source="post" data-post-type="product"
 //           data-filter-field="category" data-filter-taxonomy="product_cat">
 
-const API_BASE = `${window.hdConfig?.restApiUrl || '/wp-json/hd/v1/'}form/dynamic-options`;
+const API_BASE = `${window.hdConfig?.restApiUrl || '/wp-json/spl/v1/'}form/dynamic-options`;
 
 /** @type {Map<string, Array>} Simple cache to avoid re-fetching. */
 const cache = new Map();

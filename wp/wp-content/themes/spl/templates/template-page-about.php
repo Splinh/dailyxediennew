@@ -47,6 +47,9 @@ if ( $sections ) :
 			case 'about_story':
 				get_template_part( 'parts/about/story', null, $section );
 				break;
+			case 'about_ceo':
+				get_template_part( 'parts/about/ceo-message', null, $section );
+				break;
 			case 'about_mission':
 				get_template_part( 'parts/about/mission', null, $section );
 				break;
@@ -78,6 +81,7 @@ else :
 	// Fallback when ACF not configured.
 	get_template_part( 'parts/about/hero' );
 	get_template_part( 'parts/about/story' );
+	get_template_part( 'parts/about/ceo-message' );
 	get_template_part( 'parts/about/mission' );
 	get_template_part( 'parts/about/values' );
 	get_template_part( 'parts/about/why-choose-us' );

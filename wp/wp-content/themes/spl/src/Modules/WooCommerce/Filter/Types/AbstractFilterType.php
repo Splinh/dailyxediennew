@@ -89,7 +89,7 @@ abstract class AbstractFilterType implements FilterTypeInterface {
 				esc_attr( $slug ),
 				$isActive ? ' checked' : '',
 				$isDisabled ? ' disabled' : '',
-				esc_html( $name ),
+				wp_kses_post( $name ),
 				null !== $count ? '<span class="hd-filter__count">(' . absint( $count ) . ')</span>' : ''
 			);
 		}

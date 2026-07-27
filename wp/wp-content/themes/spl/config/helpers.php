@@ -42,6 +42,19 @@ function hd_svg( ?string $name, string $cssClass = '' ): string {
 	return str_replace( '<svg ', '<svg class="' . esc_attr( $cssClass ) . '" ', $icons[ $name ] );
 }
 
+if ( ! function_exists( 'spl_icon' ) ) {
+	/**
+	 * Render an SVG icon by name.
+	 *
+	 * @param string|null $name
+	 * @param string $cssClass
+	 * @return string
+	 */
+	function spl_icon( ?string $name, string $cssClass = '' ): string {
+		return hd_svg( $name, $cssClass );
+	}
+}
+
 // --------------------------------------------------
 // Translation Functions
 // --------------------------------------------------

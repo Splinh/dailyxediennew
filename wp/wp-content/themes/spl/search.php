@@ -80,7 +80,7 @@ $ratio_css    = Helper::aspectRatioClass( 'post' );
 		</div>
 
 		<!-- Re-search form -->
-		<form role="search" method="get" class="search-form-inline" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+		<form role="search" method="get" class="search-form-inline" action="<?php echo esc_url( home_url( '/', 'relative' ) ); ?>">
 			<div class="search-form-inline__wrapper">
 				<svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
 				<input type="search"

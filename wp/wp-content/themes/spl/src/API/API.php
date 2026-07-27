@@ -53,7 +53,9 @@ final class API implements Bootable {
 	 * @return string[]
 	 */
 	private function endpointClasses(): array {
-		return [];
+		return [
+			Endpoints\SearchAPI::class,
+		];
 	}
 
 	public function __construct() {

@@ -16,9 +16,9 @@ ssh root@<IP_CỦA_VPS>
 ## 2. Di chuyển vào thư mục code dự án trên VPS
 Di chuyển đến thư mục chứa mã nguồn của website:
 ```bash
-cd /var/www/dailynew
+cd /www/wwwroot/dailynew.bluerabike.com
 ```
-*(Thay thế `/var/www/dailynew` bằng đường dẫn chính xác thư mục dự án trên VPS của bạn, ví dụ: `/www/wwwroot/dailynew.vn` trên aaPanel).*
+*(Thư mục dự án chính thức trên VPS aaPanel).*
 
 ---
 
@@ -31,31 +31,13 @@ git pull origin main
 
 ---
 
-## 4. Biên dịch lại giao diện (Compile Assets)
-Do dự án sử dụng Vite và Tailwind 4, sau khi pull code mới về, bạn cần chạy build để tạo các file CSS/JS tối ưu cho môi trường Production:
+## 4. Reload PHP-FPM để xóa OPcache
+Do file CSS/JS đã được biên dịch ở local và push lên Git, sau khi `git pull` bạn chỉ cần restart dịch vụ PHP-FPM trên VPS để xóa OPcache:
+
 ```bash
-pnpm build
+systemctl restart php-fpm-84
 ```
-*(Nếu trên VPS chưa cài pnpm, bạn có thể chạy `npm run build` hoặc cài pnpm toàn cục bằng lệnh: `npm install -g pnpm`)*.
-
----
-
-## 5. Xóa Cache hệ thống & OPcache
-Để đảm bảo code PHP mới được load ngay lập tức mà không bị OPcache hay cache WordPress giữ lại:
-
-* **Xóa cache WordPress (WP-CLI):**
-  ```bash
-  wp cache flush
-  ```
-  *(Hoặc chạy qua PHP nếu không có lệnh global: `php vendor/wp-cli/wp-cli/php/boot-fs.php cache flush`)*.
-
-* **Reload PHP-FPM (Xóa cache OPcache):**
-  * Đối với aaPanel / CyberPanel: Bạn có thể vào bảng quản trị Web Server chọn **Restart/Reload PHP** (phiên bản PHP đang dùng, ví dụ PHP 8.3).
-  * Hoặc chạy lệnh trực tiếp trong Terminal VPS:
-    ```bash
-    sudo systemctl reload php-fpm
-    ```
-    *(Tùy thuộc hệ điều hành VPS: `sudo systemctl restart php8.3-fpm` hoặc tương đương).*
+*(Hoặc lệnh `/etc/init.d/php-fpm-84 reload` tùy thuộc vào hệ thống aaPanel).*
 
 ---
 Chúc bạn buổi demo thành công tốt đẹp! 🎉

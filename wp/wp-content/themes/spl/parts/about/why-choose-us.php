@@ -10,31 +10,31 @@ use SPL\Core\Helper;
 defined( 'ABSPATH' ) || exit;
 
 $data  = $args ?? [];
-$title = $data['title'] ?? 'Tại sao chọn dailyxedien.vn?';
-$desc  = $data['description'] ?? 'Những lý do khách hàng tin tưởng và gắn bó với chúng tôi';
+$title = $data['title'] ?? 'VÌ SAO ĐẠI LÝ XE ĐIỆN LÀ LỰA CHỌN TỐT DÀNH CHO BẠN?';
+$desc  = $data['description'] ?? 'Phương tiện di chuyển thông minh, hoạt động bằng nguồn năng lượng sạch và đáp ứng tiêu chuẩn khắt khe nhất';
 $items = ! empty( $data['items'] ) ? $data['items'] : [
 	[
-		'title' => 'Sản phẩm chính hãng',
-		'desc'  => 'Nhập khẩu và phân phối trực tiếp từ nhà máy, đầy đủ giấy tờ và CO/CQ.',
-		'icon'  => '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>',
+		'title' => 'Năng lượng sạch & Tiết kiệm',
+		'desc'  => 'Là một giải phương tiện thông minh của thời đại mới, xe đạp điện, xe máy điện và xe điện 3 bánh do Đại Lý Xe Điện cung cấp hoạt động bằng nguồn năng lượng sạch, không những có thể giúp bảo vệ môi trường, sức khỏe của con người mà còn có khả năng tiết kiệm chi phí tối đa. Sản phẩm hội tụ đầy đủ các yếu tố tốt nhất xứng đáng để các bạn lựa chọn như thiết kế sành điệu nhỏ gọn, khả năng di chuyển trên quãng đường xa, giá thành hợp lý… và rất nhiều lý do khác.',
+		'icon'  => '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v8"/><path d="m4.93 10.93 4.24 4.24"/><path d="M2 18h20"/><path d="M20 10c0 5.523-4.477 10-10 10S0 15.523 0 10"/></svg>',
 		'class' => 'bg-blue-50 text-blue-500',
 	],
 	[
-		'title' => 'Giá tốt - Trả góp 0%',
-		'desc'  => 'Cam kết giá cạnh tranh nhất thị trường. Hỗ trợ trả góp lãi suất 0% nhanh chóng.',
-		'icon'  => '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17"/><path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/><path d="m2 16 6 6"/><circle cx="16" cy="9" r="2.9"/><circle cx="6" cy="5" r="3"/></svg>',
+		'title' => 'Đa dạng chủng loại & Chuẩn mực',
+		'desc'  => 'Để có được một sản phẩm đạt những tiêu chí hoàn hảo như vậy, Đại Lý Xe Điện đã không ngừng cố gắng tìm kiếm các chủng loại có chất lượng cao, sản phẩm đẹp, đa dạng, kèm theo dịch vụ và giá thành phù hợp với người tiêu dùng Việt.',
+		'icon'  => '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>',
 		'class' => 'bg-emerald-50 text-emerald-500',
 	],
 	[
-		'title' => 'Tư vấn tận tâm',
-		'desc'  => 'Đội ngũ nhân viên được đào tạo bài bản, tư vấn đúng nhu cầu, không ép bán hàng.',
-		'icon'  => '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z"/><path d="M21 16v2a4 4 0 0 1-4 4h-5"/></svg>',
+		'title' => 'Công nghệ Nhật & Lắp ráp Việt Nam',
+		'desc'  => 'Trong nỗ lực hoàn thiện sản phẩm của mình, Đại Lý Xe Điện cũng mạnh dạn đầu tư các loại trang thiết bị máy móc hiện đại để kiểm tra và bảo hành tận nơi cho khách hàng Việt Nam, đem công nghệ Nhật về tới đất Việt, trực tiếp lắp ráp các dòng xe đạp điện Bluera ngay tại Việt Nam.',
+		'icon'  => '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>',
 		'class' => 'bg-amber-50 text-amber-500',
 	],
 	[
-		'title' => 'Hậu mãi minh bạch',
-		'desc'  => 'Bảo hành chính hãng, sửa chữa tại đại lý, theo dõi lịch sử bảo trì dễ dàng.',
-		'icon'  => '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>',
+		'title' => 'Kiểm định khắt khe & Đầy đủ hóa đơn',
+		'desc'  => 'Mỗi sản phẩm của Đại Lý Xe Điện cung cấp đến tay người tiêu dùng đều được trải qua quy trình khắt khe nhất về chất lượng. Đại Lý Xe Điện tự hào là một trong những nhà cung cấp bán buôn và bán lẻ của các thương hiệu hàng đầu tại Việt Nam, đồng thời thực hiện nghiêm chỉnh quy định của Nhà nước về hàng hóa xuất bán có đầy đủ hóa đơn, đăng kiểm và đạt các tiêu chuẩn cho phép hoạt động của phương tiện xe điện hiện nay.',
+		'icon'  => '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>',
 		'class' => 'bg-rose-50 text-rose-500',
 	],
 ];
@@ -70,8 +70,8 @@ $fallback_classes = [
 			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 				<?php foreach ( $items as $index => $item ) : ?>
 					<?php
-					$box_class  = $item['class'] ?? $fallback_classes[ $index % count( $fallback_classes ) ];
-					$icon_class = $item['icon'] ?? $fallback_icons[ $index % count( $fallback_icons ) ];
+					$box_class  = ! empty( $item['class'] ) ? $item['class'] : $fallback_classes[ $index % count( $fallback_classes ) ];
+					$icon_class = ! empty( $item['icon'] ) ? $item['icon'] : $fallback_icons[ $index % count( $fallback_icons ) ];
 					?>
 					<div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-premium hover:shadow-hover-card hover:-translate-y-1 transition-all text-center group reveal">
 						<div class="w-16 h-16 rounded-2xl <?php echo esc_attr( $box_class ); ?> flex items-center justify-center mx-auto mb-4 group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors">

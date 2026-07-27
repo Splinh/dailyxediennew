@@ -61,8 +61,9 @@ function initFilter(root) {
 		on(searchInput, 'input', debouncedSearch);
 	}
 
-	// Bind reset buttons + chip remove via delegation (survives AJAX replacement)
+	// Bind reset buttons + chip remove via delegation (survives AJAX replacement & works globally)
 	on(container, 'click', handleDelegatedClick);
+	on(document, 'click', handleDelegatedClick);
 
 	// Init popover toggles (horizontal layout)
 	const popovers = initPopovers(container);
@@ -117,7 +118,7 @@ async function handleFilterChange(e) {
 	containerRequests.set(container, myController);
 
 	try {
-		const res = await fetch(`${window.hdConfig?.restApiUrl || '/wp-json/hd/v1/'}wc-filter/products`, {
+		const res = await fetch(`${window.hdConfig?.restApiUrl || '/wp-json/spl/v1/'}wc-filter/products`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -437,9 +438,10 @@ function handleDelegatedClick(e) {
 		return;
 	}
 
-	// Reset button
-	const resetBtn = e.target.closest('[data-filter-reset]');
+	// Reset button or Clear all chip
+	const resetBtn = e.target.closest('[data-filter-reset], .hd-filter__chip--reset');
 	if (resetBtn) {
+		e.preventDefault();
 		handleReset(e);
 	}
 }
@@ -448,35 +450,38 @@ function handleDelegatedClick(e) {
  * Handle reset all filters.
  */
 function handleReset(e) {
-	const container = e?.target?.closest('[data-wc-filter]') || qs('[data-wc-filter]');
-	if (!container) return;
+	e?.preventDefault?.();
+	const container = e?.target?.closest?.('[data-wc-filter]') || qs('[data-wc-filter]');
+	const root = document;
 
-	// Uncheck all
-	qsa('.hd-filter__input:checked', container).forEach((input) => {
+	// Uncheck all checked inputs
+	qsa('input[name^="hd_"]:checked, .hd-filter__input:checked', root).forEach((input) => {
 		input.checked = false;
 		removeClass(input.closest('.hd-filter__item'), 'is-active');
+		removeClass(input.closest('.filter-check'), 'is-active');
+		removeClass(input.closest('label'), 'is-active');
 	});
 
 	// Deactivate all swatches
-	removeClass(qsa('.hd-filter__swatch.is-active', container), 'is-active');
+	removeClass(qsa('.hd-filter__swatch.is-active', root), 'is-active');
 
 	// Clear search inputs
-	qsa('.hd-filter__search-input', container).forEach((input) => {
+	qsa('.hd-filter__search-input, input[type="search"][name^="hd_"]', root).forEach((input) => {
 		input.value = '';
 	});
 
 	// Reset select dropdowns (SortFilter)
-	qsa('select[name^="hd_"]', container).forEach((select) => {
+	qsa('select[name^="hd_"]', root).forEach((select) => {
 		select.selectedIndex = 0;
 	});
 
 	// Reset range sliders
-	qsa('.hd-filter__slider', container).forEach((slider) => {
+	qsa('.hd-filter__slider', root).forEach((slider) => {
 		resetRangeSlider(slider);
 	});
 
 	// Trigger filter update (direct call — works in both auto and manual modes)
-	handleFilterChange({ target: container });
+	handleFilterChange({ target: container || qs('[data-wc-filter]') });
 }
 
 /**
@@ -484,17 +489,16 @@ function handleReset(e) {
  * @param {MouseEvent} e
  */
 function handleChipRemove(e) {
-	e.preventDefault();
-	const chip = e.target.closest('.hd-filter__chip');
+	e?.preventDefault?.();
+	const chip = e?.target?.closest?.('.hd-filter__chip') || e?.target;
 	if (!chip) return;
 
 	const filterId = chip.dataset.filter;
 	const value = chip.dataset.value;
-	const container = chip.closest('[data-wc-filter]') || qs('[data-wc-filter]');
-	if (!container) return;
+	const container = chip?.closest?.('[data-wc-filter]') || qs('[data-wc-filter]');
 
 	clearFilterValue(container, filterId, value);
-	handleFilterChange({ target: container });
+	handleFilterChange({ target: container || qs('[data-wc-filter]') });
 }
 
 /**
@@ -506,31 +510,36 @@ function handleChipRemove(e) {
 function clearFilterValue(container, filterId, value) {
 	if (!filterId) return;
 
+	const root = document;
 	const escapedFilter = CSS.escape(filterId);
 	const escapedValue = CSS.escape(value || '');
 
-	const input = qs(`.hd-filter__input[name="hd_${escapedFilter}[]"][value="${escapedValue}"]`, container);
-	if (input) {
+	qsa(`input[name="hd_${escapedFilter}[]"][value="${escapedValue}"], input[name="hd_${escapedFilter}"][value="${escapedValue}"]`, root).forEach((input) => {
 		input.checked = false;
 		removeClass(input.closest('.hd-filter__item'), 'is-active');
-	}
+		removeClass(input.closest('.filter-check'), 'is-active');
+		removeClass(input.closest('label'), 'is-active');
+	});
 
-	removeClass(qs(`.hd-filter__swatch[data-filter="${escapedFilter}"][data-value="${escapedValue}"]`, container), 'is-active');
+	removeClass(qsa(`.hd-filter__swatch[data-filter="${escapedFilter}"][data-value="${escapedValue}"]`, root), 'is-active');
 
-	const searchInput = qs(`.hd-filter__search-input[name="hd_${escapedFilter}"]`, container);
-	if (searchInput && (!value || searchInput.value === value)) {
-		searchInput.value = '';
-	}
+	qsa(`.hd-filter__search-input[name="hd_${escapedFilter}"]`, root).forEach((input) => {
+		if (!value || input.value === value) {
+			input.value = '';
+		}
+	});
 
-	const select = qs(`select[name="hd_${escapedFilter}"]`, container);
-	if (select && (!value || select.value === value)) {
-		select.selectedIndex = 0;
-	}
+	qsa(`select[name="hd_${escapedFilter}"]`, root).forEach((select) => {
+		if (!value || select.value === value) {
+			select.selectedIndex = 0;
+		}
+	});
 
-	const slider = qs(`.hd-filter__slider[data-filter="${escapedFilter}"]`, container);
-	if (slider && (!value || getRangeSliderValue(slider) === value)) {
-		resetRangeSlider(slider);
-	}
+	qsa(`.hd-filter__slider[data-filter="${escapedFilter}"]`, root).forEach((slider) => {
+		if (!value || getRangeSliderValue(slider) === value) {
+			resetRangeSlider(slider);
+		}
+	});
 }
 
 /**

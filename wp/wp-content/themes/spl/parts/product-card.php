@@ -125,7 +125,6 @@ $stars_count     = $average_rating > 0 ? round( $average_rating ) : 5;
 			?>
 			<span class="<?php echo esc_attr( $badge_color ); ?> text-white font-black text-[9px] md:text-[10px] px-2 py-0.5 md:px-2.5 md:py-1 rounded-md shadow-sm uppercase tracking-wider"><?php echo esc_html( $badge ); ?></span>
 		<?php endif; ?>
-		<span class="bg-primary/90 backdrop-blur-xs text-white font-extrabold text-[8px] md:text-[9px] px-1.5 py-0.5 rounded shadow-xs uppercase tracking-tight"><?php esc_html_e( 'Trả góp 0%', 'spl' ); ?></span>
 	</div>
 
 	<a href="<?php echo esc_url( $permalink ); ?>" class="block">
@@ -161,15 +160,15 @@ $stars_count     = $average_rating > 0 ? round( $average_rating ) : 5;
 			</div>
 
 			<?php if ( $purchasable ) : ?>
-				<div class="grid grid-cols-5 gap-1.5 mt-3">
-					<a href="<?php echo esc_url( function_exists( 'wc_get_checkout_url' ) ? wc_get_checkout_url() . '?add-to-cart=' . $pid : '#' ); ?>" class="col-span-4 bg-primary hover:bg-primary-hover active:scale-95 text-white text-[11px] md:text-xs font-bold min-h-[38px] md:min-h-[42px] px-2 rounded-xl transition-all text-center flex items-center justify-center shadow-sm shadow-primary/20"><?php esc_html_e( 'Mua ngay', 'spl' ); ?></a>
-					<button type="button" class="add-cart-btn active:scale-95 min-h-[38px] md:min-h-[42px] flex items-center justify-center rounded-xl transition-all bg-slate-100 text-slate-700 hover:bg-primary-50 hover:text-primary" data-product-id="<?php echo esc_attr( $pid ); ?>" title="<?php esc_attr_e( 'Thêm vào giỏ', 'spl' ); ?>">
+				<div class="flex items-center gap-1.5 mt-3 max-w-[200px]">
+					<a href="<?php echo esc_url( function_exists( 'wc_get_checkout_url' ) ? wc_get_checkout_url() . '?add-to-cart=' . $pid : '#' ); ?>" class="flex-1 bg-primary hover:bg-primary-hover active:scale-95 text-white text-[11px] md:text-xs font-bold min-h-[36px] md:min-h-[38px] px-3 rounded-md transition-all text-center flex items-center justify-center shadow-sm shadow-primary/20"><?php esc_html_e( 'Mua ngay', 'spl' ); ?></a>
+					<button type="button" class="add-cart-btn active:scale-95 min-h-[36px] md:min-h-[38px] w-[36px] md:w-[38px] shrink-0 flex items-center justify-center rounded-md transition-all bg-slate-100 text-slate-700 hover:bg-primary-50 hover:text-primary" data-product-id="<?php echo esc_attr( $pid ); ?>" title="<?php esc_attr_e( 'Thêm vào giỏ', 'spl' ); ?>">
 						<?php echo spl_icon( 'cart', 'w-4 h-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</button>
 				</div>
 			<?php else : ?>
-				<div class="mt-3">
-					<a href="<?php echo esc_url( $permalink ); ?>" class="w-full bg-primary hover:bg-primary-hover active:scale-95 text-white text-[11px] md:text-xs font-bold min-h-[38px] md:min-h-[42px] px-2 rounded-xl transition-all text-center flex items-center justify-center shadow-sm shadow-primary/20"><?php esc_html_e( 'Xem chi tiết', 'spl' ); ?></a>
+				<div class="mt-3 max-w-[160px]">
+					<a href="<?php echo esc_url( $permalink ); ?>" class="w-full inline-flex bg-primary hover:bg-primary-hover active:scale-95 text-white text-[11px] md:text-xs font-bold min-h-[36px] md:min-h-[38px] px-4 rounded-md transition-all text-center items-center justify-center shadow-sm shadow-primary/20"><?php esc_html_e( 'Xem chi tiết', 'spl' ); ?></a>
 				</div>
 			<?php endif; ?>
 		</div>

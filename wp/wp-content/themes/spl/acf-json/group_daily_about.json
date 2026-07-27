@@ -242,6 +242,115 @@
                     "min": "",
                     "max": "1"
                 },
+                "layout_daily_about_ceo": {
+                    "key": "layout_daily_about_ceo",
+                    "name": "about_ceo",
+                    "label": "Thông điệp Ban Giám Đốc",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_about_ceo_disable",
+                            "label": "Ẩn section này",
+                            "name": "disable",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "Bật để ẩn section này ở frontend.",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "100",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Ẩn section",
+                            "default_value": 0,
+                            "ui": 1,
+                            "ui_on_text": "Ẩn",
+                            "ui_off_text": "Hiện"
+                        },
+                        {
+                            "key": "field_about_ceo_tag",
+                            "label": "Tag text",
+                            "name": "tag",
+                            "aria-label": "",
+                            "type": "text",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "default_value": "Thông Điệp Từ Ban Giám Đốc"
+                        },
+                        {
+                            "key": "field_about_ceo_title",
+                            "label": "Tiêu đề",
+                            "name": "title",
+                            "aria-label": "",
+                            "type": "text",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "default_value": "Tâm Thế Phụng Sự & Sứ Mệnh Xanh Hóa Giao Thông"
+                        },
+                        {
+                            "key": "field_about_ceo_subtitle",
+                            "label": "Mô tả ngắn",
+                            "name": "subtitle",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "rows": 2
+                        },
+                        {
+                            "key": "field_about_ceo_content",
+                            "label": "Nội dung bức thư",
+                            "name": "content",
+                            "aria-label": "",
+                            "type": "wysiwyg",
+                            "required": 0,
+                            "conditional_logic": false
+                        },
+                        {
+                            "key": "field_about_ceo_name",
+                            "label": "Tên CEO / Founder",
+                            "name": "ceo_name",
+                            "aria-label": "",
+                            "type": "text",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "default_value": "Nguyễn Văn Đức"
+                        },
+                        {
+                            "key": "field_about_ceo_title_pos",
+                            "label": "Chức danh",
+                            "name": "ceo_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "default_value": "Tổng Giám Đốc & Founder DailyXeDien"
+                        },
+                        {
+                            "key": "field_about_ceo_avatar",
+                            "label": "Ảnh chân dung CEO",
+                            "name": "ceo_avatar",
+                            "aria-label": "",
+                            "type": "image",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "return_format": "id"
+                        },
+                        {
+                            "key": "field_about_ceo_quote",
+                            "label": "Trích dẫn nổi bật (Quote)",
+                            "name": "quote",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "rows": 2
+                        }
+                    ],
+                    "min": "",
+                    "max": "1"
+                },
                 "layout_daily_about_values": {
                     "key": "layout_daily_about_values",
                     "name": "about_values",

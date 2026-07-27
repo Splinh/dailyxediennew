@@ -3,7 +3,7 @@
 
 import './form.scss';
 
-const SUBMIT_URL = `${window.hdConfig?.restApiUrl || '/wp-json/hd/v1/'}form/submit`;
+const SUBMIT_URL = `${window.hdConfig?.restApiUrl || '/wp-json/spl/v1/'}form/submit`;
 const NONCE = window.hdConfig?.restToken || '';
 
 const LEGACY_HONEYPOT_FIELD = '_hp_field';

@@ -165,7 +165,7 @@ do_action( 'spl_header_before_action' );
 
 			<!-- Search (desktop) -->
 			<div class="w-full md:max-w-xl relative hidden md:block" role="search">
-				<form action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get">
+				<form action="<?php echo esc_url( home_url( '/', 'relative' ) ); ?>" method="get">
 					<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
 						<?php echo spl_icon( 'search', 'w-4 h-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</div>
