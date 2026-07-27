@@ -483,7 +483,10 @@
 		*/
 
 		/* ---------- Add to Cart (AJAX) ---------- */
-		const getQty = () => qtyInput ? Math.max( 1, parseInt( qtyInput.value, 10 ) || 1 ) : 1;
+		const getQty = () => {
+			const el = document.getElementById( 'qty-input' ) || document.querySelector( 'input.qty, input[name="quantity"]' );
+			return el ? Math.max( 1, parseInt( el.value, 10 ) || 1 ) : 1;
+		};
 		const getVariationId = () => {
 			const el = document.getElementById( 'sp-variation-id' );
 			return el ? el.value : '';
