@@ -868,8 +868,9 @@
 		letter-spacing: -0.01em;
 	}
 
-	h2 {
+	h1, h2 {
 		font-size: 1.35rem;
+		line-height: 1.35;
 		margin-top: 1.75rem;
 		margin-bottom: 0.75rem;
 		padding-left: 0.75rem;
@@ -890,6 +891,16 @@
 
 	p {
 		margin-bottom: 1rem;
+	}
+
+	// Prevent unwanted line-breaks right after checkmark icons or bold inline icons
+	strong + br,
+	span + br {
+		display: none;
+	}
+
+	strong {
+		margin-right: 0.25rem;
 	}
 
 	img {
