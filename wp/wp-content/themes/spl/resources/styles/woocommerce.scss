@@ -858,29 +858,82 @@
 // --- DESCRIPTION ---
 
 .sp-desc {
-	font-size: 0.9375rem;
-	color: #334155;
-	line-height: 1.8;
+	font-size: 1rem;
+	color: #1e293b;
+	line-height: 1.75;
 
-	h2, h3, h4 {
+	h1, h2, h3, h4, h5, h6 {
 		color: #0f172a;
-		font-weight: 800;
+		font-weight: 700;
+		letter-spacing: -0.01em;
+	}
+
+	h2 {
+		font-size: 1.35rem;
+		margin-top: 1.75rem;
+		margin-bottom: 0.75rem;
+		padding-left: 0.75rem;
+		border-left: 4px solid #0284c7;
+	}
+
+	h3 {
+		font-size: 1.1875rem;
 		margin-top: 1.5rem;
+		margin-bottom: 0.625rem;
+	}
+
+	h4 {
+		font-size: 1.0625rem;
+		margin-top: 1.25rem;
 		margin-bottom: 0.5rem;
 	}
 
 	p {
-		margin-bottom: 0.75rem;
+		margin-bottom: 1rem;
 	}
 
 	img {
-		border-radius: 0.5rem;
+		display: block;
+		margin: 1.25rem auto;
+		border-radius: 0.75rem;
 		max-width: 100%;
+		height: auto;
+		box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+	}
+
+	figure {
+		margin: 1.25rem 0;
+
+		img {
+			margin: 0 auto;
+		}
+
+		figcaption {
+			font-size: 0.8125rem;
+			color: #64748b;
+			text-align: center;
+			margin-top: 0.5rem;
+			font-style: italic;
+		}
 	}
 
 	ul, ol {
 		padding-left: 1.5rem;
-		margin-bottom: 0.75rem;
+		margin-bottom: 1rem;
+
+		li {
+			margin-bottom: 0.375rem;
+		}
+	}
+
+	blockquote {
+		background: #f8fafc;
+		border-left: 4px solid #0284c7;
+		padding: 0.75rem 1.25rem;
+		margin: 1.25rem 0;
+		border-radius: 0 0.5rem 0.5rem 0;
+		font-style: italic;
+		color: #334155;
 	}
 }
 
@@ -888,14 +941,23 @@
 
 .sp-spec-table {
 	width: 100%;
-	border-collapse: collapse;
+	border-collapse: separate;
+	border-spacing: 0;
 	font-size: 0.875rem;
+	margin: 1.25rem 0;
+	border: 1px solid #e2e8f0;
+	border-radius: 0.5rem;
+	overflow: hidden;
 
 	tr {
 		border-bottom: 1px solid #f1f5f9;
 
+		&:last-child {
+			border-bottom: none;
+		}
+
 		&:nth-child(even) {
-			background: #fafbfc;
+			background: #f8fafc;
 		}
 	}
 
@@ -904,15 +966,16 @@
 		text-align: left;
 	}
 
-	th {
-		width: 40%;
-		font-weight: 700;
+	th,
+	td:first-child {
+		width: 35%;
+		font-weight: 600;
 		color: #1e293b;
-		background: #f8fafc;
+		background: rgba(248, 250, 252, 0.6);
 	}
 
 	td {
-		color: #475569;
+		color: #334155;
 	}
 }
 
