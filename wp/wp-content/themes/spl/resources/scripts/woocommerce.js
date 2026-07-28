@@ -26,10 +26,12 @@ const run = () => {
 					mainImg.style.opacity = '0.3';
 					mainImg.src = thumb.dataset.img;
 					
-					// Sync lightbox link href
+					// Sync lightbox link href and pswp dimensions
 					const mainLink = document.getElementById('sp-main-link');
 					if (mainLink) {
-						mainLink.href = thumb.dataset.img;
+						mainLink.href = thumb.getAttribute('href') || thumb.dataset.img;
+						if (thumb.dataset.pswpWidth) mainLink.dataset.pswpWidth = thumb.dataset.pswpWidth;
+						if (thumb.dataset.pswpHeight) mainLink.dataset.pswpHeight = thumb.dataset.pswpHeight;
 					}
 
 					setTimeout(() => {

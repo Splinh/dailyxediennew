@@ -81,9 +81,22 @@ function buildGalleryDataSource(gallery) {
 			return buildVideoSlideHtml(link.href, videoType);
 		}
 
-		// Image slide — resolve dimensions
-		const w = Number(link.dataset.pswpWidth || img?.dataset.large_image_width || img?.naturalWidth || 1200);
-		const h = Number(link.dataset.pswpHeight || img?.dataset.large_image_height || img?.naturalHeight || 800);
+		// Image slide — resolve dimensions with priority for loaded natural image dimensions
+		let w = 0;
+		let h = 0;
+		if (img && img.naturalWidth > 0 && img.naturalHeight > 0) {
+			w = img.naturalWidth;
+			h = img.naturalHeight;
+		} else if (link.dataset.pswpWidth && link.dataset.pswpHeight && Number(link.dataset.pswpWidth) > 0) {
+			w = Number(link.dataset.pswpWidth);
+			h = Number(link.dataset.pswpHeight);
+		} else if (img?.dataset.large_image_width && img?.dataset.large_image_height && Number(img.dataset.large_image_width) > 0) {
+			w = Number(img.dataset.large_image_width);
+			h = Number(img.dataset.large_image_height);
+		} else {
+			w = 1200;
+			h = 800;
+		}
 		const src = img?.dataset.large_image || link.href;
 
 		return {
