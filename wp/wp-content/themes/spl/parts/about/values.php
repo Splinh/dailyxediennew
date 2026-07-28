@@ -79,8 +79,8 @@ $fallback_classes = [
 								<i class="<?php echo esc_attr( $icon_class ); ?>"></i>
 							<?php endif; ?>
 						</div>
-						<h4 class="font-bold text-slate-800 text-sm mb-2"><?php echo esc_html( $item['title'] ?? '' ); ?></h4>
-						<p class="text-xs text-slate-500 leading-relaxed"><?php echo esc_html( $item['desc'] ?? '' ); ?></p>
+						<h4 class="font-extrabold text-slate-900 text-base mb-2"><?php echo esc_html( $item['title'] ?? '' ); ?></h4>
+						<p class="text-xs md:text-sm text-slate-600 leading-relaxed"><?php echo esc_html( $item['desc'] ?? '' ); ?></p>
 					</div>
 				<?php endforeach; ?>
 			</div>

@@ -26,8 +26,8 @@ $items = ! empty( $data['items'] ) ? $data['items'] : [
 		'class' => 'bg-emerald-50 text-emerald-500',
 	],
 	[
-		'title' => 'Công nghệ Nhật & Lắp ráp Việt Nam',
-		'desc'  => 'Trong nỗ lực hoàn thiện sản phẩm của mình, Đại Lý Xe Điện cũng mạnh dạn đầu tư các loại trang thiết bị máy móc hiện đại để kiểm tra và bảo hành tận nơi cho khách hàng Việt Nam, đem công nghệ Nhật về tới đất Việt, trực tiếp lắp ráp các dòng xe đạp điện Bluera ngay tại Việt Nam.',
+		'title' => 'Công nghệ hiện đại & Lắp ráp Việt Nam',
+		'desc'  => 'Trong nỗ lực hoàn thiện sản phẩm của mình, Đại Lý Xe Điện cũng mạnh dạn đầu tư các loại trang thiết bị máy móc hiện đại để kiểm tra và bảo hành tận nơi cho khách hàng Việt Nam, ứng dụng công nghệ tiên tiến hàng đầu, trực tiếp lắp ráp các dòng xe đạp điện Bluera ngay tại Việt Nam.',
 		'icon'  => '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>',
 		'class' => 'bg-amber-50 text-amber-500',
 	],
@@ -81,8 +81,8 @@ $fallback_classes = [
 								<i class="<?php echo esc_attr( $icon_class ); ?>"></i>
 							<?php endif; ?>
 						</div>
-						<h3 class="font-bold text-slate-800 mb-2 text-sm md:text-base"><?php echo esc_html( $item['title'] ?? '' ); ?></h3>
-						<p class="text-xs text-slate-500 leading-relaxed"><?php echo esc_html( $item['desc'] ?? '' ); ?></p>
+						<h3 class="font-extrabold text-slate-900 mb-2 text-base md:text-lg"><?php echo esc_html( $item['title'] ?? '' ); ?></h3>
+						<p class="text-xs md:text-sm text-slate-600 leading-relaxed"><?php echo esc_html( $item['desc'] ?? '' ); ?></p>
 					</div>
 				<?php endforeach; ?>
 			</div>

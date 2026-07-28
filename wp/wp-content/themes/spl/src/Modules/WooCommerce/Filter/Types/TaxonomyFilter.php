@@ -42,7 +42,8 @@ final class TaxonomyFilter extends AbstractFilterType {
 		$args = [
 			'taxonomy'   => $taxonomy,
 			'hide_empty' => true,
-			'orderby'    => $sortField,
+			'orderby'    => 'product_cat' === $taxonomy ? 'meta_value_num' : $sortField,
+			'meta_key'   => 'product_cat' === $taxonomy ? 'order' : '',
 			'order'      => $sortOrder,
 		];
 
@@ -66,7 +67,7 @@ final class TaxonomyFilter extends AbstractFilterType {
 
 		$filterId = $this->config['id'] ?? '';
 
-		if ( 'hierarchy' === $display ) {
+		if ( 'hierarchy' === $display || 'product_cat' === $taxonomy ) {
 			$childrenByParent = $this->groupTermsByParent( $terms );
 
 			return $this->renderHierarchy( $childrenByParent[0] ?? [], $childrenByParent, $activeValues, $counts, $filterId );
@@ -214,7 +215,11 @@ final class TaxonomyFilter extends AbstractFilterType {
 			return '';
 		}
 
-		$html = '<ul class="hd-filter__list hd-filter__list--hierarchy">';
+		$listClass = ( 0 === $depth )
+			? 'hd-filter__list hd-filter__list--hierarchy space-y-1.5'
+			: 'hd-filter__sublist hidden pl-3 ml-3 mt-1 space-y-1 border-l-2 border-slate-200';
+
+		$html = sprintf( '<ul class="%s">', esc_attr( $listClass ) );
 
 		foreach ( $terms as $term ) {
 			$count = $counts[ $term->slug ] ?? null;
@@ -224,8 +229,22 @@ final class TaxonomyFilter extends AbstractFilterType {
 				continue;
 			}
 
+			$children    = $childrenByParent[ (int) $term->term_id ] ?? [];
+			$hasChildren = ! empty( $children );
+
 			$isActive   = in_array( $term->slug, $activeValues, true );
 			$isDisabled = ( 0 === $count && $adoptive->disablesEmpty() );
+
+			// Check if any child is active to auto-expand parent dropdown
+			$hasActiveChild = false;
+			if ( $hasChildren ) {
+				foreach ( $children as $child ) {
+					if ( in_array( $child->slug, $activeValues, true ) ) {
+						$hasActiveChild = true;
+						break;
+					}
+				}
+			}
 
 			$liClass = 'hd-filter__item';
 			if ( $isActive ) {
@@ -234,26 +253,61 @@ final class TaxonomyFilter extends AbstractFilterType {
 			if ( $isDisabled ) {
 				$liClass .= ' is-disabled';
 			}
+			if ( $hasChildren ) {
+				$liClass .= ' has-children';
+			}
+
+			$toggleBtn = '';
+			if ( $hasChildren ) {
+				$rotateClass = ( $isActive || $hasActiveChild ) ? ' rotate-180' : '';
+				$toggleBtn   = sprintf(
+					'<button type="button" class="hd-filter__toggle-btn p-1 text-slate-400 hover:text-[#1e73be] hover:bg-slate-200/50 rounded-md transition-transform duration-200%s" onclick="this.classList.toggle(\'rotate-180\'); var sub=this.closest(\'li\').querySelector(\'.hd-filter__sublist\'); if(sub) sub.classList.toggle(\'hidden\');" aria-label="%s">' .
+					'<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>' .
+					'</button>',
+					$rotateClass,
+					esc_attr__( 'Mở rộng danh mục', 'spl' )
+				);
+			}
+
+			// Style parent (depth 0) differently from child (depth > 0)
+			if ( 0 === $depth ) {
+				$labelClass  = 'hd-filter__label flex-1 cursor-pointer flex items-center gap-2 text-xs py-1.5 px-2.5 rounded-xl bg-slate-50/90 hover:bg-slate-100/90 border border-slate-200/80 transition-all font-bold text-slate-900 shadow-2xs';
+				$textStyle   = 'font-bold text-slate-900 text-xs sm:text-[13px]';
+				$countMarkup = null !== $count ? '<span class="hd-filter__count text-[10px] font-bold text-slate-600 bg-slate-200/80 px-2 py-0.5 rounded-full ml-auto">(' . absint( $count ) . ')</span>' : '';
+			} else {
+				$labelClass  = 'hd-filter__label flex-1 cursor-pointer flex items-center gap-2 text-xs py-1.5 px-2 rounded-lg hover:bg-slate-50 hover:text-[#1e73be] transition-colors';
+				$textStyle   = 'font-medium text-slate-600 text-xs';
+				$countMarkup = null !== $count ? '<span class="hd-filter__count text-slate-400 text-[10px] font-normal ml-auto">(' . absint( $count ) . ')</span>' : '';
+			}
 
 			$html .= sprintf(
 				'<li class="%s">' .
-				'<label class="hd-filter__label">' .
-				'<input type="checkbox" name="hd_%s[]" value="%s"%s%s class="hd-filter__input" />' .
-				'<span class="hd-filter__text">%s</span>' .
+				'<div class="flex items-center justify-between gap-1 w-full">' .
+				'<label class="%s">' .
+				'<input type="checkbox" name="hd_%s[]" value="%s"%s%s class="hd-filter__input rounded border-slate-300 text-[#1e73be] focus:ring-[#1e73be]" />' .
+				'<span class="hd-filter__text %s">%s</span>' .
 				'%s' .
-				'</label>',
+				'</label>' .
+				'%s' .
+				'</div>',
 				esc_attr( $liClass ),
+				esc_attr( $labelClass ),
 				esc_attr( $filterId ),
 				esc_attr( $term->slug ),
 				$isActive ? ' checked' : '',
 				$isDisabled ? ' disabled' : '',
+				esc_attr( $textStyle ),
 				esc_html( $term->name ),
-				null !== $count ? '<span class="hd-filter__count">(' . absint( $count ) . ')</span>' : ''
+				$countMarkup,
+				$toggleBtn
 			);
 
-			$children = $childrenByParent[ (int) $term->term_id ] ?? [];
-			if ( ! empty( $children ) ) {
-				$html .= $this->renderHierarchy( $children, $childrenByParent, $activeValues, $counts, $filterId, $depth + 1 );
+			if ( $hasChildren ) {
+				$subHtml = $this->renderHierarchy( $children, $childrenByParent, $activeValues, $counts, $filterId, $depth + 1 );
+				if ( $hasActiveChild ) {
+					$subHtml = str_replace( 'hd-filter__sublist hidden', 'hd-filter__sublist', $subHtml );
+				}
+				$html .= $subHtml;
 			}
 
 			$html .= '</li>';

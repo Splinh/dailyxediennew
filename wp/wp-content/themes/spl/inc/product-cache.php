@@ -100,9 +100,10 @@ function spl_get_product_categories( int $limit = 0 ): array {
 			'taxonomy'   => 'product_cat',
 			'hide_empty' => false,
 			'parent'     => 0,
-			'orderby'    => 'menu_order',
+			'meta_key'   => 'order',
+			'orderby'    => 'meta_value_num',
 			'order'      => 'ASC',
-			'number'     => 20,
+			'number'     => 25,
 		] );
 
 		if ( is_wp_error( $cached ) ) {
@@ -291,69 +292,89 @@ function spl_get_mega_menu_posts( int $count = 3 ): array {
  * @return array Array of product data arrays.
  */
 function spl_get_mega_menu_products_by_cat( int $cat_id, int $count = 3 ): array {
-	if ( ! function_exists( 'wc_get_products' ) ) {
+	if ( ! class_exists( 'WooCommerce' ) ) {
 		return [];
 	}
 
-	$cache_key = 'spl_mega_cat_prods_' . $cat_id . '_' . $count;
+	$cache_key = 'spl_mega_cat_prods_v2_' . $cat_id . '_' . $count;
 	$cached    = wp_cache_get( $cache_key, 'spl' );
 
 	if ( false === $cached ) {
-		$args = [
-			'limit'   => $count,
-			'status'  => 'publish',
-			'orderby' => 'date',
-			'order'   => 'DESC',
-		];
-
+		$tax_query = [];
 		if ( $cat_id > 0 ) {
-			$term = get_term( $cat_id, 'product_cat' );
-			if ( $term && ! is_wp_error( $term ) ) {
-				$args['category'] = [ $term->slug ];
+			$cat_term_ids = [ $cat_id ];
+			$child_ids    = get_term_children( $cat_id, 'product_cat' );
+			if ( ! is_wp_error( $child_ids ) && ! empty( $child_ids ) ) {
+				$cat_term_ids = array_merge( $cat_term_ids, $child_ids );
 			}
+			$tax_query[] = [
+				'taxonomy'         => 'product_cat',
+				'field'            => 'term_id',
+				'terms'            => $cat_term_ids,
+				'include_children' => true,
+			];
 		}
 
-		$products = wc_get_products( $args );
+		$query_args = [
+			'post_type'      => 'product',
+			'post_status'    => 'publish',
+			'posts_per_page' => $count,
+			'orderby'        => 'menu_order title',
+			'order'          => 'ASC',
+			'no_found_rows'  => true,
+		];
+		if ( ! empty( $tax_query ) ) {
+			$query_args['tax_query'] = $tax_query;
+		}
 
-		// Fallback to top products if category has no products
-		if ( empty( $products ) && $cat_id > 0 ) {
-			$products = wc_get_products( [
-				'limit'   => $count,
-				'status'  => 'publish',
-				'orderby' => 'date',
-				'order'   => 'DESC',
+		$prod_query = new \WP_Query( $query_args );
+
+		// Fallback to latest products if category query is empty
+		if ( ! $prod_query->have_posts() && $cat_id > 0 ) {
+			$prod_query = new \WP_Query( [
+				'post_type'      => 'product',
+				'post_status'    => 'publish',
+				'posts_per_page' => $count,
+				'orderby'        => 'menu_order title',
+				'order'          => 'ASC',
+				'no_found_rows'  => true,
 			] );
 		}
 
 		$cached = [];
-		foreach ( $products as $product ) {
-			$image_id  = $product->get_image_id();
-			$image_url = $image_id ? wp_get_attachment_image_url( $image_id, 'woocommerce_thumbnail' ) : ( function_exists( 'wc_placeholder_img_src' ) ? wc_placeholder_img_src() : '' );
-			
-			$regular_price = (float) $product->get_regular_price();
-			$price         = (float) $product->get_price();
-			
-			$discount = '';
-			if ( $regular_price > $price && $regular_price > 0 ) {
-				$discount = '-' . round( ( ( $regular_price - $price ) / $regular_price ) * 100 ) . '%';
-			}
+		if ( $prod_query->have_posts() ) {
+			while ( $prod_query->have_posts() ) {
+				$prod_query->the_post();
+				$product = wc_get_product( get_the_ID() );
+				if ( ! $product ) {
+					continue;
+				}
+				$image_id      = $product->get_image_id();
+				$image_url     = $image_id ? wp_get_attachment_image_url( $image_id, 'woocommerce_thumbnail' ) : ( function_exists( 'wc_placeholder_img_src' ) ? wc_placeholder_img_src() : '' );
+				$regular_price = (float) $product->get_regular_price();
+				$price         = (float) $product->get_price();
 
-			$cached[] = [
-				'id'            => $product->get_id(),
-				'name'          => $product->get_name(),
-				'url'           => $product->get_permalink(),
-				'image'         => $image_url,
-				'price_html'    => $product->get_price_html(),
-				'price'         => $price,
-				'regular_price' => $regular_price,
-				'discount'      => $discount,
-			];
+				$discount = '';
+				if ( $regular_price > $price && $regular_price > 0 ) {
+					$discount = '-' . round( ( ( $regular_price - $price ) / $regular_price ) * 100 ) . '%';
+				}
+
+				$cached[] = [
+					'id'            => $product->get_id(),
+					'name'          => $product->get_name(),
+					'url'           => $product->get_permalink(),
+					'image'         => $image_url,
+					'price_html'    => $product->get_price_html(),
+					'price'         => $price,
+					'regular_price' => $regular_price,
+					'discount'      => $discount,
+				];
+			}
+			wp_reset_postdata();
 		}
 
-		wp_cache_set( $cache_key, $cached, 'spl' );
+		wp_cache_set( $cache_key, $cached, 'spl', 3600 );
 	}
 
 	return $cached;
 }
-
-

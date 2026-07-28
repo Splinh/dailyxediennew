@@ -84,7 +84,7 @@ while ( have_posts() ) :
 							endif;
 							?>
 						</div>
-						<h1 class="text-2xl md:text-3xl lg:text-4xl font-extrabold text-slate-900 leading-snug">
+						<h1 class="text-xl md:text-2xl lg:text-3xl font-extrabold text-slate-900 leading-tight">
 							<?php the_title(); ?>
 						</h1>
 						<div class="flex flex-wrap items-center gap-4 text-xs text-slate-400 font-semibold border-b border-slate-100 pb-5">

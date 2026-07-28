@@ -15,7 +15,7 @@ $extra_classes = array_filter(
 		preg_split( '/\s+/', (string) ( $data['class'] ?? '' ) ) ?: []
 	)
 );
-$card_classes  = implode( ' ', array_merge( [ 'bg-white border border-slate-100 rounded-xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 flex flex-col justify-between group relative' ], $extra_classes ) );
+$card_classes  = implode( ' ', array_merge( [ 'bg-white border border-slate-200/90 hover:border-primary/50 rounded-xl overflow-hidden shadow-[0_2px_10px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_24px_rgba(7,88,183,0.12)] transition-all duration-300 flex flex-col justify-between group relative' ], $extra_classes ) );
 
 /** @var \WC_Product|null $card_product */
 $card_product = $data['product'] ?? null;
@@ -136,7 +136,7 @@ $stars_count     = $average_rating > 0 ? round( $average_rating ) : 5;
 	<div class="p-3.5 md:p-4 flex-grow flex flex-col justify-between">
 		<div>
 			<?php if ( $cat_name ) : ?>
-				<span class="text-[9px] md:text-[10px] text-slate-400 font-bold uppercase tracking-wider block"><?php echo esc_html( $cat_name ); ?></span>
+				<span class="product-card-cat-name text-slate-500 font-bold uppercase tracking-wider block mb-0.5"><?php echo esc_html( $cat_name ); ?></span>
 			<?php endif; ?>
 			<h3 class="font-extrabold text-slate-900 text-xs md:text-sm line-clamp-2 mt-1 group-hover:text-primary transition-colors leading-snug">
 				<a href="<?php echo esc_url( $permalink ); ?>"><?php echo esc_html( $name ); ?></a>
@@ -147,13 +147,13 @@ $stars_count     = $average_rating > 0 ? round( $average_rating ) : 5;
 					?>
 					<svg class="w-3 h-3 <?php echo esc_attr( $fill_class ); ?>" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
 				<?php endfor; ?>
-				<span class="text-slate-400 ml-1.5 font-semibold text-[10px]"><?php echo esc_html( sprintf( __( 'Đã bán %s', 'spl' ), $sales_formatted ) ); ?></span>
+				<span class="text-slate-500 ml-1.5 font-bold text-[10px]"><?php echo esc_html( sprintf( __( 'Đã bán %s', 'spl' ), $sales_formatted ) ); ?></span>
 			</div>
 		</div>
 
 		<div class="mt-3.5">
 			<div class="flex flex-wrap items-baseline gap-1 md:gap-2">
-				<span class="text-sm md:text-base font-black text-slate-900"><?php echo wp_kses_post( $price_current_html ); ?></span>
+				<span class="text-sm md:text-base font-black text-red-600"><?php echo wp_kses_post( $price_current_html ); ?></span>
 				<?php if ( $price_old_html ) : ?>
 					<span class="text-[10px] md:text-xs text-slate-400 line-through"><?php echo wp_kses_post( $price_old_html ); ?></span>
 				<?php endif; ?>
@@ -162,7 +162,7 @@ $stars_count     = $average_rating > 0 ? round( $average_rating ) : 5;
 			<?php if ( $purchasable ) : ?>
 				<div class="flex items-center gap-1.5 mt-3 max-w-[200px]">
 					<a href="<?php echo esc_url( function_exists( 'wc_get_checkout_url' ) ? wc_get_checkout_url() . '?add-to-cart=' . $pid : '#' ); ?>" class="flex-1 bg-primary hover:bg-primary-hover active:scale-95 text-white text-[11px] md:text-xs font-bold min-h-[36px] md:min-h-[38px] px-3 rounded-md transition-all text-center flex items-center justify-center shadow-sm shadow-primary/20"><?php esc_html_e( 'Mua ngay', 'spl' ); ?></a>
-					<button type="button" class="add-cart-btn active:scale-95 min-h-[36px] md:min-h-[38px] w-[36px] md:w-[38px] shrink-0 flex items-center justify-center rounded-md transition-all bg-slate-100 text-slate-700 hover:bg-primary-50 hover:text-primary" data-product-id="<?php echo esc_attr( $pid ); ?>" title="<?php esc_attr_e( 'Thêm vào giỏ', 'spl' ); ?>">
+					<button type="button" class="add-cart-btn active:scale-95 min-h-[36px] md:min-h-[38px] w-[36px] md:w-[38px] shrink-0 flex items-center justify-center rounded-md transition-all bg-slate-100 text-slate-800 hover:bg-primary-50 hover:text-primary border border-slate-200/60" data-product-id="<?php echo esc_attr( $pid ); ?>" title="<?php esc_attr_e( 'Thêm vào giỏ', 'spl' ); ?>">
 						<?php echo spl_icon( 'cart', 'w-4 h-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</button>
 				</div>

@@ -73,6 +73,7 @@ $all_cats = get_categories( [
 	'number'     => 10,
 	'orderby'    => 'count',
 	'order'      => 'DESC',
+	'exclude'    => [ (int) get_option( 'default_category' ) ],
 ] );
 
 if ( $all_cats && ! is_wp_error( $all_cats ) ) :
@@ -138,7 +139,7 @@ if ( $all_cats && ! is_wp_error( $all_cats ) ) :
 												<svg class="w-12 h-12 text-slate-300" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
 											</div>
 										<?php endif; ?>
-										<div class="absolute top-3 left-3">
+										<div class="absolute top-3 right-3">
 											<span class="bg-red-500 text-white text-[9px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-sm"><?php esc_html_e( 'Nổi bật', 'spl' ); ?></span>
 										</div>
 									</div>
@@ -185,7 +186,7 @@ if ( $all_cats && ! is_wp_error( $all_cats ) ) :
 										</div>
 									<?php endif; ?>
 									<?php if ( is_sticky( $p_id ) ) : ?>
-										<div class="absolute top-3 left-3"><span class="bg-red-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full">Hot</span></div>
+										<div class="absolute top-3 right-3"><span class="bg-red-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full">Hot</span></div>
 									<?php endif; ?>
 								</div>
 							</a>

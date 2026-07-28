@@ -29,7 +29,7 @@ $items = ! empty( $data['items'] ) ? $data['items'] : [
 	],
 	[
 		'year'  => '2015',
-		'desc'  => 'Nhà máy Bluera. Khai trương nhà máy sản xuất & lắp ráp xe điện công nghệ Nhật Bản đầu tiên đạt tiêu chuẩn TCVN, ISO.',
+		'desc'  => 'Nhà máy Bluera. Khai trương nhà máy sản xuất & lắp ráp xe điện công nghệ hiện đại đầu tiên đạt tiêu chuẩn TCVN, ISO.',
 		'image' => 'https://bluerabike.com/wp-content/uploads/2024/09/bluera-bieu-tuong-xe-dien.jpg',
 	],
 	[
@@ -64,6 +64,7 @@ $fallback_image = 'https://dailyxedien.vn/wp-content/uploads/2026/02/khai-truong
 $slider_config = wp_json_encode( [
 	'slidesPerView'       => 'auto',
 	'centered'            => true,
+	'loop'                => true,
 	'spaceBetween'        => 24,
 	'navigation'          => true,
 	'observeParents'      => true,
@@ -196,8 +197,8 @@ $slider_config = wp_json_encode( [
 
 		<!-- Swiper Timeline Thumbs Stepper Bar -->
 		<div class="max-w-3xl mx-auto relative mb-8 md:mb-10 overflow-x-auto no-scrollbar py-2" id="timeline-stepper-wrap">
-			<!-- Connected Horizontal Line behind dots -->
-			<div class="absolute left-6 right-6 top-3 -translate-y-1/2 h-0.5 bg-slate-300 pointer-events-none rounded-full"></div>
+			<!-- Connected Horizontal Line centered exactly behind dots -->
+			<div class="absolute left-10 right-10 top-[20px] -translate-y-1/2 h-0.5 bg-slate-300 pointer-events-none rounded-full"></div>
 
 			<div class="flex items-center justify-between gap-4 md:gap-8 min-w-max px-6 relative z-10">
 				<?php foreach ( $items as $index => $item ) : ?>
@@ -281,7 +282,7 @@ $slider_config = wp_json_encode( [
 		const section = document.getElementById('about-timeline-section');
 		if (!section) return;
 
-		const stepperBtns = section.querySelectorAll('.year-item');
+		const stepperBtns = Array.from(section.querySelectorAll('.year-item'));
 		const sliderContainer = section.querySelector('#timeline-swiper-main');
 		const prevBtn = section.querySelector('.swiper-button-prev');
 		const nextBtn = section.querySelector('.swiper-button-next');
@@ -301,17 +302,31 @@ $slider_config = wp_json_encode( [
 
 		// Function to update active stepper state
 		const updateActiveStepper = (activeIndex) => {
+			const activeNum = isNaN(parseInt(activeIndex, 10)) ? 0 : parseInt(activeIndex, 10);
+
 			stepperBtns.forEach((btn, idx) => {
 				const dot = btn.querySelector('.dot');
 				const dotInner = btn.querySelector('.dot-inner');
 				const yearText = btn.querySelector('.year');
 
-				if (idx === activeIndex) {
+				if (idx === activeNum) {
 					if (dot) {
 						dot.className = 'dot w-5 h-5 rounded-full border-2 border-primary bg-white ring-4 ring-primary/20 shadow-md flex items-center justify-center transition-all duration-300';
 					}
 					if (dotInner) dotInner.className = 'dot-inner w-2 h-2 rounded-full bg-primary opacity-100 transition-opacity';
 					if (yearText) yearText.className = 'year text-xs md:text-sm font-extrabold text-slate-900 text-sm md:text-base transition-colors mt-2';
+					
+					// Internal scroll container only for mobile screens (never shifts page or title)
+					const stepperWrap = section.querySelector('#timeline-stepper-wrap');
+					if (stepperWrap && window.innerWidth < 768 && stepperWrap.scrollWidth > stepperWrap.clientWidth) {
+						const btnLeft = btn.offsetLeft;
+						const btnWidth = btn.offsetWidth;
+						const wrapWidth = stepperWrap.clientWidth;
+						stepperWrap.scrollTo({
+							left: btnLeft - wrapWidth / 2 + btnWidth / 2,
+							behavior: 'smooth'
+						});
+					}
 				} else {
 					if (dot) {
 						dot.className = 'dot w-2.5 h-2.5 bg-slate-400 rounded-full group-hover:bg-primary group-hover:scale-125 transition-all duration-300';
@@ -328,7 +343,11 @@ $slider_config = wp_json_encode( [
 				e.preventDefault();
 				const slideIdx = parseInt(this.getAttribute('data-slide-index'), 10);
 				if (swiperInstance) {
-					swiperInstance.slideTo(slideIdx);
+					if (typeof swiperInstance.slideToLoop === 'function') {
+						swiperInstance.slideToLoop(slideIdx, 400);
+					} else {
+						swiperInstance.slideTo(slideIdx, 400);
+					}
 				}
 				updateActiveStepper(slideIdx);
 			});
@@ -336,44 +355,71 @@ $slider_config = wp_json_encode( [
 
 		// Check if Swiper is already initialized or initialize it directly
 		const setupSwiperEvents = (instance) => {
+			if (!instance || swiperInstance === instance) return;
 			swiperInstance = instance;
 			sanitizeNavButtons();
-			swiperInstance.on('slideChange', function() {
+
+			const handleIndexChange = () => {
 				sanitizeNavButtons();
-				updateActiveStepper(this.activeIndex);
-			});
-			updateActiveStepper(swiperInstance.activeIndex || 0);
+				const activeIdx = (typeof instance.realIndex !== 'undefined' && instance.realIndex !== null)
+					? instance.realIndex
+					: (instance.activeIndex || 0);
+				updateActiveStepper(activeIdx);
+			};
+
+			instance.on('slideChange', handleIndexChange);
+			instance.on('slideChangeTransitionStart', handleIndexChange);
+			instance.on('activeIndexChange', handleIndexChange);
+
+			const initialIdx = (typeof instance.realIndex !== 'undefined' && instance.realIndex !== null)
+				? instance.realIndex
+				: (instance.activeIndex || 0);
+			updateActiveStepper(initialIdx);
 		};
 
-		// 1. Try finding attached swiper instance
+		// Listen to global FxSlider init event
+		document.addEventListener('fx:slider:init', (e) => {
+			if (e.detail && e.detail.el === sliderContainer) {
+				setupSwiperEvents(e.detail.instance);
+			}
+		});
+
+		// Poll for swiper instance safely
 		let attempts = 0;
 		const timer = setInterval(() => {
 			attempts++;
 			sanitizeNavButtons();
+
 			if (sliderContainer.swiper) {
 				clearInterval(timer);
 				setupSwiperEvents(sliderContainer.swiper);
 			} else if (window.FX && typeof window.FX.get === 'function' && window.FX.get(sliderContainer)) {
+				const fxObj = window.FX.get(sliderContainer);
+				const swInstance = fxObj.swiper || fxObj;
+				if (swInstance && typeof swInstance.on === 'function') {
+					clearInterval(timer);
+					setupSwiperEvents(swInstance);
+				}
+			} else if (typeof Swiper !== 'undefined' && attempts > 25) {
+				// Fallback after 2.5s if fx-slider didn't initialize
 				clearInterval(timer);
-				setupSwiperEvents(window.FX.get(sliderContainer));
-			} else if (typeof Swiper !== 'undefined' && attempts > 10) {
-				// Fallback: direct Swiper instance if FX loader didn't pick it up
-				clearInterval(timer);
-				const directSwiper = new Swiper(sliderContainer, {
-					slidesPerView: 'auto',
-					centeredSlides: true,
-					spaceBetween: 24,
-					initialSlide: 0,
-					loop: false,
-					speed: 500,
-					navigation: {
-						nextEl: nextBtn,
-						prevEl: prevBtn,
-					},
-				});
-				sliderContainer.swiper = directSwiper;
-				setupSwiperEvents(directSwiper);
-			} else if (attempts > 30) {
+				if (!sliderContainer.swiper) {
+					const directSwiper = new Swiper(sliderContainer, {
+						slidesPerView: 'auto',
+						centeredSlides: true,
+						loop: true,
+						spaceBetween: 24,
+						initialSlide: 0,
+						speed: 500,
+						navigation: {
+							nextEl: nextBtn,
+							prevEl: prevBtn,
+						},
+					});
+					sliderContainer.swiper = directSwiper;
+					setupSwiperEvents(directSwiper);
+				}
+			} else if (attempts > 50) {
 				clearInterval(timer);
 			}
 		}, 100);

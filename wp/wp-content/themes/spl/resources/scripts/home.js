@@ -112,18 +112,21 @@
 		// C. TECHNOLOGY SPOTLIGHT TABS
 		// ----------------------------------------------------
 		window.switchTechTab = function ( tabId, btn ) {
-			const activeBtnCls = 'bg-gradient-to-r from-primary to-indigo-600 border-primary text-white shadow-lg shadow-primary/20';
-			const inactiveBtnCls = 'bg-white/5 border-white/10 text-slate-300 hover:bg-white/10 hover:text-white';
-
+			if ( ! btn ) return;
 			const container = btn.closest( '[role="tablist"]' );
 			if ( ! container ) return;
 
+			const activeClasses   = [ 'bg-gradient-to-r', 'from-primary', 'to-indigo-600', 'border-primary', 'text-white', 'shadow-lg', 'shadow-primary/20' ];
+			const inactiveClasses = [ 'bg-white/5', 'border-white/10', 'text-slate-300', 'hover:bg-white/10', 'hover:text-white' ];
+
 			$$( 'button[role="tab"]', container ).forEach( ( b ) => {
-				b.className = b.className.replace( activeBtnCls, '' ).replace( inactiveBtnCls, '' ) + ' ' + inactiveBtnCls;
+				b.classList.remove( ...activeClasses );
+				b.classList.add( ...inactiveClasses );
 				b.setAttribute( 'aria-selected', 'false' );
 			} );
 
-			btn.className = btn.className.replace( inactiveBtnCls, '' ) + ' ' + activeBtnCls;
+			btn.classList.remove( ...inactiveClasses );
+			btn.classList.add( ...activeClasses );
 			btn.setAttribute( 'aria-selected', 'true' );
 
 			const panels = $$( '#ai-tab-content .ai-tab-panel' );
@@ -150,21 +153,23 @@
 			const target = $( '#' + tabId );
 			if ( target ) target.classList.remove( 'hidden' );
 
-			const inactive = 'tab-btn px-4 md:px-6 py-2.5 md:py-3 text-xs font-bold rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-200/50 transition-all whitespace-nowrap';
-			const active   = 'tab-btn active px-4 md:px-6 py-2.5 md:py-3 text-xs font-black rounded-xl transition-all whitespace-nowrap bg-gradient-to-r from-primary to-primary-hover text-white shadow-md shadow-primary/30';
+			const activeClasses   = [ 'active', 'bg-gradient-to-r', 'from-primary', 'to-primary-hover', 'text-white', 'shadow-md', 'shadow-primary/30', 'font-black' ];
+			const inactiveClasses = [ 'text-slate-600', 'hover:text-slate-900', 'hover:bg-slate-200/50', 'font-bold' ];
 
 			const tablist = clickedBtn ? clickedBtn.closest( '[role="tablist"]' ) : $( '#best-sellers [role="tablist"]' );
 			if ( ! tablist ) return;
 
 			const btns = $$( '.tab-btn', tablist );
 			btns.forEach( ( b ) => {
-				b.className = inactive;
+				b.classList.remove( ...activeClasses );
+				b.classList.add( ...inactiveClasses );
 				b.setAttribute( 'aria-selected', 'false' );
 			} );
 
 			const btn = clickedBtn || btns.find( ( b ) => b.getAttribute( 'data-tab' ) === tabId );
 			if ( btn ) {
-				btn.className = active;
+				btn.classList.remove( ...inactiveClasses );
+				btn.classList.add( ...activeClasses );
 				btn.setAttribute( 'aria-selected', 'true' );
 			}
 		};

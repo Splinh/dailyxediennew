@@ -9,6 +9,29 @@ defined( 'ABSPATH' ) || exit;
 
 add_filter( 'woocommerce_add_to_cart_fragments', 'spl_cart_fragments', 20 );
 add_filter( 'woocommerce_widget_cart_item_quantity', 'spl_mini_cart_quantity', 20, 3 );
+add_filter( 'loop_shop_per_page', function() { return 16; }, 20 );
+add_action( 'woocommerce_product_query', function( $q ) {
+	if ( ! is_admin() && $q->is_main_query() ) {
+		if ( is_product_category( 'san-pham-moi' ) ) {
+			$q->set( 'orderby', 'date' );
+			$q->set( 'order', 'DESC' );
+		} else {
+			$q->set( 'orderby', 'menu_order title' );
+			$q->set( 'order', 'ASC' );
+		}
+	}
+}, 20 );
+
+// Auto-assign category "Sản phẩm mới" when publishing/saving a new product
+add_action( 'save_post_product', function( $post_id, $post, $update ) {
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+	if ( empty( $post ) || $post->post_status !== 'publish' ) return;
+
+	$term = get_term_by( 'slug', 'san-pham-moi', 'product_cat' );
+	if ( $term ) {
+		wp_set_object_terms( $post_id, (int) $term->term_id, 'product_cat', true );
+	}
+}, 10, 3 );
 add_action( 'wp_ajax_spl_update_mini_cart_qty', 'spl_update_mini_cart_quantity' );
 add_action( 'wp_ajax_nopriv_spl_update_mini_cart_qty', 'spl_update_mini_cart_quantity' );
 add_action( 'wp_ajax_spl_search_products', 'spl_ajax_search_products' );

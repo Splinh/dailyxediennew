@@ -40,25 +40,27 @@ function collectGroups(root) {
  * @returns {{ w: number, h: number }}
  */
 function resolveDimensions(linkEl) {
-	// 1. Explicit pswp attributes on link
+	// 1. Explicit pswp attributes on link (passed directly from WP attachment metadata)
 	const pw = linkEl.dataset.pswpWidth;
 	const ph = linkEl.dataset.pswpHeight;
-	if (pw && ph) return { w: Number(pw), h: Number(ph) };
+	if (pw && ph && Number(pw) > 0 && Number(ph) > 0) {
+		return { w: Number(pw), h: Number(ph) };
+	}
 
-	// 2. WooCommerce convention on child <img>
+	// 2. Natural dimensions of child <img> if loaded
 	const img = qs('img', linkEl);
 	if (img) {
 		const lw = img.dataset.large_image_width;
 		const lh = img.dataset.large_image_height;
-		if (lw && lh) return { w: Number(lw), h: Number(lh) };
-
-		// 3. Natural dimensions (only if image is loaded)
+		if (lw && lh && Number(lw) > 0 && Number(lh) > 0) {
+			return { w: Number(lw), h: Number(lh) };
+		}
 		if (img.naturalWidth && img.naturalHeight) {
 			return { w: img.naturalWidth, h: img.naturalHeight };
 		}
 	}
 
-	return { w: 0, h: 0 };
+	return { w: 1200, h: 800 };
 }
 
 /**
@@ -95,6 +97,7 @@ function createLightbox(options, galleryEl) {
 	if (key && typeof key !== 'string' && instances.has(key)) return null;
 
 	const lightbox = new PhotoSwipeLightbox({
+		padding: { top: 32, bottom: 32, left: 24, right: 24 },
 		...options,
 		pswpModule: PhotoSwipe,
 	});

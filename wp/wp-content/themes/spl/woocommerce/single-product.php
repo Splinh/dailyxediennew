@@ -119,9 +119,11 @@ while ( have_posts() ) :
 		continue;
 	}
 
-	$image_id  = $product->get_image_id();
-	$image_url = wp_get_attachment_image_url( $image_id, 'large' ) ?: wc_placeholder_img_src( 'large' );
-	$gallery   = $product->get_gallery_image_ids();
+	$image_id   = $product->get_image_id();
+	$image_url  = wp_get_attachment_image_url( $image_id, 'large' ) ?: wc_placeholder_img_src( 'large' );
+	$full_src   = wp_get_attachment_image_src( $image_id, 'full' );
+	$full_url   = ! empty( $full_src[0] ) ? $full_src[0] : $image_url;
+	$gallery    = $product->get_gallery_image_ids();
 	$is_sale   = $product->is_on_sale();
 	$cats      = wp_get_post_terms( get_the_ID(), 'product_cat' );
 	$cat_name  = ! empty( $cats ) ? $cats[0]->name : '';
@@ -269,13 +271,18 @@ while ( have_posts() ) :
 			<div class="sp-detail__grid">
 
 				<!-- Gallery -->
+				<?php
+				$main_img_src = wp_get_attachment_image_src( $image_id, 'full' );
+				$main_w       = ! empty( $main_img_src[1] ) ? $main_img_src[1] : 1920;
+				$main_h       = ! empty( $main_img_src[2] ) ? $main_img_src[2] : 1280;
+				?>
 				<div class="sp-gallery reveal" data-fx-lightbox>
 					<div class="sp-gallery__main" id="sp-gallery-main">
 						<?php if ( $sale_pct > 0 ) : ?>
 							<span class="sp-gallery__badge">-<?php echo (int) $sale_pct; ?>%</span>
 						<?php endif; ?>
-						<a href="<?php echo esc_url( $image_url ); ?>" id="sp-main-link" data-pswp-width="1200" data-pswp-height="1200">
-							<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $product->get_name() ); ?>" id="sp-main-img" />
+						<a href="<?php echo esc_url( $full_url ); ?>" id="sp-main-link" data-pswp-width="<?php echo (int) $main_w; ?>" data-pswp-height="<?php echo (int) $main_h; ?>">
+							<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $product->get_name() ); ?>" id="sp-main-img" data-large_image="<?php echo esc_url( $full_url ); ?>" data-large_image_width="<?php echo (int) $main_w; ?>" data-large_image_height="<?php echo (int) $main_h; ?>" />
 						</a>
 						<button class="sp-gallery__zoom" aria-label="<?php esc_attr_e( 'Phóng to ảnh', 'spl' ); ?>" id="sp-zoom-btn">
 							<svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
@@ -288,7 +295,25 @@ while ( have_posts() ) :
 						</button>
 					</div>
 					<?php
-					$total_images = 1 + count( $gallery );
+					$valid_gallery = [];
+					if ( ! empty( $gallery ) && is_array( $gallery ) ) {
+						foreach ( $gallery as $gal_id ) {
+							$t_url = wp_get_attachment_image_url( $gal_id, 'thumbnail' );
+							$l_url = wp_get_attachment_image_url( $gal_id, 'large' );
+							$f_src = wp_get_attachment_image_src( $gal_id, 'full' );
+							if ( $t_url && ! empty( $f_src[0] ) ) {
+								$valid_gallery[] = [
+									'id'          => $gal_id,
+									'thumb_url'   => $t_url,
+									'display_url' => $l_url ?: $f_src[0],
+									'full_url'    => $f_src[0],
+									'w'           => ! empty( $f_src[1] ) ? $f_src[1] : 1920,
+									'h'           => ! empty( $f_src[2] ) ? $f_src[2] : 1280,
+								];
+							}
+						}
+					}
+					$total_images = 1 + count( $valid_gallery );
 					$use_slider   = $total_images > 6;
 					
 					if ( $use_slider ) :
@@ -302,24 +327,24 @@ while ( have_posts() ) :
 						?>
 						<div class="sp-gallery__thumbs swiper closest-swiper" id="sp-gallery-thumbs" data-fx-slider>
 							<div class="swiper-wrapper" data-swiper-options="<?php echo esc_attr( wp_json_encode( $swiper_options ) ); ?>">
-								<a href="<?php echo esc_url( $image_url ); ?>" class="sp-gallery__thumb swiper-slide active" data-img="<?php echo esc_url( $image_url ); ?>" data-pswp-width="1200" data-pswp-height="1200">
-									<img src="<?php echo esc_url( wp_get_attachment_image_url( $image_id, 'thumbnail' ) ?: $image_url ); ?>" alt="<?php esc_attr_e( 'Ảnh 1', 'spl' ); ?>" />
+								<a href="<?php echo esc_url( $full_url ); ?>" class="sp-gallery__thumb swiper-slide active" data-img="<?php echo esc_url( $image_url ); ?>" data-pswp-width="<?php echo (int) $main_w; ?>" data-pswp-height="<?php echo (int) $main_h; ?>">
+									<img src="<?php echo esc_url( wp_get_attachment_image_url( $image_id, 'thumbnail' ) ?: $image_url ); ?>" alt="<?php echo esc_attr( $product->get_name() ); ?>" data-large_image="<?php echo esc_url( $full_url ); ?>" data-large_image_width="<?php echo (int) $main_w; ?>" data-large_image_height="<?php echo (int) $main_h; ?>" onerror="this.closest('.sp-gallery__thumb')?.remove()" />
 								</a>
-								<?php foreach ( $gallery as $i => $gal_id ) : ?>
-									<a href="<?php echo esc_url( wp_get_attachment_image_url( $gal_id, 'large' ) ); ?>" class="sp-gallery__thumb swiper-slide" data-img="<?php echo esc_url( wp_get_attachment_image_url( $gal_id, 'large' ) ); ?>" data-pswp-width="1200" data-pswp-height="1200">
-										<img src="<?php echo esc_url( wp_get_attachment_image_url( $gal_id, 'thumbnail' ) ); ?>" alt="<?php echo esc_attr( sprintf( __( 'Ảnh %d', 'spl' ), $i + 2 ) ); ?>" />
+								<?php foreach ( $valid_gallery as $i => $item ) : ?>
+									<a href="<?php echo esc_url( $item['full_url'] ); ?>" class="sp-gallery__thumb swiper-slide" data-img="<?php echo esc_url( $item['display_url'] ); ?>" data-pswp-width="<?php echo (int) $item['w']; ?>" data-pswp-height="<?php echo (int) $item['h']; ?>">
+										<img src="<?php echo esc_url( $item['thumb_url'] ); ?>" alt="<?php echo esc_attr( sprintf( __( 'Ảnh %d', 'spl' ), $i + 2 ) ); ?>" data-large_image="<?php echo esc_url( $item['full_url'] ); ?>" data-large_image_width="<?php echo (int) $item['w']; ?>" data-large_image_height="<?php echo (int) $item['h']; ?>" onerror="this.closest('.sp-gallery__thumb')?.remove()" />
 									</a>
 								<?php endforeach; ?>
 							</div>
 						</div>
 					<?php else : ?>
 						<div class="sp-gallery__thumbs" id="sp-gallery-thumbs">
-							<a href="<?php echo esc_url( $image_url ); ?>" class="sp-gallery__thumb active" data-img="<?php echo esc_url( $image_url ); ?>" data-pswp-width="1200" data-pswp-height="1200">
-								<img src="<?php echo esc_url( wp_get_attachment_image_url( $image_id, 'thumbnail' ) ?: $image_url ); ?>" alt="<?php esc_attr_e( 'Ảnh 1', 'spl' ); ?>" />
+							<a href="<?php echo esc_url( $full_url ); ?>" class="sp-gallery__thumb active" data-img="<?php echo esc_url( $image_url ); ?>" data-pswp-width="<?php echo (int) $main_w; ?>" data-pswp-height="<?php echo (int) $main_h; ?>">
+								<img src="<?php echo esc_url( wp_get_attachment_image_url( $image_id, 'thumbnail' ) ?: $image_url ); ?>" alt="<?php echo esc_attr( $product->get_name() ); ?>" data-large_image="<?php echo esc_url( $full_url ); ?>" data-large_image_width="<?php echo (int) $main_w; ?>" data-large_image_height="<?php echo (int) $main_h; ?>" onerror="this.closest('.sp-gallery__thumb')?.remove()" />
 							</a>
-							<?php foreach ( $gallery as $i => $gal_id ) : ?>
-								<a href="<?php echo esc_url( wp_get_attachment_image_url( $gal_id, 'large' ) ); ?>" class="sp-gallery__thumb" data-img="<?php echo esc_url( wp_get_attachment_image_url( $gal_id, 'large' ) ); ?>" data-pswp-width="1200" data-pswp-height="1200">
-									<img src="<?php echo esc_url( wp_get_attachment_image_url( $gal_id, 'thumbnail' ) ); ?>" alt="<?php echo esc_attr( sprintf( __( 'Ảnh %d', 'spl' ), $i + 2 ) ); ?>" />
+							<?php foreach ( $valid_gallery as $i => $item ) : ?>
+								<a href="<?php echo esc_url( $item['full_url'] ); ?>" class="sp-gallery__thumb" data-img="<?php echo esc_url( $item['display_url'] ); ?>" data-pswp-width="<?php echo (int) $item['w']; ?>" data-pswp-height="<?php echo (int) $item['h']; ?>">
+									<img src="<?php echo esc_url( $item['thumb_url'] ); ?>" alt="<?php echo esc_attr( sprintf( __( 'Ảnh %d', 'spl' ), $i + 2 ) ); ?>" data-large_image="<?php echo esc_url( $item['full_url'] ); ?>" data-large_image_width="<?php echo (int) $item['w']; ?>" data-large_image_height="<?php echo (int) $item['h']; ?>" onerror="this.closest('.sp-gallery__thumb')?.remove()" />
 								</a>
 							<?php endforeach; ?>
 						</div>

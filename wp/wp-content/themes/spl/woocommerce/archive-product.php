@@ -220,41 +220,85 @@ if ( $is_search ) {
 					<?php endif; ?>
 				</div>
 
-				<!-- Pagination -->
+				<!-- Smart Pagination -->
 				<?php
-				$total_pages = $wp_query->max_num_pages;
+				$total_pages = (int) $wp_query->max_num_pages;
 				if ( $total_pages > 1 ) :
 					?>
 					<div class="pagination woocommerce-pagination reveal">
 						<?php
-						// Previous.
+						// 1. First Page (<<)
 						if ( $current > 1 ) :
 							?>
-							<a href="<?php echo esc_url( get_pagenum_link( $current - 1 ) ); ?>" class="pagination__btn pagination__btn--prev" aria-label="<?php esc_attr_e( 'Trang trước', 'spl' ); ?>">
-								<svg class="icon" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+							<a href="<?php echo esc_url( get_pagenum_link( 1 ) ); ?>" class="pagination__btn" title="<?php esc_attr_e( 'Trang đầu', 'spl' ); ?>">
+								<svg class="icon" viewBox="0 0 24 24"><polyline points="11 18 5 12 11 6"/><polyline points="18 18 12 12 18 6"/></svg>
 							</a>
-						<?php else : ?>
-							<button class="pagination__btn pagination__btn--prev" disabled aria-label="<?php esc_attr_e( 'Trang trước', 'spl' ); ?>">
-								<svg class="icon" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-							</button>
 						<?php endif; ?>
 
-						<?php for ( $i = 1; $i <= $total_pages; $i++ ) : ?>
-							<?php if ( $i === $current ) : ?>
-								<span class="pagination__page active"><?php echo (int) $i; ?></span>
-							<?php else : ?>
-								<a href="<?php echo esc_url( get_pagenum_link( $i ) ); ?>" class="pagination__page"><?php echo (int) $i; ?></a>
-							<?php endif; ?>
-						<?php endfor; ?>
+						<?php
+						// 2. Previous (<)
+						if ( $current > 1 ) :
+							?>
+							<a href="<?php echo esc_url( get_pagenum_link( $current - 1 ) ); ?>" class="pagination__btn pagination__btn--prev" title="<?php esc_attr_e( 'Trang trước', 'spl' ); ?>">
+								<svg class="icon" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+							</a>
+						<?php endif; ?>
 
-						<?php if ( $current < $total_pages ) : ?>
-							<a href="<?php echo esc_url( get_pagenum_link( $current + 1 ) ); ?>" class="pagination__btn pagination__btn--next" aria-label="<?php esc_attr_e( 'Trang sau', 'spl' ); ?>">
+						<?php
+						// Calculate smart page range
+						$range     = [ 1 ];
+						$adjacents = 1;
+
+						if ( $total_pages >= 2 ) {
+							$range[] = 2;
+						}
+
+						for ( $i = max( 3, $current - $adjacents ); $i <= min( $total_pages - 2, $current + $adjacents ); $i++ ) {
+							$range[] = $i;
+						}
+
+						if ( $total_pages >= 3 ) {
+							$range[] = $total_pages - 1;
+							$range[] = $total_pages;
+						}
+
+						$range = array_values( array_unique( $range ) );
+						sort( $range );
+
+						$prev = 0;
+						foreach ( $range as $page ) :
+							if ( $prev > 0 && $page - $prev > 1 ) :
+								?>
+								<span class="pagination__dots px-1 text-slate-400 font-bold select-none">...</span>
+							<?php endif; ?>
+
+							<?php if ( $page === $current ) : ?>
+								<span class="pagination__page active"><?php echo (int) $page; ?></span>
+							<?php else : ?>
+								<a href="<?php echo esc_url( get_pagenum_link( $page ) ); ?>" class="pagination__page"><?php echo (int) $page; ?></a>
+							<?php endif; ?>
+
+							<?php
+							$prev = $page;
+						endforeach;
+						?>
+
+						<?php
+						// 3. Next (>)
+						if ( $current < $total_pages ) :
+							?>
+							<a href="<?php echo esc_url( get_pagenum_link( $current + 1 ) ); ?>" class="pagination__btn pagination__btn--next" title="<?php esc_attr_e( 'Trang sau', 'spl' ); ?>">
 								<svg class="icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
 							</a>
-						<?php else : ?>
-							<button class="pagination__btn pagination__btn--next" disabled aria-label="<?php esc_attr_e( 'Trang sau', 'spl' ); ?>">
-								<svg class="icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-							</button>
+						<?php endif; ?>
+
+						<?php
+						// 4. Last Page (>>)
+						if ( $current < $total_pages ) :
+							?>
+							<a href="<?php echo esc_url( get_pagenum_link( $total_pages ) ); ?>" class="pagination__btn" title="<?php esc_attr_e( 'Trang cuối', 'spl' ); ?>">
+								<svg class="icon" viewBox="0 0 24 24"><polyline points="13 18 19 12 13 6"/><polyline points="6 18 12 12 6 6"/></svg>
+							</a>
 						<?php endif; ?>
 					</div>
 				<?php endif; ?>

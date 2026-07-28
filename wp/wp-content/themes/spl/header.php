@@ -219,111 +219,113 @@ do_action( 'spl_header_before_action' );
 				<!-- MEGA MENU DROPDOWN PANEL (SẢN PHẨM - CONTAINER BOUNDED) -->
 				<div data-mega-target="cat" class="absolute top-full left-4 right-4 bg-white text-slate-800 border border-slate-100 rounded-b-2xl shadow-2xl overflow-hidden p-6 opacity-0 translate-y-2 pointer-events-none transition-all duration-300 z-50 flex gap-6 hidden" role="menu">
 					
-					<!-- Left Column: Product Categories & Sub-categories -->
-					<div class="w-80 shrink-0 border-r border-slate-100 pr-5 space-y-1.5 max-h-[440px] overflow-y-auto no-scrollbar">
-						<h3 class="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider mb-2.5 px-1"><?php esc_html_e( 'DÒNG XE & PHỤ KIỆN', 'spl' ); ?></h3>
+					<!-- Left Column: Primary Product Categories -->
+					<div class="w-72 shrink-0 border-r border-slate-100 pr-4 space-y-1 max-h-[480px] overflow-y-auto no-scrollbar">
+						<h3 class="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider mb-2.5 px-1"><?php esc_html_e( 'DANH MỤC SẢN PHẨM', 'spl' ); ?></h3>
 						<?php foreach ( $nav_cats as $index => $cat ) :
 							$cat_link  = get_term_link( $cat );
 							if ( is_wp_error( $cat_link ) ) { continue; }
-							$sub_cats  = spl_get_product_sub_categories( $cat->term_id );
 							$thumb_id  = get_term_meta( $cat->term_id, 'thumbnail_id', true );
 							$thumb_url = $thumb_id ? wp_get_attachment_image_url( $thumb_id, 'thumbnail' ) : '';
-							$active_cls = $index === 0 ? 'bg-slate-100 text-primary border-primary-200' : 'text-slate-800 hover:bg-slate-50 hover:text-primary';
+							$active_cls = $index === 0 ? 'bg-slate-100 text-primary border-primary-200 font-bold' : 'text-slate-800 hover:bg-slate-50 hover:text-primary font-semibold';
 							?>
-							<div class="group/cat rounded-xl transition-all">
-								<a href="<?php echo esc_url( $cat_link ); ?>"
-								   onmouseenter="switchMegaCat(<?php echo (int) $cat->term_id; ?>, this)"
-								   class="mega-cat-item flex items-center justify-between p-2 rounded-xl border border-transparent font-bold text-xs transition-colors <?php echo esc_attr( $active_cls ); ?>">
-									<span class="flex items-center gap-2.5">
-										<?php if ( $thumb_url ) : ?>
-											<img src="<?php echo esc_url( $thumb_url ); ?>" alt="<?php echo esc_attr( $cat->name ); ?>" class="w-6 h-6 object-contain shrink-0" />
-										<?php else : ?>
-											<span class="w-6 h-6 rounded-md bg-primary-50 text-primary flex items-center justify-center shrink-0"><?php echo spl_icon( 'bolt', 'w-3.5 h-3.5' ); ?></span>
-										<?php endif; ?>
-										<?php echo esc_html( $cat->name ); ?>
-									</span>
+							<a href="<?php echo esc_url( $cat_link ); ?>"
+							   onmouseenter="switchMegaCat(<?php echo (int) $cat->term_id; ?>, this)"
+							   class="mega-cat-item flex items-center justify-between p-2.5 rounded-xl border border-transparent text-xs transition-all <?php echo esc_attr( $active_cls ); ?>">
+								<span class="flex items-center gap-2.5">
+									<?php if ( $thumb_url ) : ?>
+										<img src="<?php echo esc_url( $thumb_url ); ?>" alt="<?php echo esc_attr( $cat->name ); ?>" class="w-6 h-6 object-contain shrink-0" />
+									<?php else : ?>
+										<span class="w-6 h-6 rounded-md bg-primary-50 text-primary flex items-center justify-center shrink-0"><?php echo spl_icon( 'bolt', 'w-3.5 h-3.5' ); ?></span>
+									<?php endif; ?>
+									<?php echo esc_html( $cat->name ); ?>
+								</span>
+								<div class="flex items-center gap-1.5">
 									<span class="text-[10px] text-slate-400 font-semibold bg-slate-100 px-2 py-0.5 rounded-full"><?php echo (int) $cat->count; ?></span>
-								</a>
-
-								<?php if ( ! empty( $sub_cats ) ) : ?>
-									<div class="pl-9 pr-2 py-1 space-y-1">
-										<?php foreach ( $sub_cats as $scat ) :
-											$scat_link = get_term_link( $scat );
-											if ( is_wp_error( $scat_link ) ) { continue; }
-											?>
-											<a href="<?php echo esc_url( $scat_link ); ?>" class="block text-[11px] text-slate-500 hover:text-primary font-medium transition-colors">
-												• <?php echo esc_html( $scat->name ); ?>
-											</a>
-										<?php endforeach; ?>
-									</div>
-								<?php endif; ?>
-							</div>
+									<?php echo spl_icon( 'chevron-right', 'w-3 h-3 text-slate-400' ); ?>
+								</div>
+							</a>
 						<?php endforeach; ?>
 					</div>
 
-					<!-- Right Column: Dynamic Category Products Panels -->
-					<div class="flex-1 space-y-4">
+					<!-- Right Column: Sub-categories (Top) + Featured Products (Below) -->
+					<div class="flex-1 space-y-5">
 						<?php foreach ( $nav_cats as $index => $cat ) :
-							$cat_products = spl_get_mega_menu_products_by_cat( $cat->term_id, 3 );
-							$cat_link     = get_term_link( $cat );
-							$cat_link_url = is_wp_error( $cat_link ) ? wc_get_page_permalink( 'shop' ) : $cat_link;
-							$panel_class  = $index === 0 ? 'block' : 'hidden';
+							$panel_sub_cats = spl_get_product_sub_categories( $cat->term_id );
+							$cat_products   = spl_get_mega_menu_products_by_cat( $cat->term_id, 3 );
+							$cat_link       = get_term_link( $cat );
+							$cat_link_url   = is_wp_error( $cat_link ) ? wc_get_page_permalink( 'shop' ) : $cat_link;
+							$panel_class    = $index === 0 ? 'block' : 'hidden';
 							?>
-							<div id="mega-cat-panel-<?php echo (int) $cat->term_id; ?>" class="mega-cat-panel <?php echo esc_attr( $panel_class ); ?> space-y-4">
+							<div id="mega-cat-panel-<?php echo (int) $cat->term_id; ?>" class="mega-cat-panel <?php echo esc_attr( $panel_class ); ?> space-y-5">
+								
+								<!-- Category Title Header -->
 								<div class="flex items-center justify-between border-b border-slate-100 pb-3">
 									<h3 class="text-xs font-black text-slate-900 tracking-tight flex items-center gap-2">
 										<span class="w-1.5 h-4 bg-primary rounded-full"></span>
 										<?php echo esc_html( mb_strtoupper( $cat->name ) ); ?>
 									</h3>
 									<a href="<?php echo esc_url( $cat_link_url ); ?>" class="text-[11px] font-bold text-primary hover:underline flex items-center gap-1">
-										<?php esc_html_e( 'Xem tất cả', 'spl' ); ?>
+										<?php esc_html_e( 'Xem tất cả sản phẩm', 'spl' ); ?>
 										<?php echo spl_icon( 'chevron-right', 'w-3 h-3' ); ?>
 									</a>
 								</div>
 
-								<div class="grid grid-cols-3 gap-3.5">
-									<?php if ( ! empty( $cat_products ) ) : ?>
-										<?php foreach ( $cat_products as $p ) : ?>
-											<div class="bg-slate-50/70 border border-slate-100 rounded-xl p-3 hover:border-primary/30 hover:bg-white hover:shadow-md transition-all duration-300 flex flex-col justify-between group/p relative">
-												<?php if ( ! empty( $p['discount'] ) ) : ?>
-													<span class="absolute top-2 left-2 bg-red-500 text-white font-extrabold text-[9px] px-1.5 py-0.5 rounded shadow-sm z-10"><?php echo esc_html( $p['discount'] ); ?></span>
-												<?php endif; ?>
-												<a href="<?php echo esc_url( $p['url'] ); ?>" class="block aspect-square overflow-hidden rounded-lg mb-2 bg-white flex items-center justify-center">
-													<img src="<?php echo esc_url( $p['image'] ); ?>" alt="<?php echo esc_attr( $p['name'] ); ?>" class="max-h-full max-w-full object-contain group-hover/p:scale-105 transition-transform duration-300" />
+								<!-- 1. DANH MỤC CON (SUB-CATEGORIES GRID ON RIGHT) -->
+								<?php if ( ! empty( $panel_sub_cats ) ) : ?>
+									<div>
+										<h4 class="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider mb-2.5"><?php esc_html_e( 'DANH MỤC CON', 'spl' ); ?></h4>
+										<div class="grid grid-cols-3 gap-2">
+											<?php foreach ( $panel_sub_cats as $scat ) :
+												$scat_link = get_term_link( $scat );
+												if ( is_wp_error( $scat_link ) ) { continue; }
+												?>
+												<a href="<?php echo esc_url( $scat_link ); ?>" class="flex items-center justify-between p-2 rounded-lg bg-slate-50 hover:bg-primary-50 hover:text-primary border border-slate-100 hover:border-primary-200 transition-all text-xs font-semibold text-slate-700 group/sub">
+													<span class="flex items-center gap-1.5 truncate">
+														<span class="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover/sub:bg-primary transition-colors shrink-0"></span>
+														<span class="truncate"><?php echo esc_html( $scat->name ); ?></span>
+													</span>
+													<span class="text-[10px] text-slate-400 font-normal shrink-0 ml-1">(<?php echo (int) $scat->count; ?>)</span>
 												</a>
-												<div>
-													<h4 class="font-bold text-slate-800 text-xs line-clamp-2 leading-snug group-hover/p:text-primary transition-colors">
-														<a href="<?php echo esc_url( $p['url'] ); ?>"><?php echo esc_html( $p['name'] ); ?></a>
-													</h4>
-													<div class="mt-2 flex items-baseline gap-1">
-														<span class="text-xs font-black text-slate-900"><?php echo esc_html( number_format( $p['price'], 0, ',', '.' ) ); ?>đ</span>
-														<?php if ( $p['regular_price'] > $p['price'] ) : ?>
-															<span class="text-[10px] text-slate-400 line-through"><?php echo esc_html( number_format( $p['regular_price'] / 1000000, 1 ) ); ?>M</span>
-														<?php endif; ?>
-													</div>
-												</div>
-											</div>
-										<?php endforeach; ?>
-									<?php else : ?>
-										<div class="col-span-3 py-8 text-center text-slate-400 text-xs">
-											<?php esc_html_e( 'Chưa có sản phẩm thuộc danh mục này.', 'spl' ); ?>
-										</div>
-									<?php endif; ?>
-								</div>
-
-								<!-- Banner Highlight -->
-								<div class="bg-gradient-to-r from-primary to-indigo-600 rounded-xl p-3.5 text-white flex items-center justify-between shadow-sm">
-									<div class="flex items-center gap-2.5">
-										<span class="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center shrink-0"><?php echo spl_icon( 'bolt', 'w-4 h-4 text-yellow-300' ); ?></span>
-										<div>
-											<h4 class="font-black text-xs"><?php esc_html_e( 'HỖ TRỢ TRẢ GÓP 0%', 'spl' ); ?></h4>
-											<p class="text-[10px] text-blue-100"><?php esc_html_e( 'Xét duyệt nhanh 15 phút, không chứng minh thu nhập', 'spl' ); ?></p>
+											<?php endforeach; ?>
 										</div>
 									</div>
-									<a href="#consult-form" class="bg-white text-primary hover:bg-slate-100 font-bold text-[10px] px-3.5 py-1.5 rounded-lg transition-colors shrink-0">
-										<?php esc_html_e( 'ĐĂNG KÝ', 'spl' ); ?>
-									</a>
+								<?php endif; ?>
+
+								<!-- 2. SẢN PHẨM THEO THỨ TỰ (PRODUCTS BY MENU ORDER BELOW) -->
+								<div>
+									<h4 class="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider mb-2.5"><?php esc_html_e( 'DANH SÁCH SẢN PHẨM', 'spl' ); ?></h4>
+									<div class="grid grid-cols-3 gap-3.5">
+										<?php if ( ! empty( $cat_products ) ) : ?>
+											<?php foreach ( $cat_products as $p ) : ?>
+												<div class="bg-slate-50/70 border border-slate-100 rounded-xl p-3 hover:border-primary/30 hover:bg-white hover:shadow-md transition-all duration-300 flex flex-col justify-between group/p relative">
+													<?php if ( ! empty( $p['discount'] ) ) : ?>
+														<span class="absolute top-2 left-2 bg-red-500 text-white font-extrabold text-[9px] px-1.5 py-0.5 rounded shadow-sm z-10"><?php echo esc_html( $p['discount'] ); ?></span>
+													<?php endif; ?>
+													<a href="<?php echo esc_url( $p['url'] ); ?>" class="block aspect-square overflow-hidden rounded-lg mb-2 bg-white flex items-center justify-center">
+														<img src="<?php echo esc_url( $p['image'] ); ?>" alt="<?php echo esc_attr( $p['name'] ); ?>" class="max-h-full max-w-full object-contain group-hover/p:scale-105 transition-transform duration-300" />
+													</a>
+													<div>
+														<h5 class="font-bold text-slate-800 text-xs line-clamp-2 leading-snug group-hover/p:text-primary transition-colors">
+															<a href="<?php echo esc_url( $p['url'] ); ?>"><?php echo esc_html( $p['name'] ); ?></a>
+														</h5>
+														<div class="mt-2 flex flex-wrap items-baseline gap-1.5">
+															<span class="text-xs font-black text-slate-900"><?php echo esc_html( number_format( $p['price'], 0, ',', '.' ) ); ?>đ</span>
+															<?php if ( $p['regular_price'] > $p['price'] ) : ?>
+																<span class="text-[11px] text-slate-400 line-through font-normal"><?php echo esc_html( number_format( $p['regular_price'], 0, ',', '.' ) ); ?>đ</span>
+															<?php endif; ?>
+														</div>
+													</div>
+												</div>
+											<?php endforeach; ?>
+										<?php else : ?>
+											<div class="col-span-3 py-6 text-center text-slate-400 text-xs bg-slate-50 rounded-xl">
+												<?php esc_html_e( 'Chưa có sản phẩm thuộc danh mục này.', 'spl' ); ?>
+											</div>
+										<?php endif; ?>
+									</div>
 								</div>
+
 							</div>
 						<?php endforeach; ?>
 					</div>
@@ -401,7 +403,7 @@ do_action( 'spl_header_before_action' );
 													<?php echo spl_icon( 'file-text', 'w-6 h-6' ); ?>
 												</div>
 											<?php endif; ?>
-											<span class="absolute top-2 left-2 bg-primary/90 text-white font-extrabold text-[9px] px-1.5 py-0.5 rounded uppercase"><?php echo esc_html( $post_item['category'] ); ?></span>
+											<span class="absolute top-2 right-2 bg-primary/90 text-white font-extrabold text-[9px] px-1.5 py-0.5 rounded uppercase z-10"><?php echo esc_html( $post_item['category'] ); ?></span>
 										</a>
 										<div class="p-3">
 											<h4 class="font-bold text-slate-800 text-xs line-clamp-2 leading-snug group-hover/post:text-primary transition-colors">

@@ -82,8 +82,8 @@ function buildGalleryDataSource(gallery) {
 		}
 
 		// Image slide — resolve dimensions
-		const w = Number(img?.dataset.large_image_width || img?.naturalWidth || 0);
-		const h = Number(img?.dataset.large_image_height || img?.naturalHeight || 0);
+		const w = Number(link.dataset.pswpWidth || img?.dataset.large_image_width || img?.naturalWidth || 1200);
+		const h = Number(link.dataset.pswpHeight || img?.dataset.large_image_height || img?.naturalHeight || 800);
 		const src = img?.dataset.large_image || link.href;
 
 		return {
@@ -131,6 +131,7 @@ function openPhotoSwipe(gallery, swiper, trackingConfig, productId, clickedIndex
 		index,
 		showHideAnimationType: 'fade',
 		bgOpacity: 0.9,
+		padding: { top: 32, bottom: 32, left: 24, right: 24 },
 		loop: dataSource.length > 1,
 		...(dialog ? { appendToEl: dialog } : {}),
 	});

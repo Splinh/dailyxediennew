@@ -112,11 +112,11 @@ get_template_part( 'parts/global/company-activity' );
 				</nav>
 			<?php else : ?>
 				<ul class="space-y-2 text-xs">
-					<li><a href="#" class="hover:text-primary transition-colors"><?php esc_html_e( 'Chính sách bảo hành', 'spl' ); ?></a></li>
-					<li><a href="#" class="hover:text-primary transition-colors"><?php esc_html_e( 'Chính sách đổi trả trong 7 ngày', 'spl' ); ?></a></li>
-					<li><a href="#" class="hover:text-primary transition-colors"><?php esc_html_e( 'Chính sách vận chuyển & giao nhận', 'spl' ); ?></a></li>
-					<li><a href="#" class="hover:text-primary transition-colors"><?php esc_html_e( 'Chính sách thanh toán linh hoạt', 'spl' ); ?></a></li>
-					<li><a href="#" class="hover:text-primary transition-colors"><?php esc_html_e( 'Chính sách bảo mật thông tin', 'spl' ); ?></a></li>
+					<li><a href="<?php echo esc_url( home_url( '/chinh-sach-bao-hanh/' ) ); ?>" class="hover:text-primary transition-colors"><?php esc_html_e( 'Chính sách bảo hành', 'spl' ); ?></a></li>
+					<li><a href="<?php echo esc_url( home_url( '/chinh-sach-doi-tra-hang/' ) ); ?>" class="hover:text-primary transition-colors"><?php esc_html_e( 'Chính sách đổi trả trong 7 ngày', 'spl' ); ?></a></li>
+					<li><a href="<?php echo esc_url( home_url( '/giao-hang-va-lap-dat/' ) ); ?>" class="hover:text-primary transition-colors"><?php esc_html_e( 'Chính sách vận chuyển & giao nhận', 'spl' ); ?></a></li>
+					<li><a href="<?php echo esc_url( home_url( '/phuong-thuc-thanh-toan/' ) ); ?>" class="hover:text-primary transition-colors"><?php esc_html_e( 'Chính sách thanh toán linh hoạt', 'spl' ); ?></a></li>
+					<li><a href="<?php echo esc_url( home_url( '/bao-mat-thong-tin-khach-hang/' ) ); ?>" class="hover:text-primary transition-colors"><?php esc_html_e( 'Chính sách bảo mật thông tin', 'spl' ); ?></a></li>
 				</ul>
 			<?php endif; ?>
 		</div>
@@ -130,11 +130,10 @@ get_template_part( 'parts/global/company-activity' );
 				</nav>
 			<?php else : ?>
 				<ul class="space-y-2 text-xs">
-					<li><a href="#" class="hover:text-primary transition-colors"><?php esc_html_e( 'Hướng dẫn mua hàng trực tuyến', 'spl' ); ?></a></li>
-					<li><a href="#" class="hover:text-primary transition-colors"><?php esc_html_e( 'Hướng dẫn trả góp 0%', 'spl' ); ?></a></li>
-					<li><a href="#" class="hover:text-primary transition-colors"><?php esc_html_e( 'Tra cứu tiến độ đơn hàng', 'spl' ); ?></a></li>
-					<li><a href="#" class="hover:text-primary transition-colors"><?php esc_html_e( 'Câu hỏi thường gặp (FAQs)', 'spl' ); ?></a></li>
-					<li><a href="#" class="hover:text-primary transition-colors"><?php esc_html_e( 'Bản đồ hệ thống đại lý', 'spl' ); ?></a></li>
+					<li><a href="<?php echo esc_url( home_url( '/huong-dan-mua-hang/' ) ); ?>" class="hover:text-primary transition-colors"><?php esc_html_e( 'Hướng dẫn mua hàng trực tuyến', 'spl' ); ?></a></li>
+					<li><a href="<?php echo esc_url( home_url( '/chinh-sach-ban-hang-dailyxedien-vn/' ) ); ?>" class="hover:text-primary transition-colors"><?php esc_html_e( 'Chính sách bán hàng Dailyxedien.vn', 'spl' ); ?></a></li>
+					<li><a href="<?php echo esc_url( home_url( '/he-thong-cua-hang/' ) ); ?>" class="hover:text-primary transition-colors"><?php esc_html_e( 'Hệ thống cửa hàng & đại lý', 'spl' ); ?></a></li>
+					<li><a href="<?php echo esc_url( home_url( '/lien-he/' ) ); ?>" class="hover:text-primary transition-colors"><?php esc_html_e( 'Thông tin liên hệ', 'spl' ); ?></a></li>
 				</ul>
 			<?php endif; ?>
 		</div>
@@ -170,9 +169,9 @@ get_template_part( 'parts/global/company-activity' );
 		<p>© <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>. <?php esc_html_e( 'Tất cả bản quyền được bảo lưu.', 'spl' ); ?></p>
 		<div class="flex flex-col sm:flex-row items-center gap-6">
 			<div class="flex items-center gap-4">
-				<a href="#" class="hover:text-slate-800 transition-colors"><?php esc_html_e( 'Bảo mật', 'spl' ); ?></a>
+				<a href="<?php echo esc_url( home_url( '/bao-mat-thong-tin-khach-hang/' ) ); ?>" class="hover:text-slate-800 transition-colors"><?php esc_html_e( 'Bảo mật', 'spl' ); ?></a>
 				<span>•</span>
-				<a href="#" class="hover:text-slate-800 transition-colors"><?php esc_html_e( 'Điều khoản sử dụng', 'spl' ); ?></a>
+				<a href="<?php echo esc_url( home_url( '/chinh-sach-ban-hang-dailyxedien-vn/' ) ); ?>" class="hover:text-slate-800 transition-colors"><?php esc_html_e( 'Điều khoản sử dụng', 'spl' ); ?></a>
 			</div>
 			<a href="http://online.gov.vn/nen-tang/d7eeaccf-92c4-4c57-9c19-cc749c427728" target="_blank" rel="noopener" class="inline-block transition-opacity hover:opacity-90">
 				<img src="<?php echo esc_url( get_theme_file_uri( 'resources/img/DaThongBao.png' ) ); ?>" alt="<?php esc_attr_e( 'Đã thông báo Bộ Công Thương', 'spl' ); ?>" class="h-10 w-auto" style="height: 38px;" />
@@ -250,20 +249,49 @@ $is_dealer         = is_page( 'he-thong-cua-hang' ) || is_post_type_archive( 'lo
 	</div>
 	
 	<?php
-	$parent_cats = Helper::getField( 'bottom_nav_categories', 'option' );
-	if ( empty( $parent_cats ) && class_exists( 'WooCommerce' ) ) {
-		$parent_cats = get_terms( [
-			'taxonomy'   => 'product_cat',
-			'hide_empty' => false,
-			'parent'     => 0,
-			'orderby'    => 'menu_order',
-			'order'      => 'ASC',
-		] );
+	$all_parent_cats = get_terms( [
+		'taxonomy'   => 'product_cat',
+		'hide_empty' => true,
+		'parent'     => 0,
+		'orderby'    => 'meta_value_num',
+		'meta_key'   => 'order',
+		'order'      => 'ASC',
+	] );
+
+	// Priority category slugs (Image 2 & User requirements)
+	$priority_slugs = [
+		'xe-dap-dien',
+		'xe-dap-tro-luc',
+		'xe-ba-gac-dien',
+		'xe-may-dien',
+		'xe-may-50cc',
+		'xe-dap',
+		'xe-tre-em',
+		'phu-tung-xe-dien',
+	];
+
+	$parent_cats = [];
+	if ( ! is_wp_error( $all_parent_cats ) && ! empty( $all_parent_cats ) ) {
+		foreach ( $priority_slugs as $pslug ) {
+			foreach ( $all_parent_cats as $idx => $cat ) {
+				if ( $cat->slug === $pslug && $cat->count > 0 ) {
+					$parent_cats[] = $cat;
+					unset( $all_parent_cats[ $idx ] );
+					break;
+				}
+			}
+		}
+		foreach ( $all_parent_cats as $cat ) {
+			if ( $cat->count > 0 ) {
+				$parent_cats[] = $cat;
+			}
+		}
 	}
-	if ( ! empty( $parent_cats ) && ! is_wp_error( $parent_cats ) ) :
+
+	if ( ! empty( $parent_cats ) ) :
 		?>
 		<div class="cat-content-layout">
-			<!-- Cột trái: Danh mục cha -->
+			<!-- Cột trái: Danh mục cha (Chỉ lấy danh mục có sản phẩm) -->
 			<div class="cat-sidebar-left">
 				<?php foreach ( $parent_cats as $i => $cat ) : ?>
 					<button class="cat-tab-item<?php echo $i === 0 ? ' active' : ''; ?>" onclick="switchCategoryTab(event, '<?php echo esc_attr( $cat->slug ); ?>')">
@@ -279,17 +307,32 @@ $is_dealer         = is_page( 'he-thong-cua-hang' ) || is_post_type_archive( 'lo
 						<?php
 						$subcats = get_terms( [
 							'taxonomy'   => 'product_cat',
-							'hide_empty' => false,
+							'hide_empty' => true,
 							'parent'     => $cat->term_id,
+							'orderby'    => 'meta_value_num',
+							'meta_key'   => 'order',
+							'order'      => 'ASC',
 						] );
+
+						// Priority subcategories (AIE BIKE, Bluesuda...)
+						$priority_sub_slugs = [ 'xe-dap-dien-ai-ebike', 'xe-dap-tro-luc-bluesuda' ];
 						if ( ! is_wp_error( $subcats ) && ! empty( $subcats ) ) :
+							usort( $subcats, function( $a, $b ) use ( $priority_sub_slugs ) {
+								$posA = array_search( $a->slug, $priority_sub_slugs, true );
+								$posB = array_search( $b->slug, $priority_sub_slugs, true );
+								if ( false !== $posA && false !== $posB ) return $posA <=> $posB;
+								if ( false !== $posA ) return -1;
+								if ( false !== $posB ) return 1;
+								return 0;
+							} );
 							?>
 							<div class="cat-subcats-section">
 								<h4><?php esc_html_e( 'Danh mục con', 'spl' ); ?></h4>
 								<div class="cat-subcats-grid">
 									<?php foreach ( $subcats as $subcat ) : ?>
-										<a href="<?php echo esc_url( get_term_link( $subcat ) ); ?>" class="cat-subcat-card">
-											<?php echo esc_html( $subcat->name ); ?>
+										<a href="<?php echo esc_url( get_term_link( $subcat ) ); ?>" class="cat-subcat-card flex items-center justify-between">
+											<span><?php echo esc_html( $subcat->name ); ?></span>
+											<span class="text-[10px] text-slate-400"> (<?php echo (int) $subcat->count; ?>)</span>
 										</a>
 									<?php endforeach; ?>
 								</div>
@@ -297,24 +340,31 @@ $is_dealer         = is_page( 'he-thong-cua-hang' ) || is_post_type_archive( 'lo
 						<?php endif; ?>
 						
 						<?php
+						$cat_term_ids = [ (int) $cat->term_id ];
+						$child_ids    = get_term_children( $cat->term_id, 'product_cat' );
+						if ( ! is_wp_error( $child_ids ) && ! empty( $child_ids ) ) {
+							$cat_term_ids = array_merge( $cat_term_ids, $child_ids );
+						}
+
 						$prod_query = new WP_Query( [
 							'post_type'      => 'product',
-							'posts_per_page' => 3,
-							'orderby'        => 'meta_value_num',
-							'meta_key'       => 'total_sales',
-							'order'          => 'DESC',
+							'post_status'    => 'publish',
+							'posts_per_page' => 4,
+							'orderby'        => 'menu_order title',
+							'order'          => 'ASC',
 							'tax_query'      => [
 								[
-									'taxonomy' => 'product_cat',
-									'field'    => 'term_id',
-									'terms'    => $cat->term_id,
+									'taxonomy'         => 'product_cat',
+									'field'            => 'term_id',
+									'terms'            => $cat_term_ids,
+									'include_children' => true,
 								],
 							],
 						] );
 						if ( $prod_query->have_posts() ) :
 							?>
 							<div class="cat-popular-section">
-								<h4><?php esc_html_e( 'Sản phẩm nổi bật', 'spl' ); ?></h4>
+								<h4><?php esc_html_e( 'Sản phẩm tiêu biểu', 'spl' ); ?></h4>
 								<div class="cat-popular-list">
 									<?php
 									while ( $prod_query->have_posts() ) :
@@ -322,19 +372,19 @@ $is_dealer         = is_page( 'he-thong-cua-hang' ) || is_post_type_archive( 'lo
 										$product = wc_get_product( get_the_ID() );
 										$img_url = get_the_post_thumbnail_url( get_the_ID(), 'thumbnail' ) ?: wc_placeholder_img_src();
 										?>
-										<a href="<?php the_permalink(); ?>" class="cat-product-row">
-											<img src="<?php echo esc_url( $img_url ); ?>" alt="<?php the_title_attribute(); ?>">
-											<div class="cat-product-info">
-												<h5><?php the_title(); ?></h5>
-												<span class="cat-product-price"><?php echo $product ? $product->get_price_html() : ''; ?></span>
+										<a href="<?php the_permalink(); ?>" class="cat-product-row flex items-center gap-3 p-2 rounded-lg bg-slate-50 hover:bg-white border border-slate-100 transition-all">
+											<img src="<?php echo esc_url( $img_url ); ?>" alt="<?php the_title_attribute(); ?>" class="w-12 h-12 object-contain rounded bg-white p-1 border border-slate-100 shrink-0">
+											<div class="cat-product-info flex-1">
+												<h5 class="text-xs font-bold text-slate-800 line-clamp-1"><?php the_title(); ?></h5>
+												<span class="cat-product-price text-xs font-black text-red-600"><?php echo $product ? $product->get_price_html() : ''; ?></span>
 											</div>
 										</a>
 									<?php endwhile; wp_reset_postdata(); ?>
 								</div>
 							</div>
 						<?php endif; ?>
-						<a href="<?php echo esc_url( get_term_link( $cat ) ); ?>" class="cat-see-more-link">
-							<?php printf( esc_html__( 'Xem tất cả %s', 'spl' ), $cat->name ); ?> <i class="fa-solid fa-chevron-right"></i>
+						<a href="<?php echo esc_url( get_term_link( $cat ) ); ?>" class="cat-see-more-link font-bold text-xs text-primary flex items-center justify-center gap-1.5 p-2.5 bg-primary-50 rounded-xl mt-3 hover:bg-primary hover:text-white transition-colors">
+							<?php printf( esc_html__( 'Xem tất cả %s', 'spl' ), $cat->name ); ?> <i class="fa-solid fa-chevron-right text-[10px]"></i>
 						</a>
 					</div>
 				<?php endforeach; ?>

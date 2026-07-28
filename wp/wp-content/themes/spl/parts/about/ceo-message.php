@@ -53,7 +53,7 @@ $video_url = $data['video_url'] ?? 'https://www.youtube.com/embed/HQSFNJ37aMo';
 					</h3>
 					
 					<div class="site-desc text-sm md:text-base text-slate-600 leading-relaxed space-y-4 italic border-t border-slate-200/80 pt-6">
-						<p>“Chúng tôi bắt đầu hành trình từ khát khao mang đến cho người tiêu dùng Việt Nam những dòng xe điện chất lượng nhất, áp dụng công nghệ Nhật Bản tiên tiến và lắp ráp trực tiếp tại Việt Nam.”</p>
+						<p>“Chúng tôi bắt đầu hành trình từ khát khao mang đến cho người tiêu dùng Việt Nam những dòng xe điện chất lượng nhất, áp dụng công nghệ tiên tiến hàng đầu và lắp ráp trực tiếp tại Việt Nam.”</p>
 						<p>DailyXeDien.vn không ngừng nỗ lực phát triển mạng lưới phân phối và nâng cao chất lượng chăm sóc hậu mãi, nhằm đem tới sự an tâm tuyệt đối cho mọi gia đình trên toàn quốc.</p>
 
 						<div class="pt-6 border-t border-slate-200 not-italic flex items-center justify-between">

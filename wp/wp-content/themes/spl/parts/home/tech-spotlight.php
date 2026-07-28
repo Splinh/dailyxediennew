@@ -85,7 +85,7 @@ if ( empty( $features ) ) {
 						<button onclick="switchTechTab('<?php echo esc_attr( $feat_id ); ?>', this)"
 							role="tab"
 							aria-selected="<?php echo $index === 0 ? 'true' : 'false'; ?>"
-							class="w-full shrink-0 lg:shrink flex items-center gap-3.5 px-4.5 py-4 border text-left rounded-2xl font-bold text-xs tracking-wider transition-all whitespace-nowrap cursor-pointer snap-start <?php echo esc_attr( $active_btn ); ?>">
+							class="shrink-0 lg:shrink flex items-center gap-3.5 px-4.5 py-4 border text-left rounded-2xl font-bold text-xs tracking-wider transition-all whitespace-nowrap cursor-pointer snap-start <?php echo esc_attr( $active_btn ); ?>">
 							<span class="shrink-0"><?php echo $feat['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 							<?php echo esc_html( $feat_name ); ?>
 						</button>

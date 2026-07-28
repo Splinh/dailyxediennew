@@ -129,7 +129,7 @@
 							</div>
 							<div class="flex-grow min-w-0">
 								<h4 class="text-xs font-bold text-slate-800 truncate group-hover:text-primary transition-colors leading-tight">${p.title}</h4>
-								<div class="text-[11px] font-semibold text-slate-900 mt-0.5 flex items-center gap-1.5 [&_ins]:text-red-600 [&_ins]:no-underline [&_ins]:font-bold [&_del]:text-slate-400 [&_del]:font-normal">
+								<div class="text-[11px] font-semibold text-red-600 mt-0.5 flex items-center gap-1.5 [&_ins]:text-red-600 [&_ins]:no-underline [&_ins]:font-bold [&_del]:text-slate-400 [&_del]:font-normal">
 									${p.price_html}
 								</div>
 							</div>
@@ -707,5 +707,23 @@
 				if ( typeof closeContactPanel === 'function' ) closeContactPanel();
 			}
 		} );
+
+		/* ---------- Global Automatic Broken Image Handler ---------- */
+		document.addEventListener( 'error', ( e ) => {
+			if ( e.target && e.target.tagName === 'IMG' ) {
+				const img = e.target;
+				const thumbWrapper = img.closest( '.sp-gallery__thumb' );
+				if ( thumbWrapper ) {
+					thumbWrapper.remove();
+				} else {
+					img.classList.add( 'is-broken-image' );
+					img.style.display = 'none';
+					const figure = img.closest( 'figure' );
+					if ( figure && figure.querySelectorAll( 'img:not(.is-broken-image)' ).length === 0 ) {
+						figure.style.display = 'none';
+					}
+				}
+			}
+		}, true );
 	} );
 } )();
