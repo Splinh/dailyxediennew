@@ -354,13 +354,19 @@
 
 .dxd-cart-drawer__total span {
 	color: #64748b;
-	font-weight: 500;
+	font-weight: 600;
+	font-size: 0.9375rem;
 }
 
-.dxd-cart-drawer__total strong {
-	font-size: 1.125rem;
-	font-weight: 800;
-	color: #dc2626;
+.dxd-cart-drawer__total strong,
+.dxd-cart-drawer__total strong *,
+.dxd-cart-drawer__total [data-cart-total],
+.dxd-cart-drawer__total [data-cart-total] * {
+	font-size: 1.35rem !important;
+	font-weight: 900 !important;
+	color: #ef4444 !important;
+	text-decoration: none !important;
+	letter-spacing: -0.01em;
 }
 
 .dxd-cart-drawer__actions {
