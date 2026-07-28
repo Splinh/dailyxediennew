@@ -165,16 +165,16 @@ get_template_part( 'parts/global/company-activity' );
 	</div>
 
 	<!-- Copyright -->
-	<div class="border-t border-slate-200 pt-8 text-center text-xs text-slate-500 max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
-		<p>© <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>. <?php esc_html_e( 'Tất cả bản quyền được bảo lưu.', 'spl' ); ?></p>
-		<div class="flex flex-col sm:flex-row items-center gap-6">
-			<div class="flex items-center gap-4">
+	<div class="border-t border-slate-200 pt-4 md:pt-8 text-center text-xs text-slate-500 max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-2 md:gap-4">
+		<p class="m-0">© <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>. <?php esc_html_e( 'Tất cả bản quyền được bảo lưu.', 'spl' ); ?></p>
+		<div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-6">
+			<div class="flex items-center gap-3">
 				<a href="<?php echo esc_url( home_url( '/bao-mat-thong-tin-khach-hang/' ) ); ?>" class="hover:text-slate-800 transition-colors"><?php esc_html_e( 'Bảo mật', 'spl' ); ?></a>
 				<span>•</span>
 				<a href="<?php echo esc_url( home_url( '/chinh-sach-ban-hang-dailyxedien-vn/' ) ); ?>" class="hover:text-slate-800 transition-colors"><?php esc_html_e( 'Điều khoản sử dụng', 'spl' ); ?></a>
 			</div>
-			<a href="http://online.gov.vn/nen-tang/d7eeaccf-92c4-4c57-9c19-cc749c427728" target="_blank" rel="noopener" class="inline-block transition-opacity hover:opacity-90">
-				<img src="<?php echo esc_url( get_theme_file_uri( 'resources/img/DaThongBao.png' ) ); ?>" alt="<?php esc_attr_e( 'Đã thông báo Bộ Công Thương', 'spl' ); ?>" class="h-10 w-auto" style="height: 38px;" />
+			<a href="http://online.gov.vn/nen-tang/d7eeaccf-92c4-4c57-9c19-cc749c427728" target="_blank" rel="noopener" class="inline-block transition-opacity hover:opacity-90 mt-0.5 sm:mt-0">
+				<img src="<?php echo esc_url( get_theme_file_uri( 'resources/img/DaThongBao.png' ) ); ?>" alt="<?php esc_attr_e( 'Đã thông báo Bộ Công Thương', 'spl' ); ?>" class="h-8.5 w-auto" style="height: 34px;" />
 			</a>
 		</div>
 	</div>
