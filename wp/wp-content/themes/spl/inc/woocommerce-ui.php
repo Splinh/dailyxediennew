@@ -505,3 +505,78 @@ function spl_render_checkout_trust_badges(): void {
 	<?php
 }
 
+/**
+ * Translate WooCommerce Checkout & Cart text strings into Vietnamese.
+ */
+add_filter( 'gettext', 'spl_translate_woocommerce_strings', 20, 3 );
+function spl_translate_woocommerce_strings( string $translated_text, string $text, string $domain ): string {
+	if ( $domain !== 'woocommerce' ) {
+		return $translated_text;
+	}
+
+	switch ( $text ) {
+		case 'Sorry, it seems that there are no available payment methods. Please contact us if you require assistance or wish to make alternate arrangements.':
+		case 'Sorry, it seems that there are no available payment methods for your state. Please contact us if you require assistance or wish to make alternate arrangements.':
+			return 'Rất tiếc, hiện tại chưa có phương thức thanh toán tự động khả dụng trên hệ thống. Vui lòng liên hệ Hotline 0933 505 222 để được tư vấn và hỗ trợ giao xe nhanh nhất!';
+
+		case 'Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our %s.':
+		case 'Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.':
+			return 'Thông tin cá nhân của bạn sẽ được sử dụng để xử lý đơn hàng, bảo mật dữ liệu và hỗ trợ trải nghiệm tốt nhất theo đúng chính sách bảo mật của chúng tôi.';
+
+		case 'Place order':
+		case 'Place Order':
+		case 'PLACE ORDER':
+			return 'XÁC NHẬN ĐẶT HÀNG';
+
+		case 'Billing details':
+			return 'Thông tin thanh toán';
+
+		case 'Your order':
+			return 'Đơn hàng của bạn';
+
+		case 'Additional information':
+			return 'Thông tin bổ sung';
+
+		case 'Order notes':
+			return 'Ghi chú đơn hàng';
+
+		case 'Order notes (optional)':
+			return 'Ghi chú đơn hàng (tùy chọn)';
+
+		case 'Product':
+			return 'Sản phẩm';
+
+		case 'Subtotal':
+			return 'Tạm tính';
+
+		case 'Total':
+			return 'Tổng cộng';
+
+		case 'Have a coupon?':
+			return 'Bạn có mã ưu đãi?';
+
+		case 'Click here to enter your code':
+			return 'Nhấp vào đây để nhập mã';
+
+		case 'First name':
+			return 'Tên';
+
+		case 'Last name':
+			return 'Họ';
+
+		case 'Phone':
+			return 'Số điện thoại';
+
+		case 'Email address':
+			return 'Địa chỉ Email';
+
+		case 'Town / City':
+			return 'Tỉnh / Thành phố';
+
+		case 'Street address':
+			return 'Số nhà, tên đường, phường/xã';
+	}
+
+	return $translated_text;
+}
+

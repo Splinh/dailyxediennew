@@ -598,16 +598,26 @@
 	background: #fff;
 	border-radius: 0.75rem;
 	border: 1px solid #f1f5f9;
-	padding: 0;
+	padding: 1.25rem 1.5rem;
 	margin-top: 1.25rem;
 	box-shadow: 0 4px 20px -2px rgba(0,0,0,0.05), 0 2px 8px -1px rgba(0,0,0,0.02);
 	overflow: hidden;
 }
 
+.woocommerce-checkout-payment .woocommerce-info,
+.woocommerce-checkout-payment .woocommerce-notice,
+.woocommerce-checkout-payment .woocommerce-error {
+	margin: 0 0 1rem 0;
+	padding: 0.875rem 1rem;
+	border-radius: 0.625rem;
+	font-size: 0.8125rem;
+	line-height: 1.6;
+}
+
 .wc_payment_methods {
 	list-style: none;
 	padding: 0;
-	margin: 0;
+	margin: 0 0 1rem 0;
 }
 
 .wc_payment_method {
@@ -622,7 +632,7 @@
 	display: flex;
 	align-items: center;
 	gap: 0.75rem;
-	padding: 1rem 1.25rem;
+	padding: 0.875rem 1rem;
 	font-size: 0.875rem;
 	font-weight: 700;
 	color: #1e293b;
@@ -647,7 +657,7 @@
 }
 
 .wc_payment_method .payment_box {
-	padding: 0.75rem 1.25rem 1rem;
+	padding: 0.75rem 1rem 1rem;
 	font-size: 0.8125rem;
 	color: #64748b;
 	line-height: 1.6;
@@ -657,7 +667,7 @@
 
 /* Place order */
 .place-order {
-	padding: 1.5rem;
+	padding: 1rem 0 0 0;
 }
 
 #place_order {
@@ -692,7 +702,7 @@
 
 /* Terms */
 .woocommerce-terms-and-conditions-wrapper {
-	padding: 0 1.5rem 1.25rem;
+	padding: 0 0 1rem 0;
 }
 
 .woocommerce-terms-and-conditions-wrapper .form-row {
@@ -727,10 +737,10 @@
 
 /* Privacy policy text */
 .woocommerce-privacy-policy-text {
-	font-size: 0.75rem;
-	color: #94a3b8;
+	font-size: 0.78125rem;
+	color: #64748b;
 	line-height: 1.6;
-	padding: 0 1.5rem 1.25rem;
+	padding: 0 0 1rem 0;
 }
 
 .woocommerce-privacy-policy-text a {
