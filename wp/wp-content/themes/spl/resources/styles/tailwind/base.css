@@ -1,7 +1,14 @@
 /* tailwind/base.css - Low-specificity defaults for HTML elements */
 
 @layer base {
-	/* HTML - Critical for LCP/CLS */
+	/* HTML & Body - Strict Mobile Viewport Overflow Lock */
+	html,
+	body {
+		max-width: 100vw;
+		overflow-x: hidden !important;
+		position: relative;
+	}
+
 	html {
 		font-size: 100%;
 		font-variant-ligatures: no-common-ligatures;
@@ -10,10 +17,19 @@
 		text-rendering: optimizeLegibility;
 	}
 
-	/* Body */
 	body {
 		@apply font-normal font-body text-(length:--global-fs) bg-background text-body leading-(--global-line-height) m-0 p-0;
-		overflow-x: clip;
+	}
+
+	#page,
+	#main,
+	header,
+	footer,
+	main,
+	article,
+	section {
+		max-width: 100%;
+		box-sizing: border-box;
 	}
 
 	/* Interactive elements */

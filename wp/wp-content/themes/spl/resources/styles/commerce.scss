@@ -1187,3 +1187,21 @@
 		line-height: 1.6;
 	}
 }
+
+/* Mobile horizontal overflow protection for all commerce tables & containers */
+@media (max-width: 767px) {
+	.woocommerce-cart,
+	.woocommerce-checkout {
+		overflow-x: hidden;
+	}
+
+	.woocommerce-cart table.shop_table,
+	.woocommerce-checkout-review-order-table,
+	.woocommerce-table--order-details {
+		display: block;
+		width: 100%;
+		max-width: 100%;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+}
