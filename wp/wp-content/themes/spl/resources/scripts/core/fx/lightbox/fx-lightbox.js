@@ -40,20 +40,15 @@ function collectGroups(root) {
  * @returns {{ w: number, h: number }}
  */
 function resolveDimensions(linkEl) {
-	// 1. Natural width and height of loaded img inside link (100% real aspect ratio)
-	const img = qs('img', linkEl);
-	if (img && img.naturalWidth > 0 && img.naturalHeight > 0) {
-		return { w: img.naturalWidth, h: img.naturalHeight };
-	}
-
-	// 2. Explicit pswp attributes on link
+	// 1. Explicit pswp attributes on link (passed directly from WP full-size image attachment metadata)
 	const pw = linkEl.dataset.pswpWidth;
 	const ph = linkEl.dataset.pswpHeight;
 	if (pw && ph && Number(pw) > 0 && Number(ph) > 0) {
 		return { w: Number(pw), h: Number(ph) };
 	}
 
-	// 3. WooCommerce data-large_image_width / height on child <img>
+	// 2. WooCommerce data-large_image_width / height on child <img>
+	const img = qs('img', linkEl);
 	if (img) {
 		const lw = img.dataset.large_image_width;
 		const lh = img.dataset.large_image_height;

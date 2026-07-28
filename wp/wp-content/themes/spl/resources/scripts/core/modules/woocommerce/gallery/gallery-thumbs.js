@@ -81,13 +81,10 @@ function buildGalleryDataSource(gallery) {
 			return buildVideoSlideHtml(link.href, videoType);
 		}
 
-		// Image slide — resolve dimensions with priority for loaded natural image dimensions
+		// Image slide — resolve dimensions from full image attachment metadata
 		let w = 0;
 		let h = 0;
-		if (img && img.naturalWidth > 0 && img.naturalHeight > 0) {
-			w = img.naturalWidth;
-			h = img.naturalHeight;
-		} else if (link.dataset.pswpWidth && link.dataset.pswpHeight && Number(link.dataset.pswpWidth) > 0) {
+		if (link.dataset.pswpWidth && link.dataset.pswpHeight && Number(link.dataset.pswpWidth) > 0) {
 			w = Number(link.dataset.pswpWidth);
 			h = Number(link.dataset.pswpHeight);
 		} else if (img?.dataset.large_image_width && img?.dataset.large_image_height && Number(img.dataset.large_image_width) > 0) {
