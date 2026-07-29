@@ -192,8 +192,8 @@ if ( ! empty( $provinces ) && ! empty( $store_types ) && ! empty( $stores_data )
 	<?php if ( $provinces ) : ?>
 	<section class="mb-6">
 		<div class="relative">
-			<button onclick="scrollProvinces('left')" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white shadow-md border border-slate-100 flex items-center justify-center text-slate-500 hover:bg-slate-50" aria-label="<?php esc_attr_e( 'Cuộn trái', 'spl' ); ?>">
-				<svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+			<button onclick="scrollProvinces('left')" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-7 h-7 md:w-8 md:h-8 rounded-full bg-[#1e73be] hover:bg-[#165da0] text-white shadow-md flex items-center justify-center transition-all border-none" aria-label="<?php esc_attr_e( 'Cuộn trái', 'spl' ); ?>">
+				<svg class="w-3.5 h-3.5 text-white stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
 			</button>
 			<div id="province-scroll" class="flex gap-2 overflow-x-auto px-10 py-1.5 scroll-smooth" style="-ms-overflow-style:none;scrollbar-width:none;">
 				<?php
@@ -210,8 +210,8 @@ if ( ! empty( $provinces ) && ! empty( $store_types ) && ! empty( $stores_data )
 				endforeach;
 				?>
 			</div>
-			<button onclick="scrollProvinces('right')" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white shadow-md border border-slate-100 flex items-center justify-center text-slate-500 hover:bg-slate-50" aria-label="<?php esc_attr_e( 'Cuộn phải', 'spl' ); ?>">
-				<svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+			<button onclick="scrollProvinces('right')" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-7 h-7 md:w-8 md:h-8 rounded-full bg-[#1e73be] hover:bg-[#165da0] text-white shadow-md flex items-center justify-center transition-all border-none" aria-label="<?php esc_attr_e( 'Cuộn phải', 'spl' ); ?>">
+				<svg class="w-3.5 h-3.5 text-white stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
 			</button>
 		</div>
 	</section>

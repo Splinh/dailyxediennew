@@ -214,8 +214,8 @@ if ( $all_cats && ! is_wp_error( $all_cats ) ) :
 				<nav class="flex items-center justify-center gap-2 mt-10" aria-label="<?php esc_attr_e( 'Phân trang', 'spl' ); ?>">
 					<?php
 					$pagination = paginate_links( [
-						'prev_text' => '<svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>',
-						'next_text' => '<svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>',
+						'prev_text' => '<svg class="w-3.5 h-3.5 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>',
+						'next_text' => '<svg class="w-3.5 h-3.5 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>',
 						'type'      => 'array',
 					] );
 
@@ -227,7 +227,21 @@ if ( $all_cats && ! is_wp_error( $all_cats ) ) :
 							// Dots.
 							elseif ( str_contains( $link, 'dots' ) ) :
 								echo '<span class="text-slate-400 text-xs px-1">&hellip;</span>';
-							// Prev/Next or numbered.
+							// Prev link.
+							elseif ( str_contains( $link, 'prev' ) ) :
+								echo str_replace(
+									'<a ',
+									'<a class="w-9 h-9 rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-[#1e73be] hover:text-white hover:border-[#1e73be] flex items-center justify-center text-xs font-bold transition-colors" ',
+									$link
+								);
+							// Next link.
+							elseif ( str_contains( $link, 'next' ) ) :
+								echo str_replace(
+									'<a ',
+									'<a class="w-9 h-9 rounded-lg bg-[#1e73be] text-white hover:bg-[#165da0] flex items-center justify-center text-xs font-bold transition-colors shadow-md shadow-[#1e73be]/20" ',
+									$link
+								);
+							// Numbered links.
 							else :
 								echo str_replace(
 									'<a ',

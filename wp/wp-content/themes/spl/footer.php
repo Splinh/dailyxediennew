@@ -93,12 +93,17 @@ get_template_part( 'parts/global/company-activity' );
 			</a>
 			<p class="text-xs leading-relaxed text-slate-500"><?php echo esc_html( $footer_desc ); ?></p>
 			<div class="flex items-center gap-3 pt-2">
-				<?php foreach ( $footer_socials as $social ) :
+				<?php foreach ( $footer_socials as $key => $social ) :
 					if ( empty( $social['url'] ) || '#' === $social['url'] ) { continue; }
-					?>
-					<a href="<?php echo esc_url( $social['url'] ); ?>" target="_blank" rel="noopener" aria-label="<?php echo esc_attr( $social['label'] ); ?>" class="w-8 h-8 rounded-full bg-slate-200/60 hover:bg-primary hover:text-white flex items-center justify-center transition-colors text-slate-500">
-						<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?php echo $social['svg']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?></svg>
-					</a>
+					if ( 'zalo' === $key ) : ?>
+						<a href="<?php echo esc_url( $social['url'] ); ?>" target="_blank" rel="noopener" aria-label="Zalo" class="w-8 h-8 rounded-full bg-[#0068ff] hover:bg-[#0054d1] text-white flex items-center justify-center transition-all shadow-sm font-black text-[10px] tracking-tight">
+							Zalo
+						</a>
+					<?php else : ?>
+						<a href="<?php echo esc_url( $social['url'] ); ?>" target="_blank" rel="noopener" aria-label="<?php echo esc_attr( $social['label'] ); ?>" class="w-8 h-8 rounded-full bg-slate-200/60 hover:bg-primary hover:text-white flex items-center justify-center transition-colors text-slate-500">
+							<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?php echo $social['svg']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?></svg>
+						</a>
+					<?php endif; ?>
 				<?php endforeach; ?>
 			</div>
 		</div>
