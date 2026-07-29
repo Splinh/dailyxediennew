@@ -147,7 +147,7 @@ if ( empty( $testimonials ) ) {
 		</div>
 
 		<!-- Mini playlist thumbnails (slider when > 4) -->
-		<div class="relative mt-3" id="video-playlist-wrapper">
+		<div class="relative mt-3 px-2" id="video-playlist-wrapper">
 			<?php if ( $has_slider ) : ?>
 				<div id="video-playlist-swiper" class="swiper closest-swiper" data-fx-slider>
 					<div class="swiper-wrapper" data-swiper-options='{"slidesPerView":4,"spaceBetween":12,"navigation":true,"watchSlidesProgress":true,"breakpoints":{"320":{"slidesPerView":2,"spaceBetween":8},"640":{"slidesPerView":3,"spaceBetween":10},"1024":{"slidesPerView":4,"spaceBetween":12}}}'>
@@ -156,13 +156,11 @@ if ( empty( $testimonials ) ) {
 								<?php if ( $p['thumb'] ) : ?>
 									<img loading="lazy" src="<?php echo esc_url( $p['thumb'] ); ?>" alt="" class="w-full h-full object-cover">
 								<?php endif; ?>
-								<div class="absolute inset-0 bg-slate-900/30 flex items-center justify-center">
-									<div class="w-7 h-7 rounded-full bg-[#1e73be] text-white flex items-center justify-center shadow-md">
-										<svg class="w-3 h-3 fill-current ml-0.5 text-white" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-									</div>
+								<div class="absolute inset-0 bg-slate-900/35 flex items-center justify-center">
+									<svg class="w-5 h-5 fill-current text-white drop-shadow-md" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
 								</div>
 								<?php if ( $p['duration'] ) : ?>
-									<span class="absolute bottom-1 right-1 bg-slate-900/70 text-white text-[8px] font-bold px-1.5 py-0.5 rounded"><?php echo esc_html( $p['duration'] ); ?></span>
+									<span class="absolute bottom-1 right-1 bg-slate-900/80 text-white text-[8px] font-bold px-1.5 py-0.5 rounded"><?php echo esc_html( $p['duration'] ); ?></span>
 								<?php endif; ?>
 							</div>
 						<?php endforeach; ?>
@@ -170,11 +168,11 @@ if ( empty( $testimonials ) ) {
 					
 					<!-- Navigation controls -->
 					<div class="swiper-controls">
-						<button class="swiper-button swiper-button-prev absolute -left-1 top-1/2 -translate-y-1/2 z-10 size-7 rounded-full bg-[#1e73be] text-white hover:bg-[#165da0] shadow-md flex items-center justify-center transition-all duration-200 focus:outline-none disabled:opacity-30 disabled:pointer-events-none border-none">
-							<svg class="w-3 h-3 text-white stroke-[2.5]" style="fill: none !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+						<button class="swiper-button swiper-button-prev absolute -left-3 top-1/2 -translate-y-1/2 z-20 size-7 rounded-full text-white shadow-md flex items-center justify-center transition-all duration-200 focus:outline-none disabled:opacity-0 disabled:pointer-events-none" style="background-color: #1e73be !important; color: #ffffff !important; border: none !important;">
+							<svg class="w-3.5 h-3.5 text-white stroke-[2.5]" style="fill: none !important; stroke: #ffffff !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
 						</button>
-						<button class="swiper-button swiper-button-next absolute -right-1 top-1/2 -translate-y-1/2 z-10 size-7 rounded-full bg-[#1e73be] text-white hover:bg-[#165da0] shadow-md flex items-center justify-center transition-all duration-200 focus:outline-none disabled:opacity-30 disabled:pointer-events-none border-none">
-							<svg class="w-3 h-3 text-white stroke-[2.5]" style="fill: none !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+						<button class="swiper-button swiper-button-next absolute -right-3 top-1/2 -translate-y-1/2 z-20 size-7 rounded-full text-white shadow-md flex items-center justify-center transition-all duration-200 focus:outline-none disabled:opacity-0 disabled:pointer-events-none" style="background-color: #1e73be !important; color: #ffffff !important; border: none !important;">
+							<svg class="w-3.5 h-3.5 text-white stroke-[2.5]" style="fill: none !important; stroke: #ffffff !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
 						</button>
 					</div>
 				</div>
@@ -185,13 +183,11 @@ if ( empty( $testimonials ) ) {
 							<?php if ( $p['thumb'] ) : ?>
 								<img loading="lazy" src="<?php echo esc_url( $p['thumb'] ); ?>" alt="" class="w-full h-full object-cover">
 							<?php endif; ?>
-							<div class="absolute inset-0 bg-slate-900/30 flex items-center justify-center">
-								<div class="w-7 h-7 rounded-full bg-[#1e73be] text-white flex items-center justify-center shadow-md">
-									<svg class="w-3 h-3 fill-current ml-0.5 text-white" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-								</div>
+							<div class="absolute inset-0 bg-slate-900/35 flex items-center justify-center">
+								<svg class="w-5 h-5 fill-current text-white drop-shadow-md" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
 							</div>
 							<?php if ( $p['duration'] ) : ?>
-								<span class="absolute bottom-1 right-1 bg-slate-900/70 text-white text-[8px] font-bold px-1.5 py-0.5 rounded"><?php echo esc_html( $p['duration'] ); ?></span>
+								<span class="absolute bottom-1 right-1 bg-slate-900/80 text-white text-[8px] font-bold px-1.5 py-0.5 rounded"><?php echo esc_html( $p['duration'] ); ?></span>
 							<?php endif; ?>
 						</div>
 					<?php endforeach; ?>
