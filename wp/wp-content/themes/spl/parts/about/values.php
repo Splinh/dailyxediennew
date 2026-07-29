@@ -61,7 +61,7 @@ $fallback_classes = [
 				<span class="w-1.5 h-5 bg-amber-500 rounded-full"></span>
 				<h3 class="text-xl md:text-2xl font-black text-slate-900 tracking-tight"><?php echo esc_html( $title ); ?></h3>
 			</div>
-			<p class="text-sm text-slate-500 max-w-lg mx-auto">Những nguyên tắc chúng tôi cam kết giữ vững trong mọi hoạt động</p>
+			<p class="text-base text-slate-600 max-w-lg mx-auto leading-relaxed">Những nguyên tắc chúng tôi cam kết giữ vững trong mọi hoạt động</p>
 		</div>
 
 		<?php if ( ! empty( $values ) ) : ?>
@@ -80,7 +80,7 @@ $fallback_classes = [
 							<?php endif; ?>
 						</div>
 						<h4 class="font-extrabold text-slate-900 text-base mb-2"><?php echo esc_html( $item['title'] ?? '' ); ?></h4>
-						<p class="text-xs md:text-sm text-slate-600 leading-relaxed"><?php echo esc_html( $item['desc'] ?? '' ); ?></p>
+						<p class="text-sm md:text-base text-slate-600 leading-relaxed font-normal"><?php echo esc_html( $item['desc'] ?? '' ); ?></p>
 					</div>
 				<?php endforeach; ?>
 			</div>

@@ -50,7 +50,7 @@ $cards    = $args['cards'] ?? [
 			<h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight"><?php echo esc_html( $title ); ?></h2>
 		</div>
 		<?php if ( $subtitle ) : ?>
-			<p class="text-sm text-slate-500 max-w-xl mx-auto"><?php echo esc_html( $subtitle ); ?></p>
+			<p class="text-base text-slate-600 max-w-xl mx-auto leading-relaxed"><?php echo esc_html( $subtitle ); ?></p>
 		<?php endif; ?>
 	</div>
 	
@@ -67,8 +67,8 @@ $cards    = $args['cards'] ?? [
 						}
 						?>
 					</div>
-					<h3 class="font-bold text-slate-800 text-sm mb-2 group-hover:text-primary transition-colors duration-300"><?php echo esc_html( $card['title'] ); ?></h3>
-					<p class="text-xs text-slate-500 leading-relaxed"><?php echo esc_html( $card['description'] ); ?></p>
+					<h3 class="font-bold text-slate-800 text-base mb-2 group-hover:text-primary transition-colors duration-300"><?php echo esc_html( $card['title'] ); ?></h3>
+					<p class="text-sm md:text-base text-slate-600 leading-relaxed font-normal"><?php echo esc_html( $card['description'] ); ?></p>
 				</div>
 			<?php endforeach; ?>
 		</div>
