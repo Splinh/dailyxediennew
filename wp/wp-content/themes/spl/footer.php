@@ -38,12 +38,12 @@ $youtube_url  = Helper::getField( 'youtube_url', 'option' ) ?: 'https://www.yout
 $tiktok_url   = Helper::getField( 'tiktok_url', 'option' ) ?: 'https://www.tiktok.com/@dailyxedienhcm';
 $zalo_url     = Helper::getField( 'zalo_url', 'option' ) ?: 'https://zalo.me/0933505222';
 
-// Brand-style social icons (inline SVG, filled).
+// Brand-style social icons (official brand colors & vector SVGs).
 $footer_socials = [
-	'facebook' => [ 'url' => $facebook_url, 'label' => 'Facebook', 'svg' => '<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>' ],
-	'youtube'  => [ 'url' => $youtube_url, 'label' => 'YouTube', 'svg' => '<path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/>' ],
-	'tiktok'   => [ 'url' => $tiktok_url, 'label' => 'TikTok', 'svg' => '<path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>' ],
-	'zalo'     => [ 'url' => $zalo_url, 'label' => 'Zalo', 'svg' => '<path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 17 3.5s1 2.5-1 6c-2 3.5-5 5.5-5 5.5"/><path d="M14 21c0-3.5-2-7-2-7"/>' ],
+	'facebook' => [ 'url' => $facebook_url, 'label' => 'Facebook', 'bg' => 'bg-[#1877f2] hover:bg-[#1567d3]', 'svg' => '<path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>' ],
+	'youtube'  => [ 'url' => $youtube_url, 'label' => 'YouTube', 'bg' => 'bg-[#ff0000] hover:bg-[#cc0000]', 'svg' => '<path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>' ],
+	'tiktok'   => [ 'url' => $tiktok_url, 'label' => 'TikTok', 'bg' => 'bg-[#111111] hover:bg-[#000000]', 'svg' => '<path fill="currentColor" d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .56.04.82.12V9.4a6.27 6.27 0 0 0-1-.08 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V9.05a8.27 8.27 0 0 0 4.97 1.62V7.22a4.84 4.84 0 0 1-1.21-.53z"/>' ],
+	'zalo'     => [ 'url' => $zalo_url, 'label' => 'Zalo', 'bg' => 'bg-[#0068ff] hover:bg-[#0054d1]', 'svg' => '<path fill="currentColor" d="M12 2C6.477 2 2 6.477 2 12c0 2.213.72 4.257 1.94 5.923L2.5 22l4.24-1.396C8.324 21.433 10.103 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm-3.5 12h-2v-4h2v4zm1.5 0h-1v-4h1v4zm4.5 0h-1.5l-1.5-2.5V14h-1v-4h1.5l1.5 2.5V10h1v4z"/>' ],
 ];
 
 // Query store provinces for Mobile Dealer slide-up panel
@@ -93,17 +93,12 @@ get_template_part( 'parts/global/company-activity' );
 			</a>
 			<p class="text-xs leading-relaxed text-slate-500"><?php echo esc_html( $footer_desc ); ?></p>
 			<div class="flex items-center gap-3 pt-2">
-				<?php foreach ( $footer_socials as $key => $social ) :
+				<?php foreach ( $footer_socials as $social ) :
 					if ( empty( $social['url'] ) || '#' === $social['url'] ) { continue; }
-					if ( 'zalo' === $key ) : ?>
-						<a href="<?php echo esc_url( $social['url'] ); ?>" target="_blank" rel="noopener" aria-label="Zalo" class="w-8 h-8 rounded-full bg-[#0068ff] hover:bg-[#0054d1] text-white flex items-center justify-center transition-all shadow-sm font-black text-[10px] tracking-tight">
-							Zalo
-						</a>
-					<?php else : ?>
-						<a href="<?php echo esc_url( $social['url'] ); ?>" target="_blank" rel="noopener" aria-label="<?php echo esc_attr( $social['label'] ); ?>" class="w-8 h-8 rounded-full bg-slate-200/60 hover:bg-primary hover:text-white flex items-center justify-center transition-colors text-slate-500">
-							<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?php echo $social['svg']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?></svg>
-						</a>
-					<?php endif; ?>
+					?>
+					<a href="<?php echo esc_url( $social['url'] ); ?>" target="_blank" rel="noopener" aria-label="<?php echo esc_attr( $social['label'] ); ?>" class="w-8 h-8 rounded-full <?php echo esc_attr( $social['bg'] ); ?> text-white flex items-center justify-center transition-all shadow-sm">
+						<svg class="w-4 h-4 text-white fill-white" viewBox="0 0 24 24" aria-hidden="true"><?php echo $social['svg']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?></svg>
+					</a>
 				<?php endforeach; ?>
 			</div>
 		</div>
