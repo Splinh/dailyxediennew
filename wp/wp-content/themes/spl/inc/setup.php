@@ -142,28 +142,49 @@ function spl_register_bottom_nav_acf_fields(): void {
 }
 
 // --------------------------------------------------
-// Clean Unicode dotted uppercase "İ" (U+0130) in Vietnamese titles
+// Clean Unicode dotted uppercase "İ" (U+0130) & format ALL-CAPS titles to Natural Case
 // --------------------------------------------------
 
-add_filter( 'the_title', 'spl_clean_vietnamese_dotted_i', 20 );
-add_filter( 'single_post_title', 'spl_clean_vietnamese_dotted_i', 20 );
-add_filter( 'wp_title', 'spl_clean_vietnamese_dotted_i', 20 );
+add_filter( 'the_title', 'spl_format_vietnamese_post_title', 20 );
+add_filter( 'single_post_title', 'spl_format_vietnamese_post_title', 20 );
+add_filter( 'wp_title', 'spl_format_vietnamese_post_title', 20 );
 add_filter( 'document_title_parts', function( $parts ) {
 	if ( is_array( $parts ) ) {
 		foreach ( $parts as $k => $v ) {
 			if ( is_string( $v ) ) {
-				$parts[ $k ] = spl_clean_vietnamese_dotted_i( $v );
+				$parts[ $k ] = spl_format_vietnamese_post_title( $v );
 			}
 		}
 	}
 	return $parts;
 }, 20 );
 
-function spl_clean_vietnamese_dotted_i( $text ) {
-	if ( ! is_string( $text ) || '' === $text ) {
+function spl_format_vietnamese_post_title( $text ) {
+	if ( ! is_string( $text ) || '' === trim( $text ) ) {
 		return $text;
 	}
-	// Replace U+0130 (İ -> I) and remove U+0307 combining dot accent.
-	return str_replace( [ "\u{0130}", "\u{0307}" ], [ 'I', '' ], $text );
+
+	// 1. Clean Unicode dotted uppercase "İ" (U+0130) and combining dot accent.
+	$text = str_replace( [ "\u{0130}", "\u{0307}" ], [ 'I', '' ], $text );
+
+	// 2. If title is ALL CAPS (has no lowercase letters), convert to clean Natural Case.
+	if ( ! preg_match( '/\p{Ll}/u', $text ) && mb_strlen( $text, 'UTF-8' ) > 5 ) {
+		$lower  = mb_strtolower( $text, 'UTF-8' );
+		$parts  = preg_split( '/([\.\?\!\:\–\—\-\|]\s*)/u', $lower, -1, PREG_SPLIT_DELIM_CAPTURE );
+		$result = '';
+
+		foreach ( $parts as $part ) {
+			if ( preg_match( '/^[\.\?\!\:\–\—\-\|]\s*$/u', $part ) ) {
+				$result .= $part;
+			} else {
+				$first  = mb_substr( $part, 0, 1, 'UTF-8' );
+				$rest   = mb_substr( $part, 1, null, 'UTF-8' );
+				$result .= mb_strtoupper( $first, 'UTF-8' ) . $rest;
+			}
+		}
+		return $result;
+	}
+
+	return $text;
 }
 
