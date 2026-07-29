@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tailwind CSS v4 Mastery"
+  short_description: "Tailwind v4 CSS-first architecture and modern utilities"
+  default_prompt: "Use $tailwind-v4-mastery to style UI with Tailwind v4, @theme, CSS variables, and container queries."

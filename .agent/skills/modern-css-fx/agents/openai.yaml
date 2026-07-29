@@ -1,0 +1,4 @@
+interface:
+  display_name: "Modern CSS FX"
+  short_description: "Native View Transitions, Scroll-driven animations, Anchor positioning and Popovers"
+  default_prompt: "Use $modern-css-fx to implement native Web API animations, view transitions, and popover dialogs."

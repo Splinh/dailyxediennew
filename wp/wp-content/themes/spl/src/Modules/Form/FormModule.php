@@ -35,11 +35,15 @@ final class FormModule extends AbstractModule implements HasAdminContext, HasDat
 		return 'form';
 	}
 
-	/** Controlled by 'enabled' key in _hd_build_form_config(). */
+	/** Controlled by 'enabled' key in _hd_build_form_config(). Defaults to true. */
 	public static function isActive(): bool {
 		$config = Helper::filterSettingOptions( 'form_config' );
 
-		return ! empty( $config['enabled'] );
+		if ( empty( $config ) ) {
+			return true;
+		}
+
+		return isset( $config['enabled'] ) ? (bool) $config['enabled'] : true;
 	}
 
 	/**

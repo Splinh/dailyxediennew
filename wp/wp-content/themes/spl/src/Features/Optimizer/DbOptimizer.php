@@ -53,17 +53,19 @@ final class DbOptimizer {
 			$time
 		) );
 
-		// 3. Optimize core tables to reclaim unused space.
-		$tables = [
-			$wpdb->posts,
-			$wpdb->postmeta,
-			$wpdb->options,
-			$wpdb->term_relationships,
-		];
+		// 3. Optimize core tables to reclaim unused space (CLI/cron only, skip on web requests to avoid locking tables).
+		if ( defined( 'WP_CLI' ) && WP_CLI ) {
+			$tables = [
+				$wpdb->posts,
+				$wpdb->postmeta,
+				$wpdb->options,
+				$wpdb->term_relationships,
+			];
 
-		foreach ( $tables as $table ) {
-			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-			$wpdb->query( "OPTIMIZE TABLE {$table}" );
+			foreach ( $tables as $table ) {
+				// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+				$wpdb->query( "OPTIMIZE TABLE {$table}" );
+			}
 		}
 	}
 }

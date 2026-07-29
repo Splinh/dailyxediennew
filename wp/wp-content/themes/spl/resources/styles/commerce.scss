@@ -1188,7 +1188,7 @@
 	}
 }
 
-/* Mobile horizontal overflow protection for all commerce tables & containers */
+/* Mobile horizontal overflow protection & Mobile Checkout UI/UX Enhancements */
 @media (max-width: 767px) {
 	.woocommerce-cart,
 	.woocommerce-checkout {
@@ -1196,12 +1196,272 @@
 	}
 
 	.woocommerce-cart table.shop_table,
-	.woocommerce-checkout-review-order-table,
 	.woocommerce-table--order-details {
 		display: block;
 		width: 100%;
 		max-width: 100%;
 		overflow-x: auto;
 		-webkit-overflow-scrolling: touch;
+	}
+
+	/* Prevent iOS Safari 16px Auto-Zoom on form input focus (Impeccable §8) */
+	.woocommerce-checkout input[type="text"],
+	.woocommerce-checkout input[type="tel"],
+	.woocommerce-checkout input[type="email"],
+	.woocommerce-checkout input[type="password"],
+	.woocommerce-checkout select,
+	.woocommerce-checkout textarea,
+	.woocommerce-checkout .select2-container .select2-selection--single {
+		font-size: 16px !important;
+		min-height: 48px;
+		border-radius: 0.75rem;
+	}
+
+	/* Flatten outer article card container on mobile (Zero Double Nesting, 100% Flush Alignment) */
+	.woocommerce-checkout article,
+	.woocommerce-cart article,
+	.woocommerce-checkout #main-content article {
+		background: transparent !important;
+		border: none !important;
+		box-shadow: none !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		border-radius: 0 !important;
+	}
+
+	/* Compact Mobile Form Field Layout & Touch Targets (WCAG 48px) */
+	.woocommerce-checkout .form-row {
+		margin-bottom: 1rem;
+
+		label {
+			font-weight: 700;
+			font-size: 0.8125rem;
+			color: #0f172a;
+			margin-bottom: 0.25rem;
+			display: block;
+
+			.required {
+				color: #ef4444;
+				text-decoration: none;
+			}
+		}
+	}
+
+	/* Flat, Space-Efficient Billing & Shipping Sections on Mobile */
+	.woocommerce-checkout .woocommerce-billing-fields,
+	.woocommerce-checkout .woocommerce-shipping-fields {
+		background: transparent !important;
+		border: none !important;
+		border-radius: 0 !important;
+		padding: 0 !important;
+		margin-bottom: 1.5rem !important;
+		box-shadow: none !important;
+	}
+
+	/* Order Review Container on Mobile — Flat & Flush */
+	.woocommerce-checkout #order_review {
+		background: transparent !important;
+		border: none !important;
+		border-radius: 0 !important;
+		padding: 0 !important;
+		margin-bottom: 1.5rem !important;
+		box-shadow: none !important;
+	}
+
+	/* Modern Compact Mobile Order Review Layout (Zero Space Waste) */
+	.woocommerce-checkout-review-order-table {
+		display: block !important;
+		width: 100% !important;
+		margin: 0 0 0.875rem 0 !important;
+		border: none !important;
+		background: transparent !important;
+		box-shadow: none !important;
+
+		/* Hide table headers on mobile */
+		thead {
+			display: none !important;
+		}
+
+		/* Product Items Compact Stacked List */
+		tbody {
+			display: flex !important;
+			flex-direction: column !important;
+			gap: 0.5rem !important;
+		}
+
+		tbody tr.cart_item {
+			display: flex !important;
+			flex-direction: column !important;
+			align-items: stretch !important;
+			padding: 0.625rem 0.75rem !important;
+			background: #f8fafc !important;
+			border: 1px solid #e2e8f0 !important;
+			border-radius: 0.625rem !important;
+			gap: 0.375rem !important;
+
+			td {
+				display: flex !important;
+				padding: 0 !important;
+				border: none !important;
+				background: transparent !important;
+			}
+
+			td.product-name {
+				font-size: 0.8125rem !important;
+				font-weight: 700 !important;
+				color: #0f172a !important;
+				line-height: 1.4 !important;
+				display: flex !important;
+				flex-wrap: wrap !important;
+				align-items: center !important;
+				gap: 0.375rem !important;
+
+				.product-quantity {
+					display: inline-flex !important;
+					align-items: center !important;
+					color: var(--color-primary, #1e73be) !important;
+					font-weight: 700 !important;
+					background: #e0f2fe !important;
+					padding: 0.0625rem 0.375rem !important;
+					border-radius: 0.25rem !important;
+					font-size: 0.75rem !important;
+				}
+			}
+
+			td.product-total {
+				justify-content: flex-end !important;
+				font-size: 0.875rem !important;
+				font-weight: 800 !important;
+				color: var(--color-primary, #1e73be) !important;
+				text-align: right !important;
+			}
+		}
+
+		/* Order Totals Summary Footer */
+		tfoot {
+			display: flex !important;
+			flex-direction: column !important;
+			gap: 0.375rem !important;
+			padding-top: 0.625rem !important;
+			border-top: 1px dashed #cbd5e1 !important;
+			margin-top: 0.625rem !important;
+
+			tr {
+				display: flex !important;
+				align-items: center !important;
+				justify-content: space-between !important;
+				padding: 0.25rem 0 !important;
+				border: none !important;
+
+				th {
+					display: block !important;
+					padding: 0 !important;
+					font-size: 0.8125rem !important;
+					color: #64748b !important;
+					font-weight: 600 !important;
+					text-align: left !important;
+					border: none !important;
+				}
+
+				td {
+					display: block !important;
+					padding: 0 !important;
+					font-size: 0.8125rem !important;
+					color: #0f172a !important;
+					font-weight: 700 !important;
+					text-align: right !important;
+					border: none !important;
+				}
+
+				&.order-total {
+					padding-top: 0.625rem !important;
+					border-top: 2px solid #e2e8f0 !important;
+					margin-top: 0.25rem !important;
+
+					th {
+						font-size: 0.9375rem !important;
+						font-weight: 900 !important;
+						color: #0f172a !important;
+					}
+
+					td {
+						font-size: 1.25rem !important;
+						font-weight: 900 !important;
+						color: var(--color-primary, #1e73be) !important;
+					}
+				}
+			}
+		}
+	}
+
+	.woocommerce-checkout h3 {
+		font-size: 1.125rem;
+		font-weight: 900;
+		color: #0f172a;
+		padding-bottom: 0.75rem;
+		margin-bottom: 1rem;
+		border-bottom: 1px solid #f1f5f9;
+	}
+
+	/* Payment Method Cards on Mobile */
+	.wc_payment_methods {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.wc_payment_method {
+		border: 1.5px solid #e2e8f0;
+		border-radius: 0.875rem;
+		background: #fff;
+		transition: all 0.2s ease;
+		overflow: hidden;
+
+		&:has(input:checked) {
+			border-color: var(--color-primary, #1e73be);
+			background: #f0f7ff;
+			box-shadow: 0 0 0 1px var(--color-primary, #1e73be);
+		}
+
+		label {
+			padding: 0.875rem 1rem;
+			min-height: 48px;
+			display: flex;
+			align-items: center;
+			gap: 0.75rem;
+			font-size: 0.875rem;
+			font-weight: 700;
+			color: #0f172a;
+
+			img {
+				max-height: 1.5rem;
+				width: auto;
+			}
+		}
+
+		.payment_box {
+			background: #f8fafc;
+			border-top: 1px solid #e2e8f0;
+			padding: 0.875rem 1rem;
+			font-size: 0.8125rem;
+			color: #475569;
+			line-height: 1.6;
+		}
+	}
+
+	/* High-Prominence Place Order Button on Mobile */
+	#place_order {
+		min-height: 52px;
+		padding: 1rem 1.25rem;
+		font-size: 1rem;
+		font-weight: 900;
+		border-radius: 0.875rem;
+		letter-spacing: 0.03em;
+		box-shadow: 0 6px 20px rgba(30, 115, 190, 0.3);
+
+		&:active {
+			transform: scale(0.98);
+		}
 	}
 }

@@ -12,7 +12,7 @@ use SPL\Core\Helper;
 // Menu classes for desktop & mobile
 $menu_item_classes = 'group inline-flex items-center gap-2 text-base font-medium text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-teal-400 transition-all duration-200 no-underline py-2.5 md:py-1.5 hover:translate-x-1';
 ?>
-<div class="relative w-full bg-white dark:bg-gray-900 border-t border-black/5 dark:border-white/5 pt-16 pb-8 overflow-hidden z-10">
+<div class="relative w-full bg-white dark:bg-gray-900 border-t border-black/5 dark:border-white/5 pt-8 md:pt-16 pb-8 overflow-hidden z-10">
 	<!-- Decorative Background Glow -->
 	<div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-primary/4 dark:bg-teal-400/5 blur-[120px] rounded-full pointer-events-none" aria-hidden="true"></div>
 

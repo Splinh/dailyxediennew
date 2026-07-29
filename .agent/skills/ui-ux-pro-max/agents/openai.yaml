@@ -1,0 +1,4 @@
+interface:
+  display_name: "UI/UX Pro Max Intelligence"
+  short_description: "UI/UX design intelligence: 84 styles, 192 color palettes, 74 font pairings, accessibility & design audits"
+  default_prompt: "Use $ui-ux-pro-max for UI/UX design, visual styling, color schemes, typography, layout, accessibility, and component design."

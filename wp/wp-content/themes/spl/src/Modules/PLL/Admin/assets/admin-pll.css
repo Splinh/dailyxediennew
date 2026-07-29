@@ -1,0 +1,291 @@
+/* HD Extended Admin UI Design System for Polylang Settings */
+.hde-wrap {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  max-width: 1280px;
+  margin: 20px 20px 40px 0;
+  color: #1e293b;
+}
+
+/* Header Subnav Toolbar */
+.hde-top-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 8px 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.hde-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  color: #0f172a;
+  padding-right: 16px;
+  border-right: 1px solid #e2e8f0;
+}
+
+.hde-brand-logo {
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 6px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+}
+
+.hde-nav-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.hde-tab-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748b;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.hde-tab-item:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.hde-tab-item.active {
+  background: #eff6ff;
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.hde-tab-item .dashicons {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Page Header & Save Button */
+.hde-page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.hde-header-info h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 6px 0;
+  padding: 0;
+}
+
+.hde-header-info p {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0;
+}
+
+.hde-save-btn {
+  background: #2563eb !important;
+  border-color: #2563eb !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  padding: 8px 22px !important;
+  height: auto !important;
+  border-radius: 8px !important;
+  box-shadow: 0 1px 2px rgba(37,99,235,0.2) !important;
+  cursor: pointer;
+  transition: background 0.15s ease !important;
+}
+
+.hde-save-btn:hover {
+  background: #1d4ed8 !important;
+  border-color: #1d4ed8 !important;
+}
+
+/* Card Sections */
+.hde-section {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+
+.hde-section-header {
+  margin-bottom: 20px;
+}
+
+.hde-section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 4px 0;
+}
+
+.hde-section-desc {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0;
+}
+
+/* 3-Column Card Grid */
+.hde-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 1024px) {
+  .hde-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .hde-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Individual Feature Card */
+.hde-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.hde-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+.hde-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.hde-card-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.hde-card-desc {
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+  flex-grow: 1;
+}
+
+.hde-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Badges */
+.hde-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.hde-badge-pro {
+  background: #e0f2fe;
+  color: #0284c7;
+}
+
+.hde-badge-native {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.hde-badge-warning {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.hde-badge-success {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+/* iOS Toggle Switch */
+.hde-switch {
+  position: relative;
+  display: inline-block;
+  width: 42px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.hde-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.hde-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #cbd5e1;
+  transition: .2s;
+  border-radius: 24px;
+}
+
+.hde-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .2s;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+input:checked + .hde-slider {
+  background-color: #2563eb;
+}
+
+input:checked + .hde-slider:before {
+  transform: translateX(18px);
+}

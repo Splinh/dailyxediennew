@@ -78,7 +78,7 @@ get_template_part( 'parts/global/company-activity' );
 ?>
 
 <!-- ===== FOOTER ===== -->
-<footer class="bg-slate-50 text-slate-600 text-sm pt-16 pb-8 border-t border-slate-200">
+<footer class="bg-slate-50 text-slate-600 text-sm pt-8 md:pt-16 pb-8 border-t border-slate-200">
 	<div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
 
 		<!-- Company + social -->
