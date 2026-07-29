@@ -192,8 +192,8 @@ if ( $all_cats && ! is_wp_error( $all_cats ) ) :
 				<nav class="flex items-center justify-center gap-2 mt-10" aria-label="<?php esc_attr_e( 'Phân trang', 'spl' ); ?>">
 					<?php
 					$pagination = paginate_links( [
-						'prev_text' => '<svg class="w-3.5 h-3.5 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>',
-						'next_text' => '<svg class="w-3.5 h-3.5 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>',
+						'prev_text' => '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5"><polyline points="15 18 9 12 15 6"/></svg>',
+						'next_text' => '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5"><polyline points="9 6 15 12 9 18"/></svg>',
 						'type'      => 'array',
 					] );
 
@@ -208,22 +208,22 @@ if ( $all_cats && ! is_wp_error( $all_cats ) ) :
 							// Prev link.
 							elseif ( str_contains( $link, 'prev' ) ) :
 								echo str_replace(
-									'<a ',
-									'<a class="w-9 h-9 rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-[#1e73be] hover:text-white hover:border-[#1e73be] flex items-center justify-center text-xs font-bold transition-colors" ',
+									'class="prev page-numbers"',
+									'class="prev page-numbers w-9 h-9 rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-[#1e73be] hover:text-white hover:border-[#1e73be] flex items-center justify-center text-xs font-bold transition-colors"',
 									$link
 								);
 							// Next link.
 							elseif ( str_contains( $link, 'next' ) ) :
 								echo str_replace(
-									'<a ',
-									'<a class="w-9 h-9 rounded-lg bg-[#1e73be] text-white hover:bg-[#165da0] flex items-center justify-center text-xs font-bold transition-colors shadow-md shadow-[#1e73be]/20" ',
+									'class="next page-numbers"',
+									'class="next page-numbers w-9 h-9 rounded-lg bg-[#1e73be] text-white hover:bg-[#165da0] flex items-center justify-center text-xs font-bold transition-colors shadow-md shadow-[#1e73be]/20"',
 									$link
 								);
 							// Numbered links.
 							else :
 								echo str_replace(
-									'<a ',
-									'<a class="w-9 h-9 rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-[#1e73be] hover:text-[#1e73be] flex items-center justify-center text-xs font-bold transition-colors" ',
+									'class="page-numbers"',
+									'class="page-numbers w-9 h-9 rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-[#1e73be] hover:text-[#1e73be] flex items-center justify-center text-xs font-bold transition-colors"',
 									$link
 								);
 							endif;
