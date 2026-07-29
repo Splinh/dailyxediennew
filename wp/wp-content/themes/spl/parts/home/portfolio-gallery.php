@@ -171,11 +171,11 @@ $slider_options = wp_json_encode( [
 
 						<!-- Navigation controls -->
 						<div class="swiper-controls">
-							<button class="swiper-button swiper-button-prev absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white border border-slate-200 shadow-md hover:bg-slate-50 text-slate-600 flex items-center justify-center transition-all focus:outline-none disabled:opacity-40 disabled:pointer-events-none">
-								<?php echo spl_icon( 'chevron-down', 'w-4 h-4 rotate-90' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+							<button class="swiper-button swiper-button-prev absolute -left-3 top-1/2 -translate-y-1/2 z-20 w-7 h-7 md:w-8 md:h-8 rounded-full text-white shadow-md flex items-center justify-center transition-all focus:outline-none disabled:opacity-0 disabled:pointer-events-none" style="background-color: #1e73be !important; color: #ffffff !important; border: none !important;">
+								<svg class="w-3.5 h-3.5 text-white stroke-[2.5]" style="fill: none !important; stroke: #ffffff !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
 							</button>
-							<button class="swiper-button swiper-button-next absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white border border-slate-200 shadow-md hover:bg-slate-50 text-slate-600 flex items-center justify-center transition-all focus:outline-none disabled:opacity-40 disabled:pointer-events-none">
-								<?php echo spl_icon( 'chevron-down', 'w-4 h-4 -rotate-90' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+							<button class="swiper-button swiper-button-next absolute -right-3 top-1/2 -translate-y-1/2 z-20 w-7 h-7 md:w-8 md:h-8 rounded-full text-white shadow-md flex items-center justify-center transition-all focus:outline-none disabled:opacity-0 disabled:pointer-events-none" style="background-color: #1e73be !important; color: #ffffff !important; border: none !important;">
+								<svg class="w-3.5 h-3.5 text-white stroke-[2.5]" style="fill: none !important; stroke: #ffffff !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
 							</button>
 						</div>
 					</div>
