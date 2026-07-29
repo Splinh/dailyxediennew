@@ -164,27 +164,7 @@ function spl_format_vietnamese_post_title( $text ) {
 		return $text;
 	}
 
-	// 1. Clean Unicode dotted uppercase "İ" (U+0130) and combining dot accent.
-	$text = str_replace( [ "\u{0130}", "\u{0307}" ], [ 'I', '' ], $text );
-
-	// 2. If title is ALL CAPS (has no lowercase letters), convert to clean Natural Case.
-	if ( ! preg_match( '/\p{Ll}/u', $text ) && mb_strlen( $text, 'UTF-8' ) > 5 ) {
-		$lower  = mb_strtolower( $text, 'UTF-8' );
-		$parts  = preg_split( '/([\.\?\!\:\–\—\-\|]\s*)/u', $lower, -1, PREG_SPLIT_DELIM_CAPTURE );
-		$result = '';
-
-		foreach ( $parts as $part ) {
-			if ( preg_match( '/^[\.\?\!\:\–\—\-\|]\s*$/u', $part ) ) {
-				$result .= $part;
-			} else {
-				$first  = mb_substr( $part, 0, 1, 'UTF-8' );
-				$rest   = mb_substr( $part, 1, null, 'UTF-8' );
-				$result .= mb_strtoupper( $first, 'UTF-8' ) . $rest;
-			}
-		}
-		return $result;
-	}
-
-	return $text;
+	// Clean Unicode dotted uppercase "İ" (U+0130) and combining dot accent accent.
+	return str_replace( [ "\u{0130}", "\u{0307}" ], [ 'I', '' ], $text );
 }
 
