@@ -133,8 +133,8 @@ if ( empty( $testimonials ) ) {
 			<div id="video-main-trigger" data-video-url="<?php echo esc_url( $video_url ); ?>" onclick="openVideoModal(this.getAttribute('data-video-url'))" class="relative rounded-xl overflow-hidden group aspect-video bg-slate-900 cursor-pointer shadow-md">
 				<img id="video-main-thumb" loading="lazy" src="<?php echo esc_url( $video_thumb ); ?>" alt="<?php echo esc_attr( $video_title ); ?>" class="w-full h-full object-cover opacity-80 group-hover:scale-102 transition-transform duration-300 <?php echo $video_thumb ? '' : 'hidden'; ?>">
 				<div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent flex items-center justify-center">
-					<div class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white/95 text-primary flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform backdrop-blur-sm">
-						<svg class="w-6 h-6 fill-current ml-1" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+					<div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#1e73be] hover:bg-[#165da0] text-white flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform">
+						<svg class="w-5 h-5 fill-current ml-0.5" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
 					</div>
 				</div>
 				<?php if ( $main_video_caption ) : ?>
@@ -152,12 +152,14 @@ if ( empty( $testimonials ) ) {
 				<div id="video-playlist-swiper" class="swiper closest-swiper" data-fx-slider>
 					<div class="swiper-wrapper" data-swiper-options='{"slidesPerView":4,"spaceBetween":12,"navigation":true,"watchSlidesProgress":true,"breakpoints":{"320":{"slidesPerView":2,"spaceBetween":8},"640":{"slidesPerView":3,"spaceBetween":10},"1024":{"slidesPerView":4,"spaceBetween":12}}}'>
 						<?php foreach ( $playlist_resolved as $idx => $p ) : ?>
-							<div onclick="selectVideo(<?php echo (int) $idx; ?>)" data-playlist-idx="<?php echo (int) $idx; ?>" class="swiper-slide video-thumb-item h-auto! rounded-lg overflow-hidden border-2 aspect-video cursor-pointer hover:opacity-100 transition-all bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center relative <?php echo 0 === $idx ? 'border-primary opacity-100 ring-2 ring-primary/30' : 'border-slate-200 opacity-70'; ?>">
+							<div onclick="selectVideo(<?php echo (int) $idx; ?>)" data-playlist-idx="<?php echo (int) $idx; ?>" class="swiper-slide video-thumb-item h-auto! rounded-lg overflow-hidden border-2 aspect-video cursor-pointer hover:opacity-100 transition-all bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center relative <?php echo 0 === $idx ? 'border-[#1e73be] opacity-100 ring-2 ring-[#1e73be]/30' : 'border-slate-200 opacity-70'; ?>">
 								<?php if ( $p['thumb'] ) : ?>
 									<img loading="lazy" src="<?php echo esc_url( $p['thumb'] ); ?>" alt="" class="w-full h-full object-cover">
 								<?php endif; ?>
 								<div class="absolute inset-0 bg-slate-900/30 flex items-center justify-center">
-									<svg class="w-4 h-4 fill-current text-white/80" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+									<div class="w-7 h-7 rounded-full bg-[#1e73be] text-white flex items-center justify-center shadow-md">
+										<svg class="w-3 h-3 fill-current ml-0.5 text-white" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+									</div>
 								</div>
 								<?php if ( $p['duration'] ) : ?>
 									<span class="absolute bottom-1 right-1 bg-slate-900/70 text-white text-[8px] font-bold px-1.5 py-0.5 rounded"><?php echo esc_html( $p['duration'] ); ?></span>
@@ -168,23 +170,25 @@ if ( empty( $testimonials ) ) {
 					
 					<!-- Navigation controls -->
 					<div class="swiper-controls">
-						<button class="swiper-button swiper-button-prev absolute -left-1 top-1/2 -translate-y-1/2 z-10 size-7 rounded-full bg-white shadow-md border border-slate-200 hover:bg-primary hover:text-white hover:border-primary text-slate-500 flex items-center justify-center transition-all duration-200 focus:outline-none disabled:opacity-30 disabled:pointer-events-none">
-							<svg class="w-3 h-3" style="fill: none !important;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+						<button class="swiper-button swiper-button-prev absolute -left-1 top-1/2 -translate-y-1/2 z-10 size-7 rounded-full bg-[#1e73be] text-white hover:bg-[#165da0] shadow-md flex items-center justify-center transition-all duration-200 focus:outline-none disabled:opacity-30 disabled:pointer-events-none border-none">
+							<svg class="w-3 h-3 text-white stroke-[2.5]" style="fill: none !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
 						</button>
-						<button class="swiper-button swiper-button-next absolute -right-1 top-1/2 -translate-y-1/2 z-10 size-7 rounded-full bg-white shadow-md border border-slate-200 hover:bg-primary hover:text-white hover:border-primary text-slate-500 flex items-center justify-center transition-all duration-200 focus:outline-none disabled:opacity-30 disabled:pointer-events-none">
-							<svg class="w-3 h-3" style="fill: none !important;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+						<button class="swiper-button swiper-button-next absolute -right-1 top-1/2 -translate-y-1/2 z-10 size-7 rounded-full bg-[#1e73be] text-white hover:bg-[#165da0] shadow-md flex items-center justify-center transition-all duration-200 focus:outline-none disabled:opacity-30 disabled:pointer-events-none border-none">
+							<svg class="w-3 h-3 text-white stroke-[2.5]" style="fill: none !important;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
 						</button>
 					</div>
 				</div>
 			<?php else : ?>
 				<div class="grid grid-cols-4 gap-2.5 md:gap-3">
 					<?php foreach ( $playlist_resolved as $idx => $p ) : ?>
-						<div onclick="selectVideo(<?php echo (int) $idx; ?>)" data-playlist-idx="<?php echo (int) $idx; ?>" class="video-thumb-item rounded-lg overflow-hidden border-2 aspect-video cursor-pointer hover:opacity-100 transition-all bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center relative <?php echo 0 === $idx ? 'border-primary opacity-100 ring-2 ring-primary/30' : 'border-slate-200 opacity-70'; ?>">
+						<div onclick="selectVideo(<?php echo (int) $idx; ?>)" data-playlist-idx="<?php echo (int) $idx; ?>" class="video-thumb-item rounded-lg overflow-hidden border-2 aspect-video cursor-pointer hover:opacity-100 transition-all bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center relative <?php echo 0 === $idx ? 'border-[#1e73be] opacity-100 ring-2 ring-[#1e73be]/30' : 'border-slate-200 opacity-70'; ?>">
 							<?php if ( $p['thumb'] ) : ?>
 								<img loading="lazy" src="<?php echo esc_url( $p['thumb'] ); ?>" alt="" class="w-full h-full object-cover">
 							<?php endif; ?>
 							<div class="absolute inset-0 bg-slate-900/30 flex items-center justify-center">
-								<svg class="w-4 h-4 fill-current text-white/80" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+								<div class="w-7 h-7 rounded-full bg-[#1e73be] text-white flex items-center justify-center shadow-md">
+									<svg class="w-3 h-3 fill-current ml-0.5 text-white" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+								</div>
 							</div>
 							<?php if ( $p['duration'] ) : ?>
 								<span class="absolute bottom-1 right-1 bg-slate-900/70 text-white text-[8px] font-bold px-1.5 py-0.5 rounded"><?php echo esc_html( $p['duration'] ); ?></span>
