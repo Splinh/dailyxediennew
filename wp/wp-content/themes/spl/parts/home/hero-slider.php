@@ -31,6 +31,8 @@ if ( empty( $slides ) ) {
 <section class="relative w-full overflow-hidden bg-white m-0 p-0"
 	aria-label="<?php esc_attr_e( 'Banners nổi bật', 'spl' ); ?>">
 
+	<h1 class="sr-only"><?php bloginfo( 'name' ); ?> - <?php bloginfo( 'description' ); ?></h1>
+
 	<!-- Slide Track -->
 	<div id="hero-slider" class="relative w-full">
 		<?php foreach ( $slides as $index => $slide ) :

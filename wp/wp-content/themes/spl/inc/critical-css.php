@@ -56,4 +56,40 @@ function spl_preload_assets(): void {
 		echo '<link rel="preconnect" href="' . esc_url( $domain ) . '" crossorigin>' . "\n";
 		echo '<link rel="dns-prefetch" href="' . esc_url( $domain ) . '">' . "\n";
 	}
+
+	// 2. Preload first hero slide LCP image for Mobile & Desktop on homepage.
+	if ( is_front_page() || is_home() ) {
+		$hero_desktop = content_url( '/uploads/2026/06/banner-he-sang-chanh.jpg' );
+		$hero_mobile  = content_url( '/uploads/2026/06/banner-he-sang-chanh-mobile.jpg' );
+
+		$page_id = (int) get_option( 'page_on_front' );
+		if ( $page_id && function_exists( 'get_field' ) ) {
+			$slides = get_field( 'hero_slides', $page_id );
+			if ( ! empty( $slides[0]['bg_image'] ) ) {
+				$raw = $slides[0]['bg_image'];
+				if ( is_numeric( $raw ) ) {
+					$hero_desktop = wp_get_attachment_image_url( (int) $raw, 'full' ) ?: $hero_desktop;
+				} elseif ( is_array( $raw ) && ! empty( $raw['url'] ) ) {
+					$hero_desktop = $raw['url'];
+				} elseif ( is_string( $raw ) ) {
+					$hero_desktop = $raw;
+				}
+			}
+			if ( ! empty( $slides[0]['bg_image_mobile'] ) ) {
+				$m_raw = $slides[0]['bg_image_mobile'];
+				if ( is_numeric( $m_raw ) ) {
+					$hero_mobile = wp_get_attachment_image_url( (int) $m_raw, 'large' ) ?: $hero_mobile;
+				} elseif ( is_string( $m_raw ) ) {
+					$hero_mobile = $m_raw;
+				}
+			}
+		}
+
+		if ( $hero_mobile ) {
+			echo '<link rel="preload" href="' . esc_url( $hero_mobile ) . '" as="image" media="(max-width: 767px)" fetchpriority="high">' . "\n";
+		}
+		if ( $hero_desktop ) {
+			echo '<link rel="preload" href="' . esc_url( $hero_desktop ) . '" as="image" media="(min-width: 768px)" fetchpriority="high">' . "\n";
+		}
+	}
 }
