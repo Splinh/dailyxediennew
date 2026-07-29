@@ -140,3 +140,30 @@ function spl_register_bottom_nav_acf_fields(): void {
 		],
 	] );
 }
+
+// --------------------------------------------------
+// Clean Unicode dotted uppercase "İ" (U+0130) in Vietnamese titles
+// --------------------------------------------------
+
+add_filter( 'the_title', 'spl_clean_vietnamese_dotted_i', 20 );
+add_filter( 'single_post_title', 'spl_clean_vietnamese_dotted_i', 20 );
+add_filter( 'wp_title', 'spl_clean_vietnamese_dotted_i', 20 );
+add_filter( 'document_title_parts', function( $parts ) {
+	if ( is_array( $parts ) ) {
+		foreach ( $parts as $k => $v ) {
+			if ( is_string( $v ) ) {
+				$parts[ $k ] = spl_clean_vietnamese_dotted_i( $v );
+			}
+		}
+	}
+	return $parts;
+}, 20 );
+
+function spl_clean_vietnamese_dotted_i( $text ) {
+	if ( ! is_string( $text ) || '' === $text ) {
+		return $text;
+	}
+	// Replace U+0130 (İ -> I) and remove U+0307 combining dot accent.
+	return str_replace( [ "\u{0130}", "\u{0307}" ], [ 'I', '' ], $text );
+}
+
