@@ -8,9 +8,9 @@
 	--breakpoint-xl: 1280px;
 	--breakpoint-2xl: 1536px;
 
-	/* Fonts — dailyxedien.vn dùng Be Vietnam Pro (xem docs/brand-guide.md) */
-	--font-header: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-	--font-body: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+	/* Fonts — Inter + Be Vietnam Pro (tối ưu nét chữ tiếng Việt, không bị dính dấu iệ/iế) */
+	--font-header: 'Inter', 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	--font-body: 'Inter', 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 	--font-mono: Consolas, 'Liberation Mono', Courier, monospace;
 
 	/* Override Tailwind defaults */

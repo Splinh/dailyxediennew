@@ -13,15 +13,15 @@ defined( 'ABSPATH' ) || exit;
 add_action( 'wp_enqueue_scripts', 'spl_enqueue_fonts', 5 );
 
 /**
- * Enqueue Google Fonts Be Vietnam Pro for unified Vietnamese typography.
+ * Enqueue Google Fonts Inter & Be Vietnam Pro for flawless Vietnamese typography.
  *
- * Loading from Google Fonts CDN provides full OpenType kerning and unified
- * font files for Vietnamese, avoiding character dot elevation from split subsets.
+ * Inter font provides superior kerning and precise diacritic mark positioning for
+ * Vietnamese character combinations like iệ, iế, iện without mark collision.
  */
 function spl_enqueue_fonts(): void {
 	wp_enqueue_style(
-		'google-font-be-vietnam-pro',
-		'https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap',
+		'google-font-inter-vietnam',
+		'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap',
 		[],
 		null
 	);
