@@ -292,19 +292,31 @@ if ( $all_cats && ! is_wp_error( $all_cats ) ) :
 				</h3>
 				<ul class="space-y-1">
 					<?php
-					$sidebar_cats = get_categories( [ 'hide_empty' => false, 'number' => 8 ] );
-					foreach ( $sidebar_cats as $sc ) :
-						?>
-						<li>
-							<a href="<?php echo esc_url( get_category_link( $sc ) ); ?>" class="flex items-center justify-between p-2.5 rounded-lg hover:bg-slate-50 transition-colors text-sm text-slate-600 hover:text-[#1e73be]">
-								<span class="flex items-center gap-2">
-									<svg class="w-2 h-2 text-slate-300" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-									<?php echo esc_html( $sc->name ); ?>
-								</span>
-								<span class="text-[10px] font-bold text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full"><?php echo (int) $sc->count; ?></span>
-							</a>
-						</li>
-					<?php endforeach; ?>
+					$excluded_slugs = [ 'anh-dep', 'bao-duong', 'cuu-ho', 'dich-vu', 'du-lich', 'uncategorized', 'chua-phan-loai' ];
+					$sidebar_cats   = get_categories( [
+						'hide_empty' => true,
+						'orderby'    => 'count',
+						'order'      => 'DESC',
+						'number'     => 15,
+					] );
+					if ( ! empty( $sidebar_cats ) && ! is_wp_error( $sidebar_cats ) ) :
+						$sidebar_cats = array_filter( $sidebar_cats, function( $sc ) use ( $excluded_slugs ) {
+							return ! in_array( $sc->slug, $excluded_slugs, true ) && (int) $sc->count > 2;
+						} );
+						foreach ( $sidebar_cats as $sc ) :
+							?>
+							<li>
+								<a href="<?php echo esc_url( get_category_link( $sc ) ); ?>" class="flex items-center justify-between p-2.5 rounded-lg hover:bg-slate-50 transition-colors text-sm text-slate-600 hover:text-[#1e73be]">
+									<span class="flex items-center gap-2">
+										<svg class="w-2 h-2 text-slate-300" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+										<?php echo esc_html( $sc->name ); ?>
+									</span>
+									<span class="text-[10px] font-bold text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full"><?php echo (int) $sc->count; ?></span>
+								</a>
+							</li>
+						<?php endforeach;
+					endif;
+					?>
 				</ul>
 			</div>
 

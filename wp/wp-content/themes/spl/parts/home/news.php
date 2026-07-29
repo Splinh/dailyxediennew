@@ -23,12 +23,16 @@ $ratio_css  = \SPL\Core\Helper::aspectRatioClass( 'post' );
 if ( empty( $tabs ) ) {
 	$all_cats = get_categories( [
 		'hide_empty' => true,
-		'orderby'    => 'name',
-		'order'      => 'ASC',
-		'number'     => 6,
+		'orderby'    => 'count',
+		'order'      => 'DESC',
+		'number'     => 10,
 	] );
 	if ( $all_cats && ! is_wp_error( $all_cats ) ) {
+		$excluded_slugs = [ 'anh-dep', 'bao-duong', 'cuu-ho', 'dich-vu', 'du-lich', 'uncategorized', 'chua-phan-loai' ];
 		foreach ( $all_cats as $cat ) {
+			if ( in_array( $cat->slug, $excluded_slugs, true ) || (int) $cat->count <= 2 ) {
+				continue;
+			}
 			$tabs[] = [
 				'tab_label'    => $cat->name,
 				'tab_category' => $cat->term_id,
