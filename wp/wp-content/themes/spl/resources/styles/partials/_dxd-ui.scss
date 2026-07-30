@@ -432,10 +432,10 @@
 		right: 0;
 		z-index: 90;
 		background: #fff;
-		border-top: 1px solid #e3e8ef;
-		box-shadow: 0 -2px 12px rgba(15, 23, 42, 0.06);
-		padding: 0.25rem 0;
-		padding-bottom: calc(0.25rem + env(safe-area-inset-bottom, 0px));
+		border-top: 1px solid #e8ecf1;
+		box-shadow: 0 -1px 8px rgba(15, 23, 42, 0.05);
+		padding: 0.375rem 0.125rem;
+		padding-bottom: calc(0.375rem + env(safe-area-inset-bottom, 0px));
 	}
 
 	#mobile-bottom-nav a,
@@ -445,13 +445,14 @@
 		align-items: center;
 		justify-content: center;
 		flex: 1;
-		gap: 0.15rem;
-		padding: 0.35rem 0;
-		color: #637083;
+		gap: 0.2rem;
+		padding: 0.3rem 0;
+		color: #94a3b8;
 		text-decoration: none;
-		font-size: 0.625rem;
-		font-weight: 600;
-		transition: color 0.2s;
+		font-size: 0.6rem;
+		font-weight: 500;
+		letter-spacing: 0.01em;
+		transition: color 0.2s ease, transform 0.15s ease;
 		-webkit-tap-highlight-color: transparent;
 		position: relative;
 		background: none;
@@ -460,27 +461,49 @@
 		font-family: inherit;
 	}
 
+	/* Icon wrapper — pill background for active */
 	#mobile-bottom-nav a svg,
 	#mobile-bottom-nav button svg {
-		width: 1.15rem;
-		height: 1.15rem;
+		width: 1.25rem;
+		height: 1.25rem;
+		padding: 0.2rem;
+		border-radius: 0.5rem;
+		transition: background 0.2s ease, color 0.2s ease;
 	}
 
+	/* Active state — blue text + pill bg on icon */
 	#mobile-bottom-nav a.active,
 	#mobile-bottom-nav button.active {
 		color: #0758b7;
+		font-weight: 700;
 	}
 
+	#mobile-bottom-nav a.active svg,
+	#mobile-bottom-nav button.active svg {
+		background: #e8f0fe;
+		color: #0758b7;
+		width: 1.75rem;
+		height: 1.75rem;
+		padding: 0.3rem;
+	}
+
+	/* Active indicator line on top */
 	#mobile-bottom-nav a.active::before,
 	#mobile-bottom-nav button.active::before {
 		content: '';
 		position: absolute;
-		top: 0;
-		left: 25%;
-		right: 25%;
-		height: 2px;
+		top: -0.375rem;
+		left: 20%;
+		right: 20%;
+		height: 2.5px;
 		background: #0758b7;
-		border-radius: 0 0 2px 2px;
+		border-radius: 0 0 3px 3px;
+	}
+
+	/* Tap feedback */
+	#mobile-bottom-nav a:active,
+	#mobile-bottom-nav button:active {
+		transform: scale(0.92);
 	}
 
 	/* Hotline special color */
@@ -503,19 +526,20 @@
 		position: absolute;
 		top: 0;
 		right: 50%;
-		transform: translateX(70%);
+		transform: translateX(85%);
 		background: #ef4444;
 		color: #fff;
-		font-size: 0.5625rem;
+		font-size: 0.5rem;
 		font-weight: 700;
-		min-width: 1rem;
-		height: 1rem;
-		padding: 0 0.25rem;
+		min-width: 0.9375rem;
+		height: 0.9375rem;
+		padding: 0 0.2rem;
 		border-radius: 9999px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		line-height: 1;
+		box-shadow: 0 1px 3px rgba(239, 68, 68, 0.3);
 	}
 
 	/* Hide floating buttons on mobile — bottom nav replaces them */
