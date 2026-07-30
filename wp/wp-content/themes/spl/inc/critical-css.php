@@ -59,8 +59,8 @@ function spl_preload_assets(): void {
 
 	// 2. Preload first hero slide LCP image for Mobile & Desktop on homepage.
 	if ( is_front_page() || is_home() ) {
-		$hero_desktop = content_url( '/uploads/2026/06/banner-he-sang-chanh.jpg' );
-		$hero_mobile  = content_url( '/uploads/2026/06/banner-he-sang-chanh-mobile.jpg' );
+		$hero_desktop = '';
+		$hero_mobile  = '';
 
 		$page_id = (int) get_option( 'page_on_front' );
 		if ( $page_id && function_exists( 'get_field' ) ) {
@@ -68,7 +68,7 @@ function spl_preload_assets(): void {
 			if ( ! empty( $slides[0]['bg_image'] ) ) {
 				$raw = $slides[0]['bg_image'];
 				if ( is_numeric( $raw ) ) {
-					$hero_desktop = wp_get_attachment_image_url( (int) $raw, 'full' ) ?: $hero_desktop;
+					$hero_desktop = wp_get_attachment_image_url( (int) $raw, 'full' ) ?: '';
 				} elseif ( is_array( $raw ) && ! empty( $raw['url'] ) ) {
 					$hero_desktop = $raw['url'];
 				} elseif ( is_string( $raw ) ) {
@@ -78,18 +78,35 @@ function spl_preload_assets(): void {
 			if ( ! empty( $slides[0]['bg_image_mobile'] ) ) {
 				$m_raw = $slides[0]['bg_image_mobile'];
 				if ( is_numeric( $m_raw ) ) {
-					$hero_mobile = wp_get_attachment_image_url( (int) $m_raw, 'large' ) ?: $hero_mobile;
+					$hero_mobile = wp_get_attachment_image_url( (int) $m_raw, 'large' ) ?: '';
+				} elseif ( is_array( $m_raw ) && ! empty( $m_raw['url'] ) ) {
+					$hero_mobile = $m_raw['url'];
 				} elseif ( is_string( $m_raw ) ) {
 					$hero_mobile = $m_raw;
 				}
 			}
 		}
 
-		if ( $hero_mobile ) {
-			echo '<link rel="preload" href="' . esc_url( $hero_mobile ) . '" as="image" media="(max-width: 767px)" fetchpriority="high">' . "\n";
+		if ( empty( $hero_desktop ) ) {
+			$hero_desktop = content_url( '/uploads/2026/06/banner-he-sang-chanh.jpg' );
 		}
-		if ( $hero_desktop ) {
-			echo '<link rel="preload" href="' . esc_url( $hero_desktop ) . '" as="image" media="(min-width: 768px)" fetchpriority="high">' . "\n";
+
+		// Fall back mobile image to desktop image if mobile image is not configured.
+		if ( empty( $hero_mobile ) ) {
+			$hero_mobile = $hero_desktop;
+		}
+
+		if ( $hero_mobile === $hero_desktop ) {
+			if ( $hero_desktop ) {
+				echo '<link rel="preload" href="' . esc_url( $hero_desktop ) . '" as="image" fetchpriority="high">' . "\n";
+			}
+		} else {
+			if ( $hero_mobile ) {
+				echo '<link rel="preload" href="' . esc_url( $hero_mobile ) . '" as="image" media="(max-width: 767px)" fetchpriority="high">' . "\n";
+			}
+			if ( $hero_desktop ) {
+				echo '<link rel="preload" href="' . esc_url( $hero_desktop ) . '" as="image" media="(min-width: 768px)" fetchpriority="high">' . "\n";
+			}
 		}
 	}
 }

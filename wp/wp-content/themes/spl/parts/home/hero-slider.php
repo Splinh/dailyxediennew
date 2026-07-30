@@ -57,6 +57,8 @@ if ( empty( $slides ) ) {
 			$mobile_url = '';
 			if ( is_numeric( $mobile_raw ) && (int) $mobile_raw > 0 ) {
 				$mobile_url = wp_get_attachment_image_url( (int) $mobile_raw, 'large' );
+			} elseif ( is_array( $mobile_raw ) && ! empty( $mobile_raw['url'] ) ) {
+				$mobile_url = $mobile_raw['url'];
 			} elseif ( ! empty( $mobile_raw ) && is_string( $mobile_raw ) ) {
 				$mobile_url = $mobile_raw;
 			}
