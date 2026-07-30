@@ -108,10 +108,7 @@ final class ScriptLoader {
 			}
 		}
 
-		// Force defer on jQuery core — last render-blocking script on frontend.
-		if ( $handle === 'jquery-core' ) {
-			$tag = self::addScriptAttribute( $tag, 'defer' );
-		}
+
 
 		// Add script handles to the array
 		static $strParsed = null;
