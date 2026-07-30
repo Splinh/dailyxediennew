@@ -16,7 +16,7 @@ use SPL\Features\Optimizer\PortfolioGallery;
 $data     = $args ?? [];
 $title    = $data['title'] ?? __( 'Hình ảnh sự kiện', 'spl' );
 $subtitle = $data['subtitle'] ?? __( 'Hoạt động tại cửa hàng', 'spl' );
-$tabs     = $data['tabs'] ?? [];
+$tabs     = (array) ( $data['tabs'] ?? [] );
 $per_tab  = (int) ( $data['per_tab'] ?? 12 );
 
 if ( empty( $tabs ) ) {
