@@ -335,7 +335,7 @@ function spl_open_cart_grid(): void {
 }
 
 function spl_switch_cart_grid_column(): void {
-	echo '</section><aside class="lg:col-span-1 space-y-5">';
+	echo '</section><aside class="lg:col-span-1 space-y-5 min-w-0 overflow-hidden">';
 }
 
 function spl_close_cart_grid(): void {
@@ -352,7 +352,7 @@ function spl_render_cart_coupon_card(): void {
 		return;
 	}
 	?>
-	<div class="bg-white border border-slate-100 rounded-xl shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] p-5 mb-5">
+	<div class="bg-white border border-slate-100 rounded-xl shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)] p-4 sm:p-5 mb-5">
 		<h3 class="font-bold text-slate-800 text-sm flex items-center gap-2 mb-3">
 			<?php echo spl_icon( 'tag', 'w-4 h-4 text-primary' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			<?php esc_html_e( 'Mã giảm giá', 'spl' ); ?>
@@ -365,7 +365,7 @@ function spl_render_cart_coupon_card(): void {
 					id="sidebar_coupon_code"
 					value=""
 					placeholder="<?php esc_attr_e( 'Nhập mã coupon', 'spl' ); ?>"
-					class="flex-1 px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm outline-none focus:border-primary focus:bg-white transition-all"
+					class="flex-1 min-w-0 px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm outline-none focus:border-primary focus:bg-white transition-all"
 				/>
 				<button
 					type="submit"
