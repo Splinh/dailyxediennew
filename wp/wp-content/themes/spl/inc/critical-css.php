@@ -64,7 +64,18 @@ function spl_preload_assets(): void {
 
 		$page_id = (int) get_option( 'page_on_front' );
 		if ( $page_id && function_exists( 'get_field' ) ) {
-			$slides = get_field( 'hero_slides', $page_id );
+			// Slides live inside ACF flexible content: home_sections → hero_slider → slides.
+			$slides    = null;
+			$sections  = get_field( 'home_sections', $page_id );
+			if ( is_array( $sections ) ) {
+				foreach ( $sections as $section ) {
+					if ( ( $section['acf_fc_layout'] ?? '' ) === 'hero_slider' ) {
+						$slides = $section['slides'] ?? [];
+						break;
+					}
+				}
+			}
+
 			if ( ! empty( $slides[0]['bg_image'] ) ) {
 				$raw = $slides[0]['bg_image'];
 				if ( is_numeric( $raw ) ) {
