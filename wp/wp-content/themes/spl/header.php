@@ -234,7 +234,7 @@ do_action( 'spl_header_before_action' );
 							   class="mega-cat-item flex items-center justify-between p-2.5 rounded-xl border border-transparent text-xs transition-all <?php echo esc_attr( $active_cls ); ?>">
 								<span class="flex items-center gap-2.5">
 									<?php if ( $thumb_url ) : ?>
-										<img src="<?php echo esc_url( $thumb_url ); ?>" alt="<?php echo esc_attr( $cat->name ); ?>" class="w-6 h-6 object-contain shrink-0" />
+										<img loading="lazy" src="<?php echo esc_url( $thumb_url ); ?>" alt="<?php echo esc_attr( $cat->name ); ?>" class="w-6 h-6 object-contain shrink-0" />
 									<?php else : ?>
 										<span class="w-6 h-6 rounded-md bg-primary-50 text-primary flex items-center justify-center shrink-0"><?php echo spl_icon( 'bolt', 'w-3.5 h-3.5' ); ?></span>
 									<?php endif; ?>
@@ -303,7 +303,7 @@ do_action( 'spl_header_before_action' );
 														<span class="absolute top-2 left-2 bg-red-500 text-white font-extrabold text-[9px] px-1.5 py-0.5 rounded shadow-sm z-10"><?php echo esc_html( $p['discount'] ); ?></span>
 													<?php endif; ?>
 													<a href="<?php echo esc_url( $p['url'] ); ?>" class="block aspect-square overflow-hidden rounded-lg mb-2 bg-white flex items-center justify-center">
-														<img src="<?php echo esc_url( $p['image'] ); ?>" alt="<?php echo esc_attr( $p['name'] ); ?>" class="max-h-full max-w-full object-contain group-hover/p:scale-105 transition-transform duration-300" />
+														<img loading="lazy" src="<?php echo esc_url( $p['image'] ); ?>" alt="<?php echo esc_attr( $p['name'] ); ?>" class="max-h-full max-w-full object-contain group-hover/p:scale-105 transition-transform duration-300" />
 													</a>
 													<div>
 														<h5 class="font-bold text-slate-800 text-xs line-clamp-2 leading-snug group-hover/p:text-primary transition-colors">
@@ -397,7 +397,7 @@ do_action( 'spl_header_before_action' );
 									<article class="bg-slate-50/70 border border-slate-100 rounded-xl overflow-hidden hover:border-primary/30 hover:bg-white hover:shadow-md transition-all duration-300 flex flex-col justify-between group/post">
 										<a href="<?php echo esc_url( $post_item['url'] ); ?>" class="block aspect-[4/3] overflow-hidden bg-slate-100 relative">
 											<?php if ( $post_item['image'] ) : ?>
-												<img src="<?php echo esc_url( $post_item['image'] ); ?>" alt="<?php echo esc_attr( $post_item['title'] ); ?>" class="w-full h-full object-cover group-hover/post:scale-105 transition-transform duration-300" />
+												<img loading="lazy" src="<?php echo esc_url( $post_item['image'] ); ?>" alt="<?php echo esc_attr( $post_item['title'] ); ?>" class="w-full h-full object-cover group-hover/post:scale-105 transition-transform duration-300" />
 											<?php else : ?>
 												<div class="w-full h-full flex items-center justify-center text-slate-300">
 													<?php echo spl_icon( 'file-text', 'w-6 h-6' ); ?>

@@ -255,9 +255,8 @@ trait WpMedia {
 
 		if ( $customLogoId ) {
 			$customLogoAttr = [
-				'class'         => 'custom-logo',
-				'loading'       => 'eager',
-				'fetchpriority' => 'high',
+				'class'   => 'custom-logo',
+				'loading' => 'eager',
 			];
 
 			$unlinkLogo = (bool) get_theme_support( 'custom-logo', 'unlink-homepage-logo' );
