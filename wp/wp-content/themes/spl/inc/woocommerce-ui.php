@@ -320,18 +320,18 @@ function spl_prepend_checkout_steps_to_content( string $content ): string {
 function spl_render_cart_intro(): void {
 	$count = WC()->cart ? WC()->cart->get_cart_contents_count() : 0;
 	?>
-	<div class="flex items-center gap-3 mb-6 md:mb-8">
-		<span class="w-1.5 h-7 bg-primary rounded-full"></span>
-		<h1 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight"><?php esc_html_e( 'GIỎ HÀNG CỦA BẠN', 'spl' ); ?></h1>
+	<div class="flex items-center gap-2.5 mb-5 md:mb-8">
+		<span class="w-1 h-6 bg-primary rounded-full"></span>
+		<h1 class="text-lg md:text-xl font-bold text-slate-900 tracking-tight"><?php esc_html_e( 'Giỏ hàng của bạn', 'spl' ); ?></h1>
 		<?php if ( $count ) : ?>
-			<span class="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full"><?php echo esc_html( $count . ' sản phẩm' ); ?></span>
+			<span class="bg-primary/10 text-primary text-[11px] font-semibold px-2.5 py-0.5 rounded-full"><?php echo esc_html( $count . ' sản phẩm' ); ?></span>
 		<?php endif; ?>
 	</div>
 	<?php
 }
 
 function spl_open_cart_grid(): void {
-	echo '<div class="max-w-6xl mx-auto px-4 py-8 md:py-10"><div class="grid grid-cols-1 lg:grid-cols-3 gap-8"><section class="lg:col-span-2">';
+	echo '<div class="max-w-6xl mx-auto px-3 sm:px-4 py-6 md:py-10"><div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8"><section class="lg:col-span-2">';
 }
 
 function spl_switch_cart_grid_column(): void {
