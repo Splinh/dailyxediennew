@@ -108,6 +108,35 @@
 		updateHeroSlider();
 		startHeroAutoplay();
 
+		// Touch swipe support for mobile
+		const heroEl = $( '#hero-slider' );
+		if ( heroEl ) {
+			let touchStartX = 0;
+			let touchStartY = 0;
+			let isSwiping = false;
+
+			heroEl.addEventListener( 'touchstart', ( e ) => {
+				touchStartX = e.changedTouches[0].screenX;
+				touchStartY = e.changedTouches[0].screenY;
+				isSwiping = false;
+			}, { passive: true } );
+
+			heroEl.addEventListener( 'touchmove', ( e ) => {
+				const dx = Math.abs( e.changedTouches[0].screenX - touchStartX );
+				const dy = Math.abs( e.changedTouches[0].screenY - touchStartY );
+				// Only swipe horizontally if dx > dy (prevent blocking vertical scroll)
+				if ( dx > dy && dx > 30 ) isSwiping = true;
+			}, { passive: true } );
+
+			heroEl.addEventListener( 'touchend', ( e ) => {
+				if ( ! isSwiping ) return;
+				const diff = e.changedTouches[0].screenX - touchStartX;
+				if ( Math.abs( diff ) > 50 ) {
+					moveHeroSlide( diff < 0 ? 1 : -1 );
+				}
+			}, { passive: true } );
+		}
+
 		// ----------------------------------------------------
 		// C. TECHNOLOGY SPOTLIGHT TABS
 		// ----------------------------------------------------
