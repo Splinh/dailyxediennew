@@ -37,7 +37,7 @@ use SPL\Features\Optimizer\ContentCleanup;
 use SPL\Features\Optimizer\TOC;
 use SPL\Features\Optimizer\FlatsomeShortcodeCleaner;
 use SPL\Features\Optimizer\SEO;
-use SPL\Features\Optimizer\SpeculationRules;
+// use SPL\Features\Optimizer\SpeculationRules; // Disabled — WP 6.8+ has built-in speculation rules.
 use SPL\Core\DB;
 use SPL\Core\Helper;
 
@@ -71,7 +71,7 @@ final class Optimizer extends Feature {
 		TOC::register();
 		FlatsomeShortcodeCleaner::register();
 		SEO::register();
-		SpeculationRules::register();
+		// SpeculationRules::register(); // Disabled — WP 6.8+ built-in is lighter (prefetch/conservative).
 
 		// Permalink — only on theme activation (flush_rules is expensive).
 		add_action( 'after_switch_theme', self::configurePermalink( ... ) );
