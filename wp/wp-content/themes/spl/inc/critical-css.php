@@ -80,8 +80,8 @@ function spl_preload_assets(): void {
 		$page_id = (int) get_option( 'page_on_front' );
 		if ( $page_id && function_exists( 'get_field' ) ) {
 			// Slides live inside ACF flexible content: home_sections → hero_slider → slides.
-			$slides    = null;
-			$sections  = get_field( 'home_sections', $page_id );
+			$slides   = null;
+			$sections = get_field( 'home_sections', $page_id );
 			if ( is_array( $sections ) ) {
 				foreach ( $sections as $section ) {
 					if ( ( $section['acf_fc_layout'] ?? '' ) === 'hero_slider' ) {
@@ -95,8 +95,10 @@ function spl_preload_assets(): void {
 				$raw = $slides[0]['bg_image'];
 				if ( is_numeric( $raw ) ) {
 					$hero_desktop = wp_get_attachment_image_url( (int) $raw, 'full' ) ?: '';
+					$hero_mobile  = wp_get_attachment_image_url( (int) $raw, 'medium_large' ) ?: $hero_desktop;
 				} elseif ( is_array( $raw ) && ! empty( $raw['url'] ) ) {
 					$hero_desktop = $raw['url'];
+					$hero_mobile  = $raw['sizes']['medium_large'] ?? ( $raw['sizes']['large'] ?? $raw['url'] );
 				} elseif ( is_string( $raw ) ) {
 					$hero_desktop = $raw;
 				}

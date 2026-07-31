@@ -53,7 +53,7 @@ if ( empty( $slides ) ) {
 				$img_url = content_url( '/uploads/2026/06/banner-he-sang-chanh.jpg' );
 			}
 
-			// Mobile image: optional, falls back to desktop.
+			// Mobile image: optional, falls back to medium_large scaled size of desktop image for fast LCP.
 			$mobile_url = '';
 			if ( is_numeric( $mobile_raw ) && (int) $mobile_raw > 0 ) {
 				$mobile_url = wp_get_attachment_image_url( (int) $mobile_raw, 'large' );
@@ -63,20 +63,28 @@ if ( empty( $slides ) ) {
 				$mobile_url = $mobile_raw;
 			}
 
-			$link       = $slide['link'] ?? null;
-			$title      = $slide['title'] ?? '';
-			$is_active  = $index === 0;
+			if ( empty( $mobile_url ) ) {
+				if ( is_numeric( $img_raw ) && (int) $img_raw > 0 ) {
+					$mobile_url = wp_get_attachment_image_url( (int) $img_raw, 'medium_large' );
+				} elseif ( is_array( $img_raw ) && ! empty( $img_raw['sizes']['medium_large'] ) ) {
+					$mobile_url = $img_raw['sizes']['medium_large'];
+				}
+			}
+
+			$link      = $slide['link'] ?? null;
+			$title     = $slide['title'] ?? '';
+			$is_active = $index === 0;
 
 			// First slide flows in document (sets container height), rest are absolute overlay.
 			if ( $is_active ) :
 			?>
-			<div class="hero-slide relative w-full opacity-100 z-10 leading-none"
+			<div class="hero-slide relative w-full opacity-100 z-10 leading-none min-h-[180px] md:min-h-[300px]"
 				aria-hidden="false">
 				<picture class="block w-full h-auto leading-none">
 					<?php if ( $mobile_url ) : ?>
 						<source media="(max-width: 767px)"
 							srcset="<?php echo esc_url( $mobile_url ); ?>"
-							width="880" height="660">
+							width="768" height="432">
 					<?php endif; ?>
 					<img src="<?php echo esc_url( $img_url ); ?>"
 						alt="<?php echo esc_attr( $title ); ?>"
