@@ -139,10 +139,7 @@ final class AttributeFilter extends AbstractFilterType {
 			return [];
 		}
 
-		$countArgs                   = $baseArgs;
-		$countArgs['posts_per_page'] = -1;
-		$countArgs['fields']         = 'ids';
-		$countArgs['no_found_rows']  = true;
+		$countArgs = $baseArgs;
 
 		// Remove own tax_query
 		if ( ! empty( $countArgs['tax_query'] ) ) {
@@ -152,8 +149,7 @@ final class AttributeFilter extends AbstractFilterType {
 			);
 		}
 
-		$query      = new \WP_Query( $countArgs );
-		$productIds = $query->posts;
+		$productIds = $this->fetchProductIdsForCount( $countArgs );
 
 		if ( empty( $productIds ) ) {
 			return [];

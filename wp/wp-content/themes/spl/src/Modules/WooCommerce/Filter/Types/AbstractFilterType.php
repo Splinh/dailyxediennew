@@ -184,4 +184,24 @@ abstract class AbstractFilterType implements FilterTypeInterface {
 	protected function adoptiveMode(): AdoptiveMode {
 		return AdoptiveMode::fromConfig( $this->config['adoptive'] ?? AdoptiveMode::Show->value );
 	}
+
+	/**
+	 * Fetch bounded product IDs for count queries.
+	 *
+	 * Prevents memory exhaustion and MySQL packet limit crashes when scaling to 100k+ products.
+	 *
+	 * @param array $countArgs WP_Query arguments.
+	 * @param int   $limit     Max products to evaluate (default 2000).
+	 *
+	 * @return array<int> Product IDs.
+	 */
+	protected function fetchProductIdsForCount( array $countArgs, int $limit = 2000 ): array {
+		$countArgs['posts_per_page'] = $limit;
+		$countArgs['fields']         = 'ids';
+		$countArgs['no_found_rows']  = true;
+
+		$query = new \WP_Query( $countArgs );
+
+		return is_array( $query->posts ) ? array_map( 'intval', $query->posts ) : [];
+	}
 }

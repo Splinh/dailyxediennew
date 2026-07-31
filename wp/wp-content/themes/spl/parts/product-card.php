@@ -30,7 +30,18 @@ $pid = $card_product->get_id();
 
 static $spl_product_card_cache = [];
 
+$cached_card_data = null;
 if ( isset( $spl_product_card_cache[ $pid ] ) ) {
+	$cached_card_data = $spl_product_card_cache[ $pid ];
+} else {
+	$transient_key    = 'spl_pcard_' . $pid;
+	$cached_card_data = get_transient( $transient_key );
+	if ( is_array( $cached_card_data ) ) {
+		$spl_product_card_cache[ $pid ] = $cached_card_data;
+	}
+}
+
+if ( is_array( $cached_card_data ) ) {
 	[
 		'permalink'          => $permalink,
 		'name'               => $name,
@@ -42,7 +53,7 @@ if ( isset( $spl_product_card_cache[ $pid ] ) ) {
 		'purchasable'        => $purchasable,
 		'average_rating'     => $average_rating,
 		'total_sales'        => $total_sales,
-	] = $spl_product_card_cache[ $pid ];
+	] = $cached_card_data;
 } else {
 	$permalink = get_permalink( $pid );
 	$name      = $card_product->get_name();
@@ -87,7 +98,7 @@ if ( isset( $spl_product_card_cache[ $pid ] ) ) {
 	}
 
 	// Dynamic badges (Hot, Mới)
-	$is_new = ( time() - get_post_time( 'U', false, $pid ) ) < ( 30 * DAY_IN_SECONDS );
+	$is_new      = ( time() - get_post_time( 'U', false, $pid ) ) < ( 30 * DAY_IN_SECONDS );
 	$is_featured = $card_product->is_featured();
 	if ( ! $badge ) {
 		if ( $is_featured ) {
@@ -97,11 +108,11 @@ if ( isset( $spl_product_card_cache[ $pid ] ) ) {
 		}
 	}
 
-	$purchasable = $card_product->is_purchasable() && $card_product->is_in_stock() && ! $card_product->is_type( 'variable' );
+	$purchasable    = $card_product->is_purchasable() && $card_product->is_in_stock() && ! $card_product->is_type( 'variable' );
 	$average_rating = $card_product->get_average_rating();
-	$total_sales = $card_product->get_total_sales();
+	$total_sales    = $card_product->get_total_sales();
 
-	$spl_product_card_cache[ $pid ] = compact(
+	$cached_card_data = compact(
 		'permalink',
 		'name',
 		'image_url',
@@ -113,6 +124,9 @@ if ( isset( $spl_product_card_cache[ $pid ] ) ) {
 		'average_rating',
 		'total_sales'
 	);
+
+	$spl_product_card_cache[ $pid ] = $cached_card_data;
+	set_transient( 'spl_pcard_' . $pid, $cached_card_data, 12 * HOUR_IN_SECONDS );
 }
 
 $sales_formatted = $total_sales >= 1000 ? round( $total_sales / 1000, 1 ) . 'k' : $total_sales;

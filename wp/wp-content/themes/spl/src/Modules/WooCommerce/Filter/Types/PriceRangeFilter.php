@@ -109,10 +109,7 @@ final class PriceRangeFilter extends AbstractFilterType {
 			return [];
 		}
 
-		$countArgs                   = $baseArgs;
-		$countArgs['posts_per_page'] = -1;
-		$countArgs['fields']         = 'ids';
-		$countArgs['no_found_rows']  = true;
+		$countArgs = $baseArgs;
 
 		// Remove price meta_query from base args
 		if ( ! empty( $countArgs['meta_query'] ) ) {
@@ -122,8 +119,7 @@ final class PriceRangeFilter extends AbstractFilterType {
 			);
 		}
 
-		$query      = new \WP_Query( $countArgs );
-		$productIds = $query->posts;
+		$productIds = $this->fetchProductIdsForCount( $countArgs );
 
 		if ( empty( $productIds ) ) {
 			return array_fill_keys(

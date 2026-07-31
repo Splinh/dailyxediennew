@@ -34,7 +34,7 @@ final class PageCache {
 		// Always register purge hooks so they work in admin/CLI/cron/etc.
 		add_action( 'save_post', [ self::class, 'purgeAll' ] );
 		add_action( 'woocommerce_update_product', [ self::class, 'purgeAll' ] );
-		add_action( 'woocommerce_new_product', [ self::class, 'purgeAll' ] );
+		add_action( 'save_post_product', [ self::class, 'purgeProductCard' ] );
 		add_action( 'switch_theme', [ self::class, 'purgeAll' ] );
 		add_action( 'customize_save_after', [ self::class, 'purgeAll' ] );
 		add_action( 'hd_clear_all_cache', [ self::class, 'purgeAll' ] );
@@ -155,6 +155,13 @@ final class PageCache {
 				@rmdir( $file->getPathname() );
 			}
 		}
+	}
+
+	/**
+	 * Purge single product card transient.
+	 */
+	public static function purgeProductCard( int $post_id ): void {
+		delete_transient( 'spl_pcard_' . $post_id );
 	}
 
 	/**

@@ -68,12 +68,9 @@ final class StockFilter extends AbstractFilterType {
 	 * @inheritDoc
 	 */
 	public function getCounts( array $baseArgs ): array {
-		$countArgs                   = $baseArgs;
-		$countArgs['posts_per_page'] = -1;
-		$countArgs['fields']         = 'ids';
-		$countArgs['no_found_rows']  = true;
+		$countArgs = $baseArgs;
 
-		// Remove stock meta_query
+		// Remove stock_status meta_query from base args
 		if ( ! empty( $countArgs['meta_query'] ) ) {
 			$countArgs['meta_query'] = array_filter(
 				$countArgs['meta_query'],
@@ -81,8 +78,7 @@ final class StockFilter extends AbstractFilterType {
 			);
 		}
 
-		$query      = new \WP_Query( $countArgs );
-		$productIds = $query->posts;
+		$productIds = $this->fetchProductIdsForCount( $countArgs );
 
 		if ( empty( $productIds ) ) {
 			return [];

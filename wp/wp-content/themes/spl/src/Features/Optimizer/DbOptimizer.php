@@ -19,6 +19,7 @@ final class DbOptimizer {
 	 */
 	public static function register(): void {
 		add_action( 'hd_clear_all_cache', [ self::class, 'optimize' ] );
+		add_action( 'after_switch_theme', [ self::class, 'ensureIndexes' ] );
 	}
 
 	/**
@@ -66,6 +67,27 @@ final class DbOptimizer {
 				// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 				$wpdb->query( "OPTIMIZE TABLE {$table}" );
 			}
+		}
+	}
+
+	/**
+	 * Ensure performance indexes exist on postmeta and term_relationships.
+	 */
+	public static function ensureIndexes(): void {
+		global $wpdb;
+
+		// 1. Composite index on postmeta (meta_key(191), meta_value(191))
+		$existing_meta_index = $wpdb->get_results( "SHOW INDEX FROM {$wpdb->postmeta} WHERE Key_name = 'spl_meta_key_value'" );
+		if ( empty( $existing_meta_index ) ) {
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.SchemaChange
+			$wpdb->query( "ALTER TABLE {$wpdb->postmeta} ADD INDEX `spl_meta_key_value` (`meta_key`(191), `meta_value`(191))" );
+		}
+
+		// 2. Composite index on term_relationships (object_id, term_taxonomy_id)
+		$existing_tr_index = $wpdb->get_results( "SHOW INDEX FROM {$wpdb->term_relationships} WHERE Key_name = 'spl_obj_term_id'" );
+		if ( empty( $existing_tr_index ) ) {
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.SchemaChange
+			$wpdb->query( "ALTER TABLE {$wpdb->term_relationships} ADD INDEX `spl_obj_term_id` (`object_id`, `term_taxonomy_id`)" );
 		}
 	}
 }
