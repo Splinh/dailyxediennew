@@ -375,10 +375,10 @@ $is_dealer         = is_page( 'he-thong-cua-hang' ) || is_post_type_archive( 'lo
 									while ( $prod_query->have_posts() ) :
 										$prod_query->the_post();
 										$product = wc_get_product( get_the_ID() );
-										$img_url = get_the_post_thumbnail_url( get_the_ID(), 'thumbnail' ) ?: wc_placeholder_img_src();
+										$img_url = get_the_post_thumbnail_url( get_the_ID(), 'woocommerce_gallery_thumbnail' ) ?: wc_placeholder_img_src( 'woocommerce_gallery_thumbnail' );
 										?>
 										<a href="<?php the_permalink(); ?>" class="cat-product-row flex items-center gap-3 p-2 rounded-lg bg-slate-50 hover:bg-white border border-slate-100 transition-all">
-											<img src="<?php echo esc_url( $img_url ); ?>" alt="<?php the_title_attribute(); ?>" class="w-12 h-12 object-contain rounded bg-white p-1 border border-slate-100 shrink-0">
+											<img loading="lazy" decoding="async" src="<?php echo esc_url( $img_url ); ?>" alt="<?php the_title_attribute(); ?>" width="48" height="48" class="w-12 h-12 object-contain rounded bg-white p-1 border border-slate-100 shrink-0">
 											<div class="cat-product-info flex-1">
 												<h5 class="text-xs font-bold text-slate-800 line-clamp-1"><?php the_title(); ?></h5>
 												<span class="cat-product-price text-xs font-black text-red-600"><?php echo $product ? $product->get_price_html() : ''; ?></span>
