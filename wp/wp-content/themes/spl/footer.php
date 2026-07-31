@@ -445,7 +445,7 @@ $is_dealer         = is_page( 'he-thong-cua-hang' ) || is_post_type_archive( 'lo
 						$img = get_the_post_thumbnail_url( $post->ID, 'thumbnail' ) ?: 'data:image/svg+xml,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 140"><rect fill="#f1f5f9" width="200" height="140"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="#94a3b8" font-size="14">DXD</text></svg>');
 						?>
 						<a href="<?php echo esc_url( get_permalink( $post->ID ) ); ?>" class="news-row-item">
-							<img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( get_the_title( $post->ID ) ); ?>">
+							<img loading="lazy" decoding="async" src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( get_the_title( $post->ID ) ); ?>">
 							<div class="news-row-info">
 								<h5><?php echo esc_html( get_the_title( $post->ID ) ); ?></h5>
 								<span><?php echo get_the_date( '', $post->ID ); ?></span>
@@ -475,7 +475,7 @@ $is_dealer         = is_page( 'he-thong-cua-hang' ) || is_post_type_archive( 'lo
 								$img = get_the_post_thumbnail_url( $post->ID, 'thumbnail' ) ?: 'data:image/svg+xml,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 140"><rect fill="#f1f5f9" width="200" height="140"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="#94a3b8" font-size="14">DXD</text></svg>');
 								?>
 								<a href="<?php echo esc_url( get_permalink( $post->ID ) ); ?>" class="news-row-item">
-									<img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( get_the_title( $post->ID ) ); ?>">
+									<img loading="lazy" decoding="async" src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( get_the_title( $post->ID ) ); ?>">
 									<div class="news-row-info">
 										<h5><?php echo esc_html( get_the_title( $post->ID ) ); ?></h5>
 										<span><?php echo get_the_date( '', $post->ID ); ?></span>
@@ -525,7 +525,7 @@ $is_dealer         = is_page( 'he-thong-cua-hang' ) || is_post_type_archive( 'lo
 								$img = $s['img'] ?: 'data:image/svg+xml,' . rawurlencode('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 140"><rect fill="#f1f5f9" width="200" height="140"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="#94a3b8" font-size="14">DXD</text></svg>');
 								?>
 								<a href="<?php echo esc_url( $s['u'] ); ?>" class="dealer-row-item">
-									<img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( $s['t'] ); ?>">
+									<img loading="lazy" decoding="async" src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( $s['t'] ); ?>">
 									<div class="dealer-row-info">
 										<h5><?php echo esc_html( $s['t'] ); ?></h5>
 										<p class="dealer-address"><svg class="w-3 h-3 text-emerald-600 shrink-0 inline mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><?php echo esc_html( $s['a'] ); ?></p>

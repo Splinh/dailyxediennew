@@ -92,7 +92,7 @@ final class FlatsomeShortcodeCleaner {
 		if ( ! empty( $atts['img'] ) ) {
 			$img_url = wp_get_attachment_image_url( (int) $atts['img'], 'thumbnail' );
 			if ( $img_url ) {
-				$img_html = '<div class="flex justify-center mb-2"><img src="' . esc_url( $img_url ) . '" class="h-10 w-auto object-contain" style="width:' . esc_attr( $atts['img_width'] ) . 'px" /></div>';
+				$img_html = '<div class="flex justify-center mb-2"><img loading="lazy" decoding="async" src="' . esc_url( $img_url ) . '" class="h-10 w-auto object-contain" style="width:' . esc_attr( $atts['img_width'] ) . 'px" /></div>';
 			}
 		}
 
@@ -127,7 +127,7 @@ final class FlatsomeShortcodeCleaner {
 			$style .= 'width:' . esc_attr( $atts['width'] ) . ';';
 		}
 
-		return '<div class="my-4 flex justify-center"><img src="' . esc_url( $img_url ) . '" class="max-w-full h-auto rounded-xl shadow-sm ' . esc_attr( $atts['class'] ) . '" style="' . esc_attr( $style ) . '" /></div>';
+		return '<div class="my-4 flex justify-center"><img loading="lazy" decoding="async" src="' . esc_url( $img_url ) . '" class="max-w-full h-auto rounded-xl shadow-sm ' . esc_attr( $atts['class'] ) . '" style="' . esc_attr( $style ) . '" /></div>';
 	}
 
 	public static function renderUxSlider( array|string|null $atts, string $content = '' ): string {
