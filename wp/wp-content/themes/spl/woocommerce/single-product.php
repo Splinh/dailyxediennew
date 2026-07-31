@@ -133,8 +133,72 @@ while ( have_posts() ) :
 	$review_count = (int) $product->get_review_count();
 	$total_sales  = (int) get_post_meta( get_the_ID(), 'total_sales', true );
 
-	// Retrieve ACF specifications
-	$specs = Helper::getField( 'tskt_specs', get_the_ID() ) ?: Helper::getField( 'tskt_rows', get_the_ID() );
+	// Retrieve ACF specifications & fallbacks from legacy/active fields
+	$pid   = get_the_ID();
+	$specs = Helper::getField( 'tskt_specs', $pid )
+		?: Helper::getField( 'tskt_rows', $pid )
+		?: Helper::getField( 'thong_so_ky_thuat', $pid )
+		?: Helper::getField( 'bang_tskt', $pid )
+		?: Helper::getField( 'tskt_list', $pid );
+
+	$tskt_image = Helper::getField( 'tskt_image', $pid )
+		?: Helper::getField( 'anh_tskt', $pid )
+		?: Helper::getField( 'bang_tskt_image', $pid )
+		?: Helper::getField( 'hda_tskt_image', $pid )
+		?: Helper::getField( 'tskt_img', $pid )
+		?: get_post_meta( $pid, 'tskt_image', true );
+
+	$tskt_image_url = '';
+	if ( is_array( $tskt_image ) ) {
+		$tskt_image_url = $tskt_image['url'] ?? ( $tskt_image['sizes']['large'] ?? '' );
+	} elseif ( is_numeric( $tskt_image ) && (int) $tskt_image > 0 ) {
+		$tskt_image_url = wp_get_attachment_image_url( (int) $tskt_image, 'full' ) ?: '';
+	} elseif ( is_string( $tskt_image ) && '' !== trim( $tskt_image ) ) {
+		$tskt_image_url = trim( $tskt_image );
+	}
+
+	$tskt_content = Helper::getField( 'tskt_content', $pid )
+		?: Helper::getField( 'noi_dung_tskt', $pid )
+		?: Helper::getField( 'tskt_html', $pid );
+
+	// Retrieve Product Video (YouTube / TikTok / Vimeo / MP4)
+	$video_url_raw = Helper::getField( 'product_video', $pid )
+		?: Helper::getField( 'video_youtube', $pid )
+		?: Helper::getField( 'video_tiktok', $pid )
+		?: Helper::getField( 'url_video', $pid )
+		?: Helper::getField( 'video_url', $pid )
+		?: Helper::getField( 'tskt_video', $pid )
+		?: Helper::getField( 'video_tab', $pid )
+		?: Helper::getField( 'video_review', $pid )
+		?: get_post_meta( $pid, '_product_video_url', true )
+		?: get_post_meta( $pid, 'video_url', true );
+
+	$video_type      = '';
+	$video_embed_url = '';
+	$video_id        = '';
+
+	if ( is_string( $video_url_raw ) && '' !== trim( $video_url_raw ) ) {
+		$vurl = trim( $video_url_raw );
+		if ( preg_match( '/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i', $vurl, $v_matches ) ) {
+			$video_type      = 'youtube';
+			$video_id        = $v_matches[1];
+			$video_embed_url = 'https://www.youtube.com/embed/' . $video_id;
+		} elseif ( preg_match( '/tiktok\.com\/(?:@[^\/]+\/video\/|v\/)(\d+)/i', $vurl, $v_matches ) ) {
+			$video_type      = 'tiktok';
+			$video_id        = $v_matches[1];
+			$video_embed_url = 'https://www.tiktok.com/embed/v2/' . $video_id;
+		} elseif ( preg_match( '/vimeo\.com\/(?:video\/)?(\d+)/i', $vurl, $v_matches ) ) {
+			$video_type      = 'vimeo';
+			$video_id        = $v_matches[1];
+			$video_embed_url = 'https://player.vimeo.com/video/' . $video_id;
+		} elseif ( preg_match( '/\.(mp4|webm)($|\?)/i', $vurl ) ) {
+			$video_type      = 'video';
+			$video_embed_url = $vurl;
+		} elseif ( filter_var( $vurl, FILTER_VALIDATE_URL ) ) {
+			$video_type      = 'iframe';
+			$video_embed_url = $vurl;
+		}
+	}
 
 	// Search specs or attributes for strip values
 	$spec_power   = '';
@@ -613,7 +677,8 @@ while ( have_posts() ) :
 
 			<!-- Tabs -->
 			<?php
-			$has_tskt = ! empty( $specs ) && is_array( $specs );
+			$has_tskt  = ( ! empty( $specs ) && is_array( $specs ) ) || ! empty( $tskt_image_url ) || ! empty( trim( (string) $tskt_content ) );
+			$has_video = ! empty( $video_embed_url );
 			?>
 			<div class="sp-tabs reveal">
 				<div class="sp-tabs__nav" role="tablist">
@@ -625,6 +690,12 @@ while ( have_posts() ) :
 						<button class="sp-tabs__tab" role="tab" aria-selected="false" data-tab="tskt">
 							<svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
 							<?php esc_html_e( 'Thông số kỹ thuật', 'spl' ); ?>
+						</button>
+					<?php endif; ?>
+					<?php if ( $has_video ) : ?>
+						<button class="sp-tabs__tab" role="tab" aria-selected="false" data-tab="video">
+							<svg class="icon" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+							<?php esc_html_e( 'Video thực tế', 'spl' ); ?>
 						</button>
 					<?php endif; ?>
 					<button class="sp-tabs__tab" role="tab" aria-selected="false" data-tab="reviews">
@@ -685,23 +756,63 @@ while ( have_posts() ) :
 								);
 								?>
 							</h3>
-							<table class="sp-spec-table">
-								<tbody>
-									<?php foreach ( $specs as $row ) :
-										$label = trim( (string) ( $row['tskt_label'] ?? $row['label'] ?? '' ) );
-										$value = trim( (string) ( $row['tskt_value'] ?? $row['value'] ?? '' ) );
 
-										if ( '' === $label && '' === $value ) {
-											continue;
-										}
-										?>
-										<tr>
-											<td><?php echo esc_html( $label ); ?></td>
-											<td><?php echo esc_html( $value ); ?></td>
-										</tr>
-									<?php endforeach; ?>
-								</tbody>
-							</table>
+							<?php if ( ! empty( $specs ) && is_array( $specs ) ) : ?>
+								<table class="sp-spec-table mb-6">
+									<tbody>
+										<?php foreach ( $specs as $row ) :
+											$label = trim( (string) ( $row['tskt_label'] ?? $row['label'] ?? '' ) );
+											$value = trim( (string) ( $row['tskt_value'] ?? $row['value'] ?? '' ) );
+
+											if ( '' === $label && '' === $value ) {
+												continue;
+											}
+											?>
+											<tr>
+												<td><?php echo esc_html( $label ); ?></td>
+												<td><?php echo esc_html( $value ); ?></td>
+											</tr>
+										<?php endforeach; ?>
+									</tbody>
+								</table>
+							<?php endif; ?>
+
+							<?php if ( ! empty( $tskt_image_url ) ) : ?>
+								<div class="sp-spec-image my-6 text-center">
+									<img loading="lazy" decoding="async" src="<?php echo esc_url( $tskt_image_url ); ?>" alt="<?php echo esc_attr( sprintf( __( 'Bảng thông số kỹ thuật %s', 'spl' ), $product->get_name() ) ); ?>" class="max-w-full h-auto mx-auto rounded-xl shadow-sm border border-slate-100" />
+								</div>
+							<?php endif; ?>
+
+							<?php if ( ! empty( trim( (string) $tskt_content ) ) ) : ?>
+								<div class="sp-spec-custom-content my-6">
+									<?php echo wp_kses_post( apply_filters( 'the_content', $tskt_content ) ); ?>
+								</div>
+							<?php endif; ?>
+						</div>
+					</div>
+				<?php endif; ?>
+
+				<!-- Panel: Video Review / Video sản phẩm -->
+				<?php if ( $has_video ) : ?>
+					<div class="sp-tabs__panel" id="tab-video">
+						<div class="sp-desc">
+							<h3 class="mb-4"><?php esc_html_e( 'Video thực tế sản phẩm', 'spl' ); ?></h3>
+							<div class="sp-video-container max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-slate-100 bg-slate-950 aspect-video flex items-center justify-center relative min-h-[300px] md:min-h-[480px]">
+								<?php if ( 'youtube' === $video_type && ! empty( $video_id ) ) : ?>
+									<div class="w-full h-full relative" data-fx-video data-fx-video-url="<?php echo esc_url( 'https://www.youtube.com/watch?v=' . $video_id ); ?>" data-fx-video-type="youtube">
+										<img src="<?php echo esc_url( 'https://img.youtube.com/vi/' . $video_id . '/hqdefault.jpg' ); ?>" alt="<?php echo esc_attr( $product->get_name() ); ?>" class="w-full h-full object-cover" loading="lazy" />
+										<span class="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/40 transition-colors cursor-pointer">
+											<svg class="w-16 h-16 text-white drop-shadow-md transition-transform hover:scale-110" fill="currentColor" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+										</span>
+									</div>
+								<?php elseif ( 'tiktok' === $video_type && ! empty( $video_id ) ) : ?>
+									<iframe src="<?php echo esc_url( 'https://www.tiktok.com/embed/v2/' . $video_id ); ?>" class="w-full h-full border-0 min-h-[500px]" allowfullscreen allow="encrypted-media"></iframe>
+								<?php elseif ( 'video' === $video_type ) : ?>
+									<video src="<?php echo esc_url( $video_embed_url ); ?>" controls playsinline class="w-full h-full object-contain"></video>
+								<?php else : ?>
+									<iframe src="<?php echo esc_url( $video_embed_url ); ?>" class="w-full h-full border-0 min-h-[350px]" allowfullscreen></iframe>
+								<?php endif; ?>
+							</div>
 						</div>
 					</div>
 				<?php endif; ?>
