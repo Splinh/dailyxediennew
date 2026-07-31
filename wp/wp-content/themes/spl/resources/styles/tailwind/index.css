@@ -34,27 +34,36 @@
 /* ============================================================================
  * Native Cross-Document View Transitions
  *
- * Enables smooth fade transitions between page navigations.
- * Chromium 126+ applies these automatically on same-origin navigations.
- * Browsers without support silently ignore these rules.
+ * `navigation: auto` enables smooth transitions between same-origin pages.
+ * Chromium 126+ only. Unsupported browsers silently ignore these rules.
+ *
+ * Transition uses a very short cross-fade to avoid a white flash
+ * on slow mobile connections where the new page isn't instant.
+ * Disabled entirely when the user prefers reduced motion.
  * ========================================================================= */
 @view-transition {
   navigation: auto;
 }
 
+/* Keep the old page fully visible until the new page is ready,
+   then do a fast cross-fade. This prevents the "white flash" on slow loads. */
 ::view-transition-old(root) {
-  animation: vt-fade-out 120ms ease-out;
+  animation: none;
 }
 ::view-transition-new(root) {
-  animation: vt-fade-in 200ms ease-in;
+  animation: vt-fade-in 150ms ease-in;
 }
 
-@keyframes vt-fade-out {
-  from { opacity: 1; }
-  to   { opacity: 0; }
-}
 @keyframes vt-fade-in {
   from { opacity: 0; }
   to   { opacity: 1; }
+}
+
+/* Respect user preference — disable all view transition animations */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
 }
 
