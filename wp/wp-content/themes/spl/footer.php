@@ -254,6 +254,16 @@ $is_dealer         = is_page( 'he-thong-cua-hang' ) || is_post_type_archive( 'lo
 	</div>
 	
 	<?php
+	// Cache the entire category panel — 10+ WP_Query calls take ~3-5s uncached.
+	$cat_panel_cache_key = 'spl_footer_cat_panel_v1';
+	$cat_panel_html      = get_transient( $cat_panel_cache_key );
+
+	if ( false !== $cat_panel_html ) {
+		echo $cat_panel_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — pre-escaped HTML.
+	} else {
+		ob_start();
+	?>
+	<?php
 	$all_parent_cats = get_terms( [
 		'taxonomy'   => 'product_cat',
 		'hide_empty' => true,
@@ -397,6 +407,13 @@ $is_dealer         = is_page( 'he-thong-cua-hang' ) || is_post_type_archive( 'lo
 		</div>
 	<?php endif; ?>
 </div>
+<?php
+	// End category panel transient cache.
+	$cat_panel_html = ob_get_clean();
+	set_transient( $cat_panel_cache_key, $cat_panel_html, HOUR_IN_SECONDS );
+	echo $cat_panel_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	} // end else (cache miss)
+?>
 
 <!-- ===== NEWS SLIDE-UP PANEL (Mobile) ===== -->
 <div id="news-panel-overlay" data-news-panel-close></div>

@@ -135,6 +135,9 @@ final class PageCache {
 			do_action( 'litespeed_purge_all' );
 		}
 
+		// Purge footer fragment caches.
+		delete_transient( 'spl_footer_cat_panel_v1' );
+
 		$dir = self::DIR;
 		if ( ! is_dir( $dir ) ) {
 			return;
