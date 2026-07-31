@@ -30,3 +30,31 @@
 /* Plugins */
 @plugin "@tailwindcss/forms";
 @plugin "./plugins/index.js";
+
+/* ============================================================================
+ * Native Cross-Document View Transitions
+ *
+ * Enables smooth fade transitions between page navigations.
+ * Chromium 126+ applies these automatically on same-origin navigations.
+ * Browsers without support silently ignore these rules.
+ * ========================================================================= */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: vt-fade-out 120ms ease-out;
+}
+::view-transition-new(root) {
+  animation: vt-fade-in 200ms ease-in;
+}
+
+@keyframes vt-fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+@keyframes vt-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
