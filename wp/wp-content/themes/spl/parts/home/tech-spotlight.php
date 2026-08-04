@@ -88,7 +88,7 @@ $google_play_url      = 'https://play.google.com/store/apps/details?id=com.expom
 $download_landing_url = 'https://download.aiebike.vn/';
 ?>
 <section id="ai-tech-spotlight" class="max-w-7xl mx-auto px-4 mb-8 md:mb-16">
-	<div class="bg-gradient-to-br from-[#0B2545] via-[#0D2E58] to-[#0A192F] rounded-3xl p-6 md:p-12 text-white relative overflow-hidden shadow-2xl border border-slate-800">
+	<div class="bg-[#0B2545] rounded-3xl p-6 md:p-12 text-white relative overflow-hidden shadow-2xl border border-slate-800" style="background: linear-gradient(135deg, #0B2545 0%, #0D2E58 50%, #0A192F 100%);">
 		<div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(245,158,11,0.15),transparent_60%)] pointer-events-none"></div>
 
 		<!-- Section Heading -->
