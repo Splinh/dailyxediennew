@@ -29,15 +29,15 @@ $input_class = 'w-full px-4 py-3 border border-slate-200 focus:border-primary-50
 $label_class = 'text-xs font-bold text-slate-500 uppercase tracking-wider block';
 ?>
 <section class="max-w-7xl mx-auto px-4 mb-8 md:mb-16 scroll-mt-24" id="consult-form">
-	<div class="bg-gradient-to-r from-primary-600 to-indigo-700 rounded-3xl p-6 md:p-12 text-white relative overflow-hidden shadow-premium">
-		<div class="absolute -right-10 -bottom-10 w-80 h-80 bg-white/5 rounded-full blur-2xl"></div>
-		<div class="absolute top-0 left-1/3 w-60 h-60 bg-emerald-500/10 rounded-full blur-3xl"></div>
+	<div class="bg-gradient-to-br from-[#0B2545] via-[#0D2E58] to-[#0A192F] rounded-3xl p-6 md:p-12 text-white relative overflow-hidden shadow-2xl border border-slate-800">
+		<div class="absolute -right-10 -bottom-10 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl"></div>
+		<div class="absolute top-0 left-1/3 w-60 h-60 bg-amber-500/10 rounded-full blur-3xl"></div>
 
 		<div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
 
 			<!-- Content side -->
 			<div class="lg:col-span-5 space-y-4 text-center lg:text-left">
-				<span class="bg-emerald-500/20 text-emerald-300 font-bold text-xs px-3.5 py-1.5 rounded-full uppercase tracking-wider inline-block"><?php esc_html_e( 'Ưu đãi độc quyền hôm nay', 'spl' ); ?></span>
+				<span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 font-black text-xs px-3.5 py-1.5 rounded-full uppercase tracking-wider inline-block shadow-sm"><?php esc_html_e( 'Ưu đãi độc quyền hôm nay', 'spl' ); ?></span>
 				<h2 class="text-2xl md:text-4xl font-black tracking-tight leading-tight"><?php echo esc_html( $title ); ?></h2>
 				<p class="text-xs md:text-sm text-indigo-100 leading-relaxed"><?php echo esc_html( $subtitle ); ?></p>
 				<div class="flex items-center gap-4 justify-center lg:justify-start pt-2 text-xs">

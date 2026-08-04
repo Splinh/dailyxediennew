@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit;
 			<span class="w-1.5 h-6 bg-primary-500 rounded-full"></span>
 			<h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-tight">Hệ thống cơ sở</h2>
 		</div>
-		<p class="text-sm text-slate-500 mb-8 ml-5">Cửa hàng chính và 2 nhà máy sản xuất của Công ty CP Công nghệ Xe điện AI Ebike</p>
+		<p class="text-sm text-slate-500 mb-8 ml-5">Cửa hàng chính và 2 nhà máy sản xuất của Công ty TNHH Xe Điện BLUERA Việt Nhật</p>
 
 		<!-- Location Tabs -->
 		<div class="flex flex-wrap gap-2 mb-6" id="location-tabs" role="tablist">
@@ -46,7 +46,7 @@ defined( 'ABSPATH' ) || exit;
 
 					<!-- Company Name -->
 					<h3 class="text-xl md:text-2xl font-black text-slate-800 tracking-tight leading-tight mb-2" id="location-name">Showroom & Trung tâm bảo hành DailyXeDien</h3>
-					<p class="text-xs font-bold text-slate-400 mb-6" id="location-company">CÔNG TY CỔ PHẦN CÔNG NGHỆ XE ĐIỆN AI EBIKE</p>
+					<p class="text-xs font-bold text-slate-400 mb-6" id="location-company">CÔNG TY TNHH XE ĐIỆN BLUERA VIỆT NHẬT</p>
 
 					<!-- Details -->
 					<div class="space-y-4">
@@ -126,7 +126,7 @@ defined( 'ABSPATH' ) || exit;
 			badgeClass: 'bg-primary-50 text-primary-600 border-primary-100',
 			tabClass: 'active-store',
 			name: 'Showroom & Trung tâm bảo hành DailyXeDien',
-			company: 'CÔNG TY CỔ PHẦN CÔNG NGHỆ XE ĐIỆN AI EBIKE',
+			company: 'CÔNG TY TNHH XE ĐIỆN BLUERA VIỆT NHẬT',
 			address: '466 Nguyễn Duy Trinh, P. Bình Trưng Đông, TP. Thủ Đức, TP.HCM',
 			phone: '0933 505 222',
 			fax: '—',
@@ -135,30 +135,30 @@ defined( 'ABSPATH' ) || exit;
 			directionUrl: 'https://maps.google.com/?q=466+Nguyễn+Duy+Trinh+Thủ+Đức'
 		},
 		{
-			badge: '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 22V4a2 2 0 0 0-2-2H3a2 2 0 0 0-2 2v18h13z"/><path d="M20 22V10a2 2 0 0 0-2-2h-4v14h6z"/><path d="M23 22v-6a2 2 0 0 0-2-2h-1v8h3z"/><path d="M4 6h3"/><path d="M4 10h3"/><path d="M4 14h3"/><path d="M4 18h3"/><path d="M17 12h2"/><path d="M17 16h2"/></svg> Nhà máy 1',
+			badge: '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 22V4a2 2 0 0 0-2-2H3a2 2 0 0 0-2 2v18h13z"/><path d="M20 22V10a2 2 0 0 0-2-2h-4v14h6z"/><path d="M23 22v-6a2 2 0 0 0-2-2h-1v8h3z"/><path d="M4 6h3"/><path d="M4 10h3"/><path d="M4 14h3"/><path d="M4 18h3"/><path d="M17 12h2"/><path d="M17 16h2"/></svg> Nhà máy 1 (CS1)',
 			badgeClass: 'bg-emerald-50 text-emerald-600 border-emerald-100',
 			tabClass: 'active-factory1',
-			name: 'Nhà máy sản xuất 1',
-			company: 'CÔNG TY CỔ PHẦN CÔNG NGHỆ XE ĐIỆN AI EBIKE',
-			address: 'Số 1351, Quốc Lộ 51, ấp Tập Phước, Xã Long Phước, Huyện Long Thành, Tỉnh Đồng Nai',
+			name: 'Nhà máy sản xuất 1 (CS1)',
+			company: 'CÔNG TY TNHH XE ĐIỆN BLUERA VIỆT NHẬT',
+			address: 'Số 1351, Quốc Lộ 51, ấp Tập Phước, X. Long Phước, TP. Đồng Nai',
 			phone: '0933 505 222',
 			fax: '0251 2860 559',
 			hours: '7:00 – 17:00 (T2–T7)',
-			mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15688.083163172088!2d106.9806899554199!3d10.732890000000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31751fa05c5c8ab3%3A0x6b4fb7bc96ef8145!2zMTM1MSBRTDUxLCBMb25nIFBoxrDhu5tjLCBMb25nIFRow6BuaCwgxJDhu5NuZyBOYWksIFZp4buHdCBOYW0!5e0!3m2!1svi!2svn!4v1710000000000!5m2!1svi!2svn',
-			directionUrl: 'https://maps.google.com/?q=1351+Quốc+Lộ+51+Long+Phước+Long+Thành+Đồng+Nai'
+			mapSrc: 'https://maps.google.com/maps?q=1351+Qu%E1%BB%91c+L%E1%BB%99+51+%E1%BA%A5p+T%E1%BA%ADp+Ph%C6%B0%E1%BB%9Bc+X%C3%A3+Long+Ph%C6%B0%E1%BB%9Bc+%C4%90%E1%BB%93ng+Nai&output=embed',
+			directionUrl: 'https://maps.google.com/?q=1351+Qu%E1%BB%91c+L%E1%BB%99+51+%E1%BA%A5p+T%E1%BA%ADp+Ph%C6%B0%E1%BB%9Bc+X%C3%A3+Long+Ph%C6%B0%E1%BB%9Bc+%C4%90%E1%BB%93ng+Nai'
 		},
 		{
-			badge: '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 22V4a2 2 0 0 0-2-2H3a2 2 0 0 0-2 2v18h13z"/><path d="M20 22V10a2 2 0 0 0-2-2h-4v14h6z"/><path d="M23 22v-6a2 2 0 0 0-2-2h-1v8h3z"/><path d="M4 6h3"/><path d="M4 10h3"/><path d="M4 14h3"/><path d="M4 18h3"/><path d="M17 12h2"/><path d="M17 16h2"/></svg> Nhà máy 2',
+			badge: '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 22V4a2 2 0 0 0-2-2H3a2 2 0 0 0-2 2v18h13z"/><path d="M20 22V10a2 2 0 0 0-2-2h-4v14h6z"/><path d="M23 22v-6a2 2 0 0 0-2-2h-1v8h3z"/><path d="M4 6h3"/><path d="M4 10h3"/><path d="M4 14h3"/><path d="M4 18h3"/><path d="M17 12h2"/><path d="M17 16h2"/></svg> Nhà máy 2 (CS2)',
 			badgeClass: 'bg-amber-50 text-amber-600 border-amber-100',
 			tabClass: 'active-factory2',
-			name: 'Nhà máy sản xuất 2',
-			company: 'CÔNG TY CỔ PHẦN CÔNG NGHỆ XE ĐIỆN AI EBIKE',
-			address: 'Số 1351, Quốc Lộ 51, ấp Tập Phước, Xã Long Phước, Huyện Long Thành, Tỉnh Đồng Nai',
+			name: 'Nhà máy sản xuất 2 (CS2)',
+			company: 'CÔNG TY TNHH XE ĐIỆN BLUERA VIỆT NHẬT',
+			address: 'Tổ 25, Ấp Cầu Xéo, X. Long Thành, TP. Đồng Nai ( 36 đường Trần Quang Diệu )',
 			phone: '0933 505 222',
 			fax: '0251 2860 559',
 			hours: '7:00 – 17:00 (T2–T7)',
-			mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15688.083163172088!2d106.9806899554199!3d10.732890000000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31751fa05c5c8ab3%3A0x6b4fb7bc96ef8145!2zMTM1MSBRTDUxLCBMb25nIFBoxrDhu5tjLCBMb25nIFRow6BuaCwgxJDhu5NuZyBOYWksIFZp4buHdCBOYW0!5e0!3m2!1svi!2svn!4v1710000000000!5m2!1svi!2svn',
-			directionUrl: 'https://maps.google.com/?q=1351+Quốc+Lộ+51+Long+Phước+Long+Thành+Đồng+Nai'
+			mapSrc: 'https://maps.google.com/maps?q=T%E1%BB%95+25+%E1%BA%A5p+C%E1%BA%A7u+X%C3%A9o+Long+Th%C3%A0nh+%C4%90%E1%BB%93ng+Nai+36+Tr%E1%BA%A7n+Quang+Di%E1%BB%87u&output=embed',
+			directionUrl: 'https://maps.google.com/?q=T%E1%BB%95+25+%E1%BA%A5p+C%E1%BA%A7u+X%C3%A9o+Long+Th%C3%A0nh+%C4%90%E1%BB%93ng+Nai+36+Tr%E1%BA%A7n+Quang+Di%E1%BB%87u'
 		}
 	];
 

@@ -36,8 +36,8 @@ $zalo_url  = ! empty( $social['zalo']['url'] ) ? $social['zalo']['url'] : 'https
 			<div class="lg:col-span-3">
 				<div class="bg-white border border-slate-100 rounded-2xl shadow-premium p-6 md:p-8">
 					<div class="flex items-center gap-3 mb-6">
-						<span class="w-1.5 h-6 bg-primary-500 rounded-full"></span>
-						<h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-tight"><?php echo esc_html( $form_title ); ?></h2>
+						<span class="w-1.5 h-6 bg-amber-500 rounded-full"></span>
+						<h2 class="text-xl md:text-2xl font-black text-[#0B2545] tracking-tight"><?php echo esc_html( $form_title ); ?></h2>
 					</div>
 					<?php if ( $form_desc ) : ?>
 						<p class="text-sm text-slate-500 mb-8 -mt-2"><?php echo esc_html( $form_desc ); ?></p>
@@ -54,12 +54,12 @@ $zalo_url  = ! empty( $social['zalo']['url'] ) ? $social['zalo']['url'] : 'https
 								<div>
 									<label for="contact-name" class="block text-xs font-bold text-slate-700 mb-2">Họ và tên <span class="text-red-500">*</span></label>
 									<input type="text" id="contact-name" name="name" required placeholder="Nhập họ tên của bạn"
-										class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:bg-white focus:border-primary-500 transition-all">
+										class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:bg-white focus:border-[#0B2545] focus:ring-2 focus:ring-[#0B2545]/10 transition-all">
 								</div>
 								<div>
 									<label for="contact-phone" class="block text-xs font-bold text-slate-700 mb-2">Số điện thoại <span class="text-red-500">*</span></label>
 									<input type="tel" id="contact-phone" name="phone" required placeholder="0912 345 678" pattern="[0-9]{10,11}"
-										class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:bg-white focus:border-primary-500 transition-all">
+										class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:bg-white focus:border-[#0B2545] focus:ring-2 focus:ring-[#0B2545]/10 transition-all">
 								</div>
 							</div>
 
@@ -67,14 +67,14 @@ $zalo_url  = ! empty( $social['zalo']['url'] ) ? $social['zalo']['url'] : 'https
 							<div>
 								<label for="contact-email" class="block text-xs font-bold text-slate-700 mb-2">Email</label>
 								<input type="email" id="contact-email" name="email" placeholder="email@example.com"
-									class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:bg-white focus:border-primary-500 transition-all">
+									class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:bg-white focus:border-[#0B2545] focus:ring-2 focus:ring-[#0B2545]/10 transition-all">
 							</div>
 
 							<!-- Subject -->
 							<div>
 								<label for="contact-subject" class="block text-xs font-bold text-slate-700 mb-2">Chủ đề <span class="text-red-500">*</span></label>
 								<select id="contact-subject" name="subject" required
-									class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:bg-white focus:border-primary-500 transition-all appearance-none cursor-pointer">
+									class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:bg-white focus:border-[#0B2545] focus:ring-2 focus:ring-[#0B2545]/10 transition-all appearance-none cursor-pointer">
 									<option value="">— Chọn chủ đề —</option>
 									<option value="tu-van">Tư vấn mua xe</option>
 									<option value="bao-hanh">Bảo hành & Sửa chữa</option>
@@ -90,14 +90,14 @@ $zalo_url  = ! empty( $social['zalo']['url'] ) ? $social['zalo']['url'] : 'https
 							<div>
 								<label for="contact-message" class="block text-xs font-bold text-slate-700 mb-2">Nội dung <span class="text-red-500">*</span></label>
 								<textarea id="contact-message" name="message" required rows="5" placeholder="Mô tả chi tiết nội dung bạn muốn liên hệ..."
-									class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:bg-white focus:border-primary-500 transition-all resize-y"></textarea>
+									class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:bg-white focus:border-[#0B2545] focus:ring-2 focus:ring-[#0B2545]/10 transition-all resize-y"></textarea>
 							</div>
 
-							<!-- Submit -->
+							<!-- Submit Button: Amber/Orange -->
 							<button type="submit" id="contact-submit-btn"
-								class="w-full sm:w-auto bg-primary-500 hover:bg-primary-600 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-primary-500/20 hover:shadow-primary-500/30 transition-all flex items-center justify-center gap-2 text-sm active:scale-[0.98]">
-								<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-								<span>Gửi tin nhắn</span>
+								class="w-full sm:w-auto bg-amber-500 hover:bg-amber-400 text-slate-950 font-black px-8 py-3.5 rounded-xl shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 transition-all flex items-center justify-center gap-2 text-sm active:scale-[0.98]">
+								<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+								<span>Gửi thông tin liên hệ</span>
 							</button>
 						</form>
 					<?php endif; ?>
@@ -110,10 +110,10 @@ $zalo_url  = ! empty( $social['zalo']['url'] ) ? $social['zalo']['url'] : 'https
 				<!-- Business Hours -->
 				<div class="bg-white border border-slate-100 rounded-2xl shadow-premium p-6">
 					<div class="flex items-center gap-3 mb-5">
-						<div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center">
+						<div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
 							<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
 						</div>
-						<h3 class="font-bold text-slate-800 text-sm"><?php echo esc_html( $hotline_title ); ?></h3>
+						<h3 class="font-bold text-[#0B2545] text-sm"><?php echo esc_html( $hotline_title ); ?></h3>
 					</div>
 					<div class="space-y-3 text-sm">
 						<div class="flex justify-between items-center py-2 border-b border-slate-50">
@@ -130,7 +130,7 @@ $zalo_url  = ! empty( $social['zalo']['url'] ) ? $social['zalo']['url'] : 'https
 						</div>
 						<div class="flex justify-between items-center py-2">
 							<span class="text-slate-600">Hotline tư vấn</span>
-							<span class="font-bold text-emerald-600">24/7</span>
+							<span class="font-bold text-amber-600">24/7</span>
 						</div>
 					</div>
 				</div>
@@ -139,10 +139,10 @@ $zalo_url  = ! empty( $social['zalo']['url'] ) ? $social['zalo']['url'] : 'https
 				<?php if ( $fb_url || $yt_url || $zalo_url ) : ?>
 					<div class="bg-white border border-slate-100 rounded-2xl shadow-premium p-6">
 						<div class="flex items-center gap-3 mb-5">
-							<div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-500 flex items-center justify-center">
+							<div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center">
 								<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
 							</div>
-							<h3 class="font-bold text-slate-800 text-sm"><?php echo esc_html( $social_title ); ?></h3>
+							<h3 class="font-bold text-[#0B2545] text-sm"><?php echo esc_html( $social_title ); ?></h3>
 						</div>
 						<?php if ( $social_desc ) : ?>
 							<p class="text-xs text-slate-500 mb-4"><?php echo esc_html( $social_desc ); ?></p>
@@ -170,19 +170,26 @@ $zalo_url  = ! empty( $social['zalo']['url'] ) ? $social['zalo']['url'] : 'https
 					</div>
 				<?php endif; ?>
 
-				<!-- Hotline Box -->
-				<div class="bg-gradient-to-br from-primary-500 to-primary-700 rounded-2xl p-6 text-white relative overflow-hidden">
-					<div class="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+				<!-- Support Box matching reference image style (Deep Navy + Amber Button) -->
+				<div class="bg-[#0B2545] rounded-2xl p-6 text-white relative overflow-hidden border border-slate-800 shadow-xl">
+					<div class="absolute -top-10 -right-10 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl"></div>
 					<div class="relative z-10">
-						<div class="w-12 h-12 rounded-xl bg-white/15 flex items-center justify-center mb-4">
-							<svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+						<div class="inline-block bg-amber-500 text-slate-950 text-[11px] font-black uppercase tracking-wider px-3 py-1 rounded-full mb-3 shadow-sm">
+							HỖ TRỢ 24/7
 						</div>
-						<h3 class="font-bold text-lg mb-2">Hỗ trợ khẩn cấp</h3>
-						<p class="text-sm text-white/75 mb-4 leading-relaxed">Đội ngũ kỹ thuật hỗ trợ cứu hộ xe điện tận nơi 24/7. Gọi ngay khi gặp sự cố.</p>
-						<a href="<?php echo esc_url( $hotline_url ); ?>" class="inline-flex items-center gap-2 bg-white text-primary-600 hover:bg-slate-50 px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-md">
-							<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-							<span><?php echo esc_html( $hotline ); ?></span>
-						</a>
+						<h3 class="font-extrabold text-base md:text-lg mb-2 leading-snug">Hệ Thống Xe Điện Bluera Việt Nhật</h3>
+						<p class="text-xs text-slate-300 mb-5 leading-relaxed">Phân phối chính hãng, bảo hành tận tâm trên toàn quốc. Đội ngũ sẵn sàng giải đáp 24/7.</p>
+
+						<div class="space-y-2.5">
+							<a href="<?php echo esc_url( home_url( '/he-thong-cua-hang/' ) ); ?>" class="w-full inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-[#0B2545] px-4 py-3 rounded-xl text-xs font-black transition-all border border-white/80 shadow-md">
+								<svg class="w-4 h-4 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+								<span>Tìm cửa hàng gần nhất</span>
+							</a>
+							<a href="<?php echo esc_url( $hotline_url ); ?>" class="w-full inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 px-4 py-3 rounded-xl text-xs font-black transition-all shadow-md">
+								<?php echo spl_icon( 'phone', 'w-4 h-4 text-slate-950 shrink-0' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+								<span>Gửi thông tin liên hệ / Hotline: <?php echo esc_html( $hotline ); ?></span>
+							</a>
+						</div>
 					</div>
 				</div>
 

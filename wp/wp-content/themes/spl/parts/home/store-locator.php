@@ -79,33 +79,33 @@ if ( empty( $stores ) ) {
 	<!-- Header -->
 	<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
 		<div class="flex items-center gap-3">
-			<span class="w-1.5 h-6 bg-emerald-500 rounded-full"></span>
-			<h2 class="text-2xl font-black text-slate-900 tracking-tight"><?php echo esc_html( $title ); ?></h2>
+			<span class="w-1.5 h-6 bg-amber-500 rounded-full"></span>
+			<h2 class="text-2xl font-black text-[#0B2545] tracking-tight"><?php echo esc_html( $title ); ?></h2>
 		</div>
-		<a href="<?php echo esc_url( $dealer_url ); ?>" class="text-sm font-bold text-[#1e73be] hover:text-[#165da0] flex items-center gap-1 transition-colors">
+		<a href="<?php echo esc_url( $dealer_url ); ?>" class="text-sm font-black text-[#0B2545] hover:text-amber-600 flex items-center gap-1 transition-colors">
 			<?php esc_html_e( 'Xem tất cả', 'spl' ); ?>
-			<svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+			<svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
 		</a>
 	</div>
 
 	<!-- Province carousel -->
 	<?php if ( $prov_list ) : ?>
 	<div class="relative mb-6">
-		<button onclick="dxdScrollProv('left')" aria-label="<?php esc_attr_e( 'Xem tỉnh trước', 'spl' ); ?>" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-7 h-7 md:w-8 md:h-8 rounded-full bg-[#1e73be] hover:bg-[#165da0] text-white shadow-md flex items-center justify-center transition-all border-none">
+		<button onclick="dxdScrollProv('left')" aria-label="<?php esc_attr_e( 'Xem tỉnh trước', 'spl' ); ?>" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-7 h-7 md:w-8 md:h-8 rounded-full bg-[#0B2545] hover:bg-[#13315C] text-white shadow-md flex items-center justify-center transition-all border-none">
 			<svg class="w-3.5 h-3.5 text-white stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
 		</button>
 		<div id="dxd-prov-scroll" class="flex gap-2 overflow-x-auto px-10 py-1.5 scroll-smooth" style="-ms-overflow-style:none;scrollbar-width:none;">
 			<?php foreach ( $prov_list as $i => $prov ) :
 				$cls = $i === 0
-					? 'bg-emerald-500 text-white shadow-md'
-					: 'bg-slate-100 text-slate-700 hover:bg-slate-200';
+					? 'bg-amber-500 text-slate-950 font-black shadow-md'
+					: 'bg-slate-100 text-slate-700 hover:bg-slate-200 font-bold';
 			?>
-				<button onclick="dxdFilterProv('<?php echo esc_js( $prov ); ?>',this)" class="dxd-prov px-4 py-2 text-xs font-bold rounded-full transition-all whitespace-nowrap <?php echo $cls; ?>">
+				<button onclick="dxdFilterProv('<?php echo esc_js( $prov ); ?>',this)" class="dxd-prov px-4 py-2 text-xs rounded-full transition-all whitespace-nowrap <?php echo $cls; ?>">
 					<?php echo esc_html( mb_strtoupper( $prov ) ); ?>
 				</button>
 			<?php endforeach; ?>
 		</div>
-		<button onclick="dxdScrollProv('right')" aria-label="<?php esc_attr_e( 'Xem tỉnh kế tiếp', 'spl' ); ?>" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-7 h-7 md:w-8 md:h-8 rounded-full bg-[#1e73be] hover:bg-[#165da0] text-white shadow-md flex items-center justify-center transition-all border-none">
+		<button onclick="dxdScrollProv('right')" aria-label="<?php esc_attr_e( 'Xem tỉnh kế tiếp', 'spl' ); ?>" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-7 h-7 md:w-8 md:h-8 rounded-full bg-[#0B2545] hover:bg-[#13315C] text-white shadow-md flex items-center justify-center transition-all border-none">
 			<svg class="w-3.5 h-3.5 text-white stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
 		</button>
 	</div>
@@ -116,10 +116,10 @@ if ( empty( $stores ) ) {
 	<div class="flex items-center gap-6 border-b border-slate-200 pb-3 mb-6">
 		<?php foreach ( $type_terms as $ti => $tt ) :
 			$tab_cls = $ti === 0
-				? 'text-emerald-600 border-b-2 border-emerald-600'
-				: 'text-slate-400 hover:text-slate-600';
+				? 'text-amber-600 border-b-2 border-amber-500 font-black'
+				: 'text-slate-400 hover:text-slate-600 font-bold';
 		?>
-			<button onclick="dxdFilterType('<?php echo esc_js( $tt->slug ); ?>',this)" class="dxd-type-tab flex items-center gap-2 text-sm font-bold pb-2 transition-all <?php echo $tab_cls; ?>">
+			<button onclick="dxdFilterType('<?php echo esc_js( $tt->slug ); ?>',this)" class="dxd-type-tab flex items-center gap-2 text-sm pb-2 transition-all <?php echo $tab_cls; ?>">
 				<?php echo esc_html( mb_strtoupper( $tt->name ) ); ?>
 			</button>
 		<?php endforeach; ?>
@@ -140,15 +140,15 @@ if ( empty( $stores ) ) {
 
 	window.dxdFilterProv=function(n,b){
 		cp=n;
-		document.querySelectorAll('.dxd-prov').forEach(function(x){x.className=x.className.replace(/bg-emerald-500 text-white shadow-md/g,'bg-slate-100 text-slate-700 hover:bg-slate-200')});
-		if(b){b.className=b.className.replace(/bg-slate-100 text-slate-700 hover:bg-slate-200/g,'bg-emerald-500 text-white shadow-md')}
+		document.querySelectorAll('.dxd-prov').forEach(function(x){x.className=x.className.replace(/bg-amber-500 text-slate-950 font-black shadow-md/g,'bg-slate-100 text-slate-700 hover:bg-slate-200 font-bold')});
+		if(b){b.className=b.className.replace(/bg-slate-100 text-slate-700 hover:bg-slate-200/g,'bg-amber-500 text-slate-950 font-black shadow-md')}
 		render();
 	};
 
 	window.dxdFilterType=function(slug,b){
 		ct=ct===slug?'':slug;
-		document.querySelectorAll('.dxd-type-tab').forEach(function(x){x.classList.remove('text-emerald-600','border-b-2','border-emerald-600');x.classList.add('text-slate-400')});
-		if(b&&ct){b.classList.remove('text-slate-400');b.classList.add('text-emerald-600','border-b-2','border-emerald-600')}
+		document.querySelectorAll('.dxd-type-tab').forEach(function(x){x.classList.remove('text-amber-600','border-b-2','border-amber-500','font-black');x.classList.add('text-slate-400','font-bold')});
+		if(b&&ct){b.classList.remove('text-slate-400');b.classList.add('text-amber-600','border-b-2','border-amber-500','font-black')}
 		render();
 	};
 

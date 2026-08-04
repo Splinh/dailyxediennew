@@ -21,7 +21,25 @@ final class PriceDisplay {
 		add_filter( 'woocommerce_empty_price_html', [ self::class, 'contactPrice' ], 10, 2 );
 		add_filter( 'woocommerce_variable_price_html', [ self::class, 'firstVariantPrice' ], 10, 2 );
 		add_filter( 'woocommerce_get_price_html', [ self::class, 'fallbackContactPrice' ], 20, 2 );
+		add_filter( 'woocommerce_format_sale_price', [ self::class, 'formatSalePrice' ], 10, 3 );
 		add_filter( 'woocommerce_currency_symbol', [ self::class, 'currencySymbol' ], 10, 2 );
+	}
+
+	/**
+	 * Format sale price cleanly without screen reader text ("Giá gốc là: ...").
+	 *
+	 * Returns: <del>31.000.000₫</del> <ins>29.000.000₫</ins>
+	 *
+	 * @param string           $price         Original HTML format.
+	 * @param string|int|float $regular_price Regular price.
+	 * @param string|int|float $sale_price    Sale price.
+	 * @return string
+	 */
+	public static function formatSalePrice( string $price, $regular_price, $sale_price ): string {
+		$formatted_regular = is_numeric( $regular_price ) ? wc_price( (float) $regular_price ) : $regular_price;
+		$formatted_sale    = is_numeric( $sale_price ) ? wc_price( (float) $sale_price ) : $sale_price;
+
+		return '<del aria-hidden="true">' . $formatted_regular . '</del> <ins aria-hidden="true">' . $formatted_sale . '</ins>';
 	}
 
 	/**

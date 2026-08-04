@@ -581,7 +581,7 @@ $is_dealer         = is_page( 'he-thong-cua-hang' ) || is_post_type_archive( 'lo
 		</a>
 		<a href="<?php echo esc_url( $zalo_url ); ?>" target="_blank" class="contact-option-row">
 			<div class="contact-option-icon zalo">
-				<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 17 3.5s1 2.5-1 6c-2 3.5-5 5.5-5 5.5"/><path d="M14 21c0-3.5-2-7-2-7"/></svg>
+				<?php echo spl_icon( 'zalo', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</div>
 			<div class="contact-option-info">
 				<h5><?php esc_html_e( 'Trò chuyện qua Zalo', 'spl' ); ?></h5>

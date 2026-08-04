@@ -145,8 +145,8 @@
 			const container = btn.closest( '[role="tablist"]' );
 			if ( ! container ) return;
 
-			const activeClasses   = [ 'bg-gradient-to-r', 'from-primary', 'to-indigo-600', 'border-primary', 'text-white', 'shadow-lg', 'shadow-primary/20' ];
-			const inactiveClasses = [ 'bg-white/5', 'border-white/10', 'text-slate-300', 'hover:bg-white/10', 'hover:text-white' ];
+			const activeClasses   = [ 'bg-gradient-to-r', 'from-amber-500', 'to-amber-600', 'border-amber-400', 'text-slate-950', 'shadow-lg', 'shadow-amber-500/25', 'font-black' ];
+			const inactiveClasses = [ 'bg-white/5', 'border-white/10', 'text-slate-300', 'hover:bg-white/10', 'hover:text-white', 'font-bold' ];
 
 			$$( 'button[role="tab"]', container ).forEach( ( b ) => {
 				b.classList.remove( ...activeClasses );

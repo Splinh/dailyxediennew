@@ -123,7 +123,7 @@ $logo_url      = $logo_id ? wp_get_attachment_image_url( (int) $logo_id, 'medium
 				<span>Hotline: <?php echo esc_html( $hotline ); ?></span>
 			</a>
 			<a href="<?php echo esc_url( $zalo_url ); ?>" target="_blank" class="flex items-center justify-center gap-2.5 py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-sm shadow-md transition-colors w-full">
-				<svg class="w-4.5 h-4.5 fill-current shrink-0" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 17 3.5s1 2.5-1 6c-2 3.5-5 5.5-5 5.5"/><path d="M14 21c0-3.5-2-7-2-7"/></svg>
+				<?= spl_icon( 'zalo', 'w-4.5 h-4.5 shrink-0' ) ?>
 				<span>Chat Zalo Tư Vấn</span>
 			</a>
 		</div>

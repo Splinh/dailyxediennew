@@ -70,7 +70,7 @@ if ( $is_search ) {
 				<?php if ( $is_search ) : ?>
 					<svg class="icon icon-xl" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
 				<?php else : ?>
-					<svg class="icon icon-xl" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 17 3.5s1 2.5-1 6c-2 3.5-5 5.5-5 5.5"/><path d="M11.7 11.2a5.18 5.18 0 0 1 3.3-2.2c2.5-.4 4-1 4-1s-.3 2.3-2 4c-1.7 1.7-3.3 2.5-3.3 2.5"/><path d="M14 21c0-3.5-2-7-2-7"/></svg>
+					<?php echo spl_icon( 'store', 'icon icon-xl' ); ?>
 				<?php endif; ?>
 			</div>
 			<div>
@@ -143,7 +143,7 @@ if ( $is_search ) {
 				<!-- Toolbar -->
 				<div class="archive-toolbar reveal">
 					<div class="archive-toolbar__results woocommerce-result-count">
-						<svg class="icon" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 17 3.5s1 2.5-1 6c-2 3.5-5 5.5-5 5.5"/><path d="M14 21c0-3.5-2-7-2-7"/></svg>
+						<?php echo spl_icon( 'tag', 'icon' ); ?>
 						<?php
 						global $wp_query;
 						$total   = (int) $wp_query->found_posts;

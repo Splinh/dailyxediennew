@@ -154,6 +154,19 @@ $tech_data = [
 				[ 'label' => 'Bảo hành', 'value' => 'Kích hoạt điện tử tự động' ],
 			],
 		],
+		[
+			'feature_id'   => 'download-app',
+			'feature_name' => 'Tải Ứng Dụng AI EBIKE',
+			'icon'         => '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>',
+			'title'        => 'Hệ Sinh Thái & Tải Ứng Dụng Di Động AI EBIKE',
+			'description'  => 'Quét mã QR hoặc truy cập App Store / Google Play để cài đặt ứng dụng AI EBIKE chính thức. Tự động kết nối xe, quản lý pin BMS, định vị GPS chính xác và kích hoạt bảo hành điện tử.',
+			'image'        => $img_app,
+			'details'      => [
+				[ 'label' => 'Nền tảng hỗ trợ', 'value' => 'iOS & Android' ],
+				[ 'label' => 'Dung lượng app', 'value' => '~ 45 MB' ],
+				[ 'label' => 'Cập nhật', 'value' => 'Miễn phí trọn đời' ],
+			],
+		],
 	],
 ];
 
