@@ -186,14 +186,14 @@ final class API implements Bootable {
 				}
 
 				// Not direct browser access, allow this request
-				return $result;
+				return true;
 			}
 		}
 
 		// Layer 2: Allow whitelisted namespaces (contact-form-7, api/v1, etc.)
 		foreach ( $this->allowedNamespaces as $ns ) {
 			if ( $this->routeMatchesNamespace( $restRoute, $ns ) ) {
-				return $result;
+				return true;
 			}
 		}
 
