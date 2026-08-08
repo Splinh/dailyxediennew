@@ -242,8 +242,8 @@ $slider_config = wp_json_encode( [
 						$img_url = $img_val;
 					}
 
-					// If empty or if it's the old generic poster URL, override with custom per-year milestone image
-					if ( empty( $img_url ) || str_contains( (string) $img_url, 'khai-truong-dai-ly-xe-dien-bluera-viet-nhat-ron-bike-pro' ) ) {
+					// If empty or if it's not a custom timeline_20 image, override with custom per-year milestone image
+					if ( empty( $img_url ) || ! str_contains( (string) $img_url, 'timeline_20' ) ) {
 						$default_milestone_images = [
 							get_template_directory_uri() . '/assets/img/timeline/timeline_2013_founding_1786175168990.png',
 							get_template_directory_uri() . '/assets/img/timeline/timeline_2015_factory_1786175183412.png',
