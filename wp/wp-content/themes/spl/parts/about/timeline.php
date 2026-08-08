@@ -233,13 +233,17 @@ $slider_config = wp_json_encode( [
 					<?php
 					$img_val = $item['image'] ?? '';
 					$img_url = '';
-					if ( is_numeric( $img_val ) && (int) $img_val > 0 ) {
+
+					if ( is_array( $img_val ) ) {
+						$img_url = $img_val['url'] ?? ( isset( $img_val['id'] ) ? wp_get_attachment_image_url( $img_val['id'], 'large' ) : '' );
+					} elseif ( is_numeric( $img_val ) && (int) $img_val > 0 ) {
 						$img_url = wp_get_attachment_image_url( (int) $img_val, 'large' );
 					} elseif ( is_string( $img_val ) && ! empty( $img_val ) ) {
 						$img_url = $img_val;
 					}
 
-					if ( empty( $img_url ) ) {
+					// If empty or if it's the old generic poster URL, override with custom per-year milestone image
+					if ( empty( $img_url ) || str_contains( (string) $img_url, 'khai-truong-dai-ly-xe-dien-bluera-viet-nhat-ron-bike-pro' ) ) {
 						$default_milestone_images = [
 							get_template_directory_uri() . '/assets/img/timeline/timeline_2013_founding_1786175168990.png',
 							get_template_directory_uri() . '/assets/img/timeline/timeline_2015_factory_1786175183412.png',
