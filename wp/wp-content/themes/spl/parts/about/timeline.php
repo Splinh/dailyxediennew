@@ -25,37 +25,37 @@ $items = ! empty( $data['items'] ) ? $data['items'] : [
 	[
 		'year'  => '2013',
 		'desc'  => 'Khởi đầu. Thành lập Công ty TNHH Xe Điện Bluera Việt Nhật & khai trương showroom DailyXeDien đầu tiên (23/09/2013).',
-		'image' => 'https://dailyxedien.vn/wp-content/uploads/2026/02/khai-truong-dai-ly-xe-dien-bluera-viet-nhat-ron-bike-pro-tai-can-tho-dlxd.jpg',
+		'image' => get_template_directory_uri() . '/assets/images/timeline/timeline_2013_founding_1786175168990.png',
 	],
 	[
 		'year'  => '2015',
 		'desc'  => 'Nhà máy Bluera. Khai trương nhà máy sản xuất & lắp ráp xe điện công nghệ hiện đại đầu tiên đạt tiêu chuẩn TCVN, ISO.',
-		'image' => 'https://bluerabike.com/wp-content/uploads/2024/09/bluera-bieu-tuong-xe-dien.jpg',
+		'image' => get_template_directory_uri() . '/assets/images/timeline/timeline_2015_factory_1786175183412.png',
 	],
 	[
 		'year'  => '2018',
 		'desc'  => 'Mở rộng quy mô. Nâng cấp dây chuyền công nghệ hiện đại, liên kết linh kiện cao cấp và nhân rộng hệ thống đại lý.',
-		'image' => 'https://dailyxedien.vn/wp-content/uploads/2026/02/khai-truong-dai-ly-xe-dien-bluera-viet-nhat-ron-bike-pro-tai-can-tho-dlxd.jpg',
+		'image' => get_template_directory_uri() . '/assets/images/timeline/timeline_2018_scale_1786175198872.png',
 	],
 	[
 		'year'  => '2021',
 		'desc'  => 'Chuyển đổi số. Triển khai hệ thống bảo hành điện tử 24/7 và nâng cấp trải nghiệm mua sắm số trên DailyXeDien.vn.',
-		'image' => 'https://bluerabike.com/wp-content/uploads/2024/09/bluera-bieu-tuong-xe-dien.jpg',
+		'image' => get_template_directory_uri() . '/assets/images/timeline/timeline_2021_digital_1786175211739.png',
 	],
 	[
 		'year'  => '2023',
 		'desc'  => 'Cột mốc 10 năm. Thành lập dự án AI Ebike (AIE) nghiên cứu và phát triển dòng sản phẩm xe điện thông minh thế hệ mới.',
-		'image' => 'https://dailyxedien.vn/wp-content/uploads/2026/02/khai-truong-dai-ly-xe-dien-bluera-viet-nhat-ron-bike-pro-tai-can-tho-dlxd.jpg',
+		'image' => get_template_directory_uri() . '/assets/images/timeline/timeline_2023_ai_ebike_1786175227144.png',
 	],
 	[
 		'year'  => '2024',
 		'desc'  => 'Mạng lưới toàn quốc. Phát triển mạng lưới phân phối đạt 500+ đại lý ủy quyền và hợp tác đối tác chiến lược.',
-		'image' => 'https://bluerabike.com/wp-content/uploads/2024/09/bluera-bieu-tuong-xe-dien.jpg',
+		'image' => get_template_directory_uri() . '/assets/images/timeline/timeline_2024_network_1786175240864.png',
 	],
 	[
 		'year'  => '2026',
 		'desc'  => 'Kỷ nguyên mới. Chuẩn hóa hệ thống showroom 3S & trung tâm kỹ thuật bảo hành ủy quyền chính hãng trên toàn quốc.',
-		'image' => 'https://dailyxedien.vn/wp-content/uploads/2026/02/khai-truong-dai-ly-xe-dien-bluera-viet-nhat-ron-bike-pro-tai-can-tho-dlxd.jpg',
+		'image' => get_template_directory_uri() . '/assets/images/timeline/timeline_2026_showroom3s_1786175252670.png',
 	],
 ];
 
@@ -231,7 +231,26 @@ $slider_config = wp_json_encode( [
 			<div class="swiper-wrapper" data-swiper-options='<?php echo esc_attr( $slider_config ); ?>'>
 				<?php foreach ( $items as $index => $item ) : ?>
 					<?php
-					$img_url = ! empty( $item['image'] ) ? $item['image'] : $fallback_image;
+					$img_val = $item['image'] ?? '';
+					$img_url = '';
+					if ( is_numeric( $img_val ) && (int) $img_val > 0 ) {
+						$img_url = wp_get_attachment_image_url( (int) $img_val, 'large' );
+					} elseif ( is_string( $img_val ) && ! empty( $img_val ) ) {
+						$img_url = $img_val;
+					}
+
+					if ( empty( $img_url ) ) {
+						$default_milestone_images = [
+							get_template_directory_uri() . '/assets/images/timeline/timeline_2013_founding_1786175168990.png',
+							get_template_directory_uri() . '/assets/images/timeline/timeline_2015_factory_1786175183412.png',
+							get_template_directory_uri() . '/assets/images/timeline/timeline_2018_scale_1786175198872.png',
+							get_template_directory_uri() . '/assets/images/timeline/timeline_2021_digital_1786175211739.png',
+							get_template_directory_uri() . '/assets/images/timeline/timeline_2023_ai_ebike_1786175227144.png',
+							get_template_directory_uri() . '/assets/images/timeline/timeline_2024_network_1786175240864.png',
+							get_template_directory_uri() . '/assets/images/timeline/timeline_2026_showroom3s_1786175252670.png',
+						];
+						$img_url = $default_milestone_images[ $index % count( $default_milestone_images ) ];
+					}
 					?>
 					<div class="swiper-slide !w-[75vw] sm:!w-[52vw] md:!w-[40vw] lg:!w-[34vw] max-w-xl shrink-0 !h-auto">
 						<!-- Photo Container ONLY has 4:3 aspect ratio -->
@@ -239,8 +258,7 @@ $slider_config = wp_json_encode( [
 							<img src="<?php echo esc_url( $img_url ); ?>" 
 								 alt="<?php echo esc_attr( $item['year'] ); ?>" 
 								 class="w-full h-full object-cover object-center" 
-								 loading="lazy"
-								 onerror="this.onerror=null; this.src='<?php echo esc_url( $fallback_image ); ?>';">
+								 loading="lazy">
 						</div>
 
 						<!-- Below Image Caption: sits right below the 4:3 photo box with zero artificial gaps -->
