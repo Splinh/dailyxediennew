@@ -76,8 +76,14 @@ final class TemplateHooks extends Feature {
 	 * @return void
 	 */
 	public function wpHeadMeta(): void {
-		echo '<meta name="viewport" content="width=device-width, initial-scale=1.0" />';
-		echo '<meta name="format-detection" content="telephone=no,email=no,address=no" />';
+		echo '<meta name="viewport" content="width=device-width, initial-scale=1.0" />' . "\n";
+		echo '<meta name="format-detection" content="telephone=no,email=no,address=no" />' . "\n";
+
+		// Output meta description for SEO score
+		if ( is_front_page() || is_home() ) {
+			$desc = get_bloginfo( 'description' ) ?: 'Đại Lý Xe Điện - Hệ thống phân phối xe đạp điện, xe máy điện chính hãng hàng đầu Việt Nam.';
+			printf( '<meta name="description" content="%s" />' . "\n", esc_attr( wp_strip_all_tags( $desc ) ) );
+		}
 	}
 
 	/**
@@ -89,11 +95,84 @@ final class TemplateHooks extends Feature {
 		// Theme Color (from Customizer)
 		$themeColor = Helper::getThemeMod( 'theme_color_setting' );
 		if ( $themeColor ) {
-			printf( '<meta name="theme-color" content="%s" />', Helper::escAttr( $themeColor ) );
+			printf( '<meta name="theme-color" content="%s" />' . "\n", Helper::escAttr( $themeColor ) );
 		}
 
 		// Preload JS imports (modulepreload)
 		Asset::preload( 'index.js' );
+
+		// Preload LCP hero banner image on homepage for 90+ Mobile PageSpeed score.
+		if ( is_front_page() || is_home() ) {
+			self::preloadHeroBanner();
+		}
+	}
+
+	/**
+	 * Preload the first slide LCP image for desktop & mobile viewports.
+	 *
+	 * @return void
+	 */
+	private static function preloadHeroBanner(): void {
+		$home_id    = (int) get_option( 'page_on_front' );
+		$sections   = $home_id ? get_field( 'home_sections', $home_id ) : null;
+		$hero_slide = null;
+
+		if ( is_array( $sections ) ) {
+			foreach ( $sections as $s ) {
+				if ( ( $s['acf_fc_layout'] ?? '' ) === 'hero_slider' && ! empty( $s['slides'][0] ) ) {
+					$hero_slide = $s['slides'][0];
+					break;
+				}
+			}
+		}
+
+		$img_raw    = $hero_slide['bg_image'] ?? 0;
+		$mobile_raw = $hero_slide['bg_image_mobile'] ?? 0;
+
+		$desktop_url = '';
+		if ( is_numeric( $img_raw ) && (int) $img_raw > 0 ) {
+			$desktop_url = wp_get_attachment_image_url( (int) $img_raw, 'full' );
+		} elseif ( is_array( $img_raw ) && ! empty( $img_raw['url'] ) ) {
+			$desktop_url = $img_raw['url'];
+		} elseif ( is_string( $img_raw ) && ! empty( $img_raw ) ) {
+			$desktop_url = $img_raw;
+		}
+
+		if ( empty( $desktop_url ) ) {
+			$desktop_url = content_url( '/uploads/2026/06/banner-he-sang-chanh.jpg' );
+		}
+
+		$mobile_url = '';
+		if ( is_numeric( $mobile_raw ) && (int) $mobile_raw > 0 ) {
+			$mobile_url = wp_get_attachment_image_url( (int) $mobile_raw, 'large' );
+		} elseif ( is_array( $mobile_raw ) && ! empty( $mobile_raw['url'] ) ) {
+			$mobile_url = $mobile_raw['url'];
+		} elseif ( is_string( $mobile_raw ) && ! empty( $mobile_raw ) ) {
+			$mobile_url = $mobile_raw;
+		}
+
+		if ( empty( $mobile_url ) ) {
+			if ( is_numeric( $img_raw ) && (int) $img_raw > 0 ) {
+				$mobile_url = wp_get_attachment_image_url( (int) $img_raw, 'medium_large' );
+			} elseif ( is_array( $img_raw ) && ! empty( $img_raw['sizes']['medium_large'] ) ) {
+				$mobile_url = $img_raw['sizes']['medium_large'];
+			} else {
+				$mobile_url = $desktop_url;
+			}
+		}
+
+		if ( $mobile_url ) {
+			printf(
+				'<link rel="preload" as="image" href="%s" media="(max-width: 767px)" fetchpriority="high" />' . "\n",
+				esc_url( $mobile_url )
+			);
+		}
+		if ( $desktop_url ) {
+			printf(
+				'<link rel="preload" as="image" href="%s" media="(min-width: 768px)" fetchpriority="high" />' . "\n",
+				esc_url( $desktop_url )
+			);
+		}
 	}
 
 	/**
