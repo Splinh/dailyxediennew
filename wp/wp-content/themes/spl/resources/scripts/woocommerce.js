@@ -314,6 +314,23 @@ const run = () => {
 		const btn = descToggle.querySelector('.btn-show-more');
 		
 		if (btn) {
+			const checkHeightAndToggle = () => {
+				const contentHeight = descContent.scrollHeight;
+				if (contentHeight > 450) {
+					if (!descToggle.classList.contains('is-expanded')) {
+						descWrapper.classList.add('is-collapsed');
+						descWrapper.style.maxHeight = '400px';
+						descToggle.style.display = 'block';
+					}
+				} else {
+					if (!descToggle.classList.contains('is-expanded')) {
+						descWrapper.classList.remove('is-collapsed');
+						descWrapper.style.maxHeight = '';
+						descToggle.style.display = 'none';
+					}
+				}
+			};
+
 			btn.addEventListener('click', (e) => {
 				e.preventDefault();
 				const currentHeight = descContent.scrollHeight;
@@ -322,37 +339,49 @@ const run = () => {
 					descWrapper.style.maxHeight = (currentHeight + 100) + 'px'; // Expand fully
 					btn.textContent = 'Thu gọn';
 					descToggle.classList.add('is-expanded');
+					descToggle.style.display = 'block';
 				} else {
 					descWrapper.classList.add('is-collapsed');
 					descWrapper.style.maxHeight = '400px'; // Collapse back
 					btn.textContent = 'Xem thêm';
 					descToggle.classList.remove('is-expanded');
+					descToggle.style.display = 'block';
 					
 					// Smooth scroll to top of description wrapper
 					descWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
 				}
 			});
 
-			// Use ResizeObserver to detect image loading/height updates
-			const ro = new ResizeObserver((entries) => {
-				for (let entry of entries) {
-					const contentHeight = entry.target.scrollHeight;
-					if (contentHeight > 450) {
-						if (!descToggle.classList.contains('is-expanded') && !descWrapper.classList.contains('is-collapsed')) {
-							descWrapper.classList.add('is-collapsed');
-							descWrapper.style.maxHeight = '400px';
-							descToggle.style.display = 'block';
-						}
-					} else {
-						if (!descToggle.classList.contains('is-expanded')) {
-							descWrapper.classList.remove('is-collapsed');
-							descWrapper.style.maxHeight = '';
-							descToggle.style.display = 'none';
-						}
-					}
+			// Check height immediately
+			checkHeightAndToggle();
+			window.addEventListener('load', checkHeightAndToggle);
+
+			// Listen to image load events inside description
+			const imgs = descContent.querySelectorAll('img');
+			imgs.forEach(img => {
+				if (!img.complete) {
+					img.addEventListener('load', checkHeightAndToggle);
 				}
 			});
-			ro.observe(descContent);
+
+			// ResizeObserver for dynamic height updates
+			if (window.ResizeObserver) {
+				const ro = new ResizeObserver(() => {
+					checkHeightAndToggle();
+				});
+				ro.observe(descContent);
+			}
+
+			// Listen for tab switching to description tab
+			const tabsNav = document.querySelector('.sp-tabs__nav');
+			if (tabsNav) {
+				tabsNav.addEventListener('click', (e) => {
+					const tabBtn = e.target.closest('[data-tab="desc"]');
+					if (tabBtn) {
+						setTimeout(checkHeightAndToggle, 50);
+					}
+				});
+			}
 		}
 	}
 
