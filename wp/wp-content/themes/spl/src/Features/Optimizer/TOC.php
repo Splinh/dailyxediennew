@@ -39,13 +39,13 @@ final class TOC {
 	}
 
 	/**
-	 * Process post content.
+	 * Process post and product content.
 	 *
-	 * @param string $content HTML post content.
+	 * @param string $content HTML content.
 	 * @return string
 	 */
 	public static function processContent( string $content ): string {
-		if ( ! is_singular( 'post' ) || ! in_the_loop() || ! is_main_query() ) {
+		if ( ! is_singular( [ 'post', 'product' ] ) ) {
 			return $content;
 		}
 
@@ -99,7 +99,7 @@ final class TOC {
 	}
 
 	/**
-	 * Generate Table of Contents HTML.
+	 * Generate Table of Contents HTML (default collapsed/hidden).
 	 *
 	 * @return string
 	 */
@@ -108,15 +108,21 @@ final class TOC {
 			return '';
 		}
 
-		$html  = '<div class="bg-slate-50 border border-slate-100 rounded-xl p-5 mb-6 toc-box">';
-		$html .= '  <div class="flex items-center justify-between mb-3 cursor-pointer select-none" id="toc-trigger">';
+		$title_text = is_singular( 'product' )
+			? esc_html__( 'Mục lục nội dung', 'spl' )
+			: esc_html__( 'Mục lục bài viết', 'spl' );
+
+		$toc_id = 'toc-' . wp_generate_password( 8, false, false );
+
+		$html  = '<div class="bg-slate-50 border border-slate-200/80 rounded-xl p-4 md:p-5 mb-6 toc-box" id="' . esc_attr( $toc_id ) . '">';
+		$html .= '  <div class="flex items-center justify-between cursor-pointer select-none toc-trigger">';
 		$html .= '    <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2 mb-0">';
 		$html .= '      <svg class="w-4 h-4 text-[#1e73be]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>';
-		$html .= '      ' . esc_html__( 'Mục lục bài viết', 'spl' );
+		$html .= '      ' . $title_text;
 		$html .= '    </h3>';
-		$html .= '    <span class="text-xs text-[#1e73be] hover:underline" id="toc-toggle-btn">' . esc_html__( '[Ẩn]', 'spl' ) . '</span>';
+		$html .= '    <span class="text-xs text-[#1e73be] font-semibold hover:underline toc-toggle-btn">' . esc_html__( '[Hiện]', 'spl' ) . '</span>';
 		$html .= '  </div>';
-		$html .= '  <ul class="space-y-2 text-sm text-slate-600 pl-4 list-decimal" id="toc-list">';
+		$html .= '  <ul class="space-y-2 text-sm text-slate-600 pl-4 list-decimal hidden mt-3 pt-3 border-t border-slate-200/60 toc-list">';
 
 		foreach ( self::$headings as $heading ) {
 			$html .= sprintf(
@@ -133,19 +139,22 @@ final class TOC {
 		$html .= '
 		<script>
 		document.addEventListener("DOMContentLoaded", function() {
-			var trigger = document.getElementById("toc-trigger");
-			var list = document.getElementById("toc-list");
-			var btn = document.getElementById("toc-toggle-btn");
-			if (trigger && list && btn) {
-				trigger.addEventListener("click", function() {
-					if (list.classList.contains("hidden")) {
-						list.classList.remove("hidden");
-						btn.textContent = "' . esc_js( __( '[Ẩn]', 'spl' ) ) . '";
-					} else {
-						list.classList.add("hidden");
-						btn.textContent = "' . esc_js( __( '[Hiện]', 'spl' ) ) . '";
-					}
-				});
+			var box = document.getElementById("' . esc_js( $toc_id ) . '");
+			if (box) {
+				var trigger = box.querySelector(".toc-trigger");
+				var list = box.querySelector(".toc-list");
+				var btn = box.querySelector(".toc-toggle-btn");
+				if (trigger && list && btn) {
+					trigger.addEventListener("click", function() {
+						if (list.classList.contains("hidden")) {
+							list.classList.remove("hidden");
+							btn.textContent = "' . esc_js( __( '[Ẩn]', 'spl' ) ) . '";
+						} else {
+							list.classList.add("hidden");
+							btn.textContent = "' . esc_js( __( '[Hiện]', 'spl' ) ) . '";
+						}
+					});
+				}
 			}
 		});
 		</script>';
