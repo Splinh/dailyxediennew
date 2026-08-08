@@ -316,7 +316,7 @@ const run = () => {
 		if (btn) {
 			const checkHeightAndToggle = () => {
 				const contentHeight = descContent.scrollHeight;
-				if (contentHeight > 450) {
+				if (contentHeight > 380) {
 					if (!descToggle.classList.contains('is-expanded')) {
 						descWrapper.classList.add('is-collapsed');
 						descWrapper.style.maxHeight = '400px';
