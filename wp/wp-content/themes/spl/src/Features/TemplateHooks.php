@@ -153,10 +153,11 @@ final class TemplateHooks extends Feature {
 
 		if ( empty( $mobile_url ) ) {
 			if ( is_numeric( $img_raw ) && (int) $img_raw > 0 ) {
-				$mobile_url = wp_get_attachment_image_url( (int) $img_raw, 'medium_large' );
+				$mobile_url = wp_get_attachment_image_url( (int) $img_raw, 'medium_large' ) ?: wp_get_attachment_image_url( (int) $img_raw, 'large' );
 			} elseif ( is_array( $img_raw ) && ! empty( $img_raw['sizes']['medium_large'] ) ) {
 				$mobile_url = $img_raw['sizes']['medium_large'];
-			} else {
+			}
+			if ( empty( $mobile_url ) ) {
 				$mobile_url = $desktop_url;
 			}
 		}
