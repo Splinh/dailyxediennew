@@ -26,7 +26,7 @@ $map = [
 	6 => 'timeline_2026_showroom3s_1786175252670.png',
 ];
 
-$dir_url = get_template_directory_uri() . '/assets/img/timeline/';
+$dir_url = get_template_directory_uri() . '/resources/img/';
 
 $sections = get_post_meta( $p->ID, 'about_sections', true );
 if ( is_array( $sections ) ) {
