@@ -2,7 +2,7 @@
 /**
  * Table of Contents Optimizer Module
  *
- * Automatically parses H2 headings in single posts to generate anchors
+ * Automatically parses H2 headings in single posts and WooCommerce products to generate anchors
  * and prepends a responsive, collapsible Table of Contents box.
  *
  * @package SPL\Features\Optimizer
@@ -36,6 +36,7 @@ final class TOC {
 	 */
 	public static function register(): void {
 		add_filter( 'the_content', [ self::class, 'processContent' ], 15 );
+		add_action( 'wp_footer', [ self::class, 'printScript' ], 99 );
 	}
 
 	/**
@@ -112,15 +113,13 @@ final class TOC {
 			? esc_html__( 'Mục lục nội dung', 'spl' )
 			: esc_html__( 'Mục lục bài viết', 'spl' );
 
-		$toc_id = 'toc-' . wp_generate_password( 8, false, false );
-
-		$html  = '<div class="bg-slate-50 border border-slate-200/80 rounded-xl p-4 md:p-5 mb-6 toc-box" id="' . esc_attr( $toc_id ) . '">';
+		$html  = '<div class="bg-slate-50 border border-slate-200/80 rounded-xl p-4 md:p-5 mb-6 toc-box">';
 		$html .= '  <div class="flex items-center justify-between cursor-pointer select-none toc-trigger">';
-		$html .= '    <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2 mb-0">';
+		$html .= '    <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2 mb-0 pointer-events-none">';
 		$html .= '      <svg class="w-4 h-4 text-[#1e73be]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>';
 		$html .= '      ' . $title_text;
 		$html .= '    </h3>';
-		$html .= '    <span class="text-xs text-[#1e73be] font-semibold hover:underline toc-toggle-btn">' . esc_html__( '[Hiện]', 'spl' ) . '</span>';
+		$html .= '    <span class="text-xs text-[#1e73be] font-semibold hover:underline toc-toggle-btn pointer-events-none">' . esc_html__( '[Hiện]', 'spl' ) . '</span>';
 		$html .= '  </div>';
 		$html .= '  <ul class="space-y-2 text-sm text-slate-600 pl-4 list-decimal hidden mt-3 pt-3 border-t border-slate-200/60 toc-list">';
 
@@ -135,30 +134,38 @@ final class TOC {
 		$html .= '  </ul>';
 		$html .= '</div>';
 
-		// Add dynamic toggle script.
-		$html .= '
-		<script>
-		document.addEventListener("DOMContentLoaded", function() {
-			var box = document.getElementById("' . esc_js( $toc_id ) . '");
-			if (box) {
-				var trigger = box.querySelector(".toc-trigger");
-				var list = box.querySelector(".toc-list");
-				var btn = box.querySelector(".toc-toggle-btn");
-				if (trigger && list && btn) {
-					trigger.addEventListener("click", function() {
-						if (list.classList.contains("hidden")) {
-							list.classList.remove("hidden");
-							btn.textContent = "' . esc_js( __( '[Ẩn]', 'spl' ) ) . '";
-						} else {
-							list.classList.add("hidden");
-							btn.textContent = "' . esc_js( __( '[Hiện]', 'spl' ) ) . '";
-						}
-					});
+		return $html;
+	}
+
+	/**
+	 * Output toggle script in wp_footer.
+	 *
+	 * @return void
+	 */
+	public static function printScript(): void {
+		if ( ! is_singular( [ 'post', 'product' ] ) ) {
+			return;
+		}
+		?>
+		<script id="toc-toggle-script">
+		document.addEventListener('click', function(e) {
+			var trigger = e.target.closest('.toc-trigger');
+			if (!trigger) return;
+			var box = trigger.closest('.toc-box');
+			if (!box) return;
+			var list = box.querySelector('.toc-list');
+			var btn = box.querySelector('.toc-toggle-btn');
+			if (list && btn) {
+				if (list.classList.contains('hidden')) {
+					list.classList.remove('hidden');
+					btn.textContent = '<?php echo esc_js( __( '[Ẩn]', 'spl' ) ); ?>';
+				} else {
+					list.classList.add('hidden');
+					btn.textContent = '<?php echo esc_js( __( '[Hiện]', 'spl' ) ); ?>';
 				}
 			}
 		});
-		</script>';
-
-		return $html;
+		</script>
+		<?php
 	}
 }
