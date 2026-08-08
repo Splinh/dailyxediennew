@@ -38,7 +38,7 @@ if ( ! function_exists( 'spl_render_stars' ) ) {
 if ( ! function_exists( 'spl_render_review_form' ) ) {
 	function spl_render_review_form( \WC_Product $product ): void {
 		// Respect WooCommerce review settings.
-		if ( ! comments_open( $product->get_id() ) || 'no' === get_option( 'woocommerce_enable_reviews' ) ) {
+		if ( 'no' === get_option( 'woocommerce_enable_reviews' ) ) {
 			return;
 		}
 
