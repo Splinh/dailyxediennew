@@ -25,37 +25,37 @@ $items = ! empty( $data['items'] ) ? $data['items'] : [
 	[
 		'year'  => '2013',
 		'desc'  => 'Khởi đầu. Thành lập Công ty TNHH Xe Điện Bluera Việt Nhật & khai trương showroom DailyXeDien đầu tiên (23/09/2013).',
-		'image' => get_template_directory_uri() . '/assets/images/timeline/timeline_2013_founding_1786175168990.png',
+		'image' => get_template_directory_uri() . '/assets/img/timeline/timeline_2013_founding_1786175168990.png',
 	],
 	[
 		'year'  => '2015',
 		'desc'  => 'Nhà máy Bluera. Khai trương nhà máy sản xuất & lắp ráp xe điện công nghệ hiện đại đầu tiên đạt tiêu chuẩn TCVN, ISO.',
-		'image' => get_template_directory_uri() . '/assets/images/timeline/timeline_2015_factory_1786175183412.png',
+		'image' => get_template_directory_uri() . '/assets/img/timeline/timeline_2015_factory_1786175183412.png',
 	],
 	[
 		'year'  => '2018',
 		'desc'  => 'Mở rộng quy mô. Nâng cấp dây chuyền công nghệ hiện đại, liên kết linh kiện cao cấp và nhân rộng hệ thống đại lý.',
-		'image' => get_template_directory_uri() . '/assets/images/timeline/timeline_2018_scale_1786175198872.png',
+		'image' => get_template_directory_uri() . '/assets/img/timeline/timeline_2018_scale_1786175198872.png',
 	],
 	[
 		'year'  => '2021',
 		'desc'  => 'Chuyển đổi số. Triển khai hệ thống bảo hành điện tử 24/7 và nâng cấp trải nghiệm mua sắm số trên DailyXeDien.vn.',
-		'image' => get_template_directory_uri() . '/assets/images/timeline/timeline_2021_digital_1786175211739.png',
+		'image' => get_template_directory_uri() . '/assets/img/timeline/timeline_2021_digital_1786175211739.png',
 	],
 	[
 		'year'  => '2023',
 		'desc'  => 'Cột mốc 10 năm. Thành lập dự án AI Ebike (AIE) nghiên cứu và phát triển dòng sản phẩm xe điện thông minh thế hệ mới.',
-		'image' => get_template_directory_uri() . '/assets/images/timeline/timeline_2023_ai_ebike_1786175227144.png',
+		'image' => get_template_directory_uri() . '/assets/img/timeline/timeline_2023_ai_ebike_1786175227144.png',
 	],
 	[
 		'year'  => '2024',
 		'desc'  => 'Mạng lưới toàn quốc. Phát triển mạng lưới phân phối đạt 500+ đại lý ủy quyền và hợp tác đối tác chiến lược.',
-		'image' => get_template_directory_uri() . '/assets/images/timeline/timeline_2024_network_1786175240864.png',
+		'image' => get_template_directory_uri() . '/assets/img/timeline/timeline_2024_network_1786175240864.png',
 	],
 	[
 		'year'  => '2026',
 		'desc'  => 'Kỷ nguyên mới. Chuẩn hóa hệ thống showroom 3S & trung tâm kỹ thuật bảo hành ủy quyền chính hãng trên toàn quốc.',
-		'image' => get_template_directory_uri() . '/assets/images/timeline/timeline_2026_showroom3s_1786175252670.png',
+		'image' => get_template_directory_uri() . '/assets/img/timeline/timeline_2026_showroom3s_1786175252670.png',
 	],
 ];
 
@@ -241,13 +241,13 @@ $slider_config = wp_json_encode( [
 
 					if ( empty( $img_url ) ) {
 						$default_milestone_images = [
-							get_template_directory_uri() . '/assets/images/timeline/timeline_2013_founding_1786175168990.png',
-							get_template_directory_uri() . '/assets/images/timeline/timeline_2015_factory_1786175183412.png',
-							get_template_directory_uri() . '/assets/images/timeline/timeline_2018_scale_1786175198872.png',
-							get_template_directory_uri() . '/assets/images/timeline/timeline_2021_digital_1786175211739.png',
-							get_template_directory_uri() . '/assets/images/timeline/timeline_2023_ai_ebike_1786175227144.png',
-							get_template_directory_uri() . '/assets/images/timeline/timeline_2024_network_1786175240864.png',
-							get_template_directory_uri() . '/assets/images/timeline/timeline_2026_showroom3s_1786175252670.png',
+							get_template_directory_uri() . '/assets/img/timeline/timeline_2013_founding_1786175168990.png',
+							get_template_directory_uri() . '/assets/img/timeline/timeline_2015_factory_1786175183412.png',
+							get_template_directory_uri() . '/assets/img/timeline/timeline_2018_scale_1786175198872.png',
+							get_template_directory_uri() . '/assets/img/timeline/timeline_2021_digital_1786175211739.png',
+							get_template_directory_uri() . '/assets/img/timeline/timeline_2023_ai_ebike_1786175227144.png',
+							get_template_directory_uri() . '/assets/img/timeline/timeline_2024_network_1786175240864.png',
+							get_template_directory_uri() . '/assets/img/timeline/timeline_2026_showroom3s_1786175252670.png',
 						];
 						$img_url = $default_milestone_images[ $index % count( $default_milestone_images ) ];
 					}
