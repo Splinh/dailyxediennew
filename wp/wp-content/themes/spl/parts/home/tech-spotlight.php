@@ -151,7 +151,13 @@ $download_landing_url = 'https://download.aiebike.vn/';
 					$feat_title   = $feat['title'] ?? '';
 					$feat_desc    = $feat['description'] ?? '';
 					$img_id       = $feat['image'] ?? 0;
-					$img_url      = is_numeric( $img_id ) && (int) $img_id > 0 ? wp_get_attachment_image_url( (int) $img_id, 'large' ) : (string) $img_id;
+					$img_url      = '';
+					if ( is_numeric( $img_id ) && (int) $img_id > 0 ) {
+						$img_url = wp_get_attachment_image_url( (int) $img_id, 'full' ) ?: wp_get_attachment_image_url( (int) $img_id, 'large' );
+					} elseif ( is_string( $img_id ) && ! empty( $img_id ) && ! str_contains( $img_id, '.jpg' ) ) {
+						$img_url = $img_id;
+					}
+
 					if ( empty( $img_url ) ) {
 						if ( 'bms' === $feat_id ) {
 							$img_url = get_theme_file_uri( 'resources/img/bms-battery-v2.png' );
