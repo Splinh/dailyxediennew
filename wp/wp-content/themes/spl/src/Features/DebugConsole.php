@@ -36,7 +36,7 @@ final class DebugConsole extends Feature {
 	/* ---------- Feature ---------------------------------------- */
 
 	public function boot(): void {
-		if ( ! Helper::development() ) {
+		if ( ! Helper::development() || is_admin() ) {
 			return;
 		}
 
@@ -47,8 +47,12 @@ final class DebugConsole extends Feature {
 		$this->previousExceptionHandler = \call_user_func( 'set_exception_handler', [ $this, 'handleException' ] );
 		\call_user_func( 'register_shutdown_function', [ $this, 'handleShutdown' ] );
 
-		// Render console in footer (frontend only).
-		add_action( 'wp_footer', [ $this, 'render' ], 99999 );
+		// Render console in footer only for logged-in administrators.
+		add_action( 'wp_footer', function() {
+			if ( is_user_logged_in() && current_user_can( 'manage_options' ) ) {
+				$this->render();
+			}
+		}, 99999 );
 	}
 
 	/* ---------- ERROR HANDLERS --------------------------------- */
