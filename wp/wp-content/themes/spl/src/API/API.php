@@ -65,7 +65,8 @@ final class API implements Bootable {
 		 * These namespaces are accessible without login.
 		 */
 		$this->allowedNamespaces = [
-			REST_NAMESPACE,                // hd/v1 — also in browserBlockedNamespaces (Layer 1 handles it first)
+			REST_NAMESPACE,                // spl/v1
+			'hd/v1',                       // hd/v1 module endpoints (Filter, QuickView, Form)
 			'hdat/v1',                     // HDAT public AI gateway (bearer-token authenticated by plugin)
 			'contact-form-7/v1',           // Contact Form 7
 			'rankmath/v1',                 // Rank Math SEO
@@ -80,6 +81,7 @@ final class API implements Bootable {
 		 */
 		$this->browserBlockedNamespaces = [
 			REST_NAMESPACE,
+			'hd/v1',
 			'wc/store/v1',                 // WooCommerce Store API (called via JS fetch only)
 			'wc/store',                    // WooCommerce Store API (legacy)
 		];
