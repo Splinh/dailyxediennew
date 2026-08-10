@@ -195,7 +195,7 @@ if ( empty( $stores ) ) {
 						'<a href="'+dirUrl+'" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-bold text-xs py-2.5 rounded-xl transition-all shadow-md flex items-center justify-center gap-1.5">'+
 							'<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Chỉ đường'+
 						'</a>'+
-						'<a href="'+s.u+'" class="border border-[#1e73be] text-[#1e73be] bg-white hover:bg-[#1e73be] hover:text-white active:scale-95 font-bold text-xs py-2.5 rounded-xl flex items-center justify-center gap-1.5 transition-all duration-200">'+
+						'<a href="'+s.u+'" class="border border-[#1e73be] text-[#1e73be] bg-white hover:bg-[#1e73be]! hover:text-white! active:scale-95 font-bold text-xs py-2.5 rounded-xl flex items-center justify-center gap-1.5 transition-all duration-200">'+
 							'<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Chi tiết'+
 						'</a>'+
 					'</div>'+
