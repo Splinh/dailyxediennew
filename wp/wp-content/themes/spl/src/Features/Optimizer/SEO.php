@@ -31,7 +31,7 @@ final class SEO {
 	 */
 	public static function customRobotsRules( string $output, bool $public ): string {
 		if ( ! $public ) {
-			return $output;
+			return "User-agent: *\nDisallow: /\n\nSitemap: " . esc_url( home_url( '/sitemap_index.xml' ) ) . "\n";
 		}
 
 		$rules = [

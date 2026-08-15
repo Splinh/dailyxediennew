@@ -1,0 +1,6 @@
+# Block all search engine bots from indexing
+User-agent: *
+Disallow: /
+
+# Sitemap URL
+Sitemap: https://dailynew.bluerabike.com/sitemap_index.xml
