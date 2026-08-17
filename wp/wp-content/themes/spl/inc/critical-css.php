@@ -59,77 +59,9 @@ add_action( 'wp_head', 'spl_preload_assets', 1 );
  * Output preload and preconnect resource hints in wp_head.
  */
 function spl_preload_assets(): void {
-	// 1. Preconnect only to origins requested immediately during initial render.
+	// Preconnect only to origins requested immediately during initial render.
 	echo '<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>' . "\n";
 	echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
 	echo '<link rel="dns-prefetch" href="https://fonts.googleapis.com">' . "\n";
 	echo '<link rel="dns-prefetch" href="https://fonts.gstatic.com">' . "\n";
-	echo '<link rel="dns-prefetch" href="https://www.googletagmanager.com">' . "\n";
-	echo '<link rel="dns-prefetch" href="https://connect.facebook.net">' . "\n";
-
-	// 2. Preload first hero slide LCP image for Mobile & Desktop on homepage.
-	if ( is_front_page() || is_home() ) {
-		$hero_desktop = '';
-		$hero_mobile  = '';
-
-		$page_id = (int) get_option( 'page_on_front' );
-		if ( $page_id && function_exists( 'get_field' ) ) {
-			// Slides live inside ACF flexible content: home_sections → hero_slider → slides.
-			$slides   = null;
-			$sections = get_field( 'home_sections', $page_id );
-			if ( is_array( $sections ) ) {
-				foreach ( $sections as $section ) {
-					if ( ( $section['acf_fc_layout'] ?? '' ) === 'hero_slider' ) {
-						$slides = $section['slides'] ?? [];
-						break;
-					}
-				}
-			}
-
-			if ( ! empty( $slides[0]['bg_image'] ) ) {
-				$raw = $slides[0]['bg_image'];
-				if ( is_numeric( $raw ) ) {
-					$hero_desktop = wp_get_attachment_image_url( (int) $raw, 'full' ) ?: '';
-					$hero_mobile  = wp_get_attachment_image_url( (int) $raw, 'medium_large' ) ?: $hero_desktop;
-				} elseif ( is_array( $raw ) && ! empty( $raw['url'] ) ) {
-					$hero_desktop = $raw['url'];
-					$hero_mobile  = $raw['sizes']['medium_large'] ?? ( $raw['sizes']['large'] ?? $raw['url'] );
-				} elseif ( is_string( $raw ) ) {
-					$hero_desktop = $raw;
-				}
-			}
-			if ( ! empty( $slides[0]['bg_image_mobile'] ) ) {
-				$m_raw = $slides[0]['bg_image_mobile'];
-				if ( is_numeric( $m_raw ) ) {
-					$hero_mobile = wp_get_attachment_image_url( (int) $m_raw, 'large' ) ?: '';
-				} elseif ( is_array( $m_raw ) && ! empty( $m_raw['url'] ) ) {
-					$hero_mobile = $m_raw['url'];
-				} elseif ( is_string( $m_raw ) ) {
-					$hero_mobile = $m_raw;
-				}
-			}
-		}
-
-		if ( empty( $hero_desktop ) ) {
-			$hero_desktop = content_url( '/uploads/2026/06/banner-he-sang-chanh.jpg' );
-		}
-
-		// Fall back mobile image to desktop image if mobile image is not configured.
-		if ( empty( $hero_mobile ) ) {
-			$hero_mobile = $hero_desktop;
-		}
-
-		if ( $hero_mobile === $hero_desktop ) {
-			if ( $hero_desktop ) {
-				echo '<link rel="preload" href="' . esc_url( $hero_desktop ) . '" as="image" fetchpriority="high">' . "\n";
-			}
-		} else {
-			if ( $hero_mobile ) {
-				echo '<link rel="preload" href="' . esc_url( $hero_mobile ) . '" as="image" media="(max-width: 767px)" fetchpriority="high">' . "\n";
-			}
-			if ( $hero_desktop ) {
-				echo '<link rel="preload" href="' . esc_url( $hero_desktop ) . '" as="image" media="(min-width: 768px)" fetchpriority="high">' . "\n";
-			}
-		}
-	}
 }

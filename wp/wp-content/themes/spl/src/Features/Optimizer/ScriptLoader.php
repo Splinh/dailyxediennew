@@ -110,6 +110,11 @@ final class ScriptLoader {
 
 
 
+		// Defer jQuery on frontend to eliminate render blocking
+		if ( in_array( $handle, [ 'jquery', 'jquery-core', 'jquery-migrate' ], true ) && ! is_admin() ) {
+			$tag = self::addScriptAttribute( $tag, 'defer' );
+		}
+
 		// Add script handles to the array
 		static $strParsed = null;
 		$strParsed      ??= Helper::filterSettingOptions( 'defer_script' );
