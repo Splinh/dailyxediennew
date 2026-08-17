@@ -183,9 +183,10 @@ do_action( 'spl_header_before_action' );
 				<button data-drawer-open data-focus-search class="md:hidden text-slate-700 hover:text-primary p-2" aria-label="<?php esc_attr_e( 'Tìm kiếm', 'spl' ); ?>">
 					<?php echo spl_icon( 'search', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				</button>
-				<button type="button" data-cart-open class="md:hidden text-slate-700 hover:text-primary p-2 relative" aria-label="<?php esc_attr_e( 'Giỏ hàng', 'spl' ); ?>">
+				<button type="button" data-cart-open class="md:hidden text-slate-700 hover:text-primary p-2 relative">
+					<span class="sr-only"><?php esc_html_e( 'Giỏ hàng', 'spl' ); ?></span>
 					<?php echo spl_icon( 'cart', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-					<span class="bg-sale text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full absolute top-0 right-0 shadow-sm" data-cart-count aria-hidden="true"><?php echo esc_html( (string) $cart_count ); ?></span>
+					<span class="bg-sale text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full absolute top-0 right-0 shadow-sm" data-cart-count><?php echo esc_html( (string) $cart_count ); ?></span>
 				</button>
 				<div class="hidden sm:flex items-center gap-3.5">
 					<div class="w-11 h-11 rounded-full bg-primary-50 flex items-center justify-center text-primary shadow-sm shrink-0">

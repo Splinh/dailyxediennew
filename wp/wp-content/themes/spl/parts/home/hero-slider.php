@@ -150,14 +150,15 @@ if ( empty( $slides ) ) {
 		</button>
 
 		<!-- Dot indicators -->
-		<div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20" role="tablist" aria-label="<?php esc_attr_e( 'Chọn banner', 'spl' ); ?>">
+		<div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1 z-20" role="tablist" aria-label="<?php esc_attr_e( 'Chọn banner', 'spl' ); ?>">
 			<?php foreach ( $slides as $index => $slide ) : ?>
 				<button onclick="setHeroSlide(<?php echo (int) $index; ?>)"
 					role="tab"
 					data-active="<?php echo $index === 0 ? 'true' : 'false'; ?>"
 					aria-selected="<?php echo $index === 0 ? 'true' : 'false'; ?>"
 					aria-label="<?php echo esc_attr( sprintf( __( 'Xem slide %d', 'spl' ), $index + 1 ) ); ?>"
-					class="hero-dot cursor-pointer focus:outline-none">
+					class="hero-dot w-8 h-8 flex items-center justify-center cursor-pointer focus:outline-none bg-transparent border-0 p-0">
+					<span class="hero-dot-pill block"></span>
 				</button>
 			<?php endforeach; ?>
 		</div>

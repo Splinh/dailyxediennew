@@ -27,31 +27,31 @@
 	/* Dot indicator — state-driven via data-active attr (set by JS) */
 	.hero-dot {
 		position: relative;
-		border-radius: 999px;
+		width: 36px;
+		height: 36px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		background: transparent;
+		border: none;
+		padding: 0;
+	}
+	.hero-dot .hero-dot-pill {
 		width: 10px;
 		height: 10px;
+		border-radius: 999px;
 		background-color: rgba(255, 255, 255, 0.4);
-		box-shadow: none;
 		transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
 					background-color 0.35s ease,
 					box-shadow 0.35s ease;
 	}
-	.hero-dot::before {
-		content: '';
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		min-width: 36px;
-		min-height: 36px;
-	}
-	.hero-dot[data-active='true'] {
-		width: 32px;
+	.hero-dot[data-active='true'] .hero-dot-pill {
+		width: 28px;
 		height: 10px;
 		background-color: #fff;
 		box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
 	}
-	.hero-dot:hover:not([data-active='true']) {
+	.hero-dot:hover:not([data-active='true']) .hero-dot-pill {
 		background-color: rgba(255, 255, 255, 0.7);
 	}
 

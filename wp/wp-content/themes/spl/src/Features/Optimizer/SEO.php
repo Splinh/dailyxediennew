@@ -20,6 +20,41 @@ final class SEO {
 		add_filter( 'robots_txt', [ self::class, 'customRobotsRules' ], 99, 2 );
 		add_filter( 'rank_math/json_ld', [ self::class, 'filterJsonLd' ], 99, 2 );
 		add_filter( 'rank_math/snippet/rich_snippet_product_entity', [ self::class, 'filterProductSchema' ], 99 );
+		add_filter( 'rank_math/frontend/robots', [ self::class, 'filterRankMathRobots' ], 999 );
+		add_filter( 'wp_robots', [ self::class, 'filterWpRobots' ], 999 );
+	}
+
+	/**
+	 * Ensure Rank Math outputs index, follow robots directive for standard frontend views.
+	 *
+	 * @param array $robots Existing Rank Math robots array.
+	 * @return array Modified robots array.
+	 */
+	public static function filterRankMathRobots( array $robots ): array {
+		if ( ! is_admin() && ( is_front_page() || is_home() || is_singular() || is_archive() || is_tax() ) ) {
+			$robots['index']             = 'index';
+			$robots['follow']            = 'follow';
+			$robots['max-snippet']       = 'max-snippet:-1';
+			$robots['max-video-preview'] = 'max-video-preview:-1';
+			$robots['max-image-preview'] = 'max-image-preview:large';
+			unset( $robots['noindex'], $robots['nofollow'] );
+		}
+		return $robots;
+	}
+
+	/**
+	 * Ensure WordPress core wp_robots does not output noindex on standard views.
+	 *
+	 * @param array $robots Existing wp_robots array.
+	 * @return array Modified robots array.
+	 */
+	public static function filterWpRobots( array $robots ): array {
+		if ( ! is_admin() && ( is_front_page() || is_home() || is_singular() || is_archive() || is_tax() ) ) {
+			unset( $robots['noindex'], $robots['nofollow'] );
+			$robots['follow']            = true;
+			$robots['max-image-preview'] = 'large';
+		}
+		return $robots;
 	}
 
 	/**
@@ -30,10 +65,6 @@ final class SEO {
 	 * @return string Modified robots.txt contents.
 	 */
 	public static function customRobotsRules( string $output, bool $public ): string {
-		if ( ! $public ) {
-			return "User-agent: *\nDisallow: /\n\nSitemap: " . esc_url( home_url( '/sitemap_index.xml' ) ) . "\n";
-		}
-
 		$rules = [
 			'User-agent: *',
 			'Disallow: /wp-admin/',
