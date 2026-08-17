@@ -32,7 +32,7 @@ if ( empty( $brands ) ) {
 			<span class="w-1.5 h-6 bg-primary rounded-full"></span>
 			<h2 class="text-xl font-extrabold text-slate-900 tracking-tight"><?php echo esc_html( $title ); ?></h2>
 		</div>
-		<span class="text-xs text-slate-400"><?php echo esc_html( $subtitle ); ?></span>
+		<span class="text-xs text-slate-600 font-semibold"><?php echo esc_html( $subtitle ); ?></span>
 	</div>
 
 	<div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
@@ -46,13 +46,13 @@ if ( empty( $brands ) ) {
 			// Decide text badge color depending on partner name
 			$badge_color = 'text-primary';
 			if ( false !== stripos( $name, 'vinfast' ) || false !== stripos( $name, 'dk' ) ) {
-				$badge_color = 'text-emerald-500';
+				$badge_color = 'text-emerald-700';
 			} elseif ( false !== stripos( $name, 'osakar' ) ) {
-				$badge_color = 'text-yellow-500';
+				$badge_color = 'text-amber-700';
 			} elseif ( false !== stripos( $name, 'kazuki' ) ) {
-				$badge_color = 'text-pink-500';
+				$badge_color = 'text-pink-600';
 			} elseif ( false !== stripos( $name, 'nijia' ) ) {
-				$badge_color = 'text-purple-500';
+				$badge_color = 'text-purple-600';
 			}
 			?>
 			<a href="<?php echo esc_url( $link ); ?>" class="bg-white border border-slate-100 rounded-2xl p-4 flex flex-col items-center justify-center h-20 hover:border-primary-300 hover:shadow-sm transition-all cursor-pointer">

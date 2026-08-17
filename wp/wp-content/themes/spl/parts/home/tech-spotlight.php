@@ -130,14 +130,14 @@ $download_landing_url = 'https://download.aiebike.vn/';
 					</span>
 					<div class="flex items-center gap-3">
 						<div class="bg-white p-1 rounded-xl shrink-0 border border-white/20 shadow-sm">
-							<img src="<?php echo esc_url( $qr_img_url ); ?>" alt="Mã QR Tải App AI EBIKE" class="w-20 h-20 md:w-22 md:h-22 object-contain rounded-lg">
+							<img src="<?php echo esc_url( $qr_img_url ); ?>" alt="Mã QR Tải App AI EBIKE" width="88" height="88" class="w-20 h-20 md:w-22 md:h-22 object-contain rounded-lg">
 						</div>
 						<div class="flex flex-col gap-2 shrink-0">
 							<a href="<?php echo esc_url( $app_store_url ); ?>" target="_blank" rel="noopener" class="inline-block transition-transform hover:scale-105">
-								<img src="<?php echo esc_url( get_theme_file_uri( 'resources/img/appstore_black.webp' ) ); ?>" alt="Download on App Store" class="h-8 md:h-9 w-auto">
+								<img src="<?php echo esc_url( get_theme_file_uri( 'resources/img/appstore_black.webp' ) ); ?>" alt="Download on App Store" width="120" height="36" class="h-8 md:h-9 w-auto">
 							</a>
 							<a href="<?php echo esc_url( $google_play_url ); ?>" target="_blank" rel="noopener" class="inline-block transition-transform hover:scale-105">
-								<img src="<?php echo esc_url( get_theme_file_uri( 'resources/img/googleplay_black.webp' ) ); ?>" alt="Get it on Google Play" class="h-8 md:h-9 w-auto">
+								<img src="<?php echo esc_url( get_theme_file_uri( 'resources/img/googleplay_black.webp' ) ); ?>" alt="Get it on Google Play" width="120" height="36" class="h-8 md:h-9 w-auto">
 							</a>
 						</div>
 					</div>
@@ -185,14 +185,14 @@ $download_landing_url = 'https://download.aiebike.vn/';
 									</p>
 									<div class="flex items-center gap-4">
 										<div class="bg-white p-1 rounded-xl shrink-0 border border-white/20 shadow-md">
-											<img src="<?php echo esc_url( $qr_img_url ); ?>" alt="Mã QR Tải App AI EBIKE" class="w-24 h-24 md:w-28 md:h-28 object-contain rounded-lg">
+											<img src="<?php echo esc_url( $qr_img_url ); ?>" alt="Mã QR Tải App AI EBIKE" width="112" height="112" class="w-24 h-24 md:w-28 md:h-28 object-contain rounded-lg">
 										</div>
 										<div class="flex flex-col gap-2.5 shrink-0">
 											<a href="<?php echo esc_url( $app_store_url ); ?>" target="_blank" rel="noopener" class="inline-block transition-transform hover:scale-105">
-												<img src="<?php echo esc_url( get_theme_file_uri( 'resources/img/appstore_black.webp' ) ); ?>" alt="Download on App Store" class="h-9 md:h-10 w-auto">
+												<img src="<?php echo esc_url( get_theme_file_uri( 'resources/img/appstore_black.webp' ) ); ?>" alt="Download on App Store" width="135" height="40" class="h-9 md:h-10 w-auto">
 											</a>
 											<a href="<?php echo esc_url( $google_play_url ); ?>" target="_blank" rel="noopener" class="inline-block transition-transform hover:scale-105">
-												<img src="<?php echo esc_url( get_theme_file_uri( 'resources/img/googleplay_black.webp' ) ); ?>" alt="Get it on Google Play" class="h-9 md:h-10 w-auto">
+												<img src="<?php echo esc_url( get_theme_file_uri( 'resources/img/googleplay_black.webp' ) ); ?>" alt="Get it on Google Play" width="135" height="40" class="h-9 md:h-10 w-auto">
 											</a>
 										</div>
 									</div>
@@ -220,7 +220,7 @@ $download_landing_url = 'https://download.aiebike.vn/';
 
 						<div class="w-full md:w-5/12 flex items-center justify-center min-h-[220px] md:min-h-[280px]">
 							<?php if ( $img_url ) : ?>
-								<img loading="lazy" src="<?php echo esc_url( $img_url ); ?>" alt="<?php echo esc_attr( $feat_title ); ?>" class="w-full max-w-[280px] sm:max-w-[340px] md:max-w-none max-h-64 md:max-h-80 object-contain filter drop-shadow-[0_12px_24px_rgba(99,102,241,0.35)] hover:scale-105 transition-all duration-300">
+								<img loading="lazy" decoding="async" src="<?php echo esc_url( $img_url ); ?>" alt="<?php echo esc_attr( $feat_title ); ?>" width="340" height="280" class="w-full max-w-[280px] sm:max-w-[340px] md:max-w-none max-h-64 md:max-h-80 object-contain filter drop-shadow-[0_12px_24px_rgba(99,102,241,0.35)] hover:scale-105 transition-all duration-300">
 							<?php else : ?>
 								<div class="w-full max-w-[300px] aspect-[4/3] bg-gradient-to-tr from-primary to-indigo-600 rounded-xl flex items-center justify-center border border-white/20 shadow-inner">
 									<?php echo spl_icon( 'bolt', 'w-16 h-16 text-white/60' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>

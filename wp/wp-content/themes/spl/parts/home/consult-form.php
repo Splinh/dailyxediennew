@@ -26,7 +26,7 @@ $regions   = [
 ];
 
 $input_class = 'w-full px-4 py-3 border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 outline-none rounded-xl text-sm transition-all bg-slate-50';
-$label_class = 'text-xs font-bold text-slate-500 uppercase tracking-wider block';
+$label_class = 'text-xs font-bold text-slate-700 uppercase tracking-wider block';
 ?>
 <section class="max-w-7xl mx-auto px-4 mb-8 md:mb-16 scroll-mt-24" id="consult-form">
 	<div class="bg-gradient-to-br from-[#0B2545] via-[#0D2E58] to-[#0A192F] rounded-3xl p-6 md:p-12 text-white relative overflow-hidden shadow-2xl border border-slate-800">
@@ -93,7 +93,7 @@ $label_class = 'text-xs font-bold text-slate-500 uppercase tracking-wider block'
 							<textarea id="consult-message" rows="3" placeholder="<?php esc_attr_e( 'Ghi chú thêm nhu cầu của bạn (trả góp 0%, xe cho học sinh, báo giá đại lý tỉnh...)', 'spl' ); ?>" class="<?php echo esc_attr( $input_class ); ?> resize-none"></textarea>
 						</div>
 
-						<button type="submit" class="w-full py-4 bg-emerald-500 hover:bg-emerald-600 active:scale-[0.98] text-white font-bold text-sm rounded-xl transition-all shadow-md flex items-center justify-center gap-2">
+						<button type="submit" class="w-full py-4 bg-emerald-700 hover:bg-emerald-800 active:scale-[0.98] text-white font-bold text-sm rounded-xl transition-all shadow-md flex items-center justify-center gap-2">
 							<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
 							<?php esc_html_e( 'GỬI YÊU CẦU ĐĂNG KÝ NGAY', 'spl' ); ?>
 						</button>

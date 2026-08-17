@@ -35,7 +35,8 @@ if ( empty( $features ) ) {
 	];
 }
 ?>
-<section class="max-w-7xl mx-auto px-4 mb-8 md:mb-12 mt-4 md:mt-6">
+<section class="max-w-7xl mx-auto px-4 mb-8 md:mb-12 mt-4 md:mt-6" aria-label="<?php esc_attr_e( 'Cam kết dịch vụ', 'spl' ); ?>">
+	<h2 class="sr-only"><?php esc_html_e( 'Cam kết chất lượng dịch vụ', 'spl' ); ?></h2>
 	<div class="flex overflow-x-auto snap-x snap-mandatory gap-3.5 md:gap-5 pb-3 no-scrollbar lg:grid lg:grid-cols-4 lg:pb-0">
 		<?php foreach ( $features as $feat ) :
 			$icon_code = $feat['icon'] ?? '';

@@ -30,7 +30,7 @@ $cols_class = $cols_class_map[ $columns ] ?? 'lg:grid-cols-6';
 			<span class="w-1.5 h-6 bg-primary rounded-full"></span>
 			<h2 class="text-2xl font-black text-slate-900 tracking-tight"><?php echo esc_html( $title ); ?></h2>
 		</div>
-		<span class="text-sm font-semibold text-slate-400"><?php echo esc_html( $subtitle ); ?></span>
+		<span class="text-sm font-semibold text-slate-600"><?php echo esc_html( $subtitle ); ?></span>
 	</div>
 
 	<div class="grid grid-cols-2 md:grid-cols-3 <?php echo esc_attr( $cols_class ); ?> gap-3 md:gap-6">
@@ -83,15 +83,15 @@ $cols_class = $cols_class_map[ $columns ] ?? 'lg:grid-cols-6';
 				<a href="<?php echo esc_url( $cat_link ); ?>" class="bg-white/90 backdrop-blur-xs border border-slate-100 hover:border-primary/40 p-3.5 md:p-5 rounded-2xl text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md flex flex-col items-center justify-between group h-full relative">
 					<div class="w-16 h-16 md:w-20 md:h-20 bg-slate-50 rounded-2xl flex items-center justify-center p-2 mb-2.5 md:mb-3 group-hover:bg-primary-50 transition-colors shrink-0 overflow-hidden shadow-inner">
 						<?php if ( $image_url ) : ?>
-							<img loading="lazy" src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $cat->name ); ?>" class="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300">
+							<img loading="lazy" src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $cat->name ); ?>" width="80" height="80" class="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300">
 						<?php else : ?>
-							<?php echo spl_icon( $icon_name, 'w-7 h-7 md:w-8 md:h-8 text-slate-400 group-hover:text-primary transition-colors' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+							<?php echo spl_icon( $icon_name, 'w-7 h-7 md:w-8 md:h-8 text-slate-500 group-hover:text-primary transition-colors' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						<?php endif; ?>
 					</div>
 					<div>
 						<span class="font-extrabold text-slate-900 text-xs md:text-sm group-hover:text-primary transition-colors leading-snug block"><?php echo esc_html( $cat->name ); ?></span>
 						<?php if ( isset( $cat->count ) && (int) $cat->count > 0 ) : ?>
-							<span class="text-[10px] text-slate-400 font-semibold mt-0.5 block"><?php echo esc_html( sprintf( __( '%d mẫu xe', 'spl' ), $cat->count ) ); ?></span>
+							<span class="text-[10px] text-slate-600 font-semibold mt-0.5 block"><?php echo esc_html( sprintf( __( '%d mẫu xe', 'spl' ), $cat->count ) ); ?></span>
 						<?php endif; ?>
 					</div>
 				</a>

@@ -27,7 +27,7 @@ $logo_url      = $logo_id ? wp_get_attachment_image_url( (int) $logo_id, 'medium
 	<div class="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/90 sticky top-0 z-10">
 		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-2">
 			<?php if ( $logo_url ) : ?>
-				<img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" class="h-9 w-auto object-contain">
+				<img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="160" height="36" class="h-9 w-auto object-contain">
 			<?php else : ?>
 				<span class="font-extrabold text-slate-900 text-lg tracking-tight">dailyxedien<span class="text-primary-600">.vn</span></span>
 			<?php endif; ?>

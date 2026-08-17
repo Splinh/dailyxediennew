@@ -116,8 +116,8 @@ if ( empty( $stores ) ) {
 	<div class="flex items-center gap-6 border-b border-slate-200 pb-3 mb-6">
 		<?php foreach ( $type_terms as $ti => $tt ) :
 			$tab_cls = $ti === 0
-				? 'text-amber-600 border-b-2 border-amber-500 font-black'
-				: 'text-slate-400 hover:text-slate-600 font-bold';
+				? 'text-amber-800 border-b-2 border-amber-600 font-black'
+				: 'text-slate-600 hover:text-slate-900 font-bold';
 		?>
 			<button onclick="dxdFilterType('<?php echo esc_js( $tt->slug ); ?>',this)" class="dxd-type-tab flex items-center gap-2 text-sm pb-2 transition-all <?php echo $tab_cls; ?>">
 				<?php echo esc_html( mb_strtoupper( $tt->name ) ); ?>
@@ -128,7 +128,7 @@ if ( empty( $stores ) ) {
 
 	<!-- Store cards grid (JS-rendered) -->
 	<div id="dxd-home-stores" class="grid grid-cols-1 md:grid-cols-3 gap-5 min-h-[120px]"></div>
-	<p id="dxd-home-empty" class="hidden text-center py-10 text-slate-400 text-sm"><?php esc_html_e( 'Không tìm thấy cửa hàng nào.', 'spl' ); ?></p>
+	<p id="dxd-home-empty" class="hidden text-center py-10 text-slate-600 text-sm"><?php esc_html_e( 'Không tìm thấy cửa hàng nào.', 'spl' ); ?></p>
 </section>
 
 <script>
@@ -147,8 +147,8 @@ if ( empty( $stores ) ) {
 
 	window.dxdFilterType=function(slug,b){
 		ct=ct===slug?'':slug;
-		document.querySelectorAll('.dxd-type-tab').forEach(function(x){x.classList.remove('text-amber-600','border-b-2','border-amber-500','font-black');x.classList.add('text-slate-400','font-bold')});
-		if(b&&ct){b.classList.remove('text-slate-400');b.classList.add('text-amber-600','border-b-2','border-amber-500','font-black')}
+		document.querySelectorAll('.dxd-type-tab').forEach(function(x){x.classList.remove('text-amber-800','border-b-2','border-amber-600','font-black');x.classList.add('text-slate-600','font-bold')});
+		if(b&&ct){b.classList.remove('text-slate-600');b.classList.add('text-amber-800','border-b-2','border-amber-600','font-black')}
 		render();
 	};
 
@@ -160,17 +160,16 @@ if ( empty( $stores ) ) {
 		c.innerHTML=f.map(function(s){
 			var img=s.img||"data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 140"><rect fill="#f1f5f9" width="200" height="140"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="#94a3b8" font-size="14">DXD</text></svg>');
 			var dl=s.ty.indexOf('dai-ly')>=0||s.tn.indexOf('Đại')>=0;
-			var tagClass=dl?'bg-emerald-500':'bg-[#1e73be]';
-			var tagColor=dl?'text-emerald-600 bg-emerald-50 border-emerald-100':'text-[#1e73be] bg-[#f0f5ff] border-[#e0ebff]';
+			var tagClass=dl?'bg-emerald-700':'bg-[#1e73be]';
 			var phones=[s.ph,s.hl].filter(Boolean).map(function(p){return p.trim();});
 			
 			var phonesHtml=phones.map(function(phone,idx){
-				var colorClass=idx===0?'text-blue-500':'text-amber-500';
+				var colorClass=idx===0?'text-blue-600':'text-amber-700';
 				var iconSvg=idx===0
 					? '<svg class="w-3.5 h-3.5 '+colorClass+' shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>'
 					: '<svg class="w-3.5 h-3.5 '+colorClass+' shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>';
 				var cleanPhone=phone.replace(/\s+/g,'');
-				return '<a href="tel:'+cleanPhone+'" class="flex items-center gap-1.5 hover:underline text-slate-700 font-semibold">'+iconSvg+' '+phone+'</a>';
+				return '<a href="tel:'+cleanPhone+'" class="flex items-center gap-1.5 hover:underline text-slate-800 font-semibold">'+iconSvg+' '+phone+'</a>';
 			}).join('');
 
 			var dirUrl=(s.la&&s.lo)?'https://www.google.com/maps/dir//'+s.la+','+s.lo+'/':'https://maps.google.com/?q='+encodeURIComponent(s.t+', '+s.a);
@@ -179,8 +178,8 @@ if ( empty( $stores ) ) {
 				'<div>'+
 					'<!-- Store Image 4:3 -->'+
 					'<div class="relative aspect-[4/3] bg-slate-100 overflow-hidden">'+
-						'<img loading="lazy" src="'+img+'" alt="'+s.t+'" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">'+
-						'<span class="absolute top-2.5 left-2.5 '+tagClass+' text-white font-bold text-[9px] px-2 py-0.5 rounded-md uppercase">'+s.tn+'</span>'+
+						'<img loading="lazy" src="'+img+'" alt="'+s.t+'" width="400" height="300" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">'+
+						'<span class="absolute top-2.5 left-2.5 '+tagClass+' text-white font-bold text-[9px] px-2 py-0.5 rounded-md uppercase shadow-sm">'+s.tn+'</span>'+
 					'</div>'+
 					'<!-- Card Content -->'+
 					'<div class="p-5 space-y-4">'+
@@ -192,14 +191,14 @@ if ( empty( $stores ) ) {
 				'<!-- Actions & Address -->'+
 				'<div class="p-5 pt-0 space-y-3.5">'+
 					'<div class="grid grid-cols-2 gap-2">'+
-						'<a href="'+dirUrl+'" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-bold text-xs py-2.5 rounded-xl transition-all shadow-md flex items-center justify-center gap-1.5">'+
+						'<a href="'+dirUrl+'" target="_blank" rel="noopener noreferrer nofollow" class="bg-emerald-700 hover:bg-emerald-800 active:scale-95 text-white font-bold text-xs py-2.5 rounded-xl transition-all shadow-md flex items-center justify-center gap-1.5">'+
 							'<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Chỉ đường'+
 						'</a>'+
 						'<a href="'+s.u+'" class="border border-[#1e73be] text-[#1e73be] bg-white hover:bg-[#1e73be]! hover:text-white! active:scale-95 font-bold text-xs py-2.5 rounded-xl flex items-center justify-center gap-1.5 transition-all duration-200">'+
 							'<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Chi tiết'+
 						'</a>'+
 					'</div>'+
-					'<p class="text-[10px] text-slate-400 flex items-start gap-1.5 leading-relaxed">'+
+					'<p class="text-[10px] text-slate-600 flex items-start gap-1.5 leading-relaxed">'+
 						'<svg class="w-3 h-3 text-[#1e73be] shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>'+
 						'<span>'+s.a+'</span>'+
 					'</p>'+

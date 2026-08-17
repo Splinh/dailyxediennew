@@ -127,11 +127,11 @@ if ( empty( $testimonials ) ) {
 				<h3 class="font-extrabold text-base md:text-lg text-slate-900 flex items-center gap-2">
 					<?php echo spl_icon( 'bolt', 'w-5 h-5 text-primary' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> <?php echo esc_html( $video_title ); ?>
 				</h3>
-				<span class="text-xs text-slate-400"><?php echo esc_html( $video_subtitle ); ?></span>
+				<span class="text-xs text-slate-600"><?php echo esc_html( $video_subtitle ); ?></span>
 			</div>
 			<!-- Main video preview — click to open popup -->
 			<div id="video-main-trigger" data-video-url="<?php echo esc_url( $video_url ); ?>" onclick="openVideoModal(this.getAttribute('data-video-url'))" class="relative rounded-xl overflow-hidden group aspect-video bg-slate-900 cursor-pointer shadow-md">
-				<img id="video-main-thumb" loading="lazy" src="<?php echo esc_url( $video_thumb ); ?>" alt="<?php echo esc_attr( $video_title ); ?>" class="w-full h-full object-cover opacity-80 group-hover:scale-102 transition-transform duration-300 <?php echo $video_thumb ? '' : 'hidden'; ?>">
+				<img id="video-main-thumb" loading="lazy" src="<?php echo esc_url( $video_thumb ); ?>" alt="<?php echo esc_attr( $video_title ); ?>" width="640" height="360" class="w-full h-full object-cover opacity-80 group-hover:scale-102 transition-transform duration-300 <?php echo $video_thumb ? '' : 'hidden'; ?>">
 				<div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent flex items-center justify-center">
 					<div class="w-11 h-11 md:w-12 md:h-12 rounded-full bg-[#1e73be] hover:bg-[#165da0] text-white flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
 						<svg class="w-4 h-4 fill-current ml-0.5" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -154,7 +154,7 @@ if ( empty( $testimonials ) ) {
 						<?php foreach ( $playlist_resolved as $idx => $p ) : ?>
 							<div onclick="selectVideo(<?php echo (int) $idx; ?>)" data-playlist-idx="<?php echo (int) $idx; ?>" class="swiper-slide video-thumb-item h-auto! rounded-lg overflow-hidden border-2 aspect-video cursor-pointer hover:opacity-100 transition-all bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center relative <?php echo 0 === $idx ? 'border-[#1e73be] opacity-100 ring-2 ring-[#1e73be]/30' : 'border-slate-200 opacity-70'; ?>">
 								<?php if ( $p['thumb'] ) : ?>
-									<img loading="lazy" src="<?php echo esc_url( $p['thumb'] ); ?>" alt="" class="w-full h-full object-cover">
+									<img loading="lazy" src="<?php echo esc_url( $p['thumb'] ); ?>" alt="" width="160" height="90" class="w-full h-full object-cover">
 								<?php endif; ?>
 								<div class="absolute inset-0 bg-slate-900/35 flex items-center justify-center">
 									<svg class="w-4 h-4 fill-current text-white drop-shadow-md" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -181,7 +181,7 @@ if ( empty( $testimonials ) ) {
 					<?php foreach ( $playlist_resolved as $idx => $p ) : ?>
 						<div onclick="selectVideo(<?php echo (int) $idx; ?>)" data-playlist-idx="<?php echo (int) $idx; ?>" class="video-thumb-item rounded-lg overflow-hidden border-2 aspect-video cursor-pointer hover:opacity-100 transition-all bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center relative <?php echo 0 === $idx ? 'border-[#1e73be] opacity-100 ring-2 ring-[#1e73be]/30' : 'border-slate-200 opacity-70'; ?>">
 							<?php if ( $p['thumb'] ) : ?>
-								<img loading="lazy" src="<?php echo esc_url( $p['thumb'] ); ?>" alt="" class="w-full h-full object-cover">
+								<img loading="lazy" src="<?php echo esc_url( $p['thumb'] ); ?>" alt="" width="160" height="90" class="w-full h-full object-cover">
 							<?php endif; ?>
 							<div class="absolute inset-0 bg-slate-900/35 flex items-center justify-center">
 								<svg class="w-5 h-5 fill-current text-white drop-shadow-md" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -203,7 +203,7 @@ if ( empty( $testimonials ) ) {
 				<h3 class="font-extrabold text-base md:text-lg text-slate-900 flex items-center gap-2">
 					<?php echo spl_icon( 'mail', 'w-5 h-5 text-amber-500' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> <?php echo esc_html( $testi_title ); ?>
 				</h3>
-				<span class="text-xs text-slate-400"><?php echo esc_html( $testi_subtitle ); ?></span>
+				<span class="text-xs text-slate-600"><?php echo esc_html( $testi_subtitle ); ?></span>
 			</div>
 			
 			<!-- Vertical Scroller Container -->
@@ -218,10 +218,10 @@ if ( empty( $testimonials ) ) {
 						?>
 						<div class="border border-slate-50 bg-slate-50/30 p-3.5 rounded-xl">
 							<div class="flex items-center gap-3">
-								<div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 font-bold border border-slate-200 text-xs"><?php echo esc_html( $t_avatar ); ?></div>
+								<div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-700 font-bold border border-slate-200 text-xs"><?php echo esc_html( $t_avatar ); ?></div>
 								<div>
 									<span class="font-bold text-slate-800 text-xs block"><?php echo esc_html( $t_name ); ?></span>
-									<span class="text-[10px] text-slate-400 block"><?php echo esc_html( $t_loc ); ?></span>
+									<span class="text-[10px] text-slate-600 block"><?php echo esc_html( $t_loc ); ?></span>
 								</div>
 								<div class="ml-auto text-amber-400 text-[10px] flex gap-0.5">
 									<?php for ( $i = 0; $i < $t_rating; $i++ ) : ?>
@@ -229,7 +229,7 @@ if ( empty( $testimonials ) ) {
 									<?php endfor; ?>
 								</div>
 							</div>
-							<p class="text-xs text-slate-500 mt-2 italic leading-relaxed"><?php echo esc_html( $t_comment ); ?></p>
+							<p class="text-xs text-slate-600 mt-2 italic leading-relaxed"><?php echo esc_html( $t_comment ); ?></p>
 						</div>
 					<?php endforeach; ?>
 				</div>
@@ -237,7 +237,7 @@ if ( empty( $testimonials ) ) {
 		</div>
 
 		<div class="flex items-center justify-between mt-4 border-t border-slate-100 pt-3">
-			<span class="text-xs text-slate-400"><?php esc_html_e( 'Tự động trượt lên', 'spl' ); ?></span>
+			<span class="text-xs text-slate-600"><?php esc_html_e( 'Tự động trượt lên', 'spl' ); ?></span>
 			<div class="flex gap-1">
 				<button onclick="scrollTestimonials(-1)" aria-label="<?php esc_attr_e( 'Trượt lên', 'spl' ); ?>" class="w-7 h-7 rounded-full border border-slate-200 hover:bg-slate-50 text-slate-500 flex items-center justify-center text-xs transition-all focus:outline-none">
 					<?php echo spl_icon( 'chevron-down', 'w-3.5 h-3.5 rotate-180' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>

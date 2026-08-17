@@ -44,13 +44,13 @@ $gradient_classes = [
 	'green' => 'from-emerald-500 to-teal-600',
 ];
 $btn_classes = [
-	'blue'  => 'bg-white text-blue-600 hover:bg-slate-100',
-	'dark'  => 'bg-emerald-500 text-white hover:bg-emerald-600',
-	'green' => 'bg-white text-emerald-600 hover:bg-slate-100',
+	'blue'  => 'bg-white text-blue-700 hover:bg-slate-100',
+	'dark'  => 'bg-emerald-700 text-white hover:bg-emerald-800',
+	'green' => 'bg-white text-emerald-800 hover:bg-slate-100',
 ];
 $badge_classes = [
 	'blue'  => 'bg-white/20 text-white',
-	'dark'  => 'bg-emerald-500/20 text-emerald-400',
+	'dark'  => 'bg-emerald-500/20 text-emerald-300',
 	'green' => 'bg-white/20 text-white',
 ];
 ?>

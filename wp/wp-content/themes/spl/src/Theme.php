@@ -120,7 +120,7 @@ final class Theme {
 		Asset::enqueueCSS( $conditionalCss, $baseCssDeps );
 
 		/** JS */
-		Asset::enqueueJS( 'preflight.js', [], null, false );
+		Asset::enqueueJS( 'preflight.js', [], null, true, [ 'module', 'defer' ] );
 		Asset::enqueueJS( 'index.js', [ 'jquery-core' ], null, true, [ 'module', 'defer' ] );
 
 

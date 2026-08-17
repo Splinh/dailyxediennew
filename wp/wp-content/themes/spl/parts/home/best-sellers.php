@@ -139,14 +139,14 @@ if ( empty( $tabs ) ) {
 						?>
 						<div class="bg-white border border-slate-100 rounded-xl overflow-hidden shadow-premium hover:shadow-hover-card transition-all duration-300 flex flex-col justify-between group relative">
 							<?php if ( $discount_badge ) : ?>
-								<span class="absolute top-2.5 left-2.5 bg-red-500 text-white font-black text-[9px] md:text-[10px] px-2 py-0.5 md:px-2.5 md:py-1 rounded-lg z-10 shadow-sm uppercase"><?php echo esc_html( $discount_badge ); ?></span>
+								<span class="absolute top-2.5 left-2.5 bg-red-600 text-white font-black text-[9px] md:text-[10px] px-2 py-0.5 md:px-2.5 md:py-1 rounded-lg z-10 shadow-sm uppercase"><?php echo esc_html( $discount_badge ); ?></span>
 							<?php endif; ?>
 							<div class="bg-slate-50/50 flex items-center justify-center h-36 md:h-48 relative overflow-hidden">
-								<img loading="lazy" src="<?php echo esc_url( wc_placeholder_img_src() ); ?>" alt="<?php echo esc_attr( $p['name'] ); ?>" class="max-h-full max-w-full object-contain transform group-hover:scale-105 transition-transform duration-300">
+								<img loading="lazy" src="<?php echo esc_url( wc_placeholder_img_src() ); ?>" alt="<?php echo esc_attr( $p['name'] ); ?>" width="200" height="200" class="max-h-full max-w-full object-contain transform group-hover:scale-105 transition-transform duration-300">
 							</div>
 							<div class="px-4 pt-[15px] pb-4 flex-grow flex flex-col justify-between">
 								<div>
-									<span class="text-[9px] md:text-[10px] text-slate-400 font-bold uppercase tracking-wider"><?php echo esc_html( $p['brand'] ); ?></span>
+									<span class="text-[9px] md:text-[10px] text-slate-600 font-bold uppercase tracking-wider"><?php echo esc_html( $p['brand'] ); ?></span>
 									<h3 class="font-bold text-slate-800 text-xs md:text-sm line-clamp-2 mt-0.5 group-hover:text-primary transition-colors leading-snug"><?php echo esc_html( $p['name'] ); ?></h3>
 									<div class="flex items-center gap-0.5 mt-1.5 text-amber-400 text-[10px]" aria-label="Đánh giá 5 sao">
 										<svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -154,14 +154,14 @@ if ( empty( $tabs ) ) {
 										<svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
 										<svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
 										<svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-										<span class="text-slate-400 ml-1 font-semibold">Đã bán <?php echo esc_html( $p['sales'] ); ?></span>
+										<span class="text-slate-600 ml-1 font-semibold">Đã bán <?php echo esc_html( $p['sales'] ); ?></span>
 									</div>
 								</div>
 								<div class="mt-3">
 									<div class="flex flex-wrap items-baseline gap-1 md:gap-2">
 										<span class="text-sm md:text-base font-extrabold text-slate-900"><?php echo esc_html( number_format( $p['price'], 0, ',', '.' ) ); ?>đ</span>
 										<?php if ( $p['old_price'] > 0 ) : ?>
-											<span class="text-[10px] md:text-xs text-slate-400 line-through"><?php echo esc_html( number_format( $p['old_price'] / 1000000, 1 ) ); ?>M</span>
+											<span class="text-[10px] md:text-xs text-slate-500 line-through"><?php echo esc_html( number_format( $p['old_price'] / 1000000, 1 ) ); ?>M</span>
 										<?php endif; ?>
 									</div>
 									<div class="grid grid-cols-5 gap-1.5 mt-3">

@@ -59,18 +59,13 @@ add_action( 'wp_head', 'spl_preload_assets', 1 );
  * Output preload and preconnect resource hints in wp_head.
  */
 function spl_preload_assets(): void {
-	// 1. Preconnect to font and tracking domains.
-	$preconnect_domains = [
-		'https://fonts.googleapis.com',
-		'https://fonts.gstatic.com',
-		'https://www.googletagmanager.com',
-		'https://www.google-analytics.com',
-		'https://connect.facebook.net',
-	];
-	foreach ( $preconnect_domains as $domain ) {
-		echo '<link rel="preconnect" href="' . esc_url( $domain ) . '" crossorigin>' . "\n";
-		echo '<link rel="dns-prefetch" href="' . esc_url( $domain ) . '">' . "\n";
-	}
+	// 1. Preconnect only to origins requested immediately during initial render.
+	echo '<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>' . "\n";
+	echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+	echo '<link rel="dns-prefetch" href="https://fonts.googleapis.com">' . "\n";
+	echo '<link rel="dns-prefetch" href="https://fonts.gstatic.com">' . "\n";
+	echo '<link rel="dns-prefetch" href="https://www.googletagmanager.com">' . "\n";
+	echo '<link rel="dns-prefetch" href="https://connect.facebook.net">' . "\n";
 
 	// 2. Preload first hero slide LCP image for Mobile & Desktop on homepage.
 	if ( is_front_page() || is_home() ) {

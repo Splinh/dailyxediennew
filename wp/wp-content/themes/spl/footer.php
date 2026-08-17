@@ -83,14 +83,14 @@ get_template_part( 'parts/global/company-activity' );
 
 		<!-- Company + social -->
 		<div class="space-y-4">
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-3">
-				<?php if ( has_custom_logo() ) :
-					echo get_custom_logo();
-				else : ?>
+			<?php if ( has_custom_logo() ) :
+				the_custom_logo();
+			else : ?>
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-3" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
 					<div class="bg-primary text-white font-black p-2 rounded-xl text-lg">D<span class="text-accent">XD</span></div>
 					<span class="text-xl font-extrabold text-slate-800"><?php bloginfo( 'name' ); ?></span>
-				<?php endif; ?>
-			</a>
+				</a>
+			<?php endif; ?>
 			<p class="text-xs leading-relaxed text-slate-500"><?php echo esc_html( $footer_desc ); ?></p>
 			<div class="flex items-center gap-3 pt-2">
 				<?php foreach ( $footer_socials as $key => $social ) :
@@ -110,7 +110,7 @@ get_template_part( 'parts/global/company-activity' );
 
 		<!-- Policy -->
 		<div class="space-y-4">
-			<h4 class="text-slate-800 font-bold text-sm tracking-wide"><?php esc_html_e( 'CHÍNH SÁCH CHUNG', 'spl' ); ?></h4>
+			<h3 class="text-slate-800 font-bold text-sm tracking-wide"><?php esc_html_e( 'CHÍNH SÁCH CHUNG', 'spl' ); ?></h3>
 			<?php if ( has_nav_menu( 'policy-nav' ) ) : ?>
 				<nav class="dxd-footermenu" aria-label="<?php esc_attr_e( 'Chính sách', 'spl' ); ?>">
 					<?php wp_nav_menu( [ 'theme_location' => 'policy-nav', 'container' => false, 'items_wrap' => '<ul class="space-y-2 text-xs">%3$s</ul>', 'fallback_cb' => false, 'depth' => 1 ] ); ?>
@@ -128,7 +128,7 @@ get_template_part( 'parts/global/company-activity' );
 
 		<!-- Support -->
 		<div class="space-y-4">
-			<h4 class="text-slate-800 font-bold text-sm tracking-wide"><?php esc_html_e( 'HỖ TRỢ KHÁCH HÀNG', 'spl' ); ?></h4>
+			<h3 class="text-slate-800 font-bold text-sm tracking-wide"><?php esc_html_e( 'HỖ TRỢ KHÁCH HÀNG', 'spl' ); ?></h3>
 			<?php if ( has_nav_menu( 'about-nav' ) ) : ?>
 				<nav class="dxd-footermenu" aria-label="<?php esc_attr_e( 'Hỗ trợ', 'spl' ); ?>">
 					<?php wp_nav_menu( [ 'theme_location' => 'about-nav', 'container' => false, 'items_wrap' => '<ul class="space-y-2 text-xs">%3$s</ul>', 'fallback_cb' => false, 'depth' => 1 ] ); ?>
@@ -145,7 +145,7 @@ get_template_part( 'parts/global/company-activity' );
 
 		<!-- Contact -->
 		<div class="space-y-4">
-			<h4 class="text-slate-800 font-bold text-sm tracking-wide"><?php esc_html_e( 'LIÊN HỆ VỚI CHÚNG TÔI', 'spl' ); ?></h4>
+			<h3 class="text-slate-800 font-bold text-sm tracking-wide"><?php esc_html_e( 'LIÊN HỆ VỚI CHÚNG TÔI', 'spl' ); ?></h3>
 			<div class="space-y-3 text-xs">
 				<p class="flex items-start gap-2.5 leading-relaxed">
 					<span class="text-primary mt-0.5 shrink-0"><?php echo spl_icon( 'map-pin', 'w-4 h-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
@@ -179,7 +179,7 @@ get_template_part( 'parts/global/company-activity' );
 				<a href="<?php echo esc_url( home_url( '/chinh-sach-ban-hang-dailyxedien-vn/' ) ); ?>" class="hover:text-slate-800 transition-colors"><?php esc_html_e( 'Điều khoản sử dụng', 'spl' ); ?></a>
 			</div>
 			<a href="http://online.gov.vn/nen-tang/d7eeaccf-92c4-4c57-9c19-cc749c427728" target="_blank" rel="noopener" class="inline-block transition-opacity hover:opacity-90 mt-0.5 sm:mt-0">
-				<img src="<?php echo esc_url( get_theme_file_uri( 'resources/img/DaThongBao.png' ) ); ?>" alt="<?php esc_attr_e( 'Đã thông báo Bộ Công Thương', 'spl' ); ?>" class="h-8.5 w-auto" style="height: 34px;" />
+				<img src="<?php echo esc_url( get_theme_file_uri( 'resources/img/DaThongBao.png' ) ); ?>" alt="<?php esc_attr_e( 'Đã thông báo Bộ Công Thương', 'spl' ); ?>" width="120" height="34" class="h-8.5 w-auto" style="height: 34px;" />
 			</a>
 		</div>
 	</div>

@@ -105,7 +105,7 @@ $slider_options = wp_json_encode( [
 			<span class="w-1.5 h-6 bg-primary rounded-full"></span>
 			<h2 class="text-2xl font-black text-slate-900 tracking-tight"><?php echo esc_html( $title ); ?></h2>
 		</div>
-		<span class="text-sm font-semibold text-slate-400"><?php echo esc_html( $subtitle ); ?></span>
+		<span class="text-sm font-semibold text-slate-600"><?php echo esc_html( $subtitle ); ?></span>
 	</div>
 
 	<?php if ( count( $tab_data ) > 1 ) : ?>
@@ -150,11 +150,11 @@ $slider_options = wp_json_encode( [
 														 class="w-full h-full object-cover group-hover:scale-103 transition-transform duration-300">
 												</div>
 												<div class="p-5 space-y-2">
-													<span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block"><?php echo esc_html( get_the_date( '', $post ) ); ?></span>
+													<span class="text-[10px] text-slate-600 font-bold uppercase tracking-wider block"><?php echo esc_html( get_the_date( '', $post ) ); ?></span>
 													<h3 class="font-bold text-slate-800 text-sm md:text-base line-clamp-2 group-hover:text-primary transition-colors leading-snug">
 														<a href="<?php echo esc_url( get_permalink( $post ) ); ?>"><?php echo esc_html( get_the_title( $post ) ); ?></a>
 													</h3>
-													<p class="text-xs text-slate-500 line-clamp-3 leading-relaxed"><?php echo esc_html( wp_strip_all_tags( get_the_excerpt( $post ) ) ); ?></p>
+													<p class="text-xs text-slate-600 line-clamp-3 leading-relaxed"><?php echo esc_html( wp_strip_all_tags( get_the_excerpt( $post ) ) ); ?></p>
 												</div>
 											</div>
 											<div class="p-5 pt-0">
@@ -199,11 +199,11 @@ $slider_options = wp_json_encode( [
 											 class="w-full h-full object-cover group-hover:scale-103 transition-transform duration-300">
 									</div>
 									<div class="p-5 space-y-2">
-										<span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block"><?php echo esc_html( get_the_date( '', $post ) ); ?></span>
+										<span class="text-[10px] text-slate-600 font-bold uppercase tracking-wider block"><?php echo esc_html( get_the_date( '', $post ) ); ?></span>
 										<h3 class="font-bold text-slate-800 text-sm md:text-base line-clamp-2 group-hover:text-primary transition-colors leading-snug">
 											<a href="<?php echo esc_url( get_permalink( $post ) ); ?>"><?php echo esc_html( get_the_title( $post ) ); ?></a>
 										</h3>
-										<p class="text-xs text-slate-500 line-clamp-3 leading-relaxed"><?php echo esc_html( wp_strip_all_tags( get_the_excerpt( $post ) ) ); ?></p>
+										<p class="text-xs text-slate-600 line-clamp-3 leading-relaxed"><?php echo esc_html( wp_strip_all_tags( get_the_excerpt( $post ) ) ); ?></p>
 									</div>
 								</div>
 								<div class="p-5 pt-0">

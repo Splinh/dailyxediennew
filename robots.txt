@@ -1,6 +1,13 @@
-# Block all search engine bots from indexing
 User-agent: *
-Disallow: /
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+Disallow: /checkout/
+Disallow: /cart/
+Disallow: /my-account/
+Disallow: /*?add-to-cart=*
+Disallow: /*?nocache=*
+Disallow: /*?s=*
+Disallow: /search/
 
 # Sitemap URL
 Sitemap: https://dailynew.bluerabike.com/sitemap_index.xml

@@ -135,7 +135,7 @@ $stars_count     = $average_rating > 0 ? round( $average_rating ) : 5;
 <div class="<?php echo esc_attr( $card_classes ); ?>">
 	<div class="absolute top-2.5 left-2.5 flex flex-col gap-1 z-10 items-start">
 		<?php if ( $badge ) :
-			$badge_color = ( stripos( $badge, 'hot' ) !== false || stripos( $badge, '-' ) !== false ) ? 'bg-red-500' : 'bg-emerald-500';
+			$badge_color = ( stripos( $badge, 'hot' ) !== false || stripos( $badge, '-' ) !== false ) ? 'bg-red-600' : 'bg-emerald-700';
 			?>
 			<span class="<?php echo esc_attr( $badge_color ); ?> text-white font-black text-[9px] md:text-[10px] px-2 py-0.5 md:px-2.5 md:py-1 rounded-md shadow-sm uppercase tracking-wider"><?php echo esc_html( $badge ); ?></span>
 		<?php endif; ?>
@@ -169,7 +169,7 @@ $stars_count     = $average_rating > 0 ? round( $average_rating ) : 5;
 			<div class="flex flex-wrap items-baseline gap-1 md:gap-2">
 				<span class="text-sm md:text-base font-black text-red-600"><?php echo wp_kses_post( $price_current_html ); ?></span>
 				<?php if ( $price_old_html ) : ?>
-					<span class="text-[10px] md:text-xs text-slate-400 line-through"><?php echo wp_kses_post( $price_old_html ); ?></span>
+					<span class="text-[10px] md:text-xs text-slate-500 line-through"><?php echo wp_kses_post( $price_old_html ); ?></span>
 				<?php endif; ?>
 			</div>
 
