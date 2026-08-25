@@ -124,10 +124,13 @@ while ( have_posts() ) :
 	$full_src   = wp_get_attachment_image_src( $image_id, 'full' );
 	$full_url   = ! empty( $full_src[0] ) ? $full_src[0] : $image_url;
 	$gallery    = $product->get_gallery_image_ids();
-	$is_sale   = $product->is_on_sale();
-	$cats      = wp_get_post_terms( get_the_ID(), 'product_cat' );
-	$cat_name  = ! empty( $cats ) ? $cats[0]->name : '';
-	$cat_link  = ! empty( $cats ) ? get_term_link( $cats[0] ) : '';
+	$is_sale     = $product->is_on_sale();
+	$is_in_stock = $product->is_in_stock() && $product->get_stock_status() !== 'outofstock';
+	$cats        = wp_get_post_terms( get_the_ID(), 'product_cat' );
+	$cat_name    = ! empty( $cats ) ? $cats[0]->name : '';
+	$cat_link    = ! empty( $cats ) ? get_term_link( $cats[0] ) : '';
+	$hotline     = Helper::getField( 'hotline', 'option' ) ?: '0933 505 222';
+	$hotline_tel = preg_replace( '/[^\d+]/', '', $hotline ) ?: '0933505222';
 
 	$avg_rating   = (float) $product->get_average_rating();
 	$review_count = (int) $product->get_review_count();
@@ -438,7 +441,9 @@ while ( have_posts() ) :
 
 				<div class="sp-info__price-box" id="sp-price-box">
 					<div class="price-row">
-						<?php if ( $product->is_type( 'variable' ) && $default_variation_price ) : ?>
+						<?php if ( ! $is_in_stock || empty( $cur_price ) || 0 == $cur_price ) : ?>
+							<span class="sp-info__price sp-info__price--contact text-red-600 font-extrabold text-2xl md:text-3xl"><?php esc_html_e( 'Liên hệ', 'spl' ); ?></span>
+						<?php elseif ( $product->is_type( 'variable' ) && $default_variation_price ) : ?>
 							<span class="sp-info__price"><?php echo wp_kses_post( $default_variation_price ); ?></span>
 							<?php if ( $default_variation_oldprice ) : ?>
 								<span class="sp-info__old-price"><?php echo wp_kses_post( $default_variation_oldprice ); ?></span>
@@ -473,13 +478,20 @@ while ( have_posts() ) :
 							<span class="sp-info__price"><?php echo wp_kses_post( $product->get_price_html() ); ?></span>
 						<?php endif; ?>
 					</div>
-					<!-- Promo strip matching mockup -->
-					<div class="price-promo">
-						<span class="price-promo__item price-promo__item--delivery">
-							<svg class="icon" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-							<strong class="text-emerald-600"><?php esc_html_e( 'Miễn phí giao hàng', 'spl' ); ?></strong>
-						</span>
-					</div>
+					<?php if ( ! $is_in_stock ) : ?>
+						<div class="sp-info__stock-alert flex items-center gap-2.5 p-3 bg-rose-50/90 border border-rose-200/90 rounded-xl text-rose-800 text-xs md:text-sm font-medium mt-3">
+							<span class="inline-flex items-center justify-center px-2.5 py-1 rounded-md bg-rose-600 text-white text-[11px] font-black uppercase tracking-wider shadow-sm shrink-0"><?php esc_html_e( 'Hết hàng', 'spl' ); ?></span>
+							<span><?php esc_html_e( 'Sản phẩm hiện đang tạm hết hàng hoặc ngừng kinh doanh. Quý khách vui lòng liên hệ hotline để được tư vấn sản phẩm tương đương.', 'spl' ); ?></span>
+						</div>
+					<?php else : ?>
+						<!-- Promo strip matching mockup -->
+						<div class="price-promo">
+							<span class="price-promo__item price-promo__item--delivery">
+								<svg class="icon" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+								<strong class="text-emerald-600"><?php esc_html_e( 'Miễn phí giao hàng', 'spl' ); ?></strong>
+							</span>
+						</div>
+					<?php endif; ?>
 				</div>
 
 				<!-- Quick Specs Strip -->
@@ -581,41 +593,49 @@ while ( have_posts() ) :
 					</div>
 				<?php endif; ?>
 
-				<!-- Quantity -->
-				<div class="sp-info__quantity">
-					<label><?php esc_html_e( 'Số lượng:', 'spl' ); ?></label>
-					<div class="sp-qty">
-						<button class="sp-qty__btn" id="qty-minus" aria-label="<?php esc_attr_e( 'Giảm', 'spl' ); ?>">
-							<svg class="icon" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+				<?php if ( $is_in_stock ) : ?>
+					<!-- Quantity -->
+					<div class="sp-info__quantity">
+						<label><?php esc_html_e( 'Số lượng:', 'spl' ); ?></label>
+						<div class="sp-qty">
+							<button class="sp-qty__btn" id="qty-minus" aria-label="<?php esc_attr_e( 'Giảm', 'spl' ); ?>">
+								<svg class="icon" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+							</button>
+							<input type="number" class="sp-qty__input" value="1" min="1" max="99" id="qty-input" />
+							<button class="sp-qty__btn" id="qty-plus" aria-label="<?php esc_attr_e( 'Tăng', 'spl' ); ?>">
+								<svg class="icon" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+							</button>
+						</div>
+					</div>
+
+					<!-- Actions -->
+					<div class="sp-info__actions">
+						<button class="btn btn--primary btn--lg sp-add-cart" id="sp-add-cart"
+							data-product-id="<?php echo esc_attr( get_the_ID() ); ?>"
+							data-product-type="<?php echo esc_attr( $product->get_type() ); ?>">
+							<svg class="icon" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+							<?php esc_html_e( 'Thêm vào giỏ', 'spl' ); ?>
 						</button>
-						<input type="number" class="sp-qty__input" value="1" min="1" max="99" id="qty-input" />
-						<button class="sp-qty__btn" id="qty-plus" aria-label="<?php esc_attr_e( 'Tăng', 'spl' ); ?>">
-							<svg class="icon" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+						<button class="btn btn--accent btn--lg sp-buy-now" id="sp-buy-now"
+							data-product-id="<?php echo esc_attr( get_the_ID() ); ?>"
+							data-product-type="<?php echo esc_attr( $product->get_type() ); ?>"
+							data-checkout="<?php echo esc_url( wc_get_checkout_url() ); ?>">
+							<svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+							<?php esc_html_e( 'Mua ngay', 'spl' ); ?>
 						</button>
 					</div>
-				</div>
-
-				<!-- Actions -->
-				<div class="sp-info__actions">
-					<button class="btn btn--primary btn--lg sp-add-cart" id="sp-add-cart"
-						data-product-id="<?php echo esc_attr( get_the_ID() ); ?>"
-						data-product-type="<?php echo esc_attr( $product->get_type() ); ?>">
-						<svg class="icon" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-						<?php esc_html_e( 'Thêm vào giỏ', 'spl' ); ?>
-					</button>
-					<button class="btn btn--accent btn--lg sp-buy-now" id="sp-buy-now"
-						data-product-id="<?php echo esc_attr( get_the_ID() ); ?>"
-						data-product-type="<?php echo esc_attr( $product->get_type() ); ?>"
-						data-checkout="<?php echo esc_url( wc_get_checkout_url() ); ?>">
-						<svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-						<?php esc_html_e( 'Mua ngay', 'spl' ); ?>
-					</button>
-					<?php /* TODO: tạm ẩn nút Yêu thích (wishlist) — bỏ comment để bật lại. ?>
-					<button class="btn-icon sp-wishlist" id="sp-wishlist" aria-label="<?php esc_attr_e( 'Yêu thích', 'spl' ); ?>">
-						<svg class="icon" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-					</button>
-					<?php */ ?>
-				</div>
+				<?php else : ?>
+					<!-- Out of stock Actions -->
+					<div class="sp-info__actions sp-info__actions--outofstock flex flex-wrap gap-2.5 mt-4">
+						<a href="tel:<?php echo esc_attr( $hotline_tel ); ?>" class="btn btn--primary btn--lg flex-1 min-h-[48px] rounded-xl flex items-center justify-center font-bold text-sm md:text-base shadow-md shadow-primary/20">
+							<svg class="icon mr-2 w-5 h-5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+							<?php esc_html_e( 'Liên hệ tư vấn', 'spl' ); ?> (<?php echo esc_html( $hotline ); ?>)
+						</a>
+						<a href="https://zalo.me/<?php echo esc_attr( $hotline_tel ); ?>" target="_blank" rel="noopener noreferrer" class="btn btn--accent btn--lg px-6 min-h-[48px] rounded-xl flex items-center justify-center font-bold text-sm md:text-base bg-[#0068ff] hover:bg-[#0052cc] text-white shadow-md">
+							<?php esc_html_e( 'Chat Zalo', 'spl' ); ?>
+						</a>
+					</div>
+				<?php endif; ?>
 
 					<!-- Trust badges (ACF options, with fallback) -->
 					<?php

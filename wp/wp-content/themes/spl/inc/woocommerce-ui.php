@@ -9,7 +9,26 @@ defined( 'ABSPATH' ) || exit;
 
 add_filter( 'woocommerce_add_to_cart_fragments', 'spl_cart_fragments', 20 );
 add_filter( 'woocommerce_widget_cart_item_quantity', 'spl_mini_cart_quantity', 20, 3 );
-add_filter( 'loop_shop_per_page', function() { return 16; }, 20 );
+add_filter( 'woocommerce_get_price_html', 'spl_filter_product_price_html', 20, 2 );
+add_filter( 'woocommerce_empty_price_html', 'spl_filter_product_price_html', 20, 2 );
+
+/**
+ * Filter price HTML to display 'Liên hệ' for out-of-stock or empty price products.
+ *
+ * @param string      $price_html Formatted price HTML.
+ * @param \WC_Product $product    Product instance.
+ * @return string
+ */
+function spl_filter_product_price_html( $price_html, $product ): string {
+	if ( ! $product instanceof \WC_Product ) {
+		return (string) $price_html;
+	}
+	if ( ! $product->is_in_stock() || $product->get_stock_status() === 'outofstock' || '' === (string) $product->get_price() || 0 == (float) $product->get_price() ) {
+		return '<span class="price-contact text-red-600 font-extrabold">' . esc_html__( 'Liên hệ', 'spl' ) . '</span>';
+	}
+	return (string) $price_html;
+}
+
 add_action( 'woocommerce_product_query', function( $q ) {
 	if ( ! is_admin() && $q->is_main_query() ) {
 		if ( is_product_category( 'san-pham-moi' ) ) {
@@ -22,13 +41,50 @@ add_action( 'woocommerce_product_query', function( $q ) {
 	}
 }, 20 );
 
-// Auto-assign category "Sản phẩm mới" when publishing/saving a new product
+/**
+ * Prioritize in-stock products first, push out-of-stock to the bottom on all shop/category/search queries.
+ */
+add_filter( 'posts_clauses', function( array $clauses, \WP_Query $query ): array {
+	if ( is_admin() || ! $query->is_main_query() ) {
+		return $clauses;
+	}
+
+	if ( ! ( is_shop() || is_product_taxonomy() || is_product_category() || is_product_tag() || is_search() ) ) {
+		return $clauses;
+	}
+
+	$post_type = $query->get( 'post_type' );
+	if ( $post_type !== 'product' && ! in_array( 'product', (array) $post_type, true ) ) {
+		return $clauses;
+	}
+
+	global $wpdb;
+
+	if ( strpos( $clauses['join'], 'spl_stock_meta' ) === false ) {
+		$clauses['join'] .= " LEFT JOIN {$wpdb->postmeta} AS spl_stock_meta ON ({$wpdb->posts}.ID = spl_stock_meta.post_id AND spl_stock_meta.meta_key = '_stock_status') ";
+	}
+
+	$stock_order = " (CASE WHEN spl_stock_meta.meta_value = 'outofstock' THEN 1 ELSE 0 END) ASC, ";
+
+	$clauses['orderby'] = $stock_order . ( $clauses['orderby'] ?? "{$wpdb->posts}.menu_order ASC, {$wpdb->posts}.post_title ASC" );
+
+	return $clauses;
+}, 30, 2 );
+
+// Auto-assign category "Sản phẩm mới" when publishing/saving a new product (only if in stock)
 add_action( 'save_post_product', function( $post_id, $post, $update ) {
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
 	if ( empty( $post ) || $post->post_status !== 'publish' ) return;
 
-	$term = get_term_by( 'slug', 'san-pham-moi', 'product_cat' );
-	if ( $term ) {
+	$stock = get_post_meta( $post_id, '_stock_status', true );
+	$price = get_post_meta( $post_id, '_price', true );
+	$term  = get_term_by( 'slug', 'san-pham-moi', 'product_cat' );
+
+	if ( ! $term ) return;
+
+	if ( $stock === 'outofstock' || empty( $price ) ) {
+		wp_remove_object_terms( $post_id, (int) $term->term_id, 'product_cat' );
+	} else {
 		wp_set_object_terms( $post_id, (int) $term->term_id, 'product_cat', true );
 	}
 }, 10, 3 );

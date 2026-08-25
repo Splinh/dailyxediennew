@@ -68,7 +68,13 @@ if ( is_array( $cached_card_data ) ) {
 	$badge          = '';
 	$price_old_html = '';
 
-	if ( $card_product->is_type( 'variable' ) ) {
+	$is_in_stock = $card_product->is_in_stock() && $card_product->get_stock_status() !== 'outofstock';
+
+	if ( ! $is_in_stock || empty( $card_product->get_price() ) || (float) $card_product->get_price() == 0 ) {
+		$price_current_html = '<span class="text-red-600 font-extrabold">' . esc_html__( 'Liên hệ', 'spl' ) . '</span>';
+		$price_old_html     = '';
+		$badge              = __( 'Hết hàng', 'spl' );
+	} elseif ( $card_product->is_type( 'variable' ) ) {
 		$prices = $card_product->get_variation_prices( true );
 
 		if ( empty( $prices['price'] ) ) {
@@ -108,7 +114,7 @@ if ( is_array( $cached_card_data ) ) {
 		}
 	}
 
-	$purchasable    = $card_product->is_purchasable() && $card_product->is_in_stock() && ! $card_product->is_type( 'variable' );
+	$purchasable    = $is_in_stock && $card_product->is_purchasable() && ! $card_product->is_type( 'variable' );
 	$average_rating = $card_product->get_average_rating();
 	$total_sales    = $card_product->get_total_sales();
 
@@ -135,7 +141,12 @@ $stars_count     = $average_rating > 0 ? round( $average_rating ) : 5;
 <div class="<?php echo esc_attr( $card_classes ); ?>">
 	<div class="absolute top-2.5 left-2.5 flex flex-col gap-1 z-10 items-start">
 		<?php if ( $badge ) :
-			$badge_color = ( stripos( $badge, 'hot' ) !== false || stripos( $badge, '-' ) !== false ) ? 'bg-red-600' : 'bg-emerald-700';
+			$badge_color = 'bg-emerald-700';
+			if ( stripos( $badge, 'hết hàng' ) !== false ) {
+				$badge_color = 'bg-slate-800';
+			} elseif ( stripos( $badge, 'hot' ) !== false || stripos( $badge, '-' ) !== false ) {
+				$badge_color = 'bg-red-600';
+			}
 			?>
 			<span class="<?php echo esc_attr( $badge_color ); ?> text-white font-black text-[9px] md:text-[10px] px-2 py-0.5 md:px-2.5 md:py-1 rounded-md shadow-sm uppercase tracking-wider"><?php echo esc_html( $badge ); ?></span>
 		<?php endif; ?>

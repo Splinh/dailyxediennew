@@ -4,8 +4,8 @@
 > [Link](https://docs.google.com/spreadsheets/d/1xi5Rv1YKgoAD1wuGH0h1k-cNrX3juF2oYC10uKxvP8k/edit?gid=2085828008#gid=2085828008)
 > **Repo**: [github.com/Splinh/dailyxediennew](https://github.com/Splinh/dailyxediennew)
 > **HTML Mockups Vercel**: [thietkedaily.vercel.app](https://thietkedaily.vercel.app/)
-> **Khởi tạo**: 2026-06-06 **Cập nhật lần cuối**: 2026-07-27
-> **Progress**: 114/123 tasks done (~93%)
+> **Khởi tạo**: 2026-06-06 **Cập nhật lần cuối**: 2026-08-13
+> **Progress**: 119/123 tasks done (~97%)
 
 ---
 
@@ -347,6 +347,25 @@ build lại** sau khi sửa template. JS thì enqueue thẳng, không cần buil
 ## 📝 Changelog
 
 > Ghi lại mỗi lần cập nhật plan log.
+
+### 2026-08-10 — Single Product UX Polish, REST API Unblock, Timeline Assets & UI Polish ✅
+
+- **Single Product Page UX & Review Form (`woocommerce/single-product.php`, `single-product.js`)**:
+  - Implemented dynamic description collapse threshold (lowered to 380px–450px) with smooth "Xem thêm" / "Thu gọn" toggle functionality for long product descriptions.
+  - Ensured review submission form (`comments_template()`) is always displayed on single product pages regardless of individual post `comment_status` settings.
+
+- **REST API & AJAX Filtering Unblock (`API.php`)**:
+  - Registered `hd/v1` REST API namespace in `allowedNamespaces` under `API.php`, unblocking unauthenticated AJAX REST API requests for public visitors on product filters and live search.
+
+- **About Page Timeline Asset Sync (`parts/about/timeline.php`, `update-acf-timeline-media.php`)**:
+  - Added 7 custom milestone images for years 2013–2026 under `/resources/img/` (`timeline_2013_founding.png` to `timeline_2026_showroom3s.png`).
+  - Updated `timeline.php` layout to force robust fallbacks to local `/resources/img/` assets whenever ACF image IDs are unassigned or empty.
+  - Created and executed `update-acf-timeline-media.php` CLI script to map attachment media URLs seamlessly to ACF timeline repeater fields.
+
+- **Store Locator UI Hover Fix (`parts/home/store-locator.php`, `assets/css/index.css`)**:
+  - Fixed white text contrast issue on button hover for store card "Chi tiết" links.
+
+- **Files changed**: `woocommerce/single-product.php` [MODIFY], `parts/about/timeline.php` [MODIFY], `update-acf-timeline-media.php` [NEW], `parts/home/store-locator.php` [MODIFY], `assets/css/index.css` [MODIFY], `API.php` [MODIFY]
 
 ### 2026-07-27 — About Page ("Giới Thiệu") Extensions — Htmlmau Design Alignment ✅
 
@@ -902,6 +921,19 @@ build lại** sau khi sửa template. JS thì enqueue thẳng, không cần buil
 - **Admin UI** — thêm remove `.fixed` class từ list tables vào `admin-core.js` source → build
 - **Hero Slider Fix** — dùng `<img>` thay `background-image`, bỏ Ken Burns zoom, smoother crossfade
 - **Legacy CSS Cleanup** — disable `critical.css`, `pages.css`, `core-ui.js` (conflict Tailwind)
+### 2026-08-13 (Session 55–57 Verification)
+
+- **Session 55: GSC Verification (T4-44)** ✅
+  - Integrated dynamic `robots.txt` rules and `sitemap_index.xml` declaration via `SEO.php`.
+  - Configured Rank Math JSON-LD Schema optimization for homepage & product pages.
+- **Session 56: GA4 Verification (T4-45)** ✅
+  - Verified `TrackingPixels.php` module for GA4 `gtag.js` tracking.
+  - E-commerce events handled: `view_item`, `view_cart`, `begin_checkout`, `purchase`.
+- **Session 57: Ads & FB Pixel Verification (T4-46 & T4-47)** ✅
+  - Verified Google Ads Conversion & Remarketing integration.
+  - Verified FB Pixel (`fbevents.js`) events: `PageView`, `ViewContent`, `AddToCart`, `InitiateCheckout`, `Purchase`.
+- **Build Verification**: `php -l` PASS, `pnpm build` PASS (145 modules transformed in 4.50s).
+
 ### 2026-07-27
 
 - **Trang Giới Thiệu (`/ve-chung-toi/`)**:

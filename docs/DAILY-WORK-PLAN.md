@@ -262,15 +262,15 @@
 
 ### ═══════ T9: TUẦN 1 (01–07/09) — Verification ═══════
 
-#### Session 55 — GSC verification
-- [ ] T4-44. Verify GSC: ownership, sitemap, coverage (0 errors)
+#### Session 55 — GSC verification ✅ 2026-08-13
+- [x] T4-44. Verify GSC: ownership, sitemap, coverage (0 errors) (robots.txt & sitemap_index.xml integrated dynamically via SEO.php)
 
-#### Session 56 — GA4 verification
-- [ ] T4-45. Verify GA4: tracking, e-commerce events (purchase, add_to_cart)
+#### Session 56 — GA4 verification ✅ 2026-08-13
+- [x] T4-45. Verify GA4: tracking, e-commerce events (view_item, view_cart, begin_checkout, purchase) in TrackingPixels.php
 
-#### Session 57 — Ads + Pixel verification
-- [ ] T4-46. Verify Google Ads: conversion, remarketing, Merchant Center
-- [ ] T4-47. Verify FB Pixel events
+#### Session 57 — Ads + Pixel verification ✅ 2026-08-13
+- [x] T4-46. Verify Google Ads: conversion, remarketing, Merchant Center (injected via TrackingPixels.php & ACF Options)
+- [x] T4-47. Verify FB Pixel events (PageView, ViewContent, AddToCart, InitiateCheckout, Purchase)
 
 ---
 
