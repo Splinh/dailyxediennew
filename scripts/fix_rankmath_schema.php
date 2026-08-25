@@ -32,15 +32,32 @@ foreach ($slugs as $slug) {
     }
 }
 
-// Xóa mọi schema rỗng trên toàn bộ database
-$all_invalid = $wpdb->get_results("SELECT meta_id, post_id, meta_key, meta_value FROM {$wpdb->postmeta} WHERE meta_key LIKE 'rank_math_schema_%'", ARRAY_A);
+// Xóa mọi schema rỗng hoặc bị double-serialized lỗi trên toàn bộ database
+$all_schemas = $wpdb->get_results("SELECT meta_id, post_id, meta_key, meta_value FROM {$wpdb->postmeta} WHERE meta_key LIKE 'rank_math_schema_%'", ARRAY_A);
 $deleted = 0;
-foreach ($all_invalid as $row) {
+$fixed = 0;
+
+foreach ($all_schemas as $row) {
     $val = maybe_unserialize($row['meta_value']);
+    // Kiểm tra nếu bị double serialized (val là string)
+    if (is_string($val) && is_serialized($val)) {
+        $val = maybe_unserialize($val);
+        if (is_array($val) && !empty($val['@type'])) {
+            $wpdb->update(
+                $wpdb->postmeta,
+                ['meta_value' => maybe_serialize($val)],
+                ['meta_id' => $row['meta_id']]
+            );
+            $fixed++;
+            continue;
+        }
+    }
+
+    // Nếu vẫn không phải array hợp lệ có @type thì xóa bỏ để Rank Math tự tạo schema chuẩn
     if (!is_array($val) || empty($val['@type'])) {
         delete_post_meta_by_mid((int)$row['meta_id']);
         $deleted++;
     }
 }
 
-echo "\n✅ Đã dọn dẹp $deleted schema Rank Math bị lỗi/rỗng trên hệ thống.\n";
+echo "\n✅ Đã sửa $fixed schema bị double-serialized và xóa $deleted schema Rank Math bị hỏng.\n";
