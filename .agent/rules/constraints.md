@@ -29,6 +29,12 @@ description: Minimal always-on constraints for the 2026 WordPress workspace.
   - Do not define duplicate ACF fields (e.g. `tskt_specs`) if similar fields already exist in active plugins or database (e.g. `tskt_rows` in `hda` plugin).
   - Scripts populating mock/demo data must never set existing media/image field IDs to `0` or empty string on active pages.
   - CSV import scripts must check and preserve existing database values; do not overwrite with empty values if the CSV column or cell is blank.
+- **Product Catalog & Out-of-Stock Handling**:
+  - Featured/homepage sections (Best Sellers, Flash Sale, Tech Spotlight), Mega Menu panels, Related Products (`single-product.php`), and 404 product suggestions must strictly filter out `outofstock` items (`_stock_status = 'instock'`, exclude `product_visibility` `outofstock` term).
+  - Catalog/archive listings must keep out-of-stock products at the end of the list using `menu_order` (9999) and `posts_clauses` stock order clauses.
+- **Rank Math Schema Integrity (PHP 8.4)**:
+  - `rank_math_schema_%` postmeta must never be double-serialized or store invalid strings, which cause fatal `TypeError` on PHP 8.4 during `RankMath\Schema\Frontend->add_schema()`.
+  - Always sanitize or purge corrupted schema entries via `scripts/fix_rankmath_schema.php`.
 
 ## Theme Built-In Features
 
