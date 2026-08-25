@@ -206,10 +206,11 @@ function spl_get_mega_menu_products( int $count = 3 ): array {
 
 	if ( false === $cached ) {
 		$products = wc_get_products( [
-			'limit'   => $count,
-			'status'  => 'publish',
-			'orderby' => 'date',
-			'order'   => 'DESC',
+			'limit'        => $count,
+			'status'       => 'publish',
+			'stock_status' => 'instock',
+			'orderby'      => 'menu_order date',
+			'order'        => 'ASC',
 		] );
 
 		$cached = [];
@@ -296,11 +297,18 @@ function spl_get_mega_menu_products_by_cat( int $cat_id, int $count = 3 ): array
 		return [];
 	}
 
-	$cache_key = 'spl_mega_cat_prods_v2_' . $cat_id . '_' . $count;
+	$cache_key = 'spl_mega_cat_prods_v3_' . $cat_id . '_' . $count;
 	$cached    = wp_cache_get( $cache_key, 'spl' );
 
 	if ( false === $cached ) {
-		$tax_query = [];
+		$tax_query = [
+			[
+				'taxonomy' => 'product_visibility',
+				'field'    => 'slug',
+				'terms'    => [ 'outofstock' ],
+				'operator' => 'NOT IN',
+			],
+		];
 		if ( $cat_id > 0 ) {
 			$cat_term_ids = [ $cat_id ];
 			$child_ids    = get_term_children( $cat_id, 'product_cat' );
@@ -322,14 +330,19 @@ function spl_get_mega_menu_products_by_cat( int $cat_id, int $count = 3 ): array
 			'orderby'        => 'menu_order title',
 			'order'          => 'ASC',
 			'no_found_rows'  => true,
+			'meta_query'     => [
+				[
+					'key'     => '_stock_status',
+					'value'   => 'instock',
+					'compare' => '=',
+				],
+			],
+			'tax_query'      => $tax_query,
 		];
-		if ( ! empty( $tax_query ) ) {
-			$query_args['tax_query'] = $tax_query;
-		}
 
 		$prod_query = new \WP_Query( $query_args );
 
-		// Fallback to latest products if category query is empty
+		// Fallback to in-stock products if category query is empty
 		if ( ! $prod_query->have_posts() && $cat_id > 0 ) {
 			$prod_query = new \WP_Query( [
 				'post_type'      => 'product',
@@ -338,6 +351,21 @@ function spl_get_mega_menu_products_by_cat( int $cat_id, int $count = 3 ): array
 				'orderby'        => 'menu_order title',
 				'order'          => 'ASC',
 				'no_found_rows'  => true,
+				'meta_query'     => [
+					[
+						'key'     => '_stock_status',
+						'value'   => 'instock',
+						'compare' => '=',
+					],
+				],
+				'tax_query'      => [
+					[
+						'taxonomy' => 'product_visibility',
+						'field'    => 'slug',
+						'terms'    => [ 'outofstock' ],
+						'operator' => 'NOT IN',
+					],
+				],
 			] );
 		}
 

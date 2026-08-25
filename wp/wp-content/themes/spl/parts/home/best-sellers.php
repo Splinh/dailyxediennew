@@ -86,25 +86,45 @@ if ( empty( $tabs ) ) {
 					$product_ids = spl_get_cached_product_ids( $cache_key );
 
 					if ( false === $product_ids ) {
-						$query_args = [
-							'post_type'           => 'product',
-							'posts_per_page'      => $count,
-							'orderby'             => 'date',
-							'order'               => 'DESC',
-							'ignore_sticky_posts' => true,
-							'no_found_rows'       => true,
-							'fields'              => 'ids',
+						$tax_query = [
+							[
+								'taxonomy' => 'product_visibility',
+								'field'    => 'slug',
+								'terms'    => [ 'outofstock' ],
+								'operator' => 'NOT IN',
+							],
 						];
 
 						if ( $cat_id ) {
-							$query_args['tax_query'] = [
-								[
-									'taxonomy' => 'product_cat',
-									'field'    => 'term_id',
-									'terms'    => $cat_id,
-								],
+							$tax_query[] = [
+								'taxonomy' => 'product_cat',
+								'field'    => 'term_id',
+								'terms'    => $cat_id,
 							];
 						}
+
+						$query_args = [
+							'post_type'           => 'product',
+							'posts_per_page'      => $count,
+							'orderby'             => 'menu_order title',
+							'order'               => 'ASC',
+							'ignore_sticky_posts' => true,
+							'no_found_rows'       => true,
+							'fields'              => 'ids',
+							'meta_query'          => [
+								[
+									'key'     => '_stock_status',
+									'value'   => 'instock',
+									'compare' => '=',
+								],
+								[
+									'key'     => '_price',
+									'value'   => '',
+									'compare' => '!=',
+								],
+							],
+							'tax_query'           => $tax_query,
+						];
 
 						$products_query = new \WP_Query( $query_args );
 						$product_ids    = array_values( array_filter( array_map( 'absint', $products_query->posts ) ) );

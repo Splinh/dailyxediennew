@@ -118,8 +118,9 @@ if ($outofstock_tt_id > 0) {
     wp_update_term_count_now([$outofstock_tt_id], 'product_visibility');
 }
 
-// 3. Xóa sạch mọi transient cache
-$wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_spl_pcard_%' OR option_name LIKE '_transient_timeout_spl_pcard_%' OR option_name LIKE '_transient_wc_product_%' OR option_name LIKE '_transient_timeout_wc_product_%' OR option_name LIKE '_transient_wc_var_prices_%'");
+// 3. Xóa sạch mọi transient cache & tăng cache version
+$wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_spl_%' OR option_name LIKE '_transient_timeout_spl_%' OR option_name LIKE '_transient_wc_%' OR option_name LIKE '_transient_timeout_wc_%'");
+update_option( 'spl_product_cache_version', time() );
 
 wp_cache_flush();
 

@@ -82,10 +82,25 @@ $home_url = home_url( '/' );
 				'post_type'           => 'product',
 				'post_status'         => 'publish',
 				'posts_per_page'      => 4,
-				'orderby'             => 'date',
-				'order'               => 'DESC',
+				'orderby'             => 'menu_order title',
+				'order'               => 'ASC',
 				'ignore_sticky_posts' => true,
 				'no_found_rows'       => true,
+				'meta_query'          => [
+					[
+						'key'     => '_stock_status',
+						'value'   => 'instock',
+						'compare' => '=',
+					],
+				],
+				'tax_query'           => [
+					[
+						'taxonomy' => 'product_visibility',
+						'field'    => 'slug',
+						'terms'    => [ 'outofstock' ],
+						'operator' => 'NOT IN',
+					],
+				],
 			] );
 
 			if ( $suggested->have_posts() ) :

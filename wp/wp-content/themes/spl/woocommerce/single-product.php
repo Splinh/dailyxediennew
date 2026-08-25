@@ -914,7 +914,17 @@ while ( have_posts() ) :
 
 			<!-- Related Products -->
 			<?php
-			$related_ids = wc_get_related_products( get_the_ID(), 5 );
+			$related_raw_ids = wc_get_related_products( get_the_ID(), 12 );
+			$related_ids     = [];
+			foreach ( $related_raw_ids as $rid ) {
+				$rp = wc_get_product( $rid );
+				if ( $rp && $rp->is_in_stock() && $rp->get_stock_status() !== 'outofstock' && '' !== (string) $rp->get_price() && (float) $rp->get_price() > 0 ) {
+					$related_ids[] = (int) $rid;
+					if ( count( $related_ids ) >= 5 ) {
+						break;
+					}
+				}
+			}
 			if ( ! empty( $related_ids ) ) :
 				?>
 				<section class="mt-12 md:mt-16 reveal">
