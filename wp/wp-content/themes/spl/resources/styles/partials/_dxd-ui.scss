@@ -695,8 +695,8 @@
 .dealer-tab-item {
 	display: block;
 	width: 100%;
-	padding: 0.75rem 0.375rem;
-	font-size: 0.7rem;
+	padding: 0.625rem 0.25rem;
+	font-size: 0.6875rem;
 	font-weight: 700;
 	color: #475569;
 	text-align: center;
@@ -704,10 +704,12 @@
 	border-bottom: 1px solid #f1f5f9;
 	background: transparent;
 	cursor: pointer;
-	transition: all 0.2s;
+	transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 	outline: none;
-	line-height: 1.3;
+	line-height: 1.35;
 	font-family: inherit;
+	word-break: break-word;
+	hyphens: auto;
 }
 
 .cat-tab-item.active,
@@ -717,6 +719,7 @@
 	color: #0758b7;
 	border-left: 3px solid #0758b7;
 	font-weight: 800;
+	box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
 }
 
 /* Right scrollable sections */
@@ -1039,13 +1042,13 @@
 	line-height: 1.45;
 }
 
-.contact-cards-grid {
+.contact-sheet-cards-grid {
 	display: flex;
 	flex-direction: column;
 	gap: 0.625rem;
 }
 
-.contact-card {
+.contact-sheet-card {
 	display: flex;
 	align-items: center;
 	gap: 0.75rem;
@@ -1058,16 +1061,16 @@
 	transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.contact-card:active {
+.contact-sheet-card:active {
 	transform: scale(0.98);
 }
 
-.contact-card:hover {
+.contact-sheet-card:hover {
 	border-color: #cbd5e1;
 	box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
 }
 
-.contact-card__icon {
+.contact-sheet-card__icon {
 	width: 2.75rem;
 	height: 2.75rem;
 	border-radius: 0.625rem;
@@ -1077,45 +1080,45 @@
 	flex-shrink: 0;
 }
 
-.contact-card__icon--hotline {
+.contact-sheet-card__icon--hotline {
 	background: #fff7ed;
 	color: #ea580c;
 }
 
-.contact-card__icon--zalo,
-.contact-card__icon--messenger {
+.contact-sheet-card__icon--zalo,
+.contact-sheet-card__icon--messenger {
 	background: transparent;
 	padding: 0;
 	border-radius: 50%;
 }
 
-.contact-card__icon--zalo svg,
-.contact-card__icon--messenger svg {
+.contact-sheet-card__icon--zalo svg,
+.contact-sheet-card__icon--messenger svg {
 	width: 2.75rem;
 	height: 2.75rem;
 	border-radius: 50%;
 }
 
-.contact-card--email .contact-card__icon {
+.contact-sheet-card--email .contact-sheet-card__icon {
 	background: #e0f2fe;
 	color: #0284c7;
 }
 
-.contact-card__info {
+.contact-sheet-card__info {
 	flex: 1;
 	min-width: 0;
 	display: flex;
 	flex-direction: column;
 }
 
-.contact-card__label {
+.contact-sheet-card__label {
 	font-size: 0.6875rem;
 	color: #64748b;
 	font-weight: 500;
 	margin-bottom: 0.125rem;
 }
 
-.contact-card__value {
+.contact-sheet-card__value {
 	font-size: 0.875rem;
 	font-weight: 700;
 	color: #0f172a;
@@ -1125,7 +1128,7 @@
 	white-space: nowrap;
 }
 
-.contact-card__action {
+.contact-sheet-card__action {
 	font-size: 0.75rem;
 	font-weight: 700;
 	padding: 0.375rem 0.875rem;
@@ -1135,22 +1138,22 @@
 	transition: opacity 0.2s ease;
 }
 
-.contact-card__action--hotline {
+.contact-sheet-card__action--hotline {
 	color: #ea580c;
 	background: #fff7ed;
 }
 
-.contact-card__action--zalo {
+.contact-sheet-card__action--zalo {
 	color: #0068ff;
 	background: #eff6ff;
 }
 
-.contact-card__action--messenger {
+.contact-sheet-card__action--messenger {
 	color: #0084ff;
 	background: #eff6ff;
 }
 
-.contact-card__action--email {
+.contact-sheet-card__action--email {
 	color: #0284c7;
 	background: #f0f9ff;
 }

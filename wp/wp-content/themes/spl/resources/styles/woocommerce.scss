@@ -727,6 +727,11 @@
 		font-size: 0.8125rem;
 		min-height: 2.375rem;
 		border-radius: 0.625rem;
+		transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.15s ease, background-color 0.15s ease;
+
+		&:active {
+			transform: scale(0.97);
+		}
 
 		@media (min-width: 768px) {
 			min-width: 140px;
@@ -766,7 +771,18 @@
 		font-weight: 700;
 		color: #475569;
 		text-decoration: none;
-		transition: all 0.2s;
+		transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+		&:hover {
+			border-color: #93c5fd;
+			background: #eff6ff;
+			color: var(--color-primary, #1e73be);
+			transform: translateY(-1px);
+		}
+
+		&:active {
+			transform: scale(0.97);
+		}
 
 		.icon {
 			width: 1rem;

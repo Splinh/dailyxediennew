@@ -163,7 +163,7 @@ $stars_count     = $average_rating > 0 ? round( $average_rating ) : 5;
 			<?php if ( $cat_name ) : ?>
 				<span class="product-card-cat-name text-slate-500 font-bold uppercase tracking-wider block mb-0.5"><?php echo esc_html( $cat_name ); ?></span>
 			<?php endif; ?>
-			<h3 class="font-extrabold text-slate-900 text-xs md:text-sm line-clamp-2 mt-1 group-hover:text-primary transition-colors leading-snug">
+			<h3 class="font-extrabold text-slate-900 text-xs md:text-sm line-clamp-2 mt-1 group-hover:text-primary transition-colors leading-snug" style="text-wrap: balance;">
 				<a href="<?php echo esc_url( $permalink ); ?>"><?php echo esc_html( $name ); ?></a>
 			</h3>
 			<div class="flex flex-wrap items-center gap-y-1 gap-x-0.5 mt-1.5 text-amber-400 text-[10px]" aria-label="<?php echo esc_attr( sprintf( __( 'Đánh giá %s sao', 'spl' ), $stars_count ) ); ?>">

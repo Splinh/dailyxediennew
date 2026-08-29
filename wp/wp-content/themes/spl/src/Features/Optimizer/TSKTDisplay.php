@@ -154,8 +154,8 @@ final class TSKTDisplay {
 		</h2>
 
 		<?php if ( ! empty( $specs ) && is_array( $specs ) ) : ?>
-			<div class="overflow-x-auto mb-6">
-				<table class="w-full text-sm">
+			<div class="overflow-x-auto mb-6 border border-slate-200/80 rounded-xl shadow-xs overflow-hidden bg-white">
+				<table class="w-full text-xs md:text-sm border-collapse">
 					<tbody>
 						<?php
 						$i = 0;
@@ -167,14 +167,14 @@ final class TSKTDisplay {
 								continue;
 							}
 
-							$stripe = ( 0 === $i % 2 ) ? '' : ' bg-slate-50/50';
+							$stripe = ( 0 === $i % 2 ) ? 'bg-white' : 'bg-slate-50/75';
 							++$i;
 							?>
-							<tr class="border-b border-slate-100<?php echo esc_attr( $stripe ); ?>">
-								<td class="py-3 pr-4 font-semibold text-slate-700 w-1/3">
+							<tr class="border-b border-slate-100/90 last:border-0 hover:bg-primary-50/30 transition-colors <?php echo esc_attr( $stripe ); ?>">
+								<td class="py-3 px-3.5 md:px-4 font-bold text-slate-800 w-2/5 md:w-1/3 border-r border-slate-100/90 bg-slate-50/40">
 									<?php echo esc_html( $label ); ?>
 								</td>
-								<td class="py-3 text-slate-600">
+								<td class="py-3 px-3.5 md:px-4 text-slate-700 font-medium leading-relaxed">
 									<?php echo esc_html( $value ); ?>
 								</td>
 							</tr>

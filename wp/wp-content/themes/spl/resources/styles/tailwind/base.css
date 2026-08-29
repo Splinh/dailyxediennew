@@ -21,6 +21,10 @@
 		@apply font-normal font-body text-(length:--global-fs) bg-background text-body leading-(--global-line-height) m-0 p-0;
 	}
 
+	p {
+		text-wrap: pretty;
+	}
+
 	#page,
 	#main,
 	header,
@@ -59,6 +63,7 @@
 	:is(h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6) {
 		@apply tracking-tight antialiased font-header leading-(--header-line-height);
 		font-weight: inherit;
+		text-wrap: balance;
 
 		a {
 			@apply no-underline inline-block text-current;

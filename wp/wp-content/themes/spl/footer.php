@@ -581,63 +581,63 @@ $is_dealer = is_page( 'he-thong-cua-hang' ) || is_post_type_archive( 'local_stor
 	<div class="contact-content-layout-simple">
 		<p class="contact-sheet-desc"><?php esc_html_e( 'Chúng tôi luôn sẵn sàng hỗ trợ & tư vấn cho bạn mọi lúc mọi nơi!', 'spl' ); ?></p>
 		
-		<div class="contact-cards-grid">
+		<div class="contact-sheet-cards-grid">
 			<!-- 1. Hotline -->
-			<a href="<?php echo esc_url( $hotline_url ); ?>" class="contact-card contact-card--hotline">
-				<div class="contact-card__icon contact-card__icon--hotline">
+			<a href="<?php echo esc_url( $hotline_url ); ?>" class="contact-sheet-card contact-sheet-card--hotline">
+				<div class="contact-sheet-card__icon contact-sheet-card__icon--hotline">
 					<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 						<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
 					</svg>
 				</div>
-				<div class="contact-card__info">
-					<div class="contact-card__label"><?php esc_html_e( 'Hotline tư vấn (Miễn phí)', 'spl' ); ?></div>
-					<div class="contact-card__value"><?php echo esc_html( $hotline_display ); ?></div>
+				<div class="contact-sheet-card__info">
+					<div class="contact-sheet-card__label"><?php esc_html_e( 'Hotline tư vấn (Miễn phí)', 'spl' ); ?></div>
+					<div class="contact-sheet-card__value"><?php echo esc_html( $hotline_display ); ?></div>
 				</div>
-				<span class="contact-card__action contact-card__action--hotline"><?php esc_html_e( 'Gọi ngay', 'spl' ); ?></span>
+				<span class="contact-sheet-card__action contact-sheet-card__action--hotline"><?php esc_html_e( 'Gọi ngay', 'spl' ); ?></span>
 			</a>
 
 			<!-- 2. Chat Zalo Official -->
-			<a href="<?php echo esc_url( $zalo_url ); ?>" target="_blank" rel="noopener noreferrer" class="contact-card contact-card--zalo">
-				<div class="contact-card__icon contact-card__icon--zalo">
+			<a href="<?php echo esc_url( $zalo_url ); ?>" target="_blank" rel="noopener noreferrer" class="contact-sheet-card contact-sheet-card--zalo">
+				<div class="contact-sheet-card__icon contact-sheet-card__icon--zalo">
 					<svg class="w-10 h-10" viewBox="0 0 48 48" fill="none" aria-hidden="true">
 						<circle cx="24" cy="24" r="24" fill="#0068FF"/>
 						<text x="50%" y="58%" dominant-baseline="middle" text-anchor="middle" font-size="22" font-weight="900" fill="white" font-family="system-ui, -apple-system, sans-serif">Z</text>
 					</svg>
 				</div>
-				<div class="contact-card__info">
-					<div class="contact-card__label"><?php esc_html_e( 'Chat Zalo Official', 'spl' ); ?></div>
-					<div class="contact-card__value"><?php esc_html_e( 'Tư vấn trực tiếp 24/7', 'spl' ); ?></div>
+				<div class="contact-sheet-card__info">
+					<div class="contact-sheet-card__label"><?php esc_html_e( 'Chat Zalo Official', 'spl' ); ?></div>
+					<div class="contact-sheet-card__value"><?php esc_html_e( 'Tư vấn trực tiếp 24/7', 'spl' ); ?></div>
 				</div>
-				<span class="contact-card__action contact-card__action--zalo"><?php esc_html_e( 'Nhắn Zalo', 'spl' ); ?></span>
+				<span class="contact-sheet-card__action contact-sheet-card__action--zalo"><?php esc_html_e( 'Nhắn Zalo', 'spl' ); ?></span>
 			</a>
 
 			<!-- 3. Facebook Messenger -->
-			<a href="<?php echo esc_url( $messenger_url ); ?>" target="_blank" rel="noopener noreferrer" class="contact-card contact-card--messenger">
-				<div class="contact-card__icon contact-card__icon--messenger">
+			<a href="<?php echo esc_url( $messenger_url ); ?>" target="_blank" rel="noopener noreferrer" class="contact-sheet-card contact-sheet-card--messenger">
+				<div class="contact-sheet-card__icon contact-sheet-card__icon--messenger">
 					<svg class="w-10 h-10" viewBox="0 0 48 48" fill="none" aria-hidden="true">
 						<circle cx="24" cy="24" r="24" fill="#0084FF"/>
 						<path d="M24 10C16.27 10 10 15.9 10 23.18c0 4.22 2.1 7.98 5.38 10.46V38l4.9-2.7c1.31.36 2.7.56 4.13.56 7.73 0 14-5.9 14-13.18C38 15.9 31.73 10 24 10zm1.4 17.74l-3.56-3.8-6.95 3.8 7.64-8.11 3.65 3.8 6.86-3.8-7.64 8.11z" fill="white"/>
 					</svg>
 				</div>
-				<div class="contact-card__info">
-					<div class="contact-card__label"><?php esc_html_e( 'Facebook Messenger', 'spl' ); ?></div>
-					<div class="contact-card__value"><?php esc_html_e( 'Hỗ trợ qua Fanpage', 'spl' ); ?></div>
+				<div class="contact-sheet-card__info">
+					<div class="contact-sheet-card__label"><?php esc_html_e( 'Facebook Messenger', 'spl' ); ?></div>
+					<div class="contact-sheet-card__value"><?php esc_html_e( 'Hỗ trợ qua Fanpage', 'spl' ); ?></div>
 				</div>
-				<span class="contact-card__action contact-card__action--messenger"><?php esc_html_e( 'Chat ngay', 'spl' ); ?></span>
+				<span class="contact-sheet-card__action contact-sheet-card__action--messenger"><?php esc_html_e( 'Chat ngay', 'spl' ); ?></span>
 			</a>
 
 			<!-- 4. Gửi Email hỗ trợ -->
-			<a href="mailto:<?php echo esc_attr( $email ); ?>" class="contact-card contact-card--email">
-				<div class="contact-card__icon contact-card__icon--email">
+			<a href="mailto:<?php echo esc_attr( $email ); ?>" class="contact-sheet-card contact-sheet-card--email">
+				<div class="contact-sheet-card__icon contact-sheet-card__icon--email">
 					<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 						<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
 					</svg>
 				</div>
-				<div class="contact-card__info">
-					<div class="contact-card__label"><?php esc_html_e( 'Gửi Email hỗ trợ', 'spl' ); ?></div>
-					<div class="contact-card__value"><?php echo esc_html( $email ); ?></div>
+				<div class="contact-sheet-card__info">
+					<div class="contact-sheet-card__label"><?php esc_html_e( 'Gửi Email hỗ trợ', 'spl' ); ?></div>
+					<div class="contact-sheet-card__value"><?php echo esc_html( $email ); ?></div>
 				</div>
-				<span class="contact-card__action contact-card__action--email"><?php esc_html_e( 'Gửi mail', 'spl' ); ?></span>
+				<span class="contact-sheet-card__action contact-sheet-card__action--email"><?php esc_html_e( 'Gửi mail', 'spl' ); ?></span>
 			</a>
 		</div>
 
