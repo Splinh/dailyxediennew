@@ -16,11 +16,11 @@ use WP\MCP\Infrastructure\ErrorHandling\McpErrorFactory;
  */
 class SystemHandler {
 	/**
-	 * Handles the ping request.
+	 * Handle the ping request.
 	 *
-	 * @param int $request_id Optional. The request ID for JSON-RPC. Default 0.
+	 * @param int $request_id The request ID for JSON-RPC.
 	 *
-	 * @return array Empty result array per MCP specification.
+	 * @return array
 	 */
 	public function ping( int $request_id = 0 ): array {
 		// According to MCP specification, ping returns an empty result.
@@ -28,12 +28,12 @@ class SystemHandler {
 	}
 
 	/**
-	 * Handles the logging/setLevel request.
+	 * Handle the logging/setLevel request.
 	 *
 	 * @param array $params     Request parameters.
-	 * @param int   $request_id Optional. The request ID for JSON-RPC. Default 0.
+	 * @param int   $request_id The request ID for JSON-RPC.
 	 *
-	 * @return array Response with error if level parameter is missing, empty array otherwise.
+	 * @return array
 	 */
 	public function set_logging_level( array $params, int $request_id = 0 ): array {
 		if ( ! isset( $params['params']['level'] ) && ! isset( $params['level'] ) ) {
@@ -46,11 +46,11 @@ class SystemHandler {
 	}
 
 	/**
-	 * Handles the completion/complete request.
+	 * Handle the completion/complete request.
 	 *
-	 * @param int $request_id Optional. The request ID for JSON-RPC. Default 0.
+	 * @param int $request_id The request ID for JSON-RPC.
 	 *
-	 * @return array Completion response array.
+	 * @return array
 	 */
 	public function complete( int $request_id = 0 ): array {
 		// Implement completion logic here.
@@ -59,11 +59,11 @@ class SystemHandler {
 	}
 
 	/**
-	 * Handles the roots/list request.
+	 * Handle the roots/list request.
 	 *
-	 * @param int $request_id Optional. The request ID for JSON-RPC. Default 0.
+	 * @param int $request_id The request ID for JSON-RPC.
 	 *
-	 * @return array Response with roots list.
+	 * @return array
 	 */
 	public function list_roots( int $request_id = 0 ): array {
 		// Implement roots listing logic here.
@@ -75,12 +75,12 @@ class SystemHandler {
 	}
 
 	/**
-	 * Handles method not found errors.
+	 * Handle method not found errors.
 	 *
 	 * @param array $params     Request parameters.
-	 * @param int   $request_id Optional. The request ID for JSON-RPC. Default 0.
+	 * @param int   $request_id The request ID for JSON-RPC.
 	 *
-	 * @return array Response with method not found error.
+	 * @return array
 	 */
 	public function method_not_found( array $params, int $request_id = 0 ): array {
 		$method = $params['method'] ?? 'unknown';

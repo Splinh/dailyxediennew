@@ -37,11 +37,11 @@ class ResourcesHandler {
 
 
 	/**
-	 * Handles the resources/list request.
+	 * Handle the resources/list request.
 	 *
-	 * @param int $request_id Optional. The request ID for JSON-RPC. Default 0.
+	 * @param int $request_id The request ID for JSON-RPC.
 	 *
-	 * @return array Response with resources list and metadata.
+	 * @return array
 	 */
 	public function list_resources( int $request_id = 0 ): array {
 		// Get the registered resources from the MCP instance and extract only the args.
@@ -60,12 +60,12 @@ class ResourcesHandler {
 	}
 
 	/**
-	 * Handles the resources/read request.
+	 * Handle the resources/read request.
 	 *
-	 * @param array $params     Request parameters.
-	 * @param int   $request_id Optional. The request ID for JSON-RPC. Default 0.
+	 * @param array $params Request parameters.
+	 * @param int $request_id The request ID for JSON-RPC.
 	 *
-	 * @return array Response with resource contents or error.
+	 * @return array
 	 */
 	public function read_resource( array $params, int $request_id = 0 ): array {
 		// Extract parameters using helper method.

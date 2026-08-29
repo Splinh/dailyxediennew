@@ -17,6 +17,12 @@ Routing layer only. Do not load every skill by default.
 - Vite, Tailwind, SCSS/BEM, JS, FX loaders, frontend WC, AJAX, CLS: `.agent/skills/frontend/SKILL.md`.
 - PHP syntax, imports, types, callbacks, hook removability: `.agent/skills/php/SKILL.md`.
 
+## Environment & VPS Details
+
+- **Development Subdomain**: `dailynew.bluerabike.com`
+- **VPS Target Directory**: `/www/wwwroot/dailynew.bluerabike.com`
+- **Git Remote**: `https://github.com/Splinh/dailyxediennew.git` (`main` branch)
+
 ## Workspace Rules
 
 - Keep code and durable docs in English.

@@ -57,9 +57,11 @@ final class DiscoverAbilitiesAbility {
 				'execute_callback'    => array( self::class, 'execute' ),
 				'meta'                => array(
 					'annotations' => array(
-						'readonly'    => true,
-						'destructive' => false,
-						'idempotent'  => true,
+						'priority'        => '1.0',
+						'readOnlyHint'    => true,
+						'destructiveHint' => false,
+						'idempotentHint'  => true,
+						'openWorldHint'   => false,
 					),
 				),
 			)

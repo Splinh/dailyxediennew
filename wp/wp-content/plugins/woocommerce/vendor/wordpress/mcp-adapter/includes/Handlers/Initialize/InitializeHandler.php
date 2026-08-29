@@ -33,11 +33,11 @@ class InitializeHandler {
 	}
 
 	/**
-	 * Handles the initialize request.
+	 * Handle the initialize request.
 	 *
-	 * @param int $request_id Optional. The request ID for JSON-RPC. Default 0.
+	 * @param int $request_id The request ID for JSON-RPC.
 	 *
-	 * @return array Response with server capabilities and information.
+	 * @return array
 	 */
 	public function handle( int $request_id = 0 ): array {
 		$server_info = array(

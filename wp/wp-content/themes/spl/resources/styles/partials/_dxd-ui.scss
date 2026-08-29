@@ -975,76 +975,210 @@
 	color: #059669;
 }
 
-/* Contact Simple Panel Layout */
-.contact-content-layout-simple {
-	padding: 1.25rem;
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-	padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+/* ==========================================================================
+   Contact Slide-Up Sheet Panel (Modern Card Style)
+   ========================================================================== */
+
+#contact-panel.contact-sheet-panel {
+	border-radius: 1.25rem 1.25rem 0 0;
+	background: #ffffff;
 }
 
-.contact-option-row {
+.contact-drag-indicator {
+	width: 38px;
+	height: 4px;
+	background: #cbd5e1;
+	border-radius: 9999px;
+	margin: 10px auto 2px;
+}
+
+#contact-panel .contact-header {
 	display: flex;
 	align-items: center;
-	gap: 1rem;
-	padding: 0.875rem;
-	border: 1px solid #e3e8ef;
-	border-radius: 0.5rem;
-	text-decoration: none;
-	transition: all 0.2s;
+	justify-content: space-between;
+	padding: 0.625rem 1.25rem 0.5rem;
+	border-bottom: 1px solid #f1f5f9;
+	background: #fff;
+	height: auto;
 }
 
-.contact-option-row:active,
-.contact-option-row:hover {
-	background: #f8fafc;
-	border-color: #0758b7;
+.contact-title-wrap {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
 }
 
-.contact-option-icon {
-	width: 2.5rem;
-	height: 2.5rem;
-	border-radius: 50%;
+.contact-title-icon {
+	color: #ea580c;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-size: 1.15rem;
-	flex-shrink: 0;
 }
 
-.contact-option-icon.hotline {
-	background: #fef2f2;
-	color: #dc2626;
-}
-
-.contact-option-icon.zalo {
-	background: #eff6ff;
-	color: #0758b7;
-}
-
-.contact-option-icon.email {
-	background: #f5f3ff;
-	color: #8b5cf6;
-}
-
-.contact-option-info {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-
-.contact-option-info h5 {
-	font-size: 0.75rem;
+#contact-panel .contact-header h3 {
+	font-size: 1rem;
 	font-weight: 700;
-	color: #172033;
+	color: #0f172a;
 	margin: 0;
 }
 
-.contact-option-info p {
-	font-size: 0.625rem;
+#contact-panel .contact-content-layout-simple {
+	padding: 0.75rem 1.25rem 1.5rem;
+	padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+	display: flex;
+	flex-direction: column;
+	max-height: calc(85vh - 3.5rem);
+	overflow-y: auto;
+}
+
+.contact-sheet-desc {
+	font-size: 0.8125rem;
 	color: #64748b;
-	margin: 0.15rem 0 0 0;
-	font-weight: 600;
+	text-align: center;
+	margin: 0.5rem 0 0.875rem 0;
+	line-height: 1.45;
+}
+
+.contact-cards-grid {
+	display: flex;
+	flex-direction: column;
+	gap: 0.625rem;
+}
+
+.contact-card {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	padding: 0.75rem 1rem;
+	background: #ffffff;
+	border: 1px solid #e2e8f0;
+	border-radius: 0.875rem;
+	text-decoration: none;
+	box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+	transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-card:active {
+	transform: scale(0.98);
+}
+
+.contact-card:hover {
+	border-color: #cbd5e1;
+	box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+}
+
+.contact-card__icon {
+	width: 2.75rem;
+	height: 2.75rem;
+	border-radius: 0.625rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+}
+
+.contact-card__icon--hotline {
+	background: #fff7ed;
+	color: #ea580c;
+}
+
+.contact-card__icon--zalo,
+.contact-card__icon--messenger {
+	background: transparent;
+	padding: 0;
+	border-radius: 50%;
+}
+
+.contact-card__icon--zalo svg,
+.contact-card__icon--messenger svg {
+	width: 2.75rem;
+	height: 2.75rem;
+	border-radius: 50%;
+}
+
+.contact-card--email .contact-card__icon {
+	background: #e0f2fe;
+	color: #0284c7;
+}
+
+.contact-card__info {
+	flex: 1;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+.contact-card__label {
+	font-size: 0.6875rem;
+	color: #64748b;
+	font-weight: 500;
+	margin-bottom: 0.125rem;
+}
+
+.contact-card__value {
+	font-size: 0.875rem;
+	font-weight: 700;
+	color: #0f172a;
+	line-height: 1.25;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.contact-card__action {
+	font-size: 0.75rem;
+	font-weight: 700;
+	padding: 0.375rem 0.875rem;
+	border-radius: 9999px;
+	white-space: nowrap;
+	flex-shrink: 0;
+	transition: opacity 0.2s ease;
+}
+
+.contact-card__action--hotline {
+	color: #ea580c;
+	background: #fff7ed;
+}
+
+.contact-card__action--zalo {
+	color: #0068ff;
+	background: #eff6ff;
+}
+
+.contact-card__action--messenger {
+	color: #0084ff;
+	background: #eff6ff;
+}
+
+.contact-card__action--email {
+	color: #0284c7;
+	background: #f0f9ff;
+}
+
+.contact-sheet-footer {
+	margin-top: 0.875rem;
+	padding-top: 0.75rem;
+	border-top: 1px dashed #e2e8f0;
+}
+
+.contact-work-time {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.375rem;
+	font-size: 0.725rem;
+	color: #64748b;
+	text-align: center;
+	line-height: 1.4;
+}
+
+.contact-work-time svg {
+	color: #94a3b8;
+}
+
+.contact-work-time strong {
+	color: #334155;
+	font-weight: 700;
 }
 
 /* Swiper Custom Button Fix */

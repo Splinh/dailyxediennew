@@ -16,7 +16,7 @@ use WP\MCP\Infrastructure\ErrorHandling\McpErrorFactory;
  */
 trait HandlerHelperTrait {
 	/**
-	 * Extracts parameters from a request message.
+	 * Extract parameters from a request message.
 	 *
 	 * Handles both direct params and nested params structure for backward compatibility.
 	 * This normalizes the dual parameter patterns found throughout handlers.
@@ -30,14 +30,14 @@ trait HandlerHelperTrait {
 	}
 
 	/**
-	 * Creates a standardized error response.
+	 * Create a standardized error response.
 	 *
 	 * This helper ensures all error responses follow the same format and
 	 * properly extract the error field from McpErrorFactory responses.
 	 *
-	 * @param int    $code       Error code.
-	 * @param string $message    Error message.
-	 * @param int    $request_id Optional. Request ID for JSON-RPC. Default 0.
+	 * @param int $code Error code.
+	 * @param string $message Error message.
+	 * @param int $request_id Request ID for JSON-RPC.
 	 *
 	 * @return array Error response array with 'error' key.
 	 */
@@ -52,7 +52,7 @@ trait HandlerHelperTrait {
 	}
 
 	/**
-	 * Extracts error array from McpErrorFactory response.
+	 * Extract error array from McpErrorFactory response.
 	 *
 	 * McpErrorFactory methods return ['error' => [...]] but handlers
 	 * often need just the error array itself.
@@ -66,10 +66,10 @@ trait HandlerHelperTrait {
 	}
 
 	/**
-	 * Creates missing parameter error response.
+	 * Create missing parameter error response.
 	 *
 	 * @param string $param_name Missing parameter name.
-	 * @param int    $request_id Optional. Request ID for JSON-RPC. Default 0.
+	 * @param int $request_id Request ID for JSON-RPC.
 	 *
 	 * @return array Error response array.
 	 */
@@ -78,10 +78,10 @@ trait HandlerHelperTrait {
 	}
 
 	/**
-	 * Creates permission denied error response.
+	 * Create permission denied error response.
 	 *
 	 * @param string $denied_resource Resource that was denied.
-	 * @param int    $request_id      Optional. Request ID for JSON-RPC. Default 0.
+	 * @param int $request_id Request ID for JSON-RPC.
 	 *
 	 * @return array Error response array.
 	 */
@@ -90,10 +90,10 @@ trait HandlerHelperTrait {
 	}
 
 	/**
-	 * Creates internal error response.
+	 * Create internal error response.
 	 *
-	 * @param string $message    Error message.
-	 * @param int    $request_id Optional. Request ID for JSON-RPC. Default 0.
+	 * @param string $message Error message.
+	 * @param int $request_id Request ID for JSON-RPC.
 	 *
 	 * @return array Error response array.
 	 */
@@ -102,7 +102,7 @@ trait HandlerHelperTrait {
 	}
 
 	/**
-	 * Creates a standardized success response.
+	 * Create a standardized success response.
 	 *
 	 * @param mixed $data Response data.
 	 *

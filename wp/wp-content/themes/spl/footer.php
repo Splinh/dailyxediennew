@@ -38,6 +38,15 @@ $youtube_url  = Helper::getField( 'youtube_url', 'option' ) ?: 'https://www.yout
 $tiktok_url   = Helper::getField( 'tiktok_url', 'option' ) ?: 'https://www.tiktok.com/@dailyxedienhcm';
 $zalo_url     = Helper::getField( 'zalo_url', 'option' ) ?: 'https://zalo.me/0933505222';
 
+$messenger_url = Helper::getField( 'messenger_url', 'option' );
+if ( empty( $messenger_url ) ) {
+	$fb_clean      = untrailingslashit( (string) $facebook_url );
+	$fb_path       = preg_replace( '#^https?://(www\.)?(facebook\.com|fb\.com)/#i', '', $fb_clean );
+	$messenger_url = ! empty( $fb_path ) ? 'https://m.me/' . $fb_path : 'https://m.me/DaiLyXeDien';
+}
+$working_hours = Helper::getField( 'working_hours', 'option' ) ?: '08:00 - 21:00';
+$working_days  = Helper::getField( 'working_days', 'option' ) ?: __( 'Tất cả các ngày trong tuần', 'spl' );
+
 // Brand-style social icons (official brand colors & vector SVGs).
 $footer_socials = [
 	'facebook' => [ 'url' => $facebook_url, 'label' => 'Facebook', 'bg' => 'bg-[#1877f2] hover:bg-[#1567d3]', 'svg' => '<path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>' ],
@@ -208,10 +217,9 @@ get_template_part( 'parts/global/company-activity' );
 
 <!-- ===== MOBILE BOTTOM NAV ===== -->
 <?php
-$cart_count_footer = ( class_exists( 'WooCommerce' ) && WC()->cart ) ? WC()->cart->get_cart_contents_count() : 0;
-$is_home           = is_front_page() || is_home();
-$is_shop           = function_exists( 'is_shop' ) && ( is_shop() || is_product_category() || is_product_tag() || is_product() );
-$is_dealer         = is_page( 'he-thong-cua-hang' ) || is_post_type_archive( 'local_store' ) || is_singular( 'local_store' );
+$is_home   = is_front_page() || is_home();
+$is_shop   = function_exists( 'is_shop' ) && ( is_shop() || is_product_category() || is_product_tag() || is_product() );
+$is_dealer = is_page( 'he-thong-cua-hang' ) || is_post_type_archive( 'local_store' ) || is_singular( 'local_store' );
 ?>
 <nav id="mobile-bottom-nav" aria-label="<?php esc_attr_e( 'Menu di động', 'spl' ); ?>">
 	<a href="<?php echo esc_url( home_url( '/' ) ); ?>"<?php echo $is_home ? ' class="active"' : ''; ?>>
@@ -231,15 +239,8 @@ $is_dealer         = is_page( 'he-thong-cua-hang' ) || is_post_type_archive( 'lo
 		<span><?php esc_html_e( 'Đại lý', 'spl' ); ?></span>
 	</button>
 	<button type="button" data-contact-panel-open>
-		<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+		<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
 		<span><?php esc_html_e( 'Liên hệ', 'spl' ); ?></span>
-	</button>
-	<button type="button" data-cart-open class="relative">
-		<?php echo spl_icon( 'cart', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-		<span><?php esc_html_e( 'Giỏ hàng', 'spl' ); ?></span>
-		<?php if ( $cart_count_footer > 0 ) : ?>
-			<span class="dxd-bottom-nav__badge" data-cart-count><?php echo esc_html( (string) $cart_count_footer ); ?></span>
-		<?php endif; ?>
 	</button>
 </nav>
 
@@ -562,41 +563,93 @@ $is_dealer         = is_page( 'he-thong-cua-hang' ) || is_post_type_archive( 'lo
 
 <!-- ===== CONTACT SLIDE-UP PANEL (Mobile) ===== -->
 <div id="contact-panel-overlay" data-contact-panel-close></div>
-<div id="contact-panel">
+<div id="contact-panel" class="contact-sheet-panel">
+	<div class="contact-drag-indicator"></div>
 	<div class="contact-header">
-		<h3><?php esc_html_e( 'Liên Hệ & Hỗ Trợ', 'spl' ); ?></h3>
+		<div class="contact-title-wrap">
+			<span class="contact-title-icon">
+				<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+					<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+				</svg>
+			</span>
+			<h3><?php printf( esc_html__( 'Liên hệ %s', 'spl' ), esc_html( get_bloginfo( 'name' ) ) ); ?></h3>
+		</div>
 		<button type="button" data-contact-panel-close aria-label="<?php esc_attr_e( 'Đóng', 'spl' ); ?>">
 			<?php echo spl_icon( 'close', 'w-4 h-4' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</button>
 	</div>
 	<div class="contact-content-layout-simple">
-		<a href="<?php echo esc_url( $hotline_url ); ?>" class="contact-option-row">
-			<div class="contact-option-icon hotline">
-				<?php echo spl_icon( 'phone', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		<p class="contact-sheet-desc"><?php esc_html_e( 'Chúng tôi luôn sẵn sàng hỗ trợ & tư vấn cho bạn mọi lúc mọi nơi!', 'spl' ); ?></p>
+		
+		<div class="contact-cards-grid">
+			<!-- 1. Hotline -->
+			<a href="<?php echo esc_url( $hotline_url ); ?>" class="contact-card contact-card--hotline">
+				<div class="contact-card__icon contact-card__icon--hotline">
+					<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+					</svg>
+				</div>
+				<div class="contact-card__info">
+					<div class="contact-card__label"><?php esc_html_e( 'Hotline tư vấn (Miễn phí)', 'spl' ); ?></div>
+					<div class="contact-card__value"><?php echo esc_html( $hotline_display ); ?></div>
+				</div>
+				<span class="contact-card__action contact-card__action--hotline"><?php esc_html_e( 'Gọi ngay', 'spl' ); ?></span>
+			</a>
+
+			<!-- 2. Chat Zalo Official -->
+			<a href="<?php echo esc_url( $zalo_url ); ?>" target="_blank" rel="noopener noreferrer" class="contact-card contact-card--zalo">
+				<div class="contact-card__icon contact-card__icon--zalo">
+					<svg class="w-10 h-10" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+						<circle cx="24" cy="24" r="24" fill="#0068FF"/>
+						<text x="50%" y="58%" dominant-baseline="middle" text-anchor="middle" font-size="22" font-weight="900" fill="white" font-family="system-ui, -apple-system, sans-serif">Z</text>
+					</svg>
+				</div>
+				<div class="contact-card__info">
+					<div class="contact-card__label"><?php esc_html_e( 'Chat Zalo Official', 'spl' ); ?></div>
+					<div class="contact-card__value"><?php esc_html_e( 'Tư vấn trực tiếp 24/7', 'spl' ); ?></div>
+				</div>
+				<span class="contact-card__action contact-card__action--zalo"><?php esc_html_e( 'Nhắn Zalo', 'spl' ); ?></span>
+			</a>
+
+			<!-- 3. Facebook Messenger -->
+			<a href="<?php echo esc_url( $messenger_url ); ?>" target="_blank" rel="noopener noreferrer" class="contact-card contact-card--messenger">
+				<div class="contact-card__icon contact-card__icon--messenger">
+					<svg class="w-10 h-10" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+						<circle cx="24" cy="24" r="24" fill="#0084FF"/>
+						<path d="M24 10C16.27 10 10 15.9 10 23.18c0 4.22 2.1 7.98 5.38 10.46V38l4.9-2.7c1.31.36 2.7.56 4.13.56 7.73 0 14-5.9 14-13.18C38 15.9 31.73 10 24 10zm1.4 17.74l-3.56-3.8-6.95 3.8 7.64-8.11 3.65 3.8 6.86-3.8-7.64 8.11z" fill="white"/>
+					</svg>
+				</div>
+				<div class="contact-card__info">
+					<div class="contact-card__label"><?php esc_html_e( 'Facebook Messenger', 'spl' ); ?></div>
+					<div class="contact-card__value"><?php esc_html_e( 'Hỗ trợ qua Fanpage', 'spl' ); ?></div>
+				</div>
+				<span class="contact-card__action contact-card__action--messenger"><?php esc_html_e( 'Chat ngay', 'spl' ); ?></span>
+			</a>
+
+			<!-- 4. Gửi Email hỗ trợ -->
+			<a href="mailto:<?php echo esc_attr( $email ); ?>" class="contact-card contact-card--email">
+				<div class="contact-card__icon contact-card__icon--email">
+					<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+					</svg>
+				</div>
+				<div class="contact-card__info">
+					<div class="contact-card__label"><?php esc_html_e( 'Gửi Email hỗ trợ', 'spl' ); ?></div>
+					<div class="contact-card__value"><?php echo esc_html( $email ); ?></div>
+				</div>
+				<span class="contact-card__action contact-card__action--email"><?php esc_html_e( 'Gửi mail', 'spl' ); ?></span>
+			</a>
+		</div>
+
+		<!-- Footer work time info -->
+		<div class="contact-sheet-footer">
+			<div class="contact-work-time">
+				<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+					<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+				</svg>
+				<span><?php printf( esc_html__( 'Thời gian làm việc: %s (%s)', 'spl' ), '<strong>' . esc_html( $working_hours ) . '</strong>', esc_html( $working_days ) ); ?></span>
 			</div>
-			<div class="contact-option-info">
-				<h5><?php esc_html_e( 'Gọi Hotline mua hàng', 'spl' ); ?></h5>
-				<p><?php echo esc_html( $hotline_display ); ?></p>
-			</div>
-		</a>
-		<a href="<?php echo esc_url( $zalo_url ); ?>" target="_blank" class="contact-option-row">
-			<div class="contact-option-icon zalo">
-				<?php echo spl_icon( 'zalo', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-			</div>
-			<div class="contact-option-info">
-				<h5><?php esc_html_e( 'Trò chuyện qua Zalo', 'spl' ); ?></h5>
-				<p><?php esc_html_e( 'Giải đáp thắc mắc & mua hàng nhanh', 'spl' ); ?></p>
-			</div>
-		</a>
-		<a href="<?php echo esc_url( home_url( '/lien-he/' ) ); ?>" class="contact-option-row">
-			<div class="contact-option-icon email">
-				<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-			</div>
-			<div class="contact-option-info">
-				<h5><?php esc_html_e( 'Gửi Form Liên Hệ', 'spl' ); ?></h5>
-				<p><?php esc_html_e( 'Góp ý hoặc yêu cầu hỗ trợ trực tuyến', 'spl' ); ?></p>
-			</div>
-		</a>
+		</div>
 	</div>
 </div>
 
