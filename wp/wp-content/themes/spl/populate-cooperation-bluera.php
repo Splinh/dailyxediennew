@@ -17,12 +17,24 @@ if ( ! function_exists( 'update_field' ) ) {
 echo "=== START POPULATE COOPERATION PAGE (BLUERA VIỆT NHẬT) ===" . PHP_EOL;
 
 // 1. Get or create the Cooperation page
-$page = get_page_by_path( 'co-hoi-hop-tac' );
+$page = get_page_by_path( 'hop-tac' ) ?: get_page_by_path( 'co-hoi-hop-tac' );
+
+if ( ! $page ) {
+	$found = get_posts( [
+		'post_type'   => 'page',
+		'meta_key'    => '_wp_page_template',
+		'meta_value'  => 'templates/template-page-cooperation.php',
+		'numberposts' => 1,
+	] );
+	if ( ! empty( $found ) ) {
+		$page = $found[0];
+	}
+}
 
 if ( ! $page ) {
 	$page_id = wp_insert_post( [
 		'post_title'   => 'Cơ Hội Hợp Tác',
-		'post_name'    => 'co-hoi-hop-tac',
+		'post_name'    => 'hop-tac',
 		'post_status'  => 'publish',
 		'post_type'    => 'page',
 		'page_template' => 'templates/template-page-cooperation.php',
@@ -32,7 +44,7 @@ if ( ! $page ) {
 	$page_id = $page->ID;
 	// Ensure template is assigned
 	update_post_meta( $page_id, '_wp_page_template', 'templates/template-page-cooperation.php' );
-	echo "✓ Found existing page 'Cơ Hội Hợp Tác' (ID: $page_id)" . PHP_EOL;
+	echo "✓ Found existing page '" . get_the_title( $page_id ) . "' (ID: $page_id, slug: " . get_post_field( 'post_name', $page_id ) . ")" . PHP_EOL;
 }
 
 // 2. Build rich cooperation_sections ACF Flexible Content array
@@ -224,6 +236,9 @@ update_field( 'cooperation_sections', $cooperation_sections, $page_id );
 // Flush rewrite rules so page permalink works immediately
 flush_rewrite_rules( true );
 
-echo "✓ Populated ACF field 'cooperation_sections' on Page ID $page_id" . PHP_EOL;
-echo "✓ Flushed WordPress rewrite rules" . PHP_EOL;
+if ( class_exists( '\SPL\Features\Optimizer\PageCache' ) ) {
+	\SPL\Features\Optimizer\PageCache::purgeAll();
+}
+
+echo "✓ Flushed all caches (LiteSpeed, PageCache, Redis)" . PHP_EOL;
 echo "=== POPULATE COOPERATION PAGE COMPLETED ===" . PHP_EOL;

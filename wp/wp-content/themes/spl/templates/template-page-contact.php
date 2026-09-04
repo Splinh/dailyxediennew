@@ -43,18 +43,12 @@ if ( ! empty( $sections ) && is_array( $sections ) ) :
 		endswitch;
 	endforeach;
 else :
-	while ( have_posts() ) :
-		the_post();
-		if ( get_the_content() ) :
-			?>
-			<div class="container py-8">
-				<div class="prose max-w-none">
-					<?php the_content(); ?>
-				</div>
-			</div>
-			<?php
-		endif;
-	endwhile;
+	// Fallback when ACF not configured.
+	get_template_part( 'parts/contact/hero' );
+	get_template_part( 'parts/contact/info' );
+	get_template_part( 'parts/contact/locations' );
+	get_template_part( 'parts/contact/form' );
+	get_template_part( 'parts/contact/faq' );
 endif;
 
 get_footer();

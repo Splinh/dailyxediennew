@@ -47,18 +47,12 @@ get_header();
 			endswitch;
 		endforeach;
 	else :
-		while ( have_posts() ) :
-			the_post();
-			if ( get_the_content() ) :
-				?>
-				<div class="container py-8">
-					<div class="prose max-w-none">
-						<?php the_content(); ?>
-					</div>
-				</div>
-				<?php
-			endif;
-		endwhile;
+		// Fallbacks when ACF not configured.
+		get_template_part( 'parts/cooperation/hero' );
+		get_template_part( 'parts/cooperation/benefits' );
+		get_template_part( 'parts/cooperation/packages' );
+		get_template_part( 'parts/cooperation/process' );
+		get_template_part( 'parts/cooperation/register-form' );
 	endif;
 	?>
 </main>
