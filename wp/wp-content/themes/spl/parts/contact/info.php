@@ -29,7 +29,7 @@ $cards = ! empty( $data['cards'] ) ? $data['cards'] : [
 	[
 		'title' => 'Showroom chính',
 		'value' => '466 Nguyễn Duy Trinh, Thủ Đức',
-		'note'  => 'Mở cửa: 8:00 – 21:00',
+		'note'  => 'Mở cửa: 8:00 – 17:00 (Thứ 2 – Chủ nhật)',
 	],
 ];
 

@@ -88,7 +88,7 @@ defined( 'ABSPATH' ) || exit;
 							</div>
 							<div>
 								<p class="text-xs text-slate-400 font-medium">Thời gian làm việc</p>
-								<p class="text-sm font-bold text-slate-700" id="location-hours">8:00 – 21:00 (T2–CN)</p>
+								<p class="text-sm font-bold text-slate-700" id="location-hours">8:00 – 17:00 (Thứ 2 – Chủ nhật)</p>
 							</div>
 						</div>
 					</div>
@@ -130,7 +130,7 @@ defined( 'ABSPATH' ) || exit;
 			address: '466 Nguyễn Duy Trinh, P. Bình Trưng Đông, TP. Thủ Đức, TP.HCM',
 			phone: '0933 505 222',
 			fax: '—',
-			hours: '8:00 – 21:00 (T2–CN)',
+			hours: '8:00 – 17:00 (Thứ 2 – Chủ nhật)',
 			mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.522888177579!2d106.77353957591631!3d10.772594659223707!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752701b22e17eb%3A0xe54e38e6583d73b!2zNDY2IE5ndXnhu4VuIER1eSBUcmluaCwgQsOsbmggVHLGsG5nIMSQw7RuZywgUXXhuq1uIDIsIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2svn!4v1710000000000!5m2!1svi!2svn',
 			directionUrl: 'https://maps.google.com/?q=466+Nguyễn+Duy+Trinh+Thủ+Đức'
 		},

@@ -44,8 +44,8 @@ if ( empty( $messenger_url ) ) {
 	$fb_path       = preg_replace( '#^https?://(www\.)?(facebook\.com|fb\.com)/#i', '', $fb_clean );
 	$messenger_url = ! empty( $fb_path ) ? 'https://m.me/' . $fb_path : 'https://m.me/DaiLyXeDien';
 }
-$working_hours = Helper::getField( 'working_hours', 'option' ) ?: '08:00 - 21:00';
-$working_days  = Helper::getField( 'working_days', 'option' ) ?: __( 'Tất cả các ngày trong tuần', 'spl' );
+$working_hours = Helper::getField( 'working_hours', 'option' ) ?: '8:00 - 17:00';
+$working_days  = Helper::getField( 'working_days', 'option' ) ?: __( 'Thứ 2 - Chủ nhật', 'spl' );
 
 // Brand-style social icons (official brand colors & vector SVGs).
 $footer_socials = [

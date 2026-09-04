@@ -170,7 +170,7 @@ final class SEO {
 						'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
 					],
 					'opens'     => '08:00',
-					'closes'    => '21:00',
+					'closes'    => '17:00',
 				]
 			],
 		];
