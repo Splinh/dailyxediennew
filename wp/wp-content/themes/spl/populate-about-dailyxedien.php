@@ -345,4 +345,9 @@ if ( function_exists( 'clean_post_cache' ) ) {
 	clean_post_cache( $page_id );
 }
 
+if ( class_exists( '\SPL\Features\Optimizer\PageCache' ) ) {
+	\SPL\Features\Optimizer\PageCache::purgeAll();
+}
+
+echo "✓ Flushed all caches (LiteSpeed, PageCache, Redis).\n";
 echo "=== FINISHED POPULATING ABOUT PAGE ===\n";
