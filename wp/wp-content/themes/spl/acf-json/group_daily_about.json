@@ -102,6 +102,71 @@
                             "default_value": "",
                             "maxlength": "",
                             "placeholder": ""
+                        },
+                        {
+                            "key": "field_daily_abh_stats",
+                            "label": "Chỉ số thống kê (Hero Stats)",
+                            "name": "stats",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "4 chỉ số hiển thị dưới banner (VD: 20+ Cửa hàng, 10K+ Khách hàng, 50+ Thương hiệu, 98% Hài lòng)",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "table",
+                            "min": 0,
+                            "max": 4,
+                            "button_label": "Thêm chỉ số",
+                            "rows_per_page": 20,
+                            "collapsed": "",
+                            "sub_fields": [
+                                {
+                                    "key": "field_daily_abh_stat_number",
+                                    "label": "Số liệu",
+                                    "name": "number",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "30",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "parent_repeater": "field_daily_abh_stats",
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "VD: 20+",
+                                    "prepend": "",
+                                    "append": ""
+                                },
+                                {
+                                    "key": "field_daily_abh_stat_label",
+                                    "label": "Nhãn",
+                                    "name": "label",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "70",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "parent_repeater": "field_daily_abh_stats",
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "VD: Cửa hàng",
+                                    "prepend": "",
+                                    "append": ""
+                                }
+                            ]
                         }
                     ],
                     "min": "",

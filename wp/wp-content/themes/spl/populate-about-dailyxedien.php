@@ -84,8 +84,14 @@ $about_sections = [
 		'acf_fc_layout' => 'about_hero',
 		'disable'       => 0,
 		'tag'           => 'Về chúng tôi',
-		'title'         => 'Công ty TNHH Xe Điện <span class="text-emerald-400">Bluera Việt Nhật</span>',
-		'description'   => 'Kính thưa Quý Khách hàng & Quý Đối tác — Đại Lý Xe Điện Bluera Việt Nhật được thành lập và hình thành trên nhu cầu thực tế về một đơn vị tiên phong trong lĩnh vực phân phối Xe điện của nhiều thương hiệu xe với chất lượng và giá thành tốt nhất và chế độ bảo hành cũng như chăm sóc về sau làm hài lòng mọi Khách hàng tại Việt Nam.',
+		'title'         => 'Về <span class="text-emerald-400">dailyxedien.vn</span>',
+		'description'   => 'Hệ thống phân phối xe điện, xe máy điện, xe 50cc chính hãng — tư vấn rõ ràng, giá minh bạch, hậu mãi dễ theo dõi.',
+		'stats'         => [
+			[ 'number' => '20+', 'label' => 'Cửa hàng' ],
+			[ 'number' => '10K+', 'label' => 'Khách hàng' ],
+			[ 'number' => '50+', 'label' => 'Thương hiệu' ],
+			[ 'number' => '98%', 'label' => 'Hài lòng' ],
+		],
 	],
 
 	// 2. STORY SECTION
