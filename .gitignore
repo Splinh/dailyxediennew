@@ -115,14 +115,16 @@ TEST*.xml
 *.csv
 *.xml
 .phpcs-cache
-tools/
-2026-master/
-hd-thamkhao/
-spl-thamkhao/
-New folder/
+/tools/
+/tools-thamkhao/
+/htmlmau/projectmau/
+/2026-master/
+/hd-thamkhao/
+/spl-thamkhao/
+/New folder/
 website/.tools/
 *.exe
-scratch/
+/scratch/
 inspect.php
 test-*.php
 test_*.php
