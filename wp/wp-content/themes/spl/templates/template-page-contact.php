@@ -15,9 +15,10 @@ get_header();
 ?>
 
 <?php
-$sections = Helper::getField( 'contact_sections' );
+$page_id  = get_queried_object_id() ?: get_the_ID();
+$sections = Helper::getField( 'contact_sections', $page_id );
 
-if ( $sections ) :
+if ( ! empty( $sections ) && is_array( $sections ) ) :
 	foreach ( $sections as $section ) :
 		// Skip disabled sections.
 		if ( ! empty( $section['disable'] ) ) :
@@ -41,14 +42,19 @@ if ( $sections ) :
 				break;
 		endswitch;
 	endforeach;
-
 else :
-	// Fallback when ACF not configured.
-	get_template_part( 'parts/contact/hero' );
-	get_template_part( 'parts/contact/info' );
-	get_template_part( 'parts/contact/locations' );
-	get_template_part( 'parts/contact/form' );
-	get_template_part( 'parts/contact/faq' );
+	while ( have_posts() ) :
+		the_post();
+		if ( get_the_content() ) :
+			?>
+			<div class="container py-8">
+				<div class="prose max-w-none">
+					<?php the_content(); ?>
+				</div>
+			</div>
+			<?php
+		endif;
+	endwhile;
 endif;
 
 get_footer();

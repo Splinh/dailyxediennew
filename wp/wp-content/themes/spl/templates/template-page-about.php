@@ -29,9 +29,10 @@ get_header();
 </div>
 
 <?php
-$sections = Helper::getField( 'about_sections' );
+$page_id  = get_queried_object_id() ?: get_the_ID();
+$sections = Helper::getField( 'about_sections', $page_id );
 
-if ( $sections ) :
+if ( ! empty( $sections ) && is_array( $sections ) ) :
 	foreach ( $sections as $section ) :
 		// Skip disabled sections.
 		if ( ! empty( $section['disable'] ) ) :
@@ -76,19 +77,20 @@ if ( $sections ) :
 				break;
 		endswitch;
 	endforeach;
-
 else :
-	// Fallback when ACF not configured.
-	get_template_part( 'parts/about/hero' );
-	get_template_part( 'parts/about/story' );
-	get_template_part( 'parts/about/ceo-message' );
-	get_template_part( 'parts/about/mission' );
-	get_template_part( 'parts/about/values' );
-	get_template_part( 'parts/about/why-choose-us' );
-	get_template_part( 'parts/about/timeline' );
-	get_template_part( 'parts/about/team' );
-	get_template_part( 'parts/about/partners' );
-	get_template_part( 'parts/about/cta' );
+	// When no ACF sections are configured, render default page content if available.
+	while ( have_posts() ) :
+		the_post();
+		if ( get_the_content() ) :
+			?>
+			<div class="container py-8">
+				<div class="prose max-w-none">
+					<?php the_content(); ?>
+				</div>
+			</div>
+			<?php
+		endif;
+	endwhile;
 endif;
 
 get_footer();

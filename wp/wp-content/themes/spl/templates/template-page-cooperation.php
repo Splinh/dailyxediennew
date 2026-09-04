@@ -17,9 +17,10 @@ get_header();
 
 <main id="partner-content" class="reveal">
 	<?php
-	$sections = Helper::getField( 'cooperation_sections' );
+	$page_id  = get_queried_object_id() ?: get_the_ID();
+	$sections = Helper::getField( 'cooperation_sections', $page_id );
 
-	if ( $sections ) :
+	if ( ! empty( $sections ) && is_array( $sections ) ) :
 		foreach ( $sections as $section ) :
 			if ( ! empty( $section['disable'] ) ) :
 				continue;
@@ -46,12 +47,18 @@ get_header();
 			endswitch;
 		endforeach;
 	else :
-		// Fallbacks when ACF not configured.
-		get_template_part( 'parts/cooperation/hero' );
-		get_template_part( 'parts/cooperation/benefits' );
-		get_template_part( 'parts/cooperation/packages' );
-		get_template_part( 'parts/cooperation/process' );
-		get_template_part( 'parts/cooperation/register-form' );
+		while ( have_posts() ) :
+			the_post();
+			if ( get_the_content() ) :
+				?>
+				<div class="container py-8">
+					<div class="prose max-w-none">
+						<?php the_content(); ?>
+					</div>
+				</div>
+				<?php
+			endif;
+		endwhile;
 	endif;
 	?>
 </main>

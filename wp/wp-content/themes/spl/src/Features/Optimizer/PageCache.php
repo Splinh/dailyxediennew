@@ -33,11 +33,20 @@ final class PageCache {
 	public static function register(): void {
 		// Always register purge hooks so they work in admin/CLI/cron/etc.
 		add_action( 'save_post', [ self::class, 'purgeAll' ] );
+		add_action( 'acf/save_post', [ self::class, 'purgeAll' ], 30 );
 		add_action( 'woocommerce_update_product', [ self::class, 'purgeAll' ] );
 		add_action( 'save_post_product', [ self::class, 'purgeProductCard' ] );
 		add_action( 'switch_theme', [ self::class, 'purgeAll' ] );
 		add_action( 'customize_save_after', [ self::class, 'purgeAll' ] );
 		add_action( 'hd_clear_all_cache', [ self::class, 'purgeAll' ] );
+
+		// Ensure LiteSpeed cache is instructed to purge on admin redirects after post updates.
+		add_filter( 'wp_redirect', function( string $location ): string {
+			if ( is_admin() && ! headers_sent() ) {
+				header( 'X-LiteSpeed-Purge: *' );
+			}
+			return $location;
+		}, 999 );
 
 		// Skip caching in development, admin, CLI, or logged-in users.
 		if (
@@ -130,9 +139,16 @@ final class PageCache {
 	 * Purge all cached pages.
 	 */
 	public static function purgeAll(): void {
-		// Purge LiteSpeed Cache if plugin is active.
+		// Purge LiteSpeed Cache if plugin is active or send web server purge header.
 		if ( has_action( 'litespeed_purge_all' ) ) {
 			do_action( 'litespeed_purge_all' );
+		} elseif ( ! headers_sent() ) {
+			header( 'X-LiteSpeed-Purge: *' );
+		}
+
+		// Flush object cache if persistent cache is active.
+		if ( function_exists( 'wp_cache_flush' ) ) {
+			wp_cache_flush();
 		}
 
 		// Purge footer fragment caches.
