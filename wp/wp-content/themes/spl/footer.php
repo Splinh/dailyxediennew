@@ -217,29 +217,42 @@ get_template_part( 'parts/global/company-activity' );
 
 <!-- ===== MOBILE BOTTOM NAV ===== -->
 <?php
-$is_home   = is_front_page() || is_home();
-$is_shop   = function_exists( 'is_shop' ) && ( is_shop() || is_product_category() || is_product_tag() || is_product() );
-$is_dealer = is_page( 'he-thong-cua-hang' ) || is_post_type_archive( 'local_store' ) || is_singular( 'local_store' );
+$is_home    = is_front_page() || is_home();
+$is_shop    = function_exists( 'is_shop' ) && ( is_shop() || is_product_category() || is_product_tag() || is_product() );
+$is_news    = is_singular( 'post' ) || ( is_home() && ! is_front_page() ) || is_category() || is_tag();
+$is_dealer  = is_page( 'he-thong-cua-hang' ) || is_post_type_archive( 'local_store' ) || is_singular( 'local_store' );
+$is_contact = is_page( 'lien-he' ) || is_page( 'contact' );
 ?>
 <nav id="mobile-bottom-nav" aria-label="<?php esc_attr_e( 'Menu di động', 'spl' ); ?>">
-	<a href="<?php echo esc_url( home_url( '/' ) ); ?>"<?php echo $is_home ? ' class="active"' : ''; ?>>
-		<?php echo spl_icon( 'bolt', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="nav-item nav-item--home<?php echo $is_home ? ' active' : ''; ?>">
+		<span class="nav-icon-wrap">
+			<?php echo spl_icon( 'bolt', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		</span>
 		<span><?php esc_html_e( 'Trang chủ', 'spl' ); ?></span>
 	</a>
-	<button type="button" data-cat-panel-open<?php echo $is_shop ? ' class="active"' : ''; ?>>
-		<?php echo spl_icon( 'menu', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+	<button type="button" data-cat-panel-open class="nav-item nav-item--cat<?php echo $is_shop ? ' active' : ''; ?>">
+		<span class="nav-icon-wrap">
+			<?php echo spl_icon( 'menu', 'w-5 h-5' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		</span>
 		<span><?php esc_html_e( 'Danh mục', 'spl' ); ?></span>
 	</button>
-	<button type="button" data-news-panel-open>
-		<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M16 8h2"/><path d="M16 12h2"/><path d="M16 16h2"/><path d="M6 8h6v8H6z"/></svg>
+	<button type="button" data-news-panel-open class="nav-item nav-item--news<?php echo $is_news ? ' active' : ''; ?>">
+		<span class="nav-icon-wrap">
+			<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M16 8h2"/><path d="M16 12h2"/><path d="M16 16h2"/><path d="M6 8h6v8H6z"/></svg>
+		</span>
 		<span><?php esc_html_e( 'Tin tức', 'spl' ); ?></span>
 	</button>
-	<button type="button" data-dealer-panel-open<?php echo $is_dealer ? ' class="active"' : ''; ?>>
-		<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+	<button type="button" data-dealer-panel-open class="nav-item nav-item--dealer<?php echo $is_dealer ? ' active' : ''; ?>">
+		<span class="nav-icon-wrap">
+			<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+		</span>
 		<span><?php esc_html_e( 'Đại lý', 'spl' ); ?></span>
 	</button>
-	<button type="button" data-contact-panel-open>
-		<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+	<button type="button" data-contact-panel-open class="nav-item nav-item--contact<?php echo $is_contact ? ' active' : ''; ?>">
+		<span class="nav-icon-wrap">
+			<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+			<span class="nav-hot-badge" aria-hidden="true"><span class="nav-pulse-ring"></span><span class="nav-pulse-dot"></span></span>
+		</span>
 		<span><?php esc_html_e( 'Liên hệ', 'spl' ); ?></span>
 	</button>
 </nav>

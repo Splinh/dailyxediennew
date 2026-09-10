@@ -336,11 +336,141 @@ if ( ! function_exists( 'wc_get_attribute_taxonomy_names' ) ) { return; }
 
 ---
 
+## BUG-021: Đổi slug trang hợp tác sang `hop-tac` — theme vẫn hardcode `/co-hoi-hop-tac/` → 404 🔴 ⬜
+
+**Ngày phát hiện**: 2026-09-07 (code review commit `2403c4ed`)
+**File liên quan**: `wp/wp-content/themes/spl/populate-cooperation-bluera.php:37`, `header.php:82,344`, `parts/global/mobile-drawer.php:92`, `inc/setup.php:52`
+
+**Triệu chứng**: Install mới chạy populate → trang "Cơ Hội Hợp Tác" được tạo tại `/hop-tac/`, nhưng mọi link "Hợp Tác" (topbar fallback, main menu header, mobile drawer) đều trỏ `/co-hoi-hop-tac/` → khách bấm vào 404. `inc/setup.php` fallback nav lookup `get_page_by_path('co-hoi-hop-tac')` không thấy → mất luôn item "Hợp Tác" trong menu.
+
+**Root cause**: Script đổi slug tạo trang thành `hop-tac` nhưng 4 vị trí trong theme vẫn hardcode URL `/co-hoi-hop-tac/`.
+
+**Khuyến nghị**: Thống nhất một slug, hoặc thay hardcode bằng lookup page theo path/template rồi dùng `get_permalink()`.
+
+---
+
+## BUG-022: Thêm section ACF bất kỳ ở trang liên hệ → mất hẳn block "Hệ thống cơ sở" 🔴 ⬜
+
+**Ngày phát hiện**: 2026-09-07 (code review commit `2403c4ed`)
+**File liên quan**: `wp/wp-content/themes/spl/templates/template-page-contact.php:49`, `acf-json/group_daily_contact.json`, `parts/contact/locations.php`
+
+**Triệu chứng**: Block 3 cơ sở (showroom + 2 nhà máy Đồng Nai, 228 dòng + bản đồ) chỉ được render bởi nhánh fallback khi ACF rỗng. Admin thêm 1 section bất kỳ (`contact_info`/`contact_form`/`contact_faq`) → `Helper::getField` trả non-empty → nhánh else không chạy → block biến mất khỏi trang, không có cách khôi phục qua editor.
+
+**Root cause**: Group ACF `group_daily_contact.json` không đăng ký layout `contact_locations`; switch trong template cũng không có case tương ứng.
+
+**Khuyến nghị**: Đăng ký layout `contact_locations` trong ACF group + thêm case trong switch của template.
+
+---
+
+## BUG-023: Card Zalo mặc định trỏ về `https://zalo.me/` trần (không số) 🟡 ⬜
+
+**Ngày phát hiện**: 2026-09-07 (code review commit `2403c4ed`)
+**File liên quan**: `wp/wp-content/themes/spl/parts/contact/info.php:57`
+
+**Triệu chứng**: Trang liên hệ khi ACF chưa cấu hình → click card "Chat Zalo" mở trang chủ `zalo.me` thay vì cửa sổ chat của shop.
+
+**Root cause**: Fallback label `'Nhắn tin ngay'` là truthy nên `?: '0933505222'` không chạy; `preg_replace('/[^0-9+]/', '')` xoá sạch mọi ký tự của label → chuỗi rỗng → link `https://zalo.me/`.
+
+**Khuyến nghị**: Đổi fallback thành số điện thoại (`0933505222`), hoặc chỉ build link khi giá trị là số.
+
+---
+
+## BUG-024: Populate in "✓ Flushed all caches" dù purge có thể no-op 🟡 ⬜
+
+**Ngày phát hiện**: 2026-09-07 (code review commit `2403c4ed`)
+**File liên quan**: `wp/wp-content/themes/spl/populate-cooperation-bluera.php:239-243`
+
+**Triệu chứng**: Chạy script qua WP-CLI trên môi trường thiếu class PageCache / không có action LiteSpeed / không có Redis → vẫn in dòng "✓ Flushed all caches (LiteSpeed, PageCache, Redis)". Operator tin cache đã sạch; production LiteSpeed tiếp tục phục vụ trang cũ tới 12h.
+
+**Root cause**: Dòng success in vô điều kiện, tách khỏi kết quả thật của từng bước purge (`class_exists` gate; `header('X-LiteSpeed-Purge: *')` là no-op trong CLI).
+
+**Khuyến nghị**: In success theo kết quả thật từng bước (PageCache loaded? LiteSpeed purged? object cache active?).
+
+---
+
+## BUG-025: Stage-3 lookup bypass Polylang → có thể ghi đè page sai ngôn ngữ 🟡 ⬜
+
+**Ngày phát hiện**: 2026-09-07 (code review commit `2403c4ed`)
+**File liên quan**: `wp/wp-content/themes/spl/populate-cooperation-bluera.php:23-46`
+
+**Triệu chứng**: Site đa ngôn ngữ có page hợp tác vi + en (không page nào ở slug mục tiêu): `get_posts()` lấy page mới nhất theo ngày (en) → `update_field` ghi đè data Bluera tiếng Việt lên page tiếng Anh, phá nội dung page đó; page tiếng Việt bị bỏ sót.
+
+**Root cause**: `get_posts()` mặc định `suppress_filters=true` bypass language scoping của Polylang; `numberposts=1` + `orderby date desc` chọn page theo ngày thay vì đúng ngôn ngữ/slug.
+
+**Khuyến nghị**: Truyền `'suppress_filters' => false` và lọc theo ngôn ngữ, hoặc lookup chính xác theo slug + lang.
+
+---
+
+## BUG-026: Bỏ fallback `the_content()` — nội dung editor không bao giờ hiện 🟡 ⬜
+
+**Ngày phát hiện**: 2026-09-07 (code review commit `2403c4ed`)
+**File liên quan**: `wp/wp-content/themes/spl/templates/template-page-contact.php:45`, `templates/template-page-cooperation.php:49`
+
+**Triệu chứng**: Admin viết nội dung vào editor của trang liên hệ/hợp tác (vd thông báo "Showroom tạm đóng để nâng cấp"), ACF chưa có section → nội dung đó không được xuất ra bất kỳ đâu trên trang.
+
+**Root cause**: Commit `2403c4ed` bỏ vòng fallback `the_content()` trong nhánh ACF-rỗng, thay bằng các part cứng — `$post->post_content` không còn được render.
+
+**Khuyến nghị**: Giữ `the_content()` trong nhánh fallback (trước hoặc sau các part).
+
+---
+
+## BUG-027: `wp_insert_post()` không check return → success giả khi tạo trang fail 🟡 ⬜
+
+**Ngày phát hiện**: 2026-09-07 (code review commit `2403c4ed`)
+**File liên quan**: `wp/wp-content/themes/spl/populate-cooperation-bluera.php:35-42`
+
+**Triệu chứng**: `wp_insert_post()` fail (trả 0 — slug conflict, hoặc filter `save_post` throw) → script vẫn in "✓ Created page ... (ID: 0)", mọi `update_field(..., 0)` no-op, script kết thúc "COMPLETED" → operator tưởng trang đã tạo, thực tế `/hop-tac/` 404.
+
+**Root cause**: Return value của `wp_insert_post()` không được kiểm tra.
+
+**Khuyến nghị**: Ngay sau khi tạo: `if (empty($page_id)) { WP_CLI::error(...); }` (hoặc die kèm lý do).
+
+---
+
+## BUG-028: Case `contact_hero` là dead code — không có layout ACF tương ứng 🟢 ⬜
+
+**Ngày phát hiện**: 2026-09-07 (code review commit `2403c4ed`)
+**File liên quan**: `wp/wp-content/themes/spl/templates/template-page-contact.php:31-33`, `acf-json/group_daily_contact.json`
+
+**Triệu chứng**: Không tồn tại layout `contact_hero` nào trong group ACF → case không bao giờ chạy. Developer nhìn vào sẽ tưởng hero là ACF-managed rồi chỉnh `parts/contact/hero.php` hoặc populate hero layout (sẽ không render) — thực tế hero chỉ render qua fallback không-args.
+
+**Root cause**: Case giữ trong switch dù layout không được đăng ký — che việc thiếu đăng ký thay vì làm nó lộ ra.
+
+**Khuyến nghị**: Hoặc xoá case, hoặc đăng ký layout `contact_hero` trong ACF — chọn một.
+
+---
+
+## BUG-029: `purgeAll()` chạy 2 lần trên create path của populate 🟢 ⬜
+
+**Ngày phát hiện**: 2026-09-07 (code review commit `2403c4ed`)
+**File liên quan**: `wp/wp-content/themes/spl/populate-cooperation-bluera.php:35,240`, `src/Features/Optimizer/PageCache.php`
+
+**Triệu chứng**: Tạo trang mới: `wp_insert_post` fires `save_post` → `PageCache::purgeAll` lần 1 (flush toàn bộ object cache + xoá recursive toàn bộ page cache), rồi script gọi `purgeAll()` lần 2 lặp lại — toàn site cold cache 2 lần chỉ vì 1 trang, site lớn sẽ spike origin load.
+
+**Root cause**: `PageCache::register()` hook `save_post → purgeAll` chạy trước CLI early-return; script gọi tay purge thêm lần nữa.
+
+**Khuyến nghị**: Bỏ lệnh purge tay khi trang vừa được tạo, hoặc `remove_action('save_post', ...)` trước `wp_insert_post`.
+
+---
+
+## BUG-030: Fallback part list trùng lặp switch — dễ drift giữa 2 nhánh 🟢 ⬜
+
+**Ngày phát hiện**: 2026-09-07 (code review commit `2403c4ed`)
+**File liên quan**: `wp/wp-content/themes/spl/templates/template-page-cooperation.php:44-55`, `templates/template-page-contact.php:30-52`
+
+**Triệu chứng**: Nhánh ACF-rỗng liệt kê lại đúng các parts mà switch phía trên đã map (lặp ở cả 2 template) → danh sách part tồn tại 2 nơi mỗi template. Thêm layout mới mà quên 1 trong 2 → install có ACF và install ACF-trống render khác nhau, không ai phát hiện cho tới khi so sánh 2 bản render.
+
+**Root cause**: Danh sách part duplicate giữa switch và else, lệch convention `the_content()`-based của `template-page-home.php`.
+
+**Khuyến nghị**: Dùng chung một map slug→part, loop map đó ở cả hai nhánh.
+
+---
+
 ## Thống kê
 
 | Severity | Tổng | Đã fix | Chưa fix |
 |----------|------|--------|----------|
-| 🔴 Critical | 10 | 9 | 1 (BUG-014) |
-| 🟡 Medium | 7 | 7 | 0 |
-| 🟢 Low | 2 | 2 | 0 |
-| **Tổng** | **19** | **18** | **1** |
+| 🔴 Critical | 12 | 9 | 3 (BUG-014, BUG-021, BUG-022) |
+| 🟡 Medium | 12 | 7 | 5 (BUG-023 → BUG-027) |
+| 🟢 Low | 5 | 2 | 3 (BUG-028 → BUG-030) |
+| **Tổng** | **29** | **18** | **11** |

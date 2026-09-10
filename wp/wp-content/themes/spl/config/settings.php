@@ -34,6 +34,7 @@ function _spl_settings_filter_callback( array $arr ): array {
 		'menus'                => [
 			'main-nav'   => __( 'Primary Menu', 'spl' ),
 			'mobile-nav' => __( 'Mobile Menu', 'spl' ),
+			'about-nav'  => __( 'Footer About Menu', 'spl' ),
 			'policy-nav' => __( 'Footer Support Menu', 'spl' ),
 		],
 

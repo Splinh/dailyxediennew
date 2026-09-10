@@ -304,10 +304,13 @@
 			const overlay = document.getElementById( panelId + '-overlay' );
 			if ( ! panel || ! overlay ) return () => {};
 
+			const openBtns = document.querySelectorAll( openSelector );
+
 			const openPanel = () => {
 				overlay.style.display = 'block';
 				panel.style.display = 'block';
 				body.classList.add( 'no-scroll' );
+				openBtns.forEach( b => b.classList.add( 'panel-open' ) );
 				requestAnimationFrame( () => {
 					requestAnimationFrame( () => {
 						overlay.classList.add( 'open' );
@@ -319,6 +322,7 @@
 			const closePanel = () => {
 				overlay.classList.remove( 'open' );
 				panel.classList.remove( 'open' );
+				openBtns.forEach( b => b.classList.remove( 'panel-open' ) );
 				
 				setTimeout( () => {
 					overlay.style.display = 'none';
@@ -331,7 +335,7 @@
 				}, 300 );
 			};
 
-			document.querySelectorAll( openSelector ).forEach( btn => btn.addEventListener( 'click', ( e ) => { e.preventDefault(); openPanel(); } ) );
+			openBtns.forEach( btn => btn.addEventListener( 'click', ( e ) => { e.preventDefault(); openPanel(); } ) );
 			document.querySelectorAll( closeSelector ).forEach( btn => btn.addEventListener( 'click', closePanel ) );
 			overlay.addEventListener( 'click', closePanel );
 

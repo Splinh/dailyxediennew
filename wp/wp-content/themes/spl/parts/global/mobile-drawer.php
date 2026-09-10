@@ -15,6 +15,11 @@ $zalo_url      = Helper::getField( 'zalo_url', 'option' ) ?: 'https://zalo.me/09
 $address       = Helper::getField( 'address', 'option' ) ?: '466 Nguyễn Duy Trinh, P. Bình Trưng Đông, TP. Thủ Đức, TP.HCM';
 $logo_id       = get_theme_mod( 'custom_logo' );
 $logo_url      = $logo_id ? wp_get_attachment_image_url( (int) $logo_id, 'medium' ) : '';
+$shop_url      = function_exists( 'wc_get_page_permalink' )
+	? wc_get_page_permalink( 'shop' )
+	: ( function_exists( 'wc_get_page_id' ) && wc_get_page_id( 'shop' ) > 0
+		? get_permalink( wc_get_page_id( 'shop' ) )
+		: home_url( '/san-pham/' ) );
 ?>
 
 <!-- Mobile Drawer Backdrop Overlay -->
@@ -53,13 +58,22 @@ $logo_url      = $logo_id ? wp_get_attachment_image_url( (int) $logo_id, 'medium
 
 		<!-- Primary Mobile Navigation Links -->
 		<nav class="space-y-1" aria-label="<?php esc_attr_e( 'Menu chính', 'spl' ); ?>">
-			<?php if ( has_nav_menu( 'primary-nav' ) ) : ?>
+			<?php
+			$mobile_location = '';
+			if ( has_nav_menu( 'mobile-nav' ) ) {
+				$mobile_location = 'mobile-nav';
+			} elseif ( has_nav_menu( 'main-nav' ) ) {
+				$mobile_location = 'main-nav';
+			}
+			?>
+			<?php if ( $mobile_location ) : ?>
 				<?php
 				wp_nav_menu( [
-					'theme_location' => 'primary-nav',
+					'theme_location' => $mobile_location,
 					'container'      => false,
-					'menu_class'     => 'space-y-1 font-semibold text-sm text-slate-800',
+					'menu_class'     => 'dxd-mobilemenu space-y-1 font-bold text-sm text-slate-800',
 					'fallback_cb'    => false,
+					'walker'         => new \SPL\Support\NavWalker\MobileNavWalker(),
 				] );
 				?>
 			<?php else : ?>
@@ -77,7 +91,7 @@ $logo_url      = $logo_id ? wp_get_attachment_image_url( (int) $logo_id, 'medium
 						</a>
 					</li>
 					<li>
-						<a href="<?php echo esc_url( home_url( '/danh-muc-san-pham/' ) ); ?>" class="flex items-center justify-between px-3.5 py-3 rounded-xl hover:bg-slate-100 hover:text-primary-600 transition-colors">
+						<a href="<?php echo esc_url( $shop_url ); ?>" class="flex items-center justify-between px-3.5 py-3 rounded-xl hover:bg-slate-100 hover:text-primary-600 transition-colors">
 							<span>Sản Phẩm Xe Điện</span>
 							<?= spl_icon( 'chevron-right', 'w-4 h-4 text-slate-400' ) ?>
 						</a>

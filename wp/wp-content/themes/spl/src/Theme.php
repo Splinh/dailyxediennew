@@ -94,7 +94,7 @@ final class Theme {
 
 		/** Inline Js */
 		Asset::localize( 'jquery-core', 'splConfig', $l10n );
-		Asset::inlineScript( 'jquery-core', 'Object.assign(window,{ $:jQuery,jQuery });window.hdConfig=window.hdConfig||window.splConfig||{};' );
+		Asset::inlineScript( 'jquery-core', 'window.hdConfig=window.hdConfig||window.splConfig||{};if(typeof jQuery!=="undefined"){Object.assign(window,{ $:jQuery,jQuery });}else{document.addEventListener("DOMContentLoaded",function(){if(typeof jQuery!=="undefined"){Object.assign(window,{ $:jQuery,jQuery });}})}' );
 
 		/**
 		 * CSS - Base (all pages)

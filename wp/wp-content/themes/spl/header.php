@@ -338,7 +338,7 @@ do_action( 'spl_header_before_action' );
 		<!-- 2. Main menu links + MEGA MENU TIN TỨC (Full Container Width) -->
 		<div class="dxd-mainmenu flex items-center gap-1 px-4 text-sm font-bold">
 			<?php
-			$shop_page_url = function_exists( 'wc_get_page_id' ) ? get_permalink( wc_get_page_id( 'shop' ) ) : home_url( '/cua-hang/' );
+			$shop_page_url = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : ( function_exists( 'wc_get_page_id' ) && wc_get_page_id( 'shop' ) > 0 ? get_permalink( wc_get_page_id( 'shop' ) ) : home_url( '/san-pham/' ) );
 			$news_page_url = home_url( '/tin-tuc/' );
 			$store_page_url = home_url( '/he-thong-cua-hang/' );
 			$coop_page_url  = home_url( '/co-hoi-hop-tac/' );
