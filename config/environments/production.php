@@ -11,10 +11,10 @@
 
 use Roots\WPConfig\Config;
 
-/** Ensure debug is temporarily enabled for diagnostic */
-Config::define( 'WP_DEBUG', true );
-Config::define( 'WP_DEBUG_DISPLAY', true );
-Config::define( 'WP_DEBUG_LOG', true );
+/** Ensure debug is disabled in production */
+Config::define( 'WP_DEBUG', false );
+Config::define( 'WP_DEBUG_DISPLAY', false );
+Config::define( 'WP_DEBUG_LOG', false );
 Config::define( 'SCRIPT_DEBUG', false );
 Config::define( 'SAVEQUERIES', false );
 
