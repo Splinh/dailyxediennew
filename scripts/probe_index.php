@@ -4,31 +4,18 @@ ini_set('display_errors', '1');
 
 header('Content-Type: text/plain; charset=UTF-8');
 
-echo "=== TEST INDEX.PHP DIRECT EXECUTION ===\n";
+echo "=== INSPECTING VPS ROOT INDEX.PHP ===\n";
 
-$_SERVER['HTTP_HOST'] = 'dailynew.bluerabike.com';
-$_SERVER['SERVER_NAME'] = 'dailynew.bluerabike.com';
-$_SERVER['REQUEST_URI'] = '/';
-$_SERVER['REQUEST_METHOD'] = 'GET';
-$_SERVER['HTTPS'] = 'on';
+$file = __DIR__ . '/../index.php';
+echo "File path: {$file}\n";
+echo "Permissions: " . substr(sprintf('%o', fileperms($file)), -4) . "\n";
+echo "Owner UID: " . fileowner($file) . "\n";
 
-echo "1. Checking constants...\n";
-echo "   WP_USE_THEMES defined: " . (defined('WP_USE_THEMES') ? 'YES' : 'NO') . "\n";
+echo "\n--- FILE CONTENT ---\n";
+echo file_get_contents($file) . "\n";
 
-echo "2. Loading root index.php via output buffering...\n";
-ob_start();
-try {
-    require __DIR__ . '/../index.php';
-    $output = ob_get_clean();
-    echo "   ✅ root index.php executed successfully!\n";
-    echo "   Output length: " . strlen($output) . " bytes\n";
-    echo "   Snippet (first 200 chars):\n" . substr($output, 0, 200) . "\n";
-} catch (\Throwable $e) {
-    ob_end_clean();
-    echo "   ❌ ERROR in root index.php:\n";
-    echo "   " . $e->getMessage() . "\n";
-    echo "   In: " . $e->getFile() . ":" . $e->getLine() . "\n";
-    echo "   Trace:\n" . $e->getTraceAsString() . "\n";
-}
+echo "\n--- GIT STATUS ON VPS ---\n";
+echo shell_exec('git status 2>&1') . "\n";
 
-echo "=== END TEST ===\n";
+echo "\n--- GIT DIFF ON VPS ---\n";
+echo shell_exec('git diff index.php 2>&1') . "\n";
