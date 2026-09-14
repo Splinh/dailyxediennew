@@ -11,7 +11,7 @@
  *
  * @var bool
  */
-const WP_USE_THEMES = true;
+defined( 'WP_USE_THEMES' ) || define( 'WP_USE_THEMES', true );
 
 /** Loads the WordPress Environment and Template */
 require __DIR__ . '/wp/wp-blog-header.php';
