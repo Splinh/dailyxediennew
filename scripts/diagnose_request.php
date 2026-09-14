@@ -13,7 +13,17 @@ echo "  -> Current binary: " . PHP_BINARY . "\n";
 echo "  -> PHP Version: " . PHP_VERSION . "\n";
 echo "  -> mysqli loaded: " . (extension_loaded('mysqli') ? '✅ YES' : '❌ NO') . "\n";
 
-// If mysqli is missing in current PHP CLI, search for aaPanel PHP binaries
+echo "\n[TEST] Requiring root index.php...\n";
+try {
+    ob_start();
+    require __DIR__ . '/../index.php';
+    $res = ob_get_clean();
+    echo "  -> Root index.php executed successfully! Output len: " . strlen($res) . "\n";
+} catch (\Throwable $e) {
+    ob_end_clean();
+    echo "  -> ERROR in root index.php: " . $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine() . "\n";
+}
+exit(0);
 if (!extension_loaded('mysqli')) {
     echo "\n⚠️ CẢNH BÁO: Lệnh `php` hiện tại (" . PHP_BINARY . ") thiếu extension mysqli.\n";
     echo "Đang tìm các phiên bản PHP của aaPanel / OpenLiteSpeed trên VPS:\n";
