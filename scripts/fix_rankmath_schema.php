@@ -27,7 +27,7 @@ foreach ($slugs as $slug) {
         $val = maybe_unserialize($m['meta_value']);
         if (!is_array($val) || empty($val['@type'])) {
             echo "    ⚠️ Schema không hợp lệ -> Xóa meta_id: {$m['meta_id']}\n";
-            delete_post_meta_by_mid((int)$m['meta_id']);
+            delete_metadata_by_mid('post', (int)$m['meta_id']);
         }
     }
 }
@@ -55,7 +55,7 @@ foreach ($all_schemas as $row) {
 
     // Nếu vẫn không phải array hợp lệ có @type thì xóa bỏ để Rank Math tự tạo schema chuẩn
     if (!is_array($val) || empty($val['@type'])) {
-        delete_post_meta_by_mid((int)$row['meta_id']);
+        delete_metadata_by_mid('post', (int)$row['meta_id']);
         $deleted++;
     }
 }

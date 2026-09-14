@@ -141,7 +141,7 @@ final class RankMathModule extends AbstractModule {
 			}
 
 			if ( ! is_array( $val ) || empty( $val['@type'] ) ) {
-				delete_post_meta_by_mid( (int) $row['meta_id'] );
+				delete_metadata_by_mid( 'post', (int) $row['meta_id'] );
 			}
 		}
 	}
