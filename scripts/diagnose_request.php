@@ -4,143 +4,109 @@ declare(strict_types=1);
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
+header('Content-Type: text/plain; charset=UTF-8');
+
 echo "=========================================================\n";
-echo "🔍 WORDPRESS DIAGNOSTIC PROBE (dailynew.bluerabike.com)\n";
+echo "🔍 WORDPRESS STEP-BY-STEP DIAGNOSTIC PROBE\n";
 echo "=========================================================\n";
 
-echo "[0] PHP Environment:\n";
-echo "  -> Current binary: " . PHP_BINARY . "\n";
-echo "  -> PHP Version: " . PHP_VERSION . "\n";
-echo "  -> mysqli loaded: " . (extension_loaded('mysqli') ? '✅ YES' : '❌ NO') . "\n";
+$_SERVER['HTTP_HOST'] = 'dailynew.bluerabike.com';
+$_SERVER['SERVER_NAME'] = 'dailynew.bluerabike.com';
+$_SERVER['REQUEST_URI'] = '/';
+$_SERVER['REQUEST_METHOD'] = 'GET';
+$_SERVER['HTTPS'] = 'on';
 
-echo "\n[TEST] Requiring root index.php...\n";
+register_shutdown_function(function() {
+    $err = error_get_last();
+    if ($err && in_array($err['type'], [E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR], true)) {
+        echo "\n💥 SHUTDOWN FATAL ERROR DETECTED:\n";
+        echo "Type: {$err['type']}\n";
+        echo "Message: {$err['message']}\n";
+        echo "File: {$err['file']}\n";
+        echo "Line: {$err['line']}\n";
+    }
+});
+
+// Step 1: Load wp-load.php
+echo "[STEP 1] Loading wp-load.php...\n";
+require_once __DIR__ . '/../wp/wp-load.php';
+echo "  -> ✅ wp-load.php loaded successfully.\n";
+
+// Step 2: Load theme functions.php explicitly if not loaded
+echo "\n[STEP 2] Loading Theme functions.php...\n";
+try {
+    $func = get_template_directory() . '/functions.php';
+    if (file_exists($func)) {
+        require_once $func;
+        echo "  -> ✅ Theme functions.php loaded successfully.\n";
+    } else {
+        echo "  -> ❌ {$func} not found!\n";
+    }
+} catch (\Throwable $e) {
+    echo "  -> ❌ ERROR in functions.php: " . $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine() . "\n";
+    echo $e->getTraceAsString() . "\n";
+}
+
+// Step 3: Trigger after_setup_theme
+echo "\n[STEP 3] Triggering 'after_setup_theme' action...\n";
+try {
+    do_action('after_setup_theme');
+    echo "  -> ✅ 'after_setup_theme' finished without errors.\n";
+} catch (\Throwable $e) {
+    echo "  -> ❌ ERROR in after_setup_theme: " . $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine() . "\n";
+    echo $e->getTraceAsString() . "\n";
+}
+
+// Step 4: Trigger init
+echo "\n[STEP 4] Triggering 'init' action...\n";
+try {
+    do_action('init');
+    echo "  -> ✅ 'init' finished without errors.\n";
+} catch (\Throwable $e) {
+    echo "  -> ❌ ERROR in init: " . $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine() . "\n";
+    echo $e->getTraceAsString() . "\n";
+}
+
+// Step 5: Trigger wp_loaded
+echo "\n[STEP 5] Triggering 'wp_loaded' action...\n";
+try {
+    do_action('wp_loaded');
+    echo "  -> ✅ 'wp_loaded' finished without errors.\n";
+} catch (\Throwable $e) {
+    echo "  -> ❌ ERROR in wp_loaded: " . $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine() . "\n";
+    echo $e->getTraceAsString() . "\n";
+}
+
+// Step 6: Setup main query
+echo "\n[STEP 6] Executing wp()...\n";
+try {
+    wp();
+    echo "  -> ✅ wp() finished without errors.\n";
+} catch (\Throwable $e) {
+    echo "  -> ❌ ERROR in wp(): " . $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine() . "\n";
+    echo $e->getTraceAsString() . "\n";
+}
+
+// Step 7: Load template
+echo "\n[STEP 7] Loading template via template-loader.php...\n";
 try {
     ob_start();
-    require __DIR__ . '/../index.php';
-    $res = ob_get_clean();
-    echo "  -> Root index.php executed successfully! Output len: " . strlen($res) . "\n";
+    require_once ABSPATH . WPINC . '/template-loader.php';
+    $out = ob_get_clean();
+    echo "  -> ✅ Template rendered! Output length: " . strlen($out) . " bytes\n";
 } catch (\Throwable $e) {
     ob_end_clean();
-    echo "  -> ERROR in root index.php: " . $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine() . "\n";
-}
-exit(0);
-if (!extension_loaded('mysqli')) {
-    echo "\n⚠️ CẢNH BÁO: Lệnh `php` hiện tại (" . PHP_BINARY . ") thiếu extension mysqli.\n";
-    echo "Đang tìm các phiên bản PHP của aaPanel / OpenLiteSpeed trên VPS:\n";
-    
-    $candidates = [
-        '/www/server/php/84/bin/php',
-        '/www/server/php/83/bin/php',
-        '/www/server/php/82/bin/php',
-        '/www/server/php/81/bin/php',
-        '/www/server/php/80/bin/php',
-        '/usr/local/lsws/lsphp84/bin/php',
-        '/usr/local/lsws/lsphp83/bin/php',
-        '/usr/local/lsws/lsphp82/bin/php',
-        '/usr/local/lsws/lsphp81/bin/php',
-    ];
-    
-    $found_good = null;
-    foreach ($candidates as $bin) {
-        if (file_exists($bin)) {
-            $has_mysqli = @shell_exec("{$bin} -m 2>&1");
-            $ok = $has_mysqli && str_contains($has_mysqli, 'mysqli');
-            echo "  - {$bin}: " . ($ok ? "✅ Có mysqli" : "❌ Không có mysqli") . "\n";
-            if ($ok && !$found_good) {
-                $found_good = $bin;
-            }
-        }
-    }
-    
-    if ($found_good) {
-        echo "\n👉 BẠN HÃY CHẠY LẠI BẰNG LỆNH SAU:\n";
-        echo "   {$found_good} scripts/diagnose_request.php\n\n";
-    }
+    echo "  -> ❌ ERROR in template-loader: " . $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine() . "\n";
+    echo $e->getTraceAsString() . "\n";
 }
 
-// Check logs IMMEDIATELY before attempting WP boot
-echo "\n[1] Checking error logs in /www/wwwlogs/...\n";
-$logs = glob('/www/wwwlogs/*dailynew*');
-if (!empty($logs)) {
-    foreach ($logs as $log) {
-        echo "\n  📄 Log file: {$log} (" . filesize($log) . " bytes)\n";
-        $lines = file($log);
-        $recent = array_slice($lines, -25);
-        foreach ($recent as $l) {
-            echo "     " . trim($l) . "\n";
-        }
-    }
-} else {
-    echo "  -> No *dailynew* logs in /www/wwwlogs/\n";
-    // Check all error logs in /www/wwwlogs
-    $all_error_logs = glob('/www/wwwlogs/*error*');
-    if ($all_error_logs) {
-        echo "  -> Found generic error logs:\n";
-        foreach ($all_error_logs as $ael) {
-            echo "     * {$ael} (" . filesize($ael) . " bytes)\n";
-        }
-    }
-}
-
-// Check OpenLiteSpeed logs
-echo "\n[2] Checking /usr/local/lsws/logs/ for recent errors...\n";
-$lsws_logs = ['/usr/local/lsws/logs/stderr.log', '/usr/local/lsws/logs/error.log'];
-foreach ($lsws_logs as $lf) {
-    if (file_exists($lf)) {
-        echo "\n  📄 {$lf} (" . filesize($lf) . " bytes):\n";
-        $lines = file($lf);
-        $recent = array_slice($lines, -20);
-        foreach ($recent as $l) {
-            echo "     " . trim($l) . "\n";
-        }
-    }
-}
-
-// If mysqli is available, proceed to test WordPress boot
-if (extension_loaded('mysqli')) {
-    echo "\n[3] Testing WordPress Boot Sequence...\n";
-    $_SERVER['HTTP_HOST'] = 'dailynew.bluerabike.com';
-    $_SERVER['SERVER_NAME'] = 'dailynew.bluerabike.com';
-    $_SERVER['REQUEST_URI'] = '/';
-    $_SERVER['REQUEST_METHOD'] = 'GET';
-    $_SERVER['HTTPS'] = 'on';
-
-    register_shutdown_function(function() {
-        $err = error_get_last();
-        if ($err && in_array($err['type'], [E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR], true)) {
-            echo "\n💥 SHUTDOWN FATAL ERROR DETECTED:\n";
-            echo "Type: {$err['type']}\n";
-            echo "Message: {$err['message']}\n";
-            echo "File: {$err['file']}\n";
-            echo "Line: {$err['line']}\n";
-        }
-    });
-
-    require_once __DIR__ . '/../wp/wp-load.php';
-    echo "  -> ✅ wp-load.php loaded successfully.\n";
-    echo "  -> Active theme: " . wp_get_theme()->get('Name') . "\n";
-
-    wp();
-    echo "  -> ✅ wp() executed OK.\n";
-
-    echo "\n[4] Rendering front page template...\n";
-    ob_start();
-    try {
-        if (!defined('WP_USE_THEMES')) {
-            define('WP_USE_THEMES', true);
-        }
-        require_once ABSPATH . WPINC . '/template-loader.php';
-        $out = ob_get_clean();
-        echo "  -> ✅ Front page rendered OK! Length: " . strlen($out) . " bytes\n";
-    } catch (\Throwable $e) {
-        ob_end_clean();
-        echo "\n❌ EXCEPTION THROWN:\n";
-        echo "Message: " . $e->getMessage() . "\n";
-        echo "File: " . $e->getFile() . ":" . $e->getLine() . "\n";
-        echo "Trace:\n" . $e->getTraceAsString() . "\n";
-    }
-}
+// Step 8: Test root index.php isolation
+echo "\n[STEP 8] Testing root index.php...\n";
+$index_file = realpath(__DIR__ . '/../index.php');
+echo "  -> Root index path: {$index_file}\n";
+echo "  -> Readable: " . (is_readable($index_file) ? 'YES' : 'NO') . "\n";
+echo "  -> Permissions: " . substr(sprintf('%o', fileperms($index_file)), -4) . "\n";
 
 echo "\n=========================================================\n";
-echo "✅ DIAGNOSTIC PROBE FINISHED\n";
+echo "✅ ALL STEPS COMPLETED\n";
 echo "=========================================================\n";
