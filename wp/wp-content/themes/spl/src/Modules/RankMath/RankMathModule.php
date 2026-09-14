@@ -41,6 +41,9 @@ final class RankMathModule extends AbstractModule {
 
 		// Add TOC plugin support
 		add_filter( 'rank_math/researches/toc_plugins', $this->tocPlugins( ... ), PHP_INT_MAX );
+
+		// Ensure schema integrity on PHP 8.4
+		add_action( 'init', $this->ensureSchemaIntegrity( ... ) );
 	}
 
 	/* ---------- PUBLIC ------------------------------------------- */
@@ -95,5 +98,51 @@ final class RankMathModule extends AbstractModule {
 			'before'      => '<li><span property="itemListElement" typeof="ListItem">',
 			'after'       => '</span></li>',
 		];
+	}
+
+	/**
+	 * Self-healing guard: sanitize corrupted rank_math_schema_% postmeta on PHP 8.4.
+	 * Runs once daily via transient lock.
+	 */
+	public function ensureSchemaIntegrity(): void {
+		if ( get_transient( 'spl_rank_math_schema_integrity_checked' ) ) {
+			return;
+		}
+
+		set_transient( 'spl_rank_math_schema_integrity_checked', 1, DAY_IN_SECONDS );
+
+		global $wpdb;
+
+		if ( ! $wpdb ) {
+			return;
+		}
+
+		$schemas = $wpdb->get_results(
+			"SELECT meta_id, meta_value FROM {$wpdb->postmeta} WHERE meta_key LIKE 'rank_math_schema_%'",
+			ARRAY_A
+		);
+
+		if ( empty( $schemas ) ) {
+			return;
+		}
+
+		foreach ( $schemas as $row ) {
+			$val = maybe_unserialize( $row['meta_value'] );
+			if ( is_string( $val ) && is_serialized( $val ) ) {
+				$val = maybe_unserialize( $val );
+				if ( is_array( $val ) && ! empty( $val['@type'] ) ) {
+					$wpdb->update(
+						$wpdb->postmeta,
+						[ 'meta_value' => maybe_serialize( $val ) ],
+						[ 'meta_id' => $row['meta_id'] ]
+					);
+					continue;
+				}
+			}
+
+			if ( ! is_array( $val ) || empty( $val['@type'] ) ) {
+				delete_post_meta_by_mid( (int) $row['meta_id'] );
+			}
+		}
 	}
 }

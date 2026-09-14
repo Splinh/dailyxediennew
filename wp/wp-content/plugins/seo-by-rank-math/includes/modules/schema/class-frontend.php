@@ -70,7 +70,7 @@ class Frontend {
 		$schemas = array_filter(
 			DB::get_schemas( $post->ID ),
 			function ( $schema ) {
-				return ! in_array( $schema['@type'], [ 'WooCommerceProduct', 'EDDProduct' ], true );
+				return is_array( $schema ) && isset( $schema['@type'] ) && ! in_array( $schema['@type'], [ 'WooCommerceProduct', 'EDDProduct' ], true );
 			}
 		);
 
@@ -100,7 +100,7 @@ class Frontend {
 
 		$schema_types = [];
 		foreach ( $schemas as $id => $schema ) {
-			if ( ( ! Str::starts_with( 'schema-', $id ) && 'richSnippet' !== $id ) || ! $schema ) {
+			if ( ( ! Str::starts_with( 'schema-', $id ) && 'richSnippet' !== $id ) || ! $schema || ! is_array( $schema ) || empty( $schema['@type'] ) ) {
 				continue;
 			}
 
