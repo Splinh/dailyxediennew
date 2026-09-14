@@ -89,10 +89,20 @@ try {
 
 // Step 7: Load template
 echo "\n[STEP 7] Loading template via template-loader.php...\n";
+global $wp_query, $template;
+echo "  -> show_on_front: " . get_option('show_on_front') . "\n";
+echo "  -> page_on_front: " . get_option('page_on_front') . "\n";
+echo "  -> home option: " . get_option('home') . "\n";
+echo "  -> siteurl option: " . get_option('siteurl') . "\n";
+echo "  -> is_front_page: " . (is_front_page() ? 'YES' : 'NO') . "\n";
+echo "  -> is_home: " . (is_home() ? 'YES' : 'NO') . "\n";
+echo "  -> is_page: " . (is_page() ? 'YES' : 'NO') . "\n";
+echo "  -> is_404: " . (is_404() ? 'YES' : 'NO') . "\n";
 try {
     ob_start();
     require_once ABSPATH . WPINC . '/template-loader.php';
     $out = ob_get_clean();
+    echo "  -> Selected template: " . ($template ?: '(none)') . "\n";
     echo "  -> ✅ Template rendered! Output length: " . strlen($out) . " bytes\n";
 } catch (\Throwable $e) {
     ob_end_clean();
