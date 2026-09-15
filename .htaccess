@@ -2,6 +2,49 @@ RewriteEngine On
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
 RewriteBase /
+
+# =========================================================
+# CRITICAL SECURITY GUARDS & ANTI-MALWARE
+# =========================================================
+
+# 1. Chặn tuyệt đối truy cập file nhạy cảm (.env, .git, .ini, lock files, configs)
+<FilesMatch "^(\.env|\.git|\.user\.ini|composer\.(json|lock)|package(-lock)?\.json|pnpm-lock\.yaml|web\.config|\.phpcs-cache|\.log)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# 2. Fallback Rewrite chặn truy cập các file ẩn bắt đầu bằng dấu chấm và config
+RewriteRule ^\.(.*)$ - [F,L]
+RewriteRule ^\.env - [F,L]
+RewriteRule ^wp-config\.php$ - [F,L]
+RewriteRule ^wp/wp-config\.php$ - [F,L]
+
+# 3. Chặn XML-RPC (nguồn tấn công brute-force & DDoS của botnet)
+<Files xmlrpc.php>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# 4. Chặn đứng thực thi file PHP trong thư mục uploads và cache
+RewriteRule ^wp/wp-content/uploads/.*\.php$ - [F,L]
+RewriteRule ^wp-content/uploads/.*\.php$ - [F,L]
+RewriteRule ^wp/wp-content/cache/.*\.php$ - [F,L]
+
+# 5. Chặn truy cập trực tiếp thư mục scripts/ từ bên ngoài
+RewriteRule ^scripts/.*\.php$ - [F,L]
+
+# 6. Chặn dò quét username tác giả (Author enumeration)
+RewriteCond %{QUERY_STRING} ^author=([0-9]+) [NC]
+RewriteRule ^ - [F,L]
+
+# 7. Security Headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
 RewriteRule ^index\.php$ - [L]
 
 # Auto-add slash for wp-admin
