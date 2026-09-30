@@ -20,6 +20,7 @@ database/**
 !database/.gitkeep
 *.sql
 *.sql.gz
+dump.rdb
 
 # =========================================================
 # WordPress Uploads

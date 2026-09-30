@@ -79,6 +79,13 @@ default. Apply these rules without being asked:
   lazy-load large datasets.
 - Avoid layout-triggering inline styles; prefer utility classes or CSS custom
   properties that the browser can batch.
+## Deployment & Upload Modes By Project
+
+- **`bluerabike.com`**: **SFTP (File Upload)**. Whenever modifying files, MUST output a structured list of modified files with clickable markdown links (`file:///...`) so the user can easily locate, copy, and upload them via SFTP.
+- **`aiebike.vn`**: **SFTP (File Upload)**. Same as above, provide clickable file links on every change for easy SFTP upload.
+- **`khohang247.com`**: **SFTP (File Upload)**. Same as above, provide clickable file links on every change.
+- **`dailynew`**: **Git**. Deployed via `git push origin main` and VPS `git pull origin main`.
+
 ## Progress & Planning Reports
 
 - When generating progress reports, timeline estimates, or status updates, always exclude the days the user was off (days with zero activity/commits) from any calculated durations, pacing, or timelines.
