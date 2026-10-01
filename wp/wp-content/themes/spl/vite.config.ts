@@ -6,8 +6,8 @@ import { defineConfig } from 'vite';
 import { getSharedConfig } from '../../../../tools/vite.config.shared';
 
 // Entry points
-const jsFiles = ['preflight', 'index', 'woocommerce', 'dxd', 'home'];
-const scssFiles = ['editor-style', 'page', 'share', 'woocommerce', 'commerce'];
+const jsFiles = ['preflight', 'index', 'woocommerce', 'dxd', 'home', 'components/video-hub'];
+const scssFiles = ['editor-style', 'page', 'share', 'woocommerce', 'commerce', 'components/video-hub'];
 
 // Chunk directories to scan (relative to scripts/core/)
 const chunkDirs = ['fx', 'modules'];

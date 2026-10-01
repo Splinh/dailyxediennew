@@ -15,9 +15,25 @@
     "file": "js/chunks/photoswipe.esm.js",
     "name": "photoswipe.esm"
   },
+  "_thumbs.js": {
+    "file": "js/chunks/thumbs.js",
+    "name": "thumbs",
+    "imports": [
+      "_free-mode.js"
+    ]
+  },
   "_weak.js": {
     "file": "js/chunks/weak.js",
     "name": "weak"
+  },
+  "resources/scripts/components/video-hub.js": {
+    "file": "js/components/video-hub.js",
+    "name": "components/video-hub",
+    "src": "resources/scripts/components/video-hub.js",
+    "isEntry": true,
+    "imports": [
+      "_free-mode.js"
+    ]
   },
   "resources/scripts/core/fx/accordion/fx-accordion-menu.js": {
     "file": "js/chunks/fx-accordion-menu.js",
@@ -163,8 +179,8 @@
     "isDynamicEntry": true,
     "imports": [
       "resources/scripts/index.js",
-      "_photoswipe.esm.js",
-      "_dom.js"
+      "_dom.js",
+      "_photoswipe.esm.js"
     ],
     "css": [
       "css/fx-lightbox.css"
@@ -242,9 +258,10 @@
     "isDynamicEntry": true,
     "imports": [
       "resources/scripts/index.js",
-      "_free-mode.js",
       "_dom.js",
-      "_weak.js"
+      "_weak.js",
+      "_free-mode.js",
+      "_thumbs.js"
     ],
     "css": [
       "css/fx-slider.css"
@@ -372,9 +389,10 @@
     "src": "resources/scripts/core/modules/woocommerce/gallery/gallery-thumbs.js",
     "isDynamicEntry": true,
     "imports": [
+      "_dom.js",
       "_photoswipe.esm.js",
       "_free-mode.js",
-      "_dom.js"
+      "_thumbs.js"
     ],
     "css": [
       "css/gallery-thumbs.css"
@@ -486,6 +504,15 @@
       "commerce.css"
     ],
     "src": "resources/styles/commerce.scss",
+    "isEntry": true
+  },
+  "resources/styles/components/video-hub.scss": {
+    "file": "css/components/video-hub-css.css",
+    "name": "components/video-hub-css",
+    "names": [
+      "components/video-hub-css.css"
+    ],
+    "src": "resources/styles/components/video-hub.scss",
     "isEntry": true
   },
   "resources/styles/editor-style.scss": {

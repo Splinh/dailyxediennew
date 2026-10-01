@@ -84,6 +84,17 @@ require_once __DIR__ . '/inc/inline-js.php';
 require_once __DIR__ . '/inc/product-cache.php';
 require_once __DIR__ . '/inc/setup.php';
 require_once __DIR__ . '/inc/woocommerce-ui.php';
+require_once __DIR__ . '/inc/video-cpt.php';
+require_once __DIR__ . '/inc/acf-video-settings.php';
+
+// Enqueue Video Hub assets when template-page-video is active.
+add_action( 'enqueue_assets_template_page_video', static function (): void {
+	$tailwindHandle = \SPL\Core\Asset::handle( 'tailwind.css' );
+	$baseCssDeps    = $tailwindHandle ? [ $tailwindHandle ] : [ 'index-css' ];
+
+	\SPL\Core\Asset::enqueueCSS( 'components/video-hub.scss', $baseCssDeps );
+	\SPL\Core\Asset::enqueueJS( 'components/video-hub.js', [ \SPL\Core\Asset::handle( 'index.js' ) ], null, true, [ 'module', 'defer' ] );
+} );
 
 // ── Bootstrap ───────────────────────────────────────
 

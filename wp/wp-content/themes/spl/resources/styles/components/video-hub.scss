@@ -1,0 +1,1250 @@
+// ==========================================================================
+// DailyXeDien Video Hub Component Styles
+// Supports 16:9 Cinema and 9:16 Vertical TikTok / Shorts Formats
+// ==========================================================================
+
+@use 'swiper/css';
+@use 'swiper/css/navigation';
+@use 'swiper/css/free-mode';
+
+.vh-page {
+  background-color: #f4f7fb;
+  color: #1e293b;
+  font-family: inherit;
+  padding-bottom: 60px;
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+// ── Header Banner ──
+.vh-hero-header {
+  background: linear-gradient(135deg, #0b1f3a 0%, #11283c 50%, #1e73be 100%);
+  color: #ffffff;
+  padding: 35px 0 45px;
+  position: relative;
+  overflow: hidden;
+
+  @media (max-width: 767px) {
+    padding: 25px 0 35px;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(254, 82, 66, 0.18) 0%, rgba(30, 115, 190, 0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .vh-header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 5px 14px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #ffd200;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+
+    svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+  }
+
+  .vh-header-title {
+    font-size: 24px;
+    font-weight: 800;
+    margin: 0 0 10px;
+    line-height: 1.3;
+    color: #ffffff;
+
+    @media (min-width: 768px) {
+      font-size: 40px;
+    }
+
+    span {
+      background: linear-gradient(90deg, #ffd200, #ff844b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  .vh-header-desc {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 650px;
+    margin: 0;
+    line-height: 1.5;
+
+    @media (min-width: 768px) {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+  }
+}
+
+// ── 1. Hero Cinema Spotlight Section ──
+.vh-spotlight-section {
+  margin-top: -30px;
+  margin-bottom: 45px;
+  position: relative;
+  z-index: 2;
+
+  .vh-spotlight-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    background: #0f172a;
+    border-radius: 20px;
+    padding: 16px;
+    box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    @media (min-width: 992px) {
+      grid-template-columns: 1.85fr 1fr;
+      padding: 24px;
+      gap: 24px;
+    }
+  }
+
+  // Main featured player card
+  .vh-main-player {
+    position: relative;
+    border-radius: 14px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 768px) {
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .vh-main-media {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+
+      @media (min-width: 768px) {
+        position: absolute;
+        inset: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+    }
+
+    &:hover .vh-main-media img {
+      transform: scale(1.04);
+    }
+
+    .vh-player-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 14px;
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.4) 0%,
+        rgba(0, 0, 0, 0.05) 50%,
+        rgba(0, 0, 0, 0.4) 100%
+      );
+      transition: background 0.3s ease;
+
+      @media (min-width: 768px) {
+        padding: 20px;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.15) 0%,
+          rgba(0, 0, 0, 0.3) 50%,
+          rgba(0, 0, 0, 0.9) 100%
+        );
+      }
+    }
+
+    .vh-top-tags {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .vh-badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #e60000;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      animation: vh-pulse 2s infinite;
+
+      &::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #fff;
+      }
+    }
+
+    .vh-badge-custom {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(4px);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .vh-duration-tag {
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(4px);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    // Centered Play Button
+    .vh-play-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: rgba(30, 115, 190, 0.9);
+      border: 3px solid rgba(255, 255, 255, 0.85);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 25px rgba(30, 115, 190, 0.8);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      svg {
+        width: 20px;
+        height: 20px;
+        margin-left: 2px;
+        fill: currentColor;
+      }
+
+      @media (min-width: 768px) {
+        width: 74px;
+        height: 74px;
+
+        svg {
+          width: 28px;
+          height: 28px;
+          margin-left: 3px;
+        }
+      }
+    }
+
+    &:hover .vh-play-center {
+      transform: translate(-50%, -50%) scale(1.15);
+      background: #fe5242;
+      box-shadow: 0 0 35px rgba(254, 82, 66, 0.9);
+    }
+
+    .vh-bottom-info {
+      padding: 12px 4px 0;
+      position: relative;
+      z-index: 2;
+
+      @media (min-width: 768px) {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 20px;
+        pointer-events: none;
+      }
+
+      .vh-spotlight-title {
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 700;
+        margin: 0 0 6px;
+        line-height: 1.4;
+        text-shadow: none;
+
+        @media (min-width: 768px) {
+          font-size: 22px;
+          margin: 0 0 8px;
+          line-height: 1.35;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+        }
+      }
+
+      .vh-spotlight-meta {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 12px;
+        color: #94a3b8;
+
+        @media (min-width: 768px) {
+          gap: 12px;
+          font-size: 13px;
+          color: rgba(255, 255, 255, 0.7);
+        }
+
+        .vh-cat-name {
+          color: #ffd200;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  // Playlist sidebar
+  .vh-playlist-side {
+    display: flex;
+    flex-direction: column;
+
+    .vh-side-heading {
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      margin: 0 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      svg {
+        width: 18px;
+        height: 18px;
+        fill: #ffd200;
+      }
+    }
+
+    .vh-side-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      justify-content: flex-start;
+    }
+
+    .vh-side-item {
+      display: flex;
+      gap: 10px;
+      padding: 6px 8px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      cursor: pointer;
+      transition: all 0.25s ease;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(30, 115, 190, 0.5);
+        transform: translateX(4px);
+      }
+
+      .vh-side-thumb {
+        position: relative;
+        width: 95px;
+        height: 56px;
+        border-radius: 6px;
+        overflow: hidden;
+        flex-shrink: 0;
+        background: #000;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .vh-mini-play {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(0, 0, 0, 0.35);
+          opacity: 0.8;
+          transition: opacity 0.2s ease;
+
+          svg {
+            width: 18px;
+            height: 18px;
+            fill: #fff;
+          }
+        }
+
+        .vh-mini-duration {
+          position: absolute;
+          bottom: 2px;
+          right: 2px;
+          background: rgba(0, 0, 0, 0.75);
+          color: #fff;
+          font-size: 9.5px;
+          padding: 1px 3px;
+          border-radius: 3px;
+        }
+      }
+
+      .vh-side-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: hidden;
+
+        .vh-side-title {
+          color: #f1f5f9;
+          font-size: 12.5px;
+          font-weight: 600;
+          line-height: 1.3;
+          margin: 0 0 3px;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+
+        .vh-side-meta {
+          font-size: 10.5px;
+          color: #94a3b8;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+      }
+    }
+  }
+}
+
+// ── 2. TikTok & Shorts Zone (9:16 Vertical Carousel) ──
+.vh-shorts-section {
+  margin-bottom: 45px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px 20px 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e2e8f0;
+
+  @media (min-width: 768px) {
+    padding: 30px 28px 36px;
+  }
+
+  .vh-section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    .vh-head-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      .vh-tiktok-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        background: #000000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+
+        svg {
+          width: 22px;
+          height: 22px;
+          fill: currentColor;
+        }
+      }
+
+      .vh-head-title {
+        font-size: 20px;
+        font-weight: 800;
+        color: #0f172a;
+        margin: 0;
+
+        @media (min-width: 768px) {
+          font-size: 24px;
+        }
+      }
+
+      .vh-head-sub {
+        font-size: 13px;
+        color: #64748b;
+        margin: 2px 0 0;
+      }
+    }
+
+    .vh-swiper-nav {
+      display: flex;
+      gap: 8px;
+
+      .vh-nav-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1px solid #cbd5e1;
+        background: #ffffff;
+        color: #334155;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        svg {
+          width: 16px;
+          height: 16px;
+          fill: currentColor;
+        }
+
+        &:hover {
+          background: #1e73be;
+          border-color: #1e73be;
+          color: #ffffff;
+        }
+
+        &.swiper-button-disabled {
+          opacity: 0.35;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+
+  // 9:16 Shorts Card
+  .vh-short-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 9 / 16;
+    background: #0f172a;
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 28px rgba(30, 115, 190, 0.2);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+    }
+
+    .vh-short-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.2) 0%,
+        transparent 40%,
+        rgba(0, 0, 0, 0.85) 100%
+      );
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 14px;
+    }
+
+    .vh-short-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .vh-badge-tag {
+        background: rgba(254, 82, 66, 0.9);
+        color: #ffffff;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 3px 8px;
+        border-radius: 12px;
+        text-transform: uppercase;
+      }
+
+      .vh-source-badge {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(4px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+
+        svg {
+          width: 14px;
+          height: 14px;
+          fill: currentColor;
+        }
+      }
+    }
+
+    .vh-short-play-btn {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      color: #1e73be;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      opacity: 0.9;
+      transition: all 0.25s ease;
+
+      svg {
+        width: 18px;
+        height: 18px;
+        margin-left: 2px;
+        fill: currentColor;
+      }
+    }
+
+    &:hover .vh-short-play-btn {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.15);
+      background: #ffd200;
+      color: #0f172a;
+    }
+
+    .vh-short-bottom {
+      .vh-short-title {
+        color: #ffffff;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.35;
+        margin: 0 0 6px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+      }
+
+      .vh-short-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.8);
+
+        .vh-short-duration {
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+
+          svg {
+            width: 12px;
+            height: 12px;
+            fill: currentColor;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ── 3. Category Filter & Search Bar ──
+.vh-filter-section {
+  margin-bottom: 30px;
+
+  .vh-filter-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: #ffffff;
+    padding: 16px 20px;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+
+    @media (min-width: 992px) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  // Category Tabs (Horizontal scroll on mobile)
+  .vh-category-tabs {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .vh-tab-item {
+      white-space: nowrap;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 600;
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+
+      &:hover {
+        background: #e2e8f0;
+        color: #1e293b;
+      }
+
+      &.is-active {
+        background: #1e73be;
+        color: #ffffff;
+        box-shadow: 0 4px 12px rgba(30, 115, 190, 0.3);
+      }
+
+      .vh-tab-count {
+        font-size: 11px;
+        background: rgba(0, 0, 0, 0.08);
+        padding: 2px 6px;
+        border-radius: 10px;
+      }
+
+      &.is-active .vh-tab-count {
+        background: rgba(255, 255, 255, 0.25);
+        color: #fff;
+      }
+    }
+  }
+
+  // Search & Ratio Filter
+  .vh-filter-tools {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .vh-search-box {
+      position: relative;
+      flex: 1;
+
+      input {
+        width: 100%;
+        min-width: 220px;
+        height: 38px;
+        background: #f8fafc;
+        border: 1px solid #cbd5e1;
+        border-radius: 30px;
+        padding: 0 16px 0 38px;
+        font-size: 13px;
+        color: #1e293b;
+        transition: all 0.2s ease;
+
+        &:focus {
+          outline: none;
+          background: #ffffff;
+          border-color: #1e73be;
+          box-shadow: 0 0 0 3px rgba(30, 115, 190, 0.15);
+        }
+      }
+
+      svg {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 15px;
+        height: 15px;
+        fill: #94a3b8;
+        pointer-events: none;
+      }
+    }
+
+    .vh-ratio-select {
+      height: 38px;
+      border-radius: 30px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      padding: 0 14px;
+      font-size: 13px;
+      color: #334155;
+      font-weight: 500;
+      cursor: pointer;
+
+      &:focus {
+        outline: none;
+        border-color: #1e73be;
+      }
+    }
+  }
+}
+
+// ── 4. Video Gallery Grid ──
+.vh-gallery-section {
+  .vh-video-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+
+    @media (min-width: 576px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 992px) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    @media (min-width: 1200px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  // Standard Video Card (16:9)
+  .vh-card {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    // Thumbnail area
+    .vh-card-media {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: #0f172a;
+      overflow: hidden;
+      cursor: pointer;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      &:hover img {
+        transform: scale(1.05);
+      }
+
+      .vh-card-badges {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        display: flex;
+        gap: 6px;
+      }
+
+      .vh-badge-cat {
+        background: rgba(30, 115, 190, 0.9);
+        backdrop-filter: blur(4px);
+        color: #ffffff;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 3px 8px;
+        border-radius: 6px;
+      }
+
+      .vh-badge-custom {
+        background: #fe5242;
+        color: #ffffff;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 3px 8px;
+        border-radius: 6px;
+      }
+
+      .vh-card-duration {
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        background: rgba(0, 0, 0, 0.75);
+        color: #ffffff;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+
+      // Play Icon overlay
+      .vh-card-play {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        transition: opacity 0.25s ease;
+
+        .vh-play-circle {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          background: rgba(30, 115, 190, 0.95);
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transform: scale(0.8);
+          transition: transform 0.25s ease;
+
+          svg {
+            width: 20px;
+            height: 20px;
+            margin-left: 2px;
+            fill: currentColor;
+          }
+        }
+      }
+
+      &:hover .vh-card-play {
+        opacity: 1;
+
+        .vh-play-circle {
+          transform: scale(1);
+        }
+      }
+    }
+
+    // Body content
+    .vh-card-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+
+      .vh-card-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: #0f172a;
+        line-height: 1.4;
+        margin: 0 0 8px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        cursor: pointer;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: #1e73be;
+        }
+      }
+
+      .vh-card-desc {
+        font-size: 13px;
+        color: #64748b;
+        line-height: 1.5;
+        margin: 0 0 12px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      // Related Product Card Attached
+      .vh-related-prod {
+        margin-top: auto;
+        padding-top: 12px;
+        border-top: 1px dashed #e2e8f0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+
+        .vh-prod-info {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          overflow: hidden;
+
+          img {
+            width: 32px;
+            height: 32px;
+            object-fit: cover;
+            border-radius: 6px;
+            background: #f1f5f9;
+            flex-shrink: 0;
+          }
+
+          .vh-prod-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: #1e293b;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+
+        .vh-prod-btn {
+          font-size: 11px;
+          font-weight: 700;
+          color: #1e73be;
+          background: #eff6ff;
+          padding: 4px 10px;
+          border-radius: 20px;
+          text-decoration: none;
+          white-space: nowrap;
+          transition: all 0.2s ease;
+
+          &:hover {
+            background: #1e73be;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+  }
+
+  // Empty state
+  .vh-empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px dashed #cbd5e1;
+
+    svg {
+      width: 48px;
+      height: 48px;
+      fill: #94a3b8;
+      margin-bottom: 12px;
+    }
+
+    h4 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #334155;
+      margin: 0 0 6px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #64748b;
+      margin: 0;
+    }
+  }
+}
+
+// ── 5. Universal Smart Lightbox Modal ──
+.vh-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  &.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  // Dark blur backdrop
+  .vh-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(11, 15, 25, 0.88);
+    backdrop-filter: blur(12px);
+    cursor: pointer;
+  }
+
+  // Close Button
+  .vh-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s ease;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    &:hover {
+      background: #e60000;
+      border-color: #e60000;
+      transform: rotate(90deg);
+    }
+  }
+
+  // Container Window
+  .vh-modal-container {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    max-width: 960px;
+    background: #0f172a;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: scale(0.92);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    // 16:9 Cinema Wide mode
+    &.is-horizontal {
+      max-width: 960px;
+
+      .vh-modal-frame {
+        aspect-ratio: 16 / 9;
+      }
+    }
+
+    // 9:16 Vertical Phone Frame mode
+    &.is-vertical {
+      max-width: 420px;
+
+      .vh-modal-frame {
+        aspect-ratio: 9 / 16;
+        max-height: 80vh;
+      }
+    }
+  }
+
+  &.is-open .vh-modal-container {
+    transform: scale(1);
+  }
+
+  .vh-modal-frame {
+    width: 100%;
+    background: #000000;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    iframe,
+    video {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+  }
+
+  .vh-modal-footer {
+    padding: 16px 20px;
+    background: #0b1322;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    .vh-modal-title {
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 700;
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .vh-modal-prod-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1e73be;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.2s ease;
+
+      &:hover {
+        background: #fe5242;
+      }
+    }
+  }
+}
+
+// ── Keyframe Animations ──
+@keyframes vh-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(230, 0, 0, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(230, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(230, 0, 0, 0);
+  }
+}
