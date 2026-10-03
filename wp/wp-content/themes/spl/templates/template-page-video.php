@@ -26,6 +26,7 @@ if ( post_password_required() ) {
 $page_subtitle = ( function_exists( 'get_field' ) ? get_field( 'video_page_subtitle' ) : '' ) ?: 'Khám phá thế giới xe điện Đại Lý Xe Điện qua các thước phim sống động, trải nghiệm thực tế và đánh giá chi tiết.';
 $shorts_title  = ( function_exists( 'get_field' ) ? get_field( 'video_shorts_title' ) : '' ) ?: 'Đại Lý Xe Điện Shorts & TikTok Viral ⚡';
 $hero_override = function_exists( 'get_field' ) ? get_field( 'video_hero_override' ) : null;
+$shop_page_url = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : ( function_exists( 'wc_get_page_id' ) && wc_get_page_id( 'shop' ) > 0 ? get_permalink( wc_get_page_id( 'shop' ) ) : home_url( '/san-pham/' ) );
 
 // ── 1. QUERY HERO SPOTLIGHT VIDEOS ──
 $hero_main_id = null;
@@ -129,7 +130,7 @@ if ( is_wp_error( $categories ) || ! is_array( $categories ) ) {
 
 $gallery_q = new WP_Query( [
 	'post_type'      => 'video',
-	'posts_per_page' => 36,
+	'posts_per_page' => 60,
 	'post_status'    => 'publish',
 ] );
 $gallery_videos = [];
@@ -139,6 +140,65 @@ if ( $gallery_q->have_posts() ) {
 	}
 }
 wp_reset_postdata();
+
+// Pin top 3 priority videos requested by user:
+// 1. TỔNG QUAN CHỨC NĂNG BẢO HÀNH ĐIỆN TỬ (C3S_6PPHY-I)
+// 2. Hướng Dẫn Tải & Cài Đặt App AI EBike (kixDXBEGGcU)
+// 3. AI EBIKE – Dấu ấn tại VIETNAM EXCELLENT BRANDS 2026 (_c0keOGRrS8)
+$pinned_priority_keys = [
+	'C3S_6PPHY-I',
+	'kixDXBEGGcU',
+	'_c0keOGRrS8',
+];
+
+$top_videos       = [];
+$remaining_videos = [];
+
+foreach ( $gallery_videos as $vid ) {
+	$vid_yt    = $vid['youtube_id'] ?? '';
+	$is_pinned = false;
+	foreach ( $pinned_priority_keys as $idx => $pin_key ) {
+		if ( ( $vid_yt && $vid_yt === $pin_key ) || ( ! empty( $vid['url'] ) && strpos( $vid['url'], $pin_key ) !== false ) ) {
+			$top_videos[ $idx ] = $vid;
+			$is_pinned          = true;
+			break;
+		}
+	}
+	if ( ! $is_pinned ) {
+		$remaining_videos[] = $vid;
+	}
+}
+
+// Fallback: If any pinned video was outside the initial query, fetch explicitly
+foreach ( $pinned_priority_keys as $idx => $pin_key ) {
+	if ( ! isset( $top_videos[ $idx ] ) ) {
+		$pin_q = new WP_Query( [
+			'post_type'      => 'video',
+			'posts_per_page' => 1,
+			'post_status'    => 'publish',
+			'meta_query'     => [
+				'relation' => 'OR',
+				[
+					'key'     => 'link_video',
+					'value'   => $pin_key,
+					'compare' => 'LIKE',
+				],
+				[
+					'key'     => 'video_url',
+					'value'   => $pin_key,
+					'compare' => 'LIKE',
+				],
+			],
+		] );
+		if ( $pin_q->have_posts() ) {
+			$top_videos[ $idx ] = spl_get_video_data( (int) $pin_q->posts[0]->ID );
+		}
+		wp_reset_postdata();
+	}
+}
+
+ksort( $top_videos );
+$gallery_videos = array_merge( array_values( $top_videos ), $remaining_videos );
 ?>
 
 <!-- Breadcrumb -->
@@ -184,8 +244,8 @@ wp_reset_postdata();
 					data-embed-url="<?php echo esc_attr( $hero_main_data['embed_url'] ?? '' ); ?>"
 					data-iframe="<?php echo esc_attr( $hero_main_data['iframe'] ?? '' ); ?>"
 					data-title="<?php echo esc_attr( $hero_main_data['title'] ?? '' ); ?>"
-					data-prod-url="<?php echo ! empty( $hero_main_data['related_product'] ) ? esc_attr( $hero_main_data['related_product']['permalink'] ?? '' ) : ''; ?>"
-					data-prod-name="<?php echo ! empty( $hero_main_data['related_product'] ) ? esc_attr( $hero_main_data['related_product']['title'] ?? '' ) : ''; ?>">
+					data-prod-url="<?php echo esc_url( $shop_page_url ); ?>"
+					data-prod-name="<?php esc_attr_e( 'Xem trang sản phẩm', 'spl' ); ?>">
 					
 					<div class="vh-main-media">
 						<?php if ( ! empty( $hero_main_data['thumb_id'] ) ) : ?>
@@ -227,10 +287,6 @@ wp_reset_postdata();
 								<span>•</span>
 							<?php endif; ?>
 							<span><?php echo esc_html( $hero_main_data['date'] ?? '' ); ?></span>
-							<?php if ( ! empty( $hero_main_data['related_product'] ) ) : ?>
-								<span>•</span>
-								<span style="color: #ffd200;">🛵 Xe: <?php echo esc_html( $hero_main_data['related_product']['title'] ?? '' ); ?></span>
-							<?php endif; ?>
 						</div>
 					</div>
 				</div>
@@ -251,8 +307,8 @@ wp_reset_postdata();
 									data-embed-url="<?php echo esc_attr( $item['embed_url'] ?? '' ); ?>"
 									data-iframe="<?php echo esc_attr( $item['iframe'] ?? '' ); ?>"
 									data-title="<?php echo esc_attr( $item['title'] ?? '' ); ?>"
-									data-prod-url="<?php echo ! empty( $item['related_product'] ) ? esc_attr( $item['related_product']['permalink'] ?? '' ) : ''; ?>"
-									data-prod-name="<?php echo ! empty( $item['related_product'] ) ? esc_attr( $item['related_product']['title'] ?? '' ) : ''; ?>">
+									data-prod-url="<?php echo esc_url( $shop_page_url ); ?>"
+									data-prod-name="<?php esc_attr_e( 'Xem trang sản phẩm', 'spl' ); ?>">
 									<div class="vh-side-thumb">
 										<?php if ( ! empty( $item['thumb_url'] ) ) : ?>
 											<img src="<?php echo esc_url( $item['thumb_url'] ); ?>" alt="<?php echo esc_attr( $item['title'] ); ?>" loading="lazy">
@@ -320,8 +376,8 @@ wp_reset_postdata();
 								data-embed-url="<?php echo esc_attr( $short['embed_url'] ?? '' ); ?>"
 								data-iframe="<?php echo esc_attr( $short['iframe'] ?? '' ); ?>"
 								data-title="<?php echo esc_attr( $short['title'] ?? '' ); ?>"
-								data-prod-url="<?php echo ! empty( $short['related_product'] ) ? esc_attr( $short['related_product']['permalink'] ?? '' ) : ''; ?>"
-								data-prod-name="<?php echo ! empty( $short['related_product'] ) ? esc_attr( $short['related_product']['title'] ?? '' ) : ''; ?>">
+								data-prod-url="<?php echo esc_url( $shop_page_url ); ?>"
+								data-prod-name="<?php esc_attr_e( 'Xem trang sản phẩm', 'spl' ); ?>">
 								
 								<?php if ( ! empty( $short['thumb_url'] ) ) : ?>
 									<img src="<?php echo esc_url( $short['thumb_url'] ); ?>" alt="<?php echo esc_attr( $short['title'] ); ?>" loading="lazy">
@@ -430,8 +486,8 @@ wp_reset_postdata();
 								data-embed-url="<?php echo esc_attr( $vid['embed_url'] ?? '' ); ?>"
 								data-iframe="<?php echo esc_attr( $vid['iframe'] ?? '' ); ?>"
 								data-title="<?php echo esc_attr( $vid['title'] ?? '' ); ?>"
-								data-prod-url="<?php echo ! empty( $vid['related_product'] ) ? esc_attr( $vid['related_product']['permalink'] ?? '' ) : ''; ?>"
-								data-prod-name="<?php echo ! empty( $vid['related_product'] ) ? esc_attr( $vid['related_product']['title'] ?? '' ) : ''; ?>">
+								data-prod-url="<?php echo esc_url( $shop_page_url ); ?>"
+								data-prod-name="<?php esc_attr_e( 'Xem trang sản phẩm', 'spl' ); ?>">
 								
 								<?php if ( ! empty( $vid['thumb_url'] ) ) : ?>
 									<img src="<?php echo esc_url( $vid['thumb_url'] ); ?>" alt="<?php echo esc_attr( $vid['title'] ); ?>" loading="lazy">
@@ -466,8 +522,8 @@ wp_reset_postdata();
 									data-embed-url="<?php echo esc_attr( $vid['embed_url'] ?? '' ); ?>"
 									data-iframe="<?php echo esc_attr( $vid['iframe'] ?? '' ); ?>"
 									data-title="<?php echo esc_attr( $vid['title'] ?? '' ); ?>"
-									data-prod-url="<?php echo ! empty( $vid['related_product'] ) ? esc_attr( $vid['related_product']['permalink'] ?? '' ) : ''; ?>"
-									data-prod-name="<?php echo ! empty( $vid['related_product'] ) ? esc_attr( $vid['related_product']['title'] ?? '' ) : ''; ?>">
+									data-prod-url="<?php echo esc_url( $shop_page_url ); ?>"
+									data-prod-name="<?php esc_attr_e( 'Xem trang sản phẩm', 'spl' ); ?>">
 									<?php echo esc_html( $vid['title'] ); ?>
 								</h3>
 
@@ -475,20 +531,16 @@ wp_reset_postdata();
 									<p class="vh-card-desc"><?php echo esc_html( wp_strip_all_tags( $vid['excerpt'] ) ); ?></p>
 								<?php endif; ?>
 
-								<!-- Related Product Link if assigned -->
-								<?php if ( ! empty( $vid['related_product'] ) ) : ?>
-									<div class="vh-related-prod">
-										<div class="vh-prod-info">
-											<?php if ( ! empty( $vid['related_product']['thumb'] ) ) : ?>
-												<img src="<?php echo esc_url( $vid['related_product']['thumb'] ); ?>" alt="<?php echo esc_attr( $vid['related_product']['title'] ?? '' ); ?>" loading="lazy">
-											<?php endif; ?>
-											<span class="vh-prod-name"><?php echo esc_html( $vid['related_product']['title'] ?? '' ); ?></span>
-										</div>
-										<a href="<?php echo esc_url( $vid['related_product']['permalink'] ?? '#' ); ?>" class="vh-prod-btn" target="_blank" rel="noopener">
-											Xem xe &rarr;
-										</a>
-									</div>
-								<?php endif; ?>
+								<!-- Action Footer: Shop / Product Catalog Link -->
+								<div class="vh-related-prod">
+									<span class="vh-card-date">
+										<svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" style="opacity: 0.65; margin-right: 4px; vertical-align: -1px;"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+										<?php echo esc_html( $vid['date'] ?? '' ); ?>
+									</span>
+									<a href="<?php echo esc_url( $shop_page_url ); ?>" class="vh-prod-btn" target="_blank" rel="noopener">
+										Xem trang sản phẩm &rarr;
+									</a>
+								</div>
 							</div>
 
 						</article>
@@ -522,7 +574,9 @@ wp_reset_postdata();
 		</div>
 		<div class="vh-modal-footer">
 			<h4 class="vh-modal-title"></h4>
-			<a href="#" class="vh-modal-prod-link" target="_blank" rel="noopener" style="display: none;"></a>
+			<a href="<?php echo esc_url( $shop_page_url ); ?>" class="vh-modal-prod-link" target="_blank" rel="noopener">
+				Xem trang sản phẩm &rarr;
+			</a>
 		</div>
 	</div>
 </div>

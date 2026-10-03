@@ -181,9 +181,9 @@ function initUniversalModal() {
 
 		// Set Product Link if available
 		if (modalProdLink) {
-			if (prodUrl && prodName) {
+			if (prodUrl) {
 				modalProdLink.href = prodUrl;
-				modalProdLink.innerHTML = `🛵 Xem xe: ${prodName} &rarr;`;
+				modalProdLink.innerHTML = `Xem trang sản phẩm &rarr;`;
 				modalProdLink.style.display = 'inline-flex';
 			} else {
 				modalProdLink.style.display = 'none';
