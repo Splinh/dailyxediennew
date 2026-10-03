@@ -32,7 +32,43 @@ $shop_page_url = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permal
 $hero_main_id = null;
 if ( ! empty( $hero_override ) ) {
 	$hero_main_id = is_object( $hero_override ) ? (int) $hero_override->ID : (int) $hero_override;
-} else {
+}
+
+// Helper to find video post ID by YouTube ID or title keyword
+$find_video_post_id = static function ( string $yt_id, string $title_kw = '' ): ?int {
+	global $wpdb;
+	if ( $yt_id ) {
+		$found = $wpdb->get_var( $wpdb->prepare(
+			"SELECT post_id FROM {$wpdb->postmeta} WHERE (meta_key = 'link_video' OR meta_key = 'video_url') AND meta_value LIKE %s LIMIT 1",
+			'%' . $wpdb->esc_like( $yt_id ) . '%'
+		) );
+		if ( $found ) {
+			return (int) $found;
+		}
+	}
+	if ( $title_kw ) {
+		$found = $wpdb->get_var( $wpdb->prepare(
+			"SELECT ID FROM {$wpdb->posts} WHERE post_title LIKE %s AND post_type = 'video' AND post_status = 'publish' LIMIT 1",
+			'%' . $wpdb->esc_like( $title_kw ) . '%'
+		) );
+		if ( $found ) {
+			return (int) $found;
+		}
+	}
+	return null;
+};
+
+// Priority top 3 videos
+$video1_id = $find_video_post_id( 'C3S_6PPHY-I', 'BẢO HÀNH ĐIỆN TỬ' );
+$video2_id = $find_video_post_id( 'kixDXBEGGcU', 'Cài Đặt App AI EBike' );
+$video3_id = $find_video_post_id( '_c0keOGRrS8', 'VIETNAM EXCELLENT BRANDS' );
+
+if ( ! $hero_main_id && $video1_id ) {
+	$hero_main_id = $video1_id;
+}
+
+// Fallback to featured or latest if not found
+if ( ! $hero_main_id ) {
 	$featured_q = new WP_Query( [
 		'post_type'      => 'video',
 		'posts_per_page' => 1,
@@ -46,7 +82,6 @@ if ( ! empty( $hero_override ) ) {
 	wp_reset_postdata();
 }
 
-// Fallback to latest video if no featured
 if ( ! $hero_main_id ) {
 	$latest_q = new WP_Query( [
 		'post_type'      => 'video',
@@ -61,23 +96,44 @@ if ( ! $hero_main_id ) {
 
 $hero_main_data = $hero_main_id ? spl_get_video_data( $hero_main_id ) : null;
 
-// Playlist sidebar (4 next recent videos excluding hero main)
-$sidebar_videos = [];
-$sidebar_args   = [
-	'post_type'      => 'video',
-	'posts_per_page' => 4,
-	'post_status'    => 'publish',
-];
-if ( $hero_main_id ) {
-	$sidebar_args['post__not_in'] = [ $hero_main_id ];
+// Playlist sidebar: Pin priority video #2 and #3, then fill with other 16:9 featured videos
+$sidebar_videos   = [];
+$sidebar_post_ids = [];
+
+if ( $video2_id && $video2_id !== $hero_main_id ) {
+	$sidebar_videos[]   = spl_get_video_data( $video2_id );
+	$sidebar_post_ids[] = $video2_id;
 }
-$sidebar_q = new WP_Query( $sidebar_args );
-if ( $sidebar_q->have_posts() ) {
-	foreach ( $sidebar_q->posts as $p ) {
-		$sidebar_videos[] = spl_get_video_data( (int) $p->ID );
+if ( $video3_id && $video3_id !== $hero_main_id ) {
+	$sidebar_videos[]   = spl_get_video_data( $video3_id );
+	$sidebar_post_ids[] = $video3_id;
+}
+
+$exclude_ids  = array_merge( [ (int) $hero_main_id ], $sidebar_post_ids );
+$needed_count = 4 - count( $sidebar_videos );
+
+if ( $needed_count > 0 ) {
+	$sidebar_q = new WP_Query( [
+		'post_type'      => 'video',
+		'posts_per_page' => $needed_count + 8,
+		'post_status'    => 'publish',
+		'post__not_in'   => $exclude_ids,
+	] );
+	if ( $sidebar_q->have_posts() ) {
+		foreach ( $sidebar_q->posts as $p ) {
+			$v_data = spl_get_video_data( (int) $p->ID );
+			// Prefer horizontal 16:9 videos with valid thumbnail
+			if ( ( $v_data['orientation'] ?? 'horizontal_16_9' ) === 'horizontal_16_9' ) {
+				$sidebar_videos[]   = $v_data;
+				$sidebar_post_ids[] = (int) $p->ID;
+				if ( count( $sidebar_videos ) >= 4 ) {
+					break;
+				}
+			}
+		}
 	}
+	wp_reset_postdata();
 }
-wp_reset_postdata();
 
 // ── 2. QUERY SHORTS / TIKTOK 9:16 VIDEOS ──
 $shorts_videos = [];
@@ -281,12 +337,17 @@ $gallery_videos = array_merge( array_values( $top_videos ), $remaining_videos );
 
 					<div class="vh-bottom-info">
 						<h2 class="vh-spotlight-title"><?php echo esc_html( $hero_main_data['title'] ); ?></h2>
-						<div class="vh-spotlight-meta">
-							<?php if ( ! empty( $hero_main_data['categories'] ) && is_array( $hero_main_data['categories'] ) ) : ?>
-								<span class="vh-cat-name"><?php echo esc_html( $hero_main_data['categories'][0] ); ?></span>
-								<span>•</span>
-							<?php endif; ?>
-							<span><?php echo esc_html( $hero_main_data['date'] ?? '' ); ?></span>
+						<div class="vh-spotlight-action-bar">
+							<div class="vh-spotlight-meta">
+								<?php if ( ! empty( $hero_main_data['categories'] ) && is_array( $hero_main_data['categories'] ) ) : ?>
+									<span class="vh-cat-name"><?php echo esc_html( $hero_main_data['categories'][0] ); ?></span>
+									<span>•</span>
+								<?php endif; ?>
+								<span><?php echo esc_html( $hero_main_data['date'] ?? '' ); ?></span>
+							</div>
+							<a href="<?php echo esc_url( $shop_page_url ); ?>" class="vh-prod-btn vh-prod-btn--hero" target="_blank" rel="noopener">
+								Xem trang sản phẩm &rarr;
+							</a>
 						</div>
 					</div>
 				</div>

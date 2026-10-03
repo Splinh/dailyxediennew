@@ -235,6 +235,9 @@ function initUniversalModal() {
 	document.addEventListener('click', (e) => {
 		const trigger = e.target.closest('[data-video-trigger]');
 		if (trigger) {
+			if (e.target.closest('a')) {
+				return;
+			}
 			e.preventDefault();
 			openVideoModal(trigger);
 		}
