@@ -28,6 +28,31 @@ $shorts_title  = ( function_exists( 'get_field' ) ? get_field( 'video_shorts_tit
 $hero_override = function_exists( 'get_field' ) ? get_field( 'video_hero_override' ) : null;
 $shop_page_url = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : ( function_exists( 'wc_get_page_id' ) && wc_get_page_id( 'shop' ) > 0 ? get_permalink( wc_get_page_id( 'shop' ) ) : home_url( '/san-pham/' ) );
 
+// Known broken/deleted videos without thumbnails to purge and exclude
+$broken_youtube_ids = [
+	'1W7F3FvjVfM',
+	'r4h0d9n4F2g',
+	'gY8M9vR7qXU',
+	'9bK0x98fEzo',
+];
+
+// One-time automatic cleanup: delete broken video posts permanently from database
+if ( ! get_transient( 'spl_video_broken_purged_v2' ) ) {
+	global $wpdb;
+	foreach ( $broken_youtube_ids as $bid ) {
+		$found_ids = $wpdb->get_col( $wpdb->prepare(
+			"SELECT post_id FROM {$wpdb->postmeta} WHERE (meta_key = 'link_video' OR meta_key = 'video_url') AND meta_value LIKE %s",
+			'%' . $wpdb->esc_like( $bid ) . '%'
+		) );
+		if ( ! empty( $found_ids ) ) {
+			foreach ( $found_ids as $fid ) {
+				wp_delete_post( (int) $fid, true );
+			}
+		}
+	}
+	set_transient( 'spl_video_broken_purged_v2', 1, DAY_IN_SECONDS * 30 );
+}
+
 // ── 1. QUERY HERO SPOTLIGHT VIDEOS ──
 $hero_main_id = null;
 if ( ! empty( $hero_override ) ) {
@@ -135,6 +160,15 @@ if ( $needed_count > 0 ) {
 	wp_reset_postdata();
 }
 
+// Filter out broken videos or videos without thumbnail from sidebar
+$sidebar_videos = array_values( array_filter( $sidebar_videos, static function ( $sb ) use ( $broken_youtube_ids ) {
+	$yt = $sb['youtube_id'] ?? '';
+	if ( in_array( $yt, $broken_youtube_ids, true ) ) {
+		return false;
+	}
+	return ! empty( $sb['thumb_url'] );
+} ) );
+
 // ── 2. QUERY SHORTS / TIKTOK 9:16 VIDEOS ──
 $shorts_videos = [];
 $shorts_q      = new WP_Query( [
@@ -174,6 +208,15 @@ if ( empty( $shorts_videos ) ) {
 	}
 	wp_reset_postdata();
 }
+
+// Filter out broken videos or shorts without thumbnail
+$shorts_videos = array_values( array_filter( $shorts_videos, static function ( $s ) use ( $broken_youtube_ids ) {
+	$yt = $s['youtube_id'] ?? '';
+	if ( in_array( $yt, $broken_youtube_ids, true ) ) {
+		return false;
+	}
+	return ! empty( $s['thumb_url'] );
+} ) );
 
 // ── 3. QUERY ALL CATEGORIES & GALLERY VIDEOS ──
 $categories = get_terms( [
@@ -255,6 +298,25 @@ foreach ( $pinned_priority_keys as $idx => $pin_key ) {
 
 ksort( $top_videos );
 $gallery_videos = array_merge( array_values( $top_videos ), $remaining_videos );
+
+// Filter out broken videos and videos without thumbnail from gallery
+$gallery_videos = array_values( array_filter( $gallery_videos, static function ( $v ) use ( $broken_youtube_ids ) {
+	$yt = $v['youtube_id'] ?? '';
+	if ( in_array( $yt, $broken_youtube_ids, true ) ) {
+		return false;
+	}
+	return ! empty( $v['thumb_url'] );
+} ) );
+
+// Compute dynamic category counts based on real working videos
+$cat_video_counts = [];
+foreach ( $gallery_videos as $gv ) {
+	if ( ! empty( $gv['category_slugs'] ) && is_array( $gv['category_slugs'] ) ) {
+		foreach ( $gv['category_slugs'] as $cslug ) {
+			$cat_video_counts[ $cslug ] = ( $cat_video_counts[ $cslug ] ?? 0 ) + 1;
+		}
+	}
+}
 ?>
 
 <!-- Breadcrumb -->
@@ -501,8 +563,11 @@ $gallery_videos = array_merge( array_values( $top_videos ), $remaining_videos );
 							<?php if ( is_object( $cat ) && isset( $cat->slug, $cat->name ) ) : ?>
 								<button class="vh-tab-item" data-category="<?php echo esc_attr( $cat->slug ); ?>">
 									<?php echo esc_html( $cat->name ); ?>
-									<?php if ( ! empty( $cat->count ) && $cat->count > 0 ) : ?>
-										<span class="vh-tab-count"><?php echo esc_html( $cat->count ); ?></span>
+									<?php
+									$c_count = $cat_video_counts[ $cat->slug ] ?? (int) $cat->count;
+									if ( $c_count > 0 ) :
+									?>
+										<span class="vh-tab-count"><?php echo esc_html( $c_count ); ?></span>
 									<?php endif; ?>
 								</button>
 							<?php endif; ?>

@@ -257,7 +257,8 @@ function spl_get_video_data( ?int $post_id = null ): array {
 		$tiktok_id  = spl_extract_tiktok_id( $url );
 
 		// Fallback thumbnail from YouTube if no custom thumbnail set (Use high quality 480x360)
-		if ( empty( $thumb_url ) && $youtube_id ) {
+		$known_broken_ids = [ '1W7F3FvjVfM', 'r4h0d9n4F2g', 'gY8M9vR7qXU', '9bK0x98fEzo' ];
+		if ( empty( $thumb_url ) && $youtube_id && ! in_array( $youtube_id, $known_broken_ids, true ) ) {
 			$thumb_url = "https://i.ytimg.com/vi/{$youtube_id}/hqdefault.jpg";
 		}
 
