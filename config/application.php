@@ -38,7 +38,7 @@ define( 'WP_ENV', env( 'WP_ENV' ) ?? 'production' );
 
 
 /* ==========================================================================
-	URLs
+	URLs & Cookies
 	========================================================================== */
 
 Config::define( 'WP_HOME', env( 'WP_HOME' ) );
@@ -46,6 +46,13 @@ Config::define( 'WP_SITEURL', env( 'WP_SITEURL' ) );
 
 defined( 'WP_HOME' ) || define( 'WP_HOME', env( 'WP_HOME' ) );
 defined( 'WP_SITEURL' ) || define( 'WP_SITEURL', env( 'WP_SITEURL' ) );
+
+/**
+ * Cookie paths - ensure cookies work at root "/" even when WP core is in /wp
+ */
+Config::define( 'COOKIEPATH', '/' );
+Config::define( 'SITECOOKIEPATH', '/' );
+Config::define( 'ADMIN_COOKIE_PATH', '/' );
 
 
 /* ==========================================================================
