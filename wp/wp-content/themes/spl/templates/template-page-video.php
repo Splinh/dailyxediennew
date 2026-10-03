@@ -53,128 +53,136 @@ if ( ! get_transient( 'spl_video_broken_purged_v2' ) ) {
 	set_transient( 'spl_video_broken_purged_v2', 1, DAY_IN_SECONDS * 30 );
 }
 
+// ── 0. SEED INITIAL MENU_ORDER (ONE-TIME) ──
+// Sets top 3 priority videos to 1, 2, 3 and other videos with order 0 to 10
+// so menu_order ASC sorts cleanly without unseeded '0' posts taking precedence.
+if ( ! get_option( 'spl_video_menu_order_seeded_v1' ) ) {
+	$spl_find_vid = static function ( string $yt_id, string $title_kw = '' ): ?int {
+		global $wpdb;
+		if ( $yt_id ) {
+			$found = $wpdb->get_var( $wpdb->prepare(
+				"SELECT post_id FROM {$wpdb->postmeta} WHERE (meta_key = 'link_video' OR meta_key = 'video_url') AND meta_value LIKE %s LIMIT 1",
+				'%' . $wpdb->esc_like( $yt_id ) . '%'
+			) );
+			if ( $found ) {
+				return (int) $found;
+			}
+		}
+		if ( $title_kw ) {
+			$found = $wpdb->get_var( $wpdb->prepare(
+				"SELECT ID FROM {$wpdb->posts} WHERE post_title LIKE %s AND post_type = 'video' AND post_status = 'publish' LIMIT 1",
+				'%' . $wpdb->esc_like( $title_kw ) . '%'
+			) );
+			if ( $found ) {
+				return (int) $found;
+			}
+		}
+		return null;
+	};
+
+	$v1 = $spl_find_vid( 'C3S_6PPHY-I', 'BẢO HÀNH ĐIỆN TỬ' );
+	$v2 = $spl_find_vid( 'kixDXBEGGcU', 'Cài Đặt App AI EBike' );
+	$v3 = $spl_find_vid( '_c0keOGRrS8', 'VIETNAM EXCELLENT BRANDS' );
+
+	global $wpdb;
+	// Initialize posts that currently have menu_order = 0 to 10
+	$wpdb->query( "UPDATE {$wpdb->posts} SET menu_order = 10 WHERE post_type = 'video' AND menu_order = 0" );
+
+	if ( $v1 ) {
+		$wpdb->update( $wpdb->posts, [ 'menu_order' => 1 ], [ 'ID' => $v1 ] );
+	}
+	if ( $v2 ) {
+		$wpdb->update( $wpdb->posts, [ 'menu_order' => 2 ], [ 'ID' => $v2 ] );
+	}
+	if ( $v3 ) {
+		$wpdb->update( $wpdb->posts, [ 'menu_order' => 3 ], [ 'ID' => $v3 ] );
+	}
+
+	update_option( 'spl_video_menu_order_seeded_v1', 1 );
+}
+
 // ── 1. QUERY HERO SPOTLIGHT VIDEOS ──
-$hero_main_id = null;
+$hero_main_id   = null;
+$hero_main_data = null;
 if ( ! empty( $hero_override ) ) {
 	$hero_main_id = is_object( $hero_override ) ? (int) $hero_override->ID : (int) $hero_override;
 }
 
-// Helper to find video post ID by YouTube ID or title keyword
-$find_video_post_id = static function ( string $yt_id, string $title_kw = '' ): ?int {
-	global $wpdb;
-	if ( $yt_id ) {
-		$found = $wpdb->get_var( $wpdb->prepare(
-			"SELECT post_id FROM {$wpdb->postmeta} WHERE (meta_key = 'link_video' OR meta_key = 'video_url') AND meta_value LIKE %s LIMIT 1",
-			'%' . $wpdb->esc_like( $yt_id ) . '%'
-		) );
-		if ( $found ) {
-			return (int) $found;
-		}
-	}
-	if ( $title_kw ) {
-		$found = $wpdb->get_var( $wpdb->prepare(
-			"SELECT ID FROM {$wpdb->posts} WHERE post_title LIKE %s AND post_type = 'video' AND post_status = 'publish' LIMIT 1",
-			'%' . $wpdb->esc_like( $title_kw ) . '%'
-		) );
-		if ( $found ) {
-			return (int) $found;
-		}
-	}
-	return null;
-};
-
-// Priority top 3 videos
-$video1_id = $find_video_post_id( 'C3S_6PPHY-I', 'BẢO HÀNH ĐIỆN TỬ' );
-$video2_id = $find_video_post_id( 'kixDXBEGGcU', 'Cài Đặt App AI EBike' );
-$video3_id = $find_video_post_id( '_c0keOGRrS8', 'VIETNAM EXCELLENT BRANDS' );
-
-if ( ! $hero_main_id && $video1_id ) {
-	$hero_main_id = $video1_id;
-}
-
-// Fallback to featured or latest if not found
 if ( ! $hero_main_id ) {
-	$featured_q = new WP_Query( [
+	$hero_q = new WP_Query( [
 		'post_type'      => 'video',
-		'posts_per_page' => 1,
-		'meta_key'       => 'is_featured',
-		'meta_value'     => '1',
+		'posts_per_page' => 10,
 		'post_status'    => 'publish',
+		'orderby'        => [
+			'menu_order' => 'ASC',
+			'date'       => 'DESC',
+		],
+		'order'          => 'ASC',
 	] );
-	if ( $featured_q->have_posts() ) {
-		$hero_main_id = (int) $featured_q->posts[0]->ID;
-	}
-	wp_reset_postdata();
-}
-
-if ( ! $hero_main_id ) {
-	$latest_q = new WP_Query( [
-		'post_type'      => 'video',
-		'posts_per_page' => 1,
-		'post_status'    => 'publish',
-	] );
-	if ( $latest_q->have_posts() ) {
-		$hero_main_id = (int) $latest_q->posts[0]->ID;
-	}
-	wp_reset_postdata();
-}
-
-$hero_main_data = $hero_main_id ? spl_get_video_data( $hero_main_id ) : null;
-
-// Playlist sidebar: Pin priority video #2 and #3, then fill with other 16:9 featured videos
-$sidebar_videos   = [];
-$sidebar_post_ids = [];
-
-if ( $video2_id && $video2_id !== $hero_main_id ) {
-	$sidebar_videos[]   = spl_get_video_data( $video2_id );
-	$sidebar_post_ids[] = $video2_id;
-}
-if ( $video3_id && $video3_id !== $hero_main_id ) {
-	$sidebar_videos[]   = spl_get_video_data( $video3_id );
-	$sidebar_post_ids[] = $video3_id;
-}
-
-$exclude_ids  = array_merge( [ (int) $hero_main_id ], $sidebar_post_ids );
-$needed_count = 4 - count( $sidebar_videos );
-
-if ( $needed_count > 0 ) {
-	$sidebar_q = new WP_Query( [
-		'post_type'      => 'video',
-		'posts_per_page' => $needed_count + 8,
-		'post_status'    => 'publish',
-		'post__not_in'   => $exclude_ids,
-	] );
-	if ( $sidebar_q->have_posts() ) {
-		foreach ( $sidebar_q->posts as $p ) {
-			$v_data = spl_get_video_data( (int) $p->ID );
-			// Prefer horizontal 16:9 videos with valid thumbnail
-			if ( ( $v_data['orientation'] ?? 'horizontal_16_9' ) === 'horizontal_16_9' ) {
-				$sidebar_videos[]   = $v_data;
-				$sidebar_post_ids[] = (int) $p->ID;
-				if ( count( $sidebar_videos ) >= 4 ) {
-					break;
-				}
+	if ( $hero_q->have_posts() ) {
+		foreach ( $hero_q->posts as $p ) {
+			$v_test = spl_get_video_data( (int) $p->ID );
+			$yt     = $v_test['youtube_id'] ?? '';
+			if ( ! in_array( $yt, $broken_youtube_ids, true ) && ! empty( $v_test['thumb_url'] ) ) {
+				$hero_main_id   = (int) $p->ID;
+				$hero_main_data = $v_test;
+				break;
 			}
 		}
 	}
 	wp_reset_postdata();
+} else {
+	$hero_main_data = spl_get_video_data( $hero_main_id );
 }
 
-// Filter out broken videos or videos without thumbnail from sidebar
-$sidebar_videos = array_values( array_filter( $sidebar_videos, static function ( $sb ) use ( $broken_youtube_ids ) {
-	$yt = $sb['youtube_id'] ?? '';
-	if ( in_array( $yt, $broken_youtube_ids, true ) ) {
-		return false;
+// Playlist sidebar: 4 next videos sorted by menu_order ASC, date DESC
+$sidebar_videos   = [];
+$sidebar_post_ids = [];
+$sidebar_exclude  = $hero_main_id ? [ (int) $hero_main_id ] : [];
+
+$sidebar_q = new WP_Query( [
+	'post_type'      => 'video',
+	'posts_per_page' => 20,
+	'post_status'    => 'publish',
+	'post__not_in'   => $sidebar_exclude,
+	'orderby'        => [
+		'menu_order' => 'ASC',
+		'date'       => 'DESC',
+	],
+	'order'          => 'ASC',
+] );
+
+if ( $sidebar_q->have_posts() ) {
+	foreach ( $sidebar_q->posts as $p ) {
+		$v_data = spl_get_video_data( (int) $p->ID );
+		$yt     = $v_data['youtube_id'] ?? '';
+		// Skip broken videos or videos without thumbnail
+		if ( in_array( $yt, $broken_youtube_ids, true ) || empty( $v_data['thumb_url'] ) ) {
+			continue;
+		}
+		// Prefer horizontal 16:9 videos
+		if ( ( $v_data['orientation'] ?? 'horizontal_16_9' ) === 'horizontal_16_9' ) {
+			$sidebar_videos[]   = $v_data;
+			$sidebar_post_ids[] = (int) $p->ID;
+			if ( count( $sidebar_videos ) >= 4 ) {
+				break;
+			}
+		}
 	}
-	return ! empty( $sb['thumb_url'] );
-} ) );
+}
+wp_reset_postdata();
 
 // ── 2. QUERY SHORTS / TIKTOK 9:16 VIDEOS ──
 $shorts_videos = [];
 $shorts_q      = new WP_Query( [
 	'post_type'      => 'video',
-	'posts_per_page' => 12,
+	'posts_per_page' => 15,
 	'post_status'    => 'publish',
+	'orderby'        => [
+		'menu_order' => 'ASC',
+		'date'       => 'DESC',
+	],
+	'order'          => 'ASC',
 	'tax_query'      => [
 		'relation' => 'OR',
 		[
@@ -195,8 +203,13 @@ wp_reset_postdata();
 if ( empty( $shorts_videos ) ) {
 	$shorts_q2 = new WP_Query( [
 		'post_type'      => 'video',
-		'posts_per_page' => 20,
+		'posts_per_page' => 25,
 		'post_status'    => 'publish',
+		'orderby'        => [
+			'menu_order' => 'ASC',
+			'date'       => 'DESC',
+		],
+		'order'          => 'ASC',
 	] );
 	if ( $shorts_q2->have_posts() ) {
 		foreach ( $shorts_q2->posts as $p ) {
@@ -231,82 +244,25 @@ $gallery_q = new WP_Query( [
 	'post_type'      => 'video',
 	'posts_per_page' => 60,
 	'post_status'    => 'publish',
+	'orderby'        => [
+		'menu_order' => 'ASC',
+		'date'       => 'DESC',
+	],
+	'order'          => 'ASC',
 ] );
 $gallery_videos = [];
 if ( $gallery_q->have_posts() ) {
 	foreach ( $gallery_q->posts as $p ) {
-		$gallery_videos[] = spl_get_video_data( (int) $p->ID );
+		$v_data = spl_get_video_data( (int) $p->ID );
+		$yt     = $v_data['youtube_id'] ?? '';
+		// Filter out broken videos and videos without thumbnail
+		if ( in_array( $yt, $broken_youtube_ids, true ) || empty( $v_data['thumb_url'] ) ) {
+			continue;
+		}
+		$gallery_videos[] = $v_data;
 	}
 }
 wp_reset_postdata();
-
-// Pin top 3 priority videos requested by user:
-// 1. TỔNG QUAN CHỨC NĂNG BẢO HÀNH ĐIỆN TỬ (C3S_6PPHY-I)
-// 2. Hướng Dẫn Tải & Cài Đặt App AI EBike (kixDXBEGGcU)
-// 3. AI EBIKE – Dấu ấn tại VIETNAM EXCELLENT BRANDS 2026 (_c0keOGRrS8)
-$pinned_priority_keys = [
-	'C3S_6PPHY-I',
-	'kixDXBEGGcU',
-	'_c0keOGRrS8',
-];
-
-$top_videos       = [];
-$remaining_videos = [];
-
-foreach ( $gallery_videos as $vid ) {
-	$vid_yt    = $vid['youtube_id'] ?? '';
-	$is_pinned = false;
-	foreach ( $pinned_priority_keys as $idx => $pin_key ) {
-		if ( ( $vid_yt && $vid_yt === $pin_key ) || ( ! empty( $vid['url'] ) && strpos( $vid['url'], $pin_key ) !== false ) ) {
-			$top_videos[ $idx ] = $vid;
-			$is_pinned          = true;
-			break;
-		}
-	}
-	if ( ! $is_pinned ) {
-		$remaining_videos[] = $vid;
-	}
-}
-
-// Fallback: If any pinned video was outside the initial query, fetch explicitly
-foreach ( $pinned_priority_keys as $idx => $pin_key ) {
-	if ( ! isset( $top_videos[ $idx ] ) ) {
-		$pin_q = new WP_Query( [
-			'post_type'      => 'video',
-			'posts_per_page' => 1,
-			'post_status'    => 'publish',
-			'meta_query'     => [
-				'relation' => 'OR',
-				[
-					'key'     => 'link_video',
-					'value'   => $pin_key,
-					'compare' => 'LIKE',
-				],
-				[
-					'key'     => 'video_url',
-					'value'   => $pin_key,
-					'compare' => 'LIKE',
-				],
-			],
-		] );
-		if ( $pin_q->have_posts() ) {
-			$top_videos[ $idx ] = spl_get_video_data( (int) $pin_q->posts[0]->ID );
-		}
-		wp_reset_postdata();
-	}
-}
-
-ksort( $top_videos );
-$gallery_videos = array_merge( array_values( $top_videos ), $remaining_videos );
-
-// Filter out broken videos and videos without thumbnail from gallery
-$gallery_videos = array_values( array_filter( $gallery_videos, static function ( $v ) use ( $broken_youtube_ids ) {
-	$yt = $v['youtube_id'] ?? '';
-	if ( in_array( $yt, $broken_youtube_ids, true ) ) {
-		return false;
-	}
-	return ! empty( $v['thumb_url'] );
-} ) );
 
 // Compute dynamic category counts based on real working videos
 $cat_video_counts = [];

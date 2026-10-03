@@ -82,11 +82,48 @@ function spl_register_video_cpt_and_taxonomies(): void {
 			'hierarchical'       => false,
 			'menu_position'      => 21,
 			'menu_icon'          => 'dashicons-video-alt3',
-			'supports'           => [ 'title', 'editor', 'thumbnail', 'excerpt' ],
+			'supports'           => [ 'title', 'editor', 'thumbnail', 'excerpt', 'page-attributes' ],
 			'show_in_rest'       => true,
 			'taxonomies'         => [ 'video-cat' ],
 		]
 	);
+}
+
+/**
+ * Add 'menu_order' (Thứ tự) column to Video admin list table
+ */
+add_filter( 'manage_video_posts_columns', 'spl_video_admin_order_column' );
+function spl_video_admin_order_column( array $columns ): array {
+	$columns['menu_order'] = __( 'Thứ tự', 'spl' );
+	return $columns;
+}
+
+add_action( 'manage_video_posts_custom_column', 'spl_video_admin_order_column_value', 10, 2 );
+function spl_video_admin_order_column_value( string $column, int $post_id ): void {
+	if ( $column === 'menu_order' ) {
+		echo (int) get_post_field( 'menu_order', $post_id );
+	}
+}
+
+add_filter( 'manage_edit-video_sortable_columns', 'spl_video_admin_order_sortable' );
+function spl_video_admin_order_sortable( array $columns ): array {
+	$columns['menu_order'] = 'menu_order';
+	return $columns;
+}
+
+/**
+ * Admin list default sort by menu_order ASC, date DESC
+ */
+add_action( 'pre_get_posts', 'spl_video_admin_default_order' );
+function spl_video_admin_default_order( WP_Query $query ): void {
+	if ( is_admin() && $query->is_main_query() && $query->get( 'post_type' ) === 'video' ) {
+		if ( ! isset( $_GET['orderby'] ) ) {
+			$query->set( 'orderby', [
+				'menu_order' => 'ASC',
+				'date'       => 'DESC',
+			] );
+		}
+	}
 }
 
 /**
@@ -331,6 +368,7 @@ function spl_get_video_data( ?int $post_id = null ): array {
 			'categories'      => $category_names,
 			'category_slugs'  => $category_slugs,
 			'date'            => get_the_date( 'd/m/Y', $post_id ) ?: '',
+			'menu_order'      => (int) ( get_post_field( 'menu_order', $post_id ) ?: 0 ),
 		];
 	} catch ( \Throwable $e ) {
 		return [
@@ -353,6 +391,7 @@ function spl_get_video_data( ?int $post_id = null ): array {
 			'categories'      => [],
 			'category_slugs'  => [],
 			'date'            => '',
+			'menu_order'      => 0,
 		];
 	}
 }
