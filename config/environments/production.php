@@ -20,5 +20,5 @@ Config::define( 'SAVEQUERIES', false );
 
 /** Security hardening */
 Config::define( 'DISALLOW_FILE_EDIT', true );
-Config::define( 'DISALLOW_FILE_MODS', true );
+Config::define( 'DISALLOW_FILE_MODS', env( 'DISALLOW_FILE_MODS' ) ?? false );
 Config::define( 'DISALLOW_INDEXING', false );
