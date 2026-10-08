@@ -18,17 +18,38 @@ RewriteRule ^\.(.*)$ - [F,L]
 RewriteRule ^\.env - [F,L]
 RewriteRule ^wp-config\.php$ - [F,L]
 RewriteRule ^wp/wp-config\.php$ - [F,L]
+# 2b. Chặn thư mục/file ẩn ở MỌI cấp (shell từng nằm trong */.well-known/.90d148...system/)
+#     Chỉ chừa /.well-known/acme-challenge/ ở gốc cho SSL Let's Encrypt.
+RewriteRule (^|/)\.(?!well-known/acme-challenge/) - [F,L]
+
+# 2c. OpenLiteSpeed bỏ qua <FilesMatch>/<Files> nên phải chặn bằng RewriteRule.
+#     File dev/backup nằm ở web root: md, xlsx, csv, sql, rdb, bat, yaml, lock, zip...
+RewriteRule ^[^/]+\.(md|xlsx?|csv|sql|rdb|bat|ya?ml|lock|log|sh|zip|tar|gz|bak|dist)$ - [F,NC,L]
+RewriteRule ^(composer|package|lh_report|lh_verify)\.json$ - [F,NC,L]
+RewriteRule ^(phpunit|phpcs)\.xml$ - [F,NC,L]
+RewriteRule ^(config|vendor|scripts|docs|wpfm-private-backups)(/|$) - [F,NC,L]
 
 # 3. Chặn XML-RPC (nguồn tấn công brute-force & DDoS của botnet)
 <Files xmlrpc.php>
     Order allow,deny
     Deny from all
 </Files>
+RewriteRule (^|/)xmlrpc\.php$ - [F,NC,L]
 
 # 4. Chặn đứng thực thi file PHP trong thư mục uploads và cache
 RewriteRule ^wp/wp-content/uploads/.*\.php$ - [F,L]
 RewriteRule ^wp-content/uploads/.*\.php$ - [F,L]
 RewriteRule ^wp/wp-content/cache/.*\.php$ - [F,L]
+# 4b. Không file PHP nào trong các thư mục này cần truy cập trực tiếp qua URL
+RewriteRule ^(wp/)?wp-content/(uploads|cache|languages|upgrade|mu-plugins|litespeed)/.*\.(php\d?|phtml|phar)$ - [F,NC,L]
+RewriteRule ^(wp/)?wp-content/themes/.*\.(php\d?|phtml|phar)$ - [F,NC,L]
+# PHP nằm thẳng trong wp-content/ hoặc plugins/ (vd: plugins/7j958gt0oflifFM.php)
+RewriteRule ^(wp/)?wp-content/(plugins/)?[^/]+\.(php\d?|phtml|phar)$ - [F,NC,L]
+# 4c. Ở wp/ gốc chỉ cho phép entry point của WordPress core (chặn wp/177.php, wp/wp-links-opmI.php...)
+RewriteRule ^wp/(?!(index|wp-login|wp-cron|wp-comments-post|wp-signup|wp-activate|wp-trackback|wp-mail)\.php$)[^/]+\.(php\d?|phtml|phar)$ - [F,NC,L]
+# 4d. Ở web root chỉ cho phép index.php (chỉ áp dụng với file thật, không ảnh hưởng rewrite /wp-login.php)
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^(?!index\.php$)[^/]+\.(php\d?|phtml|phar)$ - [F,NC,L]
 
 # 5. Chặn truy cập trực tiếp thư mục scripts/ từ bên ngoài
 RewriteRule ^scripts/.*\.php$ - [F,L]
