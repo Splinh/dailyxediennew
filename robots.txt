@@ -8,6 +8,3 @@ Disallow: /*?add-to-cart=*
 Disallow: /*?nocache=*
 Disallow: /*?s=*
 Disallow: /search/
-
-# Sitemap URL
-Sitemap: https://dailynew.bluerabike.com/sitemap_index.xml
